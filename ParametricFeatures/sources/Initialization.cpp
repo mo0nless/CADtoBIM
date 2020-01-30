@@ -134,7 +134,6 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 {
 	auto prop = propsDictVec->at(0)->getGraphicPropertiesMap();
 	//The program crash here, NULL values inside the map
-
 	//PropertyTypeValue pRange = prop.at(GraphicPropertiesEnum::RANGE);
 	PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
 	TypesUtils test = TypesUtils(&pRange);
