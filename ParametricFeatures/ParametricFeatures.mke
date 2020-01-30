@@ -1,0 +1,199 @@
+#---------------------------------------------------------------------------------------+
+#
+#    $Source: ParametricFeatures.mke $
+# 
+#    $Copyright: (c) 2017 Bentley Systems, Incorporated. All rights reserved. $
+#
+#---------------------------------------------------------------------------------------+
+PolicyFile = MicroStationPolicy.mki
+DEFAULT_TARGET_PROCESSOR_ARCHITECTURE=x64
+
+appName     =  ParametricFeatures
+sAppName    =  ParametricFeatures
+
+MDLMKI = $(MSMDE)mki/
+mdlLibs = $(MSMDE)library/
+
+openCascade = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3"
+boost = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps/boost_1_67_0"
+ifcLib = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/installed-vs2015-x64/lib"
+ifcOpenShell = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/src"
+
+%include $(MDLMKI)mdl.mki 
+
+#--------------------------------------------------------------------------------------
+#    Create needed output directories in case they don't exist
+#--------------------------------------------------------------------------------------
+always:
+    !~@mkdir $(o)
+    !~@mkdir $(rscObjects)
+    !~@mkdir $(reqdObjs)
+
+#--------------------------------------------------------------------------------------
+# http://www.la-solutions.co.uk/content/CONNECT/MicroStationAPI/DevelopmentEnvironment.htm
+# If you are building using Bentley Make (bmake.exe), 
+# then add the path to the include list using the cincapnd.mki macro. 
+# In your make file, add something like this
+# dirToSearch = Path to the directory that needs to be included
+# %include $(MDLMKI)cincapnd.mki
+#--------------------------------------------------------------------------------------
+
+#dirToSearch = $(MDLMKI)
+#genSrc = $(o)
+
+dirToSearch = $(openCascade)/inc
+%include $(MDLMKI)cincapnd.mki
+
+dirToSearch = $(boost)
+%include $(MDLMKI)cincapnd.mki
+
+#dirToSearch = $(ifcOpenShell)/include
+dirToSearch = $(ifcOpenShell)
+%include $(MDLMKI)cincapnd.mki
+
+#--------------------------------------------------------------------------------------
+#    Define macros specific to this example
+#--------------------------------------------------------------------------------------
+baseDir         = $(_MakeFilePath)
+privateInc      = $(baseDir)
+langSpec        = $(baseDir)transkit/
+
+libRscs = \
+    $(rscObjects)$(sAppName).rsc
+
+#--------------------------------------------------------------------------------------
+#    Create object files
+#--------------------------------------------------------------------------------------
+$(rscObjects)$(sAppName).rsc     : $(baseDir)$(sAppName).r
+
+$(o)$(sAppName).h                : $(baseDir)$(sAppName).r
+
+#--------------------------------------------------------------------------------------
+#    Define the object container files
+#--------------------------------------------------------------------------------------
+appObjects = \
+	$(o)$(appName)$(oext) \
+	$(o)Initialization$(oext) \
+	$(o)GraphicsProcessor$(oext) \
+	$(o)IfcGenerator$(oext) \
+	$(o)PropertiesReader$(oext) \
+	$(o)PropertiesDictionary$(oext) \
+    $(o)PropertyTypeValue$(oext) \
+    $(o)ElementPropertiesEnum$(oext) \
+    $(o)GraphicPropertiesEnum$(oext) \
+    $(o)StringUtils$(oext) \
+    $(o)TypesUtils$(oext) \
+    #$(o)PropertyObjAttribute$(oext) \
+
+#--------------------------------------------------------------------------------------
+#    Set up to use dlmcomp.mki and dlmlink.mki
+#--------------------------------------------------------------------------------------
+
+DLM_NAME                = $(appName)
+# Specify the output destination folder
+DLM_DEST                = $(OPAPPS)
+DLM_OBJECT_FILES        = $(appObjects)
+DLM_OBJECT_DEST         = $(o)
+DLM_LIBDEF_SRC          = $(_MakeFilePath)
+DLM_SPECIAL_LINKOPT     = -fixed:no     # Notify linker this library does not require a fixed base address to load
+DLM_NO_DLS              = 1             # USE DLLEXPORT IN .CPP
+DLM_NO_DEF              = 1
+DLM_NOENTRY             = 1
+DLM_NO_MANIFEST         = 1             # If not set linker embeds your current (developer) patched MSVCRT version manifest in output dll.  This is not desirable and produces side-by-side CLIENT ERROR: 14001)
+DLM_NO_SIGN             = 1             # If not set and no certificate found, ERROR: 'singleton' is not recognized as an internal or external command
+DLM_NO_INITIALIZE_FUNCTION  = 1
+
+LINKER_LIBRARIES + $(ifcLib)/IfcParse.lib
+
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_ifc2x3.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_ifc4.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_ifc4x1.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_ifc4x2.lib
+
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_opencascade.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_opencascade_ifc2x3.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_opencascade_ifc4.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_opencascade_ifc4x1.lib
+LINKER_LIBRARIES + $(ifcLib)/IfcGeom_opencascade_ifc4x2.lib
+
+LINKER_LIBRARIES + $(ifcLib)/Serializers.lib
+LINKER_LIBRARIES + $(ifcLib)/Serializers_ifc2x3.lib
+LINKER_LIBRARIES + $(ifcLib)/Serializers_ifc4.lib
+LINKER_LIBRARIES + $(ifcLib)/Serializers_ifc4x1.lib
+LINKER_LIBRARIES + $(ifcLib)/Serializers_ifc4x2.lib
+
+
+LINKER_LIBRARIES + $(mdlLibs)Bentley.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyGeom.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyGeomSerialization.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyAllocator.lib
+LINKER_LIBRARIES + $(mdlLibs)DgnPlatform.lib
+LINKER_LIBRARIES + $(mdlLibs)DgnView.lib
+LINKER_LIBRARIES + $(mdlLibs)mdlbltin.lib
+LINKER_LIBRARIES + $(mdlLibs)PSolidCore.lib 
+LINKER_LIBRARIES + $(mdlLibs)RmgrTools.lib
+LINKER_LIBRARIES + $(mdlLibs)SmartFeature.lib 
+LINKER_LIBRARIES + $(mdlLibs)ECObjects.lib
+
+#--------------------------------------------------------------------------------------
+#    Compile the source files for the DLM
+#--------------------------------------------------------------------------------------
+$(o)$(appName)$(oext) : $(baseDir)sources/$(appName).cpp $(baseDir)headers/$(appName).h 
+
+$(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)headers/$(appName).h 
+
+$(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
+
+$(o)IfcGenerator$(oext) : $(baseDir)sources/IfcGenerator.cpp $(baseDir)headers/IfcGenerator.h 
+
+$(o)PropertiesReader$(oext) : $(baseDir)sources/PropertiesReader.cpp $(baseDir)headers/PropertiesReader.h 
+
+$(o)PropertiesDictionary$(oext) : $(baseDir)sources/PropertiesDictionary.cpp $(baseDir)headers/PropertiesDictionary.h 
+
+$(o)ElementPropertiesEnum$(oext) : $(baseDir)utils/ElementPropertiesEnum.cpp 
+
+$(o)GraphicPropertiesEnum$(oext) : $(baseDir)utils/GraphicPropertiesEnum.cpp
+
+$(o)PropertyTypeValue$(oext) : $(baseDir)sources/PropertyTypeValue.cpp $(baseDir)headers/PropertyTypeValue.h
+
+#$(o)PropertyObjAttribute$(oext) : $(baseDir)sources/PropertyObjAttribute.h
+
+$(o)StringUtils$(oext) : $(baseDir)utils/StringUtils.cpp $(baseDir)utils/StringUtils.h
+
+$(o)TypesUtils$(oext) : $(baseDir)utils/TypesUtils.cpp $(baseDir)utils/TypesUtils.h
+
+
+%include $(MDLMKI)dlmlink.mki
+
+#CLinkOpts + /NODEFAULTLIB:libcmt.lib
+#CLinkOpts + /NODEFAULTLIB:libcmtd.lib
+#CLinkOpts + /NODEFAULTLIB:msvcrtd.lib
+
+#--------------------------------------------------------------------------------------
+#    Merge the dialog resources & MDL program file using rlib
+#--------------------------------------------------------------------------------------
+$(reqdObjs)$(appName).mi        : $(libRscs)
+    $(msg)
+    > $(o)make.opt
+    -o$@
+    $(libRscs)
+    <
+    $(RLibCmd) @$(o)make.opt
+    ~time
+
+#--------------------------------------------------------------------------------------
+#    complete construction of the .ma
+#--------------------------------------------------------------------------------------
+libRscs = \
+    $(reqdObjs)$(appName).mi
+
+#$(mdlapps)$(appName).ma : $(libRscs)
+$(OPAPPS)$(appName).ma : $(libRscs)
+        $(msg)
+        > $(rscObjects)make.opt
+        -o$@
+        $(libRscs)
+        <
+        $(RLibCmd) @$(rscObjects)make.opt
+        ~time

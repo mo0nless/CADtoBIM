@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="MicroStation">
+    <!--innovoCAD Visual Studio Tools for MicroStation CONNECT Edition -->
+    <MicroStationGUID>{E6165299-985C-418F-9CCE-35C87D0CA2A1}</MicroStationGUID>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\PropertiesDictionary.cpp" />
+    <ClCompile Include="sources\GraphicsProcessor.cpp" />
+    <ClCompile Include="sources\IfcGenerator.cpp" />
+    <ClCompile Include="sources\Initialization.cpp" />
+    <ClCompile Include="sources\ParametricFeatures.cpp" />
+    <ClCompile Include="sources\PropertiesReader.cpp" />
+    <ClCompile Include="sources\PropertyTypeValue.cpp" />
+    <ClCompile Include="SubEntityProcessor.cpp" />
+    <ClCompile Include="utils\ElementPropertiesEnum.cpp" />
+    <ClCompile Include="utils\GraphicPropertiesEnum.cpp" />
+    <ClCompile Include="utils\StringUtils.cpp" />
+    <ClCompile Include="utils\TypesUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ParametricFeatures.mke" />
+    <None Include="ParametricFeatures.r" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\PropertiesDictionary.h" />
+    <ClInclude Include="headers\GraphicsProcessor.h" />
+    <ClInclude Include="headers\IfcGenerator.h" />
+    <ClInclude Include="headers\ParametricFeatures.h" />
+    <ClInclude Include="headers\PropertiesReader.h" />
+    <ClInclude Include="headers\PropertyObjAttribute.h" />
+    <ClInclude Include="headers\PropertyTypeValue.h" />
+    <ClInclude Include="utils\StringUtils.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="utils\TypesUtils.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>
+    <RootNamespace>ParametricFeatures</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>ParametricFeatures</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup>
+    <intDirectory>$(intDir)</intDirectory>
+    <projectDirectory>$(projectDir)</projectDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeBuildCommandLine>
+    <NMakeOutput>ParametricFeatures</NMakeOutput>
+    <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
+    <NMakePreprocessorDefinitions>USE_IFC4;_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc;$(ProjectDir)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <OutDir>$(SDKPROD)Mdlapps</OutDir>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+    <LocalDebuggerCommand>$(SDKPROD)microstation.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>$(MSArg)</LocalDebuggerCommandArguments>
+    <LocalDebuggerAttach>false</LocalDebuggerAttach>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <IntDir>bin\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir);$(IncludePath);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps/boost_1_67_0;$(MSMDE)include;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</IncludePath>
+    <LibraryPath>$(LibraryPath);C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/installed-vs2015-x64/lib;$(MSMDE)library</LibraryPath>
+    <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeBuildCommandLine>
+    <NMakeOutput>ParametricFeatures</NMakeOutput>
+    <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
+    <NMakePreprocessorDefinitions>USE_IFC4;_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc;$(ProjectDir)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</NMakeForcedIncludes>
+    <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+    <OutDir>$(SDKPROD)Mdlapps</OutDir>
+    <TargetExt>.dll</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+    <LocalDebuggerCommand>$(SDKPROD)microstation.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>$(MSArg)</LocalDebuggerCommandArguments>
+    <LocalDebuggerAttach>true</LocalDebuggerAttach>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <IntDir>bin\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir);$(IncludePath);C:\Users\LX5990\Documents\IfcOpenShell-0.7.0\src;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps/boost_1_67_0;$(MSMDE)include;C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</IncludePath>
+    <LibraryPath>$(LibraryPath);C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/installed-vs2015-x64/lib;$(MSMDE)library</LibraryPath>
+    <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProfileGuidedDatabase>bin\debug\$(TargetName).pgd</ProfileGuidedDatabase>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ManifestFile>bin\debug\$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ImportLibrary>bin\debug\$(TargetName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(SDKOUTDIR)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

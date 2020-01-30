@@ -1,0 +1,130 @@
+#---------------------------------------------------------------------------------------+
+#
+#    $Source: ParametricFeatures.mke $
+# 
+#    $Copyright: (c) 2017 Bentley Systems, Incorporated. All rights reserved. $
+#
+#---------------------------------------------------------------------------------------+
+PolicyFile = MicroStationPolicy.mki
+DEFAULT_TARGET_PROCESSOR_ARCHITECTURE=x64
+
+appName     =  ParametricFeatures
+sAppName    =  ParametricFeatures
+
+MDLMKI = $(MSMDE)mki/
+mdlLibs = $(MSMDE)library/
+
+#dirToSearch = $(MDLMKI)
+
+#genSrc = $(o)
+
+%include $(MDLMKI)mdl.mki 
+
+#--------------------------------------------------------------------------------------
+#    Create needed output directories in case they don't exist
+#--------------------------------------------------------------------------------------
+always:
+    !~@mkdir $(o)
+    !~@mkdir $(rscObjects)
+    !~@mkdir $(reqdObjs)
+
+#--------------------------------------------------------------------------------------
+# http://www.la-solutions.co.uk/content/CONNECT/MicroStationAPI/DevelopmentEnvironment.htm
+# If you are building using Bentley Make (bmake.exe), 
+# then add the path to the include list using the cincapnd.mki macro. 
+# In your make file, add something like this
+# NEW === dirToSearch = $(MSMDE)include/
+#--------------------------------------------------------------------------------------
+
+dirToSearch = $(o)
+%include $(MDLMKI)cincapnd.mki
+
+#--------------------------------------------------------------------------------------
+#    Define macros specific to this example
+#--------------------------------------------------------------------------------------
+baseDir         = $(_MakeFilePath)
+privateInc      = $(baseDir)
+langSpec        = $(baseDir)transkit/
+
+libRscs = \
+    $(rscObjects)$(sAppName).rsc
+
+#--------------------------------------------------------------------------------------
+#    Create object files
+#--------------------------------------------------------------------------------------
+$(rscObjects)$(sAppName).rsc     : $(baseDir)$(sAppName).r
+
+$(o)$(sAppName).h                : $(baseDir)$(sAppName).r
+
+#--------------------------------------------------------------------------------------
+#    Define the object container files
+#--------------------------------------------------------------------------------------
+appObjects = \
+	$(o)$(appName)$(oext) \
+	$(o)ShapeProcessor$(oext) \
+
+#--------------------------------------------------------------------------------------
+#    Set up to use dlmcomp.mki and dlmlink.mki
+#--------------------------------------------------------------------------------------
+
+DLM_NAME                = $(appName)
+DLM_DEST                = $(OPAPPS)
+DLM_OBJECT_FILES        = $(appObjects)
+DLM_OBJECT_DEST         = $(o)
+DLM_LIBDEF_SRC          = $(_MakeFilePath)
+DLM_SPECIAL_LINKOPT     = -fixed:no     # Notify linker this library does not require a fixed base address to load
+DLM_NO_DLS              = 1             # USE DLLEXPORT IN .CPP
+DLM_NO_DEF              = 1
+DLM_NOENTRY             = 1
+DLM_NO_MANIFEST         = 1             # If not set linker embeds your current (developer) patched MSVCRT version manifest in output dll.  This is not desirable and produces side-by-side CLIENT ERROR: 14001)
+DLM_NO_SIGN             = 1             # If not set and no certificate found, ERROR: 'singleton' is not recognized as an internal or external command
+DLM_NO_INITIALIZE_FUNCTION  = 1
+
+LINKER_LIBRARIES + $(mdlLibs)Bentley.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyGeom.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyGeomSerialization.lib
+LINKER_LIBRARIES + $(mdlLibs)BentleyAllocator.lib
+LINKER_LIBRARIES + $(mdlLibs)DgnPlatform.lib
+LINKER_LIBRARIES + $(mdlLibs)DgnView.lib
+LINKER_LIBRARIES + $(mdlLibs)mdlbltin.lib
+LINKER_LIBRARIES + $(mdlLibs)PSolidCore.lib 
+LINKER_LIBRARIES + $(mdlLibs)RmgrTools.lib
+LINKER_LIBRARIES + $(mdlLibs)SmartFeature.lib 
+LINKER_LIBRARIES + $(mdlLibs)ECObjects.lib
+
+#--------------------------------------------------------------------------------------
+#    Compile the source files for the DLM
+#--------------------------------------------------------------------------------------
+$(o)$(appName)$(oext) : $(baseDir)$(appName).cpp $(baseDir)$(appName).h
+
+$(o)ShapeProcessor$(oext) : $(baseDir)ShapeProcessor.cpp $(baseDir)$(appName).h 
+
+%include $(MDLMKI)dlmlink.mki
+
+#--------------------------------------------------------------------------------------
+#    Merge the dialog resources & MDL program file using rlib
+#--------------------------------------------------------------------------------------
+$(reqdObjs)$(appName).mi        : $(libRscs)
+    $(msg)
+    > $(o)make.opt
+    -o$@
+    $(libRscs)
+    <
+    $(RLibCmd) @$(o)make.opt
+    ~time
+
+#--------------------------------------------------------------------------------------
+#    complete construction of the .ma
+#--------------------------------------------------------------------------------------
+libRscs = \
+    $(reqdObjs)$(appName).mi
+
+#$(mdlapps)$(appName).ma : $(libRscs)
+$(OPAPPS)$(appName).ma : $(libRscs)
+        $(msg)
+        > $(rscObjects)make.opt
+        -o$@
+        $(libRscs)
+        <
+        $(RLibCmd) @$(rscObjects)make.opt
+        ~time
