@@ -285,7 +285,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnConeDetail(coneDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn CONE Details --------" << std::endl;
+			/*outfile << "-------- Dgn CONE Details --------" << std::endl;*/
+			outfile << "-------- "<< typeid(coneDetails).name()<<" --------" << std::endl;
+			
 			outfile.close();
 
 			coneDetails.GetRange(range);

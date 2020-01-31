@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/ParametricFeatures/IfcWallTest.ifc
+/ParametricFeatures/Test.dgn
+/ParametricFeatures/TEST.txt
+/ParametricFeatures/test_wall.dgn
