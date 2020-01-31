@@ -61,24 +61,12 @@ PropertyObjAttribute<GraphicPropertiesEnum> PropertiesDictionary::getGraphicProp
 	return pOA; //Needs to be handle this, at the moment it's an empty object this one.
 }
 
-//void PropertiesDictionary::addElementProperty(ElementPropertiesEnum elementPropertiesEnum, PropertyTypeValue propertyTypeValue)
-//{
-//	this->elementPropertiesMap[elementPropertiesEnum] = propertyTypeValue;
-//}
-//
-//void PropertiesDictionary::addGraphicProperty(GraphicPropertiesEnum graphicPropertiesEnum, PropertyTypeValue propertyTypeValue)
-//{
-//	this->graphicPropertiesMap[graphicPropertiesEnum] = propertyTypeValue;
-//}
-//
-//std::map<ElementPropertiesEnum, PropertyTypeValue> PropertiesDictionary::getElementPropertiesMap()
-//{
-//	return this->elementPropertiesMap;
-//}
-//
-//std::map<GraphicPropertiesEnum, PropertyTypeValue> PropertiesDictionary::getGraphicPropertiesMap()
-//{
-//	return this->graphicPropertiesMap;
-//}
+std::string PropertiesDictionary::getElemDescrName()
+{
+	return elemDescrName;
+}
 
-
+void PropertiesDictionary::setElemDescrName(std::string s)
+{
+	this->elemDescrName = s;
+}

@@ -9,7 +9,9 @@
 class PropertiesReader
 {
 public:
-	static void GetProperties(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, PropertiesDictionary& propsDictionary);
+	PropertiesReader(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, PropertiesDictionary& propsDictionary);
+	std::string getElemClassName();
 private:
+	std::string elemClassName;
 	PropertiesReader();
 };

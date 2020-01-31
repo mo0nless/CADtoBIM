@@ -13,6 +13,12 @@ void GraphicsProcessor::setPropertiesDictionary(PropertiesDictionary* propsDict)
 	this->propsDictionary = propsDict;
 }
 
+void GraphicsProcessor::updateClassAndID(std::string elemClName, Int64 elmID)
+{
+	this->elemClassName = elemClName;
+	this->elementID = elmID;
+}
+
 inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive)
 {
 	double area, volume, radius;
@@ -42,11 +48,24 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 
 	outfile.close();
 
-	/*propsDictionary->addGraphicProperty(GraphicPropertiesEnum::AREA, PropertyTypeValue("double", area));
-	propsDictionary->addGraphicProperty(GraphicPropertiesEnum::VOLUME, PropertyTypeValue("double", volume));
-	propsDictionary->addGraphicProperty(GraphicPropertiesEnum::RADIUS, PropertyTypeValue("double", radius));*/
+	propsDictionary->addGraphicProperty(
+		PropertyObjAttribute<GraphicPropertiesEnum>(
+			elementID, elemClassName, GraphicPropertiesEnum::AREA),
+		PropertyTypeValue("double", area)
+	);
 
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>("BOX", GraphicPropertiesEnum::AREA), PropertyTypeValue("double", area));
+	propsDictionary->addGraphicProperty(
+		PropertyObjAttribute<GraphicPropertiesEnum>(
+			elementID, elemClassName, GraphicPropertiesEnum::RADIUS),
+		PropertyTypeValue("double", radius)
+	);
+
+	propsDictionary->addGraphicProperty(
+		PropertyObjAttribute<GraphicPropertiesEnum>(
+			elementID, elemClassName, GraphicPropertiesEnum::VOLUME),
+		PropertyTypeValue("double", volume)
+	);
+
 }
 
 inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -78,12 +97,26 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 	outfile << std::endl;
 
 	outfile.close();
+	
+	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
+		elementID, elemClassName, GraphicPropertiesEnum::RANGE),
+		PropertyTypeValue("DRange3d", range)
+	);
 
-	/*propsDictionary->addGraphicProperty(GraphicPropertiesEnum::RANGE, PropertyTypeValue("DRange3d", range));
-	propsDictionary->addGraphicProperty(GraphicPropertiesEnum::ORIGIN, PropertyTypeValue("DPoint3d", localToWorld.Origin()));
-	propsDictionary->addGraphicProperty(GraphicPropertiesEnum::EULER_ROTATION, PropertyTypeValue("DVec3d", rotation));
-	propsDictionary->addGraphicProperty(GraphicPropertiesEnum::QUATERNION_ROTATION, PropertyTypeValue("DPoint4d", qRotation));*/
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>("BOX", GraphicPropertiesEnum::RANGE), PropertyTypeValue("DRange3d", range));
+	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
+		elementID, elemClassName, GraphicPropertiesEnum::ORIGIN),
+		PropertyTypeValue("DPoint3d", localToWorld.Origin())
+	);
+
+	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
+		elementID, elemClassName, GraphicPropertiesEnum::EULER_ROTATION),
+		PropertyTypeValue("DVec3d", rotation)
+	);
+
+	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
+		elementID, elemClassName, GraphicPropertiesEnum::QUATERNION_ROTATION),
+		PropertyTypeValue("DPoint4d", qRotation)
+	);
 }
 
 //! Collect output as text.
@@ -199,7 +232,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn BOX Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			boxDetails.GetCorners(corners);
@@ -285,9 +318,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnConeDetail(coneDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			/*outfile << "-------- Dgn CONE Details --------" << std::endl;*/
-			outfile << "-------- "<< typeid(coneDetails).name()<<" --------" << std::endl;
-			
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			coneDetails.GetRange(range);
@@ -347,7 +378,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn EXTRUSION Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			extrusionDetails.GetRange(range);
@@ -412,7 +443,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnRotationalSweepDetail(rotSweepDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn ROTATIONAL SWEEP Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			rotSweepDetails.GetRange(range);
@@ -491,7 +522,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn RULED SWEEP Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			ruledSweepDetails.GetRange(range);
@@ -548,7 +579,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnSphereDetail(sphereDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn SPHERE Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			sphereDetails.GetRange(range);
@@ -606,7 +637,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnTorusPipeDetail(torusDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- Dgn TORUS Details --------" << std::endl;
+			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
 			outfile.close();
 
 			torusDetails.GetRange(range);

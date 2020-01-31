@@ -14,14 +14,3 @@ std::string StringUtils::getString(WString wstringValue) {
 
 	return stringValue;
 }
-
-//namespace StringUtils {
-//
-//	extern std::string getString(WString wstringValue) {
-//
-//		std::wstring ws(wstringValue.c_str());
-//		std::string stringValue(ws.begin(), ws.end());
-//
-//		return stringValue;
-//	}
-//}

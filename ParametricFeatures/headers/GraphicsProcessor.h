@@ -4,12 +4,15 @@
 #include "PropertiesDictionary.h"
 #include "../utils/ElementPropertiesEnum.cpp"
 #include "../utils/GraphicPropertiesEnum.cpp"
+#include "../utils/StringUtils.h"
+#include "PropertiesReader.h"
 
 class GraphicsProcessor : public IElementGraphicsProcessor
 {
 public:
 	GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath);
 	void setPropertiesDictionary(PropertiesDictionary* propsDict);
+	void updateClassAndID(std::string elemClName, Int64 elemID);
 private:
 	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
 	inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
@@ -27,7 +30,8 @@ private:
 	WString myString;
 	std::ofstream &outfile;
 	std::string filePath;
+	Int64 elementID;
 	PropertiesDictionary* propsDictionary;
-
+	std::string elemClassName;
 };
 

@@ -371,26 +371,29 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		outfile.open(filePath,std::ios_base::app);
 
 		SmartFeatureElement::GetFeaturesFromNodeName(sFeatNode, sFeatVec, currentElem, L"Intersection");
-		SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
+		//SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
 		SmartFeatureElement::ExtractTree(node, currentElem);
 		
-
 		outfile << "===================================================" << std::endl;
 		outfile << "====" << static_cast<Utf8String>(elDescr.GetWCharCP()) << "====" << std::endl;
 		outfile << "==== Is Smart Feauture = " << SmartFeatureElement::IsSmartFeature(currentElem) << "====" << std::endl;
+		outfile << currentElem.GetElementId() << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
-		// Start to processing the graphics elements and then get its properties
-		PropertiesDictionary* propertiedDictionary = new PropertiesDictionary();
-		graphicsProcessor.setPropertiesDictionary(propertiedDictionary);
+		PropertiesDictionary* propertiesDictionary = new PropertiesDictionary();
 
+		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
+		propertiesDictionary->setElemDescrName(StringUtils::getString(elDescr.GetWCharCP()));
+				
+		PropertiesReader* propertiesReader = new PropertiesReader(currentElem, outfile, filePath, *propertiesDictionary);
+
+		graphicsProcessor.updateClassAndID(propertiesReader->getElemClassName(), currentElem.GetElementId());
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
-		PropertiesReader::GetProperties(currentElem, outfile, filePath, *propertiedDictionary);
 
-		propsDictVec.push_back(propertiedDictionary);
+		propsDictVec.push_back(propertiesDictionary);
 
 		
 		//outfile.open(filePath, std::ios_base::app);

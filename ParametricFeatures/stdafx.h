@@ -37,6 +37,9 @@
 #include <DgnPlatform/DgnECInstance.h>
 #include <DgnPlatform/DgnECManager.h>
 
+#include <DgnView/DgnElementSetTool.h>
+#include <DgnView/LocateSubEntityTool.h>   
+
 #include <ECObjects/ECSchema.h>
 #include <ECObjects/ECValue.h>
 #include <Geom/SolidPrimitive.h>
