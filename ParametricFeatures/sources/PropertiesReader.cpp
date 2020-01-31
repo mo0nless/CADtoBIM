@@ -4,8 +4,22 @@ PropertiesReader::PropertiesReader()
 {
 }
 
-void PropertiesReader::GetProperties(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, PropertiesDictionary& propsDictionary)
+std::string PropertiesReader::getElemClassName()
 {
+	return this->elemClassName;
+}
+
+
+PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, PropertiesDictionary& propsDictionary)
+{
+	WString elDescr;
+	enum StringLength
+	{
+		DesiredLength = 128,
+	};
+
+	Handler& elemHandler = currentElem.GetHandler();
+	elemHandler.GetDescription(currentElem, elDescr, DesiredLength);
 	// Handles persistance of ECInstances
 	DgnECManagerR ecMgr = DgnECManager::GetManager();
 
@@ -22,55 +36,59 @@ void PropertiesReader::GetProperties(ElementHandleCR currentElem, std::ofstream 
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
 
-	for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
+	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
-		DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
-
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::endl;
-		outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << " ---------" << std::endl;
+		outfile << "======================== pROPS nOT fOUND ===========================" << std::endl;
 		outfile.close();
-		
-		for (ECPropertyP ecProp : elemInst->GetClass().GetProperties())
+		elemClassName = "SmartFeatureSolid"; 
+	}
+	else{
+
+		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
-			WString wStr;
-			ECValue ecVal;
+			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
 
-			// Gets the value stored in the specified ECProperty. 
-			elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << " ---------" << std::endl;
+			outfile.close();
 
-			// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
-			// Obtain a type adapter for the specified property. 
-			IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
-			// Create a context for a DgnECInstance
-			IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *elemInst, ecProp->GetName().GetWCharCP());
-
-			// Converts the ECValue to a display string. 
-			typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
-					
-			if (!(static_cast<Utf8String>(wStr) == ""))
+			for (ECPropertyP ecProp : elemInst->GetClass().GetProperties())
 			{
-				//propsDictionary.addElementProperty(ElementPropertiesEnum::NODE_ID,PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr));
+				WString wStr;
+				ECValue ecVal;
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile //<< static_cast<Utf8String>(ecProp->GetName()) 
-					//<< " ---> "
-					<< static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "[" 
-					<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] " 
-					<< "= " << static_cast<Utf8String>(wStr) << std::endl;
-				outfile.close();
+				// Gets the value stored in the specified ECProperty. 
+				elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());
+
+				// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
+				// Obtain a type adapter for the specified property. 
+				IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
+				// Create a context for a DgnECInstance
+				IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *elemInst, ecProp->GetName().GetWCharCP());
+
+				// Converts the ECValue to a display string. 
+				typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
+
+				if (!(static_cast<Utf8String>(wStr) == ""))
+				{
+					elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+					propsDictionary.addElementProperty(
+						PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(),elemClassName, ElementPropertiesEnum::NODE_ID),
+						PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
+					);
+
+					outfile.open(filePath, std::ios_base::app);
+					outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
+						<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+						<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+					outfile.close();
+				}
 			}
 		}
 	}
-	WString elDescr;
-	enum StringLength
-	{
-		DesiredLength = 128,
-	};
-	// Get the element handler
-	Handler& elemHandler = currentElem.GetHandler();
-	// Using Handler for description and for geometry origin
-	elemHandler.GetDescription(currentElem, elDescr, DesiredLength);
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::endl;
 	outfile << "===================================================" << std::endl;
@@ -81,3 +99,5 @@ void PropertiesReader::GetProperties(ElementHandleCR currentElem, std::ofstream 
 	outfile << std::endl;
 	outfile.close();
 }
+
+

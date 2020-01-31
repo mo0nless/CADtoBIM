@@ -14,10 +14,10 @@ sAppName    =  ParametricFeatures
 MDLMKI = $(MSMDE)mki/
 mdlLibs = $(MSMDE)library/
 
-openCascade = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps-vs2015-x64-installed/opencascade-7.3.0p3"
-boost = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/deps/boost_1_67_0"
-ifcLib = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/installed-vs2015-x64/lib"
-ifcOpenShell = "C:/Users/LX5990/Documents/IfcOpenShell-0.7.0/src"
+openCascade = $(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3
+boost = $(IFCO)deps/boost_1_67_0
+ifcLib = $(IFCO)installed-vs2015-x64/lib
+ifcOpenShell = $(IFCO)src
 
 %include $(MDLMKI)mdl.mki 
 

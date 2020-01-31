@@ -7,16 +7,19 @@ template<class pEnum>
 class PropertyObjAttribute {
 private:
 
-	std::string propertyObj;	
+	std::string className;
+	Int64 elementID;
 	pEnum propertyAttribute;
 public:
 	PropertyObjAttribute();
-	PropertyObjAttribute(const std::string &propertyObj, const pEnum &propertyAttribute);
+	PropertyObjAttribute(const Int64 &elmID, const std::string &clsName, const pEnum &propertyAttribute);
 
-	const std::string& getPropertyObj() const;	
+	const std::string& getClassName() const;	
+	const Int64& getElementID() const;
 	const pEnum& getPropertyAttribute() const;
 
-	std::string getPropertyObj();
+	std::string getClassName();
+	Int64 getElementID();
 	pEnum getPropertyAttribute();
 };
 
@@ -30,16 +33,23 @@ inline PropertyObjAttribute<pEnum>::PropertyObjAttribute()
 }
 
 template<class pEnum>
-inline PropertyObjAttribute<pEnum>::PropertyObjAttribute(const std::string & propertyObj, const pEnum & propertyAttribute)
+inline PropertyObjAttribute<pEnum>::PropertyObjAttribute(const Int64 & elmID, const std::string & clsName, const pEnum & propertyAttribute)
 {
 	this->propertyAttribute = propertyAttribute;
-	this->propertyObj = propertyObj;
+	this->className = clsName;
+	this->elementID = elmID;
 }
 
 template<class pEnum>
-inline std::string PropertyObjAttribute<pEnum>::getPropertyObj()
+inline std::string PropertyObjAttribute<pEnum>::getClassName()
 {
-	return this->propertyObj;
+	return this->className;
+}
+
+template<class pEnum>
+inline Int64 PropertyObjAttribute<pEnum>::getElementID()
+{
+	return this->elementID;
 }
 
 template<class pEnum>
@@ -49,9 +59,15 @@ inline pEnum PropertyObjAttribute<pEnum>::getPropertyAttribute()
 }
 
 template<class pEnum>
-inline const std::string& PropertyObjAttribute<pEnum>::getPropertyObj() const
+inline const std::string& PropertyObjAttribute<pEnum>::getClassName() const
 {
-	return this->propertyObj;
+	return this->className;
+}
+
+template<class pEnum>
+inline const Int64& PropertyObjAttribute<pEnum>::getElementID() const
+{
+	return this->elementID;
 }
 
 template<class pEnum>
@@ -63,7 +79,7 @@ inline const pEnum& PropertyObjAttribute<pEnum>::getPropertyAttribute() const
 /*Definition of the Operator with overloading*/
 template<class pEnum>
 inline bool operator==(const PropertyObjAttribute<pEnum>& lhs, const PropertyObjAttribute<pEnum>& rhs) {
-	return lhs.getPropertyObj() == rhs.getPropertyObj() && lhs.getPropertyAttribute() == lhs.getPropertyAttribute();
+	return lhs.getClassName() == rhs.getClassName() && lhs.getPropertyAttribute() == lhs.getPropertyAttribute() && lhs.getElementID() == rhs.getElementID();
 }
 template<class pEnum>
 inline bool operator!=(const PropertyObjAttribute<pEnum>& lhs, const PropertyObjAttribute<pEnum>& rhs) { return !operator==(lhs, rhs); }
@@ -72,7 +88,7 @@ template<class pEnum>
 inline bool operator< (const PropertyObjAttribute<pEnum>& lhs, const PropertyObjAttribute<pEnum>& rhs) {
 	// std::tuple's lexicographic ordering does all the actual work for you
 	// and using std::tie means no actual copies are made
-	return std::tie(lhs.getPropertyObj(), lhs.getPropertyAttribute()) < std::tie(rhs.getPropertyObj(), rhs.getPropertyAttribute());
+	return std::tie(lhs.getClassName(), lhs.getPropertyAttribute(), lhs.getElementID()) < std::tie(rhs.getClassName(), rhs.getPropertyAttribute(), rhs.getElementID());
 }
 
 template<class pEnum>
