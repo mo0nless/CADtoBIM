@@ -83,7 +83,7 @@
     <NMakeOutput>ParametricFeatures</NMakeOutput>
     <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>USE_IFC4;_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</NMakeForcedIncludes>
     <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
@@ -96,7 +96,7 @@
     <LocalDebuggerAttach>false</LocalDebuggerAttach>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <IntDir>bin\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(IncludePath);$(IFCO)src;$(IFCO)deps\boost_1_67_0;$(MSMDE)include;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</IncludePath>
+    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</IncludePath>
     <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64\lib;$(MSMDE)library</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
   </PropertyGroup>
@@ -105,9 +105,9 @@
     <NMakeOutput>ParametricFeatures</NMakeOutput>
     <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
-    <NMakePreprocessorDefinitions>USE_IFC4;_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3/inc;$(ProjectDir)</NMakeIncludeSearchPath>
-    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</NMakeForcedIncludes>
     <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir>$(SDKPROD)Mdlapps</OutDir>
@@ -118,8 +118,8 @@
     <LocalDebuggerAttach>true</LocalDebuggerAttach>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <IntDir>bin\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(IncludePath);$(IFCO)src;$(IFCO)deps/boost_1_67_0;$(MSMDE)include;$(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3/inc</IncludePath>
-    <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64/lib;$(MSMDE)library</LibraryPath>
+    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</IncludePath>
+    <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64\lib;$(MSMDE)library</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
