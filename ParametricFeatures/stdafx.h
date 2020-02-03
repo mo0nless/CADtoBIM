@@ -36,6 +36,7 @@
 #include <DgnPlatform/ElementHandle.h>
 #include <DgnPlatform/DgnECInstance.h>
 #include <DgnPlatform/DgnECManager.h>
+#include <DgnPlatform/DgnPlatformLib.h>
 
 #include <DgnView/DgnElementSetTool.h>
 #include <DgnView/LocateSubEntityTool.h>   

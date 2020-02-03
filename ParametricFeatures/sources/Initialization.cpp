@@ -21,7 +21,7 @@ inline std::string IfcTextSolver()
 template<class IfcSchema>
 void CreateCurveRebar()
 {
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
+	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";
 	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
 	file.header().file_name().name("IfcCurveBar.ifc");
 
@@ -138,7 +138,7 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
 	TypesUtils test = TypesUtils(&pRange);
 
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
 	typedef Ifc2x3::IfcGloballyUniqueId guid;
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
 
@@ -339,7 +339,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
@@ -368,12 +368,33 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 			
 		
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		outfile.open(filePath,std::ios_base::app);
-
-		SmartFeatureElement::GetFeaturesFromNodeName(sFeatNode, sFeatVec, currentElem, L"Intersection");
-		//SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
-		SmartFeatureElement::ExtractTree(node, currentElem);
 		
+
+		if (SmartFeatureElement::IsSmartFeature(currentElem))
+		{
+			//SmartFeatureElement::GetFeaturesFromNodeName(sFeatNode, sFeatVec, currentElem, L"Intersection");
+			//SmartFeatureElement::
+			//SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
+			SmartFeatureElement::ExtractTree(node, currentElem);
+
+			outfile.open(filePath, std::ios_base::app);
+			node->GetAllChildrenRecursively(sFeatVec);
+			for (size_t i = 0; i < sFeatVec.size(); i++)
+			{
+				outfile << "Children Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
+				if (sFeatVec.at(i)->GetParent() != nullptr)
+				{
+					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+
+				}
+			}
+
+			outfile << "Smart Feat Element Node ID: " << node->GetNodeId() << std::endl;
+			outfile << "Number of Child: " << node->GetChildCount() << std::endl;
+			outfile.close();
+		}
+
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
 		outfile << "====" << static_cast<Utf8String>(elDescr.GetWCharCP()) << "====" << std::endl;
 		outfile << "==== Is Smart Feauture = " << SmartFeatureElement::IsSmartFeature(currentElem) << "====" << std::endl;
@@ -395,17 +416,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		propsDictVec.push_back(propertiesDictionary);
 
-		
-		//outfile.open(filePath, std::ios_base::app);
-		//outfile << std::endl;
-		//outfile << "matrix content" << std::endl;
-		//int i = 0;
-		//for (std::map<ElementPropertiesEnum, PropertyTypeValue>::iterator it = propertiedDictionary->getElementPropertiesMap().begin(); it != propertiedDictionary->getElementPropertiesMap().end(); ++it) {
-		//	/*outfile << it->first<<" [" << it->second.getPropertyType()<< "] = " <<it->second.getPropertyValue() << "\n";*/
-		//	outfile << i++ << "\n";
-		//}
-		//outfile << "end of matrix" << std::endl;
-		//outfile << std::endl;
 	}
 
 	outfile.close();

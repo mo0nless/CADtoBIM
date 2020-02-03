@@ -22,7 +22,6 @@
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReader.cpp" />
     <ClCompile Include="sources\PropertyTypeValue.cpp" />
-    <ClCompile Include="SubEntityProcessor.cpp" />
     <ClCompile Include="utils\ElementPropertiesEnum.cpp" />
     <ClCompile Include="utils\GraphicPropertiesEnum.cpp" />
     <ClCompile Include="utils\StringUtils.cpp" />
@@ -84,8 +83,8 @@
     <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir)</NMakeIncludeSearchPath>
-    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir);$(IFCO)deps\boost_1_67_0</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</NMakeForcedIncludes>
     <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir>$(SDKPROD)Mdlapps</OutDir>
@@ -96,7 +95,7 @@
     <LocalDebuggerAttach>false</LocalDebuggerAttach>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <IntDir>bin\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</IncludePath>
+    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</IncludePath>
     <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64\lib;$(MSMDE)library</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
   </PropertyGroup>
@@ -106,8 +105,8 @@
     <NMakeCleanCommandLine>bmake +aD ParametricFeatures.mke</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>bmake +a  ParametricFeatures.mke</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir)</NMakeIncludeSearchPath>
-    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir);$(IFCO)deps\boost_1_67_0</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</NMakeForcedIncludes>
     <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir>$(SDKPROD)Mdlapps</OutDir>
@@ -118,7 +117,7 @@
     <LocalDebuggerAttach>true</LocalDebuggerAttach>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <IntDir>bin\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc</IncludePath>
+    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</IncludePath>
     <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64\lib;$(MSMDE)library</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
   </PropertyGroup>
