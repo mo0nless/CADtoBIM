@@ -83,6 +83,9 @@ appObjects = \
     $(o)GraphicPropertiesEnum$(oext) \
     $(o)StringUtils$(oext) \
     $(o)TypesUtils$(oext) \
+	$(o)SmartFeaturePropertiesEnum$(oext) \
+	$(o)SmartFeatureProperties$(oext) \
+
 
 #--------------------------------------------------------------------------------------
 #    Set up to use dlmcomp.mki and dlmlink.mki
@@ -161,6 +164,10 @@ $(o)PropertyTypeValue$(oext) : $(baseDir)sources/PropertyTypeValue.cpp $(baseDir
 $(o)StringUtils$(oext) : $(baseDir)utils/StringUtils.cpp $(baseDir)utils/StringUtils.h
 
 $(o)TypesUtils$(oext) : $(baseDir)utils/TypesUtils.cpp $(baseDir)utils/TypesUtils.h
+
+$(o)SmartFeaturePropertiesEnum$(oext) : $(baseDir)utils/SmartFeaturePropertiesEnum.cpp
+
+$(o)SmartFeatureProperties$(oext) : $(baseDir)sources/SmartFeatureProperties.cpp $(baseDir)headers/SmartFeatureProperties.h 
 
 
 %include $(MDLMKI)dlmlink.mki

@@ -1,23 +1,24 @@
 #pragma once
+namespace GraphicProperties {
+	enum class GraphicPropertiesEnum {
+		AREA,
+		VOLUME,
 
-enum GraphicPropertiesEnum {
-	AREA,
-	VOLUME,
+		CENTROID,
 
-	CENTROID,
+		RANGE,
 
-	RANGE,
+		QUATERNION_ROTATION,
 
-	QUATERNION_ROTATION,
+		EULER_ROTATION,
 
-	EULER_ROTATION,
+		ORIGIN,
 
-	ORIGIN,
+		RADIUS,
 
-	RADIUS,
+		DEFAULT
 
+	};
 
-};
-
-
+}
 
