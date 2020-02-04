@@ -83,7 +83,6 @@ appObjects = \
     $(o)GraphicPropertiesEnum$(oext) \
     $(o)StringUtils$(oext) \
     $(o)TypesUtils$(oext) \
-    #$(o)PropertyObjAttribute$(oext) \
 
 #--------------------------------------------------------------------------------------
 #    Set up to use dlmcomp.mki and dlmlink.mki
