@@ -340,6 +340,9 @@ void IfcSchemaTester()
 }
 #endif
 
+
+#pragma warning( push )
+#pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
@@ -367,6 +370,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
+		ElementHandle leafNode1,leafNode2;
 		ElementHandle currentElem(elemRef);
 		SmartFeatureNodePtr sFeatNode, node;
 		T_SmartFeatureVector sFeatVec;
@@ -385,6 +389,17 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 			outfile.open(filePath, std::ios_base::app);
 			node->GetAllChildrenRecursively(sFeatVec);
+
+
+			//StatusInt rez = sFeatNode->GetLeaf(leafNode1);
+
+			//if (leafNode1.IsValid()) {
+			//	std::cout << "ceva" << std::endl;
+			//}
+
+
+
+
 			for (size_t i = 0; i < sFeatVec.size(); i++)
 			{
 				outfile << "Children Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
@@ -392,6 +407,19 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 				{
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
 
+				}
+
+				StatusInt rez2 = sFeatVec.at(i)->GetLeaf(leafNode2);
+
+				if (leafNode2.IsValid()) {
+					leafNode2.GetHandler();
+					leafNode2.GetElementRef();
+					leafNode2.GetElementRef()->GetLevel();
+					leafNode2.GetElementRef()->GetElementId();
+					leafNode2.GetElementId();
+					//std::cout << "ceva2" << std::endl;
+					outfile << "ceva1 " <<leafNode2.GetElementId() << std::endl;
+					outfile << "ceva2 " << leafNode2.GetElementRef()->GetElementId()<< std::endl;
 				}
 			}
 
@@ -430,6 +458,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	return SUCCESS;
 }
+#pragma warning( pop ) 
+
 
 /*=================================================================================**//**
 * @description  Unload this application
