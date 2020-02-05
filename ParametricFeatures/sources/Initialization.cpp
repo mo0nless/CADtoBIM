@@ -21,7 +21,8 @@ inline std::string IfcTextSolver()
 template<class IfcSchema>
 void CreateCurveRebar()
 {
-	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";
+	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";*/
+	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
 	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
 	file.header().file_name().name("IfcCurveBar.ifc");
 
@@ -135,10 +136,13 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	auto prop = propsDictVec->at(0)->getGraphicPropertiesMap();
 	//The program crash here, NULL values inside the map
 	//PropertyTypeValue pRange = prop.at(GraphicPropertiesEnum::RANGE);
-	PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
+	//PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
+	std::vector<PropertyTypeValue> ceva = propsDictVec->at(0)->getGraphicPropertyTypeValues(GraphicPropertiesEnum::RANGE);
+	PropertyTypeValue pRange = ceva.front();
 	TypesUtils test = TypesUtils(&pRange);
 
-	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
+	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";*/
+	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
 	typedef Ifc2x3::IfcGloballyUniqueId guid;
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
 
@@ -227,6 +231,7 @@ template<class IfcSchema>
 void IfcSchemaTester()
 {
 	typedef IfcSchema::IfcGloballyUniqueId guid;
+	/*const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCsgPrimitive.ifc";*/
 	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCsgPrimitive.ifc";
 
 	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
@@ -339,7 +344,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
+	/*std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";*/
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
@@ -408,7 +414,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
 		propertiesDictionary->setElemDescrName(StringUtils::getString(elDescr.GetWCharCP()));
-				
+		
 		PropertiesReader* propertiesReader = new PropertiesReader(currentElem, outfile, filePath, *propertiesDictionary);
 
 		graphicsProcessor.updateClassAndID(propertiesReader->getElemClassName(), currentElem.GetElementId());

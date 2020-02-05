@@ -1,9 +1,11 @@
 #pragma once
 
-enum ElementPropertiesEnum
-{
-	NODE_ID,
+namespace ElementProperties {
+	enum class ElementPropertiesEnum
+	{
+		NODE_ID,
+		DEFAULT
 
-};
+	};
 
-
+}
