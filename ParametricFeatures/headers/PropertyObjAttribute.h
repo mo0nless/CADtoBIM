@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../stdafx.h"
-#include <tuple>
 
 template<class pEnum>
 class PropertyObjAttribute {

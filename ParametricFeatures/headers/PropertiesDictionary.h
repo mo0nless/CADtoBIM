@@ -3,8 +3,9 @@
 #include "../stdafx.h"
 #include "../utils/ElementPropertiesEnum.cpp"
 #include "../utils/GraphicPropertiesEnum.cpp"
-#include "../headers/PropertyTypeValue.h"
-#include "../headers/PropertyObjAttribute.h"
+#include "PropertyTypeValue.h"
+#include "PropertyObjAttribute.h"
+#include "SmartFeatureProperties.h"
 
 class PropertiesDictionary {
 public:
@@ -22,9 +23,18 @@ public:
 	std::string getElemDescrName();
 	void setElemDescrName(std::string s);
 
+	bool checkSmartFeature();
+	void triggerSmartFeature(SmartFeatureNodePtr sFeatPtr);
+
+	SmartFeatureProperties* getSmartFeatProperties();
+
 private:
 	std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> elementPropertiesMap;
 	std::map<PropertyObjAttribute<GraphicPropertiesEnum>, PropertyTypeValue> graphicPropertiesMap;
+	
+	SmartFeatureProperties* sFeatProps;
+
 	std::string elemDescrName;
+	bool isSmartFeature = false;
 
 };
