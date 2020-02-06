@@ -12,11 +12,9 @@
 */
 
 #include "IfcGenerator.h"
-#include "../utils/TypesUtils.h"
 #include "GraphicsProcessor.h"
-#include "PropertiesReader.h"
-#include "../stdafx.h"
-
+#include "../utils/TypesUtils.h"
+#include "../utils/StringUtils.h"
 
 #define CMD_TREE 0x0100000000000000UI64
 #define CMD_SHAPE 0x0200000000000000UI64

@@ -1,10 +1,5 @@
 #pragma once
 
-#include "../stdafx.h"
-#include "PropertiesDictionary.h"
-#include "../utils/ElementPropertiesEnum.cpp"
-#include "../utils/GraphicPropertiesEnum.cpp"
-#include "../utils/StringUtils.h"
 #include "PropertiesReader.h"
 
 class GraphicsProcessor : public IElementGraphicsProcessor

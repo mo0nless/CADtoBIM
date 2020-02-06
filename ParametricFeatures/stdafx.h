@@ -11,6 +11,9 @@
 
 #define _USE_MATH_DEFINES
 
+#include "utils/ElementPropertiesEnum.cpp"
+#include "utils/GraphicPropertiesEnum.cpp"
+
 #include <string>
 #include <iostream>
 #include <fstream> 

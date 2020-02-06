@@ -1,10 +1,5 @@
 #pragma once
 
-#include "../stdafx.h"
-#include "../utils/ElementPropertiesEnum.cpp"
-#include "../utils/GraphicPropertiesEnum.cpp"
-#include "PropertyTypeValue.h"
-#include "PropertyObjAttribute.h"
 #include "SmartFeatureProperties.h"
 
 using namespace GraphicProperties;

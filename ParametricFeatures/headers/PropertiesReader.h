@@ -1,9 +1,7 @@
 #pragma once
 
-#include "../stdafx.h"
 #include "PropertiesDictionary.h"
-#include "../utils/ElementPropertiesEnum.cpp"
-#include "../utils/GraphicPropertiesEnum.cpp"
+#include "../utils/TypesUtils.h"
 #include "../utils/StringUtils.h"
 
 class PropertiesReader

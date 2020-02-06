@@ -1,7 +1,5 @@
 #pragma once
-#include "../stdafx.h"
 
-#include "../utils/ElementPropertiesEnum.cpp"
 #include "../headers/PropertyTypeValue.h"
 #include "../headers/PropertyObjAttribute.h"
 
