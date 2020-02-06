@@ -8,12 +8,12 @@ SmartFeatureProperties::SmartFeatureProperties(UInt32 nodeIdValue, UInt32 parent
 	this->className = classNameValue;
 }
 
-void SmartFeatureProperties::addSmartFeatureProperty(PropertyObjAttribute<SmartFeaturePropertiesEnum> key, PropertyTypeValue value)
+void SmartFeatureProperties::addSmartFeatureProperty(PropertyObjAttribute<ElementPropertiesEnum> key, PropertyTypeValue value)
 {
 	this->smartFeaturesMap[key] = value;
 }
 
-std::map<PropertyObjAttribute<SmartFeaturePropertiesEnum>, PropertyTypeValue> SmartFeatureProperties::getSmartFeaturesMap()
+std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> SmartFeatureProperties::getSmartFeaturesMap()
 {
 	return this->smartFeaturesMap;
 }

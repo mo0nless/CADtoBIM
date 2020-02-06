@@ -1,11 +1,11 @@
 #pragma once
 #include "../stdafx.h"
 
-#include "../utils/SmartFeaturePropertiesEnum.cpp"
+#include "../utils/ElementPropertiesEnum.cpp"
 #include "../headers/PropertyTypeValue.h"
 #include "../headers/PropertyObjAttribute.h"
 
-using namespace SmartPropertiesEnum;
+using namespace ElementProperties;
 
 class SmartFeatureProperties
 {
@@ -15,13 +15,13 @@ private:
 	std::string currentElement;
 	std::string className;
 
-	std::map<PropertyObjAttribute<SmartFeaturePropertiesEnum>, PropertyTypeValue> smartFeaturesMap;
+	std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> smartFeaturesMap;
 
 public:
 	SmartFeatureProperties(UInt32 nodeIdValue, UInt32 parentNodeIdValue, std::string currentElementValue,std::string classNameValue);
 
-	void addSmartFeatureProperty(PropertyObjAttribute<SmartFeaturePropertiesEnum> key, PropertyTypeValue value);
-	std::map<PropertyObjAttribute<SmartFeaturePropertiesEnum>, PropertyTypeValue> getSmartFeaturesMap();
+	void addSmartFeatureProperty(PropertyObjAttribute<ElementPropertiesEnum> key, PropertyTypeValue value);
+	std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> getSmartFeaturesMap();
 
 	UInt32 getNodeId();
 	UInt32 getParentNodeId();
