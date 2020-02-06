@@ -79,7 +79,6 @@ appObjects = \
 	$(o)PropertiesReader$(oext) \
 	$(o)PropertiesDictionary$(oext) \
     $(o)PropertyTypeValue$(oext) \
-    $(o)SmartFeatureProperties$(oext) \
     $(o)ElementPropertiesEnum$(oext) \
     $(o)GraphicPropertiesEnum$(oext) \
     $(o)StringUtils$(oext) \
@@ -153,8 +152,6 @@ $(o)IfcGenerator$(oext) : $(baseDir)sources/IfcGenerator.cpp $(baseDir)headers/I
 $(o)PropertiesReader$(oext) : $(baseDir)sources/PropertiesReader.cpp $(baseDir)headers/PropertiesReader.h 
 
 $(o)PropertiesDictionary$(oext) : $(baseDir)sources/PropertiesDictionary.cpp $(baseDir)headers/PropertiesDictionary.h 
-
-$(o)SmartFeatureProperties$(oext) : $(baseDir)sources/SmartFeatureProperties.cpp $(baseDir)headers/SmartFeatureProperties.h 
 
 $(o)ElementPropertiesEnum$(oext) : $(baseDir)utils/ElementPropertiesEnum.cpp 
 
