@@ -13,7 +13,6 @@
     <ClCompile Include="utils\StringUtils.cpp" />
     <ClCompile Include="utils\TypesUtils.cpp" />
     <ClCompile Include="sources\SmartFeatureProperties.cpp" />
-    <ClCompile Include="utils\SmartFeaturePropertiesEnum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -31,5 +30,6 @@
     <ClInclude Include="utils\TypesUtils.h" />
     <ClInclude Include="headers\PropertyObjAttribute.h" />
     <ClInclude Include="headers\SmartFeatureProperties.h" />
+    <ClInclude Include="headers\SmartFeatureContainer.h" />
   </ItemGroup>
 </Project>

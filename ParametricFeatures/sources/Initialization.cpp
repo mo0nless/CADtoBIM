@@ -402,12 +402,18 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 			for (size_t i = 0; i < sFeatVec.size(); i++)
 			{
-				outfile << "Children Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
+				outfile << "start==================" << std::endl;
 				if (sFeatVec.at(i)->GetParent() != nullptr)
 				{
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+					sFeatVec.at(i)->GetParent()->GetLeaf(leafNode1);
+						if (leafNode1.IsValid()) {
+							outfile << "parent leaf ID: " << leafNode1 .GetElementId()<< std::endl;
+						}
+					
 
 				}
+				outfile << " Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
 
 				StatusInt rez2 = sFeatVec.at(i)->GetLeaf(leafNode2);
 
@@ -418,9 +424,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					leafNode2.GetElementRef()->GetElementId();
 					leafNode2.GetElementId();
 					//std::cout << "ceva2" << std::endl;
-					outfile << "ceva1 " <<leafNode2.GetElementId() << std::endl;
-					outfile << "ceva2 " << leafNode2.GetElementRef()->GetElementId()<< std::endl;
+					outfile << "leaf id:  " <<leafNode2.GetElementId() << std::endl;
+					//outfile << "ceva2 " << leafNode2.GetElementRef()->GetElementId()<< std::endl;
 				}
+				outfile << "finish==================" << std::endl;
 			}
 
 			outfile << "Smart Feat Element Node ID: " << node->GetNodeId() << std::endl;

@@ -25,7 +25,6 @@
     <ClCompile Include="sources\SmartFeatureProperties.cpp" />
     <ClCompile Include="utils\ElementPropertiesEnum.cpp" />
     <ClCompile Include="utils\GraphicPropertiesEnum.cpp" />
-    <ClCompile Include="utils\SmartFeaturePropertiesEnum.cpp" />
     <ClCompile Include="utils\StringUtils.cpp" />
     <ClCompile Include="utils\TypesUtils.cpp" />
   </ItemGroup>
@@ -41,6 +40,7 @@
     <ClInclude Include="headers\PropertiesReader.h" />
     <ClInclude Include="headers\PropertyObjAttribute.h" />
     <ClInclude Include="headers\PropertyTypeValue.h" />
+    <ClInclude Include="headers\SmartFeatureContainer.h" />
     <ClInclude Include="headers\SmartFeatureProperties.h" />
     <ClInclude Include="utils\StringUtils.h" />
     <ClInclude Include="stdafx.h" />

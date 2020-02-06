@@ -49,10 +49,10 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
-
+			;
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << " ---------" << std::endl;
+			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
 
 			for (ECPropertyP ecProp : elemInst->GetClass().GetProperties())
