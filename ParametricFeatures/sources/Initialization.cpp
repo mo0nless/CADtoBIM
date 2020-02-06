@@ -9,21 +9,13 @@ typedef std::string S;
 boost::none_t const null = boost::none;
 using boost::any_cast;
 
-template<class IfcSchema>
-inline std::string IfcTextSolver()
-{
-	if (std::is_same<IfcSchema, Ifc2x3>::value) return "IFC2X3";
-	if (std::is_same<IfcSchema, Ifc4>::value) return "IFC4";
-	if (std::is_same<IfcSchema, Ifc4x1>::value) return "IFC4X1";
-	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
-}
 
 template<class IfcSchema>
 void CreateCurveRebar()
 {
 	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";*/
 	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
-	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
+	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name("IFC2X3"));
 	file.header().file_name().name("IfcCurveBar.ifc");
 
 	typedef IfcSchema::IfcGloballyUniqueId guid;
@@ -143,7 +135,7 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 
 	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";*/
 	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
-	typedef Ifc2x3::IfcGloballyUniqueId guid;
+	Ifc2x3::IfcGloballyUniqueId guid = Ifc2x3::IfcGloballyUniqueId("Wall");
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
 
 	//Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
@@ -158,7 +150,7 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	//);
 
 	Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
-		guid::IfcGloballyUniqueId("Wall"),
+		guid,
 		0,
 		std::string("Wall"),
 		null,
@@ -202,8 +194,7 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	
 
 	Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
-	Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
-			body, 0.25, 0.23, 0.28);
+	Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(body, 0.25, 0.23, 0.28);
 	// THIS IS THE GEOMETRY SPECIFICATION 
 	//file.addBox(body, 5000, 360, 6000);
 	//Width, Depth, Height
@@ -345,22 +336,21 @@ void IfcSchemaTester()
 #pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
-	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+	
 	std::ofstream outfile;
-	/*std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";*/
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
-
-	WString myString, sFeatTree;
-	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
-
+	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
 	std::vector<PropertiesDictionary*> propsDictVec;
+
+	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+	WString myString;
+	//WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
+
+	
 	// Complete the full file path with the name of the model  
 	/*for (char c : static_cast<Utf8String>(dgnFileName))
 		filePath += c;*/
 
-	std::cout << filePath << std::endl;
-
-	// Create the instance for the Graphics Processor
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor(outfile, filePath);
 
 	PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
@@ -374,17 +364,12 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		ElementHandle currentElem(elemRef);
 		SmartFeatureNodePtr sFeatNode, node;
 		T_SmartFeatureVector sFeatVec;
-		WString elDescr;
-			
+		WString elDescr;			
 		
-		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		
+		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);		
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
-			//SmartFeatureElement::GetFeaturesFromNodeName(sFeatNode, sFeatVec, currentElem, L"Intersection");
-			//SmartFeatureElement::
-			//SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
 			SmartFeatureElement::ExtractTree(node, currentElem);
 
 			outfile.open(filePath, std::ios_base::app);
@@ -461,7 +446,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	outfile.close();
 	//IfcSchemaTester<Ifc2x3>();
-	WallTest(&propsDictVec);
+	//WallTest(&propsDictVec);
 
 	return SUCCESS;
 }
