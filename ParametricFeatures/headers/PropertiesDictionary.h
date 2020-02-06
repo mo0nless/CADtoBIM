@@ -7,9 +7,6 @@
 #include "PropertyObjAttribute.h"
 #include "SmartFeatureProperties.h"
 
-using namespace GraphicProperties;
-using namespace ElementProperties;
-
 class PropertiesDictionary {
 public:
 	PropertiesDictionary();
@@ -20,20 +17,24 @@ public:
 	std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> getElementPropertiesMap();
 	std::map<PropertyObjAttribute<GraphicPropertiesEnum>, PropertyTypeValue> getGraphicPropertiesMap();
 
-
-	std::vector<PropertyTypeValue> PropertiesDictionary::getElementPropertyTypeValues(Int64 elementId = -1, std::string className = "", ElementPropertiesEnum elementPropertiesEnum = ElementPropertiesEnum::DEFAULT);
-	std::vector<PropertyTypeValue> PropertiesDictionary::getElementPropertyTypeValues(ElementPropertiesEnum elementPropertiesEnum);
-	
-	std::vector<PropertyTypeValue> PropertiesDictionary::getGraphicPropertyTypeValues(Int64 elementId = -1, std::string className = "", GraphicPropertiesEnum graphicPropertiesEnum = GraphicPropertiesEnum::DEFAULT);
-	std::vector<PropertyTypeValue> PropertiesDictionary::getGraphicPropertyTypeValues(GraphicPropertiesEnum graphicPropertiesEnum);
+	PropertyObjAttribute<ElementPropertiesEnum> getElementPropertyObjAttribute(ElementPropertiesEnum ePenum);
+	PropertyObjAttribute<GraphicPropertiesEnum> getGraphicPropertyObjAttribute(GraphicPropertiesEnum eGenum);
 
 	std::string getElemDescrName();
 	void setElemDescrName(std::string s);
+
+	bool checkSmartFeature();
+	void triggerSmartFeature(SmartFeatureNodePtr sFeatPtr);
+
+	SmartFeatureProperties* getSmartFeatProperties();
 
 private:
 	std::map<PropertyObjAttribute<ElementPropertiesEnum>, PropertyTypeValue> elementPropertiesMap;
 	std::map<PropertyObjAttribute<GraphicPropertiesEnum>, PropertyTypeValue> graphicPropertiesMap;
 	
+	SmartFeatureProperties* sFeatProps;
+
 	std::string elemDescrName;
+	bool isSmartFeature = false;
 
 };

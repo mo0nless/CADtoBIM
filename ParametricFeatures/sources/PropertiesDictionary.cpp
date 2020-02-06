@@ -70,7 +70,7 @@ std::map<PropertyObjAttribute<GraphicPropertiesEnum>, PropertyTypeValue> Propert
 //	{
 //		for (auto const& element : elementPropertiesMap)
 //		{
- //			if (element.first.getClassName() == className)
+//			if (element.first.getClassName() == className)
 //			{
 //				propertyTypeValues.push_back(element.second);
 //			}
@@ -277,6 +277,20 @@ std::vector<PropertyTypeValue> PropertiesDictionary::getGraphicPropertyTypeValue
 		std::cout << e.what();
 	}
 	return propertyTypeValues;
+	//PropertyObjAttribute<GraphicPropertiesEnum> pOA;
+	//try 
+	//{
+	//	for (auto const& element : graphicPropertiesMap)
+	//	{
+	//		pOA = element.first;
+	//		if (pOA.getPropertyAttribute() == eGenum) { return pOA; }
+	//	}
+	//}
+	//catch (const std::exception& e) 
+	//{ 
+	//	std::cout << e.what(); 		
+	//}
+	//return pOA; //Needs to be handle this, at the moment it's an empty object this one.
 }
 
 std::vector<PropertyTypeValue> PropertiesDictionary::getGraphicPropertyTypeValues(GraphicPropertiesEnum graphicPropertiesEnum)
