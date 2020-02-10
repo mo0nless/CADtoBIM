@@ -2,9 +2,22 @@
 
 #include "PropertiesReader.h"
 
+/// @addtogroup ElementProperties
+/// @beginGroup
+
+/*=================================================================================**//**
+* Class for collecting graphical output of an element's Draw method.
+* This class inherits and implement the Bentley IElementGraphicsProcessor Interface
+* @see ElementGraphicsOutput
+* @bsiclass                                                     
++===============+===============+===============+===============+===============+======*/
 class GraphicsProcessor : public IElementGraphicsProcessor
 {
 public:
+	//! Default constructor of the class
+	//! @param[in] The offstream file used for writing in the file
+	//! @param[in] Output file to write down all the graphics and text properties of the element
+	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
 	GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath);
 	void setPropertiesDictionary(PropertiesDictionary* propsDict);
 	void updateClassAndID(std::string elemClName, Int64 elemID);
@@ -29,4 +42,4 @@ private:
 	PropertiesDictionary* propsDictionary;
 	std::string elemClassName;
 };
-
+/// @endGroup

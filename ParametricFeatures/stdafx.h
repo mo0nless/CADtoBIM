@@ -23,8 +23,14 @@
 #include <map>
 #include <tuple>
 
+#include <ifcparse\IfcSchema.h>
+#include <ifcparse\Ifc2x3.h>
+#include <ifcparse\Ifc4.h>
+#include <ifcparse\Ifc4x1.h>
+#include <ifcparse\utils.h>
+#include <ifcparse\IfcHierarchyHelper.h>
+
 #include <boost/any.hpp>
-#include <boost/type_traits.hpp>
 
 #include <PSolid/PSolidCoreAPI.h>
 #include <Bentley/WString.h>
@@ -45,8 +51,10 @@
 #include <DgnView/DgnElementSetTool.h>
 #include <DgnView/LocateSubEntityTool.h>   
 
-#include <ECObjects/ECSchema.h>
-#include <ECObjects/ECValue.h>
+//#include <ECObjects/ECSchema.h>
+#include <ECObjects/ECObjects.h>
+#include <ECObjects/ECObjectsAPI.h>
+//#include <ECObjects/ECValue.h>
 #include <Geom/SolidPrimitive.h>
 
 USING_NAMESPACE_BENTLEY_ECOBJECT;

@@ -13,6 +13,7 @@ std::string PropertiesReader::getElemClassName()
 PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, PropertiesDictionary& propsDictionary)
 {
 	WString elDescr;
+	WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
 	enum StringLength
 	{
 		DesiredLength = 128,
@@ -48,17 +49,54 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
+			instance->WriteToXmlFile(outXML, true, true);
+
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
-			;
+			
+
+
+
+			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
+			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
+			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
+			/////////////////////////
+
+
+
+
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
+			outfile.close();
+
+
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
 
-			for (ECPropertyP ecProp : elemInst->GetClass().GetProperties())
+			for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
+			{
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
+				outfile.close();
+			}
+
+			for (ECPropertyP ecProp : elemInst->GetClass().GetProperties(true))
 			{
 				WString wStr;
 				ECValue ecVal;
+				
+
+				
+				//////////////////// WE CAN Check and store the type immediately WIth those functions
+				ecVal.IsBoolean();
+				/////////////////////
+
+
+
 
 				// Gets the value stored in the specified ECProperty. 
 				elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());

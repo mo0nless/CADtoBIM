@@ -24,6 +24,11 @@
 /*
 * C++ Compiler Name Mangling. Not sure if it's Necessary
 */
+
+/*=================================================================================**//**
+* Default header used by the main application that defines the Initialization and Unload functions
+* @bsiclass
++===============+===============+===============+===============+===============+======*/
 extern "C" {
 	//  Function declarations inoculated against C++ compiler
 	//  name mangling

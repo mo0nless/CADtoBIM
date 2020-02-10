@@ -141,8 +141,8 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	PropertyTypeValue pRange = ceva.front();
 	TypesUtils test = TypesUtils(&pRange);
 
-	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";*/
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
+	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
 	typedef Ifc2x3::IfcGloballyUniqueId guid;
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
 
@@ -156,8 +156,9 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 	//	0,                     // Representation
 	//	null                // Tag
 	//);
-
-	Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
+	
+	
+	/*Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
 		guid::IfcGloballyUniqueId("Wall"),
 		0,
 		std::string("Wall"),
@@ -167,19 +168,20 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 		0,
 		null,
 		null
-	);
+	);*/
 
-	file.addBuildingProduct(south_wall);
+	//file.addBuildingProduct(south_wall);
 
 	// By adding a wall, a hierarchy has been automatically created that consists of the following
 	// structure: IfcProject > IfcSite > IfcBuilding > IfcBuildingStorey > IfcWall
 
 	// Lateron changing the name of the IfcProject can be done by obtaining a reference to the 
 	// project, which has been created automatically.
-	file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
+	//file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
 
-	south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
+	//south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
 	
+	file.addOwnerHistory();
 	// The wall will be shaped as a box, with the dimensions specified in millimeters. The resulting
 	// product definition will consist of both a body representation as well as an axis representation
 	// that runs over the centerline of the box in the X-axis.
@@ -187,38 +189,54 @@ void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
 
 	// Obtain a reference to the placement of the IfcBuildingStorey in order to create a hierarchy
 	// of placements for the products
-	Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
+	//Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
 	
 	// The shape has to be assigned to the representation of the wall and is placed at the origin
 	// of the coordinate system.
 	//south_wall->setRepresentation(south_wall_shape);
-	south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
+	//south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
 	
+	//file.addLocalPlacement(storey_placement);
 	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
 	//	south_wall_shape, 0.25, 0.23, 0.28);
 	
 	Ifc2x3::IfcRepresentation::list::ptr reps(new Ifc2x3::IfcRepresentation::list());
 	Ifc2x3::IfcRepresentationItem::list::ptr items(new Ifc2x3::IfcRepresentationItem::list());
 	
-
-	Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
-	Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
-			body, 0.25, 0.23, 0.28);
+	//Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
+	
+	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(body, 0.25, 0.23, 0.28);
 	// THIS IS THE GEOMETRY SPECIFICATION 
 	//file.addBox(body, 5000, 360, 6000);
 	//Width, Depth, Height
-	double width = test.range.XLength() / 10;
-	double depth = test.range.YLength() / 10;
-	double height = test.range.ZLength() / 10;
-	
-	file.addBox(body, width, depth, height);
-	file.setSurfaceColour(body, wall_colour);
+	//double width = test.range.XLength() / 10;
+	//double depth = test.range.YLength() / 10;
+	//double height = test.range.ZLength() / 10;	
+	//file.addBox(body, width, depth, height);
+
+
+	Ifc2x3::IfcAxis2Placement3D* axisP = new Ifc2x3::IfcAxis2Placement3D(file.addTriplet<Ifc2x3::IfcCartesianPoint>(0, 0, 0),file.addTriplet<Ifc2x3::IfcDirection>(0, 0, 1), file.addTriplet<Ifc2x3::IfcDirection>(0, 1, 0));
+	file.addEntity(axisP);
+	//Ifc2x3::IfcRepresentationItem* my = new Ifc2x3::IfcSphere(axisP, 5000);
+	Ifc2x3::IfcCsgPrimitive3D::IfcCsgPrimitive3D(axisP);
+	Ifc2x3::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc2x3::IfcRightCircularCylinder(axisP, 60000, 500);
+	file.addEntity(my);
+	items->push(my);
+	Ifc2x3::IfcShapeRepresentation* rep = new Ifc2x3::IfcShapeRepresentation(
+		file.getSingle<Ifc2x3::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
+	reps->push(rep);	
+	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
+	file.addEntity(shape);
+	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(my, 0.25, 0.23, 0.28);
+	//file.setSurfaceColour(shape,wall_colour);
+
+	/*file.setSurfaceColour(body, wall_colour);
 	reps->push(body);
 	
 	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
-	file.addEntity(shape);
+	file.addEntity(shape);*/
 	
-	south_wall->setRepresentation(shape);
+	//south_wall->setRepresentation(shape);
 
 	std::ofstream f;
 	f.open(filename);
@@ -342,13 +360,13 @@ void IfcSchemaTester()
 
 
 #pragma warning( push )
-#pragma warning( disable : 4189)
+#pragma warning( disable : 4700)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	/*std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";*/
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
@@ -370,9 +388,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
-		ElementHandle leafNode1,leafNode2;
+		ElementHandle leafNode;
 		ElementHandle currentElem(elemRef);
-		SmartFeatureNodePtr sFeatNode, node;
+		SmartFeatureNodePtr sFeatNode;
 		T_SmartFeatureVector sFeatVec;
 		WString elDescr;
 			
@@ -382,56 +400,47 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
-			//SmartFeatureElement::GetFeaturesFromNodeName(sFeatNode, sFeatVec, currentElem, L"Intersection");
-			//SmartFeatureElement::
-			//SmartFeatureElement::DumpFeatureTree(WPrintfString(L"Element: %d", currentElem.GetElementId()), currentElem);
-			SmartFeatureElement::ExtractTree(node, currentElem);
+			SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
 
 			outfile.open(filePath, std::ios_base::app);
-			node->GetAllChildrenRecursively(sFeatVec);
-
-
-			//StatusInt rez = sFeatNode->GetLeaf(leafNode1);
-
-			//if (leafNode1.IsValid()) {
-			//	std::cout << "ceva" << std::endl;
-			//}
-
-
-
-
+			sFeatNode->GetAllChildrenRecursively(sFeatVec);
+			
 			for (size_t i = 0; i < sFeatVec.size(); i++)
 			{
 				outfile << "start==================" << std::endl;
 				if (sFeatVec.at(i)->GetParent() != nullptr)
-				{
+				{						
+					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
-					sFeatVec.at(i)->GetParent()->GetLeaf(leafNode1);
-						if (leafNode1.IsValid()) {
-							outfile << "parent leaf ID: " << leafNode1 .GetElementId()<< std::endl;
-						}
+				}
+
+				outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
+				
+				sFeatVec.at(i)->GetLeaf(leafNode);
+
+				if (leafNode.IsValid()) {
+					leafNode.GetHandler();
+					leafNode.GetElementRef();
+					leafNode.GetElementRef()->GetLevel();
+					leafNode.GetElementRef()->GetElementId();
+					leafNode.GetElementId();
+
+					
+					DependentElmP depElm = currentElem.GetElementRef()->GetFirstDependent();
 					
 
-				}
-				outfile << " Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
-
-				StatusInt rez2 = sFeatVec.at(i)->GetLeaf(leafNode2);
-
-				if (leafNode2.IsValid()) {
-					leafNode2.GetHandler();
-					leafNode2.GetElementRef();
-					leafNode2.GetElementRef()->GetLevel();
-					leafNode2.GetElementRef()->GetElementId();
-					leafNode2.GetElementId();
-					//std::cout << "ceva2" << std::endl;
-					outfile << "leaf id:  " <<leafNode2.GetElementId() << std::endl;
-					//outfile << "ceva2 " << leafNode2.GetElementRef()->GetElementId()<< std::endl;
+					outfile << "leaf id:  " <<leafNode.GetElementId() << std::endl;
+					outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
+					outfile << "Dependent Elem " << leafNode.GetElementRef()->GetFirstDependent() << std::endl;
+					outfile << "Dependent Current Elem " << depElm << std::endl;
+					outfile << "Element Level " << leafNode.GetElementRef()->GetLevel() << std::endl;					
+					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
 				}
 				outfile << "finish==================" << std::endl;
 			}
 
-			outfile << "Smart Feat Element Node ID: " << node->GetNodeId() << std::endl;
-			outfile << "Number of Child: " << node->GetChildCount() << std::endl;
+			outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
+			outfile << "Number of Child: " << sFeatNode->GetChildCount() << std::endl;
 			outfile.close();
 		}
 
