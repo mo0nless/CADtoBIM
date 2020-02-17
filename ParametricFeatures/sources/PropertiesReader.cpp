@@ -78,14 +78,14 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 				//ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.search(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 				if (currentNode != nullptr) {
-					ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *currentNode->getSmartFeatureProperties()->getReaderProperties());
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getSmartFeatureProperties()->getReaderProperties());
 				}
 				outfile.close();
 			}
 
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is NOT smart feature" << std::endl;
-				ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
+				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 
 				outfile.close();
 				//for (ECPropertyP ecProp : elemInst->GetClass().GetProperties(true))

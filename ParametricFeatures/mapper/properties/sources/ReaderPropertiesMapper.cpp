@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToElementProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & elementProperties)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & elementProperties)
 {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
@@ -32,7 +32,7 @@ void ReaderPropertiesMapper::mapECPropertiesToElementProperties(DgnElementECInst
 		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
 		if (!valueAsString.empty()) {
-			mapPropertyToElementPropertiesMember(propertyName, ecVal, elementProperties);
+			mapPropertyToReaderPropertiesMember(propertyName, ecVal, elementProperties);
 		}
 
 		/*if (!StringUtils::getString(wStr))
@@ -54,7 +54,7 @@ void ReaderPropertiesMapper::mapECPropertiesToElementProperties(DgnElementECInst
 	
 }
 
-void ReaderPropertiesMapper::mapPropertyToElementPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &elementProperties)
+void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &elementProperties)
 {
 	ReaderPropertiesEnum::ReaderPropertiesEnum value = ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue);
 

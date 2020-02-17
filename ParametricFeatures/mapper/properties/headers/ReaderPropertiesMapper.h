@@ -19,7 +19,7 @@ private:
 	ReaderPropertiesMapper() {};
 
 public:
-	static void mapECPropertiesToElementProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties &elementProperties);
+	static void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties &elementProperties);
 
-	static void mapPropertyToElementPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &elementProperties);
+	static void mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &elementProperties);
 };
