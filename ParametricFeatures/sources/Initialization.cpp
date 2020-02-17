@@ -20,117 +20,91 @@ inline std::string IfcTextSolver()
 	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
 }
 
-//template<class IfcSchema>
-//void CreateCurveRebar()
-//{
-//	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";*/
-//	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
-//	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
-//	file.header().file_name().name("IfcCurveBar.ifc");
-//
-//	typedef IfcSchema::IfcGloballyUniqueId guid;
-//	int dia = 24;
-//	int R = 3 * dia;
-//	int length = 12 * dia;
-//
-//	double crossSectionarea = M_PI * (dia / 2) * 2;
-//
-//	//Create the IfcReinforcingBar element
-//	IfcSchema::IfcReinforcingBar* rebar = new IfcSchema::IfcReinforcingBar(
-//		guid::IfcGloballyUniqueId("IfcCsgPrimitive"), 0, S("test"), null,
-//		null, 0, 0,
-//		null, S("SR24"),		//SteelGrade
-//		dia,						//diameter
-//		crossSectionarea,		//crossSectionarea = math.pi*(12.0/2)**2
-//		0,
-//		//IfcSchema::IfcReinforcingBarRoleEnum::IfcReinforcingBarRoleEnum::IfcReinforcingBarRole_LIGATURE, ------> Ifc2x3
-//		IfcSchema::IfcReinforcingBarTypeEnum::IfcReinforcingBarType_LIGATURE,
-//		IfcSchema::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurface_PLAIN	//PLAIN or TEXTURED
-//	);
-//
-//
-//
-//	file.addBuildingProduct(rebar);
-//	rebar->setOwnerHistory(file.getSingle<IfcSchema::IfcOwnerHistory>());
-//
-//	IfcSchema::IfcCompositeCurveSegment::list::ptr segments(new IfcSchema::IfcCompositeCurveSegment::list());
-//
-//	IfcSchema::IfcCartesianPoint* p1 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 1000.);
-//	IfcSchema::IfcCartesianPoint* p2 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 0);
-//	IfcSchema::IfcCartesianPoint* p3 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, 0);
-//	IfcSchema::IfcCartesianPoint* p4 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, -R);
-//	IfcSchema::IfcCartesianPoint* p5 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R + length, -R);
-//
-//	/*first segment - line */
-//	IfcSchema::IfcCartesianPoint::list::ptr points1(new IfcSchema::IfcCartesianPoint::list());
-//	points1->push(p1);
-//	points1->push(p2);
-//	file.addEntities(points1->generalize());
-//	IfcSchema::IfcPolyline* poly1 = new IfcSchema::IfcPolyline(points1);
-//	file.addEntity(poly1);
-//
-//	IfcSchema::IfcCompositeCurveSegment* segment1 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly1);
-//	file.addEntity(segment1);
-//	segments->push(segment1);
-//
-//	/*second segment - arc */
-//	IfcSchema::IfcAxis2Placement3D* axis1 = new IfcSchema::IfcAxis2Placement3D(p3, file.addTriplet<IfcSchema::IfcDirection>(1, 0, 0), file.addTriplet<IfcSchema::IfcDirection>(0, 1, 0));
-//	file.addEntity(axis1);
-//	IfcSchema::IfcCircle* circle = new IfcSchema::IfcCircle(axis1, R);
-//	file.addEntity(circle);
-//
-//	IfcEntityList::ptr trim1(new IfcEntityList);
-//	IfcEntityList::ptr trim2(new IfcEntityList);
-//
-//	trim1->push(new IfcSchema::IfcParameterValue(180));
-//	trim1->push(p2);
-//
-//	trim2->push(new IfcSchema::IfcParameterValue(270));
-//	trim2->push(p4);
-//	IfcSchema::IfcTrimmedCurve* trimmed_curve = new IfcSchema::IfcTrimmedCurve(circle, trim1, trim2, false, IfcSchema::IfcTrimmingPreference::IfcTrimmingPreference_PARAMETER);
-//	file.addEntity(trimmed_curve);
-//
-//	IfcSchema::IfcCompositeCurveSegment* segment2 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTSAMEGRADIENT, false, trimmed_curve);
-//	file.addEntity(segment2);
-//	segments->push(segment2);
-//
-//	/*third segment - line */
-//	IfcSchema::IfcCartesianPoint::list::ptr points2(new IfcSchema::IfcCartesianPoint::list());
-//	points2->push(p4);
-//	points2->push(p5);
-//	file.addEntities(points2->generalize());
-//	IfcSchema::IfcPolyline* poly2 = new IfcSchema::IfcPolyline(points2);
-//	file.addEntity(poly2);
-//
-//	IfcSchema::IfcCompositeCurveSegment* segment3 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly2);
-//	file.addEntity(segment3);
-//	segments->push(segment3);
-//
-//	IfcSchema::IfcCompositeCurve* curve = new IfcSchema::IfcCompositeCurve(segments, false);
-//	file.addEntity(curve);
-//
-//	IfcSchema::IfcSweptDiskSolid* solid = new IfcSchema::IfcSweptDiskSolid(curve, dia / 2, null, 0, 1);
-//
-//	IfcSchema::IfcRepresentation::list::ptr reps(new IfcSchema::IfcRepresentation::list());
-//	IfcSchema::IfcRepresentationItem::list::ptr items(new IfcSchema::IfcRepresentationItem::list());
-//	items->push(solid);
-//	IfcSchema::IfcShapeRepresentation* rep = new IfcSchema::IfcShapeRepresentation(
-//		file.getSingle<IfcSchema::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
-//	reps->push(rep);
-//
-//	IfcSchema::IfcProductDefinitionShape* shape = new IfcSchema::IfcProductDefinitionShape(null, null, reps);
-//	file.addEntity(shape);
-//
-//	rebar->setRepresentation(shape);
-//
-//	IfcSchema::IfcObjectPlacement* storey_placement = file.getSingle<IfcSchema::IfcBuildingStorey>()->ObjectPlacement();
-//	rebar->setObjectPlacement(file.addLocalPlacement(storey_placement, 0, 0, 0));
-//
-//	std::ofstream f;
-//	f.open(filename);
-//	f << file;
-//	f.close();
-//}
+void CSGPrimitiveTest()
+{
+	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
+	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+	typedef Ifc4::IfcGloballyUniqueId guid;
+	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
+
+
+	Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
+		guid::IfcGloballyUniqueId("Sphere"),
+		0,
+		std::string("Sphere"),
+		null,
+		null,
+		0,
+		0,
+		null,
+		null
+	);
+
+	file.addBuildingProduct(primitive);
+
+	// By adding a wall, a hierarchy has been automatically created that consists of the following
+	// structure: IfcProject > IfcSite > IfcBuilding > IfcBuildingStorey > IfcWall
+
+	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+
+	//file.addOwnerHistory();
+	// The wall will be shaped as a box, with the dimensions specified in millimeters. The resulting
+	// product definition will consist of both a body representation as well as an axis representation
+	// that runs over the centerline of the box in the X-axis.
+	//Ifc4::IfcProductDefinitionShape* primitive_shape = file.addAxisBox(10000, 360, 3000);
+
+	// Obtain a reference to the placement of the IfcBuildingStorey in order to create a hierarchy
+	// of placements for the products
+	//Ifc4::IfcObjectPlacement* storey_placement = file.getSingle<Ifc4::IfcBuildingStorey>()->ObjectPlacement();
+
+
+	// The shape has to be assigned to the representation of the wall and is placed at the origin
+	// of the coordinate system.
+	//primitive->setRepresentation(primitive_shape);
+	//primitive->setObjectPlacement(file.addLocalPlacement(storey_placement));
+	primitive->setObjectPlacement(file.addLocalPlacement());
+
+	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+
+	Ifc4::IfcAxis2Placement3D* axisP = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));
+	//Ifc4::IfcRepresentationItem* my = new Ifc4::IfcSphere(axisP, 5000);
+
+	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc4::IfcSphere(axisP, 5000);
+	Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
+	//Ifc4::IfcCsgPrimitive3D::IfcRepresentationItem* my = new Ifc4::IfcSphere(axisP, 5000);
+	//Ifc4::IfcCsgPrimitive3D::IfcCsgPrimitive3D(axisP);
+	//Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc4::IfcRightCircularCylinder(axisP, 60000, 500);
+	file.addEntity(my);
+
+	items->push(solid);
+
+	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
+		file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), S("Body"), S("Model"), items);
+	reps->push(rep);
+
+	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
+	file.addEntity(rep);
+	file.addEntity(shape);
+	//Ifc4::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(my, 0.25, 0.23, 0.28);
+	//file.setSurfaceColour(shape,wall_colour);
+
+	/*file.setSurfaceColour(body, wall_colour);
+	reps->push(body);
+
+	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
+	file.addEntity(shape);*/
+
+	primitive->setRepresentation(shape);
+	// Lateron changing the name of the IfcProject can be done by obtaining a reference to the 
+	// project, which has been created automatically.
+	file.getSingle<Ifc4::IfcProject>()->setName("proxy with CSG");
+
+	std::ofstream f;
+	f.open(filename);
+	f << file;
+	f.close();
+}
 
 //template<class IfcSchema>
 //void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
