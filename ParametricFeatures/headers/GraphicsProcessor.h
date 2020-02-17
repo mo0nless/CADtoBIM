@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PropertiesReader.h"
+#include "PropertiesReaderProcessor.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup

@@ -1,16 +1,16 @@
-#include "../headers/PropertiesReader.h"
+#include "../headers/PropertiesReaderProcessor.h"
 
-PropertiesReader::PropertiesReader()
+PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
 }
 
-std::string PropertiesReader::getElemClassName()
+std::string PropertiesReaderProcessor::getElemClassName()
 {
 	return this->elemClassName;
 }
 
 
-PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, DictionaryProperties& dictionaryProperties,
+PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, DictionaryProperties& dictionaryProperties,
 	SmartFeatureContainer& smartFeatureContainer)
 {
 	WString elDescr;
@@ -39,9 +39,12 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 		outfile << "======================== pROPS nOT fOUND ===========================" << std::endl;
 		outfile.close();
 		elemClassName = "SmartFeatureSolid"; 
+
+		// set value if reader properties are missing for this element
 		dictionaryProperties.setAreReaderPropertiesFound(false);
 	}
 	else{
+		// set value if reader properties exist for this element
 		dictionaryProperties.setAreReaderPropertiesFound(true);
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
@@ -72,22 +75,34 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 
 			dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
+			
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is smart feature" << std::endl;
 				//ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.search(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 				if (currentNode != nullptr) {
+					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getSmartFeatureProperties()->getReaderProperties());
+				}
+				else {
+					outfile << "is NOT smart feature" << std::endl;
+					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
+
 				}
 				outfile.close();
 			}
-
+			else {
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is NOT smart feature" << std::endl;
+				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
 				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 
 				outfile.close();
+			}
+
+				
 				//for (ECPropertyP ecProp : elemInst->GetClass().GetProperties(true))
 				//{
 				//	WString wStr;
@@ -97,16 +112,16 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 				//	/////////////////////
 				//	// Gets the value stored in the specified ECProperty. 
 				//	elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());
-
+				//
 				//	// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
 				//	// Obtain a type adapter for the specified property. 
 				//	IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
 				//	// Create a context for a DgnECInstance
 				//	IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *elemInst, ecProp->GetName().GetWCharCP());
-
+				//
 				//	// Converts the ECValue to a display string. 
 				//	typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
-
+				//
 				//	if (!(static_cast<Utf8String>(wStr) == ""))
 				//	{
 				//		//elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
@@ -114,7 +129,7 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 				//		//	PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(),elemClassName, ElementPropertiesEnum::NODE_ID),
 				//		//	PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
 				//		//);
-
+				//
 				//		outfile.open(filePath, std::ios_base::app);
 				//		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
 				//			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "

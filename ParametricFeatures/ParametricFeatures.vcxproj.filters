@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
     <ClCompile Include="sources\IfcGenerator.cpp" />
-    <ClCompile Include="sources\PropertiesReader.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
@@ -17,7 +16,9 @@
     <ClCompile Include="common\properties\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureProperties.cpp" />
-    <ClCompile Include="common\properties\sources\ReaderPropertiesEnumUtils.cpp" />
+    <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
+    <ClCompile Include="common\utils\ReaderPropertiesEnumUtils.cpp" />
+    <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -26,7 +27,6 @@
   <ItemGroup>
     <ClInclude Include="headers\GraphicsProcessor.h" />
     <ClInclude Include="headers\IfcGenerator.h" />
-    <ClInclude Include="headers\PropertiesReader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="common\result_status\headers\ResultStatus.h" />
@@ -43,6 +43,7 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureProperties.h" />
     <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
-    <ClInclude Include="common\properties\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\utils\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="headers\PropertiesReaderProcessor.h" />
   </ItemGroup>
 </Project>

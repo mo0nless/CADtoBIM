@@ -76,13 +76,14 @@ appObjects = \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
 	$(o)IfcGenerator$(oext) \
-	$(o)PropertiesReader$(oext) \
+	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
-	$(o)ReaderPropertiesDictionary$(oext) \
+	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
 	$(o)MappingHandler$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
+	$(o)GraphicPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
 	$(o)ReaderProperties$(oext) \
@@ -153,7 +154,7 @@ $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir
 
 $(o)IfcGenerator$(oext) : $(baseDir)sources/IfcGenerator.cpp $(baseDir)headers/IfcGenerator.h 
 
-$(o)PropertiesReader$(oext) : $(baseDir)sources/PropertiesReader.cpp $(baseDir)headers/PropertiesReader.h 
+$(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
 
 $(o)ResultStatus$(oext) : $(baseDir)common/result_status/sources/ResultStatus.cpp $(baseDir)common/result_status/headers/ResultStatus.h
 
@@ -162,6 +163,8 @@ $(o)ResultStatusEnum$(oext) : $(baseDir)common/result_status/sources/ResultStatu
 $(o)MappingHandler$(oext) : $(baseDir)mapper/sources/MappingHandler.cpp $(baseDir)mapper/headers/MappingHandler.h
 
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
+
+$(o)GraphicPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/GraphicPropertiesMapper.cpp $(baseDir)mapper/properties/headers/GraphicPropertiesMapper.h
 
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
@@ -177,7 +180,7 @@ $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sou
 
 $(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
 
-$(o)ReaderPropertiesDictionary$(oext) : $(baseDir)common/properties/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/properties/headers/ReaderPropertiesEnumUtils.h
+$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/ReaderPropertiesEnumUtils.h
 
 
 %include $(MDLMKI)dlmlink.mki

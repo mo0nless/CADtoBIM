@@ -535,10 +535,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		//propertiesDictionary->set(StringUtils::getString(elDescr.GetWCharCP()));
 		
-		PropertiesReader* propertiesReader = new PropertiesReader(currentElem, outfile, filePath, *propertiesDictionary,*smartFeatureContainer);
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, outfile, filePath, *propertiesDictionary,*smartFeatureContainer);
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
-		graphicsProcessor.updateClassAndID(propertiesReader->getElemClassName(), currentElem.GetElementId());
+		graphicsProcessor.updateClassAndID(propertiesReaderProcessor->getElemClassName(), currentElem.GetElementId());
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
 		propsDictVec.push_back(propertiesDictionary);

@@ -3,6 +3,9 @@
 #include "ReaderProperties.h"
 #include "GraphicProperties.h"
 
+/**
+ *  Class stores ReaderProperties, GraphicProperties and other relevant properties
+ */
 class DictionaryProperties {
 
 private:

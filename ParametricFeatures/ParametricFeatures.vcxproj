@@ -16,9 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\properties\sources\BooleanFunctionsEnum.cpp" />
-    <ClCompile Include="common\properties\sources\ReaderPropertiesEnumUtils.cpp" />
+    <ClCompile Include="common\utils\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="mapper\sources\MappingHandler.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
@@ -31,7 +32,7 @@
     <ClCompile Include="sources\IfcGenerator.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
-    <ClCompile Include="sources\PropertiesReader.cpp" />
+    <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -39,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\properties\headers\BooleanFunctionsEnum.h" />
-    <ClInclude Include="common\properties\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\utils\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\result_status\headers\ResultStatus.h" />
     <ClInclude Include="common\result_status\headers\ResultStatusEnum.h" />
@@ -47,7 +48,7 @@
     <ClInclude Include="headers\GraphicsProcessor.h" />
     <ClInclude Include="headers\IfcGenerator.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
-    <ClInclude Include="headers\PropertiesReader.h" />
+    <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\headers\MappingHandler.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />

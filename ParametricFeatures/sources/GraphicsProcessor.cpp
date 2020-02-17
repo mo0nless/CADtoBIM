@@ -48,10 +48,6 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 
 	outfile.close();
 
-	this->dictionaryProperties->getGraphicProperties()->setArea(area);
-	this->dictionaryProperties->getGraphicProperties()->setRadius(radius);
-	this->dictionaryProperties->getGraphicProperties()->setVolume(volume);
-
 
 	//propsDictionary->addGraphicProperty(
 	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(

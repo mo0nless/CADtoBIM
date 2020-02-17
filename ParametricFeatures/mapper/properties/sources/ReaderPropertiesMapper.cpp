@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & elementProperties)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties)
 {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
@@ -32,7 +32,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
 		if (!valueAsString.empty()) {
-			mapPropertyToReaderPropertiesMember(propertyName, ecVal, elementProperties);
+			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties);
 		}
 
 		/*if (!StringUtils::getString(wStr))
@@ -54,17 +54,17 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	
 }
 
-void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &elementProperties)
+void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties)
 {
 	ReaderPropertiesEnum::ReaderPropertiesEnum value = ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue);
 
 	switch (value)
 	{
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::NODE_ID:
-		elementProperties.setNodeId(eCValue.GetInteger());
+		readerProperties.setNodeId(eCValue.GetInteger());
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION:
-		elementProperties.setBooleanFunction(eCValue.GetInteger());
+		readerProperties.setBooleanFunction(eCValue.GetInteger());
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::NONE:
 		break;

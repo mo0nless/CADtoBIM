@@ -8,6 +8,9 @@
 #include "../../headers/GraphicProperties.h"
 #include <vector>
 
+/**
+ *  Class contains ReaderProperties, GraphicProperties and other properties collected from the smart feature
+ */
 class SmartFeatureProperties
 {
 private:

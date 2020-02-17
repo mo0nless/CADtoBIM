@@ -33,3 +33,33 @@ void GraphicProperties::setRadius(double newRadius)
 {
 	this->radius = newRadius;
 }
+
+DVec3d GraphicProperties::getCentroid()
+{
+	return this->centroid;
+}
+
+void GraphicProperties::setCentroid(DVec3d newCentroid)
+{
+	this->centroid = newCentroid;
+}
+
+RotMatrix GraphicProperties::getAxes()
+{
+	return this->axes;
+}
+
+void GraphicProperties::setAxes(RotMatrix newAxes)
+{
+	this->axes = newAxes;
+}
+
+DVec3d GraphicProperties::getMomentxyz()
+{
+	return this->momentxyz;
+}
+
+void GraphicProperties::setMomentxyz(DVec3d newMomentxyz)
+{
+	this->momentxyz = newMomentxyz;
+}

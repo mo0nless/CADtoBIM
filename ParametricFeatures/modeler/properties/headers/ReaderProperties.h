@@ -3,7 +3,9 @@
 #include<string>
 #include "../../../common/properties/headers/BooleanFunctionsEnum.h"
 
-
+/**
+*   Class contains needed reader properties
+*/
 class ReaderProperties {
 
 private:

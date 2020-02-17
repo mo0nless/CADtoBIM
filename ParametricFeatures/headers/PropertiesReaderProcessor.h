@@ -17,7 +17,7 @@
 * @see PropertiesDictionary 
 * @bsiclass
 +===============+===============+===============+===============+===============+======*/
-class PropertiesReader
+class PropertiesReaderProcessor
 {
 public:
 
@@ -26,7 +26,7 @@ public:
 	//! @param[in] the ofsstream instance
 	//! @param[in] the filepath to write
 	//! @param[in] the reference of the PropertiesDictionary
-	PropertiesReader(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties,
+	PropertiesReaderProcessor(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties,
 		SmartFeatureContainer& smartFeatureContainer);
 
 	//! Get the class Name of the current element 
@@ -34,7 +34,7 @@ public:
 	std::string getElemClassName();
 private:
 	std::string elemClassName;
-	PropertiesReader();
+	PropertiesReaderProcessor();
 };
 
 /// @endGroup

@@ -3,6 +3,9 @@
 #include <string>
 #include "ResultStatusEnum.h"
 
+/**
+ *  Class used to return status and message after an execution
+ */
 class ResultStatus {
 
 private:

@@ -3,11 +3,24 @@
 #include <string>
 #include <Bentley/WString.h>
 
+/**
+ *  Utility class for string operations
+ */
 class StringUtils {
 public:
+
+	/**
+	 *  Convert WString to std::string
+	 *  @param wStringValue[in] 
+	 *  @return std:string
+	 */
 	inline static std::string getString(WString wStringValue);
 private:
-	StringUtils();
+
+	/**
+	 *  Hide constructor to create a static class
+	 */
+	StringUtils() {};
 };
 
 std::string StringUtils::getString(WString wStringValue) {
