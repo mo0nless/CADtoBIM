@@ -19,7 +19,7 @@ public:
 	//! @param[in] Output file to write down all the graphics and text properties of the element
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
 	GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath);
-	void setPropertiesDictionary(PropertiesDictionary* propsDict);
+	void setPropertiesDictionary(DictionaryProperties* newDictionaryProperties);
 	void updateClassAndID(std::string elemClName, Int64 elemID);
 private:
 	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
@@ -39,7 +39,7 @@ private:
 	std::ofstream &outfile;
 	std::string filePath;
 	Int64 elementID;
-	PropertiesDictionary* propsDictionary;
 	std::string elemClassName;
+	DictionaryProperties* dictionaryProperties;
 };
 /// @endGroup

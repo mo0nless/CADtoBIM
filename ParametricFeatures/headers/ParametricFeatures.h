@@ -13,8 +13,9 @@
 
 #include "IfcGenerator.h"
 #include "GraphicsProcessor.h"
-#include "../utils/TypesUtils.h"
-#include "../utils/StringUtils.h"
+#include "../common/utils/StringUtils.hpp"
+#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+
 
 #define CMD_TREE 0x0100000000000000UI64
 #define CMD_SHAPE 0x0200000000000000UI64

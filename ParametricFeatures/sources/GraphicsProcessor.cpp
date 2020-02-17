@@ -8,9 +8,9 @@ GraphicsProcessor::GraphicsProcessor(std::ofstream &mOutfile, std::string& mFile
 }
 
 
-void GraphicsProcessor::setPropertiesDictionary(PropertiesDictionary* propsDict)
+void GraphicsProcessor::setPropertiesDictionary(DictionaryProperties* newDictionaryProperties)
 {
-	this->propsDictionary = propsDict;
+	this->dictionaryProperties = newDictionaryProperties;
 }
 
 void GraphicsProcessor::updateClassAndID(std::string elemClName, Int64 elmID)
@@ -48,23 +48,28 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 
 	outfile.close();
 
-	propsDictionary->addGraphicProperty(
-		PropertyObjAttribute<GraphicPropertiesEnum>(
-			elementID, elemClassName, GraphicPropertiesEnum::AREA),
-		PropertyTypeValue("double", area)
-	);
+	this->dictionaryProperties->getGraphicProperties()->setArea(area);
+	this->dictionaryProperties->getGraphicProperties()->setRadius(radius);
+	this->dictionaryProperties->getGraphicProperties()->setVolume(volume);
 
-	propsDictionary->addGraphicProperty(
-		PropertyObjAttribute<GraphicPropertiesEnum>(
-			elementID, elemClassName, GraphicPropertiesEnum::RADIUS),
-		PropertyTypeValue("double", radius)
-	);
 
-	propsDictionary->addGraphicProperty(
-		PropertyObjAttribute<GraphicPropertiesEnum>(
-			elementID, elemClassName, GraphicPropertiesEnum::VOLUME),
-		PropertyTypeValue("double", volume)
-	);
+	//propsDictionary->addGraphicProperty(
+	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::AREA),
+	//	PropertyTypeValue("double", area)
+	//);
+
+	//propsDictionary->addGraphicProperty(
+	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RADIUS),
+	//	PropertyTypeValue("double", radius)
+	//);
+
+	//propsDictionary->addGraphicProperty(
+	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::VOLUME),
+	//	PropertyTypeValue("double", volume)
+	//);
 
 }
 
@@ -98,25 +103,25 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 
 	outfile.close();
 	
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
-		elementID, elemClassName, GraphicPropertiesEnum::RANGE),
-		PropertyTypeValue("DRange3d", range)
-	);
+	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RANGE),
+	//	PropertyTypeValue("DRange3d", range)
+	//);
 
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
-		elementID, elemClassName, GraphicPropertiesEnum::ORIGIN),
-		PropertyTypeValue("DPoint3d", localToWorld.Origin())
-	);
+	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::ORIGIN),
+	//	PropertyTypeValue("DPoint3d", localToWorld.Origin())
+	//);
 
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
-		elementID, elemClassName, GraphicPropertiesEnum::EULER_ROTATION),
-		PropertyTypeValue("DVec3d", rotation)
-	);
+	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::EULER_ROTATION),
+	//	PropertyTypeValue("DVec3d", rotation)
+	//);
 
-	propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicPropertiesEnum>(
-		elementID, elemClassName, GraphicPropertiesEnum::QUATERNION_ROTATION),
-		PropertyTypeValue("DPoint4d", qRotation)
-	);
+	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
+	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::QUATERNION_ROTATION),
+	//	PropertyTypeValue("DPoint4d", qRotation)
+	//);
 }
 
 //! Collect output as text.

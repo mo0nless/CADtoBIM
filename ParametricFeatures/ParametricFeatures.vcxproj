@@ -15,36 +15,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\PropertiesDictionary.cpp" />
+    <ClCompile Include="common\properties\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\properties\sources\ReaderPropertiesEnumUtils.cpp" />
+    <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
+    <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
+    <ClCompile Include="mapper\sources\MappingHandler.cpp" />
+    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
+    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureProperties.cpp" />
+    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
+    <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
     <ClCompile Include="sources\IfcGenerator.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReader.cpp" />
-    <ClCompile Include="sources\PropertyTypeValue.cpp" />
-    <ClCompile Include="sources\SmartFeatureProperties.cpp" />
-    <ClCompile Include="utils\ElementPropertiesEnum.cpp" />
-    <ClCompile Include="utils\GraphicPropertiesEnum.cpp" />
-    <ClCompile Include="utils\StringUtils.cpp" />
-    <ClCompile Include="utils\TypesUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
     <None Include="ParametricFeatures.r" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\PropertiesDictionary.h" />
+    <ClInclude Include="common\properties\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\properties\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
+    <ClInclude Include="common\result_status\headers\ResultStatus.h" />
+    <ClInclude Include="common\result_status\headers\ResultStatusEnum.h" />
+    <ClInclude Include="common\utils\StringUtils.hpp" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
     <ClInclude Include="headers\IfcGenerator.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReader.h" />
-    <ClInclude Include="headers\PropertyObjAttribute.h" />
-    <ClInclude Include="headers\PropertyTypeValue.h" />
-    <ClInclude Include="headers\SmartFeatureContainer.h" />
-    <ClInclude Include="headers\SmartFeatureProperties.h" />
-    <ClInclude Include="utils\StringUtils.h" />
+    <ClInclude Include="mapper\headers\MappingHandler.h" />
+    <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
+    <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />
+    <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
+    <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
+    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
+    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureProperties.h" />
+    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="utils\TypesUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

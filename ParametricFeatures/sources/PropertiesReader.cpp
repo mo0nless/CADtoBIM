@@ -10,17 +10,12 @@ std::string PropertiesReader::getElemClassName()
 }
 
 
-PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, PropertiesDictionary& propsDictionary)
+PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, DictionaryProperties& dictionaryProperties,
+	SmartFeatureContainer& smartFeatureContainer)
 {
 	WString elDescr;
-	WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
-	enum StringLength
-	{
-		DesiredLength = 128,
-	};
+	//WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
 
-	Handler& elemHandler = currentElem.GetHandler();
-	elemHandler.GetDescription(currentElem, elDescr, DesiredLength);
 	// Handles persistance of ECInstances
 	DgnECManagerR ecMgr = DgnECManager::GetManager();
 
@@ -44,32 +39,23 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 		outfile << "======================== pROPS nOT fOUND ===========================" << std::endl;
 		outfile.close();
 		elemClassName = "SmartFeatureSolid"; 
+		dictionaryProperties.setAreReaderPropertiesFound(false);
 	}
 	else{
-
+		dictionaryProperties.setAreReaderPropertiesFound(true);
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
-			instance->WriteToXmlFile(outXML, true, true);
-
+			//instance->WriteToXmlFile(outXML, true, true);
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
-			
-
-
-
 			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
 			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 			/////////////////////////
 
-
-
-
-
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
 			outfile.close();
-
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
@@ -84,49 +70,62 @@ PropertiesReader::PropertiesReader(ElementHandleCR currentElem, std::ofstream & 
 				outfile.close();
 			}
 
-			for (ECPropertyP ecProp : elemInst->GetClass().GetProperties(true))
-			{
-				WString wStr;
-				ECValue ecVal;
-				
+			dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
-				
-				//////////////////// WE CAN Check and store the type immediately WIth those functions
-				ecVal.IsBoolean();
-				/////////////////////
-
-
-
-
-				// Gets the value stored in the specified ECProperty. 
-				elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());
-
-				// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
-				// Obtain a type adapter for the specified property. 
-				IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
-				// Create a context for a DgnECInstance
-				IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *elemInst, ecProp->GetName().GetWCharCP());
-
-				// Converts the ECValue to a display string. 
-				typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
-
-				if (!(static_cast<Utf8String>(wStr) == ""))
-				{
-					elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
-					propsDictionary.addElementProperty(
-						PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(),elemClassName, ElementPropertiesEnum::NODE_ID),
-						PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
-					);
-
-					outfile.open(filePath, std::ios_base::app);
-					outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
-						<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-						<< "= " << static_cast<Utf8String>(wStr) << std::endl;
-					outfile.close();
+			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "is smart feature" << std::endl;
+				//ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
+				SmartFeatureTreeNode* currentNode = smartFeatureContainer.search(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
+				if (currentNode != nullptr) {
+					ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *currentNode->getSmartFeatureProperties()->getReaderProperties());
 				}
+				outfile.close();
 			}
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "is NOT smart feature" << std::endl;
+				ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
+
+				outfile.close();
+				//for (ECPropertyP ecProp : elemInst->GetClass().GetProperties(true))
+				//{
+				//	WString wStr;
+				//	ECValue ecVal;
+				//	//////////////////// WE CAN Check and store the type immediately WIth those functions
+				//	ecVal.IsBoolean();
+				//	/////////////////////
+				//	// Gets the value stored in the specified ECProperty. 
+				//	elemInst->GetValue(ecVal, ecProp->GetName().GetWCharCP());
+
+				//	// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
+				//	// Obtain a type adapter for the specified property. 
+				//	IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
+				//	// Create a context for a DgnECInstance
+				//	IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *elemInst, ecProp->GetName().GetWCharCP());
+
+				//	// Converts the ECValue to a display string. 
+				//	typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
+
+				//	if (!(static_cast<Utf8String>(wStr) == ""))
+				//	{
+				//		//elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+				//		//propsDictionary.addElementProperty(
+				//		//	PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(),elemClassName, ElementPropertiesEnum::NODE_ID),
+				//		//	PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
+				//		//);
+
+				//		outfile.open(filePath, std::ios_base::app);
+				//		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
+				//			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+				//			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+				//		outfile.close();
+				//	}
+				//}
+			
 		}
 	}
+
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::endl;
 	outfile << "===================================================" << std::endl;

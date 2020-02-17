@@ -9,6 +9,8 @@ typedef std::string S;
 boost::none_t const null = boost::none;
 using boost::any_cast;
 
+typedef IfcParse::IfcGlobalId guid;
+
 template<class IfcSchema>
 inline std::string IfcTextSolver()
 {
@@ -18,230 +20,301 @@ inline std::string IfcTextSolver()
 	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
 }
 
-template<class IfcSchema>
-void CreateCurveRebar()
-{
-	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";*/
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
-	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
-	file.header().file_name().name("IfcCurveBar.ifc");
-
-	typedef IfcSchema::IfcGloballyUniqueId guid;
-	int dia = 24;
-	int R = 3 * dia;
-	int length = 12 * dia;
-
-	double crossSectionarea = M_PI * (dia / 2) * 2;
-
-	//Create the IfcReinforcingBar element
-	IfcSchema::IfcReinforcingBar* rebar = new IfcSchema::IfcReinforcingBar(
-		guid::IfcGloballyUniqueId("IfcCsgPrimitive"), 0, S("test"), null,
-		null, 0, 0,
-		null, S("SR24"),		//SteelGrade
-		dia,						//diameter
-		crossSectionarea,		//crossSectionarea = math.pi*(12.0/2)**2
-		0,
-		//IfcSchema::IfcReinforcingBarRoleEnum::IfcReinforcingBarRoleEnum::IfcReinforcingBarRole_LIGATURE, ------> Ifc2x3
-		IfcSchema::IfcReinforcingBarTypeEnum::IfcReinforcingBarType_LIGATURE,
-		IfcSchema::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurface_PLAIN	//PLAIN or TEXTURED
-	);
-
-
-
-	file.addBuildingProduct(rebar);
-	rebar->setOwnerHistory(file.getSingle<IfcSchema::IfcOwnerHistory>());
-
-	IfcSchema::IfcCompositeCurveSegment::list::ptr segments(new IfcSchema::IfcCompositeCurveSegment::list());
-
-	IfcSchema::IfcCartesianPoint* p1 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 1000.);
-	IfcSchema::IfcCartesianPoint* p2 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 0);
-	IfcSchema::IfcCartesianPoint* p3 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, 0);
-	IfcSchema::IfcCartesianPoint* p4 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, -R);
-	IfcSchema::IfcCartesianPoint* p5 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R + length, -R);
-
-	/*first segment - line */
-	IfcSchema::IfcCartesianPoint::list::ptr points1(new IfcSchema::IfcCartesianPoint::list());
-	points1->push(p1);
-	points1->push(p2);
-	file.addEntities(points1->generalize());
-	IfcSchema::IfcPolyline* poly1 = new IfcSchema::IfcPolyline(points1);
-	file.addEntity(poly1);
-
-	IfcSchema::IfcCompositeCurveSegment* segment1 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly1);
-	file.addEntity(segment1);
-	segments->push(segment1);
-
-	/*second segment - arc */
-	IfcSchema::IfcAxis2Placement3D* axis1 = new IfcSchema::IfcAxis2Placement3D(p3, file.addTriplet<IfcSchema::IfcDirection>(1, 0, 0), file.addTriplet<IfcSchema::IfcDirection>(0, 1, 0));
-	file.addEntity(axis1);
-	IfcSchema::IfcCircle* circle = new IfcSchema::IfcCircle(axis1, R);
-	file.addEntity(circle);
-
-	IfcEntityList::ptr trim1(new IfcEntityList);
-	IfcEntityList::ptr trim2(new IfcEntityList);
-
-	trim1->push(new IfcSchema::IfcParameterValue(180));
-	trim1->push(p2);
-
-	trim2->push(new IfcSchema::IfcParameterValue(270));
-	trim2->push(p4);
-	IfcSchema::IfcTrimmedCurve* trimmed_curve = new IfcSchema::IfcTrimmedCurve(circle, trim1, trim2, false, IfcSchema::IfcTrimmingPreference::IfcTrimmingPreference_PARAMETER);
-	file.addEntity(trimmed_curve);
-
-	IfcSchema::IfcCompositeCurveSegment* segment2 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTSAMEGRADIENT, false, trimmed_curve);
-	file.addEntity(segment2);
-	segments->push(segment2);
-
-	/*third segment - line */
-	IfcSchema::IfcCartesianPoint::list::ptr points2(new IfcSchema::IfcCartesianPoint::list());
-	points2->push(p4);
-	points2->push(p5);
-	file.addEntities(points2->generalize());
-	IfcSchema::IfcPolyline* poly2 = new IfcSchema::IfcPolyline(points2);
-	file.addEntity(poly2);
-
-	IfcSchema::IfcCompositeCurveSegment* segment3 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly2);
-	file.addEntity(segment3);
-	segments->push(segment3);
-
-	IfcSchema::IfcCompositeCurve* curve = new IfcSchema::IfcCompositeCurve(segments, false);
-	file.addEntity(curve);
-
-	IfcSchema::IfcSweptDiskSolid* solid = new IfcSchema::IfcSweptDiskSolid(curve, dia / 2, null, 0, 1);
-
-	IfcSchema::IfcRepresentation::list::ptr reps(new IfcSchema::IfcRepresentation::list());
-	IfcSchema::IfcRepresentationItem::list::ptr items(new IfcSchema::IfcRepresentationItem::list());
-	items->push(solid);
-	IfcSchema::IfcShapeRepresentation* rep = new IfcSchema::IfcShapeRepresentation(
-		file.getSingle<IfcSchema::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
-	reps->push(rep);
-
-	IfcSchema::IfcProductDefinitionShape* shape = new IfcSchema::IfcProductDefinitionShape(null, null, reps);
-	file.addEntity(shape);
-
-	rebar->setRepresentation(shape);
-
-	IfcSchema::IfcObjectPlacement* storey_placement = file.getSingle<IfcSchema::IfcBuildingStorey>()->ObjectPlacement();
-	rebar->setObjectPlacement(file.addLocalPlacement(storey_placement, 0, 0, 0));
-
-	std::ofstream f;
-	f.open(filename);
-	f << file;
-	f.close();
-}
+//template<class IfcSchema>
+//void CreateCurveRebar()
+//{
+//	/*const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCurveRebar.ifc";*/
+//	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcCurveRebar.ifc";
+//	IfcHierarchyHelper<IfcSchema> file = IfcHierarchyHelper<IfcSchema>(IfcParse::schema_by_name(IfcTextSolver<IfcSchema>()));
+//	file.header().file_name().name("IfcCurveBar.ifc");
+//
+//	typedef IfcSchema::IfcGloballyUniqueId guid;
+//	int dia = 24;
+//	int R = 3 * dia;
+//	int length = 12 * dia;
+//
+//	double crossSectionarea = M_PI * (dia / 2) * 2;
+//
+//	//Create the IfcReinforcingBar element
+//	IfcSchema::IfcReinforcingBar* rebar = new IfcSchema::IfcReinforcingBar(
+//		guid::IfcGloballyUniqueId("IfcCsgPrimitive"), 0, S("test"), null,
+//		null, 0, 0,
+//		null, S("SR24"),		//SteelGrade
+//		dia,						//diameter
+//		crossSectionarea,		//crossSectionarea = math.pi*(12.0/2)**2
+//		0,
+//		//IfcSchema::IfcReinforcingBarRoleEnum::IfcReinforcingBarRoleEnum::IfcReinforcingBarRole_LIGATURE, ------> Ifc2x3
+//		IfcSchema::IfcReinforcingBarTypeEnum::IfcReinforcingBarType_LIGATURE,
+//		IfcSchema::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurfaceEnum::IfcReinforcingBarSurface_PLAIN	//PLAIN or TEXTURED
+//	);
+//
+//
+//
+//	file.addBuildingProduct(rebar);
+//	rebar->setOwnerHistory(file.getSingle<IfcSchema::IfcOwnerHistory>());
+//
+//	IfcSchema::IfcCompositeCurveSegment::list::ptr segments(new IfcSchema::IfcCompositeCurveSegment::list());
+//
+//	IfcSchema::IfcCartesianPoint* p1 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 1000.);
+//	IfcSchema::IfcCartesianPoint* p2 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, 0, 0);
+//	IfcSchema::IfcCartesianPoint* p3 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, 0);
+//	IfcSchema::IfcCartesianPoint* p4 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R, -R);
+//	IfcSchema::IfcCartesianPoint* p5 = file.addTriplet<IfcSchema::IfcCartesianPoint>(0, R + length, -R);
+//
+//	/*first segment - line */
+//	IfcSchema::IfcCartesianPoint::list::ptr points1(new IfcSchema::IfcCartesianPoint::list());
+//	points1->push(p1);
+//	points1->push(p2);
+//	file.addEntities(points1->generalize());
+//	IfcSchema::IfcPolyline* poly1 = new IfcSchema::IfcPolyline(points1);
+//	file.addEntity(poly1);
+//
+//	IfcSchema::IfcCompositeCurveSegment* segment1 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly1);
+//	file.addEntity(segment1);
+//	segments->push(segment1);
+//
+//	/*second segment - arc */
+//	IfcSchema::IfcAxis2Placement3D* axis1 = new IfcSchema::IfcAxis2Placement3D(p3, file.addTriplet<IfcSchema::IfcDirection>(1, 0, 0), file.addTriplet<IfcSchema::IfcDirection>(0, 1, 0));
+//	file.addEntity(axis1);
+//	IfcSchema::IfcCircle* circle = new IfcSchema::IfcCircle(axis1, R);
+//	file.addEntity(circle);
+//
+//	IfcEntityList::ptr trim1(new IfcEntityList);
+//	IfcEntityList::ptr trim2(new IfcEntityList);
+//
+//	trim1->push(new IfcSchema::IfcParameterValue(180));
+//	trim1->push(p2);
+//
+//	trim2->push(new IfcSchema::IfcParameterValue(270));
+//	trim2->push(p4);
+//	IfcSchema::IfcTrimmedCurve* trimmed_curve = new IfcSchema::IfcTrimmedCurve(circle, trim1, trim2, false, IfcSchema::IfcTrimmingPreference::IfcTrimmingPreference_PARAMETER);
+//	file.addEntity(trimmed_curve);
+//
+//	IfcSchema::IfcCompositeCurveSegment* segment2 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTSAMEGRADIENT, false, trimmed_curve);
+//	file.addEntity(segment2);
+//	segments->push(segment2);
+//
+//	/*third segment - line */
+//	IfcSchema::IfcCartesianPoint::list::ptr points2(new IfcSchema::IfcCartesianPoint::list());
+//	points2->push(p4);
+//	points2->push(p5);
+//	file.addEntities(points2->generalize());
+//	IfcSchema::IfcPolyline* poly2 = new IfcSchema::IfcPolyline(points2);
+//	file.addEntity(poly2);
+//
+//	IfcSchema::IfcCompositeCurveSegment* segment3 = new IfcSchema::IfcCompositeCurveSegment(IfcSchema::IfcTransitionCode::IfcTransitionCode_CONTINUOUS, true, poly2);
+//	file.addEntity(segment3);
+//	segments->push(segment3);
+//
+//	IfcSchema::IfcCompositeCurve* curve = new IfcSchema::IfcCompositeCurve(segments, false);
+//	file.addEntity(curve);
+//
+//	IfcSchema::IfcSweptDiskSolid* solid = new IfcSchema::IfcSweptDiskSolid(curve, dia / 2, null, 0, 1);
+//
+//	IfcSchema::IfcRepresentation::list::ptr reps(new IfcSchema::IfcRepresentation::list());
+//	IfcSchema::IfcRepresentationItem::list::ptr items(new IfcSchema::IfcRepresentationItem::list());
+//	items->push(solid);
+//	IfcSchema::IfcShapeRepresentation* rep = new IfcSchema::IfcShapeRepresentation(
+//		file.getSingle<IfcSchema::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
+//	reps->push(rep);
+//
+//	IfcSchema::IfcProductDefinitionShape* shape = new IfcSchema::IfcProductDefinitionShape(null, null, reps);
+//	file.addEntity(shape);
+//
+//	rebar->setRepresentation(shape);
+//
+//	IfcSchema::IfcObjectPlacement* storey_placement = file.getSingle<IfcSchema::IfcBuildingStorey>()->ObjectPlacement();
+//	rebar->setObjectPlacement(file.addLocalPlacement(storey_placement, 0, 0, 0));
+//
+//	std::ofstream f;
+//	f.open(filename);
+//	f << file;
+//	f.close();
+//}
 
 //template<class IfcSchema>
-void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
-{
-	auto prop = propsDictVec->at(0)->getGraphicPropertiesMap();
-	//The program crash here, NULL values inside the map
-	//PropertyTypeValue pRange = prop.at(GraphicPropertiesEnum::RANGE);
-	//PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
-	std::vector<PropertyTypeValue> ceva = propsDictVec->at(0)->getGraphicPropertyTypeValues(GraphicPropertiesEnum::RANGE);
-	PropertyTypeValue pRange = ceva.front();
-	TypesUtils test = TypesUtils(&pRange);
+//void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
+//{
+//	auto prop = propsDictVec->at(0)->getGraphicPropertiesMap();
+//	//The program crash here, NULL values inside the map
+//	//PropertyTypeValue pRange = prop.at(GraphicPropertiesEnum::RANGE);
+//	//PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
+//
+//
+//	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
+//	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+//	typedef Ifc2x3::IfcGloballyUniqueId guid;
+//	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
+//
+//	//Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
+//	//	guid::IfcGloballyUniqueId("Wall"),             // GlobalId
+//	//	0,                     // OwnerHistory
+//	//	S("South wall"),     // Name
+//	//	null,                 // Description
+//	//	null,                 // ObjectType
+//	//	0,                     // ObjectPlacement
+//	//	0,                     // Representation
+//	//	null                // Tag
+//	//);
+//	
+//	
+//	Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
+//		guid::IfcGloballyUniqueId("Wall"),
+//		0,
+//		std::string("Wall"),
+//		null,
+//		null,
+//		0,
+//		0,
+//		null,
+//		null
+//	);
+//
+//	file.addBuildingProduct(south_wall);
+//
+//	// By adding a wall, a hierarchy has been automatically created that consists of the following
+//	// structure: IfcProject > IfcSite > IfcBuilding > IfcBuildingStorey > IfcWall
+//
+//	// Lateron changing the name of the IfcProject can be done by obtaining a reference to the 
+//	// project, which has been created automatically.
+//	file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
+//
+//	//south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
+//	
+//	file.addOwnerHistory();
+//	// The wall will be shaped as a box, with the dimensions specified in millimeters. The resulting
+//	// product definition will consist of both a body representation as well as an axis representation
+//	// that runs over the centerline of the box in the X-axis.
+//	Ifc2x3::IfcProductDefinitionShape* south_wall_shape = file.addAxisBox(10000, 360, 3000);
+//
+//	// Obtain a reference to the placement of the IfcBuildingStorey in order to create a hierarchy
+//	// of placements for the products
+//	Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
+//	
+//	// The shape has to be assigned to the representation of the wall and is placed at the origin
+//	// of the coordinate system.
+//	south_wall->setRepresentation(south_wall_shape);
+//	south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
+//	
+//	//file.addLocalPlacement(storey_placement);
+//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
+//	//	south_wall_shape, 0.25, 0.23, 0.28);
+//	
+//	Ifc2x3::IfcRepresentation::list::ptr reps(new Ifc2x3::IfcRepresentation::list());
+//	Ifc2x3::IfcRepresentationItem::list::ptr items(new Ifc2x3::IfcRepresentationItem::list());
+//	
+//	//Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
+//	
+//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(body, 0.25, 0.23, 0.28);
+//	// THIS IS THE GEOMETRY SPECIFICATION 
+//	//file.addBox(body, 5000, 360, 6000);
+//	//Width, Depth, Height
+//	//double width = test.range.XLength() / 10;
+//	//double depth = test.range.YLength() / 10;
+//	//double height = test.range.ZLength() / 10;	
+//	//file.addBox(body, width, depth, height);
+//
+//
+//	Ifc2x3::IfcAxis2Placement3D* axisP = new Ifc2x3::IfcAxis2Placement3D(file.addTriplet<Ifc2x3::IfcCartesianPoint>(0, 0, 0),file.addTriplet<Ifc2x3::IfcDirection>(0, 0, 1), file.addTriplet<Ifc2x3::IfcDirection>(0, 1, 0));
+//	file.addEntity(axisP);
+//	//Ifc2x3::IfcRepresentationItem* my = new Ifc2x3::IfcSphere(axisP, 5000);
+//	Ifc2x3::IfcCsgPrimitive3D::IfcCsgPrimitive3D(axisP);
+//	Ifc2x3::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc2x3::IfcRightCircularCylinder(axisP, 60000, 500);
+//	file.addEntity(my);
+//	items->push(my);
+//	Ifc2x3::IfcShapeRepresentation* rep = new Ifc2x3::IfcShapeRepresentation(
+//		file.getSingle<Ifc2x3::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
+//	reps->push(rep);	
+//	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
+//	file.addEntity(shape);
+//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(my, 0.25, 0.23, 0.28);
+//	//file.setSurfaceColour(shape,wall_colour);
+//
+//	/*file.setSurfaceColour(body, wall_colour);
+//	reps->push(body);
+//	
+//	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
+//	file.addEntity(shape);*/
+//	
+//	//south_wall->setRepresentation(shape);
+//
+//	std::ofstream f;
+//	f.open(filename);
+//	f << file;
+//	f.close();
+//}
 
-	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
-	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
-	typedef Ifc2x3::IfcGloballyUniqueId guid;
+
+void WallTest() {
+	// The IfcHierarchyHelper is a subclass of the regular IfcFile that provides several
+	// convenience functions for working with geometry in IFC files.
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
+	file.header().file_name().name("IfcOpenHouse.ifc");
 
-	//Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
-	//	guid::IfcGloballyUniqueId("Wall"),             // GlobalId
-	//	0,                     // OwnerHistory
-	//	S("South wall"),     // Name
-	//	null,                 // Description
-	//	null,                 // ObjectType
-	//	0,                     // ObjectPlacement
-	//	0,                     // Representation
-	//	null                // Tag
-	//);
-	
-	
-	/*Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
-		guid::IfcGloballyUniqueId("Wall"),
-		0,
-		std::string("Wall"),
-		null,
-		null,
-		0,
-		0,
-		null,
-		null
-	);*/
-
-	//file.addBuildingProduct(south_wall);
+	// Start by adding a wall to the file, initially leaving most attributes blank.
+	Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
+		guid(), 			// GlobalId
+		0, 					// OwnerHistory
+		S("South wall"), 	// Name
+		null, 				// Description
+		null, 				// ObjectType
+		0, 					// ObjectPlacement
+		0, 					// Representation
+		null				// Tag
+		
+	);
+	file.addBuildingProduct(south_wall);
 
 	// By adding a wall, a hierarchy has been automatically created that consists of the following
 	// structure: IfcProject > IfcSite > IfcBuilding > IfcBuildingStorey > IfcWall
 
 	// Lateron changing the name of the IfcProject can be done by obtaining a reference to the 
 	// project, which has been created automatically.
-	//file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
+	file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
 
-	//south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
-	
-	file.addOwnerHistory();
+	// An IfcOwnerHistory has been initialized as well, which should be assigned to the wall.
+	south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
+
 	// The wall will be shaped as a box, with the dimensions specified in millimeters. The resulting
 	// product definition will consist of both a body representation as well as an axis representation
 	// that runs over the centerline of the box in the X-axis.
-	//Ifc2x3::IfcProductDefinitionShape* south_wall_shape = file.addAxisBox(10000, 360, 3000);
+	Ifc2x3::IfcProductDefinitionShape* south_wall_shape = file.addAxisBox(10000, 360, 3000);
 
 	// Obtain a reference to the placement of the IfcBuildingStorey in order to create a hierarchy
 	// of placements for the products
-	//Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
-	
+	Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
+
 	// The shape has to be assigned to the representation of the wall and is placed at the origin
 	// of the coordinate system.
-	//south_wall->setRepresentation(south_wall_shape);
-	//south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
-	
-	//file.addLocalPlacement(storey_placement);
+	south_wall->setRepresentation(south_wall_shape);
+	south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
+
+	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+		std::ofstream f;
+		f.open(filename);
+		f << file;
+		f.close();
+
+	// A pale white colour is assigned to the wall.
 	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
-	//	south_wall_shape, 0.25, 0.23, 0.28);
-	
-	Ifc2x3::IfcRepresentation::list::ptr reps(new Ifc2x3::IfcRepresentation::list());
-	Ifc2x3::IfcRepresentationItem::list::ptr items(new Ifc2x3::IfcRepresentationItem::list());
-	
-	//Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
-	
-	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(body, 0.25, 0.23, 0.28);
-	// THIS IS THE GEOMETRY SPECIFICATION 
-	//file.addBox(body, 5000, 360, 6000);
-	//Width, Depth, Height
-	//double width = test.range.XLength() / 10;
-	//double depth = test.range.YLength() / 10;
-	//double height = test.range.ZLength() / 10;	
-	//file.addBox(body, width, depth, height);
+	//	south_wall_shape, 0.75, 0.73, 0.68);
 
+	//le.setSurfaceColour(body, wall_colour);
 
-	Ifc2x3::IfcAxis2Placement3D* axisP = new Ifc2x3::IfcAxis2Placement3D(file.addTriplet<Ifc2x3::IfcCartesianPoint>(0, 0, 0),file.addTriplet<Ifc2x3::IfcDirection>(0, 0, 1), file.addTriplet<Ifc2x3::IfcDirection>(0, 1, 0));
-	file.addEntity(axisP);
-	//Ifc2x3::IfcRepresentationItem* my = new Ifc2x3::IfcSphere(axisP, 5000);
-	Ifc2x3::IfcCsgPrimitive3D::IfcCsgPrimitive3D(axisP);
-	Ifc2x3::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc2x3::IfcRightCircularCylinder(axisP, 60000, 500);
-	file.addEntity(my);
-	items->push(my);
-	Ifc2x3::IfcShapeRepresentation* rep = new Ifc2x3::IfcShapeRepresentation(
-		file.getSingle<Ifc2x3::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
-	reps->push(rep);	
-	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
-	file.addEntity(shape);
-	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(my, 0.25, 0.23, 0.28);
-	//file.setSurfaceColour(shape,wall_colour);
+	//Ifc2x3::IfcFooting* footing = new Ifc2x3::IfcFooting(guid(), file.getSingle<Ifc2x3::IfcOwnerHistory>(),
+	//	S("Footing"), null, null, 0, 0, null, Ifc2x3::IfcFootingTypeEnum::IfcFootingType_STRIP_FOOTING);
 
-	/*file.setSurfaceColour(body, wall_colour);
-	reps->push(body);
-	
-	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
-	file.addEntity(shape);*/
-	
+	//file.addBuildingProduct(footing);
+
+	//// The footing will span the entire floor plan of our building. The IfcRepresentationContext is
+	//// something that has been created automatically as well, but representations could have been 
+	//// assigned to a specific context, for example to add a two dimensional plan representation as well.
+	//footing->setRepresentation(file.addBox(10100, 5460, 2000));
+	//footing->setObjectPlacement(file.addLocalPlacement(storey_placement, 0, 2500, -2000));
+	//// The footing will have a dark gray colour
+	//Ifc2x3::IfcPresentationStyleAssignment* footing_colour = file.setSurfaceColour(footing->Representation(), 0.26, 0.22, 0.18);
+
 	//south_wall->setRepresentation(shape);
-
-	std::ofstream f;
-	f.open(filename);
-	f << file;
-	f.close();
 }
 
 #if false 
@@ -365,13 +438,13 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
 
-	std::vector<PropertiesDictionary*> propsDictVec;
+	/*std::vector<Dicion*> propsDictVec;*/
 	// Complete the full file path with the name of the model  
 	/*for (char c : static_cast<Utf8String>(dgnFileName))
 		filePath += c;*/
@@ -386,6 +459,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	outfile << "===================================================" << std::endl;
 	outfile.close(); 
 
+	std::vector<DictionaryProperties*>propsDictVec;
+	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
+
+
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
 		ElementHandle leafNode;
@@ -397,7 +474,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 		
+		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newElementId=-1;
 
+		newCurrentElementId = currentElem.GetElementId();
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
 			SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
@@ -412,19 +491,16 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 				{						
 					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+					newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 				}
 
 				outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
-				
+				newLocalNodeId = sFeatVec.at(i)->GetNodeId();
 				sFeatVec.at(i)->GetLeaf(leafNode);
 
 				if (leafNode.IsValid()) {
-					leafNode.GetHandler();
-					leafNode.GetElementRef();
-					leafNode.GetElementRef()->GetLevel();
-					leafNode.GetElementRef()->GetElementId();
-					leafNode.GetElementId();
 
+					newElementId = leafNode.GetElementId();
 					
 					DependentElmP depElm = currentElem.GetElementRef()->GetFirstDependent();
 					
@@ -437,6 +513,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
 				}
 				outfile << "finish==================" << std::endl;
+				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newElementId);
 			}
 
 			outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
@@ -454,13 +531,13 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		outfile << std::endl;
 		outfile.close();
 
-		PropertiesDictionary* propertiesDictionary = new PropertiesDictionary();
+		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
+
+		//propertiesDictionary->set(StringUtils::getString(elDescr.GetWCharCP()));
+		
+		PropertiesReader* propertiesReader = new PropertiesReader(currentElem, outfile, filePath, *propertiesDictionary,*smartFeatureContainer);
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
-		propertiesDictionary->setElemDescrName(StringUtils::getString(elDescr.GetWCharCP()));
-		
-		PropertiesReader* propertiesReader = new PropertiesReader(currentElem, outfile, filePath, *propertiesDictionary);
-
 		graphicsProcessor.updateClassAndID(propertiesReader->getElemClassName(), currentElem.GetElementId());
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
@@ -468,9 +545,20 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	}
 
+	for (int i = 0; i < propsDictVec.size(); ++i) {
+		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
+		if (!propertiesDictionary->getAreReaderPropertiesFound()) {
+			SmartFeatureTreeNode* treeNode = smartFeatureContainer->search(smartFeatureContainer->getRoot(), propertiesDictionary->getReaderProperties()->getNodeId());
+			if (treeNode != nullptr) {
+				treeNode->getSmartFeatureProperties()->setGraphicProperties(propertiesDictionary->getGraphicProperties());
+			}
+		}
+	
+	}
+
 	outfile.close();
 	//IfcSchemaTester<Ifc2x3>();
-	WallTest(&propsDictVec);
+	WallTest();
 
 	return SUCCESS;
 }

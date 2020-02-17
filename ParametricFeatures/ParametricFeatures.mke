@@ -77,13 +77,18 @@ appObjects = \
 	$(o)GraphicsProcessor$(oext) \
 	$(o)IfcGenerator$(oext) \
 	$(o)PropertiesReader$(oext) \
-	$(o)PropertiesDictionary$(oext) \
-    $(o)PropertyTypeValue$(oext) \
-    $(o)ElementPropertiesEnum$(oext) \
-    $(o)GraphicPropertiesEnum$(oext) \
-    $(o)StringUtils$(oext) \
-    $(o)TypesUtils$(oext) \
+	$(o)BooleanFunctionsEnum$(oext) \
+	$(o)ReaderPropertiesDictionary$(oext) \
+	$(o)ResultStatus$(oext) \
+	$(o)ResultStatusEnum$(oext) \
+	$(o)MappingHandler$(oext) \
+	$(o)ReaderPropertiesMapper$(oext) \
+	$(o)DictionaryProperties$(oext) \
+	$(o)GraphicProperties$(oext) \
+	$(o)ReaderProperties$(oext) \
+	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureProperties$(oext) \
+	$(o)SmartFeatureTreeNode$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -150,21 +155,29 @@ $(o)IfcGenerator$(oext) : $(baseDir)sources/IfcGenerator.cpp $(baseDir)headers/I
 
 $(o)PropertiesReader$(oext) : $(baseDir)sources/PropertiesReader.cpp $(baseDir)headers/PropertiesReader.h 
 
-$(o)PropertiesDictionary$(oext) : $(baseDir)sources/PropertiesDictionary.cpp $(baseDir)headers/PropertiesDictionary.h 
+$(o)ResultStatus$(oext) : $(baseDir)common/result_status/sources/ResultStatus.cpp $(baseDir)common/result_status/headers/ResultStatus.h
 
-$(o)ElementPropertiesEnum$(oext) : $(baseDir)utils/ElementPropertiesEnum.cpp 
+$(o)ResultStatusEnum$(oext) : $(baseDir)common/result_status/sources/ResultStatusEnum.cpp $(baseDir)common/result_status/headers/ResultStatusEnum.h
 
-$(o)GraphicPropertiesEnum$(oext) : $(baseDir)utils/GraphicPropertiesEnum.cpp
+$(o)MappingHandler$(oext) : $(baseDir)mapper/sources/MappingHandler.cpp $(baseDir)mapper/headers/MappingHandler.h
 
-$(o)PropertyTypeValue$(oext) : $(baseDir)sources/PropertyTypeValue.cpp $(baseDir)headers/PropertyTypeValue.h
+$(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
 
-#$(o)PropertyObjAttribute$(oext) : $(baseDir)sources/PropertyObjAttribute.h
+$(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
-$(o)StringUtils$(oext) : $(baseDir)utils/StringUtils.cpp $(baseDir)utils/StringUtils.h
+$(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
 
-$(o)TypesUtils$(oext) : $(baseDir)utils/TypesUtils.cpp $(baseDir)utils/TypesUtils.h
+$(o)ReaderProperties$(oext) : $(baseDir)modeler/properties/sources/ReaderProperties.cpp $(baseDir)modeler/properties/headers/ReaderProperties.h
 
-$(o)SmartFeatureProperties$(oext) : $(baseDir)sources/SmartFeatureProperties.cpp $(baseDir)headers/SmartFeatureProperties.h 
+$(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureContainer.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureContainer.h
+
+$(o)SmartFeatureProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureProperties.h
+
+$(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
+
+$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
+
+$(o)ReaderPropertiesDictionary$(oext) : $(baseDir)common/properties/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/properties/headers/ReaderPropertiesEnumUtils.h
 
 
 %include $(MDLMKI)dlmlink.mki

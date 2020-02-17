@@ -1,8 +1,11 @@
 #pragma once
 
-#include "PropertiesDictionary.h"
-#include "../utils/TypesUtils.h"
-#include "../utils/StringUtils.h"
+#include "../stdafx.h"
+#include "../common/utils/StringUtils.hpp"
+#include "../modeler/properties/headers/DictionaryProperties.h"
+
+#include "../mapper/properties/headers/ReaderPropertiesMapper.h"
+#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
@@ -23,7 +26,8 @@ public:
 	//! @param[in] the ofsstream instance
 	//! @param[in] the filepath to write
 	//! @param[in] the reference of the PropertiesDictionary
-	PropertiesReader(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, PropertiesDictionary& propsDictionary);
+	PropertiesReader(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties,
+		SmartFeatureContainer& smartFeatureContainer);
 
 	//! Get the class Name of the current element 
 	//! @return the string that has the class Name of the element.

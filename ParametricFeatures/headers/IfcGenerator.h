@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PropertiesDictionary.h"
+#include "../stdafx.h"
 
 /// @addtogroup IfcStandards
 /// @beginGroup
@@ -18,7 +18,7 @@ public:
 	//! @param[in] The Properties Dictionary vector that contais all the element graphics and properties parsed
 	//! @param[in] Output file to write down all the graphics and text properties of the element
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
-	IfcGenerator(std::vector<PropertiesDictionary*>* propsDictVec, std::string ifcPrjName);
+	IfcGenerator( std::string ifcPrjName);
 
 	void Sphere(double r);
 	void Box(double dx, double dy, double dz);
@@ -35,7 +35,7 @@ private:
 
 	Operation op;
 	Primitives prim;
-	std::vector<PropertiesDictionary*>* vecPropertiesDictionary;
+	//std::vector<PropertiesDictionary*>* vecPropertiesDictionary;
 	std::string ifcProjectName;
 
 	//! IfcTextSolver template method to map the selected format to string
@@ -52,7 +52,7 @@ private:
 	//! Create an IFC file from the information stored in the Properties Dictionary
 	//! @param[in] newFeatureEeh Parametric solid element
 	//! @remark The primitives type that needs to be created 
-	void CreateIfcFile(Primitives primitives);
+	//void CreateIfcFile(Primitives primitives);
 
 };
 
