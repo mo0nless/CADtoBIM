@@ -23,9 +23,9 @@
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="mapper\sources\MappingHandler.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
-    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
+    <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
@@ -53,10 +53,10 @@
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
+    <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
-    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

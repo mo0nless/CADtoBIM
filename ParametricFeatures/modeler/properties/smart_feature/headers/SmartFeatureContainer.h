@@ -21,7 +21,8 @@ public:
 	 *  @param newElementId[in] the leaf id/the if of the referenced element
 	 */
 	void insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newElementId);
-	SmartFeatureTreeNode* search(SmartFeatureTreeNode* searchNode, long searchLocalId);
+	SmartFeatureTreeNode* searchByLocalId(SmartFeatureTreeNode* searchNode, long searchedLocalId);
+	SmartFeatureTreeNode* searchByElementId(SmartFeatureTreeNode* searchNode, long searchedByElementId);
 
 	SmartFeatureTreeNode* getRoot();
 };
