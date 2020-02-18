@@ -90,6 +90,7 @@ appObjects = \
 	$(o)ReaderProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
+	$(o)IfcCone$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -181,6 +182,8 @@ $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sou
 $(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
 
 $(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/ReaderPropertiesEnumUtils.h
+
+$(o)IfcCone$(oext) : $(baseDir)ifc/primitives/sources/IfcCone.cpp $(baseDir)ifc/primitives/headers/IfcCone.h
 
 
 %include $(MDLMKI)dlmlink.mki

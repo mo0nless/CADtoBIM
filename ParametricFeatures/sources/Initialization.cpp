@@ -408,6 +408,7 @@ void IfcSchemaTester()
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
@@ -518,7 +519,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
 		propsDictVec.push_back(propertiesDictionary);
-
 	}
 
 	for (int i = 0; i < propsDictVec.size(); ++i) {
@@ -536,7 +536,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	//IfcSchemaTester<Ifc2x3>();
 	//WallTest();
 
-	CSGPrimitiveTest();
+	//CSGPrimitiveTest();
+
+	IfcCone* ifcCone = new IfcCone(5000);
 
 	return SUCCESS;
 }

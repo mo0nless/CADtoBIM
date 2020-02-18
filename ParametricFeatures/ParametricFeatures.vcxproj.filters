@@ -19,6 +19,7 @@
     <ClCompile Include="common\utils\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcCone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -45,5 +46,6 @@
     <ClInclude Include="common\utils\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
+    <ClInclude Include="ifc\primitives\headers\IfcCone.h" />
   </ItemGroup>
 </Project>
