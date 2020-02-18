@@ -9,7 +9,9 @@ typedef std::string S;
 boost::none_t const null = boost::none;
 using boost::any_cast;
 
-typedef IfcParse::IfcGlobalId guid;
+typedef enum {
+	PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
+} Primitives;
 
 template<class IfcSchema>
 inline std::string IfcTextSolver()
@@ -20,10 +22,80 @@ inline std::string IfcTextSolver()
 	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
 }
 
+void CSG(Primitives prim, std::string name, double a = 0., double b = 0., double c = 0.)
+{
+	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
+	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	typedef Ifc4::IfcGloballyUniqueId guid2;
+	
+	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));
+	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
+
+	if (prim == PRIM_SPHERE) {
+		my = new Ifc4::IfcSphere(place, a);
+	}
+	else if (prim == PRIM_BOX) {
+		my = new Ifc4::IfcBlock(place, a, b, c);
+	}
+	else if (prim == PRIM_PYRAMID) {
+		my = new Ifc4::IfcRectangularPyramid(place, a, b, c);
+	}
+	else if (prim == PRIM_CYLINDER) {
+		my = new Ifc4::IfcRightCircularCylinder(place, b, a);
+	}
+	else if (prim == PRIM_CONE) {
+		my = new Ifc4::IfcRightCircularCone(place, b, a);
+	}
+
+	Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
+		guid2::IfcGloballyUniqueId(name),
+		0,
+		name,
+		null,
+		null,
+		0,
+		0,
+		null,
+		null
+	);
+
+	file.addBuildingProduct(primitive);
+
+	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+	primitive->setObjectPlacement(file.addLocalPlacement());
+
+	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+	
+	Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
+
+	file.addEntity(my);
+	items->push(solid);
+
+	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
+		file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), S("Body"), S("Model"), items);
+
+	reps->push(rep);
+
+	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
+
+	file.addEntity(rep);
+	file.addEntity(shape);
+
+	primitive->setRepresentation(shape);
+
+	file.getSingle<Ifc4::IfcProject>()->setName("proxy with CSG");
+
+	std::ofstream f;
+	f.open(filename);
+	f << file;
+	f.close();
+}
+
 void CSGPrimitiveTest()
 {
-	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
+	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
+	const char filename[] = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid2;
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 
@@ -106,124 +178,13 @@ void CSGPrimitiveTest()
 	f.close();
 }
 
-//template<class IfcSchema>
-//void WallTest(std::vector<PropertiesDictionary*>* propsDictVec)
-//{
-//	auto prop = propsDictVec->at(0)->getGraphicPropertiesMap();
-//	//The program crash here, NULL values inside the map
-//	//PropertyTypeValue pRange = prop.at(GraphicPropertiesEnum::RANGE);
-//	//PropertyTypeValue pRange = prop.at(propsDictVec->at(0)->getGraphicPropertyObjAttribute(GraphicPropertiesEnum::RANGE));
-//
-//
-//	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
-//	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
-//	typedef Ifc2x3::IfcGloballyUniqueId guid;
-//	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
-//
-//	//Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
-//	//	guid::IfcGloballyUniqueId("Wall"),             // GlobalId
-//	//	0,                     // OwnerHistory
-//	//	S("South wall"),     // Name
-//	//	null,                 // Description
-//	//	null,                 // ObjectType
-//	//	0,                     // ObjectPlacement
-//	//	0,                     // Representation
-//	//	null                // Tag
-//	//);
-//	
-//	
-//	Ifc2x3::IfcBuildingElementProxy* south_wall = new Ifc2x3::IfcBuildingElementProxy(
-//		guid::IfcGloballyUniqueId("Wall"),
-//		0,
-//		std::string("Wall"),
-//		null,
-//		null,
-//		0,
-//		0,
-//		null,
-//		null
-//	);
-//
-//	file.addBuildingProduct(south_wall);
-//
-//	// By adding a wall, a hierarchy has been automatically created that consists of the following
-//	// structure: IfcProject > IfcSite > IfcBuilding > IfcBuildingStorey > IfcWall
-//
-//	// Lateron changing the name of the IfcProject can be done by obtaining a reference to the 
-//	// project, which has been created automatically.
-//	file.getSingle<Ifc2x3::IfcProject>()->setName("IfcOpenHouse");
-//
-//	//south_wall->setOwnerHistory(file.getSingle<Ifc2x3::IfcOwnerHistory>());
-//	
-//	file.addOwnerHistory();
-//	// The wall will be shaped as a box, with the dimensions specified in millimeters. The resulting
-//	// product definition will consist of both a body representation as well as an axis representation
-//	// that runs over the centerline of the box in the X-axis.
-//	Ifc2x3::IfcProductDefinitionShape* south_wall_shape = file.addAxisBox(10000, 360, 3000);
-//
-//	// Obtain a reference to the placement of the IfcBuildingStorey in order to create a hierarchy
-//	// of placements for the products
-//	Ifc2x3::IfcObjectPlacement* storey_placement = file.getSingle<Ifc2x3::IfcBuildingStorey>()->ObjectPlacement();
-//	
-//	// The shape has to be assigned to the representation of the wall and is placed at the origin
-//	// of the coordinate system.
-//	south_wall->setRepresentation(south_wall_shape);
-//	south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
-//	
-//	//file.addLocalPlacement(storey_placement);
-//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(
-//	//	south_wall_shape, 0.25, 0.23, 0.28);
-//	
-//	Ifc2x3::IfcRepresentation::list::ptr reps(new Ifc2x3::IfcRepresentation::list());
-//	Ifc2x3::IfcRepresentationItem::list::ptr items(new Ifc2x3::IfcRepresentationItem::list());
-//	
-//	//Ifc2x3::IfcShapeRepresentation* body = file.addEmptyRepresentation();
-//	
-//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(body, 0.25, 0.23, 0.28);
-//	// THIS IS THE GEOMETRY SPECIFICATION 
-//	//file.addBox(body, 5000, 360, 6000);
-//	//Width, Depth, Height
-//	//double width = test.range.XLength() / 10;
-//	//double depth = test.range.YLength() / 10;
-//	//double height = test.range.ZLength() / 10;	
-//	//file.addBox(body, width, depth, height);
-//
-//
-//	Ifc2x3::IfcAxis2Placement3D* axisP = new Ifc2x3::IfcAxis2Placement3D(file.addTriplet<Ifc2x3::IfcCartesianPoint>(0, 0, 0),file.addTriplet<Ifc2x3::IfcDirection>(0, 0, 1), file.addTriplet<Ifc2x3::IfcDirection>(0, 1, 0));
-//	file.addEntity(axisP);
-//	//Ifc2x3::IfcRepresentationItem* my = new Ifc2x3::IfcSphere(axisP, 5000);
-//	Ifc2x3::IfcCsgPrimitive3D::IfcCsgPrimitive3D(axisP);
-//	Ifc2x3::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = new Ifc2x3::IfcRightCircularCylinder(axisP, 60000, 500);
-//	file.addEntity(my);
-//	items->push(my);
-//	Ifc2x3::IfcShapeRepresentation* rep = new Ifc2x3::IfcShapeRepresentation(
-//		file.getSingle<Ifc2x3::IfcRepresentationContext>(), S("Body"), S("AdvancedSweptSolid"), items);
-//	reps->push(rep);	
-//	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
-//	file.addEntity(shape);
-//	//Ifc2x3::IfcPresentationStyleAssignment* wall_colour = file.setSurfaceColour(my, 0.25, 0.23, 0.28);
-//	//file.setSurfaceColour(shape,wall_colour);
-//
-//	/*file.setSurfaceColour(body, wall_colour);
-//	reps->push(body);
-//	
-//	Ifc2x3::IfcProductDefinitionShape* shape = new Ifc2x3::IfcProductDefinitionShape(null, null, reps);
-//	file.addEntity(shape);*/
-//	
-//	//south_wall->setRepresentation(shape);
-//
-//	std::ofstream f;
-//	f.open(filename);
-//	f << file;
-//	f.close();
-//}
-
-
 void WallTest() {
 	// The IfcHierarchyHelper is a subclass of the regular IfcFile that provides several
 	// convenience functions for working with geometry in IFC files.
 	IfcHierarchyHelper<Ifc2x3> file = IfcHierarchyHelper<Ifc2x3>(IfcParse::schema_by_name("IFC2X3"));
 	file.header().file_name().name("IfcOpenHouse.ifc");
+	
+	typedef IfcParse::IfcGlobalId guid;
 
 	// Start by adding a wall to the file, initially leaving most attributes blank.
 	Ifc2x3::IfcWallStandardCase* south_wall = new Ifc2x3::IfcWallStandardCase(
@@ -406,6 +367,183 @@ void IfcSchemaTester()
 #endif
 
 
+class CSGBool {
+private:
+	typedef enum {
+		OP_ADD, OP_SUBTRACT, OP_INTERSECT, OP_TERMINAL
+	} Op;
+	typedef enum {
+		PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
+	} Prim;
+
+	double x, y, z, zx, zy, zz, xx, xy, xz, a, b, c;
+	const CSGBool *left, *right;
+
+	Op op;
+	Prim prim;
+
+	CSGBool& operate(Op oP, const CSGBool& p) {
+		left = new CSGBool(*this);
+		right = new CSGBool(p);
+		this->op = oP;
+		return *this;
+	}
+
+	CSGBool(Prim p, double la, double lb = 0., double lc = 0.)
+		: prim(p), op(OP_TERMINAL),
+		x(0.), y(0.), z(0.),
+		zx(0.), zy(0.), zz(1.),
+		xx(1.), xy(0.), xz(0.),
+		a(la), b(lb), c(lc) {}
+public:
+	static CSGBool Sphere(double r) {
+		return CSGBool(PRIM_SPHERE, r);
+	}
+	static CSGBool Box(double dx, double dy, double dz) {
+		return CSGBool(PRIM_BOX, dx, dy, dz);
+	}
+	static CSGBool Pyramid(double dx, double dy, double dz) {
+		return CSGBool(PRIM_PYRAMID, dx, dy, dz);
+	}
+	static CSGBool Cylinder(double r, double h) {
+		return CSGBool(PRIM_CYLINDER, r, h);
+	}
+	static CSGBool Cone(double r, double h) {
+		return CSGBool(PRIM_CONE, r, h);
+	}
+
+	CSGBool& move(
+		double px = 0., double py = 0., double pz = 0.,
+		double zX = 0., double zY = 0., double zZ = 1.,
+		double xX = 1., double xY = 0., double xZ = 0.)
+	{
+		this->x = px; this->y = py;	this->z = pz;
+		this->zx = zX; this->zy = zY; this->zz = zZ;
+		this->xx = xX; this->xy = xY; this->xz = xZ;
+		return *this;
+	}
+
+	CSGBool& add(const CSGBool& p) {
+		return operate(OP_ADD, p);
+	}
+	CSGBool& subtract(const CSGBool& p) {
+		return operate(OP_SUBTRACT, p);
+	}
+	CSGBool& intersect(const CSGBool& p) {
+		return operate(OP_INTERSECT, p);
+	}
+
+	Ifc4::IfcRepresentationItem* serialize(IfcHierarchyHelper<Ifc4>& file) const {
+		Ifc4::IfcRepresentationItem* my = nullptr;
+		if (op == OP_TERMINAL) {
+			Ifc4::IfcAxis2Placement3D* place = file.addPlacement3d(x, y, z, zx, zy, zz, xx, xy, xz);
+			if (prim == PRIM_SPHERE) {
+				my = new Ifc4::IfcSphere(place, a);
+			}
+			else if (prim == PRIM_BOX) {
+				my = new Ifc4::IfcBlock(place, a, b, c);
+			}
+			else if (prim == PRIM_PYRAMID) {
+				my = new Ifc4::IfcRectangularPyramid(place, a, b, c);
+			}
+			else if (prim == PRIM_CYLINDER) {
+				my = new Ifc4::IfcRightCircularCylinder(place, b, a);
+			}
+			else if (prim == PRIM_CONE) {
+				my = new Ifc4::IfcRightCircularCone(place, b, a);
+			}
+		}
+		else {
+			Ifc4::IfcBooleanOperator::Value o;
+			if (op == OP_ADD) {
+				o = Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION;
+			}
+			else if (op == OP_SUBTRACT) {
+				o = Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE;
+			}
+			else if (op == OP_INTERSECT) {
+				o = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
+			}
+			my = new Ifc4::IfcBooleanResult(o, left->serialize(file), right->serialize(file));
+		}
+		file.addEntity(my);
+		return my;
+	}
+};
+
+void test()
+{
+	typedef IfcParse::IfcGlobalId guid;
+	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCsgPrimitive.ifc";
+	const char filename[] ="examples/ifc/IfcCsgPrimitive.ifc";
+	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
+	file.header().file_name().name(filename);
+
+	/*Ifc4::IfcRepresentationItem* csg1 = CSGBool::Box(8000.,6000.,3000.).subtract(
+		CSGBool::Box(7600.,5600.,2800.).move(200.,200.,200.)
+	).add(
+		CSGBool::Pyramid(8000.,6000.,3000.).move(0,0,3000.).add(
+			CSGBool::Cylinder(1000.,4000.).move(4000.,1000.,4000., 0.,1.,0.)
+		).subtract(
+			CSGBool::Pyramid(7600.,5600.,2800.).move(200.,200.,3000.)
+		).subtract(
+			CSGBool::Cylinder(900.,4000.).move(4000.,1000.,4000., 0.,1.,0.).intersect(
+				CSGBool::Box(2000.,4000.,1000.).move(3000.,1000.,4000.)
+			)
+		)
+	).serialize(file);*/
+
+	//const double x = 1000.; const double y = -4000.;
+
+	Ifc4::IfcRepresentationItem* csg2 = CSGBool::Sphere(5000.).move(0.,0.,4500.).intersect(
+		CSGBool::Box(6000., 6000., 6000.).move(3000., 3000., 0.)
+	).add(
+		CSGBool::Cone(500., 3000.).move(0,0).add(
+			CSGBool::Cone(1500., 1000.).move(0,0, 900.).add(
+				CSGBool::Cone(1100., 1000.).move(0,0, 1800.).add(
+					CSGBool::Cone(750., 600.).move(0,0, 2700.)
+				)))).serialize(file);
+
+	/*Ifc4::IfcRepresentationItem* csg2 = CSGBool::Cone(5000., 6000.).move(x, y, -4500.).intersect(
+		CSGBool::Box(6000., 6000., 6000.).move(x - 3000., y - 3000., 0.)
+	).add(
+		CSGBool::Cone(500., 3000.).move(x, y).add(
+			CSGBool::Cone(1500., 1000.).move(x, y, 900.).add(
+				CSGBool::Pyramid(1100., 1000., 6000.).move(x, y, 1800.).add(
+					CSGBool::Cone(7500., 600.).move(x, y, 2700.)
+				)))).serialize(file);*/
+
+	Ifc4::IfcBuildingElementProxy* product = new Ifc4::IfcBuildingElementProxy(
+		guid(), 0, S("IfcCsgPrimitive"), null, null, 0, 0, null, null);
+
+	file.addBuildingProduct(product);
+
+	product->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+
+	product->setObjectPlacement(file.addLocalPlacement());
+
+	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+
+	//items->push(csg1);
+	items->push(csg2);
+	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
+		file.getSingle<Ifc4::IfcRepresentationContext>(), S("Body"), S("CSG"), items);
+	reps->push(rep);
+
+	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
+	file.addEntity(rep);
+	file.addEntity(shape);
+
+	product->setRepresentation(shape);
+
+	file.getSingle<Ifc4::IfcProject>()->setName("IfcCompositeProfileDef");
+
+	std::ofstream f(filename);
+	f << file;
+}
+
+
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
@@ -414,15 +552,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
 	//std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	std::string filePath = "examples/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
-
-	/*std::vector<Dicion*> propsDictVec;*/
-	// Complete the full file path with the name of the model  
-	/*for (char c : static_cast<Utf8String>(dgnFileName))
-		filePath += c;*/
 
 	std::cout << filePath << std::endl;
 
@@ -535,10 +668,12 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	outfile.close();
 	//IfcSchemaTester<Ifc2x3>();
 	//WallTest();
-
-	//CSGPrimitiveTest();
-
-	IfcCone* ifcCone = new IfcCone(5000);
+	CSG(PRIM_BOX, "Box", 5000, 6000, 500);
+	CSG(PRIM_CONE, "Cone", 5000, 6000, 500);
+	CSG(PRIM_CYLINDER, "Cylinder", 5000, 6000, 500);
+	CSG(PRIM_PYRAMID, "Pyramid", 5000, 6000, 5000);
+	CSG(PRIM_SPHERE, "Sphere", 50, 6000, 500);
+	CSGPrimitiveTest();
 
 	return SUCCESS;
 }
