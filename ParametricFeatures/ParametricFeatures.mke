@@ -85,10 +85,10 @@ appObjects = \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)GraphicPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
+	$(o)GeneralProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
 	$(o)ReaderProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
-	$(o)SmartFeatureProperties$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
 
 
@@ -168,13 +168,13 @@ $(o)GraphicPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/Graphic
 
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
+$(o)GeneralProperties$(oext) : $(baseDir)modeler/properties/sources/GeneralProperties.cpp $(baseDir)modeler/properties/headers/GeneralProperties.h
+
 $(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
 
 $(o)ReaderProperties$(oext) : $(baseDir)modeler/properties/sources/ReaderProperties.cpp $(baseDir)modeler/properties/headers/ReaderProperties.h
 
 $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureContainer.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureContainer.h
-
-$(o)SmartFeatureProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureProperties.h
 
 $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 

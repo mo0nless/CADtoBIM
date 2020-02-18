@@ -15,10 +15,10 @@
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="common\properties\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
-    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureProperties.cpp" />
     <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
     <ClCompile Include="common\utils\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
+    <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -41,9 +41,9 @@
     <ClInclude Include="common\properties\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\result_status\headers\ResultStatusEnum.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
-    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureProperties.h" />
     <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\utils\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
+    <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
   </ItemGroup>
 </Project>

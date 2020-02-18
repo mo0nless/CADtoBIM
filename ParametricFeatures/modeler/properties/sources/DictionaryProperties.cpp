@@ -2,8 +2,14 @@
 
 DictionaryProperties::DictionaryProperties()
 {
+	this->generalProperties = new GeneralProperties();
 	this->readerProperties = new ReaderProperties();
 	this->graphicProperties = new GraphicProperties();
+}
+
+GeneralProperties * DictionaryProperties::getGeneralProperties()
+{
+	return this->generalProperties;
 }
 
 ReaderProperties * DictionaryProperties::getReaderProperties()
@@ -24,16 +30,6 @@ bool DictionaryProperties::getIsSmartFeature()
 void DictionaryProperties::setIsSmartFeature(bool newIsSmartFeature)
 {
 	this->isSmartFeature = newIsSmartFeature;
-}
-
-std::string DictionaryProperties::getClassName()
-{
-	return this->className;
-}
-
-void DictionaryProperties::setClassName(std::string newClassName)
-{
-	this->className = newClassName;
 }
 
 bool DictionaryProperties::getAreReaderPropertiesFound()

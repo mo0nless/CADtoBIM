@@ -25,7 +25,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		// Create a context for a DgnECInstance
 		IDgnECTypeAdapterContextPtr typeContext = IDgnECTypeAdapterContext::Create(*ecProp, *dgnElementECInstanceP, ecProp->GetName().GetWCharCP());
 
-		// Converts the ECValue to a display string. 
+		// Converts the ECValue to a display string.
 		typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
 
 		std::string valueAsString = StringUtils::getString(wStr);

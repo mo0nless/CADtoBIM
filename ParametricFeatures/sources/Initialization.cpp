@@ -21,14 +21,14 @@ inline std::string IfcTextSolver()
 
 void CSGPrimitiveTest()
 {
-	const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
-	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
-	typedef Ifc4::IfcGloballyUniqueId guid;
+	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
+	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
+	typedef Ifc4::IfcGloballyUniqueId guid2;
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 
 
 	Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
-		guid::IfcGloballyUniqueId("Sphere"),
+		guid2::IfcGloballyUniqueId("Sphere"),
 		0,
 		std::string("Sphere"),
 		null,
@@ -152,7 +152,7 @@ void WallTest() {
 	south_wall->setRepresentation(south_wall_shape);
 	south_wall->setObjectPlacement(file.addLocalPlacement(storey_placement));
 
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/IfcWallTest.ifc";
+	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcWallTest.ifc";
 		std::ofstream f;
 		f.open(filename);
 		f << file;
@@ -565,7 +565,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		outfile.close();
 
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
-
+		propertiesDictionary->getGeneralProperties()->setClassName(StringUtils::getString(elDescr.GetWCharCP()));
+		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
+		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
 		//propertiesDictionary->set(StringUtils::getString(elDescr.GetWCharCP()));
 		
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, outfile, filePath, *propertiesDictionary,*smartFeatureContainer);
@@ -581,9 +583,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	for (int i = 0; i < propsDictVec.size(); ++i) {
 		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
 		if (!propertiesDictionary->getAreReaderPropertiesFound()) {
-			SmartFeatureTreeNode* treeNode = smartFeatureContainer->search(smartFeatureContainer->getRoot(), propertiesDictionary->getReaderProperties()->getNodeId());
+			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 			if (treeNode != nullptr) {
-				treeNode->getSmartFeatureProperties()->setGraphicProperties(propertiesDictionary->getGraphicProperties());
+				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
 			}
 		}
 	
@@ -591,9 +593,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	outfile.close();
 	//IfcSchemaTester<Ifc2x3>();
-	//WallTest();
-	CSGPrimitiveTest();
-	test();
+	WallTest();
 
 	return SUCCESS;
 }

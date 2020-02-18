@@ -80,10 +80,10 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is smart feature" << std::endl;
 				//ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
-				SmartFeatureTreeNode* currentNode = smartFeatureContainer.search(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
+				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByLocalId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 				if (currentNode != nullptr) {
 					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getSmartFeatureProperties()->getReaderProperties());
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties());
 				}
 				else {
 					outfile << "is NOT smart feature" << std::endl;

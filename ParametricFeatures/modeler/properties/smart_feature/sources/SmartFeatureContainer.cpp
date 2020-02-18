@@ -4,20 +4,20 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 {
 	if (this->root == nullptr || newParentLocalNodeId <= 0) {
 		this->root = new SmartFeatureTreeNode();
-		this->root->getSmartFeatureProperties()->setElementId(newElementId);
-		this->root->getSmartFeatureProperties()->setLocalNodeId(newLocalNodeId);
-		this->root->getSmartFeatureProperties()->setLocalParentNodeId(-1);
-		this->root->getSmartFeatureProperties()->setCurrentElementId(newCurrentElementId);
+		this->root->getGeneralProperties()->setElementId(newElementId);
+		this->root->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
+		this->root->getGeneralProperties()->setLocalParentNodeId(-1);
+		this->root->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
 	}
 	else {
-		SmartFeatureTreeNode* parent = search(this->root, newParentLocalNodeId);
+		SmartFeatureTreeNode* parent = searchByLocalId(this->root, newParentLocalNodeId);
 		if (parent != nullptr) {
 
 			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode();
-			newNode->getSmartFeatureProperties()->setElementId(newElementId);
-			newNode->getSmartFeatureProperties()->setLocalNodeId(newLocalNodeId);
-			newNode->getSmartFeatureProperties()->setLocalParentNodeId(newParentLocalNodeId);
-			newNode->getSmartFeatureProperties()->setCurrentElementId(newCurrentElementId);
+			newNode->getGeneralProperties()->setElementId(newElementId);
+			newNode->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
+			newNode->getGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
+			newNode->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
 
 			if (parent->getLeftNode() == nullptr) {
 
@@ -33,20 +33,41 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 	}
 }
 
-SmartFeatureTreeNode * SmartFeatureContainer::search(SmartFeatureTreeNode * searchNode, long searchLocalId)
+SmartFeatureTreeNode * SmartFeatureContainer::searchByLocalId(SmartFeatureTreeNode * searchNode, long searchedLocalId)
 {
-	if (searchNode == nullptr) {
+	if (searchNode == nullptr || searchedLocalId<=0) {
 		return nullptr;
 	}
-	if (searchNode->getSmartFeatureProperties()->getLocalNodeId() == searchLocalId) {
+	if (searchNode->getGeneralProperties()->getLocalNodeId() == searchedLocalId) {
 		return searchNode;
 	}
 
-	SmartFeatureTreeNode* leftNode = search(searchNode->getLeftNode(), searchLocalId);
+	SmartFeatureTreeNode* leftNode = searchByLocalId(searchNode->getLeftNode(), searchedLocalId);
 	if (leftNode != nullptr) {
 		return leftNode;
 	}
-	SmartFeatureTreeNode* rightNode = search(searchNode->getRightNode(), searchLocalId);
+	SmartFeatureTreeNode* rightNode = searchByLocalId(searchNode->getRightNode(), searchedLocalId);
+	if (rightNode != nullptr) {
+		return rightNode;
+	}
+
+	return nullptr;
+}
+
+SmartFeatureTreeNode * SmartFeatureContainer::searchByElementId(SmartFeatureTreeNode * searchNode, long searchedElementId)
+{
+	if (searchNode == nullptr || searchedElementId <=0) {
+		return nullptr;
+	}
+	if (searchNode->getGeneralProperties()->getElementId() == searchedElementId) {
+		return searchNode;
+	}
+
+	SmartFeatureTreeNode* leftNode = searchByElementId(searchNode->getLeftNode(), searchedElementId);
+	if (leftNode != nullptr) {
+		return leftNode;
+	}
+	SmartFeatureTreeNode* rightNode = searchByElementId(searchNode->getRightNode(), searchedElementId);
 	if (rightNode != nullptr) {
 		return rightNode;
 	}
