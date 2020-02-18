@@ -9,6 +9,9 @@ typedef std::string S;
 boost::none_t const null = boost::none;
 using boost::any_cast;
 
+typedef enum {
+	PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
+} Primitives;
 
 template<class IfcSchema>
 inline std::string IfcTextSolver()
@@ -19,10 +22,80 @@ inline std::string IfcTextSolver()
 	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
 }
 
+void CSG(Primitives prim, std::string name, double a = 0., double b = 0., double c = 0.)
+{
+	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
+	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	typedef Ifc4::IfcGloballyUniqueId guid2;
+	
+	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));
+	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
+
+	if (prim == PRIM_SPHERE) {
+		my = new Ifc4::IfcSphere(place, a);
+	}
+	else if (prim == PRIM_BOX) {
+		my = new Ifc4::IfcBlock(place, a, b, c);
+	}
+	else if (prim == PRIM_PYRAMID) {
+		my = new Ifc4::IfcRectangularPyramid(place, a, b, c);
+	}
+	else if (prim == PRIM_CYLINDER) {
+		my = new Ifc4::IfcRightCircularCylinder(place, b, a);
+	}
+	else if (prim == PRIM_CONE) {
+		my = new Ifc4::IfcRightCircularCone(place, b, a);
+	}
+
+	Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
+		guid2::IfcGloballyUniqueId(name),
+		0,
+		name,
+		null,
+		null,
+		0,
+		0,
+		null,
+		null
+	);
+
+	file.addBuildingProduct(primitive);
+
+	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+	primitive->setObjectPlacement(file.addLocalPlacement());
+
+	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+	
+	Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
+
+	file.addEntity(my);
+	items->push(solid);
+
+	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
+		file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), S("Body"), S("Model"), items);
+
+	reps->push(rep);
+
+	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
+
+	file.addEntity(rep);
+	file.addEntity(shape);
+
+	primitive->setRepresentation(shape);
+
+	file.getSingle<Ifc4::IfcProject>()->setName("proxy with CSG");
+
+	std::ofstream f;
+	f.open(filename);
+	f << file;
+	f.close();
+}
+
 void CSGPrimitiveTest()
 {
-	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcWallTest.ifc";
-	const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
+	//const char filename[] = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
+	const char filename[] = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcSphereTest.ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid2;
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 
@@ -104,7 +177,6 @@ void CSGPrimitiveTest()
 	f << file;
 	f.close();
 }
-
 
 void WallTest() {
 	// The IfcHierarchyHelper is a subclass of the regular IfcFile that provides several
@@ -402,7 +474,8 @@ public:
 void test()
 {
 	typedef IfcParse::IfcGlobalId guid;
-	const char filename[] ="C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCsgPrimitive.ifc";
+	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCsgPrimitive.ifc";
+	const char filename[] ="examples/ifc/IfcCsgPrimitive.ifc";
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	file.header().file_name().name(filename);
 
@@ -470,14 +543,15 @@ void test()
 	f << file;
 }
 
+
 #pragma warning( push )
 #pragma warning( disable : 4700)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
+	std::string filePath = "examples/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
@@ -593,7 +667,13 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	outfile.close();
 	//IfcSchemaTester<Ifc2x3>();
-	WallTest();
+	//WallTest();
+	//PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
+	CSG(PRIM_BOX, "Box", 5000, 6000, 500);
+	CSG(PRIM_CONE, "Cone", 5000, 6000, 500);
+	CSG(PRIM_CYLINDER, "Cylinder", 5000, 6000, 500);
+	CSG(PRIM_PYRAMID, "Pyramid", 5000, 6000, 5000);
+	CSG(PRIM_SPHERE, "Sphere", 50, 6000, 500);
 
 	return SUCCESS;
 }
