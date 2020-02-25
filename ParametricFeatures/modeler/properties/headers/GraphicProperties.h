@@ -16,9 +16,14 @@ private:
 	double volume;
 	double radius;
 
+
+
 	DVec3d centroid;
 	RotMatrix axes;
 	DVec3d momentxyz;
+
+
+
 
 public:
 	GraphicProperties();
@@ -40,4 +45,16 @@ public:
 
 	DVec3d getMomentxyz();
 	void setMomentxyz(DVec3d newMomentxyz);
+
+	double length;
+	double width;
+	double height;
+
+	Transform originLocalToWorld;
+	DVec3d eulerRotation;
+
+	DVec3d vectorBaseX;
+	DVec3d vectorBaseY;
+
+	DRange3d range;
 };

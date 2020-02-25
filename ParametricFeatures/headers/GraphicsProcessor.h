@@ -2,6 +2,10 @@
 
 #include "PropertiesReaderProcessor.h"
 
+//#include "../common/enums/headers/PrimitiveTypeEnum.h"
+//
+//#include "../mapper/properties/headers/GraphicPropertiesMapper.h"
+
 /// @addtogroup ElementProperties
 /// @beginGroup
 

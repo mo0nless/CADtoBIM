@@ -15,7 +15,7 @@
 #include "GraphicsProcessor.h"
 #include "../common/utils/StringUtils.hpp"
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../ifc/primitives/headers/IfcCone.h"
+
 
 
 #define CMD_TREE 0x0100000000000000UI64
