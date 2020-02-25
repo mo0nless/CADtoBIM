@@ -24,17 +24,17 @@ GraphicProperties * SmartFeatureTreeNode::getGraphicProperties()
 	return this->graphicProperties;
 }
 
-void SmartFeatureTreeNode::setGraphicProperties(GraphicProperties * newGraphicProperties)
+void SmartFeatureTreeNode::setGraphicProperties(GraphicProperties* newGraphicProperties)
 {
 	this->graphicProperties = newGraphicProperties;
 }
 
-void SmartFeatureTreeNode::setLeftNode(SmartFeatureTreeNode * newLeftNode)
+void SmartFeatureTreeNode::setLeftNode(SmartFeatureTreeNode* newLeftNode)
 {
 	this->leftNode = newLeftNode;
 }
 
-void SmartFeatureTreeNode::setRightNode(SmartFeatureTreeNode * newRightNode)
+void SmartFeatureTreeNode::setRightNode(SmartFeatureTreeNode* newRightNode)
 {
 	this->rightNode = newRightNode;
 }

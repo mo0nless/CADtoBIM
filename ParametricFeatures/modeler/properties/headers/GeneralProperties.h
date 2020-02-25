@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "../../../common/enums/headers/PrimitiveTypeEnum.h"
 
 class GeneralProperties {
 
@@ -11,6 +12,8 @@ private:
 
 	long localNodeId;
 	long localParentNodeId;
+
+	PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum;
 
 public:
 	GeneralProperties();
@@ -29,4 +32,7 @@ public:
 
 	long getLocalParentNodeId();
 	void setLocalParentNodeId(long newLocalParentNodeId);
+
+	PrimitiveTypeEnum::PrimitiveTypeEnum getPrimitiveTypeEnum();
+	void setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum);
 };

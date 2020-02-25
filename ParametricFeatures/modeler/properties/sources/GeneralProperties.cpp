@@ -59,3 +59,13 @@ void GeneralProperties::setLocalParentNodeId(long newLocalParentNodeId)
 {
 	this->localParentNodeId = newLocalParentNodeId;
 }
+
+PrimitiveTypeEnum::PrimitiveTypeEnum GeneralProperties::getPrimitiveTypeEnum()
+{
+	return this->primitiveTypeEnum;
+}
+
+void GeneralProperties::setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum)
+{
+	this->primitiveTypeEnum = newPrimitiveTypeEnum;
+}

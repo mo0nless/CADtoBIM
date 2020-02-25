@@ -17,6 +17,7 @@
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 
+
 #define CMD_TREE 0x0100000000000000UI64
 #define CMD_SHAPE 0x0200000000000000UI64
 #define CMD_PARAMETRICFEATURES_EXIT 0x0300000000000000UI64

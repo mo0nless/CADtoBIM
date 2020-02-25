@@ -19,6 +19,7 @@
     <ClCompile Include="common\utils\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="ifc\primitives\sources\PrimitivesMapperHandler.cpp" />
     <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="mapper\sources\MappingHandler.cpp" />
@@ -39,6 +40,7 @@
     <None Include="ParametricFeatures.r" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\properties\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\utils\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
@@ -49,6 +51,7 @@
     <ClInclude Include="headers\IfcGenerator.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
+    <ClInclude Include="ifc\primitives\headers\PrimitivesMapperHandler.h" />
     <ClInclude Include="mapper\headers\MappingHandler.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />

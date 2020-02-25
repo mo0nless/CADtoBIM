@@ -89,9 +89,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties());
 				}
 				else {
-
-					outfile << std::endl;
-					outfile << "is NOT smart feature" << std::endl;
+					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 

@@ -6,7 +6,7 @@
 void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	outfile.open(filePath, std::ios_base::app);
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
 	{
