@@ -474,12 +474,13 @@ public:
 void test()
 {
 	typedef IfcParse::IfcGlobalId guid;
-	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCsgPrimitive.ifc";
-	const char filename[] ="examples/ifc/IfcCsgPrimitive.ifc";
+	const char filename[] = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcCsgPrimitive.ifc";
+	//const char filename[] ="examples/ifc/IfcCsgPrimitive.ifc";
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	file.header().file_name().name(filename);
-
-	/*Ifc4::IfcRepresentationItem* csg1 = CSGBool::Box(8000.,6000.,3000.).subtract(
+	
+	
+	Ifc4::IfcRepresentationItem* csg1 = CSGBool::Box(8000.,6000.,3000.).subtract(
 		CSGBool::Box(7600.,5600.,2800.).move(200.,200.,200.)
 	).add(
 		CSGBool::Pyramid(8000.,6000.,3000.).move(0,0,3000.).add(
@@ -491,27 +492,27 @@ void test()
 				CSGBool::Box(2000.,4000.,1000.).move(3000.,1000.,4000.)
 			)
 		)
-	).serialize(file);*/
+	).serialize(file);
 
-	//const double x = 1000.; const double y = -4000.;
+	const double x = 1000.; const double y = -4000.;
 
-	Ifc4::IfcRepresentationItem* csg2 = CSGBool::Sphere(5000.).move(0.,0.,4500.).intersect(
+	/*Ifc4::IfcRepresentationItem* csg2 = CSGBool::Sphere(50.).move(4000., 1000., 4000., 0., 1., 0.).intersect(
 		CSGBool::Box(6000., 6000., 6000.).move(3000., 3000., 0.)
 	).add(
 		CSGBool::Cone(500., 3000.).move(0,0).add(
 			CSGBool::Cone(1500., 1000.).move(0,0, 900.).add(
-				CSGBool::Cone(1100., 1000.).move(0,0, 1800.).add(
-					CSGBool::Cone(750., 600.).move(0,0, 2700.)
-				)))).serialize(file);
+				CSGBool::Cone(1100., 1000.).move(4000., 1000., 4000., 0., 1., 0.).add(
+					CSGBool::Cone(750., 600.).move(4000., 1000., 4000., 0., 1., 0.)
+				)))).serialize(file);*/
 
-	/*Ifc4::IfcRepresentationItem* csg2 = CSGBool::Cone(5000., 6000.).move(x, y, -4500.).intersect(
+	Ifc4::IfcRepresentationItem* csg2 = CSGBool::Cone(5000., 6000.).move(x, y, -4500.).intersect(
 		CSGBool::Box(6000., 6000., 6000.).move(x - 3000., y - 3000., 0.)
 	).add(
 		CSGBool::Cone(500., 3000.).move(x, y).add(
 			CSGBool::Cone(1500., 1000.).move(x, y, 900.).add(
 				CSGBool::Pyramid(1100., 1000., 6000.).move(x, y, 1800.).add(
 					CSGBool::Cone(7500., 600.).move(x, y, 2700.)
-				)))).serialize(file);*/
+				)))).serialize(file);
 
 	Ifc4::IfcBuildingElementProxy* product = new Ifc4::IfcBuildingElementProxy(
 		guid(), 0, S("IfcCsgPrimitive"), null, null, 0, 0, null, null);
@@ -526,7 +527,17 @@ void test()
 	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
 
 	//items->push(csg1);
-	items->push(csg2);
+	//items->push(csg2);
+	
+	Ifc4::IfcCsgSolid* solid1 = new Ifc4::IfcCsgSolid(csg1);
+	Ifc4::IfcCsgSolid* solid2 = new Ifc4::IfcCsgSolid(csg2);
+	
+	file.addEntity(csg1);
+	file.addEntity(csg2);
+
+	items->push(solid1);
+	items->push(solid2);
+
 	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
 		file.getSingle<Ifc4::IfcRepresentationContext>(), S("Body"), S("CSG"), items);
 	reps->push(rep);
@@ -550,8 +561,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.txt";
-	std::string filePath = "examples/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString, sFeatTree;
 	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
@@ -568,7 +578,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	std::vector<DictionaryProperties*>propsDictVec;
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
-
+	
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
@@ -577,8 +587,24 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		SmartFeatureNodePtr sFeatNode;
 		T_SmartFeatureVector sFeatVec;
 		WString elDescr;
-			
 		
+		/*bool isSmartElement = mdlSolid_isSmartElement(MSElementDescrP(currentElem.GetElementDescrCP()), ISessionMgr::GetActiveDgnModelRefP());
+		bool isSmartSolidElement = mdlSolid_isSmartSolidElement (MSElementDescrP(currentElem.GetElementDescrCP()), ISessionMgr::GetActiveDgnModelRefP());
+
+		if(isSmartElement)
+		{
+			outfile.open(filePath);
+			outfile << "========================isSmartElement===========================" << std::endl;
+			outfile.close();
+		}
+
+		if (isSmartSolidElement)
+		{
+			outfile.open(filePath);
+			outfile << "=========================isSmartSolidElement==========================" << std::endl;
+			outfile.close();
+		}*/
+
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 		
 		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newElementId=-1;
@@ -630,9 +656,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
-		outfile << "====" << static_cast<Utf8String>(elDescr.GetWCharCP()) << "====" << std::endl;
-		outfile << "==== Is Smart Feauture = " << SmartFeatureElement::IsSmartFeature(currentElem) << "====" << std::endl;
-		outfile << currentElem.GetElementId() << std::endl;
+		outfile << "===================================================" << std::endl;
+		outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP())<< std::endl;
+		outfile << "Element ID: " << currentElem.GetElementId() << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
@@ -652,6 +678,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		propsDictVec.push_back(propertiesDictionary);
 
+		ISolidKernelEntityPtr solidKernPtr;
+		//SolidUtil::Convert::ElementToBody(solidKernPtr, currentElem, true, true, true);
+
 	}
 
 	for (int i = 0; i < propsDictVec.size(); ++i) {
@@ -661,13 +690,14 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
 			}
-		}
+		}	
 	
 	}
+	
 
 	outfile.close();
-	//IfcSchemaTester<Ifc2x3>();
-	//WallTest();
+	//CSGPrimitiveTest();
+	test();
 	//PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
 	CSG(PRIM_BOX, "Box", 5000, 6000, 500);
 	CSG(PRIM_CONE, "Cone", 5000, 6000, 500);

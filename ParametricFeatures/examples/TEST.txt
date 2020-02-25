@@ -1,536 +1,8 @@
 ===================================================
 ===================================================
-====Ruled Extrusion Solid====
-==== Is Smart Feauture = 0====
-1706
 ===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = RuledSweepSolidElement, current element id = 1706, id = 0 ---------
-
-elemInst Full class name: ----- :BaseElementSchema:MstnRuledSweep
-
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Spin Angle[double] = 
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Ruled Extrusion Solid
-Level[int] = Default
-Element ID[long] = 1706
-Model[string] = Default
-Last Modified[dateTime] = 2/5/2020 4:11:26 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 17' 7.4577", 5' 11.7826", 24' 5.5441"
-Range High[point3d] = 17' 7.4578", 5' 11.7827", 24' 5.5441"
-Volume[double] = 
-Surface Area[double] = 
-Rotation-X[double] = -26.0033Â°
-Rotation-Y[double] = 19.3278Â°
-Rotation-Z[double] = -124.1566Â°
-Angle[double] = 0.0000Â°
-Orientation[int] = 
-
-===================================================
-===================================================
-========
-===================================================
-===================================================
-
---------  --------
-Range [XLength] = 0.000000
-Range [YLength] = 0.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = -0.260042
-qRotation [Y] = 0.091218
-qRotation [Z] = -0.318190
-qRotation [W] = 0.907090
-
-Euler Rotation ?
-Rotation [X] = -0.617771
-Rotation [Y] = 0.216702
-Rotation [Z] = -0.755910
-
-Origin [X] = 5371026.123527
-Origin [Y] = 1823279.968880
-Origin [Z] = 7456019.250409
-
-Range High = 5371026.123527
-Range Low = 5371026.123527
-DiagonalDistanceXY = 0.000000
-DiagonalDistance = 0.000000
-Range Difference = 0.000000
-1° Curve Start Point of Swept [X] = 5371026.123527
-1° Curve Start Point of Swept [Y] = 1823279.968880
-1° Curve Start Point of Swept [Z] = 7456019.250409
-
-1° Curve End Point of Swept [X] = 5371026.123527
-1° Curve End Point of Swept [Y] = 1823279.968880
-1° Curve End Point of Swept [Z] = 7456019.250409
-
-2° Curve Start Point of Swept [X] = 5371026.123527
-2° Curve Start Point of Swept [Y] = 1823279.968880
-2° Curve Start Point of Swept [Z] = 7456019.250409
-
-2° Curve End Point of Swept [X] = 5371026.123527
-2° Curve End Point of Swept [Y] = 1823279.968880
-2° Curve End Point of Swept [Z] = 7456019.250409
-
-3° Curve Start Point of Swept [X] = 5371026.123527
-3° Curve Start Point of Swept [Y] = 1823279.968880
-3° Curve Start Point of Swept [Z] = 7456019.250409
-
-3° Curve End Point of Swept [X] = 5371026.123527
-3° Curve End Point of Swept [Y] = 1823279.968880
-3° Curve End Point of Swept [Z] = 7456019.250409
-
-4° Curve Start Point of Swept [X] = 5371026.123527
-4° Curve Start Point of Swept [Y] = 1823279.968880
-4° Curve Start Point of Swept [Z] = 7456019.250409
-
-4° Curve End Point of Swept [X] = 5371026.123527
-4° Curve End Point of Swept [Y] = 1823279.968880
-4° Curve End Point of Swept [Z] = 7456019.250409
-
-5° Curve Start Point of Swept [X] = 5371026.123527
-5° Curve Start Point of Swept [Y] = 1823279.968880
-5° Curve Start Point of Swept [Z] = 7456019.250409
-
-5° Curve End Point of Swept [X] = 5371026.123527
-5° Curve End Point of Swept [Y] = 1823279.968880
-5° Curve End Point of Swept [Z] = 7456019.250409
-
-6° Curve Start Point of Swept [X] = 5371026.123527
-6° Curve Start Point of Swept [Y] = 1823279.968880
-6° Curve Start Point of Swept [Z] = 7456019.250409
-
-6° Curve End Point of Swept [X] = 5371026.123527
-6° Curve End Point of Swept [Y] = 1823279.968880
-6° Curve End Point of Swept [Z] = 7456019.250409
-
-7° Curve Start Point of Swept [X] = 5371026.123527
-7° Curve Start Point of Swept [Y] = 1823279.968880
-7° Curve Start Point of Swept [Z] = 7456019.250409
-
-7° Curve End Point of Swept [X] = 5371026.123527
-7° Curve End Point of Swept [Y] = 1823279.968880
-7° Curve End Point of Swept [Z] = 7456019.250409
-
-8° Curve Start Point of Swept [X] = 5371026.123527
-8° Curve Start Point of Swept [Y] = 1823279.968880
-8° Curve Start Point of Swept [Z] = 7456019.250409
-
-8° Curve End Point of Swept [X] = 5371026.123527
-8° Curve End Point of Swept [Y] = 1823279.968880
-8° Curve End Point of Swept [Z] = 7456019.250409
-
-9° Curve Start Point of Swept [X] = 5371026.123527
-9° Curve Start Point of Swept [Y] = 1823279.968880
-9° Curve Start Point of Swept [Z] = 7456019.250409
-
-9° Curve End Point of Swept [X] = 5371026.123527
-9° Curve End Point of Swept [Y] = 1823279.968880
-9° Curve End Point of Swept [Z] = 7456019.250409
-
-True if the end cap is enabled = 1
-
-Centroid [X] = 0.000000
-Centroid [Y] = 0.000000
-Centroid [Z] = 0.000000
-
-Volume = 0.000000
-Area = 0.000000
-Radius = 0.000000
-
-===================================================
-====Ruled Extrusion Solid====
-==== Is Smart Feauture = 0====
-2445
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = RuledSweepSolidElement, current element id = 2445, id = 0 ---------
-
-elemInst Full class name: ----- :BaseElementSchema:MstnRuledSweep
-
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Spin Angle[double] = 
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Ruled Extrusion Solid
-Level[int] = Default
-Element ID[long] = 2445
-Model[string] = Default
-Last Modified[dateTime] = 2/5/2020 4:28:08 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -20' 2.3691", 3' 0.9761", 26' 5.8582"
-Range High[point3d] = -20' 2.3691", 3' 0.9762", 26' 5.8582"
-Volume[double] = 
-Surface Area[double] = 
-Rotation-X[double] = -18.1992Â°
-Rotation-Y[double] = -39.7894Â°
-Rotation-Z[double] = -27.1907Â°
-Angle[double] = 0.0000Â°
-Orientation[int] = 
-
-===================================================
-===================================================
-========
-===================================================
-===================================================
-
---------  --------
-Range [XLength] = 0.000000
-Range [YLength] = 0.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = -0.302015
-qRotation [Y] = -0.209297
-qRotation [Z] = 0.529748
-qRotation [W] = 0.764427
-
-Euler Rotation ?
-Rotation [X] = -0.468451
-Rotation [Y] = -0.324637
-Rotation [Z] = 0.821684
-
-Origin [X] = -6156174.778203
-Origin [Y] = 939194.414831
-Origin [Z] = 8073598.490210
-
-Range High = -6156174.778203
-Range Low = -6156174.778203
-DiagonalDistanceXY = 0.000000
-DiagonalDistance = 0.000000
-Range Difference = -0.000000
-1° Curve Start Point of Swept [X] = -6156174.778203
-1° Curve Start Point of Swept [Y] = 939194.414831
-1° Curve Start Point of Swept [Z] = 8073598.490210
-
-1° Curve End Point of Swept [X] = -6156174.778203
-1° Curve End Point of Swept [Y] = 939194.414831
-1° Curve End Point of Swept [Z] = 8073598.490210
-
-2° Curve Start Point of Swept [X] = -6156174.778203
-2° Curve Start Point of Swept [Y] = 939194.414831
-2° Curve Start Point of Swept [Z] = 8073598.490210
-
-2° Curve End Point of Swept [X] = -6156174.778203
-2° Curve End Point of Swept [Y] = 939194.414831
-2° Curve End Point of Swept [Z] = 8073598.490210
-
-3° Curve Start Point of Swept [X] = -6156174.778203
-3° Curve Start Point of Swept [Y] = 939194.414831
-3° Curve Start Point of Swept [Z] = 8073598.490210
-
-3° Curve End Point of Swept [X] = -6156174.778203
-3° Curve End Point of Swept [Y] = 939194.414831
-3° Curve End Point of Swept [Z] = 8073598.490210
-
-4° Curve Start Point of Swept [X] = -6156174.778203
-4° Curve Start Point of Swept [Y] = 939194.414831
-4° Curve Start Point of Swept [Z] = 8073598.490210
-
-4° Curve End Point of Swept [X] = -6156174.778203
-4° Curve End Point of Swept [Y] = 939194.414831
-4° Curve End Point of Swept [Z] = 8073598.490210
-
-5° Curve Start Point of Swept [X] = -6156174.778203
-5° Curve Start Point of Swept [Y] = 939194.414831
-5° Curve Start Point of Swept [Z] = 8073598.490210
-
-5° Curve End Point of Swept [X] = -6156174.778203
-5° Curve End Point of Swept [Y] = 939194.414831
-5° Curve End Point of Swept [Z] = 8073598.490210
-
-6° Curve Start Point of Swept [X] = -6156174.778203
-6° Curve Start Point of Swept [Y] = 939194.414831
-6° Curve Start Point of Swept [Z] = 8073598.490210
-
-6° Curve End Point of Swept [X] = -6156174.778203
-6° Curve End Point of Swept [Y] = 939194.414831
-6° Curve End Point of Swept [Z] = 8073598.490210
-
-7° Curve Start Point of Swept [X] = -6156174.778203
-7° Curve Start Point of Swept [Y] = 939194.414831
-7° Curve Start Point of Swept [Z] = 8073598.490210
-
-7° Curve End Point of Swept [X] = -6156174.778203
-7° Curve End Point of Swept [Y] = 939194.414831
-7° Curve End Point of Swept [Z] = 8073598.490210
-
-8° Curve Start Point of Swept [X] = -6156174.778203
-8° Curve Start Point of Swept [Y] = 939194.414831
-8° Curve Start Point of Swept [Z] = 8073598.490210
-
-8° Curve End Point of Swept [X] = -6156174.778203
-8° Curve End Point of Swept [Y] = 939194.414831
-8° Curve End Point of Swept [Z] = 8073598.490210
-
-9° Curve Start Point of Swept [X] = -6156174.778203
-9° Curve Start Point of Swept [Y] = 939194.414831
-9° Curve Start Point of Swept [Z] = 8073598.490210
-
-9° Curve End Point of Swept [X] = -6156174.778203
-9° Curve End Point of Swept [Y] = 939194.414831
-9° Curve End Point of Swept [Z] = 8073598.490210
-
-True if the end cap is enabled = 1
-
-Centroid [X] = 0.000000
-Centroid [Y] = 0.000000
-Centroid [Z] = 0.000000
-
-Volume = 0.000000
-Area = 0.000000
-Radius = 0.000000
-
-===================================================
-====Ruled Extrusion Solid====
-==== Is Smart Feauture = 0====
-2464
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = RuledSweepSolidElement, current element id = 2464, id = 0 ---------
-
-elemInst Full class name: ----- :BaseElementSchema:MstnRuledSweep
-
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Spin Angle[double] = 
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Ruled Extrusion Solid
-Level[int] = Default
-Element ID[long] = 2464
-Model[string] = Default
-Last Modified[dateTime] = 2/5/2020 4:28:11 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 17' 7.4577", 5' 11.7826", 24' 5.5441"
-Range High[point3d] = 17' 7.4578", 5' 11.7827", 24' 5.5441"
-Volume[double] = 
-Surface Area[double] = 
-Rotation-X[double] = -26.0033Â°
-Rotation-Y[double] = 19.3278Â°
-Rotation-Z[double] = -124.1566Â°
-Angle[double] = 0.0000Â°
-Orientation[int] = 
-
-===================================================
-===================================================
-========
-===================================================
-===================================================
-
---------  --------
-Range [XLength] = 0.000000
-Range [YLength] = 0.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = -0.260042
-qRotation [Y] = 0.091218
-qRotation [Z] = -0.318190
-qRotation [W] = 0.907090
-
-Euler Rotation ?
-Rotation [X] = -0.617771
-Rotation [Y] = 0.216702
-Rotation [Z] = -0.755910
-
-Origin [X] = 5371026.123527
-Origin [Y] = 1823279.968880
-Origin [Z] = 7456019.250409
-
-Range High = 5371026.123527
-Range Low = 5371026.123527
-DiagonalDistanceXY = 0.000000
-DiagonalDistance = 0.000000
-Range Difference = 0.000000
-1° Curve Start Point of Swept [X] = 5371026.123527
-1° Curve Start Point of Swept [Y] = 1823279.968880
-1° Curve Start Point of Swept [Z] = 7456019.250409
-
-1° Curve End Point of Swept [X] = 5371026.123527
-1° Curve End Point of Swept [Y] = 1823279.968880
-1° Curve End Point of Swept [Z] = 7456019.250409
-
-2° Curve Start Point of Swept [X] = 5371026.123527
-2° Curve Start Point of Swept [Y] = 1823279.968880
-2° Curve Start Point of Swept [Z] = 7456019.250409
-
-2° Curve End Point of Swept [X] = 5371026.123527
-2° Curve End Point of Swept [Y] = 1823279.968880
-2° Curve End Point of Swept [Z] = 7456019.250409
-
-3° Curve Start Point of Swept [X] = 5371026.123527
-3° Curve Start Point of Swept [Y] = 1823279.968880
-3° Curve Start Point of Swept [Z] = 7456019.250409
-
-3° Curve End Point of Swept [X] = 5371026.123527
-3° Curve End Point of Swept [Y] = 1823279.968880
-3° Curve End Point of Swept [Z] = 7456019.250409
-
-4° Curve Start Point of Swept [X] = 5371026.123527
-4° Curve Start Point of Swept [Y] = 1823279.968880
-4° Curve Start Point of Swept [Z] = 7456019.250409
-
-4° Curve End Point of Swept [X] = 5371026.123527
-4° Curve End Point of Swept [Y] = 1823279.968880
-4° Curve End Point of Swept [Z] = 7456019.250409
-
-5° Curve Start Point of Swept [X] = 5371026.123527
-5° Curve Start Point of Swept [Y] = 1823279.968880
-5° Curve Start Point of Swept [Z] = 7456019.250409
-
-5° Curve End Point of Swept [X] = 5371026.123527
-5° Curve End Point of Swept [Y] = 1823279.968880
-5° Curve End Point of Swept [Z] = 7456019.250409
-
-6° Curve Start Point of Swept [X] = 5371026.123527
-6° Curve Start Point of Swept [Y] = 1823279.968880
-6° Curve Start Point of Swept [Z] = 7456019.250409
-
-6° Curve End Point of Swept [X] = 5371026.123527
-6° Curve End Point of Swept [Y] = 1823279.968880
-6° Curve End Point of Swept [Z] = 7456019.250409
-
-7° Curve Start Point of Swept [X] = 5371026.123527
-7° Curve Start Point of Swept [Y] = 1823279.968880
-7° Curve Start Point of Swept [Z] = 7456019.250409
-
-7° Curve End Point of Swept [X] = 5371026.123527
-7° Curve End Point of Swept [Y] = 1823279.968880
-7° Curve End Point of Swept [Z] = 7456019.250409
-
-8° Curve Start Point of Swept [X] = 5371026.123527
-8° Curve Start Point of Swept [Y] = 1823279.968880
-8° Curve Start Point of Swept [Z] = 7456019.250409
-
-8° Curve End Point of Swept [X] = 5371026.123527
-8° Curve End Point of Swept [Y] = 1823279.968880
-8° Curve End Point of Swept [Z] = 7456019.250409
-
-9° Curve Start Point of Swept [X] = 5371026.123527
-9° Curve Start Point of Swept [Y] = 1823279.968880
-9° Curve Start Point of Swept [Z] = 7456019.250409
-
-9° Curve End Point of Swept [X] = 5371026.123527
-9° Curve End Point of Swept [Y] = 1823279.968880
-9° Curve End Point of Swept [Z] = 7456019.250409
-
-True if the end cap is enabled = 1
-
-Centroid [X] = 0.000000
-Centroid [Y] = 0.000000
-Centroid [Z] = 0.000000
-
-Volume = 0.000000
-Area = 0.000000
-Radius = 0.000000
-
-===================================================
-====Sphere====
-==== Is Smart Feauture = 0====
-2754
+Element Description: Cylinder
+Element ID: 1444
 ===================================================
 ===================================================
 
@@ -539,38 +11,110 @@ Radius = 0.000000
 
 ===================================================
 ===================================================
-========
+Element Description: Cylinder
+Element: ID 1444
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Range [XLength] = 3273767.677240
-Range [YLength] = 3273767.677240
-Range [ZLength] = 3273767.677240
+Range [XLength] = 17261621.056124
+Range [YLength] = 8595107.038067
+Range [ZLength] = 5442261.096394
 
 Quaternion Rotation
-qRotation [X] = 411.035369
-qRotation [Y] = 323.005344
-qRotation [Z] = 936.800494
-qRotation [W] = 993.991061
+qRotation [X] = -0.447932
+qRotation [Y] = 0.547135
+qRotation [Z] = -0.547135
+qRotation [W] = 0.447932
 
 Euler Rotation ?
-Rotation [X] = 0.383146
-Rotation [Y] = 0.301089
-Rotation [Z] = 0.873238
+Rotation [X] = -0.501005
+Rotation [Y] = 0.611962
+Rotation [Z] = -0.611962
 
-Origin [X] = -6683368.189319
-Origin [Y] = 2031497.439266
-Origin [Z] = 16243291.966157
+Origin [X] = -18233827.233561
+Origin [Y] = 2448006.104908
+Origin [Z] = 0.000000
 
-Range High = -5046484.350699
-Range Low = -8320252.027939
+Center of BASE Circle [X] = -18233827.233561
+Center of BASE Circle [Y] = 2448006.104908
+Center of BASE Circle [Z] = 0.000000
+
+Center of TOP Circle [X] = -2046660.668986
+Center of TOP Circle [Y] = -811957.693573
+Center of TOP Circle [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.197428
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.980317
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -1.000000
+
+Radius at BASE = 2721130.548197
+Radius at TOP = 2721130.548197
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -10140243.951273
+Centroid [Y] = 818024.205667
+Centroid [Z] = 0.000000
+
+Volume = 384107470267465662464.000000
+Area = 328838790356782.562500
+Radius = 4509427.213871
+
+ IS Solid 
+Faces Point 0 X : -18332541.212228
+Faces Point 0 Y : 1957847.405693
+Faces Point 0 Z : 500000.000000
+Faces Point 1 X : -1947946.690318
+Faces Point 1 Y : -321798.994358
+Faces Point 1 Z : 500000.000000
+Faces Point 2 X : -3008280.630864
+Faces Point 2 Y : -3054258.051029
+Faces Point 2 Z : 1304579.478682
+ DisjoinBody: 0
+
+
+======================== pROPS nOT fOUND ===========================
+
+===================================================
+===================================================
+Element Description: Sphere
+Element: ID 1445
+===================================================
+===================================================
+
+-------- SmartFeatureSolid --------
+Range [XLength] = 10589670.073125
+Range [YLength] = 10589670.073125
+Range [ZLength] = 10589670.073125
+
+Quaternion Rotation
+qRotation [X] = -664.279775
+qRotation [Y] = 1026.887558
+qRotation [Z] = 1700.873852
+qRotation [W] = -275.153692
+
+Euler Rotation ?
+Rotation [X] = 0.317089
+Rotation [Y] = -0.490177
+Rotation [Z] = -0.811900
+
+Origin [X] = -11282581.527530
+Origin [Y] = -3147454.261051
+Origin [Z] = 0.238949
+
+Range High = -5987746.490968
+Range Low = -16577416.564093
 Start Latitude LatitudeToVFraction = 0.000000
 latitudeSweep LatitudeToVFraction = 1.500000
 
-DiagonalDistanceXY = 4629806.649212
-DiagonalDistance = 5670331.949157
-Range Difference = -3273767.677240
+DiagonalDistanceXY = 14976055.038470
+DiagonalDistance = 18341846.602045
+Range Difference = -10589670.073125
 Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
 Latitude for Truncation Plane Parallel to the Equator.
 Start Latitude = -1.570796
@@ -579,683 +123,732 @@ Latitude Sweep = 3.141593
 
 True if the end cap is enabled = 1
 
-Centroid [X] = -6683368.189319
-Centroid [Y] = 2031497.439266
-Centroid [Z] = 16243291.966157
+Centroid [X] = -11282581.527530
+Centroid [Y] = -3147454.261051
+Centroid [Z] = 0.238949
 
-Volume = 18371397402923857920.000000
-Area = 33670191438403.070313
-Radius = 1636883.838620
+Volume = 621793118376513765376.000000
+Area = 352301694434003.812500
+Radius = 5294835.036563
+
+ IS Solid 
+Faces Point 0 X : -15306702.710236
+Faces Point 0 Y : -2995319.041264
+Faces Point 0 Z : -3437816.167756
+ DisjoinBody: 0
 
 ===================================================
-====Sphere====
-==== Is Smart Feauture = 0====
-2817
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1473
 ===================================================
 ===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1473, id = 0 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+
+is smart feature
+
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1473, id = 3 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
+is smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1473, id = 1 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1473, id = 2 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1473
+===================================================
+===================================================
+
+ IS Solid 
+Faces Point 0 X : -15306702.710236
+Faces Point 0 Y : -2995319.041264
+Faces Point 0 Z : -3437816.167756
+Faces Point 1 X : -3074046.613975
+Faces Point 1 Y : -3380815.334698
+Faces Point 1 Z : -0.000000
+ DisjoinBody: 0
 
 
 ======================== pROPS nOT fOUND ===========================
 
 ===================================================
 ===================================================
-========
+Element Description: Torus
+Element: ID 1495
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Range [XLength] = 3575902.143821
-Range [YLength] = 3575902.143821
-Range [ZLength] = 3575902.143821
+Range [XLength] = 11980023.849379
+Range [YLength] = 11980023.849379
+Range [ZLength] = 3946874.251416
 
 Quaternion Rotation
-qRotation [X] = -405.007417
-qRotation [Y] = 610.274108
-qRotation [Z] = 610.274108
-qRotation [W] = -405.007417
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.997331
+qRotation [W] = 0.073009
 
 Euler Rotation ?
-Rotation [X] = 0.424820
-Rotation [Y] = -0.640128
-Rotation [Z] = -0.640128
+Rotation [X] = 0.000000
+Rotation [Y] = 0.000000
+Rotation [Z] = 1.000000
 
-Origin [X] = -12428222.642262
-Origin [Y] = -4289849.209265
-Origin [Z] = 13727634.529381
+Origin [X] = -13969244.247229
+Origin [Y] = -6717592.201272
+Origin [Z] = 0.000000
 
-Range High = -10640271.570351
-Range Low = -14216173.714172
-Start Latitude LatitudeToVFraction = 0.000000
-latitudeSweep LatitudeToVFraction = 1.500000
+Range High = -7979232.322539
+Range Low = -19959256.171919
+DiagonalDistanceXY = 16942312.205345
+DiagonalDistance = 17395969.625746
+Range Difference = -11980023.849379
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.000000
+Axes Rotation (Quaternion) [Y] = 0.000000
+Axes Rotation (Quaternion) [Z] = 0.997331
+Axes Rotation (Quaternion) [W] = 0.073009
 
-DiagonalDistanceXY = 5057089.309511
-DiagonalDistance = 6193644.195992
-Range Difference = -3575902.143821
-Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
-Latitude for Truncation Plane Parallel to the Equator.
-Start Latitude = -1.570796
-Latitude Difference from Start Truncation Plane to end Truncation Plane.
-Latitude Sweep = 3.141593
+Center Point Rotation [X] = -13969244.247229
+Center Point Rotation [Y] = -6717592.201272
+Center Point Rotation [Z] = 0.000000
+
+Center [X] = -13969244.247229
+Center [Y] = -6717592.201272
+Center [Z] = 0.000000
+
+Vector X [X] = -0.989339
+Vector X [Y] = 0.145628
+Vector X [Z] = 0.000000
+
+Vector Y [X] = -0.145628
+Vector Y [Y] = -0.989339
+Vector Y [Z] = 0.000000
+
+Major Radius = 4051808.055147
+Minor Radius = 1222501.964001
+Sweep Angle = 6.283185
+Sweep Radians = 6.283185
+
+Radius Major (Elbow Radius) = 4051808.055147
+Radius Minor (Pipe Diameter) = 1222501.964001
 
 True if the end cap is enabled = 1
 
-Centroid [X] = -12428222.642262
-Centroid [Y] = -4289849.209265
-Centroid [Z] = 13727634.529381
+Centroid [X] = -13969244.247229
+Centroid [Y] = -6717592.201272
+Centroid [Z] = 0.000000
 
-Volume = 23941728367405871104.000000
-Area = 40171784469175.265625
-Radius = 1787951.071910
+Volume = 119530224603679522816.000000
+Area = 195550155539260.750000
+Radius = 3055833.648857
 
-===================================================
-====Slab====
-==== Is Smart Feauture = 0====
-2844
-===================================================
-===================================================
+ IS Solid 
+Faces Point 0 X : -19093898.707860
+Faces Point 0 Y : -6717592.201272
+Faces Point 0 Z : -586098.662536
+ DisjoinBody: 0
 
 
 ======================== pROPS nOT fOUND ===========================
 
 ===================================================
 ===================================================
-========
+Element Description: Cone
+Element: ID 1572
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Range [XLength] = 16326463.715992
-Range [YLength] = 16535814.793424
-Range [ZLength] = 18273887.530076
+Range [XLength] = 17586846.312865
+Range [YLength] = 14261915.006938
+Range [ZLength] = 16382569.022132
 
 Quaternion Rotation
-qRotation [X] = -393.145104
-qRotation [Y] = -432.596980
-qRotation [Z] = 1984.832017
-qRotation [W] = 1984.831834
+qRotation [X] = -1896.589964
+qRotation [Y] = -996.156335
+qRotation [Z] = 1506.421816
+qRotation [W] = 1506.421796
 
 Euler Rotation ?
-Rotation [X] = -0.190006
-Rotation [Y] = -0.209073
-Rotation [Z] = 0.959263
+Rotation [X] = -0.724191
+Rotation [Y] = -0.380371
+Rotation [Z] = 0.575210
 
-Origin [X] = 3898241.073730
-Origin [Y] = -1313912.573077
-Origin [Z] = 485061.872858
+Origin [X] = -7662673.155271
+Origin [Y] = -8847209.572833
+Origin [Z] = -7854723.667257
 
-Range High = 3898241.073730
-Range Low = -12428222.642262
-DiagonalDistanceXY = 23237611.502735
-DiagonalDistance = 29562164.227504
-Range Difference = -8529981.568531
-Corner [1] - [X] = 3898241.073730
-Corner [1] - [Y] = -1313912.573077
-Corner [1] - [Z] = 485061.872858
+Center of BASE Circle [X] = -7662673.155271
+Center of BASE Circle [Y] = -8847209.572833
+Center of BASE Circle [Z] = -7854723.667257
 
-Corner [2] - [X] = -3562060.231190
-Corner [2] - [Y] = 5466026.505541
-Corner [2] - [Z] = 485061.872858
+Center of TOP Circle [X] = -19090931.471248
+Center of TOP Circle [Y] = -14849735.365396
+Center of TOP Circle [Z] = 1222501.964001
 
-Corner [3] - [X] = -1846613.379213
-Corner [3] - [Y] = -7635259.221608
-Corner [3] - [Z] = -2030595.563919
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.225856
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.918942
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.323319
 
-Corner [4] - [X] = -9306914.684133
-Corner [4] - [Y] = -855320.142990
-Corner [4] - [Z] = -2030595.563919
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.651565
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.104230
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.751398
 
-Corner [5] - [X] = 776933.115602
-Corner [5] - [Y] = -4748441.639352
-Corner [5] - [Z] = 16243291.966157
+Radius at BASE = 6302261.592173
+Radius at TOP = 2628409.109643
 
-Corner [6] - [X] = -6683368.189319
-Corner [6] - [Y] = 2031497.439266
-Corner [6] - [Z] = 16243291.966157
+True if the end cap is enabled = 1
 
-Corner [7] - [X] = -4967921.337341
-Corner [7] - [Y] = -11069788.287883
-Corner [7] - [Z] = 13727634.529381
+Centroid [X] = -11804316.854365
+Centroid [Y] = -11022547.444979
+Centroid [Z] = -4565103.035529
 
-Corner [8] - [X] = -12428222.642262
-Corner [8] - [Y] = -4289849.209265
-Corner [8] - [Z] = 13727634.529381
+Volume = 1044281312997794643968.000000
+Area = 601075664373307.500000
+Radius = 6293752.094318
 
-Vector of BASE plane X [X] = -0.740046
-Vector of BASE plane X [Y] = 0.672556
-Vector of BASE plane X [Z] = 0.000000
+ IS Solid 
+Faces Point 0 X : -18652221.130126
+Faces Point 0 Y : -15361321.357551
+Faces Point 0 Z : 1436541.701486
+Faces Point 1 X : -7449818.458175
+Faces Point 1 Y : -8439853.620735
+Faces Point 1 Z : -7317365.308045
+Faces Point 2 X : -18415461.039924
+Faces Point 2 Y : -12583163.057690
+Faces Point 2 Z : 2702496.514996
+ DisjoinBody: 0
 
-Vector of BASE plane Y [X] = -0.645158
-Vector of BASE plane Y [Y] = -0.709899
-Vector of BASE plane Y [Z] = -0.282513
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1574
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1574, id = 0 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+
+is smart feature
+
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1574, id = 3 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
+is smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1574, id = 1 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1574, id = 2 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1574
+===================================================
+===================================================
+
+ IS Solid 
+Faces Point 0 X : -18466551.637592
+Faces Point 0 Y : -4260701.976323
+Faces Point 0 Z : -586098.662536
+Faces Point 1 X : -18415461.039924
+Faces Point 1 Y : -12583163.057690
+Faces Point 1 Z : 2702496.514996
+ DisjoinBody: 0
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = ConeElement, current element id = 1575, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnCone
+elemInst Full class name: ----- :DgnElementSchema:SolidElement
+is NOT smart feature
+
+===================================================
+===================================================
+Element Description: Cylinder
+Element: ID 1575
+===================================================
+===================================================
+
+--------  --------
+Range [XLength] = 11598091.897566
+Range [YLength] = 8403098.458438
+Range [ZLength] = 12213344.332560
+
+Quaternion Rotation
+qRotation [X] = -305.950371
+qRotation [Y] = 1103.030247
+qRotation [Z] = -1408.980648
+qRotation [W] = 1408.980848
+
+Euler Rotation ?
+Rotation [X] = -0.168535
+Rotation [Y] = 0.607612
+Rotation [Z] = -0.776147
+
+Origin [X] = -15843326.833575
+Origin [Y] = 15347108.528070
+Origin [Z] = -496218.304425
+
+Center of BASE Circle [X] = -15843326.833575
+Center of BASE Circle [Y] = 15347108.528070
+Center of BASE Circle [Z] = -496218.304425
+
+Center of TOP Circle [X] = -9626733.117107
+Center of TOP Circle [Y] = 17071420.805353
+Center of TOP Circle [Z] = 7444687.689326
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.545412
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.798913
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.253501
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.577350
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.577350
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.577350
+
+Radius at BASE = 3387853.983086
+Radius at TOP = 3387853.983086
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -12735029.975341
+Centroid [Y] = 16209264.666712
+Centroid [Z] = 3474234.692450
+
+Volume = 368914267428452368384.000000
+Area = 289902006080185.625000
+Radius = 4449169.459232
+
+ IS Solid 
+Faces Point 0 X : -15859295.880922
+Faces Point 0 Y : 14658976.677350
+Faces Point 0 Z : -334293.798708
+Faces Point 1 X : -10188114.338950
+Faces Point 1 Y : 17182202.386884
+Faces Point 1 Z : 7860113.452798
+Faces Point 2 X : -9246708.366902
+Faces Point 2 Y : 13674140.615682
+Faces Point 2 Z : 7240670.256717
+ DisjoinBody: 0
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = BoxSolidElement, current element id = 1576, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnBox
+elemInst Full class name: ----- :DgnElementSchema:SolidElement
+is NOT smart feature
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1576
+===================================================
+===================================================
+
+--------  --------
+Range [XLength] = 7407956.395628
+Range [YLength] = 6916617.056565
+Range [ZLength] = 5153403.525862
+
+Quaternion Rotation
+qRotation [X] = 724.491379
+qRotation [Y] = -724.491180
+qRotation [Z] = -724.491452
+qRotation [W] = 724.491924
+
+Euler Rotation ?
+Rotation [X] = 0.577350
+Rotation [Y] = -0.577350
+Rotation [Z] = -0.577350
+
+Origin [X] = -5716998.811077
+Origin [Y] = 7568855.971982
+Origin [Z] = 1851857.161986
+
+Range High = -408594.238950
+Range Low = -7816550.634578
+DiagonalDistanceXY = 10134959.766407
+DiagonalDistance = 11369915.451183
+Range Difference = -7407956.395628
+Corner [1] - [X] = -5716998.811077
+Corner [1] - [Y] = 7568855.971982
+Corner [1] - [Z] = 1851857.161986
+
+Corner [2] - [X] = -872249.211241
+Corner [2] - [Y] = 4033046.920568
+Corner [2] - [Z] = 3160797.710406
+
+Corner [3] - [X] = -5253343.838785
+Corner [3] - [Y] = 8850112.153630
+Corner [3] - [Z] = 3596768.315925
+
+Corner [4] - [X] = -408594.238950
+Corner [4] - [Y] = 5314303.102216
+Corner [4] - [Z] = 4905708.864346
+
+Corner [5] - [X] = -7816550.634578
+Corner [5] - [Y] = 5469304.148481
+Corner [5] - [Z] = 3951408.985487
+
+Corner [6] - [X] = -2971801.034743
+Corner [6] - [Y] = 1933495.097066
+Corner [6] - [Z] = 5260349.533908
+
+Corner [7] - [X] = -7352895.662287
+Corner [7] - [Y] = 6750560.330129
+Corner [7] - [Z] = 5696320.139427
+
+Corner [8] - [X] = -2508146.062452
+Corner [8] - [Y] = 3214751.278714
+Corner [8] - [Z] = 7005260.687847
+
+Vector of BASE plane X [X] = 0.789180
+Vector of BASE plane X [Y] = -0.575962
+Vector of BASE plane X [Z] = 0.213219
+
+Vector of BASE plane Y [X] = 0.209430
+Vector of BASE plane Y [Y] = 0.578735
+Vector of BASE plane Y [Z] = 0.788165
 
 Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
-AX base rectangle x size = 10080856.584139
-AY top rectangle y size = 8904566.720262
-BX top rectangle x size = 10080856.584139
-BY top rectangle y size = 8904566.720262
+AX base rectangle x size = 6138963.242476
+AY top rectangle y size = 2213889.850802
+BX top rectangle x size = 6138963.242476
+BY top rectangle y size = 2213889.850802
 
-Origin of BASE rectangle [X] = 3898241.073730
-Origin of BASE rectangle [Y] = -1313912.573077
-Origin of BASE rectangle [Z] = 485061.872858
+Origin of BASE rectangle [X] = -5716998.811077
+Origin of BASE rectangle [Y] = 7568855.971982
+Origin of BASE rectangle [Z] = 1851857.161986
 
-Origin of TOP rectangle [X] = 776933.115602
-Origin of TOP rectangle [Y] = -4748441.639352
-Origin of TOP rectangle [Z] = 16243291.966157
+Origin of TOP rectangle [X] = -7816550.634578
+Origin of TOP rectangle [Y] = 5469304.148481
+Origin of TOP rectangle [Z] = 3951408.985487
 
-Size at the BASE [X] = 10080856.584139
-Size at the BASE [Y] = 8904566.720262
+Size at the BASE [X] = 6138963.242476
+Size at the BASE [Y] = 2213889.850802
 
-Size at the TOP [X] = 10080856.584139
-Size at the TOP [Y] = 8904566.720262
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -4264990.784266
-Centroid [Y] = -2801880.891171
-Centroid [Z] = 7106348.201119
-
-Volume = 1474618857945828950016.000000
-Area = 803294643735545.625000
-Radius = 7060959.569032
-
-===================================================
-====Sphere====
-==== Is Smart Feauture = 0====
-2851
-===================================================
-===================================================
-
-
-======================== pROPS nOT fOUND ===========================
-
-===================================================
-===================================================
-========
-===================================================
-===================================================
-
--------- SmartFeatureSolid --------
-Range [XLength] = 4164796.990431
-Range [YLength] = 4164796.990431
-Range [ZLength] = 4164796.990431
-
-Quaternion Rotation
-qRotation [X] = -320.729574
-qRotation [Y] = 1591.170648
-qRotation [Z] = -1591.170648
-qRotation [W] = 320.729574
-
-Euler Rotation ?
-Rotation [X] = -0.141104
-Rotation [Y] = 0.700032
-Rotation [Z] = -0.700032
-
-Origin [X] = 776933.115602
-Origin [Y] = -4748441.639352
-Origin [Z] = 16243291.966157
-
-Range High = 2859331.610817
-Range Low = -1305465.379614
-Start Latitude LatitudeToVFraction = 0.000000
-latitudeSweep LatitudeToVFraction = 1.500000
-
-DiagonalDistanceXY = 5889912.388398
-DiagonalDistance = 7213639.990636
-Range Difference = 1553866.231203
-Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
-Latitude for Truncation Plane Parallel to the Equator.
-Start Latitude = -1.570796
-Latitude Difference from Start Truncation Plane to end Truncation Plane.
-Latitude Sweep = 3.141593
+Size at the TOP [X] = 6138963.242476
+Size at the TOP [Y] = 2213889.850802
 
 True if the end cap is enabled = 1
 
-Centroid [X] = 776933.115602
-Centroid [Y] = -4748441.639352
-Centroid [Z] = 16243291.966157
+Centroid [X] = -4112572.436764
+Centroid [Y] = 5391803.625348
+Centroid [Z] = 4428558.924916
 
-Volume = 37825104202703437824.000000
-Area = 54492602097456.562500
-Radius = 2082398.495215
+Volume = 49424042971489574912.000000
+Area = 87932785759849.187500
+Radius = 2276581.591178
 
-start==================
-Node ID: 7
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 7
-Node ID: 1
-leaf id:  2754
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E13990
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 7
-Node ID: 6
-leaf id:  2754
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E13990
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 6
-Node ID: 2
-leaf id:  2817
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E139B0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 6
-Node ID: 5
-leaf id:  2817
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E139B0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 5
-Node ID: 3
-leaf id:  2844
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E139D0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 5
-Node ID: 4
-leaf id:  2851
-Display Handler 0000015E250B09A0
-Dependent Elem 0000015E55E139F0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-Smart Feat Element Node ID: 7
-Number of Child: 2
-===================================================
-====Parametric Solid/Surface====
-==== Is Smart Feauture = 1====
-2879
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 2879, id = 0 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-
-elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
-
-elemInst Full class name: ----- :BaseElementSchema:MstnVolume
-
-elemInst Full class name: ----- :BaseElementSchema:MstnRotation
-is smart feature
-is NOT smart feature
-NodeId[int] = 0
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricSolid
-DepthId[int] = 0
-Name[string] = Union #7
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Union #7
-DynamicLabel[string] = Parametric Solid
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 2879
-Model[string] = Default
-Last Modified[dateTime] = 2/5/2020 4:47:47 PM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 11
-Links[string] = 
-Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -46' 7.6919", -36' 3.8185", -6' 7.9447"
-Range High[point3d] = 12' 9.4741", 17' 11.1979", 58' 7.9439"
-Volume[double] = 53216.1777 Cu.'
-Surface Area[double] = 9156.3763 Sq.'
-Rotation-X[double] = 0.0000Â°
-Rotation-Y[double] = 0.0000Â°
-Rotation-Z[double] = 0.0000Â°
-Angle[double] = 0.0000Â°
-Orientation[int] = Top
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = BooleanFeature, current element id = 2879, id = 7 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
-is smart feature
-NodeId[int] = 7
-Enabled[boolean] = 
-Label[string] = Union #7
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 0
-Name[string] = Union #7
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Disabled[boolean] = 
-BooleanFunction[int] = 1
-is NOT smart feature
-NodeId[int] = 7
-Enabled[boolean] = 
-Label[string] = Union #7
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 0
-Name[string] = Union #7
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Disabled[boolean] = 
-BooleanFunction[int] = 1
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 2879, id = 1 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
-is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Sphere #1
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 1
-Name[string] = Sphere #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-is NOT smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Sphere #1
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 1
-Name[string] = Sphere #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = BooleanFeature, current element id = 2879, id = 6 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
-is smart feature
-NodeId[int] = 6
-Enabled[boolean] = 
-Label[string] = Union #6
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 1
-Name[string] = Union #6
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 1
-is NOT smart feature
-NodeId[int] = 6
-Enabled[boolean] = 
-Label[string] = Union #6
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 1
-Name[string] = Union #6
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 1
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 2879, id = 2 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
-is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Sphere #2
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 2
-Name[string] = Sphere #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-is NOT smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Sphere #2
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 2
-Name[string] = Sphere #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = BooleanFeature, current element id = 2879, id = 5 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
-is smart feature
-NodeId[int] = 5
-Enabled[boolean] = 
-Label[string] = Difference #5
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricDifference
-DepthId[int] = 2
-Name[string] = Difference #5
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 3
-is NOT smart feature
-NodeId[int] = 5
-Enabled[boolean] = 
-Label[string] = Difference #5
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricDifference
-DepthId[int] = 2
-Name[string] = Difference #5
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 3
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 2879, id = 3 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
-is smart feature
-NodeId[int] = 3
-Enabled[boolean] = 
-Label[string] = Slab #3
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = PlaceSlab
-DepthId[int] = 3
-Name[string] = Slab #3
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-is NOT smart feature
-NodeId[int] = 3
-Enabled[boolean] = 
-Label[string] = Slab #3
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = PlaceSlab
-DepthId[int] = 3
-Name[string] = Slab #3
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 2879, id = 4 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
-is smart feature
-NodeId[int] = 4
-Enabled[boolean] = 
-Label[string] = Sphere #4
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 3
-Name[string] = Sphere #4
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-is NOT smart feature
-NodeId[int] = 4
-Enabled[boolean] = 
-Label[string] = Sphere #4
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
-DepthId[int] = 3
-Name[string] = Sphere #4
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureCustomContainer, current element id = 2879, id = 300006 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-is smart feature
-is NOT smart feature
-NodeId[int] = 300006
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricSolid
-DepthId[int] = 1
-Name[string] = Union #6
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Enabled[boolean] = 
-Label[string] = Union #6
-DynamicLabel[string] = Parametric Solid
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureCustomContainer, current element id = 2879, id = 300005 ---------
-
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-is smart feature
-is NOT smart feature
-NodeId[int] = 300005
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricSolid
-DepthId[int] = 2
-Name[string] = Difference #5
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Enabled[boolean] = 
-Label[string] = Difference #5
-DynamicLabel[string] = Parametric Solid
-
-===================================================
-===================================================
-========
-===================================================
-===================================================
+ IS Solid 
+Faces Point 0 X : -7816550.634578
+Faces Point 0 Y : 4663263.809871
+Faces Point 0 Z : 4543269.587770
+Vertex Point 0 X : -872249.211241
+Vertex Point 0 Y : 4033046.920568
+Vertex Point 0 Z : 3160797.710406
+Vertex Point 1 X : -872249.211241
+Vertex Point 1 Y : 4033046.920568
+Vertex Point 1 Z : 3160797.710406
+Vertex Point 2 X : -872249.211241
+Vertex Point 2 Y : 4033046.920568
+Vertex Point 2 Z : 3160797.710406
+Vertex Point 3 X : -872249.211241
+Vertex Point 3 Y : 4033046.920568
+Vertex Point 3 Z : 3160797.710406
+Faces Point 1 X : -3561319.195568
+Faces Point 1 Y : 1125739.974484
+Faces Point 1 Z : 5260349.533908
+Vertex Point 0 X : -2971801.034743
+Vertex Point 0 Y : 1933495.097066
+Vertex Point 0 Z : 5260349.533908
+Vertex Point 1 X : -2971801.034743
+Vertex Point 1 Y : 1933495.097066
+Vertex Point 1 Z : 5260349.533908
+Vertex Point 2 X : -2971801.034743
+Vertex Point 2 Y : 1933495.097066
+Vertex Point 2 Z : 5260349.533908
+Vertex Point 3 X : -2971801.034743
+Vertex Point 3 Y : 1933495.097066
+Vertex Point 3 Z : 5260349.533908
+Vertex Point 4 X : -2971801.034743
+Vertex Point 4 Y : 1933495.097066
+Vertex Point 4 Z : 5260349.533908
+Vertex Point 5 X : -2971801.034743
+Vertex Point 5 Y : 1933495.097066
+Vertex Point 5 Z : 5260349.533908
+Vertex Point 6 X : -2971801.034743
+Vertex Point 6 Y : 1933495.097066
+Vertex Point 6 Z : 5260349.533908
+Vertex Point 7 X : -2971801.034743
+Vertex Point 7 Y : 1933495.097066
+Vertex Point 7 Z : 5260349.533908
+Faces Point 2 X : -2508146.062452
+Faces Point 2 Y : 4020791.617323
+Faces Point 2 Z : 6413400.085564
+Vertex Point 0 X : -7816550.634578
+Vertex Point 0 Y : 5469304.148481
+Vertex Point 0 Z : 3951408.985487
+Vertex Point 1 X : -7816550.634578
+Vertex Point 1 Y : 5469304.148481
+Vertex Point 1 Z : 3951408.985487
+Vertex Point 2 X : -7816550.634578
+Vertex Point 2 Y : 5469304.148481
+Vertex Point 2 Z : 3951408.985487
+Vertex Point 3 X : -7816550.634578
+Vertex Point 3 Y : 5469304.148481
+Vertex Point 3 Z : 3951408.985487
+Vertex Point 4 X : -7816550.634578
+Vertex Point 4 Y : 5469304.148481
+Vertex Point 4 Z : 3951408.985487
+Vertex Point 5 X : -7816550.634578
+Vertex Point 5 Y : 5469304.148481
+Vertex Point 5 Z : 3951408.985487
+Vertex Point 6 X : -7816550.634578
+Vertex Point 6 Y : 5469304.148481
+Vertex Point 6 Z : 3951408.985487
+Vertex Point 7 X : -7816550.634578
+Vertex Point 7 Y : 5469304.148481
+Vertex Point 7 Z : 3951408.985487
+Vertex Point 8 X : -7816550.634578
+Vertex Point 8 Y : 5469304.148481
+Vertex Point 8 Z : 3951408.985487
+Vertex Point 9 X : -7816550.634578
+Vertex Point 9 Y : 5469304.148481
+Vertex Point 9 Z : 3951408.985487
+Vertex Point 10 X : -7816550.634578
+Vertex Point 10 Y : 5469304.148481
+Vertex Point 10 Z : 3951408.985487
+Vertex Point 11 X : -7816550.634578
+Vertex Point 11 Y : 5469304.148481
+Vertex Point 11 Z : 3951408.985487
+Faces Point 3 X : -6763377.501462
+Faces Point 3 Y : 7558315.452711
+Faces Point 3 Z : 5696320.139427
+Vertex Point 0 X : -5716998.811077
+Vertex Point 0 Y : 7568855.971982
+Vertex Point 0 Z : 1851857.161986
+Vertex Point 1 X : -5716998.811077
+Vertex Point 1 Y : 7568855.971982
+Vertex Point 1 Z : 1851857.161986
+Vertex Point 2 X : -5716998.811077
+Vertex Point 2 Y : 7568855.971982
+Vertex Point 2 Z : 1851857.161986
+Vertex Point 3 X : -5716998.811077
+Vertex Point 3 Y : 7568855.971982
+Vertex Point 3 Z : 1851857.161986
+Vertex Point 4 X : -5716998.811077
+Vertex Point 4 Y : 7568855.971982
+Vertex Point 4 Z : 1851857.161986
+Vertex Point 5 X : -5716998.811077
+Vertex Point 5 Y : 7568855.971982
+Vertex Point 5 Z : 1851857.161986
+Vertex Point 6 X : -5716998.811077
+Vertex Point 6 Y : 7568855.971982
+Vertex Point 6 Z : 1851857.161986
+Vertex Point 7 X : -5716998.811077
+Vertex Point 7 Y : 7568855.971982
+Vertex Point 7 Z : 1851857.161986
+Vertex Point 8 X : -5716998.811077
+Vertex Point 8 Y : 7568855.971982
+Vertex Point 8 Z : 1851857.161986
+Vertex Point 9 X : -5716998.811077
+Vertex Point 9 Y : 7568855.971982
+Vertex Point 9 Z : 1851857.161986
+Vertex Point 10 X : -5716998.811077
+Vertex Point 10 Y : 7568855.971982
+Vertex Point 10 Z : 1851857.161986
+Vertex Point 11 X : -5716998.811077
+Vertex Point 11 Y : 7568855.971982
+Vertex Point 11 Z : 1851857.161986
+Vertex Point 12 X : -5716998.811077
+Vertex Point 12 Y : 7568855.971982
+Vertex Point 12 Z : 1851857.161986
+Vertex Point 13 X : -5716998.811077
+Vertex Point 13 Y : 7568855.971982
+Vertex Point 13 Z : 1851857.161986
+Vertex Point 14 X : -5716998.811077
+Vertex Point 14 Y : 7568855.971982
+Vertex Point 14 Z : 1851857.161986
+Vertex Point 15 X : -5716998.811077
+Vertex Point 15 Y : 7568855.971982
+Vertex Point 15 Z : 1851857.161986
+Faces Point 4 X : -7109443.853392
+Faces Point 4 Y : 4762197.367294
+Faces Point 4 Z : 3951408.985487
+Vertex Point 0 X : -408594.238950
+Vertex Point 0 Y : 5314303.102216
+Vertex Point 0 Z : 4905708.864346
+Vertex Point 1 X : -408594.238950
+Vertex Point 1 Y : 5314303.102216
+Vertex Point 1 Z : 4905708.864346
+Vertex Point 2 X : -408594.238950
+Vertex Point 2 Y : 5314303.102216
+Vertex Point 2 Z : 4905708.864346
+Vertex Point 3 X : -408594.238950
+Vertex Point 3 Y : 5314303.102216
+Vertex Point 3 Z : 4905708.864346
+Vertex Point 4 X : -408594.238950
+Vertex Point 4 Y : 5314303.102216
+Vertex Point 4 Z : 4905708.864346
+Vertex Point 5 X : -408594.238950
+Vertex Point 5 Y : 5314303.102216
+Vertex Point 5 Z : 4905708.864346
+Vertex Point 6 X : -408594.238950
+Vertex Point 6 Y : 5314303.102216
+Vertex Point 6 Z : 4905708.864346
+Vertex Point 7 X : -408594.238950
+Vertex Point 7 Y : 5314303.102216
+Vertex Point 7 Z : 4905708.864346
+Vertex Point 8 X : -408594.238950
+Vertex Point 8 Y : 5314303.102216
+Vertex Point 8 Z : 4905708.864346
+Vertex Point 9 X : -408594.238950
+Vertex Point 9 Y : 5314303.102216
+Vertex Point 9 Z : 4905708.864346
+Vertex Point 10 X : -408594.238950
+Vertex Point 10 Y : 5314303.102216
+Vertex Point 10 Z : 4905708.864346
+Vertex Point 11 X : -408594.238950
+Vertex Point 11 Y : 5314303.102216
+Vertex Point 11 Z : 4905708.864346
+Vertex Point 12 X : -408594.238950
+Vertex Point 12 Y : 5314303.102216
+Vertex Point 12 Z : 4905708.864346
+Vertex Point 13 X : -408594.238950
+Vertex Point 13 Y : 5314303.102216
+Vertex Point 13 Z : 4905708.864346
+Vertex Point 14 X : -408594.238950
+Vertex Point 14 Y : 5314303.102216
+Vertex Point 14 Z : 4905708.864346
+Vertex Point 15 X : -408594.238950
+Vertex Point 15 Y : 5314303.102216
+Vertex Point 15 Z : 4905708.864346
+Vertex Point 16 X : -408594.238950
+Vertex Point 16 Y : 5314303.102216
+Vertex Point 16 Z : 4905708.864346
+Vertex Point 17 X : -408594.238950
+Vertex Point 17 Y : 5314303.102216
+Vertex Point 17 Z : 4905708.864346
+Vertex Point 18 X : -408594.238950
+Vertex Point 18 Y : 5314303.102216
+Vertex Point 18 Z : 4905708.864346
+Vertex Point 19 X : -408594.238950
+Vertex Point 19 Y : 5314303.102216
+Vertex Point 19 Z : 4905708.864346
+Faces Point 5 X : -5009892.029890
+Faces Point 5 Y : 6861749.190796
+Faces Point 5 Z : 1851857.161986
+Vertex Point 0 X : -2508146.062452
+Vertex Point 0 Y : 3214751.278714
+Vertex Point 0 Z : 7005260.687847
+Vertex Point 1 X : -2508146.062452
+Vertex Point 1 Y : 3214751.278714
+Vertex Point 1 Z : 7005260.687847
+Vertex Point 2 X : -2508146.062452
+Vertex Point 2 Y : 3214751.278714
+Vertex Point 2 Z : 7005260.687847
+Vertex Point 3 X : -2508146.062452
+Vertex Point 3 Y : 3214751.278714
+Vertex Point 3 Z : 7005260.687847
+Vertex Point 4 X : -2508146.062452
+Vertex Point 4 Y : 3214751.278714
+Vertex Point 4 Z : 7005260.687847
+Vertex Point 5 X : -2508146.062452
+Vertex Point 5 Y : 3214751.278714
+Vertex Point 5 Z : 7005260.687847
+Vertex Point 6 X : -2508146.062452
+Vertex Point 6 Y : 3214751.278714
+Vertex Point 6 Z : 7005260.687847
+Vertex Point 7 X : -2508146.062452
+Vertex Point 7 Y : 3214751.278714
+Vertex Point 7 Z : 7005260.687847
+Vertex Point 8 X : -2508146.062452
+Vertex Point 8 Y : 3214751.278714
+Vertex Point 8 Z : 7005260.687847
+Vertex Point 9 X : -2508146.062452
+Vertex Point 9 Y : 3214751.278714
+Vertex Point 9 Z : 7005260.687847
+Vertex Point 10 X : -2508146.062452
+Vertex Point 10 Y : 3214751.278714
+Vertex Point 10 Z : 7005260.687847
+Vertex Point 11 X : -2508146.062452
+Vertex Point 11 Y : 3214751.278714
+Vertex Point 11 Z : 7005260.687847
+Vertex Point 12 X : -2508146.062452
+Vertex Point 12 Y : 3214751.278714
+Vertex Point 12 Z : 7005260.687847
+Vertex Point 13 X : -2508146.062452
+Vertex Point 13 Y : 3214751.278714
+Vertex Point 13 Z : 7005260.687847
+Vertex Point 14 X : -2508146.062452
+Vertex Point 14 Y : 3214751.278714
+Vertex Point 14 Z : 7005260.687847
+Vertex Point 15 X : -2508146.062452
+Vertex Point 15 Y : 3214751.278714
+Vertex Point 15 Z : 7005260.687847
+Vertex Point 16 X : -2508146.062452
+Vertex Point 16 Y : 3214751.278714
+Vertex Point 16 Z : 7005260.687847
+Vertex Point 17 X : -2508146.062452
+Vertex Point 17 Y : 3214751.278714
+Vertex Point 17 Z : 7005260.687847
+Vertex Point 18 X : -2508146.062452
+Vertex Point 18 Y : 3214751.278714
+Vertex Point 18 Z : 7005260.687847
+Vertex Point 19 X : -2508146.062452
+Vertex Point 19 Y : 3214751.278714
+Vertex Point 19 Z : 7005260.687847
+Vertex Point 20 X : -2508146.062452
+Vertex Point 20 Y : 3214751.278714
+Vertex Point 20 Z : 7005260.687847
+Vertex Point 21 X : -2508146.062452
+Vertex Point 21 Y : 3214751.278714
+Vertex Point 21 Z : 7005260.687847
+Vertex Point 22 X : -2508146.062452
+Vertex Point 22 Y : 3214751.278714
+Vertex Point 22 Z : 7005260.687847
+Vertex Point 23 X : -2508146.062452
+Vertex Point 23 Y : 3214751.278714
+Vertex Point 23 Z : 7005260.687847
+ DisjoinBody: 0
 

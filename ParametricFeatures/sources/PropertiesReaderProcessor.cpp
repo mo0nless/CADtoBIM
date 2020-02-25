@@ -32,6 +32,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
 
+	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
 		outfile.open(filePath, std::ios_base::app);
@@ -68,7 +70,6 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 			for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
 			{
 				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
 				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
 				outfile.close();
 			}
@@ -78,6 +79,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
 				outfile.open(filePath, std::ios_base::app);
+
+				outfile << std::endl;
 				outfile << "is smart feature" << std::endl;
 				//ReaderPropertiesMapper::mapECPropertiesToElementProperties(elemInst, *dictionaryProperties.getReaderProperties());
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByLocalId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
@@ -86,6 +89,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties());
 				}
 				else {
+
+					outfile << std::endl;
 					outfile << "is NOT smart feature" << std::endl;
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
@@ -145,7 +150,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	outfile << std::endl;
 	outfile << "===================================================" << std::endl;
 	outfile << "===================================================" << std::endl;
-	outfile << "====" << static_cast<Utf8String>(elDescr.GetWCharCP()) << "====" << std::endl;
+	outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP()) << std::endl;
+	outfile << "Element: ID " << currentElem.GetElementId() << std::endl;
 	outfile << "===================================================" << std::endl;
 	outfile << "===================================================" << std::endl;
 	outfile << std::endl;

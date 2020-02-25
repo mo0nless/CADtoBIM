@@ -136,7 +136,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 	switch (curve.GetCurvePrimitiveType())
 	{
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
-			break;
+		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
@@ -156,6 +156,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 		break;
 	}
+
 	return ERROR;
 }
 
@@ -200,20 +201,107 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 //! @note Requires host implementation of SolidsKernelAdmin methods that take or return a ISolidKernelEntity.
 //! @remarks Only called if _ProcessAsBody returns true.
 //! @return SUCCESS if handled.
-BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) { return ERROR; }
+#pragma warning( push )
+#pragma warning( disable : 4267)
+BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
+{
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::fixed;
+
+	switch (entity.GetEntityType())
+	{
+	case ISolidKernelEntity::KernelEntityType::EntityType_Solid:
+	{
+		bvector<ISolidKernelEntityPtr> outSKpointer;
+		bvector<ISubEntityPtr> subEntitiesFaces;
+		bvector<ISubEntityPtr> subEntitiesEdges;
+		bvector<ISubEntityPtr> subEntitiesVertices;
+
+		CurveVectorPtr curveFacesEval;
+		CurveVectorPtr curveEdgesEval;
+		CurveVectorPtr curveVerticesEval;
+
+		DPoint3d point;
+		DVec3d normal, uDir, vDir;
+		
+		size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+
+		//mdlSolid_closestPointToSurface
+		DPoint3d mdlSolid_clstPt;
+		DPoint3d mdlSolid_normal;
+		DPoint2d mdlSolid_param;
+		DPoint3d mdlSolid_point;
+						
+
+		if ( nFaces != 0 ) 
+		{
+			for ( size_t i = 0; i < nFaces; i++ )
+			{
+				SolidUtil::Debug::DumpSubEntity(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), L" ");
+				
+				if ( subEntitiesFaces.at(i).IsValid() ) 
+				{
+					DPoint2d uvP = this->solidDetails.GetUV();
+					SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, uvP);
+
+					SolidUtil::GetFaceEdges(subEntitiesEdges, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)));
+
+					outfile << "Faces Point " << i << " X : " << point.x << std::endl;
+					outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
+					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
+
+					if (SolidUtil::GetFaceVertices(subEntitiesVertices, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i))) == SUCCESS)
+					{
+						for (size_t k = 0; k < subEntitiesVertices.size(); k++)
+						{
+							SolidUtil::EvaluateVertex(dynamic_cast<ISubEntityCR>(*subEntitiesVertices.at(i)), point);
+
+							outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
+							outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
+							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
+
+							mdlSolid_closestPointToSurface(&mdlSolid_clstPt, &mdlSolid_normal, &mdlSolid_param, &mdlSolid_point, i);
+
+							SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, mdlSolid_param);
+						}
+					}
+				}
+			}			
+		}
+
+	}
+	break;
+
+	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
+		outfile << elemClassName << "IS Sheet" << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+		break;
+	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
+		outfile << elemClassName << "IS Wire" << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+		break;
+
+	default:
+		break;
+	}
+
+	outfile << std::endl;
+	return ERROR; 
+}
 
 //! Collect output for surfaces and solids as facets.
 //! @param[in] meshData The indexed polyface data.
 //! @param[in] isFilled The wireframe display of the mesh has opaque fill.
 //! @remarks Only called if _ProcessAsFacets returns true.
 //! @return SUCCESS if handled.
-BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) { return ERROR; }
+BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
+{
+	return ERROR; 
+}
 
 //! Collect output as a solid primitive.
 //! @param[in] primitive The solid primitive data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
-{
+{	
 	switch (primitive.GetSolidPrimitiveType())
 	{
 	case SolidPrimitiveType::SolidPrimitiveType_DgnBox:
@@ -241,6 +329,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
@@ -327,6 +417,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
+
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
@@ -387,6 +479,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			extrusionDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
@@ -453,6 +547,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
+
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
@@ -531,6 +627,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
+
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
@@ -586,6 +684,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			sphereDetails.GetRange(range);
 			sphereDetails.m_localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			sphereDetails.m_localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			primitive.ClosestPoint(sphereDetails.m_localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, sphereDetails.m_localToWorld);
 
@@ -647,6 +747,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotationAxes.GetQuaternion(axesQuatRotation, false);
+
+			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
@@ -710,3 +812,4 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 	return ERROR;
 }
+
