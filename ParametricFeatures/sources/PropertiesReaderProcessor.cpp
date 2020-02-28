@@ -36,6 +36,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
+	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
 		outfile.open(filePath, std::ios_base::app);

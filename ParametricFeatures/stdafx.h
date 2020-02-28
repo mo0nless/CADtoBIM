@@ -36,15 +36,20 @@
 #include <Mstn/isessionmgr.h>
 #include <Mstn/Smartfeature/SmartfeatureAPI.h>
 #include <Mstn/MdlApi/MdlApi.h>
+#include <Mstn/MdlApi/mspop.h>
+#include <Mstn/PSolid/mssolid.h>
+#include <Mstn/PSolid/mssolid.fdf>
 #include <Mstn/cmdlist.r.h>
 
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
+#include <DgnPlatform/ElementGeometry.h>
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementHandle.h>
 #include <DgnPlatform/DgnECInstance.h>
 #include <DgnPlatform/DgnECManager.h>
 #include <DgnPlatform/DgnPlatformLib.h>
+#include <DgnPlatform/ExportMacros.h>
 
 #include <DgnView/DgnElementSetTool.h>
 #include <DgnView/LocateSubEntityTool.h>   
