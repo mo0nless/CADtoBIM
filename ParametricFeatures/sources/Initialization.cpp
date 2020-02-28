@@ -582,83 +582,38 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
 	primitive->setObjectPlacement(file.addLocalPlacement());
 
-	int index = -1;
 	for (int i = 0; i < dictionaryPropertiesVector.size(); ++i) {
 		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 		if (dictionaryProperties.getIsSmartFeature()) {
 			continue;
 		}
-		index++;
 		Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
 
-		//double a1 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().x / 100;
-		//double a2 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().y / 100;
-		//double a3 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().z / 100;
+		double centroid_x = dictionaryProperties.getGraphicProperties()->getCentroid().x / 100;
+		double centroid_y = dictionaryProperties.getGraphicProperties()->getCentroid().y / 100;
+		double centroid_z = dictionaryProperties.getGraphicProperties()->getCentroid().z / 100;
 
-		double b1 = dictionaryProperties.getGraphicProperties()->getCentroid().x;
-		double b2 = dictionaryProperties.getGraphicProperties()->getCentroid().y;
-		double b3 = dictionaryProperties.getGraphicProperties()->getCentroid().z;
+		double z_axis_x = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().x;
+		double z_axis_y = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().y;
+		double z_axis_z = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().z;
 
-
-		//double c1 = dictionaryProperties.getGraphicProperties()->eulerRotation.x;
-		//double c2 = dictionaryProperties.getGraphicProperties()->eulerRotation.y;
-		//double c3 = dictionaryProperties.getGraphicProperties()->eulerRotation.z;
-
-		double d1 = dictionaryProperties.getGraphicProperties()->vectorBaseX.x;
-		double d2 = dictionaryProperties.getGraphicProperties()->vectorBaseX.y;
-		double d3 = dictionaryProperties.getGraphicProperties()->vectorBaseX.z;
-
-		double e1 = dictionaryProperties.getGraphicProperties()->vectorBaseY.x;
-		double e2 = dictionaryProperties.getGraphicProperties()->vectorBaseY.y;
-		double e3 = dictionaryProperties.getGraphicProperties()->vectorBaseY.z;
-
-		//double f1 = dictionaryProperties.getGraphicProperties()->range.XLength() / 100;
-		//double f2 = dictionaryProperties.getGraphicProperties()->range.YLength() / 100;
-		//double f3 = dictionaryProperties.getGraphicProperties()->range.ZLength() / 100;
-
-		/*dictionaryProperties.getGraphicProperties()->range.*/
-
-		//dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().FromZero().x;
-
-		//double g1 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().FromZero().x / 100;
-		//double g2 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().FromZero().y / 100;
-		//double g3 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().FromZero().z / 100;
-
-		/*DVec3d result =  dictionaryProperties.getGraphicProperties()->vectorBaseX.mu*/
-		//DVec3d ceva1;
-		//DVec3d ceva2;
-		/* ceva1.Multiply(dictionaryProperties.getGraphicProperties()->getAxes(), dictionaryProperties.getGraphicProperties()->vectorBaseX);
-		 ceva2.Multiply(dictionaryProperties.getGraphicProperties()->getAxes(), dictionaryProperties.getGraphicProperties()->vectorBaseY);*/
-
-		 //ceva1.CrossProduct(dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin(), dictionaryProperties.getGraphicProperties()->eulerRotation);
-		 //ceva2.cross
-
-		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(b1 / 100, b2 / 100, b3 / 100),  file.addTriplet<Ifc4::IfcDirection>(d1, d2, d3), file.addTriplet<Ifc4::IfcDirection>(e1, e2, e3));
+		double x_axis_x = dictionaryProperties.getGraphicProperties()->getVectorBaseX().x;
+		double x_axis_y = dictionaryProperties.getGraphicProperties()->getVectorBaseX().y;
+		double x_axis_z = dictionaryProperties.getGraphicProperties()->getVectorBaseX().z;
 
 
-		//Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(b1/100, b2/100,b3/100), 
-		//	file.addTriplet<Ifc4::IfcDirection>(0,0,1), file.addTriplet<Ifc4::IfcDirection>(1,0,0));
+		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(centroid_x, centroid_y, centroid_z),
+			file.addTriplet<Ifc4::IfcDirection>(z_axis_x, z_axis_y, z_axis_z), file.addTriplet<Ifc4::IfcDirection>(x_axis_x, x_axis_y, x_axis_z));
 
-		/*Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(a1,a2,a3);*/
-
-		/*double a1 = 2;
-		double a2 = 2;
-		double a3 = 2;
-
-		if (index == 0) {
-			a1 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().x / 1000000;
-			a2 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().y / 1000000;
-			a3 = dictionaryProperties.getGraphicProperties()->originLocalToWorld.Origin().z / 1000000;
-		}
-		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(a1, a2, a3), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));*/
 	
 		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE) {
 			my = new Ifc4::IfcSphere(place, a);
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX) {
 			/*my = new Ifc4::IfcBlock(place, a, b, c);*/
-			my = new Ifc4::IfcBlock(place, dictionaryProperties.getGraphicProperties()->length / 100, dictionaryProperties.getGraphicProperties()->width / 100, dictionaryProperties.getGraphicProperties()->height / 100);
+			my = new Ifc4::IfcBlock(place, dictionaryProperties.getGraphicProperties()->getSlabLength() / 100, dictionaryProperties.getGraphicProperties()->getSlabWidth() / 100,
+				dictionaryProperties.getGraphicProperties()->getSlabHeight() / 100);
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PYRAMID) {
 			my = new Ifc4::IfcRectangularPyramid(place, a, b, c);

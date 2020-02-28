@@ -26,4 +26,13 @@ public:
 	BooleanFunctions::BooleanFunctionsEnum getBooleanFunction();
 	void setBooleanFunction(int newBooleanFunctionInt);
 
+	double width;
+	double length;
+	double height;
+
+	double rotationX;
+	double rotationY;
+	double rotationZ;
+
+
 };

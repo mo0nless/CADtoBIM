@@ -31,6 +31,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
+	
+	dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
@@ -72,8 +74,6 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
 				outfile.close();
 			}
-
-			dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) {

@@ -16,13 +16,15 @@ private:
 	double volume;
 	double radius;
 
-
-
 	DVec3d centroid;
-	RotMatrix axes;
-	DVec3d momentxyz;
 
+	DVec3d vectorBaseX;
+	DVec3d vectorBaseY;
+	DVec3d vectorBaseZ;
 
+	double slabLength;
+	double slabWidth;
+	double slabHeight;
 
 
 public:
@@ -40,21 +42,24 @@ public:
 	DVec3d getCentroid();
 	void setCentroid(DVec3d newCentroid);
 
-	RotMatrix getAxes();
-	void setAxes(RotMatrix newAxes);
+	DVec3d getVectorBaseX();
+	void setVectorBaseX(DVec3d newVectorBaseX);
+	
+	DVec3d getVectorBaseY();
+	void setVectorBaseY(DVec3d newVectorBaseY);
 
-	DVec3d getMomentxyz();
-	void setMomentxyz(DVec3d newMomentxyz);
+	DVec3d getVectorBaseZ();
+	void setVectorBaseZ(DVec3d newVectorBaseZ);
 
-	double length;
-	double width;
-	double height;
 
-	Transform originLocalToWorld;
-	DVec3d eulerRotation;
+	double getSlabLength();
+	void setSlabLength(double newSlabLength);
 
-	DVec3d vectorBaseX;
-	DVec3d vectorBaseY;
 
-	DRange3d range;
+	double getSlabWidth();
+	void setSlabWidth(double newSlabWidth);
+
+	double getSlabHeight();
+	void setSlabHeight(double newSlabHeight);
+
 };

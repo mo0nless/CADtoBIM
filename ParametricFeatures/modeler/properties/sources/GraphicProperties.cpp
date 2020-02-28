@@ -44,22 +44,62 @@ void GraphicProperties::setCentroid(DVec3d newCentroid)
 	this->centroid = newCentroid;
 }
 
-RotMatrix GraphicProperties::getAxes()
+DVec3d GraphicProperties::getVectorBaseX()
 {
-	return this->axes;
+	return this->vectorBaseX;
 }
 
-void GraphicProperties::setAxes(RotMatrix newAxes)
+void GraphicProperties::setVectorBaseX(DVec3d newVectorBaseX)
 {
-	this->axes = newAxes;
+	this->vectorBaseX = newVectorBaseX;
 }
 
-DVec3d GraphicProperties::getMomentxyz()
+DVec3d GraphicProperties::getVectorBaseY()
 {
-	return this->momentxyz;
+	return this->vectorBaseY;
 }
 
-void GraphicProperties::setMomentxyz(DVec3d newMomentxyz)
+void GraphicProperties::setVectorBaseY(DVec3d newVectorBaseY)
 {
-	this->momentxyz = newMomentxyz;
+	this->vectorBaseY = newVectorBaseY;
+}
+
+DVec3d GraphicProperties::getVectorBaseZ()
+{
+	return this->vectorBaseZ;
+}
+
+void GraphicProperties::setVectorBaseZ(DVec3d newVectorBaseZ)
+{
+	this->vectorBaseZ = newVectorBaseZ;
+}
+
+double GraphicProperties::getSlabLength()
+{
+	return this->slabLength;
+}
+
+void GraphicProperties::setSlabLength(double newSlabLength)
+{
+	this->slabLength = newSlabLength;
+}
+
+double GraphicProperties::getSlabWidth()
+{
+	return this->slabWidth;
+}
+
+void GraphicProperties::setSlabWidth(double newSlabWidth)
+{
+	this->slabWidth = newSlabWidth;
+}
+
+double GraphicProperties::getSlabHeight()
+{
+	return this->slabHeight;
+}
+
+void GraphicProperties::setSlabHeight(double newSlabHeight)
+{
+	this->slabHeight = newSlabHeight;
 }
