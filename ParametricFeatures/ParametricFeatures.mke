@@ -138,6 +138,7 @@ LINKER_LIBRARIES + $(mdlLibs)BentleyAllocator.lib
 LINKER_LIBRARIES + $(mdlLibs)DgnPlatform.lib
 LINKER_LIBRARIES + $(mdlLibs)DgnView.lib
 LINKER_LIBRARIES + $(mdlLibs)mdlbltin.lib
+LINKER_LIBRARIES + $(mdlLibs)mspsolid.lib
 LINKER_LIBRARIES + $(mdlLibs)PSolidCore.lib 
 LINKER_LIBRARIES + $(mdlLibs)RmgrTools.lib
 LINKER_LIBRARIES + $(mdlLibs)SmartFeature.lib 

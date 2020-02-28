@@ -680,7 +680,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	std::vector<DictionaryProperties*>propsDictVec;
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
-
+	
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
@@ -689,8 +689,24 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		SmartFeatureNodePtr sFeatNode;
 		T_SmartFeatureVector sFeatVec;
 		WString elDescr;
-			
 		
+		/*bool isSmartElement = mdlSolid_isSmartElement(MSElementDescrP(currentElem.GetElementDescrCP()), ISessionMgr::GetActiveDgnModelRefP());
+		bool isSmartSolidElement = mdlSolid_isSmartSolidElement (MSElementDescrP(currentElem.GetElementDescrCP()), ISessionMgr::GetActiveDgnModelRefP());
+
+		if(isSmartElement)
+		{
+			outfile.open(filePath);
+			outfile << "========================isSmartElement===========================" << std::endl;
+			outfile.close();
+		}
+
+		if (isSmartSolidElement)
+		{
+			outfile.open(filePath);
+			outfile << "=========================isSmartSolidElement==========================" << std::endl;
+			outfile.close();
+		}*/
+
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 		
 		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newElementId=-1;
@@ -742,9 +758,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
-		outfile << "====" << static_cast<Utf8String>(elDescr.GetWCharCP()) << "====" << std::endl;
-		outfile << "==== Is Smart Feauture = " << SmartFeatureElement::IsSmartFeature(currentElem) << "====" << std::endl;
-		outfile << currentElem.GetElementId() << std::endl;
+		outfile << "===================================================" << std::endl;
+		outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP())<< std::endl;
+		outfile << "Element ID: " << currentElem.GetElementId() << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
@@ -763,6 +779,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
 		propsDictVec.push_back(propertiesDictionary);
+
+		ISolidKernelEntityPtr solidKernPtr;
+		//SolidUtil::Convert::ElementToBody(solidKernPtr, currentElem, true, true, true);
+
 	}
 
 	for (int i = 0; i < propsDictVec.size(); ++i) {
@@ -772,7 +792,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
 			}
-		}
+		}	
 	
 	}
 

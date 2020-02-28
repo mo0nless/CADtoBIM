@@ -15,7 +15,7 @@
 * @see ElementGraphicsOutput
 * @bsiclass                                                     
 +===============+===============+===============+===============+===============+======*/
-class GraphicsProcessor : public IElementGraphicsProcessor
+class GraphicsProcessor : public IElementGraphicsProcessor//, public LocateSubEntityTool
 {
 public:
 	//! Default constructor of the class
@@ -39,11 +39,13 @@ private:
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
 
+	
 	WString myString;
 	std::ofstream &outfile;
 	std::string filePath;
 	Int64 elementID;
 	std::string elemClassName;
 	DictionaryProperties* dictionaryProperties;
+	SolidLocationDetail solidDetails;
 };
 /// @endGroup
