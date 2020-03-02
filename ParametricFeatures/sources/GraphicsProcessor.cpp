@@ -32,19 +32,12 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 
 	outfile << std::fixed;
 	outfile << std::endl;
-	outfile << "Centroid1 [X] = " << centroid.x << std::endl;
-	outfile << "Centroid1 [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid1 [Z] = " << centroid.z << std::endl;
+	outfile << "Centroid [X] = " << centroid.x << std::endl;
+	outfile << "Centroid [Y] = " << centroid.y << std::endl;
+	outfile << "Centroid [Z] = " << centroid.z << std::endl;
 	outfile << std::endl;
 
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
-
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << "Centroid2 [X] = " << centroid.x << std::endl;
-	outfile << "Centroid2 [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid2 [Z] = " << centroid.z << std::endl;
-	outfile << std::endl;
 
 	radius = pow(((volume / M_PI)*(3. / 4.)), 1. / 3.);
 
@@ -353,14 +346,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector of BASE plane X [Z] = " << boxDetails.m_vectorX.z << std::endl;
 			outfile << std::endl;
 
-			dictionaryProperties->getGraphicProperties()->vectorBaseX = boxDetails.m_vectorX;
 
 			outfile << "Vector of BASE plane Y [X] = " << boxDetails.m_vectorY.x << std::endl;
 			outfile << "Vector of BASE plane Y [Y] = " << boxDetails.m_vectorY.y << std::endl;
 			outfile << "Vector of BASE plane Y [Z] = " << boxDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
-			dictionaryProperties->getGraphicProperties()->vectorBaseY = boxDetails.m_vectorY;
+			dictionaryProperties->getGraphicProperties()->setVectorBaseX(boxDetails.m_vectorX);
+			dictionaryProperties->getGraphicProperties()->setVectorBaseY(boxDetails.m_vectorY);
+
+			// calculate base vector Z
+			DVec3d vectorBaseZ;
+			vectorBaseZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
+			dictionaryProperties->getGraphicProperties()->setVectorBaseZ(vectorBaseZ);
 
 			outfile << "Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)" << std::endl;
 			outfile << "AX base rectangle x size = " << ax << std::endl;
@@ -397,9 +395,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::BOX);
 
-		dictionaryProperties->getGraphicProperties()->length = boxDetails.m_topX;
-		dictionaryProperties->getGraphicProperties()->width = boxDetails.m_topY;
-		dictionaryProperties->getGraphicProperties()->height = dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY);
+		dictionaryProperties->getGraphicProperties()->setSlabLength( boxDetails.m_topX);
+		dictionaryProperties->getGraphicProperties()->setSlabWidth( boxDetails.m_topY);
+		dictionaryProperties->getGraphicProperties()->setSlabHeight( dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY));
 		
 
 

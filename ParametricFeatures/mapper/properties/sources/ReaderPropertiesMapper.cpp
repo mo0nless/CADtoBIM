@@ -49,6 +49,10 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
 				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
 				<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+
+			//outfile << propertyName << "["
+			//	<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+			//	<< ecVal.GetDouble() << std::endl;
 			
 	}
 	outfile.close();
@@ -66,6 +70,24 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION:
 		readerProperties.setBooleanFunction(eCValue.GetInteger());
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::WIDTH:
+		readerProperties.width = eCValue.GetDouble();
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::LENGTH:
+		readerProperties.length = eCValue.GetDouble();
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::HEIGHT:
+		readerProperties.height = eCValue.GetDouble();
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_X:
+		readerProperties.rotationX = eCValue.GetDouble();
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Y:
+		readerProperties.rotationY = eCValue.GetDouble();
+		break;
+	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Z:
+		readerProperties.rotationZ = eCValue.GetDouble();
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::NONE:
 		break;

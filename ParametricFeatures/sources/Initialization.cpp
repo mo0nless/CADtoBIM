@@ -324,15 +324,12 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
 	primitive->setObjectPlacement(file.addLocalPlacement());
 
-	int index = -1;
 	for (int i = 0; i < dictionaryPropertiesVector.size(); ++i) {
 		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 		if (dictionaryProperties.getIsSmartFeature()) {
 			continue;
 		}
-		index++;
-
 		Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
 				
 		DVec3d objectOrigin = dictionaryProperties.getGraphicProperties()->getCentroid() / 100;

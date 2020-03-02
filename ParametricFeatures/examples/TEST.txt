@@ -1,8 +1,8 @@
 ===================================================
 ===================================================
-===================================================
-Element Description: Slab
-Element ID: 1375
+====Slab====
+==== Is Smart Feauture = 0====
+1375
 ===================================================
 ===================================================
 
@@ -11,78 +11,261 @@ Element ID: 1375
 
 ===================================================
 ===================================================
-Element Description: Slab
-Element: ID 1375
+========
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Vector Rotation Axis World to Local
-vRotation [X] = 0
-vRotation [Y] = 0
-vRotation [Z] = 1
+Range [XLength] = 8290766.750564
+Range [YLength] = 945254.357772
+Range [ZLength] = 11679521.091728
 
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1708.765936
+qRotation [W] = 1708.765643
 
-Centroid1 [X] = -11200487.590398
-Centroid1 [Y] = 5005453.963678
-Centroid1 [Z] = 5839760.545864
+Euler Rotation ?
+Rotation [X] = 0.000000
+Rotation [Y] = 0.000000
+Rotation [Z] = 1.000000
 
+Origin [X] = -7055104.215116
+Origin [Y] = 5478081.142564
+Origin [Z] = 0.000000
 
-Centroid2 [X] = -11200487.590398
-Centroid2 [Y] = 5005453.963678
-Centroid2 [Z] = 5839760.545864
+Range High = -7055104.215116
+Range Low = -15345870.965681
+DiagonalDistanceXY = 8344478.360758
+DiagonalDistance = 14354146.858844
+Range Difference = -8290766.750564
+Corner [1] - [X] = -7055104.215116
+Corner [1] - [Y] = 5478081.142564
+Corner [1] - [Z] = 0.000000
+
+Corner [2] - [X] = -15345870.965681
+Corner [2] - [Y] = 5478081.142564
+Corner [2] - [Z] = 0.000000
+
+Corner [3] - [X] = -7055104.215116
+Corner [3] - [Y] = 4532826.784792
+Corner [3] - [Z] = 0.000000
+
+Corner [4] - [X] = -15345870.965681
+Corner [4] - [Y] = 4532826.784792
+Corner [4] - [Z] = 0.000000
+
+Corner [5] - [X] = -7055104.215116
+Corner [5] - [Y] = 5478081.142564
+Corner [5] - [Z] = 11679521.091728
+
+Corner [6] - [X] = -15345870.965681
+Corner [6] - [Y] = 5478081.142564
+Corner [6] - [Z] = 11679521.091728
+
+Corner [7] - [X] = -7055104.215116
+Corner [7] - [Y] = 4532826.784792
+Corner [7] - [Z] = 11679521.091728
+
+Corner [8] - [X] = -15345870.965681
+Corner [8] - [Y] = 4532826.784792
+Corner [8] - [Z] = 11679521.091728
+
+Vector of BASE plane X [X] = -1.000000
+Vector of BASE plane X [Y] = 0.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = 0.000000
+Vector of BASE plane Y [Y] = -1.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 8290766.750564
+AY top rectangle y size = 945254.357772
+BX top rectangle x size = 8290766.750564
+BY top rectangle y size = 945254.357772
+
+Origin of BASE rectangle [X] = -7055104.215116
+Origin of BASE rectangle [Y] = 5478081.142564
+Origin of BASE rectangle [Z] = 0.000000
+
+Origin of TOP rectangle [X] = -7055104.215116
+Origin of TOP rectangle [Y] = 5478081.142564
+Origin of TOP rectangle [Z] = 11679521.091728
+
+Size at the BASE [X] = 8290766.750564
+Size at the BASE [Y] = 945254.357772
+
+Size at the TOP [X] = 8290766.750564
+Size at the TOP [Y] = 945254.357772
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -11200487.590398
+Centroid [Y] = 5005453.963678
+Centroid [Z] = 5839760.545864
 
 Volume = 91531044966575898624.000000
 Area = 231418373477417.093750
 Radius = 2795717.406319
 
+===================================================
+====Slab====
+==== Is Smart Feauture = 0====
+1382
+===================================================
+===================================================
 
 
 ======================== pROPS nOT fOUND ===========================
 
 ===================================================
 ===================================================
-Element Description: Slab
-Element: ID 1382
+========
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Vector Rotation Axis World to Local
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
+Range [XLength] = 996990.938359
+Range [YLength] = 3465932.645165
+Range [ZLength] = 11679521.091728
 
+Quaternion Rotation
+qRotation [X] = 1708.765789
+qRotation [Y] = -1708.765789
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
 
-Centroid1 [X] = -7553599.684296
-Centroid1 [Y] = 2799860.462209
-Centroid1 [Z] = 5839760.545864
+Euler Rotation ?
+Rotation [X] = 0.707107
+Rotation [Y] = -0.707107
+Rotation [Z] = 0.000000
 
+Origin [X] = -7055104.215116
+Origin [Y] = 4532826.784792
+Origin [Z] = 11679521.091728
 
-Centroid2 [X] = -7553599.684296
-Centroid2 [Y] = 2799860.462209
-Centroid2 [Z] = 5839760.545864
+Range High = -7055104.215116
+Range Low = -8052095.153475
+DiagonalDistanceXY = 3606477.510257
+DiagonalDistance = 12223661.193117
+Range Difference = -996990.938359
+Corner [1] - [X] = -7055104.215116
+Corner [1] - [Y] = 4532826.784792
+Corner [1] - [Z] = 11679521.091728
+
+Corner [2] - [X] = -7055104.215116
+Corner [2] - [Y] = 1066894.139627
+Corner [2] - [Z] = 11679521.091728
+
+Corner [3] - [X] = -8052095.153475
+Corner [3] - [Y] = 4532826.784792
+Corner [3] - [Z] = 11679521.091728
+
+Corner [4] - [X] = -8052095.153475
+Corner [4] - [Y] = 1066894.139627
+Corner [4] - [Z] = 11679521.091728
+
+Corner [5] - [X] = -7055104.215116
+Corner [5] - [Y] = 4532826.784792
+Corner [5] - [Z] = 0.000000
+
+Corner [6] - [X] = -7055104.215116
+Corner [6] - [Y] = 1066894.139627
+Corner [6] - [Z] = 0.000000
+
+Corner [7] - [X] = -8052095.153475
+Corner [7] - [Y] = 4532826.784792
+Corner [7] - [Z] = 0.000000
+
+Corner [8] - [X] = -8052095.153475
+Corner [8] - [Y] = 1066894.139627
+Corner [8] - [Z] = 0.000000
+
+Vector of BASE plane X [X] = 0.000000
+Vector of BASE plane X [Y] = -1.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = -1.000000
+Vector of BASE plane Y [Y] = 0.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 3465932.645165
+AY top rectangle y size = 996990.938359
+BX top rectangle x size = 3465932.645165
+BY top rectangle y size = 996990.938359
+
+Origin of BASE rectangle [X] = -7055104.215116
+Origin of BASE rectangle [Y] = 4532826.784792
+Origin of BASE rectangle [Z] = 11679521.091728
+
+Origin of TOP rectangle [X] = -7055104.215116
+Origin of TOP rectangle [Y] = 4532826.784792
+Origin of TOP rectangle [Z] = 0.000000
+
+Size at the BASE [X] = 3465932.645165
+Size at the BASE [Y] = 996990.938359
+
+Size at the TOP [X] = 3465932.645165
+Size at the TOP [Y] = 996990.938359
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -7553599.684296
+Centroid [Y] = 2799860.462209
+Centroid [Z] = 5839760.545864
 
 Volume = 40358625312266690560.000000
 Area = 111160627129469.312500
 Radius = 2127890.383527
 
-
+start==================
+Node ID: 3
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 1
+leaf id:  1375
+Display Handler 000002B7C9988A90
+Dependent Elem 000002B7F8E27440
+Dependent Current Elem 0000000000000000
+Element Level 64
+Element Ref 0000000000000000
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 2
+leaf id:  1382
+Display Handler 000002B7C9988A90
+Dependent Elem 000002B7F8E27460
+Dependent Current Elem 0000000000000000
+Element Level 64
+Element Ref 0000000000000000
+finish==================
+Smart Feat Element Node ID: 3
+Number of Child: 2
 ===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1390
+====Parametric Solid/Surface====
+==== Is Smart Feauture = 1====
+1390
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureContainer, current element id = 1390, id = 0 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
-elemInst Full class name: ----- :BaseElementSchema:MstnVolume
-elemInst Full class name: ----- :BaseElementSchema:MstnRotation
 
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
 is smart feature
 is smart feature, but not found in the smartfeaturetree
 NodeId[int] = 0
@@ -146,8 +329,8 @@ Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = BooleanFeature, current element id = 1390, id = 3 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
 
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
 is smart feature
 NodeId[int] = 3
 Enabled[boolean] = 
@@ -166,8 +349,8 @@ BooleanFunction[int] = 1
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 is smart feature
 NodeId[int] = 1
 Enabled[boolean] = 
@@ -186,8 +369,8 @@ Disabled[boolean] =
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 is smart feature
 NodeId[int] = 2
 Enabled[boolean] = 
@@ -206,9 +389,7 @@ Disabled[boolean] =
 
 ===================================================
 ===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1390
+========
 ===================================================
 ===================================================
-
 

@@ -30,6 +30,10 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
+	
+	dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
+
+	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
