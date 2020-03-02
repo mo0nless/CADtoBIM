@@ -19,7 +19,7 @@ private:
 
 
 	DVec3d centroid;
-	RotMatrix axes;
+	RotMatrix rotMatrix;
 	DVec3d momentxyz;
 
 
@@ -40,8 +40,8 @@ public:
 	DVec3d getCentroid();
 	void setCentroid(DVec3d newCentroid);
 
-	RotMatrix getAxes();
-	void setAxes(RotMatrix newAxes);
+	RotMatrix getRotMatrixAxis();
+	void setRotMatrixAxis(RotMatrix rotationMatrix);
 
 	DVec3d getMomentxyz();
 	void setMomentxyz(DVec3d newMomentxyz);
@@ -50,8 +50,8 @@ public:
 	double width;
 	double height;
 
-	Transform originLocalToWorld;
-	DVec3d eulerRotation;
+	Transform matrixLocalToWorld, matrixWorldToLocal;
+	DVec3d vectorRotationAxis;
 
 	DVec3d vectorBaseX;
 	DVec3d vectorBaseY;

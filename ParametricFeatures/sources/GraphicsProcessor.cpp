@@ -52,9 +52,7 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 	outfile << "Area = " << area << std::endl;
 	outfile << "Radius = " << radius << std::endl;
 	outfile << std::endl;
-
-
-
+	
 
 	outfile.close();
 
@@ -62,30 +60,11 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 	dictionaryProperties->getGraphicProperties()->setVolume(volume);
 	dictionaryProperties->getGraphicProperties()->setRadius(radius);
 	dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
-	dictionaryProperties->getGraphicProperties()->setAxes(axes);
-
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::AREA),
-	//	PropertyTypeValue("double", area)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RADIUS),
-	//	PropertyTypeValue("double", radius)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::VOLUME),
-	//	PropertyTypeValue("double", volume)
-	//);
-
+	dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(axes);
+	dictionaryProperties->getGraphicProperties()->setMomentxyz(momentxyz);
 }
 
-inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld)
+inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
 {
 	outfile.open(filePath, std::ios_base::app);
 
@@ -102,10 +81,10 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 	outfile << "qRotation [W] = " << qRotation.w << std::endl;
 	outfile << std::endl;
 
-	outfile << "Euler Rotation ?" << std::endl;
-	outfile << "Rotation [X] = " << rotation.x << std::endl;
-	outfile << "Rotation [Y] = " << rotation.y << std::endl;
-	outfile << "Rotation [Z] = " << rotation.z << std::endl;
+	outfile << "Vector Rotation Axis Local to World" << std::endl;
+	outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
+	outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
+	outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
 	outfile << std::endl;
 
 	outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
@@ -113,30 +92,10 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
 	outfile << std::endl;
 
-	dictionaryProperties->getGraphicProperties()->originLocalToWorld = localToWorld;
-	dictionaryProperties->getGraphicProperties()->eulerRotation = rotation;
+	dictionaryProperties->getGraphicProperties()->matrixLocalToWorld = localToWorld;
+	dictionaryProperties->getGraphicProperties()->vectorRotationAxis = vectorRotation;
 	dictionaryProperties->getGraphicProperties()->range = range;
-	outfile.close();
-	
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RANGE),
-	//	PropertyTypeValue("DRange3d", range)
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::ORIGIN),
-	//	PropertyTypeValue("DPoint3d", localToWorld.Origin())
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::EULER_ROTATION),
-	//	PropertyTypeValue("DVec3d", rotation)
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::QUATERNION_ROTATION),
-	//	PropertyTypeValue("DPoint4d", qRotation)
-	//);
+	outfile.close();	
 }
 
 //! Collect output as text.
@@ -265,9 +224,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 					SolidUtil::GetFaceEdges(subEntitiesEdges, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)));
 
-					outfile << "Faces Point " << i << " X : " << point.x << std::endl;
+					/*outfile << "Faces Point " << i << " X : " << point.x << std::endl;
 					outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
-					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
+					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;*/
 
 					if (SolidUtil::GetFaceVertices(subEntitiesVertices, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i))) == SUCCESS)
 					{
@@ -275,9 +234,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						{
 							SolidUtil::EvaluateVertex(dynamic_cast<ISubEntityCR>(*subEntitiesVertices.at(i)), point);
 
-							outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
+							/*outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
 							outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
-							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
+							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;*/
 
 							mdlSolid_closestPointToSurface(&mdlSolid_clstPt, &mdlSolid_normal, &mdlSolid_param, &mdlSolid_point, i);
 
@@ -328,10 +287,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		DgnBoxDetail boxDetails;
 		bvector<DPoint3d> corners;
 		DRange3d range;
-		DVec3d rotation;
+		DVec3d vectorRotation;
 		DPoint4d qRotation;
 
-		Transform localToWorld;
+		Transform localToWorld, locTWor, worldToLocal;
 		double ax;
 		double ay;
 		double bx;
@@ -347,14 +306,30 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			boxDetails.GetRange(range);
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
-			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
+			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
+			
+			dictionaryProperties->getGraphicProperties()->matrixWorldToLocal = worldToLocal;
+
+			worldToLocal.Matrix().GetRotationAngleAndVector(vectorRotation);
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Vector Rotation Axis World to Local" << std::endl;
+			outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
+			outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
+			outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
+			outfile << std::endl;
+
+			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
+			
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
 
-			outfile.open(filePath, std::ios_base::app);
+			
 
 			outfile << std::fixed;
 
@@ -453,6 +428,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
+
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
@@ -489,7 +466,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::CONE);
 	}
@@ -517,6 +494,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			extrusionDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -553,7 +532,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -586,6 +565,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -641,7 +622,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -666,6 +647,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			ruledSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -705,7 +688,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -725,6 +708,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			sphereDetails.GetRange(range);
 			sphereDetails.m_localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			sphereDetails.m_localToWorld.Matrix().GetQuaternion(qRotation, false);
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(sphereDetails.m_localToWorld.Matrix());
 
 			primitive.ClosestPoint(sphereDetails.m_localToWorld.Origin(), this->solidDetails);
 
@@ -755,7 +740,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE);
 	}
@@ -790,6 +775,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotationAxes.GetQuaternion(axesQuatRotation, false);
+
+			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -846,7 +833,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;

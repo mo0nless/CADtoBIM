@@ -14,7 +14,6 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	SmartFeatureContainer& smartFeatureContainer)
 {
 	WString elDescr;
-	//WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
 
 	// Handles persistance of ECInstances
 	DgnECManagerR ecMgr = DgnECManager::GetManager();
@@ -33,6 +32,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	ecQuery->SetSelectProperties(true);
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
+	dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
@@ -73,9 +74,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
 				outfile.close();
 			}
-
-			dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
-
+			
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
 				outfile.open(filePath, std::ios_base::app);

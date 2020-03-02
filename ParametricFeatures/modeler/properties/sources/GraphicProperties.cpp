@@ -44,14 +44,14 @@ void GraphicProperties::setCentroid(DVec3d newCentroid)
 	this->centroid = newCentroid;
 }
 
-RotMatrix GraphicProperties::getAxes()
+RotMatrix GraphicProperties::getRotMatrixAxis()
 {
-	return this->axes;
+	return this->rotMatrix;
 }
 
-void GraphicProperties::setAxes(RotMatrix newAxes)
+void GraphicProperties::setRotMatrixAxis(RotMatrix rotationMatrix)
 {
-	this->axes = newAxes;
+	this->rotMatrix = rotationMatrix;
 }
 
 DVec3d GraphicProperties::getMomentxyz()

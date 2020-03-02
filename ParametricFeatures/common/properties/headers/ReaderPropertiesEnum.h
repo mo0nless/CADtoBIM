@@ -9,6 +9,7 @@ namespace ReaderPropertiesEnum {
 	enum class ReaderPropertiesEnum {
 		NODE_ID,
 		BOOLEAN_FUNCTION,
+		ROTATION,
 		NONE
 	};
 }

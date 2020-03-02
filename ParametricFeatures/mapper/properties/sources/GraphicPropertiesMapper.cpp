@@ -17,7 +17,7 @@ void GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(ISolidPrimi
 	graphicProperties.setRadius(radius);
 	graphicProperties.setVolume(volume);
 	graphicProperties.setCentroid(centroid);
-	graphicProperties.setAxes(axes);
+	graphicProperties.setRotMatrixAxis(axes);
 	graphicProperties.setMomentxyz(momentxyz);
 
 }
