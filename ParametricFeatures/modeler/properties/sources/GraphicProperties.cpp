@@ -74,6 +74,11 @@ void GraphicProperties::setVectorBaseZ(DVec3d newVectorBaseZ)
 	this->vectorBaseZ = newVectorBaseZ;
 }
 
+RotMatrix GraphicProperties::getRotMatrixAxis()
+{
+	return this->rotMatrixAxis;
+}
+
 double GraphicProperties::getSlabLength()
 {
 	return this->slabLength;
@@ -84,16 +89,28 @@ void GraphicProperties::setSlabLength(double newSlabLength)
 	this->slabLength = newSlabLength;
 }
 
+DVec3d GraphicProperties::getMomentxyz()
+{
+	return this->momentxyz;
+}
+
+void GraphicProperties::setMomentxyz(DVec3d moment)
+{
+	this->momentxyz = moment;
+}
+
 double GraphicProperties::getSlabWidth()
 {
-	return this->rotMatrix;
 	return this->slabWidth;
 }
 
 void GraphicProperties::setRotMatrixAxis(RotMatrix rotationMatrix)
+{
+	this->rotMatrixAxis = rotationMatrix;
+}
+
 void GraphicProperties::setSlabWidth(double newSlabWidth)
 {
-	this->rotMatrix = rotationMatrix;
 	this->slabWidth = newSlabWidth;
 }
 

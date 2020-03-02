@@ -17,7 +17,7 @@ private:
 	double radius;
 
 	DVec3d centroid;
-	RotMatrix rotMatrix;
+	RotMatrix rotMatrixAxis;
 	DVec3d momentxyz;
 
 	DVec3d vectorBaseX;
@@ -59,6 +59,8 @@ public:
 	double getSlabLength();
 	void setSlabLength(double newSlabLength);
 
+	DVec3d getMomentxyz();
+	void setMomentxyz(DVec3d moment);
 
 	double getSlabWidth();
 	void setSlabWidth(double newSlabWidth);

@@ -25,8 +25,8 @@ inline std::string IfcTextSolver()
 void CSG(Primitives prim, std::string name, double a = 0., double b = 0., double c = 0.)
 {
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	/*std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";*/
-	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid2;
 	
 	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));
@@ -201,8 +201,8 @@ public:
 void test()
 {
 	typedef IfcParse::IfcGlobalId guid;
-	//const char filename[] = "C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/IfcCsgPrimitive.ifc";
-	const char filename[] ="examples/ifc/IfcCsgPrimitive.ifc";
+	const char filename[] = "CC:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcCsgPrimitive.ifc";
+	
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	file.header().file_name().name(filename);
 
@@ -270,7 +270,9 @@ void test()
 	f << file;
 }
 
-
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
 void booleanOperation(DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer){
 
 	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;
@@ -286,7 +288,7 @@ void booleanOperation(DictionaryProperties& dictionaryProperties, SmartFeatureCo
 		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
 	}
 
-	SmartFeatureTreeNode* node = smartFeatureContainer.searchByElementId(smartFeatureContainer.getRoot(), dictionaryProperties.getGeneralProperties()->getElementId);
+	SmartFeatureTreeNode* node = smartFeatureContainer.searchByElementId(smartFeatureContainer.getRoot(), dictionaryProperties.getGeneralProperties()->getElementId());
 
 	//my = new Ifc4::IfcBooleanResult(o, left->serialize(file), right->serialize(file));
 
@@ -333,10 +335,10 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 		Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
 				
 		DVec3d objectOrigin = dictionaryProperties.getGraphicProperties()->getCentroid() / 100;
-		DVec3d vectorBaseX = dictionaryProperties.getGraphicProperties()->vectorBaseX;
+		DVec3d vectorBaseX = dictionaryProperties.getGraphicProperties()->getVectorBaseX();
 
 		DVec3d vectorBaseZ;
-		vectorBaseZ.CrossProduct(dictionaryProperties.getGraphicProperties()->vectorBaseX, dictionaryProperties.getGraphicProperties()->vectorBaseY);
+		vectorBaseZ.CrossProduct(vectorBaseX, dictionaryProperties.getGraphicProperties()->getVectorBaseY());
 
 		vectorBaseX.Normalize();
 		vectorBaseZ.Normalize();
@@ -353,9 +355,9 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX) {
 			my = new Ifc4::IfcBlock(
 				place, 
-				dictionaryProperties.getGraphicProperties()->length / 100, 
-				dictionaryProperties.getGraphicProperties()->width / 100, 
-				dictionaryProperties.getGraphicProperties()->height / 100
+				dictionaryProperties.getGraphicProperties()->getSlabLength() / 100, 
+				dictionaryProperties.getGraphicProperties()->getSlabWidth() / 100, 
+				dictionaryProperties.getGraphicProperties()->getSlabHeight() / 100
 			);
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PYRAMID) {

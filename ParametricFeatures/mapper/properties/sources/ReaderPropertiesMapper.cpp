@@ -71,24 +71,6 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION:
 		readerProperties.setBooleanFunction(eCValue.GetInteger());
 		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::WIDTH:
-		readerProperties.width = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::LENGTH:
-		readerProperties.length = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::HEIGHT:
-		readerProperties.height = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_X:
-		readerProperties.rotationX = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Y:
-		readerProperties.rotationY = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Z:
-		readerProperties.rotationZ = eCValue.GetDouble();
-		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::NONE:
 		break;
 	default:

@@ -85,9 +85,9 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
 	outfile << std::endl;
 
-	dictionaryProperties->getGraphicProperties()->matrixLocalToWorld = localToWorld;
-	dictionaryProperties->getGraphicProperties()->vectorRotationAxis = vectorRotation;
-	dictionaryProperties->getGraphicProperties()->range = range;
+	//dictionaryProperties->getGraphicProperties()->matrixLocalToWorld = localToWorld;
+	//dictionaryProperties->getGraphicProperties()->vectorRotationAxis = vectorRotation;
+	//dictionaryProperties->getGraphicProperties()->range = range;
 	outfile.close();	
 }
 
@@ -300,17 +300,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
 			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
-			
-			dictionaryProperties->getGraphicProperties()->matrixWorldToLocal = worldToLocal;
-
-			worldToLocal.Matrix().GetRotationAngleAndVector(vectorRotation);
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Vector Rotation Axis World to Local" << std::endl;
-			outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
-			outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
-			outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
-			outfile << std::endl;
+					
 
 			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
