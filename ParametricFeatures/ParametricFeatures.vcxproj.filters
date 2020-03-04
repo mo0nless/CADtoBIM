@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
-    <ClCompile Include="sources\IfcGenerator.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
@@ -25,6 +24,8 @@
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
+	<ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -32,7 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\GraphicsProcessor.h" />
-    <ClInclude Include="headers\IfcGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="common\result_status\headers\ResultStatus.h" />
@@ -58,5 +58,7 @@
     <ClInclude Include="modeler\properties\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
+	<ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
+
   </ItemGroup>
 </Project>

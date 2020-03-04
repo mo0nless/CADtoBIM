@@ -13,6 +13,8 @@ private:
 	long localNodeId;
 	long localParentNodeId;
 
+	bool isSmartFeature;
+
 	PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum;
 
 public:
@@ -23,6 +25,9 @@ public:
 
 	long getElementId();
 	void setElementId(long newElementId);
+
+	bool getIsSmartFeature();
+	void setIsSmartFeature(bool newIsSmartFeature);
 
 	long getCurrentElementId();
 	void setCurrentElementId(long newCurrentElementId);

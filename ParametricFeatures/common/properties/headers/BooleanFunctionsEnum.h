@@ -4,6 +4,7 @@ namespace BooleanFunctions {
 
 	/**
 	 *  Enum which defines boolean functions of the modeler and their values
+	 *  (0) union, (1) intersection, (2) difference 
 	 */
 	enum class BooleanFunctionsEnum {
 		UNION = 1,

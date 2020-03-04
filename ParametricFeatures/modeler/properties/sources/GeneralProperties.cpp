@@ -8,6 +8,7 @@ GeneralProperties::GeneralProperties()
 	this->currentElementId = -1;
 	this->localNodeId = -1;
 	this->localParentNodeId = -1;
+	this->isSmartFeature = false;
 }
 
 std::string GeneralProperties::getClassName()
@@ -28,6 +29,16 @@ long GeneralProperties::getElementId()
 void GeneralProperties::setElementId(long newElementId)
 {
 	this->elementId = newElementId;
+}
+
+bool GeneralProperties::getIsSmartFeature()
+{
+	return this->isSmartFeature;
+}
+
+void GeneralProperties::setIsSmartFeature(bool newIsSmartFeature)
+{
+	this->isSmartFeature = newIsSmartFeature;
 }
 
 long GeneralProperties::getCurrentElementId()

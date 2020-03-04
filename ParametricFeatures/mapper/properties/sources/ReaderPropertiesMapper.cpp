@@ -6,15 +6,13 @@
 void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	outfile.open(filePath, std::ios_base::app);
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
 	{
 		WString wStr;
 		ECValue ecVal;
-
-		//////////////////// WE CAN Check and store the type immediately WIth those functions
-		ecVal.IsBoolean();
 
 		// Gets the value stored in the specified ECProperty. 
 		dgnElementECInstanceP->GetValue(ecVal, ecProp->GetName().GetWCharCP());
@@ -34,24 +32,10 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		if (!valueAsString.empty()) {
 			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties);
 		}
-
-		/*if (!StringUtils::getString(wStr))
-		{
-			elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
-			propsDictionary.addElementProperty(
-				PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(), elemClassName, ElementPropertiesEnum::NODE_ID),
-				PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
-			);
-
-			if()*/
-
-			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
-				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-				<< "= " << static_cast<Utf8String>(wStr) << std::endl;
-
-			//outfile << propertyName << "["
-			//	<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-			//	<< ecVal.GetDouble() << std::endl;
+		
+		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
+			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
 			
 	}
 	outfile.close();
@@ -69,24 +53,6 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION:
 		readerProperties.setBooleanFunction(eCValue.GetInteger());
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::WIDTH:
-		readerProperties.width = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::LENGTH:
-		readerProperties.length = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::HEIGHT:
-		readerProperties.height = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_X:
-		readerProperties.rotationX = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Y:
-		readerProperties.rotationY = eCValue.GetDouble();
-		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Z:
-		readerProperties.rotationZ = eCValue.GetDouble();
 		break;
 	case ReaderPropertiesEnum::ReaderPropertiesEnum::NONE:
 		break;

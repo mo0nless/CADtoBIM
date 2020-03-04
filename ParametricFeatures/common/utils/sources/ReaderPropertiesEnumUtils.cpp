@@ -5,12 +5,7 @@
 std::map<ReaderPropertiesEnum::ReaderPropertiesEnum, std::string> ReaderPropertiesEnumUtils::mappedValues = {
 		{ ReaderPropertiesEnum::ReaderPropertiesEnum::NODE_ID, "NodeId" },
 		{ ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION,"BooleanFunction" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::WIDTH, "Width" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::LENGTH,"Length" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::HEIGHT, "Height" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_X,"Rotation-X" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Y,"Rotation-Y" },
-		{ ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION_Z,"Rotation-Z" },
+		{ ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION,"Rotation" },
 		{ ReaderPropertiesEnum::ReaderPropertiesEnum::NONE,"" },
 	};
 
