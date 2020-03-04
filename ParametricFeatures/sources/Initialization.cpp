@@ -594,13 +594,13 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 		double centroid_y = dictionaryProperties.getGraphicProperties()->getCentroid().y / 100;
 		double centroid_z = dictionaryProperties.getGraphicProperties()->getCentroid().z / 100;
 
-		double z_axis_x = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().x;
-		double z_axis_y = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().y;
-		double z_axis_z = dictionaryProperties.getGraphicProperties()->getVectorBaseZ().z;
+		double z_axis_x = dictionaryProperties.getGraphicProperties()->getVectorAxisZ().x;
+		double z_axis_y = dictionaryProperties.getGraphicProperties()->getVectorAxisZ().y;
+		double z_axis_z = dictionaryProperties.getGraphicProperties()->getVectorAxisZ().z;
 
-		double x_axis_x = dictionaryProperties.getGraphicProperties()->getVectorBaseX().x;
-		double x_axis_y = dictionaryProperties.getGraphicProperties()->getVectorBaseX().y;
-		double x_axis_z = dictionaryProperties.getGraphicProperties()->getVectorBaseX().z;
+		double x_axis_x = dictionaryProperties.getGraphicProperties()->getVectorAxisX().x;
+		double x_axis_y = dictionaryProperties.getGraphicProperties()->getVectorAxisX().y;
+		double x_axis_z = dictionaryProperties.getGraphicProperties()->getVectorAxisX().z;
 
 
 		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(centroid_x, centroid_y, centroid_z),
@@ -608,21 +608,66 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 
 	
 		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE) {
-			my = new Ifc4::IfcSphere(place, a);
+
+			SphereGraphicProperties sphereGraphicProperties;
+			if (dictionaryProperties.getGraphicProperties()->tryGetSphereGraphicProperties(sphereGraphicProperties)) {
+				my = new Ifc4::IfcSphere(place, sphereGraphicProperties.getRadius()/10000);
+			}
+			else
+			{
+				// TODO log sphere properties not found
+			}
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX) {
 			/*my = new Ifc4::IfcBlock(place, a, b, c);*/
-			my = new Ifc4::IfcBlock(place, dictionaryProperties.getGraphicProperties()->getSlabLength() / 100, dictionaryProperties.getGraphicProperties()->getSlabWidth() / 100,
-				dictionaryProperties.getGraphicProperties()->getSlabHeight() / 100);
+			SlabGraphicProperties slabGraphicProperties;
+			if (dictionaryProperties.getGraphicProperties()->tryGetSlabProperties(slabGraphicProperties)) {
+				my = new Ifc4::IfcBlock(place, slabGraphicProperties.getLength() / 100, slabGraphicProperties.getWidth() / 100, slabGraphicProperties.getHeight() / 100);
+			}
+			else {
+				// TODO log slab properties not found
+			}
+			
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PYRAMID) {
 			my = new Ifc4::IfcRectangularPyramid(place, a, b, c);
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) {
-			my = new Ifc4::IfcRightCircularCylinder(place, b, a);
+			CylinderGraphicProperties cylinderGraphicProperties;
+			if (dictionaryProperties.getGraphicProperties()->tryGetCylinderGraphicProperties(cylinderGraphicProperties)) {
+				my = new Ifc4::IfcRightCircularCylinder(place,cylinderGraphicProperties.getHeight()/100,cylinderGraphicProperties.getRadius()/100);
+			}
+			else {
+				// TODO log cylinder properties not found
+			}
 		}
 		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
-			my = new Ifc4::IfcRightCircularCone(place, b, a);
+			ConeGraphicProperties coneGraphicProperties;
+			if (dictionaryProperties.getGraphicProperties()->tryGetConeGraphicProperties(coneGraphicProperties)) {
+				/*my = new Ifc4::IfcRightCircularCone(place, dictionaryProperties.getGraphicProperties()->getHeight() / 100, dictionaryProperties.getGraphicProperties()->getRadius() / 100);*/
+				my = new Ifc4::IfcRightCircularCone(place, coneGraphicProperties.getHeight()/100, coneGraphicProperties.getBaseRadius()/100);
+			}
+			else {
+				// TODO log cone properties not found
+			}
+
+		}
+		//else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) {
+
+		//	Ifc4::IfcAxis2Placement2D* placeLocal = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,500), file.addTriplet<Ifc4::IfcDirection>(1,0,0));
+
+
+		//	Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, placeLocal,100);
+
+		//	Ifc4::IfcAxis1Placement* place2 = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+
+
+		//	my = new Ifc4::IfcRevolvedAreaSolid(profileDef, place, place2, 3.14);
+		//}
+
+		
+		if (my == nullptr) {
+			continue;
 		}
 
 		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
@@ -716,20 +761,30 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		{
 			SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
 
-			outfile.open(filePath, std::ios_base::app);
 			sFeatNode->GetAllChildrenRecursively(sFeatVec);
 			
 			for (size_t i = 0; i < sFeatVec.size(); i++)
 			{
+				outfile.open(filePath, std::ios_base::app);
 				outfile << "start==================" << std::endl;
+				outfile.close();
 				if (sFeatVec.at(i)->GetParent() != nullptr)
 				{						
+					outfile.open(filePath, std::ios_base::app);
+
 					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+					outfile.close();
+
+
 					newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 				}
 
+				outfile.open(filePath, std::ios_base::app);
 				outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
+				outfile.close();
+
+
 				newLocalNodeId = sFeatVec.at(i)->GetNodeId();
 				sFeatVec.at(i)->GetLeaf(leafNode);
 
@@ -739,6 +794,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					
 					DependentElmP depElm = currentElem.GetElementRef()->GetFirstDependent();
 					
+					outfile.open(filePath, std::ios_base::app);
 
 					outfile << "leaf id:  " <<leafNode.GetElementId() << std::endl;
 					outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
@@ -746,15 +802,23 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					outfile << "Dependent Current Elem " << depElm << std::endl;
 					outfile << "Element Level " << leafNode.GetElementRef()->GetLevel() << std::endl;					
 					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
+					
+					outfile.close();
 				}
+				outfile.open(filePath, std::ios_base::app);
+
 				outfile << "finish==================" << std::endl;
+				outfile.close();
+
 				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newElementId);
 			}
+			outfile.open(filePath, std::ios_base::app);
 
 			outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
 			outfile << "Number of Child: " << sFeatNode->GetChildCount() << std::endl;
 			outfile.close();
 		}
+
 
 		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
@@ -767,6 +831,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		outfile.close();
 
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
+		propertiesDictionary->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP())));
+
+
 		propertiesDictionary->getGeneralProperties()->setClassName(StringUtils::getString(elDescr.GetWCharCP()));
 		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());

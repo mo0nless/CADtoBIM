@@ -13,7 +13,7 @@
 
 #include "IfcGenerator.h"
 #include "GraphicsProcessor.h"
-#include "../common/utils/StringUtils.hpp"
+#include "../common/utils/headers/StringUtils.hpp"
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 

@@ -1,11 +1,13 @@
 #pragma once
 
 #include "../stdafx.h"
-#include "../common/utils/StringUtils.hpp"
+#include "../common/utils/headers/StringUtils.hpp"
 #include "../modeler/properties/headers/DictionaryProperties.h"
 
 #include "../mapper/properties/headers/ReaderPropertiesMapper.h"
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+
+#include "../common/utils/headers/PrimitiveTypeEnumUtils.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup

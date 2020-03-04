@@ -10,6 +10,7 @@ namespace PrimitiveTypeEnum {
 		CYLINDER,
 		PYRAMID,
 		SPHERE,
+		TORUS,
 		NONE
 
 	};

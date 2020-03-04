@@ -8,7 +8,7 @@
 USING_NAMESPACE_BENTLEY_ECOBJECT;
 USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
-#include "../../../common/utils/StringUtils.hpp"
+#include "../../../common/utils/headers/StringUtils.hpp"
 //#include "../../../common/enums/headers/PrimitiveTypeEnum.h"
 
 #include "../../../modeler/properties/headers/GraphicProperties.h"

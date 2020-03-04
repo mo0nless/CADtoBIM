@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-#include "../properties/headers/ReaderPropertiesEnum.h"
+#include "../../properties/headers/ReaderPropertiesEnum.h"
 
 /**
  *  Class used to contain the immutable map between ReaderPropertiesEnum and the string value from the modeler

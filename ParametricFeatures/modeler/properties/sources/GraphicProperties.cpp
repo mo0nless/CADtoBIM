@@ -2,6 +2,34 @@
 
 GraphicProperties::GraphicProperties()
 {
+	this->area = 0;
+	this->volume = 0;
+
+	this->centroid = DVec3d();
+	this->centroid.x = 0;
+	this->centroid.y = 0;
+	this->centroid.z = 0;
+
+	this->vectorAxisX = DVec3d();
+	this->vectorAxisX.x = 1;
+	this->vectorAxisX.y = 0;
+	this->vectorAxisX.z = 0;
+
+	this->vectorAxisY = DVec3d();
+	this->vectorAxisY.x = 0;
+	this->vectorAxisY.y = 1;
+	this->vectorAxisY.z = 0;
+
+	this->vectorAxisZ = DVec3d();
+	this->vectorAxisZ.x = 0;
+	this->vectorAxisZ.y = 0;
+	this->vectorAxisZ.z = 1;
+
+	this->slabProperties = nullptr;
+	this->coneProperties = nullptr;
+	this->sphereProperties = nullptr;
+	this->cylinderProperties = nullptr;
+
 }
 
 double GraphicProperties::getArea()
@@ -24,16 +52,6 @@ void GraphicProperties::setVolume(double newVolume)
 	this->volume = newVolume;
 }
 
-double GraphicProperties::getRadius()
-{
-	return this->radius;
-}
-
-void GraphicProperties::setRadius(double newRadius)
-{
-	this->radius = newRadius;
-}
-
 DVec3d GraphicProperties::getCentroid()
 {
 	return this->centroid;
@@ -44,62 +62,90 @@ void GraphicProperties::setCentroid(DVec3d newCentroid)
 	this->centroid = newCentroid;
 }
 
-DVec3d GraphicProperties::getVectorBaseX()
+DVec3d GraphicProperties::getVectorAxisX()
 {
-	return this->vectorBaseX;
+	return this->vectorAxisX;
 }
 
-void GraphicProperties::setVectorBaseX(DVec3d newVectorBaseX)
+void GraphicProperties::setVectorAxisX(DVec3d newVectorBaseX)
 {
-	this->vectorBaseX = newVectorBaseX;
+	this->vectorAxisX = newVectorBaseX;
 }
 
-DVec3d GraphicProperties::getVectorBaseY()
+DVec3d GraphicProperties::getVectorAxisY()
 {
-	return this->vectorBaseY;
+	return this->vectorAxisY;
 }
 
-void GraphicProperties::setVectorBaseY(DVec3d newVectorBaseY)
+void GraphicProperties::setVectorAxisY(DVec3d newVectorBaseY)
 {
-	this->vectorBaseY = newVectorBaseY;
+	this->vectorAxisY = newVectorBaseY;
 }
 
-DVec3d GraphicProperties::getVectorBaseZ()
+DVec3d GraphicProperties::getVectorAxisZ()
 {
-	return this->vectorBaseZ;
+	return this->vectorAxisZ;
 }
 
-void GraphicProperties::setVectorBaseZ(DVec3d newVectorBaseZ)
+void GraphicProperties::setVectorAxisZ(DVec3d newVectorBaseZ)
 {
-	this->vectorBaseZ = newVectorBaseZ;
+	this->vectorAxisZ = newVectorBaseZ;
 }
 
-double GraphicProperties::getSlabLength()
+bool GraphicProperties::tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR)
 {
-	return this->slabLength;
+
+	if (this->slabProperties == nullptr) {
+		return false;
+	}
+	slabGraphicPropertiesR = *this->slabProperties;
+	return true;
 }
 
-void GraphicProperties::setSlabLength(double newSlabLength)
+void GraphicProperties::setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties)
 {
-	this->slabLength = newSlabLength;
+	this->slabProperties = newSlabGraphicProperties;
 }
 
-double GraphicProperties::getSlabWidth()
+bool GraphicProperties::tryGetConeGraphicProperties(ConeGraphicProperties & coneGraphicPropertiesR)
 {
-	return this->slabWidth;
+
+	if (this->coneProperties == nullptr) {
+		return false;
+	}
+	coneGraphicPropertiesR = *this->coneProperties;
+	return true;
 }
 
-void GraphicProperties::setSlabWidth(double newSlabWidth)
+void GraphicProperties::setConeGraphicProperties(ConeGraphicProperties * newConeGraphicProperties)
 {
-	this->slabWidth = newSlabWidth;
+	this->coneProperties = newConeGraphicProperties;
 }
 
-double GraphicProperties::getSlabHeight()
+bool GraphicProperties::tryGetSphereGraphicProperties(SphereGraphicProperties & sphereGraphicPropertiesR)
 {
-	return this->slabHeight;
+	if (this->sphereProperties == nullptr) {
+		return false;
+	}
+	sphereGraphicPropertiesR = *this->sphereProperties;
+	return true;
 }
 
-void GraphicProperties::setSlabHeight(double newSlabHeight)
+void GraphicProperties::setSphereGraphicProperties(SphereGraphicProperties * newSphereGraphicProperties)
 {
-	this->slabHeight = newSlabHeight;
+	this->sphereProperties = newSphereGraphicProperties;
+}
+
+bool GraphicProperties::tryGetCylinderGraphicProperties(CylinderGraphicProperties & cylinderGraphicPropertiesR)
+{
+	if (this->cylinderProperties == nullptr) {
+		return false;
+	}
+	cylinderGraphicPropertiesR = *this->cylinderProperties;
+	return true;
+}
+
+void GraphicProperties::setCylinderGraphicProperties(CylinderGraphicProperties * newCylinderGraphicProperties)
+{
+	this->cylinderProperties = newCylinderGraphicProperties;
 }

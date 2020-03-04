@@ -1,8 +1,8 @@
 ===================================================
 ===================================================
-====Slab====
-==== Is Smart Feauture = 0====
-1375
+===================================================
+Element Description: Slab
+Element ID: 1375
 ===================================================
 ===================================================
 
@@ -11,7 +11,8 @@
 
 ===================================================
 ===================================================
-========
+Element Description: Slab
+Element: ID 1375
 ===================================================
 ===================================================
 
@@ -80,6 +81,10 @@ Vector of BASE plane Y [X] = 0.000000
 Vector of BASE plane Y [Y] = -1.000000
 Vector of BASE plane Y [Z] = 0.000000
 
+Vector of BASE plane Z [X] = 0.000000
+Vector of BASE plane Z [Y] = 0.000000
+Vector of BASE plane Z [Z] = 1.000000
+
 Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
 AX base rectangle x size = 8290766.750564
 AY top rectangle y size = 945254.357772
@@ -108,21 +113,15 @@ Centroid [Z] = 5839760.545864
 
 Volume = 91531044966575898624.000000
 Area = 231418373477417.093750
-Radius = 2795717.406319
 
-===================================================
-====Slab====
-==== Is Smart Feauture = 0====
-1382
-===================================================
-===================================================
 
 
 ======================== pROPS nOT fOUND ===========================
 
 ===================================================
 ===================================================
-========
+Element Description: Slab
+Element: ID 1382
 ===================================================
 ===================================================
 
@@ -191,6 +190,10 @@ Vector of BASE plane Y [X] = -1.000000
 Vector of BASE plane Y [Y] = 0.000000
 Vector of BASE plane Y [Z] = 0.000000
 
+Vector of BASE plane Z [X] = -0.000000
+Vector of BASE plane Z [Y] = -0.000000
+Vector of BASE plane Z [Z] = -1.000000
+
 Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
 AX base rectangle x size = 3465932.645165
 AY top rectangle y size = 996990.938359
@@ -219,9 +222,8 @@ Centroid [Z] = 5839760.545864
 
 Volume = 40358625312266690560.000000
 Area = 111160627129469.312500
-Radius = 2127890.383527
 
-start==================
+
 Node ID: 3
 finish==================
 start==================
@@ -229,8 +231,8 @@ Parent Ref Count: 2
 Parent ID: 3
 Node ID: 1
 leaf id:  1375
-Display Handler 000002B7C9988A90
-Dependent Elem 000002B7F8E27440
+Display Handler 0000024EA992A7B0
+Dependent Elem 0000024EBA6E1CB0
 Dependent Current Elem 0000000000000000
 Element Level 64
 Element Ref 0000000000000000
@@ -240,8 +242,8 @@ Parent Ref Count: 2
 Parent ID: 3
 Node ID: 2
 leaf id:  1382
-Display Handler 000002B7C9988A90
-Dependent Elem 000002B7F8E27460
+Display Handler 0000024EA992A7B0
+Dependent Elem 0000024EBA6E1CD0
 Dependent Current Elem 0000000000000000
 Element Level 64
 Element Ref 0000000000000000
@@ -249,23 +251,20 @@ finish==================
 Smart Feat Element Node ID: 3
 Number of Child: 2
 ===================================================
-====Parametric Solid/Surface====
-==== Is Smart Feauture = 1====
-1390
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1390
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureContainer, current element id = 1390, id = 0 ---------
-
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-
 elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
-
 elemInst Full class name: ----- :BaseElementSchema:MstnVolume
-
 elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+
 is smart feature
 is smart feature, but not found in the smartfeaturetree
 NodeId[int] = 0
@@ -287,7 +286,7 @@ Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
 Element ID[long] = 1390
 Model[string] = Default
-Last Modified[dateTime] = 2/20/2020 12:12:05 PM
+Last Modified[dateTime] = 2/28/2020 2:23:25 PM
 Size[int] = 76
 Linkages[int] = 2
 XAttributes[int] = 7
@@ -317,8 +316,8 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -58' 2.8151", -29' 2.3677", 10' 11.3892"
-Range High[point3d] = -31' 0.4069", -14' 8.6989", 49' 3.2129"
+Range Low[point3d] = -56' 6.0232", 21' 1.5333", 10' 11.3892"
+Range High[point3d] = -29' 3.6150", 35' 7.2021", 49' 3.2129"
 Volume[double] = 4657.6397 Cu.'
 Surface Area[double] = 3436.8116 Sq.'
 Rotation-X[double] = 0.0000°
@@ -329,8 +328,8 @@ Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = BooleanFeature, current element id = 1390, id = 3 ---------
-
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
 is smart feature
 NodeId[int] = 3
 Enabled[boolean] = 
@@ -349,8 +348,8 @@ BooleanFunction[int] = 1
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
-
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
 is smart feature
 NodeId[int] = 1
 Enabled[boolean] = 
@@ -369,8 +368,8 @@ Disabled[boolean] =
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
-
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
 is smart feature
 NodeId[int] = 2
 Enabled[boolean] = 
@@ -389,7 +388,9 @@ Disabled[boolean] =
 
 ===================================================
 ===================================================
-========
+Element Description: Parametric Solid/Surface
+Element: ID 1390
 ===================================================
 ===================================================
+
 

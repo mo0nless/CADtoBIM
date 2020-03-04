@@ -90,6 +90,12 @@ appObjects = \
 	$(o)ReaderProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
+	$(o)PrimitiveTypeEnumUtils$(oext) \
+	$(o)SlabGraphicProperties$(oext) \
+	$(o)ConeGraphicProperties$(oext) \
+	$(o)SphereGraphicProperties$(oext) \
+	$(o)CylinderGraphicProperties$(oext) \
+
 
 
 #--------------------------------------------------------------------------------------
@@ -181,7 +187,17 @@ $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sou
 
 $(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
 
-$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/ReaderPropertiesEnumUtils.h
+$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
+
+$(o)PrimitiveTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PrimitiveTypeEnumUtils.cpp $(baseDir)common/utils/headers/PrimitiveTypeEnumUtils.h
+
+$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SlabGraphicProperties.h
+
+$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/ConeGraphicProperties.h
+
+$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SphereGraphicProperties.h
+
+$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/CylinderGraphicProperties.h
 
 
 %include $(MDLMKI)dlmlink.mki

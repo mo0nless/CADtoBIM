@@ -3,6 +3,11 @@
 #include <DgnPlatform/DgnECInstance.h>
 #include <DgnPlatform/DgnECManager.h>
 
+#include "../primitives/headers/SlabGraphicProperties.h"
+#include "../primitives/headers/ConeGraphicProperties.h"
+#include "../primitives/headers/SphereGraphicProperties.h"
+#include "../primitives/headers/CylinderGraphicProperties.h"
+
 USING_NAMESPACE_BENTLEY_ECOBJECT;
 USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
@@ -14,18 +19,17 @@ class GraphicProperties {
 private:
 	double area;
 	double volume;
-	double radius;
 
 	DVec3d centroid;
 
-	DVec3d vectorBaseX;
-	DVec3d vectorBaseY;
-	DVec3d vectorBaseZ;
+	DVec3d vectorAxisX;
+	DVec3d vectorAxisY;
+	DVec3d vectorAxisZ;
 
-	double slabLength;
-	double slabWidth;
-	double slabHeight;
-
+	SlabGraphicProperties* slabProperties;
+	ConeGraphicProperties* coneProperties;
+	SphereGraphicProperties* sphereProperties;
+	CylinderGraphicProperties* cylinderProperties;
 
 public:
 	GraphicProperties();
@@ -36,30 +40,28 @@ public:
 	double getVolume();
 	void setVolume(double newVolume);
 
-	double getRadius();
-	void setRadius(double newRadius);
-
 	DVec3d getCentroid();
 	void setCentroid(DVec3d newCentroid);
 
-	DVec3d getVectorBaseX();
-	void setVectorBaseX(DVec3d newVectorBaseX);
+	DVec3d getVectorAxisX();
+	void setVectorAxisX(DVec3d newVectorBaseX);
 	
-	DVec3d getVectorBaseY();
-	void setVectorBaseY(DVec3d newVectorBaseY);
+	DVec3d getVectorAxisY();
+	void setVectorAxisY(DVec3d newVectorBaseY);
 
-	DVec3d getVectorBaseZ();
-	void setVectorBaseZ(DVec3d newVectorBaseZ);
+	DVec3d getVectorAxisZ();
+	void setVectorAxisZ(DVec3d newVectorBaseZ);
 
+	bool tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR);
+	void setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties);
 
-	double getSlabLength();
-	void setSlabLength(double newSlabLength);
+	bool tryGetConeGraphicProperties(ConeGraphicProperties& coneGraphicPropertiesR);
+	void setConeGraphicProperties(ConeGraphicProperties* newConeGraphicProperties);
 
+	bool tryGetSphereGraphicProperties(SphereGraphicProperties& sphereGraphicPropertiesR);
+	void setSphereGraphicProperties(SphereGraphicProperties* newSphereGraphicProperties);
 
-	double getSlabWidth();
-	void setSlabWidth(double newSlabWidth);
-
-	double getSlabHeight();
-	void setSlabHeight(double newSlabHeight);
+	bool tryGetCylinderGraphicProperties(CylinderGraphicProperties& cylinderGraphicPropertiesR);
+	void setCylinderGraphicProperties(CylinderGraphicProperties* newCylinderGraphicProperties);
 
 };

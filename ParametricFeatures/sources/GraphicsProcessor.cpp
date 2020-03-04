@@ -21,7 +21,7 @@ void GraphicsProcessor::updateClassAndID(std::string elemClName, Int64 elmID)
 
 inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive)
 {
-	double area, volume, radius;
+	double area, volume;
 	DVec3d centroid;
 	RotMatrix axes;
 	DVec3d momentxyz;
@@ -39,19 +39,18 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
 
-	radius = pow(((volume / M_PI)*(3. / 4.)), 1. / 3.);
+	
 
 	outfile << "Volume = " << volume << std::endl;
 	outfile << "Area = " << area << std::endl;
-	outfile << "Radius = " << radius << std::endl;
 	outfile << std::endl;
 
 	outfile.close();
 
 	dictionaryProperties->getGraphicProperties()->setArea(area);
 	dictionaryProperties->getGraphicProperties()->setVolume(volume);
-	dictionaryProperties->getGraphicProperties()->setRadius(radius);
 	dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
+
 
 
 	//propsDictionary->addGraphicProperty(
@@ -226,53 +225,53 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		CurveVectorPtr curveEdgesEval;
 		CurveVectorPtr curveVerticesEval;
 
-		DPoint3d point;
-		DVec3d normal, uDir, vDir;
+		/*DPoint3d point;*/
+		/*DVec3d normal, uDir, vDir;*/
 		
-		size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+		//size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
 
 		//mdlSolid_closestPointToSurface
-		DPoint3d mdlSolid_clstPt;
-		DPoint3d mdlSolid_normal;
-		DPoint2d mdlSolid_param;
-		DPoint3d mdlSolid_point;
+		//DPoint3d mdlSolid_clstPt;
+		//DPoint3d mdlSolid_normal;
+		//DPoint2d mdlSolid_param;
+		//DPoint3d mdlSolid_point;
 						
 
-		if ( nFaces != 0 ) 
-		{
-			for ( size_t i = 0; i < nFaces; i++ )
-			{
-				SolidUtil::Debug::DumpSubEntity(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), L" ");
-				
-				if ( subEntitiesFaces.at(i).IsValid() ) 
-				{
-					DPoint2d uvP = this->solidDetails.GetUV();
-					SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, uvP);
+		//if ( nFaces != 0 ) 
+		//{
+		//	for ( size_t i = 0; i < nFaces; i++ )
+		//	{
+		//		SolidUtil::Debug::DumpSubEntity(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), L" ");
+		//		
+		//		if ( subEntitiesFaces.at(i).IsValid() ) 
+		//		{
+		//			DPoint2d uvP = this->solidDetails.GetUV();
+		//			SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, uvP);
 
-					SolidUtil::GetFaceEdges(subEntitiesEdges, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)));
+		//			SolidUtil::GetFaceEdges(subEntitiesEdges, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)));
 
-					outfile << "Faces Point " << i << " X : " << point.x << std::endl;
-					outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
-					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
+		//			outfile << "Faces Point " << i << " X : " << point.x << std::endl;
+		//			outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
+		//			outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
 
-					if (SolidUtil::GetFaceVertices(subEntitiesVertices, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i))) == SUCCESS)
-					{
-						for (size_t k = 0; k < subEntitiesVertices.size(); k++)
-						{
-							SolidUtil::EvaluateVertex(dynamic_cast<ISubEntityCR>(*subEntitiesVertices.at(i)), point);
+		//			if (SolidUtil::GetFaceVertices(subEntitiesVertices, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i))) == SUCCESS)
+		//			{
+		//				for (size_t k = 0; k < subEntitiesVertices.size(); k++)
+		//				{
+		//					SolidUtil::EvaluateVertex(dynamic_cast<ISubEntityCR>(*subEntitiesVertices.at(i)), point);
 
-							outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
-							outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
-							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
+		//					outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
+		//					outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
+		//					outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
 
-							mdlSolid_closestPointToSurface(&mdlSolid_clstPt, &mdlSolid_normal, &mdlSolid_param, &mdlSolid_point, i);
+		//					mdlSolid_closestPointToSurface(&mdlSolid_clstPt, &mdlSolid_normal, &mdlSolid_param, &mdlSolid_point, i);
 
-							SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, mdlSolid_param);
-						}
-					}
-				}
-			}			
-		}
+		//					SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, mdlSolid_param);
+		//				}
+		//			}
+		//		}
+		//	}			
+		//}
 
 	}
 	break;
@@ -373,13 +372,18 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector of BASE plane Y [Z] = " << boxDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
-			dictionaryProperties->getGraphicProperties()->setVectorBaseX(boxDetails.m_vectorX);
-			dictionaryProperties->getGraphicProperties()->setVectorBaseY(boxDetails.m_vectorY);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
 
 			// calculate base vector Z
 			DVec3d vectorBaseZ;
 			vectorBaseZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
-			dictionaryProperties->getGraphicProperties()->setVectorBaseZ(vectorBaseZ);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
+			outfile << "Vector of BASE plane Z [X] = " << vectorBaseZ.x << std::endl;
+			outfile << "Vector of BASE plane Z [Y] = " << vectorBaseZ.y << std::endl;
+			outfile << "Vector of BASE plane Z [Z] = " << vectorBaseZ.z << std::endl;
+			outfile << std::endl;
 
 			outfile << "Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)" << std::endl;
 			outfile << "AX base rectangle x size = " << ax << std::endl;
@@ -413,12 +417,18 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		};
 
 		PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
-		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::BOX);
 
-		dictionaryProperties->getGraphicProperties()->setSlabLength( boxDetails.m_topX);
-		dictionaryProperties->getGraphicProperties()->setSlabWidth( boxDetails.m_topY);
-		dictionaryProperties->getGraphicProperties()->setSlabHeight( dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY));
+
+
+
+		// set slab properties
+		SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
+		slabProperties->setLength(boxDetails.m_topX);
+		slabProperties->setWidth(boxDetails.m_topY);
+		slabProperties->setHeight(dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY));
+
+		// set slab properties in graphic properties
+		dictionaryProperties->getGraphicProperties()->setSlabProperties(slabProperties);
 		
 
 
@@ -474,6 +484,20 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "0 Degree Vector of BASE circle (vector 90 Degree) [Z] = " << coneDetails.m_vector90.z << std::endl;
 			outfile << std::endl;
 
+
+			DVec3d vectorBaseZ;
+			vectorBaseZ.CrossProduct(coneDetails.m_vector0, coneDetails.m_vector90);
+
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(coneDetails.m_vector0);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(coneDetails.m_vector90);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
+			outfile << "0 Degree Vector of BASE circle Z [X] = " << vectorBaseZ.x << std::endl;
+			outfile << "0 Degree Vector of BASE circle Z [Y] = " << vectorBaseZ.y << std::endl;
+			outfile << "0 Degree Vector of BASE circle Z [Z] = " << vectorBaseZ.z << std::endl;
+			outfile << std::endl;
+			
+
 			outfile << "Radius at BASE = " << coneDetails.m_radiusA << std::endl;
 			outfile << "Radius at TOP = " << coneDetails.m_radiusB << std::endl;
 			outfile << std::endl;
@@ -483,11 +507,33 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
-		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::CONE);
+		PrintPrincipalAreaMoments(primitive);
+
+		double height = (3 * dictionaryProperties->getGraphicProperties()->getVolume()) / (PI*(pow(coneDetails.m_radiusA, 2) + coneDetails.m_radiusA*coneDetails.m_radiusB + pow(coneDetails.m_radiusB, 2)));
+
+
+		
+		if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
+			(dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  coneDetails.m_radiusA == coneDetails.m_radiusB)) {
+
+			CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
+			cylinderGraphicProperties->setRadius(coneDetails.m_radiusA);
+			cylinderGraphicProperties->setHeight(height);
+
+			dictionaryProperties->getGraphicProperties()->setCylinderGraphicProperties(cylinderGraphicProperties);
+
+		}else if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
+			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
+			coneGraphicProperties->setBaseRadius(coneDetails.m_radiusA);
+			coneGraphicProperties->setTopRadius(coneDetails.m_radiusB);
+
+			coneGraphicProperties->setHeight(height);
+
+			dictionaryProperties->getGraphicProperties()->setConeGraphicProperties(coneGraphicProperties);
+		}
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnExtrusion:
 	{
 		DgnExtrusionDetail extrusionDetails;
@@ -547,7 +593,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -635,7 +681,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
+
+		//dictionaryProperties->getGraphicProperties()->setConeRadius();
+
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -699,7 +748,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
@@ -746,12 +795,21 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			outfile << "True if the end cap is enabled = " << sphereDetails.m_capped << std::endl;
 
-			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
-		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE);
+		PrintPrincipalAreaMoments(primitive);
+
+		
+		SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
+		
+		double radius = pow(((dictionaryProperties->getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
+		sphereGraphicProperties->setRadius(radius);
+
+		dictionaryProperties->getGraphicProperties()->setSphereGraphicProperties(sphereGraphicProperties);
+
+	
+		outfile.close();
+
 	}
 	break;
 	case SolidPrimitiveType::SolidPrimitiveType_DgnTorusPipe:
@@ -840,7 +898,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		//PrintPrincipalAreaMoments(primitive);
+		PrintPrincipalAreaMoments(primitive);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;
