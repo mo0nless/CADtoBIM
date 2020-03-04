@@ -28,7 +28,7 @@ public:
 	bool getIsSmartFeature();
 	void setIsSmartFeature(bool newIsSmartFeature);
 
-	bool getAreReaderPropertiesFound();
-	void setAreReaderPropertiesFound(bool newAreReaderPropertiesFound);
+	bool getSmartFeatureMissingReaderProperties();
+	void setSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound);
 
 };

@@ -11,10 +11,10 @@
 * REMEMBER THAT THE INCLUDES ORDER MATTER
 */
 
-#include "IfcGenerator.h"
 #include "GraphicsProcessor.h"
 #include "../common/utils/StringUtils.hpp"
-#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../modeler/IfcGenerator/headers/IfcGenerator.h"
+//#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 
 

@@ -21,8 +21,10 @@ public:
 	 *  @param newElementId[in] the leaf id/the if of the referenced element
 	 */
 	void insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newElementId);
-	SmartFeatureTreeNode* searchByLocalId(SmartFeatureTreeNode* searchNode, long searchedLocalId);
-	SmartFeatureTreeNode* searchByElementId(SmartFeatureTreeNode* searchNode, long searchedByElementId);
+	int getTreeMaxDepth(SmartFeatureTreeNode* tree);
+
+	SmartFeatureTreeNode* searchByElementLocalNodeId(SmartFeatureTreeNode* searchNode, long searchedLocalId);
+	SmartFeatureTreeNode* searchByElementGlobalId(SmartFeatureTreeNode* searchNode, long searchedByElementId);
 
 	SmartFeatureTreeNode* getRoot();
 };

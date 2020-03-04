@@ -93,7 +93,6 @@ void CSG(Primitives prim, std::string name, double a = 0., double b = 0., double
 	f.close();
 }
 
-
 class CSGBool {
 private:
 	typedef enum {
@@ -201,12 +200,12 @@ public:
 void test()
 {
 	typedef IfcParse::IfcGlobalId guid;
-	const char filename[] = "CC:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcCsgPrimitive.ifc";
+	const char filename[] = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcCsgPrimitive.ifc";
 	
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	file.header().file_name().name(filename);
 
-	/*Ifc4::IfcRepresentationItem* csg1 = CSGBool::Box(8000.,6000.,3000.).subtract(
+	Ifc4::IfcRepresentationItem* csg1 = CSGBool::Box(8000.,6000.,3000.).subtract(
 		CSGBool::Box(7600.,5600.,2800.).move(200.,200.,200.)
 	).add(
 		CSGBool::Pyramid(8000.,6000.,3000.).move(0,0,3000.).add(
@@ -218,27 +217,18 @@ void test()
 				CSGBool::Box(2000.,4000.,1000.).move(3000.,1000.,4000.)
 			)
 		)
-	).serialize(file);*/
+	).serialize(file);
 
-	//const double x = 1000.; const double y = -4000.;
-
-	Ifc4::IfcRepresentationItem* csg2 = CSGBool::Sphere(5000.).move(0.,0.,4500.).intersect(
-		CSGBool::Box(6000., 6000., 6000.).move(3000., 3000., 0.)
-	).add(
-		CSGBool::Cone(500., 3000.).move(0,0).add(
-			CSGBool::Cone(1500., 1000.).move(0,0, 900.).add(
-				CSGBool::Cone(1100., 1000.).move(0,0, 1800.).add(
-					CSGBool::Cone(750., 600.).move(0,0, 2700.)
-				)))).serialize(file);
-
-	/*Ifc4::IfcRepresentationItem* csg2 = CSGBool::Cone(5000., 6000.).move(x, y, -4500.).intersect(
+	const double x = 1000.; const double y = -4000.;
+	
+	Ifc4::IfcRepresentationItem* csg2 = CSGBool::Cone(5000., 6000.).move(x, y, -4500.).intersect(
 		CSGBool::Box(6000., 6000., 6000.).move(x - 3000., y - 3000., 0.)
 	).add(
 		CSGBool::Cone(500., 3000.).move(x, y).add(
 			CSGBool::Cone(1500., 1000.).move(x, y, 900.).add(
 				CSGBool::Pyramid(1100., 1000., 6000.).move(x, y, 1800.).add(
 					CSGBool::Cone(7500., 600.).move(x, y, 2700.)
-				)))).serialize(file);*/
+				)))).serialize(file);
 
 	Ifc4::IfcBuildingElementProxy* product = new Ifc4::IfcBuildingElementProxy(
 		guid(), 0, S("IfcCsgPrimitive"), null, null, 0, 0, null, null);
@@ -252,8 +242,9 @@ void test()
 	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
 	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
 
-	//items->push(csg1);
+	items->push(csg1);
 	items->push(csg2);
+
 	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
 		file.getSingle<Ifc4::IfcRepresentationContext>(), S("Body"), S("CSG"), items);
 	reps->push(rep);
@@ -268,31 +259,6 @@ void test()
 
 	std::ofstream f(filename);
 	f << file;
-}
-
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-void booleanOperation(DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer){
-
-	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;
-	BooleanFunctions::BooleanFunctionsEnum currentBooleanOperation = dictionaryProperties.getReaderProperties()->getBooleanFunction();
-
-	if (currentBooleanOperation == BooleanFunctions::BooleanFunctionsEnum::UNION) {
-		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION;
-	}
-	else if (currentBooleanOperation == BooleanFunctions::BooleanFunctionsEnum::DIFFERENCE) {
-		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE;
-	}
-	else if (currentBooleanOperation == BooleanFunctions::BooleanFunctionsEnum::INTERSECTION) {
-		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
-	}
-
-	SmartFeatureTreeNode* node = smartFeatureContainer.searchByElementId(smartFeatureContainer.getRoot(), dictionaryProperties.getGeneralProperties()->getElementId());
-
-	//my = new Ifc4::IfcBooleanResult(o, left->serialize(file), right->serialize(file));
-
-	
 }
 
 #pragma warning( push )
@@ -321,6 +287,7 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 		boost::none,
 		boost::none
 	);
+
 	file.addBuildingProduct(primitive);
 	
 	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
@@ -424,7 +391,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	std::vector<DictionaryProperties*>propsDictVec;
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
 	
-
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
 		ElementHandle leafNode;
@@ -435,48 +401,67 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 		
-		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newElementId=-1;
+		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newLeafElementId=-1;
 
 		newCurrentElementId = currentElem.GetElementId();
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
 			SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
-
-			outfile.open(filePath, std::ios_base::app);
+						
 			sFeatNode->GetAllChildrenRecursively(sFeatVec);
 			
 			for (size_t i = 0; i < sFeatVec.size(); i++)
 			{
+				outfile.open(filePath, std::ios_base::app);
 				outfile << "start==================" << std::endl;
+				outfile.close();
+
 				if (sFeatVec.at(i)->GetParent() != nullptr)
-				{						
+				{		
+					outfile.open(filePath, std::ios_base::app);
 					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+					outfile.close();
+
 					newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 				}
 
-				outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
 				newLocalNodeId = sFeatVec.at(i)->GetNodeId();
+
+				outfile.open(filePath, std::ios_base::app);
+				//outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
+				outfile << "Node ID: " << newLocalNodeId << std::endl;
+				outfile.close();
+
+				
 				sFeatVec.at(i)->GetLeaf(leafNode);
 
 				if (leafNode.IsValid()) {
 
-					newElementId = leafNode.GetElementId();
+					newLeafElementId = leafNode.GetElementId();
 					
-					DependentElmP depElm = currentElem.GetElementRef()->GetFirstDependent();
-					
+					//DependentElmP depElm = currentElem.GetElementRef()->GetFirstDependent();		
 
-					outfile << "leaf id:  " <<leafNode.GetElementId() << std::endl;
-					outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
+					outfile.open(filePath, std::ios_base::app);
+					outfile << "Leaf ID:  " <<leafNode.GetElementId() << std::endl;
+					/*outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
 					outfile << "Dependent Elem " << leafNode.GetElementRef()->GetFirstDependent() << std::endl;
 					outfile << "Dependent Current Elem " << depElm << std::endl;
 					outfile << "Element Level " << leafNode.GetElementRef()->GetLevel() << std::endl;					
-					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
+					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;*/
+					outfile.close();
+
 				}
+
+				outfile.open(filePath, std::ios_base::app);
 				outfile << "finish==================" << std::endl;
-				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newElementId);
+				outfile.close();
+
+				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newLeafElementId);
+
 			}
 
+			outfile.open(filePath, std::ios_base::app);
 			outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
 			outfile << "Number of Child: " << sFeatNode->GetChildCount() << std::endl;
 			outfile.close();
@@ -496,7 +481,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		propertiesDictionary->getGeneralProperties()->setClassName(StringUtils::getString(elDescr.GetWCharCP()));
 		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
-		//propertiesDictionary->set(StringUtils::getString(elDescr.GetWCharCP()));
 		
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, outfile, filePath, *propertiesDictionary,*smartFeatureContainer);
 
@@ -506,33 +490,27 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		propsDictVec.push_back(propertiesDictionary);
 
-		ISolidKernelEntityPtr solidKernPtr;
-		//SolidUtil::Convert::ElementToBody(solidKernPtr, currentElem, true, true, true);
-
 	}
 
+	auto iterator = propsDictVec.begin();
 	for (int i = 0; i < propsDictVec.size(); ++i) {
 		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-		if (!propertiesDictionary->getAreReaderPropertiesFound()) {
-			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
+		if (!propertiesDictionary->getSmartFeatureMissingReaderProperties()) {
+			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
+				treeNode->getGeneralProperties()->setPrimitiveTypeEnum(propertiesDictionary->getGeneralProperties()->getPrimitiveTypeEnum());
+				if (propertiesDictionary->getIsSmartFeature()) propsDictVec.erase(iterator);
 			}
 		}	
-	
+		iterator++;
 	}
 
-	buildPrimitive(propsDictVec);
+	IfcGenerator ifcGen = IfcGenerator(propsDictVec, smartFeatureContainer);
+	test();
+	//buildPrimitive(propsDictVec);
 
 	outfile.close();
-	//IfcSchemaTester<Ifc2x3>();
-	//CSG(PRIM_BOX, "Box", 50, 60, 50);
-	//CSG(PRIM_CONE, "Cone", 50, 60, 50);
-	//CSG(PRIM_CYLINDER, "Cylinder", 50, 60, 50);
-	//CSG(PRIM_PYRAMID, "Pyramid", 50, 60, 50);
-	//CSG(PRIM_SPHERE, "Sphere", 50, 60, 50);
-
-//	PrimitivesMapperHandler::buildPrimitive(*propsDictVec.at(0));
 
 	return SUCCESS;
 }

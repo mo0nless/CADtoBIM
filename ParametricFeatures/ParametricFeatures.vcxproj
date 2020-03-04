@@ -30,7 +30,7 @@
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
-    <ClCompile Include="sources\IfcGenerator.cpp" />
+    <ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
@@ -48,7 +48,7 @@
     <ClInclude Include="common\result_status\headers\ResultStatusEnum.h" />
     <ClInclude Include="common\utils\StringUtils.hpp" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
-    <ClInclude Include="headers\IfcGenerator.h" />
+    <ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="ifc\primitives\headers\PrimitivesMapperHandler.h" />

@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
-    <ClCompile Include="sources\IfcGenerator.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
@@ -20,6 +19,7 @@
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
     <ClCompile Include="ifc\primitives\sources\PrimitivesMapperHandler.cpp" />
+    <ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -27,7 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\GraphicsProcessor.h" />
-    <ClInclude Include="headers\IfcGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="common\result_status\headers\ResultStatus.h" />
@@ -48,5 +47,6 @@
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="ifc\primitives\headers\PrimitivesMapperHandler.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
+    <ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
   </ItemGroup>
 </Project>

@@ -14,9 +14,6 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		WString wStr;
 		ECValue ecVal;
 
-		//////////////////// WE CAN Check and store the type immediately WIth those functions
-		ecVal.IsBoolean();
-
 		// Gets the value stored in the specified ECProperty. 
 		dgnElementECInstanceP->GetValue(ecVal, ecProp->GetName().GetWCharCP());
 
@@ -35,24 +32,10 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		if (!valueAsString.empty()) {
 			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties);
 		}
-
-		/*if (!StringUtils::getString(wStr))
-		{
-			elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
-			propsDictionary.addElementProperty(
-				PropertyObjAttribute<ElementPropertiesEnum>(currentElem.GetElementId(), elemClassName, ElementPropertiesEnum::NODE_ID),
-				PropertyTypeValue(StringUtils::getString(ecProp->GetTypeName()), wStr)
-			);
-
-			if()*/
-
-			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
-				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-				<< "= " << static_cast<Utf8String>(wStr) << std::endl;
-
-			//outfile << propertyName << "["
-			//	<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-			//	<< ecVal.GetDouble() << std::endl;
+		
+		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
+			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
 			
 	}
 	outfile.close();

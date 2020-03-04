@@ -32,12 +32,12 @@ void DictionaryProperties::setIsSmartFeature(bool newIsSmartFeature)
 	this->isSmartFeature = newIsSmartFeature;
 }
 
-bool DictionaryProperties::getAreReaderPropertiesFound()
+bool DictionaryProperties::getSmartFeatureMissingReaderProperties()
 {
 	return this->areReaderPropertiesFound;
 }
 
-void DictionaryProperties::setAreReaderPropertiesFound(bool newAreReaderPropertiesFound)
+void DictionaryProperties::setSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound)
 {
 	this->areReaderPropertiesFound = newAreReaderPropertiesFound;
 }
