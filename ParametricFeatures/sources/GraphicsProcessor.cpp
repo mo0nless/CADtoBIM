@@ -323,8 +323,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
-
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
@@ -444,7 +442,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -547,7 +544,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -618,7 +614,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -700,7 +695,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
@@ -761,7 +755,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			sphereDetails.m_localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			sphereDetails.m_localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(sphereDetails.m_localToWorld.Matrix());
 
 			primitive.ClosestPoint(sphereDetails.m_localToWorld.Origin(), this->solidDetails);
 
@@ -837,7 +830,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotationAxes.GetQuaternion(axesQuatRotation, false);
 
-			dictionaryProperties->getGraphicProperties()->setRotMatrixAxis(localToWorld.Matrix());
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 

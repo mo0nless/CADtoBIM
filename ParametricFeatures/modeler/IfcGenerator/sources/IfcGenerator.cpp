@@ -23,10 +23,10 @@ Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem * IfcGenerator::Primitiv
 	}
 	else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX) {
 		DVec3d objectOrigin = graphicProps->getCentroid() / 100;
-		DVec3d vectorBaseX = graphicProps->getVectorBaseX();
+		DVec3d vectorBaseX = graphicProps->getVectorAxisX();
 
-		DVec3d vectorBaseZ;
-		vectorBaseZ.CrossProduct(vectorBaseX, graphicProps->getVectorBaseY());
+		DVec3d vectorBaseZ = graphicProps->getVectorAxisZ();
+
 
 		vectorBaseX.Normalize();
 		vectorBaseZ.Normalize();
@@ -36,12 +36,7 @@ Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem * IfcGenerator::Primitiv
 			file.addTriplet<Ifc4::IfcDirection>(vectorBaseZ.x, vectorBaseZ.y, vectorBaseZ.z),
 			file.addTriplet<Ifc4::IfcDirection>(vectorBaseX.x, vectorBaseX.y, vectorBaseX.z)
 		);
-		my = new Ifc4::IfcBlock(
-			place,
-			graphicProps->getSlabLength() / 100,
-			graphicProps->getSlabWidth() / 100,
-			graphicProps->getSlabHeight() / 100
-		);
+		my = new Ifc4::IfcBlock(place,100,100,100);
 	}
 	else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::PYRAMID) {
 		my = new Ifc4::IfcRectangularPyramid(place, a, b, c);

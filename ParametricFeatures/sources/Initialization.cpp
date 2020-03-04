@@ -313,16 +313,11 @@ void buildPrimitive(std::vector<DictionaryProperties*>& dictionaryPropertiesVect
 		double x_axis_y = dictionaryProperties.getGraphicProperties()->getVectorAxisX().y;
 		double x_axis_z = dictionaryProperties.getGraphicProperties()->getVectorAxisX().z;
 
-		DVec3d vectorBaseZ;
-		vectorBaseZ.CrossProduct(vectorBaseX, dictionaryProperties.getGraphicProperties()->getVectorBaseY());
-
-		vectorBaseX.Normalize();
-		vectorBaseZ.Normalize();
 
 		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-			file.addTriplet<Ifc4::IfcCartesianPoint>(objectOrigin.x, objectOrigin.y, objectOrigin.z),
-			file.addTriplet<Ifc4::IfcDirection>(vectorBaseZ.x, vectorBaseZ.y, vectorBaseZ.z), 
-			file.addTriplet<Ifc4::IfcDirection>(vectorBaseX.x, vectorBaseX.y, vectorBaseX.z)
+			file.addTriplet<Ifc4::IfcCartesianPoint>(centroid_x,centroid_y,centroid_z),
+			file.addTriplet<Ifc4::IfcDirection>(z_axis_x,z_axis_y,z_axis_z), 
+			file.addTriplet<Ifc4::IfcDirection>(x_axis_x,x_axis_y,x_axis_z)
 		);
 
 		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE) {
@@ -501,9 +496,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 					outfile.open(filePath, std::ios_base::app);
 					outfile << "Leaf ID:  " <<leafNode.GetElementId() << std::endl;
-					/*outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
+					outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
 					outfile << "Dependent Elem " << leafNode.GetElementRef()->GetFirstDependent() << std::endl;
-					outfile << "Dependent Current Elem " << depElm << std::endl;
+					//outfile << "Dependent Current Elem " << depElm << std::endl;
 					outfile << "Element Level " << leafNode.GetElementRef()->GetLevel() << std::endl;					
 					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
 					
@@ -514,7 +509,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 				outfile << "finish==================" << std::endl;
 				outfile.close();
 
-				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newElementId);
+				//smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newElementId);
 			}
 			outfile.open(filePath, std::ios_base::app);
 
