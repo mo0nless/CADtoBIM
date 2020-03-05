@@ -122,18 +122,21 @@ is smart feature, but not found in the smartfeaturetree
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
 
 is smart feature
+is smart feature, but not found in the smartfeaturetree
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
 is smart feature
+is smart feature, but not found in the smartfeaturetree
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
 is smart feature
+is smart feature, but not found in the smartfeaturetree
 
 ===================================================
 ===================================================

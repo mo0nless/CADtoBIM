@@ -11,7 +11,7 @@ private:
 	SmartFeatureTreeNode* root;
 
 public:
-	SmartFeatureContainer() {};
+	SmartFeatureContainer();
 
 	/**
 	 *  Method used to insert a new node int the tree based on it's parent id

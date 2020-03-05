@@ -1,5 +1,10 @@
 #include "../headers/SmartFeatureContainer.h"
 
+SmartFeatureContainer::SmartFeatureContainer()
+{
+	this->root = nullptr;
+}
+
 void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newElementId)
 {
 	if (this->root == nullptr || newParentLocalNodeId <= 0) {
