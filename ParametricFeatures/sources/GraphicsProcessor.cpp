@@ -887,6 +887,13 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		}
 
 		PrintPrincipalAreaMoments(primitive);
+
+		TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
+		torusGraphicProperties->setMinorRadius(torusDetails.m_minorRadius);
+		torusGraphicProperties->setMajorRadius(torusDetails.m_majorRadius);
+		torusGraphicProperties->setSweepRadians(sweepRadians);
+
+		dictionaryProperties->getGraphicProperties()->setTorusGraphicProperties(torusGraphicProperties);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;

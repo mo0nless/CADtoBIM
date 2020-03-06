@@ -24,8 +24,8 @@
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
-	<ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
-
+    <ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
+    <ClCompile Include="modeler\properties\primitives\sources\TorusGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -58,7 +58,7 @@
     <ClInclude Include="modeler\properties\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
-	<ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
-
+    <ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
+    <ClInclude Include="modeler\properties\primitives\headers\TorusGraphicProperties.h" />
   </ItemGroup>
 </Project>
