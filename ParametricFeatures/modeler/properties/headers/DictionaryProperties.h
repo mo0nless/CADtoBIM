@@ -15,20 +15,17 @@ private:
 	GraphicProperties* graphicProperties;
 
 	bool areReaderPropertiesFound;
-	bool isSmartFeature;
 	
 
 public:
 	DictionaryProperties();
+	~DictionaryProperties();
 
 	GeneralProperties* getGeneralProperties();
 	ReaderProperties* getReaderProperties();
 	GraphicProperties* getGraphicProperties();
-
-	bool getIsSmartFeature();
-	void setIsSmartFeature(bool newIsSmartFeature);
-
-	bool getSmartFeatureMissingReaderProperties();
-	void setSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound);
+	
+	bool getIsSmartFeatureMissingReaderProperties();
+	void setIsSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound);
 
 };

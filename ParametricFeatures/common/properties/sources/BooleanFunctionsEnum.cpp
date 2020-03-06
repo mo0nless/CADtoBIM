@@ -13,6 +13,8 @@ namespace BooleanFunctions {
 
 		case static_cast<int>(BooleanFunctionsEnum::DIFFERENCE) :
 			return BooleanFunctionsEnum::DIFFERENCE;
+		case static_cast<int>(BooleanFunctionsEnum::UNDEFINED) :
+			return BooleanFunctionsEnum::UNDEFINED;
 
 		default:
 			// TODO add warning log missing value

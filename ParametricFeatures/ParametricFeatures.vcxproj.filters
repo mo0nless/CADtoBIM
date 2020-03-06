@@ -5,7 +5,6 @@
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
-    <ClCompile Include="mapper\sources\MappingHandler.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
@@ -17,15 +16,13 @@
     <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
-    <ClCompile Include="ifc\primitives\sources\PrimitivesMapperHandler.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SlabGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
-	<ClCompile Include="modeler\IfcGenerator\sources\IfcGenerator.cpp" />
-
+    <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -36,7 +33,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="common\result_status\headers\ResultStatus.h" />
-    <ClInclude Include="mapper\headers\MappingHandler.h" />
     <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
@@ -49,7 +45,6 @@
     <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
-    <ClInclude Include="ifc\primitives\headers\PrimitivesMapperHandler.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
@@ -58,7 +53,6 @@
     <ClInclude Include="modeler\properties\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
-	<ClInclude Include="modeler\IfcGenerator\headers\IfcGenerator.h" />
-
+    <ClInclude Include="mapper\IfcData\headers\IfcDataHandler.h" />
   </ItemGroup>
 </Project>

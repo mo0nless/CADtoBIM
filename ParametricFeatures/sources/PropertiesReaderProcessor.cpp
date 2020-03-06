@@ -31,7 +31,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
 	
-	dictionaryProperties.setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
+	dictionaryProperties.getGeneralProperties()->setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 	
@@ -44,11 +44,11 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 		elemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
-		dictionaryProperties.setSmartFeatureMissingReaderProperties(false);
+		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(true);
 	}
 	else{
 		// set value if reader properties exist for this element
-		dictionaryProperties.setSmartFeatureMissingReaderProperties(true);
+		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(false);
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();

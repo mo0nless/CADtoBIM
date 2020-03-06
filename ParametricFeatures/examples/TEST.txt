@@ -2,7 +2,7 @@
 ===================================================
 ===================================================
 Element Description: Slab
-Element ID: 1375
+Element ID: 1429
 ===================================================
 ===================================================
 
@@ -12,107 +12,37 @@ Element ID: 1375
 ===================================================
 ===================================================
 Element Description: Slab
-Element: ID 1375
+Element: ID 1429
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Range [XLength] = 8290766.750564
-Range [YLength] = 945254.357772
-Range [ZLength] = 11679521.091728
+Range [XLength] = 2716225.921027
+Range [YLength] = 10087423.988779
+Range [ZLength] = 17122900.873248
 
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 1708.765936
-qRotation [W] = 1708.765643
+qRotation [Z] = 2068.991413
+qRotation [W] = -2068.991413
 
-Euler Rotation ?
-Rotation [X] = 0.000000
-Rotation [Y] = 0.000000
-Rotation [Z] = 1.000000
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
 
-Origin [X] = -7055104.215116
-Origin [Y] = 5478081.142564
+Origin [X] = -13287027.202788
+Origin [Y] = 4130770.063025
 Origin [Z] = 0.000000
 
-Range High = -7055104.215116
-Range Low = -15345870.965681
-DiagonalDistanceXY = 8344478.360758
-DiagonalDistance = 14354146.858844
-Range Difference = -8290766.750564
-Corner [1] - [X] = -7055104.215116
-Corner [1] - [Y] = 5478081.142564
-Corner [1] - [Z] = 0.000000
 
-Corner [2] - [X] = -15345870.965681
-Corner [2] - [Y] = 5478081.142564
-Corner [2] - [Z] = 0.000000
+Centroid [X] = -11928914.242275
+Centroid [Y] = -912941.931364
+Centroid [Z] = 8561450.436624
 
-Corner [3] - [X] = -7055104.215116
-Corner [3] - [Y] = 4532826.784792
-Corner [3] - [Z] = 0.000000
-
-Corner [4] - [X] = -15345870.965681
-Corner [4] - [Y] = 4532826.784792
-Corner [4] - [Z] = 0.000000
-
-Corner [5] - [X] = -7055104.215116
-Corner [5] - [Y] = 5478081.142564
-Corner [5] - [Z] = 11679521.091728
-
-Corner [6] - [X] = -15345870.965681
-Corner [6] - [Y] = 5478081.142564
-Corner [6] - [Z] = 11679521.091728
-
-Corner [7] - [X] = -7055104.215116
-Corner [7] - [Y] = 4532826.784792
-Corner [7] - [Z] = 11679521.091728
-
-Corner [8] - [X] = -15345870.965681
-Corner [8] - [Y] = 4532826.784792
-Corner [8] - [Z] = 11679521.091728
-
-Vector of BASE plane X [X] = -1.000000
-Vector of BASE plane X [Y] = 0.000000
-Vector of BASE plane X [Z] = 0.000000
-
-Vector of BASE plane Y [X] = 0.000000
-Vector of BASE plane Y [Y] = -1.000000
-Vector of BASE plane Y [Z] = 0.000000
-
-Vector of BASE plane Z [X] = 0.000000
-Vector of BASE plane Z [Y] = 0.000000
-Vector of BASE plane Z [Z] = 1.000000
-
-Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
-AX base rectangle x size = 8290766.750564
-AY top rectangle y size = 945254.357772
-BX top rectangle x size = 8290766.750564
-BY top rectangle y size = 945254.357772
-
-Origin of BASE rectangle [X] = -7055104.215116
-Origin of BASE rectangle [Y] = 5478081.142564
-Origin of BASE rectangle [Z] = 0.000000
-
-Origin of TOP rectangle [X] = -7055104.215116
-Origin of TOP rectangle [Y] = 5478081.142564
-Origin of TOP rectangle [Z] = 11679521.091728
-
-Size at the BASE [X] = 8290766.750564
-Size at the BASE [Y] = 945254.357772
-
-Size at the TOP [X] = 8290766.750564
-Size at the TOP [Y] = 945254.357772
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -11200487.590398
-Centroid [Y] = 5005453.963678
-Centroid [Z] = 5839760.545864
-
-Volume = 91531044966575898624.000000
-Area = 231418373477417.093750
+Volume = 469162732573917249536.000000
+Area = 493270701472181.937500
 
 
 
@@ -121,145 +51,208 @@ Area = 231418373477417.093750
 ===================================================
 ===================================================
 Element Description: Slab
-Element: ID 1382
+Element: ID 1436
 ===================================================
 ===================================================
 
 -------- SmartFeatureSolid --------
-Range [XLength] = 996990.938359
-Range [YLength] = 3465932.645165
-Range [ZLength] = 11679521.091728
+Range [XLength] = 3801128.641971
+Range [YLength] = 2211095.109065
+Range [ZLength] = 8003916.359304
 
 Quaternion Rotation
-qRotation [X] = 1708.765789
-qRotation [Y] = -1708.765789
+qRotation [X] = 1414.559946
+qRotation [Y] = 1414.559592
 qRotation [Z] = 0.000000
 qRotation [W] = 0.000000
 
-Euler Rotation ?
-Rotation [X] = 0.707107
-Rotation [Y] = -0.707107
-Rotation [Z] = 0.000000
+Vector Rotation Axis Local to World
+vRotation [X] = 0.707107
+vRotation [Y] = 0.707107
+vRotation [Z] = 0.000000
 
-Origin [X] = -7055104.215116
-Origin [Y] = 4532826.784792
-Origin [Z] = 11679521.091728
-
-Range High = -7055104.215116
-Range Low = -8052095.153475
-DiagonalDistanceXY = 3606477.510257
-DiagonalDistance = 12223661.193117
-Range Difference = -996990.938359
-Corner [1] - [X] = -7055104.215116
-Corner [1] - [Y] = 4532826.784792
-Corner [1] - [Z] = 11679521.091728
-
-Corner [2] - [X] = -7055104.215116
-Corner [2] - [Y] = 1066894.139627
-Corner [2] - [Z] = 11679521.091728
-
-Corner [3] - [X] = -8052095.153475
-Corner [3] - [Y] = 4532826.784792
-Corner [3] - [Z] = 11679521.091728
-
-Corner [4] - [X] = -8052095.153475
-Corner [4] - [Y] = 1066894.139627
-Corner [4] - [Z] = 11679521.091728
-
-Corner [5] - [X] = -7055104.215116
-Corner [5] - [Y] = 4532826.784792
-Corner [5] - [Z] = 0.000000
-
-Corner [6] - [X] = -7055104.215116
-Corner [6] - [Y] = 1066894.139627
-Corner [6] - [Z] = 0.000000
-
-Corner [7] - [X] = -8052095.153475
-Corner [7] - [Y] = 4532826.784792
-Corner [7] - [Z] = 0.000000
-
-Corner [8] - [X] = -8052095.153475
-Corner [8] - [Y] = 1066894.139627
-Corner [8] - [Z] = 0.000000
-
-Vector of BASE plane X [X] = 0.000000
-Vector of BASE plane X [Y] = -1.000000
-Vector of BASE plane X [Z] = 0.000000
-
-Vector of BASE plane Y [X] = -1.000000
-Vector of BASE plane Y [Y] = 0.000000
-Vector of BASE plane Y [Z] = 0.000000
-
-Vector of BASE plane Z [X] = -0.000000
-Vector of BASE plane Z [Y] = -0.000000
-Vector of BASE plane Z [Z] = -1.000000
-
-Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
-AX base rectangle x size = 3465932.645165
-AY top rectangle y size = 996990.938359
-BX top rectangle x size = 3465932.645165
-BY top rectangle y size = 996990.938359
-
-Origin of BASE rectangle [X] = -7055104.215116
-Origin of BASE rectangle [Y] = 4532826.784792
-Origin of BASE rectangle [Z] = 11679521.091728
-
-Origin of TOP rectangle [X] = -7055104.215116
-Origin of TOP rectangle [Y] = 4532826.784792
-Origin of TOP rectangle [Z] = 0.000000
-
-Size at the BASE [X] = 3465932.645165
-Size at the BASE [Y] = 996990.938359
-
-Size at the TOP [X] = 3465932.645165
-Size at the TOP [Y] = 996990.938359
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -7553599.684296
-Centroid [Y] = 2799860.462209
-Centroid [Z] = 5839760.545864
-
-Volume = 40358625312266690560.000000
-Area = 111160627129469.312500
+Origin [X] = -20372833.953294
+Origin [Y] = 2204445.176692
+Origin [Z] = 8003916.359304
 
 
+Centroid [X] = -18472269.632308
+Centroid [Y] = 1098897.622160
+Centroid [Z] = 4001958.179652
+
+Volume = 67270171249947115520.000000
+Area = 113051985971803.359375
+
+
+
+======================== pROPS nOT fOUND ===========================
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1443
+===================================================
+===================================================
+
+-------- SmartFeatureSolid --------
+Range [XLength] = 8003916.359304
+Range [YLength] = 4987507.647245
+Range [ZLength] = 8003916.359304
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1414.559769
+qRotation [W] = -1414.559769
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = -16571705.311323
+Origin [Y] = 2204445.176692
+Origin [Z] = 0.000000
+
+
+Centroid [X] = -12569747.131670
+Centroid [Y] = -289308.646930
+Centroid [Z] = 4001958.179652
+
+Volume = 319513091873112260608.000000
+Area = 287803730373244.062500
+
+
+
+======================== pROPS nOT fOUND ===========================
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1450
+===================================================
+===================================================
+
+-------- SmartFeatureSolid --------
+Range [XLength] = 14148249.839582
+Range [YLength] = 14148249.839582
+Range [ZLength] = 13059968.892102
+
+Quaternion Rotation
+qRotation [X] = 1330.645824
+qRotation [Y] = -1330.645671
+qRotation [Z] = -1330.645859
+qRotation [W] = 1330.646068
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.577350
+vRotation [Y] = -0.577350
+vRotation [Z] = -0.577350
+
+Origin [X] = -6166195.495006
+Origin [Y] = 3938357.922320
+Origin [Z] = -2227837.571606
+
+
+Centroid [X] = -6174544.296197
+Centroid [Y] = -147019.411911
+Centroid [Z] = 4302146.874445
+
+Volume = 517808542998416523264.000000
+Area = 405495943445266.625000
+
+
+
+======================== pROPS nOT fOUND ===========================
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1457
+===================================================
+===================================================
+
+-------- SmartFeatureSolid --------
+Range [XLength] = 12282065.034210
+Range [YLength] = 5516559.993863
+Range [ZLength] = 12282065.034210
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1752.288934
+qRotation [W] = -1752.288934
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = -18798210.230959
+Origin [Y] = 2357590.064998
+Origin [Z] = 0.000000
+
+
+Centroid [X] = -12657177.713854
+Centroid [Y] = -400689.931934
+Centroid [Z] = 6141032.517105
+
+Volume = 832168228801459126272.000000
+Area = 572717237448107.250000
+
+
+Node ID: 9
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 9
+Node ID: 1
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 9
+Node ID: 8
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 8
+Node ID: 6
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 6
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 6
+Node ID: 5
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 5
 Node ID: 3
 finish==================
 start==================
 Parent Ref Count: 2
-Parent ID: 3
-Node ID: 1
-leaf id:  1375
-Display Handler 0000024EA992A7B0
-Dependent Elem 0000024EBA6E1CB0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
+Parent ID: 5
+Node ID: 4
 finish==================
 start==================
 Parent Ref Count: 2
-Parent ID: 3
-Node ID: 2
-leaf id:  1382
-Display Handler 0000024EA992A7B0
-Dependent Elem 0000024EBA6E1CD0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
+Parent ID: 8
+Node ID: 7
 finish==================
-Smart Feat Element Node ID: 3
-Number of Child: 2
 ===================================================
 ===================================================
 Element Description: Parametric Solid/Surface
-Element ID: 1390
+Element ID: 1465
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 1390, id = 0 ---------
+--------- className = SmartFeatureContainer, current element id = 1465, id = 0 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
 elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
 elemInst Full class name: ----- :BaseElementSchema:MstnVolume
@@ -272,24 +265,24 @@ Feature Status[string] =
 Deletable[boolean] = True
 IconName[string] = ParametricSolid
 DepthId[int] = 0
-Name[string] = Union #3
+Name[string] = Union #9
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
 IsTop[boolean] = True
 Enabled[boolean] = 
-Label[string] = Union #3
+Label[string] = Union #9
 DynamicLabel[string] = Parametric Solid
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
 Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
-Element ID[long] = 1390
+Element ID[long] = 1465
 Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 2:23:25 PM
+Last Modified[dateTime] = 3/6/2020 9:47:39 AM
 Size[int] = 76
 Linkages[int] = 2
-XAttributes[int] = 7
+XAttributes[int] = 13
 Links[string] = 
 Property List[string] = 
 Type[string] = Parametric Solid/Surface
@@ -300,7 +293,7 @@ Class[int] = Primary
 Transparency[double] = 0
 Priority[int] = 
 Template[long] = (None)
-Modified[boolean] = Modified
+Modified[boolean] = Not Modified
 New[boolean] = New
 Solid[boolean] = 
 View Dependent[boolean] = 
@@ -316,10 +309,10 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -56' 6.0232", 21' 1.5333", 10' 11.3892"
-Range High[point3d] = -29' 3.6150", 35' 7.2021", 49' 3.2129"
-Volume[double] = 4657.6397 Cu.'
-Surface Area[double] = 3436.8116 Sq.'
+Range Low[point3d] = -61' 8.0870", -19' 6.5139", 0' 0.0000"
+Range High[point3d] = -28' 1.3145", 13' 6.6288", 56' 2.1300"
+Volume[double] = 23988.2951 Cu.'
+Surface Area[double] = 7208.0055 Sq.'
 Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
@@ -327,18 +320,18 @@ Angle[double] = 0.0000°
 Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = BooleanFeature, current element id = 1390, id = 3 ---------
+--------- className = BooleanFeature, current element id = 1465, id = 9 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
 
 is smart feature
-NodeId[int] = 3
+NodeId[int] = 9
 Enabled[boolean] = 
-Label[string] = Union #3
+Label[string] = Union #9
 Feature Status[string] = 
 Deletable[boolean] = True
 IconName[string] = ParametricUnion
 DepthId[int] = 0
-Name[string] = Union #3
+Name[string] = Union #9
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
@@ -347,7 +340,7 @@ Disabled[boolean] =
 BooleanFunction[int] = 1
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
+--------- className = SmartFeatureSolid, current element id = 1465, id = 1 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
 is smart feature
@@ -367,7 +360,47 @@ Hidden[boolean] = True
 Disabled[boolean] = 
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
+--------- className = BooleanFeature, current element id = 1465, id = 8 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
+is smart feature
+NodeId[int] = 8
+Enabled[boolean] = 
+Label[string] = Intersection #8
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricIntersection
+DepthId[int] = 1
+Name[string] = Intersection #8
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Disabled[boolean] = 
+BooleanFunction[int] = 2
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1465, id = 6 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
+is smart feature
+NodeId[int] = 6
+Enabled[boolean] = 
+Label[string] = Union #6
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 2
+Name[string] = Union #6
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Disabled[boolean] = 
+BooleanFunction[int] = 1
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1465, id = 2 ---------
 elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
 
 is smart feature
@@ -377,7 +410,7 @@ Label[string] = Slab #2
 Feature Status[string] = 
 Deletable[boolean] = True
 IconName[string] = PlaceSlab
-DepthId[int] = 1
+DepthId[int] = 3
 Name[string] = Slab #2
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
@@ -386,11 +419,322 @@ IsTop[boolean] = False
 Hidden[boolean] = True
 Disabled[boolean] = 
 
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1465, id = 5 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+
+is smart feature
+NodeId[int] = 5
+Enabled[boolean] = 
+Label[string] = Difference #5
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricDifference
+DepthId[int] = 3
+Name[string] = Difference #5
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Disabled[boolean] = 
+BooleanFunction[int] = 3
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1465, id = 3 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+NodeId[int] = 3
+Enabled[boolean] = 
+Label[string] = Slab #3
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = PlaceSlab
+DepthId[int] = 4
+Name[string] = Slab #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1465, id = 4 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+NodeId[int] = 4
+Enabled[boolean] = 
+Label[string] = Slab #4
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 4
+Name[string] = Slab #4
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1465, id = 7 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+
+is smart feature
+NodeId[int] = 7
+Enabled[boolean] = 
+Label[string] = Slab #7
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 2
+Name[string] = Slab #7
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureCustomContainer, current element id = 1465, id = 300008 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+is smart feature
+is smart feature, but not found in the smartfeaturetree
+NodeId[int] = 300008
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 1
+Name[string] = Intersection #8
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Enabled[boolean] = 
+Label[string] = Intersection #8
+DynamicLabel[string] = Parametric Solid
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureCustomContainer, current element id = 1465, id = 300005 ---------
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+is smart feature
+is smart feature, but not found in the smartfeaturetree
+NodeId[int] = 300005
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 3
+Name[string] = Difference #5
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Enabled[boolean] = 
+Label[string] = Difference #5
+DynamicLabel[string] = Parametric Solid
+
 ===================================================
 ===================================================
 Element Description: Parametric Solid/Surface
-Element: ID 1390
+Element: ID 1465
 ===================================================
 ===================================================
 
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = BoxSolidElement, current element id = 1466, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnBox
+elemInst Full class name: ----- :DgnElementSchema:SolidElement
+is NOT smart feature
+Capped[int] = Yes
+Width[double] = 6' 10.4620"
+Length[double] = 18' 10.5129"
+Height[double] = 16' 5.6650"
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Slab
+Level[int] = Default
+Element ID[long] = 1466
+Model[string] = Default
+Last Modified[dateTime] = 3/6/2020 3:04:11 PM
+Size[int] = 60
+Linkages[int] = 0
+XAttributes[int] = 0
+Links[string] = 
+Property List[string] = 
+Type[string] = Solid
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -18' 8.7253", -7' 10.7092", -16' 5.6650"
+Range High[point3d] = -11' 10.2632", 10' 11.8037", 0' 0.0000"
+Volume[double] = 2136.6485 Cu.'
+Surface Area[double] = 1107.6702 Sq.'
+Rotation-X[double] = 180.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -90.0000°
+Angle[double] = 90.0000°
+Orientation[int] = Bottom
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1466
+===================================================
+===================================================
+
+--------  --------
+Range [XLength] = 2094535.616040
+Range [YLength] = 5753427.585864
+Range [ZLength] = 5020691.973779
+
+Quaternion Rotation
+qRotation [X] = 1120.345145
+qRotation [Y] = 1120.345145
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.707107
+vRotation [Y] = 0.707107
+vRotation [Z] = 0.000000
+
+Origin [X] = -5708022.149373
+Origin [Y] = -2405612.698314
+Origin [Z] = 0.000000
+
+
+Centroid [X] = -4660754.341352
+Centroid [Y] = 471101.094618
+Centroid [Z] = -2510345.986890
+
+Volume = 60503148953616556032.000000
+Area = 102905929702444.890625
+
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = SphereSolidElement, current element id = 1473, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnSphere
+elemInst Full class name: ----- :DgnElementSchema:SolidElement
+is NOT smart feature
+Capped[int] = Yes
+Center[point3d] = -5' 3.6367", -17' 9.7244", 0' 0.0000"
+Radius[double] = 11' 3.1542"
+Diameter[double] = 22' 6.3085"
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Sphere
+Level[int] = Default
+Element ID[long] = 1473
+Model[string] = Default
+Last Modified[dateTime] = 3/6/2020 3:24:29 PM
+Size[int] = 60
+Linkages[int] = 0
+XAttributes[int] = 0
+Links[string] = 
+Property List[string] = 
+Type[string] = Solid
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -16' 6.7909", -29' 0.8787", -11' 3.1543"
+Range High[point3d] = 5' 11.5176", -6' 6.5702", 11' 3.1543"
+Volume[double] = 5984.5820 Cu.'
+Surface Area[double] = 1594.0674 Sq.'
+Rotation-X[double] = -90.0000°
+Rotation-Y[double] = 38.6324°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 321.3676°
+Orientation[int] = Back
+
+===================================================
+===================================================
+Element Description: Sphere
+Element: ID 1473
+===================================================
+===================================================
+
+--------  --------
+Range [XLength] = 6865834.997521
+Range [YLength] = 6865834.997521
+Range [ZLength] = 6865834.997521
+
+Quaternion Rotation
+qRotation [X] = 654.392370
+qRotation [Y] = 818.792304
+qRotation [Z] = 818.792304
+qRotation [W] = 654.392370
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.492001
+vRotation [Y] = 0.615604
+vRotation [Z] = 0.615604
+
+Origin [X] = -1616371.178503
+Origin [Y] = -5428600.073938
+Origin [Z] = 0.000000
+
+Range High = 1816546.320258
+Range Low = -5049288.677263
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
+
+DiagonalDistanceXY = 9709756.970511
+DiagonalDistance = 11891975.052091
+Range Difference = -3232742.357006
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 1
 

@@ -21,8 +21,6 @@ private:
 	double volume;
 
 	DVec3d centroid;
-	RotMatrix rotMatrixAxis;
-	DVec3d momentxyz;
 
 	DVec3d vectorAxisX;
 	DVec3d vectorAxisY;

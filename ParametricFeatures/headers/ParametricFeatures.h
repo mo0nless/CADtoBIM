@@ -13,9 +13,7 @@
 
 #include "GraphicsProcessor.h"
 #include "../common/utils/headers/StringUtils.hpp"
-#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../modeler/IfcGenerator/headers/IfcGenerator.h"
-
+#include "../mapper/ifcData/headers/IfcDataHandler.h"
 
 
 #define CMD_TREE 0x0100000000000000UI64

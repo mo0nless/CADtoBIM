@@ -5,6 +5,14 @@ DictionaryProperties::DictionaryProperties()
 	this->generalProperties = new GeneralProperties();
 	this->readerProperties = new ReaderProperties();
 	this->graphicProperties = new GraphicProperties();
+	this->areReaderPropertiesFound = false;
+}
+
+DictionaryProperties::~DictionaryProperties()
+{
+	delete generalProperties;
+	delete readerProperties;
+	delete graphicProperties;
 }
 
 GeneralProperties * DictionaryProperties::getGeneralProperties()
@@ -22,22 +30,12 @@ GraphicProperties * DictionaryProperties::getGraphicProperties()
 	return this->graphicProperties;
 }
 
-bool DictionaryProperties::getIsSmartFeature()
-{
-	return this->isSmartFeature;
-}
-
-void DictionaryProperties::setIsSmartFeature(bool newIsSmartFeature)
-{
-	this->isSmartFeature = newIsSmartFeature;
-}
-
-bool DictionaryProperties::getSmartFeatureMissingReaderProperties()
+bool DictionaryProperties::getIsSmartFeatureMissingReaderProperties()
 {
 	return this->areReaderPropertiesFound;
 }
 
-void DictionaryProperties::setSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound)
+void DictionaryProperties::setIsSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound)
 {
 	this->areReaderPropertiesFound = newAreReaderPropertiesFound;
 }
