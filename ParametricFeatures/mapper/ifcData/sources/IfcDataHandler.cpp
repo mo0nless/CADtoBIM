@@ -11,6 +11,30 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 
+	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
+	Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
+	
+	IfcEntityList* entityList = new IfcEntityList();
+	entityList->push(ifcUnitLength);
+	entityList->push(ifcUnitAngle);
+	boost::shared_ptr<IfcEntityList> unitEntity(entityList);
+	
+	Ifc4::IfcUnitAssignment* unitAssigment = new Ifc4::IfcUnitAssignment(unitEntity);
+
+	Ifc4::IfcProject* project = new Ifc4::IfcProject(
+		guid::IfcGloballyUniqueId(name), file->getSingle<Ifc4::IfcOwnerHistory>(),
+		std::string("Project"), 
+		boost::none, 
+		boost::none, 
+		boost::none, 
+		boost::none, 
+		boost::none, 
+		unitAssigment
+	);
+
+	file->addEntity(project);
+
+
 	Ifc4::IfcBuildingElementProxy* elementProxy = new Ifc4::IfcBuildingElementProxy(
 		guid::IfcGloballyUniqueId("Primitives"),
 		0,
@@ -38,7 +62,6 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 
 		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(representationItem);
 		items->push(solid);
-		//items->push(representationItem);
 	};
 
 	if (!dictionaryProperties.empty()) 
@@ -61,9 +84,7 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
 	file->addEntity(shape);
 	elementProxy->setRepresentation(shape);
-
-	file->getSingle<Ifc4::IfcProject>()->setName("IfcCompositeProfileDef");
-
+	
 	std::ofstream f;
 	f.open(filename);
 	f << *file;

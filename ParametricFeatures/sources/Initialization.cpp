@@ -342,7 +342,7 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	Ifc4::IfcProject* project = new Ifc4::IfcProject(guid2::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), boost::none, boost::none, boost::none, boost::none, boost::none, boost::none, unitAssigment);
 
 	file.addEntity(project);
-	file.getSingle<Ifc4::IfcProject>();
+	//file.getSingle<Ifc4::IfcProject>();
 	
 
 	//file.addEntity(unitAssigment);
@@ -371,7 +371,7 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	for (int i = 0; i < dictionaryPropertiesVector.size(); ++i) {
 		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
-		if (dictionaryProperties.getIsSmartFeature()) {
+		if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) {
 			continue;
 		}
 		Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(dictionaryProperties, file);
@@ -566,6 +566,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	propsDictVec.clear();
 	
 	IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
+	//buildIfc(newPropsDictVec);
 	//test();
 	//buildPrimitive(propsDictVec);
 
