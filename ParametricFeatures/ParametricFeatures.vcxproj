@@ -27,6 +27,7 @@
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SlabGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\headers\TorusGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />

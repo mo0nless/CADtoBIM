@@ -94,6 +94,7 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
+	$(o)TorusGraphicProperties$(oext) \
 
 
 
@@ -195,6 +196,8 @@ $(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sourc
 $(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SphereGraphicProperties.h
 
 $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/CylinderGraphicProperties.h
+
+$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/TorusGraphicProperties.h
 
 
 %include $(MDLMKI)dlmlink.mki

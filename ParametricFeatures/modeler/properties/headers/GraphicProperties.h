@@ -7,6 +7,7 @@
 #include "../primitives/headers/ConeGraphicProperties.h"
 #include "../primitives/headers/SphereGraphicProperties.h"
 #include "../primitives/headers/CylinderGraphicProperties.h"
+#include "../primitives/headers/TorusGraphicProperties.h"
 
 USING_NAMESPACE_BENTLEY_ECOBJECT;
 USING_NAMESPACE_BENTLEY_DGNPLATFORM;
@@ -30,6 +31,7 @@ private:
 	ConeGraphicProperties* coneProperties;
 	SphereGraphicProperties* sphereProperties;
 	CylinderGraphicProperties* cylinderProperties;
+	TorusGraphicProperties* torusProperties;
 
 public:
 	GraphicProperties();
@@ -63,5 +65,8 @@ public:
 
 	bool tryGetCylinderGraphicProperties(CylinderGraphicProperties& cylinderGraphicPropertiesR);
 	void setCylinderGraphicProperties(CylinderGraphicProperties* newCylinderGraphicProperties);
+
+	bool tryGetTorusGraphicProperties(TorusGraphicProperties& torusGraphicPropertiesR);
+	void setTorusGraphicProperties(TorusGraphicProperties* newTorusGraphicProperties);
 
 };
