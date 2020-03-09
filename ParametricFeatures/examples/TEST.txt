@@ -1,87 +1,142 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Torus
+Element Description: Cone
 Element ID: 1375
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = TorusSolidElement, current element id = 1375, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnTorus
+--------- className = ConeElement, current element id = 1375, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnCone
 elemInst Full class name: ----- :DgnElementSchema:SolidElement
 is NOT smart feature
 
 ===================================================
 ===================================================
-Element Description: Torus
+Element Description: Cone
 Element: ID 1375
 ===================================================
 ===================================================
 
 --------  --------
-Range [XLength] = 14910425.058631
-Range [YLength] = 14910425.058631
-Range [ZLength] = 5148841.323764
+Range [XLength] = 4412770.729461
+Range [YLength] = 4951510.689765
+Range [ZLength] = 4412770.729461
 
 Quaternion Rotation
-qRotation [X] = 0.000000
+qRotation [X] = 0.707107
 qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = -0.707107
 
 Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
+vRotation [X] = -1.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -0.000000
 
-Origin [X] = -12369799.211530
-Origin [Y] = -272415.921664
+Origin [X] = -17384311.404099
+Origin [Y] = -4655172.005172
 Origin [Z] = 0.000000
 
-Range High = -4914586.682214
-Range Low = -19825011.740845
-DiagonalDistanceXY = 21086525.338664
-DiagonalDistance = 21706038.741222
-Range Difference = -14910425.058631
-Axes Coordinates Axes, XY in major Plane, Z through hole
-Axes Rotation (Quaternion) [X] = 0.000000
-Axes Rotation (Quaternion) [Y] = 0.000000
-Axes Rotation (Quaternion) [Z] = 1.000000
-Axes Rotation (Quaternion) [W] = 0.000000
+Center of BASE Circle [X] = -17384311.404099
+Center of BASE Circle [Y] = -4655172.005172
+Center of BASE Circle [Z] = 0.000000
 
-Center Point Rotation [X] = -12369799.211530
-Center Point Rotation [Y] = -272415.921664
-Center Point Rotation [Z] = 0.000000
+Center of TOP Circle [X] = -17384311.404099
+Center of TOP Circle [Y] = 296338.684593
+Center of TOP Circle [Z] = 0.000000
 
-Center [X] = -12369799.211530
-Center [Y] = -272415.921664
-Center [Z] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
 
-Vector X [X] = -1.000000
-Vector X [Y] = 0.000000
-Vector X [Z] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -1.000000
 
-Vector Y [X] = 0.000000
-Vector Y [Y] = -1.000000
-Vector Y [Z] = 0.000000
+0 Degree Vector of BASE circle Z [X] = -0.000000
+0 Degree Vector of BASE circle Z [Y] = 1.000000
+0 Degree Vector of BASE circle Z [Z] = 0.000000
 
-Major Radius = 4880791.867434
-Minor Radius = 1638073.982906
-Sweep Angle = 6.283185
-Sweep Radians = 6.283185
-
-Radius Major (Elbow Radius) = 4880791.867434
-Radius Minor (Pipe Diameter) = 1638073.982906
+Radius at BASE = 2206385.364730
+Radius at TOP = 568311.381824
 
 True if the end cap is enabled = 1
 
-Centroid [X] = -12369799.211530
-Centroid [Y] = -272415.921664
+Centroid [X] = -17384311.404099
+Centroid [Y] = -3110283.846205
 Centroid [Z] = 0.000000
 
-Volume = 258515778020798791680.000000
-Area = 315633824501873.500000
+Volume = 33418823413451481088.000000
+Area = 61771125752829.195313
+
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = ConeElement, current element id = 1385, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnCone
+elemInst Full class name: ----- :DgnElementSchema:SolidElement
+is NOT smart feature
+
+===================================================
+===================================================
+Element Description: Cone
+Element: ID 1385
+===================================================
+===================================================
+
+--------  --------
+Range [XLength] = 7593779.465412
+Range [YLength] = 6034197.637878
+Range [ZLength] = 7608573.547919
+
+Quaternion Rotation
+qRotation [X] = 0.706763
+qRotation [Y] = -0.022048
+qRotation [Z] = -124163.215452
+qRotation [W] = 0.706763
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000006
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = -22677233.492359
+Origin [Y] = 9859832.383274
+Origin [Z] = 0.000000
+
+Center of BASE Circle [X] = -22677233.492359
+Center of BASE Circle [Y] = 9859832.383274
+Center of BASE Circle [Z] = 0.000000
+
+Center of TOP Circle [X] = -23028249.345839
+Center of TOP Circle [Y] = 4239198.627325
+Center of TOP Circle [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.998056
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.062330
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
+
+0 Degree Vector of BASE circle Z [X] = -0.062330
+0 Degree Vector of BASE circle Z [Y] = -0.998056
+0 Degree Vector of BASE circle Z [Z] = 0.000000
+
+Radius at BASE = 2830797.166530
+Radius at TOP = 3804286.773960
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -22876896.605468
+Centroid [Y] = 6662731.106414
+Centroid [Z] = 0.000000
+
+Volume = 196118427008005472256.000000
+Area = 189771698285958.343750
 
 

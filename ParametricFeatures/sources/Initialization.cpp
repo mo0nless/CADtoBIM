@@ -312,6 +312,39 @@ Ifc4::IfcRepresentationItem* buildComplexPrimitive(DictionaryProperties& diction
 			// TODO log sphere properties not found
 		}
 	}
+	else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE) {
+		ConeGraphicProperties coneGraphicProperties;
+		if (dictionaryProperties.getGraphicProperties()->tryGetConeGraphicProperties(coneGraphicProperties)) {
+
+
+			double similarityRatio = coneGraphicProperties.getTopRadius() / coneGraphicProperties.getBaseRadius();
+			double smallConeHeight = (similarityRatio*coneGraphicProperties.getHeight()) / (1 - similarityRatio);
+
+			// !!! overrite the place for cone, as the cone is positioned in the space not based on the centroid, but the origin
+			Ifc4::IfcAxis2Placement3D* bigConePlacement = new Ifc4::IfcAxis2Placement3D(
+				file.addTriplet<Ifc4::IfcCartesianPoint>(coneGraphicProperties.getBaseOrigin().x / 1000000, coneGraphicProperties.getBaseOrigin().y/ 1000000, coneGraphicProperties.getBaseOrigin().z/ 1000000),
+				file.addTriplet<Ifc4::IfcDirection>(dictionaryProperties.getGraphicProperties()->getVectorAxisZ().x, dictionaryProperties.getGraphicProperties()->getVectorAxisZ().y, dictionaryProperties.getGraphicProperties()->getVectorAxisZ().z),
+				file.addTriplet<Ifc4::IfcDirection>(dictionaryProperties.getGraphicProperties()->getVectorAxisX().x, dictionaryProperties.getGraphicProperties()->getVectorAxisX().y, dictionaryProperties.getGraphicProperties()->getVectorAxisX().z)
+			);
+
+			Ifc4::IfcAxis2Placement3D* smallConePlacement = new Ifc4::IfcAxis2Placement3D(
+				file.addTriplet<Ifc4::IfcCartesianPoint>(coneGraphicProperties.getTopOrigin().x /1000000, coneGraphicProperties.getTopOrigin().y /1000000, coneGraphicProperties.getTopOrigin().z /1000000),
+				file.addTriplet<Ifc4::IfcDirection>(dictionaryProperties.getGraphicProperties()->getVectorAxisZ().x, dictionaryProperties.getGraphicProperties()->getVectorAxisZ().y, dictionaryProperties.getGraphicProperties()->getVectorAxisZ().z),
+				file.addTriplet<Ifc4::IfcDirection>(dictionaryProperties.getGraphicProperties()->getVectorAxisX().x, dictionaryProperties.getGraphicProperties()->getVectorAxisX().y, dictionaryProperties.getGraphicProperties()->getVectorAxisX().z)
+			);
+
+			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* bigCompleteCone = new Ifc4::IfcRightCircularCone(bigConePlacement, (coneGraphicProperties.getHeight()+ smallConeHeight) / 1000000, coneGraphicProperties.getBaseRadius() / 1000000);
+			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* smallCompleteCone = new Ifc4::IfcRightCircularCone(smallConePlacement, smallConeHeight / 1000000, coneGraphicProperties.getTopRadius() / 1000000);
+
+			file.addEntity(bigCompleteCone);
+			file.addEntity(smallCompleteCone);
+
+			my = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
+		}
+		else {
+			// TODO log cone properties not found
+		}
+	}
 
 
 	if (my != nullptr) {
@@ -396,41 +429,21 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid2;
 
-	//Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, Ifc4::IfcSIPrefix::IfcSIPrefix_CENTI, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
-	//Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, Ifc4::IfcSIPrefix::IfcSIPrefix_CENTI, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
 	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
 	Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
 
-	//IfcEntityList entityList = new IfcEntityList();
-
-
-	//std::vector<IfcUtil::IfcBaseClass*> ls;
-	//ls.push_back(ifcUnitLength);
-	//ls.push_back(ifcUnitAngle);
-	//boost::shared_ptr<IfcEntityList> ceva = new 
-	//boost::shared_ptr<void> p2(new int(5));
 
 	IfcEntityList* entityList = new IfcEntityList();
 	entityList->push(ifcUnitLength);
 	entityList->push(ifcUnitAngle);
 	boost::shared_ptr<IfcEntityList> unitEntity(entityList);
-	//unitEntity->push(ifcUnitLength);
-	//unitEntity->push(ifcUnitAngle);
-
-	//vec.push_back(ifcUnitLength);
-	//vec.push_back(ifcUnitAngle);
 
 	Ifc4::IfcUnitAssignment* unitAssigment = new Ifc4::IfcUnitAssignment(unitEntity);
-	//file.getRepresentationContext()-
-	//file.getRepresentationContext()->;
+
 	Ifc4::IfcProject* project = new Ifc4::IfcProject(guid2::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), boost::none, boost::none, boost::none, boost::none, boost::none, boost::none, unitAssigment);
 
 	file.addEntity(project);
-	file.getSingle<Ifc4::IfcProject>();
-	
 
-	//file.addEntity(unitAssigment);
-	//file.getRepresentationContext()
 
 	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
 	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
@@ -466,7 +479,7 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 		{
 			item = buildPrimitive(dictionaryProperties, place, file);
 		}
-		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) 
+		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE)
 		{
 			item = buildComplexPrimitive(dictionaryProperties, place, file);
 		}
@@ -618,6 +631,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		outfile.close();
 
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
+
 		propertiesDictionary->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP())));
 
 

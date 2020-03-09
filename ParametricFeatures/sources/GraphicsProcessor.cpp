@@ -498,9 +498,11 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		double height = (3 * dictionaryProperties->getGraphicProperties()->getVolume()) / (PI*(pow(coneDetails.m_radiusA, 2) + coneDetails.m_radiusA*coneDetails.m_radiusB + pow(coneDetails.m_radiusB, 2)));
 
 
-		
 		if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
 			(dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  coneDetails.m_radiusA == coneDetails.m_radiusB)) {
+
+			// overrite primitive type enum value
+			dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER);
 
 			CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 			cylinderGraphicProperties->setRadius(coneDetails.m_radiusA);
@@ -509,10 +511,33 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			dictionaryProperties->getGraphicProperties()->setCylinderGraphicProperties(cylinderGraphicProperties);
 
 		}else if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
-			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
-			coneGraphicProperties->setBaseRadius(coneDetails.m_radiusA);
-			coneGraphicProperties->setTopRadius(coneDetails.m_radiusB);
 
+			if (coneDetails.m_radiusB > 0 && coneDetails.m_radiusA != coneDetails.m_radiusB) {
+				// overrite primitive type enum value
+				dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE);
+			}
+
+			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
+
+			if (coneDetails.m_radiusA > coneDetails.m_radiusB)
+			{
+				coneGraphicProperties->setBaseRadius(coneDetails.m_radiusA);
+				coneGraphicProperties->setTopRadius(coneDetails.m_radiusB);
+				coneGraphicProperties->setTopOrigin(coneDetails.m_centerB);
+				coneGraphicProperties->setBaseOrigin(coneDetails.m_centerA);
+			}
+			else {
+				// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
+				dictionaryProperties->getGraphicProperties()->setVectorAxisX(-1*dictionaryProperties->getGraphicProperties()->getVectorAxisX());
+				dictionaryProperties->getGraphicProperties()->setVectorAxisY(-1* dictionaryProperties->getGraphicProperties()->getVectorAxisY());
+				dictionaryProperties->getGraphicProperties()->setVectorAxisZ(-1* dictionaryProperties->getGraphicProperties()->getVectorAxisZ());
+
+				coneGraphicProperties->setBaseRadius(coneDetails.m_radiusB);
+				coneGraphicProperties->setTopRadius(coneDetails.m_radiusA);
+				coneGraphicProperties->setTopOrigin(coneDetails.m_centerA);
+				coneGraphicProperties->setBaseOrigin(coneDetails.m_centerB);
+			}
+			
 			coneGraphicProperties->setHeight(height);
 
 			dictionaryProperties->getGraphicProperties()->setConeGraphicProperties(coneGraphicProperties);

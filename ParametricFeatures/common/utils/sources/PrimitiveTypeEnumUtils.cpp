@@ -7,6 +7,7 @@ std::map<PrimitiveTypeEnum::PrimitiveTypeEnum, std::string> PrimitiveTypeEnumUti
 	{ PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER, "Cylinder" },
 	{ PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE, "Sphere" },
 	{ PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS, "Torus" },
+	{ PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE, "Truncated Cone" },
 	{ PrimitiveTypeEnum::PrimitiveTypeEnum::NONE,"" },
 };
 
