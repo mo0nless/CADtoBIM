@@ -9,90 +9,6 @@ typedef std::string S;
 boost::none_t const null = boost::none;
 using boost::any_cast;
 
-typedef enum {
-	PRIM_BOX, PRIM_CONE, PRIM_CYLINDER, PRIM_PYRAMID, PRIM_SPHERE
-} Primitives;
-
-template<class IfcSchema>
-inline std::string IfcTextSolver()
-{
-	if (std::is_same<IfcSchema, Ifc2x3>::value) return "IFC2X3";
-	if (std::is_same<IfcSchema, Ifc4>::value) return "IFC4";
-	if (std::is_same<IfcSchema, Ifc4x1>::value) return "IFC4X1";
-	if (std::is_same<IfcSchema, Ifc4x2>::value) return "IFC4X2";
-}
-
-void CSG(Primitives prim, std::string name, double a = 0., double b = 0., double c = 0.)
-{
-	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	typedef Ifc4::IfcGloballyUniqueId guid2;
-	
-	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 1, 0));
-	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
-
-	if (prim == PRIM_SPHERE) {
-		my = new Ifc4::IfcSphere(place, a);
-	}
-	else if (prim == PRIM_BOX) {
-		my = new Ifc4::IfcBlock(place, a, b, c);
-	}
-	else if (prim == PRIM_PYRAMID) {
-		my = new Ifc4::IfcRectangularPyramid(place, a, b, c);
-	}
-	else if (prim == PRIM_CYLINDER) {
-		my = new Ifc4::IfcRightCircularCylinder(place, b, a);
-	}
-	else if (prim == PRIM_CONE) {
-		my = new Ifc4::IfcRightCircularCone(place, b, a);
-	}
-
-	Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
-		guid2::IfcGloballyUniqueId(name),
-		0,
-		name,
-		null,
-		null,
-		0,
-		0,
-		null,
-		null
-	);
-
-	file.addBuildingProduct(primitive);
-
-	primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
-	primitive->setObjectPlacement(file.addLocalPlacement());
-
-	Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
-	Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
-	
-	Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
-
-	file.addEntity(my);
-	items->push(solid);
-
-	Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
-		file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), S("Body"), S("Model"), items);
-
-	reps->push(rep);
-
-	Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(null, null, reps);
-
-	file.addEntity(rep);
-	file.addEntity(shape);
-
-	primitive->setRepresentation(shape);
-
-	file.getSingle<Ifc4::IfcProject>()->setName("proxy with CSG");
-
-	std::ofstream f;
-	f.open(filename);
-	f << file;
-	f.close();
-}
-
 class CSGBool {
 private:
 	typedef enum {
@@ -468,7 +384,7 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	for (int i = 0; i < dictionaryPropertiesVector.size(); ++i) {
 		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
-		if (dictionaryProperties.getIsSmartFeature()) {
+		if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) {
 			continue;
 		}
 		Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(dictionaryProperties, file);
@@ -509,7 +425,6 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	f << file;
 	f.close();
 }
-
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -568,24 +483,16 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
 					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
 					outfile.close();
-
-
+					
 					newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 				}
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
-				outfile.close();
-
 
 				newLocalNodeId = sFeatVec.at(i)->GetNodeId();
 
 				outfile.open(filePath, std::ios_base::app);
-				//outfile << "Node ID: " << sFeatVec.at(i)->GetNodeId() << std::endl;
 				outfile << "Node ID: " << newLocalNodeId << std::endl;
 				outfile.close();
-
-				
+								
 				sFeatVec.at(i)->GetLeaf(leafNode);
 
 				if (leafNode.IsValid()) {
@@ -595,13 +502,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 					outfile.open(filePath, std::ios_base::app);
 
 					outfile.open(filePath, std::ios_base::app);
-					outfile << "Leaf ID:  " <<leafNode.GetElementId() << std::endl;
-					outfile << "Display Handler " << leafNode.GetDisplayHandler() << std::endl;
-					outfile << "Dependent Elem " << leafNode.GetElementRef()->GetFirstDependent() << std::endl;
-					//outfile << "Dependent Current Elem " << depElm << std::endl;
-					outfile << "Element Level " << leafNode.GetElementRef()->GetLevel() << std::endl;					
-					outfile << "Element Ref " << leafNode.GetIDependencyHandler() << std::endl;
-					
+					outfile << "Leaf ID:  " << leafNode.GetElementId() << std::endl;				
 					outfile.close();
 				}
 				outfile.open(filePath, std::ios_base::app);
@@ -649,23 +550,39 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	}
 
+	std::vector<DictionaryProperties*> newPropsDictVec;
 	auto iterator = propsDictVec.begin();
+
 	for (int i = 0; i < propsDictVec.size(); ++i) {
 		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-		if (!propertiesDictionary->getSmartFeatureMissingReaderProperties()) {
+		if (propertiesDictionary->getIsSmartFeatureMissingReaderProperties()) {
 			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
 				treeNode->getGeneralProperties()->setPrimitiveTypeEnum(propertiesDictionary->getGeneralProperties()->getPrimitiveTypeEnum());
-				if (propertiesDictionary->getIsSmartFeature()) propsDictVec.erase(iterator);
 			}
 		}	
+		else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
+		{
+			continue;
+		}
+		else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
+		{
+			continue;
+		}
+		else
+		{
+			newPropsDictVec.push_back(propertiesDictionary);
+		}
 		iterator++;
 	}
 
-	//IfcGenerator ifcGen = IfcGenerator(propsDictVec, smartFeatureContainer);
-	test();
-	buildIfc(propsDictVec);
+	propsDictVec.clear();
+	
+	IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
+	//buildIfc(newPropsDictVec);
+	//test();
+	//buildPrimitive(propsDictVec);
 
 	outfile.close();
 

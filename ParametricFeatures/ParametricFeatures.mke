@@ -75,13 +75,12 @@ appObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
-	$(o)IfcGenerator$(oext) \
+	$(o)IfcDataHandler$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
-	$(o)MappingHandler$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)GraphicPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
@@ -160,15 +159,13 @@ $(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)heade
 
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
 
-$(o)IfcGenerator$(oext) : $(baseDir)modeler/IfcGenerator/sources/IfcGenerator.cpp $(baseDir)modeler/IfcGenerator/headers/IfcGenerator.h 
+$(o)IfcDataHandler$(oext) : $(baseDir)mapper/ifcData/sources/IfcDataHandler.cpp $(baseDir)mapper/ifcData/headers/IfcDataHandler.h 
 
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
 
 $(o)ResultStatus$(oext) : $(baseDir)common/result_status/sources/ResultStatus.cpp $(baseDir)common/result_status/headers/ResultStatus.h
 
 $(o)ResultStatusEnum$(oext) : $(baseDir)common/result_status/sources/ResultStatusEnum.cpp $(baseDir)common/result_status/headers/ResultStatusEnum.h
-
-$(o)MappingHandler$(oext) : $(baseDir)mapper/sources/MappingHandler.cpp $(baseDir)mapper/headers/MappingHandler.h
 
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
 

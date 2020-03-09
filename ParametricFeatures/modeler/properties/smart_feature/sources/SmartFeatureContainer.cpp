@@ -1,15 +1,30 @@
 #include "../headers/SmartFeatureContainer.h"
 
+void SmartFeatureContainer::DestroyRecursive(SmartFeatureTreeNode* node)
+{
+	if (node)
+	{
+		DestroyRecursive(node->getLeftNode());
+		DestroyRecursive(node->getRightNode());
+		delete node;
+	}
+}
+
 SmartFeatureContainer::SmartFeatureContainer()
 {
 	this->root = nullptr;
 }
 
-void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newElementId)
+SmartFeatureContainer::~SmartFeatureContainer()
+{
+	DestroyRecursive(this->root);
+}
+
+void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newLeafElementId)
 {
 	if (this->root == nullptr || newParentLocalNodeId <= 0) {
 		this->root = new SmartFeatureTreeNode();
-		this->root->getGeneralProperties()->setElementId(newElementId);
+		this->root->getGeneralProperties()->setElementId(newLeafElementId);
 		this->root->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
 		this->root->getGeneralProperties()->setLocalParentNodeId(-1);
 		this->root->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
@@ -20,7 +35,7 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 		if (parent != nullptr) {
 
 			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode();
-			newNode->getGeneralProperties()->setElementId(newElementId);
+			newNode->getGeneralProperties()->setElementId(newLeafElementId);
 			newNode->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
 			newNode->getGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
 			newNode->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
