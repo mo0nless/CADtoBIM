@@ -579,8 +579,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	propsDictVec.clear();
 	
-	IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
-	//buildIfc(newPropsDictVec);
+	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
+	buildIfc(newPropsDictVec);
 	//test();
 	//buildPrimitive(propsDictVec);
 
