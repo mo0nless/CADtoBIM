@@ -1,233 +1,222 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Torus
-Element ID: 1375
+Element Description: Complex Chain
+Element ID: 1583
 ===================================================
 ===================================================
 
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = TorusSolidElement, current element id = 1375, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnTorus
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Center[point3d] = -40' 7.0000", -0' 10.7250", 0' 0.0000"
-Major Radius[double] = 16' 0.1572"
-Minor Radius[double] = 5' 4.4911"
-Sweep Angle[double] = 360.0000°
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Torus
-Level[int] = Default
-Element ID[long] = 1375
-Model[string] = Default
-Last Modified[dateTime] = 3/3/2020 5:36:34 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -61' 11.6483", -22' 3.3733", -5' 4.4911"
-Range High[point3d] = -19' 2.3517", 20' 5.9232", 5' 4.4911"
-Volume[double] = 9129.3985 Cu.'
-Surface Area[double] = 3397.4542 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -180.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Top
-
 ===================================================
 ===================================================
-Element Description: Torus
-Element: ID 1375
+Element Description: Complex Chain
+Element: ID 1583
 ===================================================
 ===================================================
 
---------  --------
-Range [XLength] = 14910425.058631
-Range [YLength] = 14910425.058631
-Range [ZLength] = 5148841.323764
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = 0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = -12369799.211530
-Origin [Y] = -272415.921664
-Origin [Z] = 0.000000
-
-Range High = -4914586.682214
-Range Low = -19825011.740845
-DiagonalDistanceXY = 21086525.338664
-DiagonalDistance = 21706038.741222
-Range Difference = -14910425.058631
-Axes Coordinates Axes, XY in major Plane, Z through hole
-Axes Rotation (Quaternion) [X] = 0.000000
-Axes Rotation (Quaternion) [Y] = 0.000000
-Axes Rotation (Quaternion) [Z] = 1.000000
-Axes Rotation (Quaternion) [W] = 0.000000
-
-Center Point Rotation [X] = -12369799.211530
-Center Point Rotation [Y] = -272415.921664
-Center Point Rotation [Z] = 0.000000
-
-Center [X] = -12369799.211530
-Center [Y] = -272415.921664
-Center [Z] = 0.000000
-
-Vector X [X] = -1.000000
-Vector X [Y] = 0.000000
-Vector X [Z] = 0.000000
-
-Vector Y [X] = 0.000000
-Vector Y [Y] = -1.000000
-Vector Y [Z] = 0.000000
-
-Vector Z [X] = 0.000000
-Vector Z [Y] = 0.000000
-Vector Z [Z] = 1.000000
-
-Major Radius = 4880791.867434
-Minor Radius = 1638073.982906
-Sweep Angle = 6.283185
-Sweep Radians = 6.283185
-
-Radius Major (Elbow Radius) = 4880791.867434
-Radius Minor (Pipe Diameter) = 1638073.982906
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -12369799.211530
-Centroid [Y] = -272415.921664
-Centroid [Z] = 0.000000
-
-Volume = 258515778020798791680.000000
-Area = 315633824501873.500000
-
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = BoxSolidElement, current element id = 1403, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnBox
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Width[double] = 5' 10.2945"
-Length[double] = 12' 2.6771"
-Height[double] = 23' 8.0874"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Slab
-Level[int] = Default
-Element ID[long] = 1403
-Model[string] = Default
-Last Modified[dateTime] = 3/12/2020 10:23:06 AM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -7' 1.6337", 6' 9.2859", 0' 0.0000"
-Range High[point3d] = 5' 1.0434", 12' 7.5805", 23' 8.0874"
-Volume[double] = 1695.0865 Cu.'
-Surface Area[double] = 999.2984 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -180.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Top
-
 ===================================================
 ===================================================
-Element Description: Slab
-Element: ID 1403
+Element Description: Bspline Curve
+Element ID: 1588
 ===================================================
 ===================================================
 
---------  --------
-Range [XLength] = 3725597.717026
-Range [YLength] = 1785480.453570
-Range [ZLength] = 7215819.957803
 
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 1343.114194
-qRotation [W] = 1343.113822
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1588
+===================================================
+===================================================
 
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1592
+===================================================
+===================================================
 
-Origin [X] = 1550501.779141
-Origin [Y] = 3850143.081956
-Origin [Z] = 0.000000
+start==================
+Node ID: 2
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1588
+finish==================
+
+Smart Feat Element Node ID: 2
+Number of Child: 1
+
+In SolidKernel Entity is: Sheet 
 
 
-Centroid [X] = -312297.079372
-Centroid [Y] = 2957402.855171
-Centroid [Z] = 3607909.978901
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1592
+===================================================
+===================================================
 
-Volume = 47999503764613914624.000000
-Area = 92837859508022.625000
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1594
+===================================================
+===================================================
 
+start==================
+Node ID: 2
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1583
+finish==================
+
+Smart Feat Element Node ID: 2
+Number of Child: 1
+
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1594
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1595
+===================================================
+===================================================
+
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1595
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1597
+===================================================
+===================================================
+
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1597
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1600
+===================================================
+===================================================
+
+start==================
+Node ID: 3
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 1
+Leaf ID:  1595
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 2
+Leaf ID:  1597
+finish==================
+
+Smart Feat Element Node ID: 3
+Number of Child: 2
+
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1600
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1601
+===================================================
+===================================================
+
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1601
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1602
+===================================================
+===================================================
+
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1602
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1605
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1602
+finish==================
+
+Smart Feat Element Node ID: 2
+Number of Child: 1
+
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1605
+===================================================
+===================================================
 

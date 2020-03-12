@@ -31,6 +31,8 @@ private:
 	inline void setSphereGraphicProperties();
 	inline void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
 
+	inline void CurveParser(ICurvePrimitiveCR curve);
+
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
 	virtual BentleyStatus _ProcessCurveVector(CurveVectorCR curves, bool isFilled) override;
