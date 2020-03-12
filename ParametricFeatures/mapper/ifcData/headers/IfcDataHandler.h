@@ -3,6 +3,7 @@
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
+#include "../../../common/utils/headers/NumberUtils.h"
 
 
 class IfcDataHandler
@@ -19,8 +20,8 @@ private:
 	
 	IfcHierarchyHelper<Ifc4>* file = nullptr;
 
-	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* PrimitivesMapperSwitch(SmartFeatureTreeNode* treeNode);
-	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* PrimitivesMapperSwitch(DictionaryProperties* dictionaryProp);
+	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* PrimitivesMapperSwitch(SmartFeatureTreeNode& treeNode);
+	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* PrimitivesMapperSwitch(DictionaryProperties& dictionaryProp);
 
 	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* PrimitivesSolver(PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType, GraphicProperties* graphicProperties);
 	

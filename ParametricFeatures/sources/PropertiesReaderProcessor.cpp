@@ -44,11 +44,11 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 		elemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
-		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(true);
+		dictionaryProperties.setAreReaderPropertiesFound(true);
 	}
 	else{
 		// set value if reader properties exist for this element
-		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(false);
+		dictionaryProperties.setAreReaderPropertiesFound(false);
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
@@ -79,6 +79,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 
 				outfile << std::endl;
 				outfile << "is smart feature" << std::endl;
+				outfile.close();
 
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByElementLocalNodeId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 
@@ -87,19 +88,23 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties());					
 				}
 				else {
+					outfile.open(filePath, std::ios_base::app);
+					outfile << std::endl;
 					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
+					outfile.close();
+
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 				}
-				outfile.close();
 			}
 			else {
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is NOT smart feature" << std::endl;
+				outfile.close();
+
 				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
 				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 
-				outfile.close();
 			}			
 		}
 	}

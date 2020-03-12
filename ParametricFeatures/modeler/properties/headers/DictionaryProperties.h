@@ -25,7 +25,7 @@ public:
 	ReaderProperties* getReaderProperties();
 	GraphicProperties* getGraphicProperties();
 	
-	bool getIsSmartFeatureMissingReaderProperties();
-	void setIsSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound);
+	bool getAreReaderPropertiesFound();
+	void setAreReaderPropertiesFound(bool newAreReaderPropertiesFound);
 
 };

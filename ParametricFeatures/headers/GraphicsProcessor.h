@@ -28,6 +28,10 @@ public:
 private:
 	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
 	inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
+	inline void setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail);
+	inline void setConeGraphicProperties(DgnConeDetail dgnConeDetail);
+	inline void setSphereGraphicProperties();
+	inline void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
 
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;

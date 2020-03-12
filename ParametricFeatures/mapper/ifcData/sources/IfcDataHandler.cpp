@@ -8,8 +8,8 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 	this->file = new IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 
 	std::string name = "PrimitiveTest";
-	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 
 	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
 	Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
@@ -58,7 +58,7 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 
 	if (smartFeatContainer->getRoot() != nullptr) 
 	{
-		representationItem = PrimitivesMapperSwitch(smartFeatContainer->getRoot());
+		representationItem = PrimitivesMapperSwitch(*smartFeatContainer->getRoot());
 
 		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(representationItem);
 		items->push(solid);
@@ -68,7 +68,7 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 	{
 		for (int i = 0; i < dictionaryProperties.size(); i++)
 		{
-			representationItem = PrimitivesMapperSwitch(dictionaryProperties.at(i));
+			representationItem = PrimitivesMapperSwitch(*dictionaryProperties.at(i));
 
 			Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(representationItem);
 			items->push(solid);
@@ -91,14 +91,14 @@ IfcDataHandler::IfcDataHandler(std::vector<DictionaryProperties*> dictProps, Sma
 	f.close();
 }
 
-Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::PrimitivesMapperSwitch(SmartFeatureTreeNode* treeNode)
+Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::PrimitivesMapperSwitch(SmartFeatureTreeNode& treeNode)
 {
 	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;
 	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
 
-	if (treeNode->getReaderProperties()->getBooleanFunction() != BooleanFunctions::BooleanFunctionsEnum::UNDEFINED)
+	if (treeNode.getReaderProperties()->getBooleanFunction() != BooleanFunctions::BooleanFunctionsEnum::UNDEFINED)
 	{
-		BooleanFunctions::BooleanFunctionsEnum currentBooleanOperation = treeNode->getReaderProperties()->getBooleanFunction();
+		BooleanFunctions::BooleanFunctionsEnum currentBooleanOperation = treeNode.getReaderProperties()->getBooleanFunction();
 
 		if (currentBooleanOperation == BooleanFunctions::BooleanFunctionsEnum::UNION) {
 			ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION;
@@ -110,13 +110,13 @@ Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::Primiti
 			ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
 		}
 
-		my = new Ifc4::IfcBooleanResult(ifcOperatorBool, PrimitivesMapperSwitch(treeNode->getLeftNode()), PrimitivesMapperSwitch(treeNode->getRightNode()));
+		my = new Ifc4::IfcBooleanResult(ifcOperatorBool, PrimitivesMapperSwitch(*treeNode.getLeftNode()), PrimitivesMapperSwitch(*treeNode.getRightNode()));
 
 	}
 	else
 	{
-		GraphicProperties* graphicProperties = treeNode->getGraphicProperties();
-		PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType = treeNode->getGeneralProperties()->getPrimitiveTypeEnum();
+		GraphicProperties* graphicProperties = treeNode.getGraphicProperties();
+		PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType = treeNode.getGeneralProperties()->getPrimitiveTypeEnum();
 		my = PrimitivesSolver(primitiveType, graphicProperties);
 	}
 
@@ -126,10 +126,10 @@ Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::Primiti
 	return my;
 }
 
-Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem * IfcDataHandler::PrimitivesMapperSwitch(DictionaryProperties* dictionaryProp)
+Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem * IfcDataHandler::PrimitivesMapperSwitch(DictionaryProperties& dictionaryProp)
 {
-	GraphicProperties* graphicProperties = dictionaryProp->getGraphicProperties();
-	PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType = dictionaryProp->getGeneralProperties()->getPrimitiveTypeEnum();
+	GraphicProperties* graphicProperties = dictionaryProp.getGraphicProperties();
+	PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType = dictionaryProp.getGeneralProperties()->getPrimitiveTypeEnum();
 	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = PrimitivesSolver(primitiveType, graphicProperties);
 
 	file->addEntity(my);
@@ -141,10 +141,8 @@ inline Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::
 {
 	Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* my = nullptr;
 
-	int microMeters = 1000000;
-
 	double a = 50, b = 50, c = 50;
-	DVec3d objectOrigin = graphicProperties->getCentroid() / microMeters;
+	DVec3d objectOrigin = graphicProperties->getCentroid() / 1000000;
 	DVec3d vectorBaseX = graphicProperties->getVectorAxisX();
 
 	DVec3d vectorBaseZ = graphicProperties->getVectorAxisZ();
@@ -161,7 +159,7 @@ inline Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::
 	if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE) {
 		SphereGraphicProperties sphereGraphicProperties;
 		if (graphicProperties->tryGetSphereGraphicProperties(sphereGraphicProperties)) {
-			my = new Ifc4::IfcSphere(place, sphereGraphicProperties.getRadius() / microMeters);
+			my = new Ifc4::IfcSphere(place, NumberUtils::convertMicrometersToMetters(sphereGraphicProperties.getRadius()));
 		}
 		else
 		{
@@ -171,7 +169,8 @@ inline Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::
 	else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX) {
 		SlabGraphicProperties slabGraphicProperties;
 		if (graphicProperties->tryGetSlabProperties(slabGraphicProperties)) {
-			my = new Ifc4::IfcBlock(place, slabGraphicProperties.getLength() / microMeters, slabGraphicProperties.getWidth() / microMeters, slabGraphicProperties.getHeight() / microMeters);
+			my = new Ifc4::IfcBlock(place, NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getLength()), NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getWidth()),
+				NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getHeight()));
 		}
 		else {
 			// TODO log slab properties not found
@@ -183,7 +182,7 @@ inline Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::
 	else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) {
 		CylinderGraphicProperties cylinderGraphicProperties;
 		if (graphicProperties->tryGetCylinderGraphicProperties(cylinderGraphicProperties)) {
-			my = new Ifc4::IfcRightCircularCylinder(place, cylinderGraphicProperties.getHeight() / microMeters, cylinderGraphicProperties.getRadius() / microMeters);
+			my = new Ifc4::IfcRightCircularCylinder(place, NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getHeight()), NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getRadius()));
 		}
 		else {
 			// TODO log cylinder properties not found
@@ -192,7 +191,7 @@ inline Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* IfcDataHandler::
 	else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
 		ConeGraphicProperties coneGraphicProperties;
 		if (graphicProperties->tryGetConeGraphicProperties(coneGraphicProperties)) {
-			my = new Ifc4::IfcRightCircularCone(place, coneGraphicProperties.getHeight() / microMeters, coneGraphicProperties.getBaseRadius() / microMeters);
+			my = new Ifc4::IfcRightCircularCone(place, NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getHeight()), NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
 		}
 		else {
 			// TODO log cone properties not found

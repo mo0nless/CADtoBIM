@@ -1,7 +1,7 @@
 #pragma once
 
 #include<string>
-#include "../../../common/properties/headers/BooleanFunctionsEnum.h"
+#include "../../../common/enums/headers/BooleanFunctionsEnum.h"
 
 /**
 *   Class contains needed reader properties

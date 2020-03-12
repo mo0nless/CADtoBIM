@@ -262,7 +262,6 @@ Ifc4::IfcRepresentationItem* buildComplexPrimitive(DictionaryProperties& diction
 		}
 	}
 
-
 	if (my != nullptr) {
 		file.addEntity(my);
 
@@ -284,7 +283,6 @@ Ifc4::IfcRepresentationItem* buildPrimitive(DictionaryProperties& dictionaryProp
 		SphereGraphicProperties sphereGraphicProperties;
 		if (dictionaryProperties.getGraphicProperties()->tryGetSphereGraphicProperties(sphereGraphicProperties)) {
 			my = new Ifc4::IfcSphere(place, sphereGraphicProperties.getRadius() / 1000000);
-			Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(my);
 		}
 		else
 		{
@@ -551,11 +549,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	}
 
 	std::vector<DictionaryProperties*> newPropsDictVec;
-	auto iterator = propsDictVec.begin();
 
 	for (int i = 0; i < propsDictVec.size(); ++i) {
 		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-		if (propertiesDictionary->getIsSmartFeatureMissingReaderProperties()) {
+		if (propertiesDictionary->getAreReaderPropertiesFound()) {
 			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
@@ -574,13 +571,15 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		{
 			newPropsDictVec.push_back(propertiesDictionary);
 		}
-		iterator++;
 	}
 
 	propsDictVec.clear();
 	
 	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
-	buildIfc(newPropsDictVec);
+	//buildIfc(newPropsDictVec);
+	IfcBuilder* ifcBuilder = new IfcBuilder();
+	ifcBuilder->buildIfc(newPropsDictVec, *smartFeatureContainer);
+
 	//test();
 	//buildPrimitive(propsDictVec);
 

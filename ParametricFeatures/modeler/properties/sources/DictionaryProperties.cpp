@@ -30,12 +30,12 @@ GraphicProperties * DictionaryProperties::getGraphicProperties()
 	return this->graphicProperties;
 }
 
-bool DictionaryProperties::getIsSmartFeatureMissingReaderProperties()
+bool DictionaryProperties::getAreReaderPropertiesFound()
 {
 	return this->areReaderPropertiesFound;
 }
 
-void DictionaryProperties::setIsSmartFeatureMissingReaderProperties(bool newAreReaderPropertiesFound)
+void DictionaryProperties::setAreReaderPropertiesFound(bool newAreReaderPropertiesFound)
 {
 	this->areReaderPropertiesFound = newAreReaderPropertiesFound;
 }

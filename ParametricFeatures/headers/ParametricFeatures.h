@@ -14,6 +14,7 @@
 #include "GraphicsProcessor.h"
 #include "../common/utils/headers/StringUtils.hpp"
 #include "../mapper/ifcData/headers/IfcDataHandler.h"
+#include "../ifc/headers/IfcBuilder.h"
 
 
 #define CMD_TREE 0x0100000000000000UI64
