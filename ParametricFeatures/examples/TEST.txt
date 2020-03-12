@@ -7,6 +7,72 @@ Element ID: 1583
 ===================================================
 
 
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 1.47102e+07
+BsplineCurve Order: 4
+
+Start point [X] = 3.51312e+06
+Start point [Y] = 1.04914e+07
+Start point [Z] = 0
+
+End point [X] = -4.20253e+06
+End point [Y] = 6.69878e+06
+End point [Z] = 0
+
+Is Closed = 0
+
+Control point 0 [X] = 3.51312e+06
+Control point 0 [Y] = 1.04914e+07
+Control point 0 [Z] = 0
+
+Control point 1 [X] = -4.20253e+06
+Control point 1 [Y] = 1.04914e+07
+Control point 1 [Z] = 0
+
+Control point 2 [X] = -1.1436e+07
+Control point 2 [Y] = 6.69878e+06
+Control point 2 [Z] = 0
+
+Control point 3 [X] = -4.20253e+06
+Control point 3 [Y] = 6.69878e+06
+Control point 3 [Z] = 0
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 1.63654e+07
+BsplineCurve Order: 4
+
+Start point [X] = -4.20253e+06
+Start point [Y] = 6.69878e+06
+Start point [Z] = 0
+
+End point [X] = 3.0309e+06
+End point [Y] = 1.94075e+06
+End point [Z] = 0
+
+Is Closed = 0
+
+Control point 0 [X] = -4.20253e+06
+Control point 0 [Y] = 6.69878e+06
+Control point 0 [Z] = 0
+
+Control point 1 [X] = 3.0309e+06
+Control point 1 [Y] = 6.69878e+06
+Control point 1 [Z] = 0
+
+Control point 2 [X] = 1.22621e+07
+Control point 2 [Y] = 1.94075e+06
+Control point 2 [Z] = 0
+
+Control point 3 [X] = 3.0309e+06
+Control point 3 [Y] = 1.94075e+06
+Control point 3 [Z] = 0
+
+
 ===================================================
 ===================================================
 Element Description: Complex Chain
@@ -20,6 +86,815 @@ Element Description: Bspline Curve
 Element ID: 1588
 ===================================================
 ===================================================
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 7.39863e+07
+BsplineCurve Order: 4
+
+Start point [X] = -1.74294e+07
+Start point [Y] = 5.3886e+06
+Start point [Z] = 0
+
+End point [X] = -3.72882e+06
+End point [Y] = 2.38551e+07
+End point [Z] = 1.11747e+06
+
+Is Closed = 0
+
+Control point 0 [X] = -1.74294e+07
+Control point 0 [Y] = 5.3886e+06
+Control point 0 [Z] = 0
+
+Control point 1 [X] = -1.74029e+07
+Control point 1 [Y] = 5.40637e+06
+Control point 1 [Z] = -99101.4
+
+Control point 2 [X] = -1.73466e+07
+Control point 2 [Y] = 5.45243e+06
+Control point 2 [Z] = -326728
+
+Control point 3 [X] = -1.72869e+07
+Control point 3 [Y] = 5.52772e+06
+Control point 3 [Z] = -619545
+
+Control point 4 [X] = -1.72322e+07
+Control point 4 [Y] = 5.62755e+06
+Control point 4 [Z] = -945568
+
+Control point 5 [X] = -1.71954e+07
+Control point 5 [Y] = 5.72851e+06
+Control point 5 [Z] = -1.227e+06
+
+Control point 6 [X] = -1.71634e+07
+Control point 6 [Y] = 5.87529e+06
+Control point 6 [Z] = -1.57618e+06
+
+Control point 7 [X] = -1.71456e+07
+Control point 7 [Y] = 6.04632e+06
+Control point 7 [Z] = -1.92692e+06
+
+Control point 8 [X] = -1.7146e+07
+Control point 8 [Y] = 6.27468e+06
+Control point 8 [Z] = -2.32057e+06
+
+Control point 9 [X] = -1.71671e+07
+Control point 9 [Y] = 6.53726e+06
+Control point 9 [Z] = -2.70332e+06
+
+Control point 10 [X] = -1.72086e+07
+Control point 10 [Y] = 6.83354e+06
+Control point 10 [Z] = -3.06927e+06
+
+Control point 11 [X] = -1.72696e+07
+Control point 11 [Y] = 7.16201e+06
+Control point 11 [Z] = -3.41246e+06
+
+Control point 12 [X] = -1.73487e+07
+Control point 12 [Y] = 7.52014e+06
+Control point 12 [Z] = -3.72724e+06
+
+Control point 13 [X] = -1.74277e+07
+Control point 13 [Y] = 7.84033e+06
+Control point 13 [Z] = -3.96156e+06
+
+Control point 14 [X] = -1.75152e+07
+Control point 14 [Y] = 8.17461e+06
+Control point 14 [Z] = -4.17251e+06
+
+Control point 15 [X] = -1.761e+07
+Control point 15 [Y] = 8.52056e+06
+Control point 15 [Z] = -4.35842e+06
+
+Control point 16 [X] = -1.77324e+07
+Control point 16 [Y] = 8.95032e+06
+Control point 16 [Z] = -4.53939e+06
+
+Control point 17 [X] = -1.78602e+07
+Control point 17 [Y] = 9.38899e+06
+Control point 17 [Z] = -4.67663e+06
+
+Control point 18 [X] = -1.79901e+07
+Control point 18 [Y] = 9.8311e+06
+Control point 18 [Z] = -4.76992e+06
+
+Control point 19 [X] = -1.81189e+07
+Control point 19 [Y] = 1.02714e+07
+Control point 19 [Z] = -4.82022e+06
+
+Control point 20 [X] = -1.82436e+07
+Control point 20 [Y] = 1.0705e+07
+Control point 20 [Z] = -4.82954e+06
+
+Control point 21 [X] = -1.83475e+07
+Control point 21 [Y] = 1.10769e+07
+Control point 21 [Z] = -4.80422e+06
+
+Control point 22 [X] = -1.84534e+07
+Control point 22 [Y] = 1.14693e+07
+Control point 22 [Z] = -4.74957e+06
+
+Control point 23 [X] = -1.85503e+07
+Control point 23 [Y] = 1.18462e+07
+Control point 23 [Z] = -4.66689e+06
+
+Control point 24 [X] = -1.86523e+07
+Control point 24 [Y] = 1.22772e+07
+Control point 24 [Z] = -4.53151e+06
+
+Control point 25 [X] = -1.87083e+07
+Control point 25 [Y] = 1.254e+07
+Control point 25 [Z] = -4.42491e+06
+
+Control point 26 [X] = -1.87652e+07
+Control point 26 [Y] = 1.28284e+07
+Control point 26 [Z] = -4.2936e+06
+
+Control point 27 [X] = -1.88175e+07
+Control point 27 [Y] = 1.30922e+07
+Control point 27 [Z] = -4.15783e+06
+
+Control point 28 [X] = -1.88945e+07
+Control point 28 [Y] = 1.34886e+07
+Control point 28 [Z] = -3.90832e+06
+
+Control point 29 [X] = -1.89523e+07
+Control point 29 [Y] = 1.38011e+07
+Control point 29 [Z] = -3.67085e+06
+
+Control point 30 [X] = -1.90041e+07
+Control point 30 [Y] = 1.41043e+07
+Control point 30 [Z] = -3.40274e+06
+
+Control point 31 [X] = -1.90455e+07
+Control point 31 [Y] = 1.4373e+07
+Control point 31 [Z] = -3.13167e+06
+
+Control point 32 [X] = -1.90812e+07
+Control point 32 [Y] = 1.46597e+07
+Control point 32 [Z] = -2.79077e+06
+
+Control point 33 [X] = -1.91029e+07
+Control point 33 [Y] = 1.49232e+07
+Control point 33 [Z] = -2.41943e+06
+
+Control point 34 [X] = -1.91079e+07
+Control point 34 [Y] = 1.51593e+07
+Control point 34 [Z] = -2.02089e+06
+
+Control point 35 [X] = -1.9094e+07
+Control point 35 [Y] = 1.53641e+07
+Control point 35 [Z] = -1.59936e+06
+
+Control point 36 [X] = -1.90594e+07
+Control point 36 [Y] = 1.55347e+07
+Control point 36 [Z] = -1.15997e+06
+
+Control point 37 [X] = -1.90027e+07
+Control point 37 [Y] = 1.56688e+07
+Control point 37 [Z] = -708519
+
+Control point 38 [X] = -1.8923e+07
+Control point 38 [Y] = 1.57651e+07
+Control point 38 [Z] = -251291
+
+Control point 39 [X] = -1.88204e+07
+Control point 39 [Y] = 1.58234e+07
+Control point 39 [Z] = 205270
+
+Control point 40 [X] = -1.86952e+07
+Control point 40 [Y] = 1.58445e+07
+Control point 40 [Z] = 654847
+
+Control point 41 [X] = -1.85487e+07
+Control point 41 [Y] = 1.58304e+07
+Control point 41 [Z] = 1.09153e+06
+
+Control point 42 [X] = -1.83823e+07
+Control point 42 [Y] = 1.57837e+07
+Control point 42 [Z] = 1.51007e+06
+
+Control point 43 [X] = -1.81982e+07
+Control point 43 [Y] = 1.57077e+07
+Control point 43 [Z] = 1.90603e+06
+
+Control point 44 [X] = -1.80227e+07
+Control point 44 [Y] = 1.56185e+07
+Control point 44 [Z] = 2.23135e+06
+
+Control point 45 [X] = -1.78387e+07
+Control point 45 [Y] = 1.55143e+07
+Control point 45 [Z] = 2.53467e+06
+
+Control point 46 [X] = -1.7683e+07
+Control point 46 [Y] = 1.54191e+07
+Control point 46 [Z] = 2.76372e+06
+
+Control point 47 [X] = -1.74944e+07
+Control point 47 [Y] = 1.52979e+07
+Control point 47 [Z] = 3.01329e+06
+
+Control point 48 [X] = -1.7288e+07
+Control point 48 [Y] = 1.51602e+07
+Control point 48 [Z] = 3.25946e+06
+
+Control point 49 [X] = -1.71102e+07
+Control point 49 [Y] = 1.50372e+07
+Control point 49 [Z] = 3.44116e+06
+
+Control point 50 [X] = -1.69056e+07
+Control point 50 [Y] = 1.48942e+07
+Control point 50 [Z] = 3.63258e+06
+
+Control point 51 [X] = -1.67116e+07
+Control point 51 [Y] = 1.47514e+07
+Control point 51 [Z] = 3.80145e+06
+
+Control point 52 [X] = -1.64097e+07
+Control point 52 [Y] = 1.45125e+07
+Control point 52 [Z] = 4.0273e+06
+
+Control point 53 [X] = -1.61544e+07
+Control point 53 [Y] = 1.4299e+07
+Control point 53 [Z] = 4.18847e+06
+
+Control point 54 [X] = -1.58878e+07
+Control point 54 [Y] = 1.40676e+07
+Control point 54 [Z] = 4.33037e+06
+
+Control point 55 [X] = -1.5623e+07
+Control point 55 [Y] = 1.3831e+07
+Control point 55 [Z] = 4.44644e+06
+
+Control point 56 [X] = -1.53113e+07
+Control point 56 [Y] = 1.35445e+07
+Control point 56 [Z] = 4.54625e+06
+
+Control point 57 [X] = -1.49911e+07
+Control point 57 [Y] = 1.32438e+07
+Control point 57 [Z] = 4.61008e+06
+
+Control point 58 [X] = -1.46648e+07
+Control point 58 [Y] = 1.29331e+07
+Control point 58 [Z] = 4.63481e+06
+
+Control point 59 [X] = -1.43353e+07
+Control point 59 [Y] = 1.26169e+07
+Control point 59 [Z] = 4.61814e+06
+
+Control point 60 [X] = -1.39917e+07
+Control point 60 [Y] = 1.22873e+07
+Control point 60 [Z] = 4.55632e+06
+
+Control point 61 [X] = -1.36789e+07
+Control point 61 [Y] = 1.19892e+07
+Control point 61 [Z] = 4.45591e+06
+
+Control point 62 [X] = -1.33718e+07
+Control point 62 [Y] = 1.17008e+07
+Control point 62 [Z] = 4.31813e+06
+
+Control point 63 [X] = -1.30855e+07
+Control point 63 [Y] = 1.14369e+07
+Control point 63 [Z] = 4.15464e+06
+
+Control point 64 [X] = -1.27847e+07
+Control point 64 [Y] = 1.11683e+07
+Control point 64 [Z] = 3.93961e+06
+
+Control point 65 [X] = -1.2498e+07
+Control point 65 [Y] = 1.09228e+07
+Control point 65 [Z] = 3.69212e+06
+
+Control point 66 [X] = -1.22272e+07
+Control point 66 [Y] = 1.07037e+07
+Control point 66 [Z] = 3.41692e+06
+
+Control point 67 [X] = -1.19737e+07
+Control point 67 [Y] = 1.05132e+07
+Control point 67 [Z] = 3.11923e+06
+
+Control point 68 [X] = -1.17667e+07
+Control point 68 [Y] = 1.03719e+07
+Control point 68 [Z] = 2.84238e+06
+
+Control point 69 [X] = -1.15915e+07
+Control point 69 [Y] = 1.0264e+07
+Control point 69 [Z] = 2.58435e+06
+
+Control point 70 [X] = -1.14279e+07
+Control point 70 [Y] = 1.01734e+07
+Control point 70 [Z] = 2.32404e+06
+
+Control point 71 [X] = -1.12524e+07
+Control point 71 [Y] = 1.00918e+07
+Control point 71 [Z] = 2.01825e+06
+
+Control point 72 [X] = -1.10662e+07
+Control point 72 [Y] = 1.00272e+07
+Control point 72 [Z] = 1.66118e+06
+
+Control point 73 [X] = -1.09487e+07
+Control point 73 [Y] = 1.00038e+07
+Control point 73 [Z] = 1.41283e+06
+
+Control point 74 [X] = -1.08226e+07
+Control point 74 [Y] = 9.99015e+06
+Control point 74 [Z] = 1.1332e+06
+
+Control point 75 [X] = -1.07132e+07
+Control point 75 [Y] = 9.9871e+06
+Control point 75 [Z] = 867601
+
+Control point 76 [X] = -1.05977e+07
+Control point 76 [Y] = 1.00062e+07
+Control point 76 [Z] = 535101
+
+Control point 77 [X] = -1.05022e+07
+Control point 77 [Y] = 1.00386e+07
+Control point 77 [Z] = 224439
+
+Control point 78 [X] = -1.04294e+07
+Control point 78 [Y] = 1.00803e+07
+Control point 78 [Z] = -47487.3
+
+Control point 79 [X] = -1.03519e+07
+Control point 79 [Y] = 1.0152e+07
+Control point 79 [Z] = -390175
+
+Control point 80 [X] = -1.02873e+07
+Control point 80 [Y] = 1.02457e+07
+Control point 80 [Z] = -739898
+
+Control point 81 [X] = -1.02333e+07
+Control point 81 [Y] = 1.03844e+07
+Control point 81 [Z] = -1.14093e+06
+
+Control point 82 [X] = -1.01995e+07
+Control point 82 [Y] = 1.05563e+07
+Control point 82 [Z] = -1.53998e+06
+
+Control point 83 [X] = -1.01861e+07
+Control point 83 [Y] = 1.0762e+07
+Control point 83 [Z] = -1.93143e+06
+
+Control point 84 [X] = -1.01929e+07
+Control point 84 [Y] = 1.10009e+07
+Control point 84 [Z] = -2.3095e+06
+
+Control point 85 [X] = -1.02146e+07
+Control point 85 [Y] = 1.12262e+07
+Control point 85 [Z] = -2.6084e+06
+
+Control point 86 [X] = -1.02474e+07
+Control point 86 [Y] = 1.14703e+07
+Control point 86 [Z] = -2.89252e+06
+
+Control point 87 [X] = -1.02907e+07
+Control point 87 [Y] = 1.17315e+07
+Control point 87 [Z] = -3.15951e+06
+
+Control point 88 [X] = -1.03573e+07
+Control point 88 [Y] = 1.20691e+07
+Control point 88 [Z] = -3.4486e+06
+
+Control point 89 [X] = -1.04359e+07
+Control point 89 [Y] = 1.24266e+07
+Control point 89 [Z] = -3.70289e+06
+
+Control point 90 [X] = -1.05237e+07
+Control point 90 [Y] = 1.27992e+07
+Control point 90 [Z] = -3.92e+06
+
+Control point 91 [X] = -1.06178e+07
+Control point 91 [Y] = 1.31822e+07
+Control point 91 [Z] = -4.09864e+06
+
+Control point 92 [X] = -1.07151e+07
+Control point 92 [Y] = 1.35706e+07
+Control point 92 [Z] = -4.2386e+06
+
+Control point 93 [X] = -1.08011e+07
+Control point 93 [Y] = 1.39129e+07
+Control point 93 [Z] = -4.32838e+06
+
+Control point 94 [X] = -1.08776e+07
+Control point 94 [Y] = 1.42203e+07
+Control point 94 [Z] = -4.38594e+06
+
+Control point 95 [X] = -1.09515e+07
+Control point 95 [Y] = 1.45217e+07
+Control point 95 [Z] = -4.42422e+06
+
+Control point 96 [X] = -1.10332e+07
+Control point 96 [Y] = 1.48646e+07
+Control point 96 [Z] = -4.44258e+06
+
+Control point 97 [X] = -1.11213e+07
+Control point 97 [Y] = 1.52525e+07
+Control point 97 [Z] = -4.43228e+06
+
+Control point 98 [X] = -1.11766e+07
+Control point 98 [Y] = 1.55143e+07
+Control point 98 [Z] = -4.40336e+06
+
+Control point 99 [X] = -1.12348e+07
+Control point 99 [Y] = 1.58047e+07
+Control point 99 [Z] = -4.35829e+06
+
+Control point 100 [X] = -1.12903e+07
+Control point 100 [Y] = 1.60739e+07
+Control point 100 [Z] = -4.30324e+06
+
+Control point 101 [X] = -1.13718e+07
+Control point 101 [Y] = 1.64577e+07
+Control point 101 [Z] = -4.18912e+06
+
+Control point 102 [X] = -1.14408e+07
+Control point 102 [Y] = 1.67797e+07
+Control point 102 [Z] = -4.06488e+06
+
+Control point 103 [X] = -1.14996e+07
+Control point 103 [Y] = 1.70563e+07
+Control point 103 [Z] = -3.93488e+06
+
+Control point 104 [X] = -1.15572e+07
+Control point 104 [Y] = 1.73325e+07
+Control point 104 [Z] = -3.7852e+06
+
+Control point 105 [X] = -1.16178e+07
+Control point 105 [Y] = 1.76328e+07
+Control point 105 [Z] = -3.5948e+06
+
+Control point 106 [X] = -1.16797e+07
+Control point 106 [Y] = 1.79627e+07
+Control point 106 [Z] = -3.34383e+06
+
+Control point 107 [X] = -1.17318e+07
+Control point 107 [Y] = 1.82765e+07
+Control point 107 [Z] = -3.05957e+06
+
+Control point 108 [X] = -1.17716e+07
+Control point 108 [Y] = 1.85698e+07
+Control point 108 [Z] = -2.74415e+06
+
+Control point 109 [X] = -1.17965e+07
+Control point 109 [Y] = 1.88386e+07
+Control point 109 [Z] = -2.40066e+06
+
+Control point 110 [X] = -1.18043e+07
+Control point 110 [Y] = 1.90792e+07
+Control point 110 [Z] = -2.03317e+06
+
+Control point 111 [X] = -1.17933e+07
+Control point 111 [Y] = 1.92887e+07
+Control point 111 [Z] = -1.64654e+06
+
+Control point 112 [X] = -1.17622e+07
+Control point 112 [Y] = 1.94652e+07
+Control point 112 [Z] = -1.24619e+06
+
+Control point 113 [X] = -1.17104e+07
+Control point 113 [Y] = 1.96075e+07
+Control point 113 [Z] = -837934
+
+Control point 114 [X] = -1.16378e+07
+Control point 114 [Y] = 1.97153e+07
+Control point 114 [Z] = -427603
+
+Control point 115 [X] = -1.15448e+07
+Control point 115 [Y] = 1.97896e+07
+Control point 115 [Z] = -20853.1
+
+Control point 116 [X] = -1.14324e+07
+Control point 116 [Y] = 1.98319e+07
+Control point 116 [Z] = 377096
+
+Control point 117 [X] = -1.13178e+07
+Control point 117 [Y] = 1.9843e+07
+Control point 117 [Z] = 715195
+
+Control point 118 [X] = -1.11919e+07
+Control point 118 [Y] = 1.98348e+07
+Control point 118 [Z] = 1.03949e+06
+
+Control point 119 [X] = -1.10563e+07
+Control point 119 [Y] = 1.98094e+07
+Control point 119 [Z] = 1.34839e+06
+
+Control point 120 [X] = -1.08874e+07
+Control point 120 [Y] = 1.97586e+07
+Control point 120 [Z] = 1.68158e+06
+
+Control point 121 [X] = -1.06961e+07
+Control point 121 [Y] = 1.96854e+07
+Control point 121 [Z] = 2.01112e+06
+
+Control point 122 [X] = -1.05543e+07
+Control point 122 [Y] = 1.96219e+07
+Control point 122 [Z] = 2.22263e+06
+
+Control point 123 [X] = -1.03891e+07
+Control point 123 [Y] = 1.95437e+07
+Control point 123 [Z] = 2.45065e+06
+
+Control point 124 [X] = -1.0231e+07
+Control point 124 [Y] = 1.94602e+07
+Control point 124 [Z] = 2.65732e+06
+
+Control point 125 [X] = -9.9905e+06
+Control point 125 [Y] = 1.93126e+07
+Control point 125 [Z] = 2.93876e+06
+
+Control point 126 [X] = -9.75574e+06
+Control point 126 [Y] = 1.91532e+07
+Control point 126 [Z] = 3.1849e+06
+
+Control point 127 [X] = -9.53848e+06
+Control point 127 [Y] = 1.8993e+07
+Control point 127 [Z] = 3.38577e+06
+
+Control point 128 [X] = -9.30996e+06
+Control point 128 [Y] = 1.88154e+07
+Control point 128 [Z] = 3.57376e+06
+
+Control point 129 [X] = -9.07069e+06
+Control point 129 [Y] = 1.86208e+07
+Control point 129 [Z] = 3.74613e+06
+
+Control point 130 [X] = -8.78591e+06
+Control point 130 [Y] = 1.83786e+07
+Control point 130 [Z] = 3.91524e+06
+
+Control point 131 [X] = -8.49032e+06
+Control point 131 [Y] = 1.81186e+07
+Control point 131 [Z] = 4.05328e+06
+
+Control point 132 [X] = -8.18606e+06
+Control point 132 [Y] = 1.78442e+07
+Control point 132 [Z] = 4.15673e+06
+
+Control point 133 [X] = -7.92772e+06
+Control point 133 [Y] = 1.76074e+07
+Control point 133 [Z] = 4.21177e+06
+
+Control point 134 [X] = -7.67978e+06
+Control point 134 [Y] = 1.73786e+07
+Control point 134 [Z] = 4.24095e+06
+
+Control point 135 [X] = -7.48316e+06
+Control point 135 [Y] = 1.71966e+07
+Control point 135 [Z] = 4.24691e+06
+
+Control point 136 [X] = -7.23456e+06
+Control point 136 [Y] = 1.69668e+07
+Control point 136 [Z] = 4.23272e+06
+
+Control point 137 [X] = -7.01016e+06
+Control point 137 [Y] = 1.67602e+07
+Control point 137 [Z] = 4.19849e+06
+
+Control point 138 [X] = -6.73741e+06
+Control point 138 [Y] = 1.65118e+07
+Control point 138 [Z] = 4.1281e+06
+
+Control point 139 [X] = -6.47039e+06
+Control point 139 [Y] = 1.62724e+07
+Control point 139 [Z] = 4.03097e+06
+
+Control point 140 [X] = -6.17761e+06
+Control point 140 [Y] = 1.6017e+07
+Control point 140 [Z] = 3.88704e+06
+
+Control point 141 [X] = -5.8963e+06
+Control point 141 [Y] = 1.57806e+07
+Control point 141 [Z] = 3.71275e+06
+
+Control point 142 [X] = -5.66051e+06
+Control point 142 [Y] = 1.55917e+07
+Control point 142 [Z] = 3.53652e+06
+
+Control point 143 [X] = -5.41538e+06
+Control point 143 [Y] = 1.54049e+07
+Control point 143 [Z] = 3.32793e+06
+
+Control point 144 [X] = -5.18392e+06
+Control point 144 [Y] = 1.52401e+07
+Control point 144 [Z] = 3.10339e+06
+
+Control point 145 [X] = -4.93849e+06
+Control point 145 [Y] = 1.5083e+07
+Control point 145 [Z] = 2.83071e+06
+
+Control point 146 [X] = -4.71656e+06
+Control point 146 [Y] = 1.49571e+07
+Control point 146 [Z] = 2.55686e+06
+
+Control point 147 [X] = -4.57319e+06
+Control point 147 [Y] = 1.48885e+07
+Control point 147 [Z] = 2.36132e+06
+
+Control point 148 [X] = -4.41663e+06
+Control point 148 [Y] = 1.4822e+07
+Control point 148 [Z] = 2.13734e+06
+
+Control point 149 [X] = -4.27552e+06
+Control point 149 [Y] = 1.47666e+07
+Control point 149 [Z] = 1.9183e+06
+
+Control point 150 [X] = -4.0887e+06
+Control point 150 [Y] = 1.47076e+07
+Control point 150 [Z] = 1.58299e+06
+
+Control point 151 [X] = -3.91514e+06
+Control point 151 [Y] = 1.4669e+07
+Control point 151 [Z] = 1.22704e+06
+
+Control point 152 [X] = -3.77706e+06
+Control point 152 [Y] = 1.46584e+07
+Control point 152 [Z] = 894422
+
+Control point 153 [X] = -3.65212e+06
+Control point 153 [Y] = 1.467e+07
+Control point 153 [Z] = 547193
+
+Control point 154 [X] = -3.54906e+06
+Control point 154 [Y] = 1.47001e+07
+Control point 154 [Z] = 218415
+
+Control point 155 [X] = -3.44953e+06
+Control point 155 [Y] = 1.47636e+07
+Control point 155 [Z] = -165112
+
+Control point 156 [X] = -3.36883e+06
+Control point 156 [Y] = 1.48582e+07
+Control point 156 [Z] = -553289
+
+Control point 157 [X] = -3.30759e+06
+Control point 157 [Y] = 1.49848e+07
+Control point 157 [Z] = -940952
+
+Control point 158 [X] = -3.26416e+06
+Control point 158 [Y] = 1.51504e+07
+Control point 158 [Z] = -1.33864e+06
+
+Control point 159 [X] = -3.24192e+06
+Control point 159 [Y] = 1.53509e+07
+Control point 159 [Z] = -1.72346e+06
+
+Control point 160 [X] = -3.23975e+06
+Control point 160 [Y] = 1.55657e+07
+Control point 160 [Z] = -2.06016e+06
+
+Control point 161 [X] = -3.2515e+06
+Control point 161 [Y] = 1.58056e+07
+Control point 161 [Z] = -2.38142e+06
+
+Control point 162 [X] = -3.27697e+06
+Control point 162 [Y] = 1.60679e+07
+Control point 162 [Z] = -2.67911e+06
+
+Control point 163 [X] = -3.31877e+06
+Control point 163 [Y] = 1.63768e+07
+Control point 163 [Z] = -2.97017e+06
+
+Control point 164 [X] = -3.36835e+06
+Control point 164 [Y] = 1.66863e+07
+Control point 164 [Z] = -3.21512e+06
+
+Control point 165 [X] = -3.41834e+06
+Control point 165 [Y] = 1.69691e+07
+Control point 165 [Z] = -3.40164e+06
+
+Control point 166 [X] = -3.47156e+06
+Control point 166 [Y] = 1.72564e+07
+Control point 166 [Z] = -3.56365e+06
+
+Control point 167 [X] = -3.51655e+06
+Control point 167 [Y] = 1.74924e+07
+Control point 167 [Z] = -3.67618e+06
+
+Control point 168 [X] = -3.57001e+06
+Control point 168 [Y] = 1.77707e+07
+Control point 168 [Z] = -3.78806e+06
+
+Control point 169 [X] = -3.62294e+06
+Control point 169 [Y] = 1.80465e+07
+Control point 169 [Z] = -3.87987e+06
+
+Control point 170 [X] = -3.68832e+06
+Control point 170 [Y] = 1.83947e+07
+Control point 170 [Z] = -3.96582e+06
+
+Control point 171 [X] = -3.73113e+06
+Control point 171 [Y] = 1.86333e+07
+Control point 171 [Z] = -4.00418e+06
+
+Control point 172 [X] = -3.77739e+06
+Control point 172 [Y] = 1.89016e+07
+Control point 172 [Z] = -4.03548e+06
+
+Control point 173 [X] = -3.82417e+06
+Control point 173 [Y] = 1.91562e+07
+Control point 173 [Z] = -4.05339e+06
+
+Control point 174 [X] = -3.89784e+06
+Control point 174 [Y] = 1.95271e+07
+Control point 174 [Z] = -4.04792e+06
+
+Control point 175 [X] = -3.95775e+06
+Control point 175 [Y] = 1.98146e+07
+Control point 175 [Z] = -4.02113e+06
+
+Control point 176 [X] = -4.02024e+06
+Control point 176 [Y] = 2.01077e+07
+Control point 176 [Z] = -3.9757e+06
+
+Control point 177 [X] = -4.07476e+06
+Control point 177 [Y] = 2.03594e+07
+Control point 177 [Z] = -3.92035e+06
+
+Control point 178 [X] = -4.14228e+06
+Control point 178 [Y] = 2.06703e+07
+Control point 178 [Z] = -3.82902e+06
+
+Control point 179 [X] = -4.20928e+06
+Control point 179 [Y] = 2.0981e+07
+Control point 179 [Z] = -3.71329e+06
+
+Control point 180 [X] = -4.28201e+06
+Control point 180 [Y] = 2.13288e+07
+Control point 180 [Z] = -3.54749e+06
+
+Control point 181 [X] = -4.34863e+06
+Control point 181 [Y] = 2.16665e+07
+Control point 181 [Z] = -3.34794e+06
+
+Control point 182 [X] = -4.40651e+06
+Control point 182 [Y] = 2.19898e+07
+Control point 182 [Z] = -3.11591e+06
+
+Control point 183 [X] = -4.45122e+06
+Control point 183 [Y] = 2.22817e+07
+Control point 183 [Z] = -2.86463e+06
+
+Control point 184 [X] = -4.47817e+06
+Control point 184 [Y] = 2.25066e+07
+Control point 184 [Z] = -2.63685e+06
+
+Control point 185 [X] = -4.49683e+06
+Control point 185 [Y] = 2.27178e+07
+Control point 185 [Z] = -2.39614e+06
+
+Control point 186 [X] = -4.50705e+06
+Control point 186 [Y] = 2.29359e+07
+Control point 186 [Z] = -2.11348e+06
+
+Control point 187 [X] = -4.49958e+06
+Control point 187 [Y] = 2.31631e+07
+Control point 187 [Z] = -1.7584e+06
+
+Control point 188 [X] = -4.47139e+06
+Control point 188 [Y] = 2.33564e+07
+Control point 188 [Z] = -1.39077e+06
+
+Control point 189 [X] = -4.42622e+06
+Control point 189 [Y] = 2.35097e+07
+Control point 189 [Z] = -1.03625e+06
+
+Control point 190 [X] = -4.37063e+06
+Control point 190 [Y] = 2.36181e+07
+Control point 190 [Z] = -724326
+
+Control point 191 [X] = -4.30907e+06
+Control point 191 [Y] = 2.36976e+07
+Control point 191 [Z] = -444982
+
+Control point 192 [X] = -4.239e+06
+Control point 192 [Y] = 2.37615e+07
+Control point 192 [Z] = -171611
+
+Control point 193 [X] = -4.14529e+06
+Control point 193 [Y] = 2.38151e+07
+Control point 193 [Z] = 137581
+
+Control point 194 [X] = -4.02839e+06
+Control point 194 [Y] = 2.38501e+07
+Control point 194 [Z] = 463274
+
+Control point 195 [X] = -3.89177e+06
+Control point 195 [Y] = 2.3865e+07
+Control point 195 [Z] = 790482
+
+Control point 196 [X] = -3.78753e+06
+Control point 196 [Y] = 2.38609e+07
+Control point 196 [Z] = 1.00548e+06
+
+Control point 197 [X] = -3.72882e+06
+Control point 197 [Y] = 2.38551e+07
+Control point 197 [Z] = 1.11747e+06
 
 
 ===================================================
@@ -50,7 +925,99 @@ finish==================
 Smart Feat Element Node ID: 2
 Number of Child: 1
 
-In SolidKernel Entity is: Sheet 
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Surface of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Surface of Revolution #2
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1592
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:16:55 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -36' 2.6277", -161' 9.9675", 18' 4.9119"
+Range High[point3d] = 41' 5.7126", -60' 5.4641", 55' 3.7658"
+Volume[double] = 
+Surface Area[double] = 10054.7931 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Surface of Revolution #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricRevolve
+DepthId[int] = 0
+Name[string] = Surface of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Angle[double] = 90.0000°
+Capped[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+Minimum Radius[double] = -0' 11.9321"
+Maximum Radius[double] = 71' 10.6243"
+Centroidal Radius[double] = 33' 9.9897"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 1
 
 
 ===================================================
@@ -81,7 +1048,99 @@ finish==================
 Smart Feat Element Node ID: 2
 Number of Child: 1
 
-In SolidKernel Entity is: Sheet 
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1594
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:17:56 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -29' 6.5365", 33' 7.2187", 28' 10.4221"
+Range High[point3d] = 48' 2.4591", 61' 7.8592", 62' 3.1664"
+Volume[double] = 
+Surface Area[double] = 3405.3895 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricExtrude
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Distance[double] = 33' 4.7443"
+X Scale[double] = 1.0000
+Y Scale[double] = 1.0000
+Spin Angle[double] = 0.0000°
+Both Ways[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ComplexChain
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 1
 
 
 ===================================================
@@ -99,6 +1158,55 @@ Element ID: 1595
 ===================================================
 
 
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 31957687.703436
+BsplineCurve Order: 4
+
+Start point [X] = -20442062.339330
+Start point [Y] = 16128467.788359
+Start point [Z] = -4313594.549891
+
+End point [X] = -20480367.925020
+End point [Y] = 16090162.202669
+End point [Z] = -4390205.721270
+
+Is Closed = 0
+
+Control point 0 [X] = -20442062.339330
+Control point 0 [Y] = 16128467.788359
+Control point 0 [Z] = -4313594.549891
+
+Control point 1 [X] = -22548869.552270
+Control point 1 [Y] = 14021660.575419
+Control point 1 [Z] = -8527208.975770
+
+Control point 2 [X] = -16119489.200088
+Control point 2 [Y] = 7592280.223238
+Control point 2 [Z] = -8527208.975770
+
+Control point 3 [X] = -13897765.230079
+Control point 3 [Y] = 9814004.193247
+Control point 3 [Z] = -4083761.035752
+
+Control point 4 [X] = -11561124.503000
+Control point 4 [Y] = 12150644.920326
+Control point 4 [Z] = 589520.418406
+
+Control point 5 [X] = -17990504.855181
+Control point 5 [Y] = 18580025.272507
+Control point 5 [Z] = 589520.418406
+
+Control point 6 [X] = -20480367.925020
+Control point 6 [Y] = 16090162.202669
+Control point 6 [Z] = -4390205.721270
+
+Control point 7 [X] = -20480367.925020
+Control point 7 [Y] = 16090162.202669
+Control point 7 [Z] = -4390205.721270
+
+
 ===================================================
 ===================================================
 Element Description: Bspline Curve
@@ -112,6 +1220,47 @@ Element Description: Bspline Curve
 Element ID: 1597
 ===================================================
 ===================================================
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 22887830.846510
+BsplineCurve Order: 4
+
+Start point [X] = -11000704.215642
+Start point [Y] = 5154886.237079
+Start point [Z] = -5845817.977483
+
+End point [X] = 3767728.039501
+End point [Y] = -3408041.136314
+End point [Z] = 359686.904267
+
+Is Closed = 0
+
+Control point 0 [X] = -11000704.215642
+Control point 0 [Y] = 5154886.237079
+Control point 0 [Z] = -5845817.977483
+
+Control point 1 [X] = -4750399.446776
+Control point 1 [Y] = 4114141.122028
+Control point 1 [Z] = -636258.323668
+
+Control point 2 [X] = -5718780.281299
+Control point 2 [Y] = -433482.382782
+Control point 2 [Z] = -6152262.663002
+
+Control point 3 [X] = -553958.532026
+Control point 3 [Y] = 224144.892796
+Control point 3 [Z] = -329813.638150
+
+Control point 4 [X] = -2703792.496652
+Control point 4 [Y] = -4444415.395365
+Control point 4 [Z] = -7148207.890937
+
+Control point 5 [X] = 3767728.039501
+Control point 5 [Y] = -3408041.136314
+Control point 5 [Z] = 359686.904267
 
 
 ===================================================
@@ -149,7 +1298,117 @@ finish==================
 Smart Feat Element Node ID: 3
 Number of Child: 2
 
-In SolidKernel Entity is: Sheet 
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Extrude Along Path #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Extrude Along Path #3
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1600
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:16:49 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 7
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -126' 3.8695", -93' 11.1837", -128' 11.7001"
+Range High[point3d] = 15' 2.3195", 48' 5.4507", 12' 3.3647"
+Volume[double] = 
+Surface Area[double] = 20622.5075 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 3
+Enabled[boolean] = 
+Label[string] = Extrude Along Path #3
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricExtrudeAlong
+DepthId[int] = 0
+Name[string] = Extrude Along Path #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.5000"
+Alignment[int] = Normal
+Scale[double] = 1.0000
+Spin[double] = 0.0000°
+Lock Profile Rotation[boolean] = False
+Use Portion of Path[boolean] = False
+Start Distance[double] = 
+End Distance[double] = 
+InnerDiameter[double] = 
+OuterDiameter[double] = 
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Extrude Along Path #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Extrude Along Path #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Extrude Along Profile #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Extrude Along Profile #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 1
 
 
 ===================================================
@@ -166,6 +1425,102 @@ Element ID: 1601
 ===================================================
 ===================================================
 
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Circle
+Level[int] = Default
+Element ID[long] = 1601
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:28:10 AM
+Size[int] = 88
+Linkages[int] = 0
+XAttributes[int] = 0
+Links[string] = 
+Property List[string] = 
+Type[string] = Ellipse
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = Solid
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 0' 0.0000"
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of 0 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 60' 9.2906", -40' 10.0619", 0' 0.0000"
+Range High[point3d] = 135' 9.2194", 34' 1.8670", 0' 0.0000"
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -64.8767°
+Angle[double] = 295.1233°
+Orientation[int] = Top
+Area[double] = 4417.1655 Sq.'
+Perimeter[double] = 235' 7.2097"
+Fill[binary] = No Fill
+Front Clip Depth[double] = 0' 0.0000"
+Back Clip Depth[double] = 0' 0.0000"
+Front Clip[boolean] = False
+Back Clip[boolean] = False
+Pattern Definition[int] = (None)
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Primary Axis[double] = 37' 5.9644"
+Secondary Axis[double] = 
+Center[point3d] = 98' 3.2550", -3' 4.0974", 0' 0.0000"
+Primary Vector[point3d] = 15' 11.0403", -33' 11.3961", 0' 0.0000"
+Secondary Vector[point3d] = 33' 11.3961", 15' 11.0403", 0' 0.0000"
+Axis Ratio[double] = 1.00000
+DWG Radius[double] = 37' 5.9644"
+Start Point[point3d] = 114' 2.2954", -37' 3.4935", 0' 0.0000"
+End Point[point3d] = 114' 2.2954", -37' 3.4935", 0' 0.0000"
+
+-------- BOUNDARY_TYPE_Outer --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Center point [X] = 29953078.220792
+Center point [Y] = -1018474.616794
+Center point [Z] = 0.000000
+
+directionX [X] = 0.424568
+directionX [Y] = -0.905396
+directionX [Z] = 0.000000
+
+directionY [X] = 0.905396
+directionY [Y] = 0.424568
+directionY [Z] = 0.000000
+
+Start Angle = 0.000000
+Sweep Angle = 6.283185
+
 
 ===================================================
 ===================================================
@@ -180,6 +1535,43 @@ Element Description: Bspline Curve
 Element ID: 1602
 ===================================================
 ===================================================
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 20816817.758698
+BsplineCurve Order: 4
+
+Start point [X] = -9775348.006238
+Start point [Y] = 29570160.441717
+Start point [Z] = 19794812.436559
+
+End point [X] = 4588071.732305
+End point [Y] = 21795301.441821
+End point [Z] = 26383373.175207
+
+Is Closed = 0
+
+Control point 0 [X] = -9775348.006238
+Control point 0 [Y] = 29570160.441717
+Control point 0 [Z] = 19794812.436559
+
+Control point 1 [X] = -4766758.612865
+Control point 1 [Y] = 29541297.188020
+Control point 1 [Z] = 24774538.576235
+
+Control point 2 [X] = -4866151.029086
+Control point 2 [Y] = 23741629.408009
+Control point 2 [Z] = 18875478.380003
+
+Control point 3 [X] = 1061360.128272
+Control point 3 [Y] = 21185009.791355
+Control point 3 [Z] = 22246369.920707
+
+Control point 4 [X] = 4588071.732305
+Control point 4 [Y] = 21795301.441821
+Control point 4 [Z] = 26383373.175207
 
 
 ===================================================
@@ -210,7 +1602,99 @@ finish==================
 Smart Feat Element Node ID: 2
 Number of Child: 1
 
-In SolidKernel Entity is: Sheet 
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1605
+Model[string] = Default
+Last Modified[dateTime] = 3/11/2020 10:41:29 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -49' 0.1300", 52' 6.7817", 61' 11.1291"
+Range High[point3d] = 15' 0.6328", 97' 0.1796", 103' 5.9893"
+Volume[double] = 
+Surface Area[double] = 2003.8070 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricExtrude
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Distance[double] = 29' 4.0804"
+X Scale[double] = 1.0000
+Y Scale[double] = 1.0000
+Spin Angle[double] = 0.0000°
+Both Ways[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 1
 
 
 ===================================================

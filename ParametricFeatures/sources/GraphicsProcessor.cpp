@@ -176,403 +176,413 @@ inline void GraphicsProcessor::setTorusGraphicProperties(DgnTorusPipeDetail dgnT
 #pragma warning( disable : 4101)
 inline void GraphicsProcessor::CurveParser(ICurvePrimitiveCR curve)
 {
-	//outfile.open(filePath, std::ios_base::app);
-	//outfile << std::fixed;
-	//
-
-	//switch (curve.GetCurvePrimitiveType())
-	//{
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
-	//{
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
-	//{	
-	//	DEllipse3d ellipse;
-	//	DPoint3d centerOUT;
-	//	DVec3d directionX, directionY;
-	//	double* pQuatXYZW; 
-	//	double rx, ry, startAngle, sweepAngle;	
-
-	//	if (!curve.TryGetArc(ellipse))
-	//		break;
-
-	//	ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
-
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//	outfile << "Center point [X] = " << centerOUT.x << std::endl;
-	//	outfile << "Center point [Y] = " << centerOUT.y << std::endl;
-	//	outfile << "Center point [Z] = " << centerOUT.z << std::endl;
-	//	outfile << std::endl;
-
-	//	outfile << "directionX [X] = " << directionX.x << std::endl;
-	//	outfile << "directionX [Y] = " << directionX.y << std::endl;
-	//	outfile << "directionX [Z] = " << directionX.z << std::endl;
-	//	outfile << std::endl;
-
-	//	outfile << "directionY [X] = " << directionY.x << std::endl;
-	//	outfile << "directionY [Y] = " << directionY.y << std::endl;
-	//	outfile << "directionY [Z] = " << directionY.z << std::endl;
-	//	outfile << std::endl;
-
-	//	outfile << "Start Angle = " << startAngle << std::endl;
-	//	outfile << "Sweep Angle = " << sweepAngle << std::endl;
-	//	outfile << std::endl;
-
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
-	//	outfile << std::endl;
-
-	//	MSBsplineCurvePtr bSpline = curve.GetBsplineCurvePtr();
-	//	DPoint3d startP, endP;
-	//	bvector<DPoint3d> polesControlP;
-
-	//	CurveGraphicProperties* curveGraphicsProperty = new CurveGraphicProperties();
-
-	//	if (bSpline != nullptr)
-	//	{
-	//		bSpline->ExtractEndPoints(startP, endP);
-	//		outfile << "BsplineCurve Length: " << bSpline->Length() << std::endl;
-	//		outfile << "BsplineCurve Order: " << bSpline->GetOrder() << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Start point [X] = " << startP.x << std::endl;
-	//		outfile << "Start point [Y] = " << startP.y << std::endl;
-	//		outfile << "Start point [Z] = " << startP.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "End point [X] = " << endP.x << std::endl;
-	//		outfile << "End point [Y] = " << endP.y << std::endl;
-	//		outfile << "End point [Z] = " << endP.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-	//		outfile << std::endl;
-
-	//		bSpline->GetPoles(polesControlP);
-	//		for (size_t k = 0; k < polesControlP.size(); k++)
-	//		{
-	//			outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
-	//			outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
-	//			outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
-	//			outfile << std::endl;
-	//		}
-
-	//		curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
-	//		curveGraphicsProperty->setIsSelfIntersect(false);
-	//		curveGraphicsProperty->setControlPoints(polesControlP);
-
-	//		// need to check for the knots and the weights
-	//	}
-	//	else if ((bSpline = curve.GetMSBsplineCurvePtr()) != nullptr)
-	//	{
-	//		bSpline->ExtractEndPoints(startP, endP);
-	//		outfile << "MSBsplineCurve Length: " << bSpline->Length() << std::endl;
-	//		outfile << "MSBsplineCurve Order: " << bSpline->GetOrder() << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Start point [X] = " << startP.x << std::endl;
-	//		outfile << "Start point [Y] = " << startP.y << std::endl;
-	//		outfile << "Start point [Z] = " << startP.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "End point [X] = " << endP.x << std::endl;
-	//		outfile << "End point [Y] = " << endP.y << std::endl;
-	//		outfile << "End point [Z] = " << endP.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-	//		outfile << std::endl;
-	//		
-	//		bSpline->GetPoles(polesControlP);
-	//		for (size_t k = 0; k < polesControlP.size(); k++)
-	//		{
-	//			outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
-	//			outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
-	//			outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
-	//			outfile << std::endl;
-	//		}
-
-	//		curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
-	//		curveGraphicsProperty->setIsSelfIntersect(false);
-	//		curveGraphicsProperty->setControlPoints(polesControlP);
-
-	//		// need to check for the knots and the weights
-
-	//	}
-
-	//	dictionaryProperties->getGraphicProperties()->setCurveGraphicsProperties(curveGraphicsProperty);
-
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
-	//	outfile << std::endl;
-
-	//	DSegment3d segment, segment0, segment1;
-	//	DPoint3d tangent, originStartPoint0, point0, point1, centroid;
-	//	double fraction0, fraction1, lineLength;
-
-	//	if (curve.TryGetLine(segment))
-	//	{
-	//		outfile << "-------- " << elemClassName << " --------" << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
-	//		outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
-	//		outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "End Point [X]: " << segment.point[1].x << std::endl;
-	//		outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
-	//		outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.FromOriginAndDirection(originStartPoint0, tangent);
-
-	//		outfile << "FromOriginAndDirection" << std::endl;
-	//		outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
-	//		outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
-	//		outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Tangent [X]: " << tangent.x << std::endl;
-	//		outfile << "Tangent [Y]: " << tangent.y << std::endl;
-	//		outfile << "Tangent [Z]: " << tangent.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		outfile << "ClosestApproachBounded: " << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-	//		outfile << std::fixed;
-	//		outfile << std::endl;
-	//		outfile << "Centroid [X] = " << centroid.x << std::endl;
-	//		outfile << "Centroid [Y] = " << centroid.y << std::endl;
-	//		outfile << "Centroid [Z] = " << centroid.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		outfile << "ClosestApproachUnbounded: " << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-	//		outfile << std::fixed;
-	//		outfile << std::endl;
-	//		outfile << "Centroid [X] = " << centroid.x << std::endl;
-	//		outfile << "Centroid [Y] = " << centroid.y << std::endl;
-	//		outfile << "Centroid [Z] = " << centroid.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "==============================================" << std::endl;
-	//	}
-	//	
-	//	curve.GetStartEnd(point0, point1);
-	//	
-	//	if (curve.GetLineCP() != nullptr)
-	//	{
-	//		outfile << "Components --------" << curve.NumComponent() << std::endl;
-	//		outfile << std::endl;
-
-	//		for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
-	//		{
-	//			DPoint3d point = curve.GetLineStringCP()->at(k);
-	//			
-	//			outfile << "point " << k << " [X] = " << point.x << std::endl;
-	//			outfile << "point " << k << " [Y] = " << point.y << std::endl;
-	//			outfile << "point " << k << " [Z] = " << point.z << std::endl;
-	//			outfile << std::endl;
-	//		}
-
-	//	}
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
-	//	outfile << std::endl;
-
-	//	DSegment3d segment, segment0, segment1;
-	//	size_t startPointIndex;
-	//	DPoint3d tangent, originStartPoint0, point0, point1, centroid;
-	//	double fraction0, fraction1, lineLength;
-
-	//	if (curve.TryGetSegmentInLineString(segment, startPointIndex))
-	//	{
-	//		outfile << "-------- " << elemClassName << " --------" << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
-	//		outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
-	//		outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "End Point [X]: " << segment.point[1].x << std::endl;
-	//		outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
-	//		outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.FromOriginAndDirection(originStartPoint0, tangent);
-
-	//		outfile << "FromOriginAndDirection" << std::endl;
-	//		outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
-	//		outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
-	//		outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Tangent [X]: " << tangent.x << std::endl;
-	//		outfile << "Tangent [Y]: " << tangent.y << std::endl;
-	//		outfile << "Tangent [Z]: " << tangent.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		outfile << "ClosestApproachBounded: " << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-	//		outfile << std::fixed;
-	//		outfile << std::endl;
-	//		outfile << "Centroid [X] = " << centroid.x << std::endl;
-	//		outfile << "Centroid [Y] = " << centroid.y << std::endl;
-	//		outfile << "Centroid [Z] = " << centroid.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-	//		outfile << "==============================================" << std::endl;
-
-	//		outfile << "ClosestApproachUnbounded: " << std::endl;
-	//		outfile << std::endl;
-
-	//		segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-	//		outfile << std::fixed;
-	//		outfile << std::endl;
-	//		outfile << "Centroid [X] = " << centroid.x << std::endl;
-	//		outfile << "Centroid [Y] = " << centroid.y << std::endl;
-	//		outfile << "Centroid [Z] = " << centroid.z << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-	//		outfile << std::endl;
-
-	//		outfile << "==============================================" << std::endl;
-
-	//	}
-
-	//	curve.GetStartEnd(point0, point1);
-
-	//	if (curve.GetLineStringCP() != nullptr)
-	//	{
-	//		outfile << "Components --------" << curve.NumComponent() << std::endl;
-
-	//		for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
-	//		{
-	//			DPoint3d point = curve.GetLineStringCP()->at(k);
-	//			outfile << std::endl;
-	//			outfile << "point " << k << " [X] = " << point.x << std::endl;
-	//			outfile << "point " << k << " [Y] = " << point.y << std::endl;
-	//			outfile << "point " << k << " [Z] = " << point.z << std::endl;
-	//			outfile << std::endl;
-	//		}
-
-	//	}
-	//	
-	//}
-
-	//break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
-	//{
-	//	
-	//	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
-	//	outfile << std::endl;
-	//	
-	//}
-	//	break;
-	//default:
-	//	break;
-	//}	
-
-	//outfile.close();
+	switch (curve.GetCurvePrimitiveType())
+	{
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
+	{	
+		DEllipse3d ellipse;
+		DPoint3d centerOUT;
+		DVec3d directionX, directionY;
+		double* pQuatXYZW; 
+		double rx, ry, startAngle, sweepAngle;	
+
+		if (!curve.TryGetArc(ellipse))
+			break;
+
+		ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
+		outfile << std::endl;
+		
+		outfile << "Center point [X] = " << centerOUT.x << std::endl;
+		outfile << "Center point [Y] = " << centerOUT.y << std::endl;
+		outfile << "Center point [Z] = " << centerOUT.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "directionX [X] = " << directionX.x << std::endl;
+		outfile << "directionX [Y] = " << directionX.y << std::endl;
+		outfile << "directionX [Z] = " << directionX.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "directionY [X] = " << directionY.x << std::endl;
+		outfile << "directionY [Y] = " << directionY.y << std::endl;
+		outfile << "directionY [Z] = " << directionY.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "Start Angle = " << startAngle << std::endl;
+		outfile << "Sweep Angle = " << sweepAngle << std::endl;
+		outfile << std::endl;
+		outfile.close();		
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+
+		MSBsplineCurvePtr bSpline = curve.GetBsplineCurvePtr();
+		DPoint3d startP, endP;
+		bvector<DPoint3d> polesControlP;
+
+		CurveGraphicProperties* curveGraphicsProperty = new CurveGraphicProperties();
+
+		outfile.open(filePath, std::ios_base::app);
+
+		if (bSpline != nullptr)
+		{
+			bSpline->ExtractEndPoints(startP, endP);
+
+			outfile << "BsplineCurve Length: " << bSpline->Length() << std::endl;
+			outfile << "BsplineCurve Order: " << bSpline->GetOrder() << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start point [X] = " << startP.x << std::endl;
+			outfile << "Start point [Y] = " << startP.y << std::endl;
+			outfile << "Start point [Z] = " << startP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End point [X] = " << endP.x << std::endl;
+			outfile << "End point [Y] = " << endP.y << std::endl;
+			outfile << "End point [Z] = " << endP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+			outfile << std::endl;
+
+			bSpline->GetPoles(polesControlP);
+			for (size_t k = 0; k < polesControlP.size(); k++)
+			{
+				outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
+				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
+				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
+				outfile << std::endl;
+			}
+
+			curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
+			curveGraphicsProperty->setIsSelfIntersect(false);
+			curveGraphicsProperty->setControlPoints(polesControlP);
+
+			// need to check for the knots and the weights
+		}
+		else if ((bSpline = curve.GetMSBsplineCurvePtr()) != nullptr)
+		{
+			bSpline->ExtractEndPoints(startP, endP);
+			outfile << "MSBsplineCurve Length: " << bSpline->Length() << std::endl;
+			outfile << "MSBsplineCurve Order: " << bSpline->GetOrder() << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start point [X] = " << startP.x << std::endl;
+			outfile << "Start point [Y] = " << startP.y << std::endl;
+			outfile << "Start point [Z] = " << startP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End point [X] = " << endP.x << std::endl;
+			outfile << "End point [Y] = " << endP.y << std::endl;
+			outfile << "End point [Z] = " << endP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+			outfile << std::endl;
+			
+			bSpline->GetPoles(polesControlP);
+			for (size_t k = 0; k < polesControlP.size(); k++)
+			{
+				outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
+				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
+				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
+				outfile << std::endl;
+			}
+
+			curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
+			curveGraphicsProperty->setIsSelfIntersect(false);
+			curveGraphicsProperty->setControlPoints(polesControlP);
+
+			// need to check for the knots and the weights
+
+		}
+		outfile.close();
+
+		dictionaryProperties->getGraphicProperties()->setCurveGraphicsProperties(curveGraphicsProperty);
+
+		
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+
+		DSegment3d segment, segment0, segment1;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+		
+		outfile.open(filePath, std::ios_base::app);
+
+		if (curve.TryGetLine(segment))
+		{
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+		}
+		
+		curve.GetStartEnd(point0, point1);
+		
+		if (curve.GetLineCP() != nullptr)
+		{
+			outfile << "Components --------" << curve.NumComponent() << std::endl;
+			outfile << std::endl;
+
+			for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
+			{
+				DPoint3d point = curve.GetLineStringCP()->at(k);
+				
+				outfile << "point " << k << " [X] = " << point.x << std::endl;
+				outfile << "point " << k << " [Y] = " << point.y << std::endl;
+				outfile << "point " << k << " [Z] = " << point.z << std::endl;
+				outfile << std::endl;
+			}
+		}
+
+		outfile.close();
+		
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+
+		DSegment3d segment, segment0, segment1;
+		size_t startPointIndex;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+
+		outfile.open(filePath, std::ios_base::app);
+
+		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
+		{
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+		}
+
+		curve.GetStartEnd(point0, point1);
+
+		if (curve.GetLineStringCP() != nullptr)
+		{
+			outfile << "Components --------" << curve.NumComponent() << std::endl;
+
+			for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
+			{
+				DPoint3d point = curve.GetLineStringCP()->at(k);
+
+				outfile << std::endl;
+				outfile << "point " << k << " [X] = " << point.x << std::endl;
+				outfile << "point " << k << " [Y] = " << point.y << std::endl;
+				outfile << "point " << k << " [Z] = " << point.z << std::endl;
+				outfile << std::endl;
+			}
+
+		}
+		outfile.close();
+		
+	}
+
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+		break;
+	default:
+		break;
+	}	
+
 }
 
 
@@ -609,36 +619,35 @@ BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return 
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
 BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled)
-{
-	outfile.open(filePath, std::ios_base::app);
+{	
 	switch (curve.GetCurvePrimitiveType())
 	{
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
@@ -651,7 +660,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 
 		if (curve.TryGetLine(segment))
 		{
-			
+			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------- " << elemClassName << " --------" << std::endl;
 			outfile << std::endl;
 
@@ -736,7 +745,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 		
 		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
 		{
-			
+			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------- " << elemClassName << " --------" << std::endl;
 			outfile << std::endl;
 
@@ -814,19 +823,19 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 		
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
-		
+		outfile.open(filePath, std::ios_base::app);
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
@@ -846,9 +855,6 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 #pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
-	/*outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-
 	if (!curves.empty()) 
 	{
 		switch (curves.GetBoundaryType())
@@ -857,9 +863,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+				outfile.close();
 				
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -870,10 +877,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
-				
+				outfile.close();
 
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -884,10 +891,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
-								
+				outfile.close();
 
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -898,10 +905,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
-				
+				outfile.close();
 				
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -912,10 +919,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
-				
+				outfile.close();
 				
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -926,10 +933,10 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		{
 			for (size_t i = 0; i < curves.size(); i++)
 			{
-				
+				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
-				
+				outfile.close();
 
 				ICurvePrimitivePtr curve = curves.at(i);
 				CurveParser(*curve);
@@ -940,9 +947,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			break;
 		}
 	}
-
-	outfile.close();*/
-
+	
 	return ERROR;
 }
 #pragma warning( pop ) 
@@ -971,6 +976,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 {
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::fixed;
+	outfile.close();
 
 	switch (entity.GetEntityType())
 	{
@@ -984,6 +990,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		CurveVectorPtr curveFacesEval;
 		CurveVectorPtr curveEdgesEval;
 		CurveVectorPtr curveVerticesEval;
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << elemClassName << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 
 		/*DPoint3d point;*/
 		/*DVec3d normal, uDir, vDir;*/
@@ -1037,21 +1049,31 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	break;
 
 	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
-		outfile << elemClassName << "In SolidKernel Entity is: Sheet " << std::endl;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << elemClassName << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 		break;
 	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
-		outfile << elemClassName << "In SolidKernel Entity is: Wire " << std::endl;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << elemClassName << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 		break;
 	case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
-		outfile << elemClassName << "IS minimal" << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << elemClassName << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 		break;
 
 	default:
 		break;
 	}
 
-	outfile << std::endl;
-	outfile.close();
 
 	return ERROR; 
 }
