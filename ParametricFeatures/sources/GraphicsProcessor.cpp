@@ -905,6 +905,11 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			DVec3d vectorBaseZ;
 			vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
 
+			outfile << "Vector Z [X] = " << vectorBaseZ.x << std::endl;
+			outfile << "Vector Z [Y] = " << vectorBaseZ.y << std::endl;
+			outfile << "Vector Z [Z] = " << vectorBaseZ.z << std::endl;
+			outfile << std::endl;
+
 			// set x,y,z axis in dectionary
 			dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
 			dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);

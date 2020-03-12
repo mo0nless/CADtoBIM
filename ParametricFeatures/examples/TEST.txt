@@ -117,6 +117,10 @@ Vector Y [X] = 0.000000
 Vector Y [Y] = -1.000000
 Vector Y [Z] = 0.000000
 
+Vector Z [X] = 0.000000
+Vector Z [Y] = 0.000000
+Vector Z [Z] = 1.000000
+
 Major Radius = 4880791.867434
 Minor Radius = 1638073.982906
 Sweep Angle = 6.283185

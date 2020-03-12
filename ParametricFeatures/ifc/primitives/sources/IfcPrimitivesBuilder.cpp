@@ -97,7 +97,12 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(Primit
 			Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement, torusGraphicProperties.getMinorRadius() / 1000000);
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
-			my = new Ifc4::IfcRevolvedAreaSolid(profileDef, place, localAxis1Placement, torusGraphicProperties.getSweepRadians());
+			Ifc4::IfcAxis2Placement3D* torusPlacement = new Ifc4::IfcAxis2Placement3D(
+				file.addTriplet<Ifc4::IfcCartesianPoint>(graphicProperties.getCentroid().x / 1000000, graphicProperties.getCentroid().y / 1000000, graphicProperties.getCentroid().z / 1000000),
+				file.addTriplet<Ifc4::IfcDirection>(graphicProperties.getVectorAxisX().x, graphicProperties.getVectorAxisX().y, graphicProperties.getVectorAxisX().z),
+				file.addTriplet<Ifc4::IfcDirection>(graphicProperties.getVectorAxisZ().x, graphicProperties.getVectorAxisZ().y, graphicProperties.getVectorAxisZ().z)
+			);
+			my = new Ifc4::IfcRevolvedAreaSolid(profileDef, torusPlacement, localAxis1Placement, torusGraphicProperties.getSweepRadians());
 		}
 		else
 		{
