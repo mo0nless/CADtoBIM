@@ -34,5 +34,6 @@ public:
 	double rotationY;
 	double rotationZ;
 
-
+	//HARD CODED FOR CURVES
+	int curveDegree;
 };

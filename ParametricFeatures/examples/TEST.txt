@@ -1,260 +1,113 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Torus
-Element ID: 1375
+Element Description: Complex Chain
+Element ID: 1583
 ===================================================
 ===================================================
 
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = TorusSolidElement, current element id = 1375, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnTorus
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
+-------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+
+BsplineCurve Length: 16365449.212926
+BsplineCurve Order: 4
+
+Start point [X] = -4202532.416445
+Start point [Y] = 6698783.382434
+Start point [Z] = 0.000000
+
+End point [X] = 3030895.308029
+End point [Y] = 1940750.387727
+End point [Z] = 0.000000
+
+Is Closed = 0
+
+Control point 0 [X] = -4202532.416445
+Control point 0 [Y] = 6698783.382434
+Control point 0 [Z] = 0.000000
+
+Control point 1 [X] = 3030895.308029
+Control point 1 [Y] = 6698783.382434
+Control point 1 [Z] = 0.000000
+
+Control point 2 [X] = 12262126.880216
+Control point 2 [Y] = 1940750.387727
+Control point 2 [Z] = 0.000000
+
+Control point 3 [X] = 3030895.308029
+Control point 3 [Y] = 1940750.387727
+Control point 3 [Z] = 0.000000
+
 
 ===================================================
 ===================================================
-Element Description: Torus
-Element: ID 1375
+Element Description: Complex Chain
+Element: ID 1583
 ===================================================
 ===================================================
 
---------  --------
-Range [XLength] = 14910425.058631
-Range [YLength] = 14910425.058631
-Range [ZLength] = 5148841.323764
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = 0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = -12369799.211530
-Origin [Y] = -272415.921664
-Origin [Z] = 0.000000
-
-Range High = -4914586.682214
-Range Low = -19825011.740845
-DiagonalDistanceXY = 21086525.338664
-DiagonalDistance = 21706038.741222
-Range Difference = -14910425.058631
-Axes Coordinates Axes, XY in major Plane, Z through hole
-Axes Rotation (Quaternion) [X] = 0.000000
-Axes Rotation (Quaternion) [Y] = 0.000000
-Axes Rotation (Quaternion) [Z] = 1.000000
-Axes Rotation (Quaternion) [W] = 0.000000
-
-Center Point Rotation [X] = -12369799.211530
-Center Point Rotation [Y] = -272415.921664
-Center Point Rotation [Z] = 0.000000
-
-Center [X] = -12369799.211530
-Center [Y] = -272415.921664
-Center [Z] = 0.000000
-
-Vector X [X] = -1.000000
-Vector X [Y] = 0.000000
-Vector X [Z] = 0.000000
-
-Vector Y [X] = 0.000000
-Vector Y [Y] = -1.000000
-Vector Y [Z] = 0.000000
-
-Major Radius = 4880791.867434
-Minor Radius = 1638073.982906
-Sweep Angle = 6.283185
-Sweep Radians = 6.283185
-
-Radius Major (Elbow Radius) = 4880791.867434
-Radius Minor (Pipe Diameter) = 1638073.982906
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -12369799.211530
-Centroid [Y] = -272415.921664
-Centroid [Z] = 0.000000
-
-Volume = 258515778020798791680.000000
-Area = 315633824501873.500000
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1588
+===================================================
+===================================================
 
 
-Capped[int] = Yes
-Center[point3d] = -45' 10.4554", 5' 0.6111", 0' 0.0000"
-Radius[double] = 14' 0.5604"
-Diameter[double] = 28' 1.1209"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
-Level[int] = Default
-Element ID[long] = 1375
-Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 3:47:01 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -59' 11.0159", -8' 11.9494", -14' 0.5605"
-Range High[point3d] = -31' 9.8950", 19' 1.1715", 14' 0.5605"
-Volume[double] = 11609.4563 Cu.'
-Surface Area[double] = 2479.4692 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Back
-Capped[int] = Yes
-Center[point3d] = -45' 10.4554", 5' 0.6111", 0' 0.0000"
-Radius[double] = 14' 0.5604"
-Diameter[double] = 28' 1.1209"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
-Level[int] = Default
-Element ID[long] = 1375
-Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 3:47:01 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -59' 11.0159", -8' 11.9494", -14' 0.5605"
-Range High[point3d] = -31' 9.8950", 19' 1.1715", 14' 0.5605"
-Volume[double] = 11609.4563 Cu.'
-Surface Area[double] = 2479.4692 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Back
-Capped[int] = Yes
-Center[point3d] = -45' 10.4554", 5' 0.6111", 0' 0.0000"
-Radius[double] = 14' 0.5604"
-Diameter[double] = 28' 1.1209"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
-Level[int] = Default
-Element ID[long] = 1375
-Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 3:47:01 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -59' 11.0159", -8' 11.9494", -14' 0.5605"
-Range High[point3d] = -31' 9.8950", 19' 1.1715", 14' 0.5605"
-Volume[double] = 11609.4563 Cu.'
-Surface Area[double] = 2479.4692 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Back
+-------- BOUNDARY_TYPE_Open --------
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1588
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1592
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1588
+finish==================
+
+Smart Feat Element Node ID: 2
+Number of Child: 1
+
 NodeId[int] = 0
 Feature Status[string] = 
-Deletable[boolean] = True
+Deletable[boolean] = False
 IconName[string] = ParametricSolid
 DepthId[int] = 0
-Name[string] = Intersection #7
+Name[string] = Surface of Revolution #2
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
+ReorderValid[boolean] = True
 IsTop[boolean] = True
 Enabled[boolean] = 
-Label[string] = Intersection #7
-DynamicLabel[string] = Parametric Solid
+Label[string] = Surface of Revolution #2
+DynamicLabel[string] = Parametric Surface
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
 Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
-Element ID[long] = 1456
+Element ID[long] = 1592
 Model[string] = Default
-Last Modified[dateTime] = 3/5/2020 5:23:09 PM
+Last Modified[dateTime] = 3/10/2020 10:16:55 AM
 Size[int] = 76
 Linkages[int] = 2
-XAttributes[int] = 11
+XAttributes[int] = 6
 Links[string] = 
 Property List[string] = 
 Type[string] = Parametric Solid/Surface
@@ -281,123 +134,447 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -68' 9.3275", -9' 1.5694", 0' 0.0000"
-Range High[point3d] = -28' 1.3145", 10' 8.4855", 26' 3.1148"
-Volume[double] = 13429.6634 Cu.'
-Surface Area[double] = 4203.7016 Sq.'
+Range Low[point3d] = -36' 2.6277", -161' 9.9675", 18' 4.9119"
+Range High[point3d] = 41' 5.7126", -60' 5.4641", 55' 3.7658"
+Volume[double] = 
+Surface Area[double] = 10054.7931 Sq.'
 Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
 Orientation[int] = Top
-NodeId[int] = 7
-Enabled[boolean] = 
-Label[string] = Intersection #7
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricIntersection
-DepthId[int] = 0
-Name[string] = Intersection #7
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Disabled[boolean] = 
-BooleanFunction[int] = 2
-NodeId[int] = 5
-Enabled[boolean] = 
-Label[string] = Union #5
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 1
-Name[string] = Union #5
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 1
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Slab #1
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = PlaceSlab
-DepthId[int] = 2
-Name[string] = Slab #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-NodeId[int] = 4
-Enabled[boolean] = 
-Label[string] = Difference #4
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricDifference
-DepthId[int] = 2
-Name[string] = Difference #4
-MoveToTopValid[boolean] = True
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Disabled[boolean] = 
-BooleanFunction[int] = 3
 NodeId[int] = 2
 Enabled[boolean] = 
-Label[string] = Slab #2
+Label[string] = Surface of Revolution #2
 Feature Status[string] = 
 Deletable[boolean] = False
-IconName[string] = PlaceSlab
-DepthId[int] = 3
-Name[string] = Slab #2
+IconName[string] = ParametricRevolve
+DepthId[int] = 0
+Name[string] = Surface of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Angle[double] = 90.0000°
+Capped[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+Minimum Radius[double] = -0' 11.9321"
+Maximum Radius[double] = 71' 10.6243"
+Centroidal Radius[double] = 33' 9.9897"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Profile #1
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
 IsTop[boolean] = False
 Hidden[boolean] = True
 Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1592
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1594
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1583
+finish==================
+
+Smart Feat Element Node ID: 2
+Number of Child: 1
+
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1594
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:17:56 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -29' 6.5365", 33' 7.2187", 28' 10.4221"
+Range High[point3d] = 48' 2.4591", 61' 7.8592", 62' 3.1664"
+Volume[double] = 
+Surface Area[double] = 3405.3895 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Surface of Extrusion #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricExtrude
+DepthId[int] = 0
+Name[string] = Surface of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Distance[double] = 33' 4.7443"
+X Scale[double] = 1.0000
+Y Scale[double] = 1.0000
+Spin Angle[double] = 0.0000°
+Both Ways[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ComplexChain
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1594
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1595
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Open --------
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1595
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element ID: 1597
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Open --------
+
+===================================================
+===================================================
+Element Description: Bspline Curve
+Element: ID 1597
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1600
+===================================================
+===================================================
+
+start==================
+Node ID: 3
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 1
+Leaf ID:  1595
+finish==================
+
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 2
+Leaf ID:  1597
+finish==================
+
+Smart Feat Element Node ID: 3
+Number of Child: 2
+
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Extrude Along Path #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Extrude Along Path #3
+DynamicLabel[string] = Parametric Surface
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1600
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:16:49 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 7
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -126' 3.8695", -93' 11.1837", -128' 11.7001"
+Range High[point3d] = 15' 2.3195", 48' 5.4507", 12' 3.3647"
+Volume[double] = 
+Surface Area[double] = 20622.5075 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
 NodeId[int] = 3
 Enabled[boolean] = 
-Label[string] = Slab #3
+Label[string] = Extrude Along Path #3
 Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = PlaceSlab
-DepthId[int] = 3
-Name[string] = Slab #3
+Deletable[boolean] = False
+IconName[string] = ParametricExtrudeAlong
+DepthId[int] = 0
+Name[string] = Extrude Along Path #3
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
+ReorderValid[boolean] = True
+IsTop[boolean] = True
 Disabled[boolean] = 
-NodeId[int] = 6
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.5000"
+Alignment[int] = Normal
+Scale[double] = 1.0000
+Spin[double] = 0.0000°
+Lock Profile Rotation[boolean] = False
+Use Portion of Path[boolean] = False
+Start Distance[double] = 
+End Distance[double] = 
+InnerDiameter[double] = 
+OuterDiameter[double] = 
+NodeId[int] = 1
 Enabled[boolean] = 
-Label[string] = Sphere #6
+Label[string] = Extrude Along Path #1
 Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ModelerSphere
+Deletable[boolean] = False
+IconName[string] = BSpline
 DepthId[int] = 1
-Name[string] = Sphere #6
+Name[string] = Extrude Along Path #1
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
 IsTop[boolean] = False
 Hidden[boolean] = True
 Disabled[boolean] = 
-NodeId[int] = 300004
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Extrude Along Profile #2
 Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricSolid
-DepthId[int] = 2
-Name[string] = Difference #4
-MoveToTopValid[boolean] = True
+Deletable[boolean] = False
+IconName[string] = BSpline
+DepthId[int] = 1
+Name[string] = Extrude Along Profile #2
+MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
 IsTop[boolean] = False
-Enabled[boolean] = 
-Label[string] = Difference #4
-DynamicLabel[string] = Parametric Solid
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Sheet 
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1600
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1601
+===================================================
+===================================================
+
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Circle
+Level[int] = Default
+Element ID[long] = 1601
+Model[string] = Default
+Last Modified[dateTime] = 3/10/2020 10:28:10 AM
+Size[int] = 88
+Linkages[int] = 0
+XAttributes[int] = 0
+Links[string] = 
+Property List[string] = 
+Type[string] = Ellipse
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = Solid
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 0' 0.0000"
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of 0 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 60' 9.2906", -40' 10.0619", 0' 0.0000"
+Range High[point3d] = 135' 9.2194", 34' 1.8670", 0' 0.0000"
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -64.8767°
+Angle[double] = 295.1233°
+Orientation[int] = Top
+Area[double] = 4417.1655 Sq.'
+Perimeter[double] = 235' 7.2097"
+Fill[binary] = No Fill
+Front Clip Depth[double] = 0' 0.0000"
+Back Clip Depth[double] = 0' 0.0000"
+Front Clip[boolean] = False
+Back Clip[boolean] = False
+Pattern Definition[int] = (None)
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Primary Axis[double] = 37' 5.9644"
+Secondary Axis[double] = 
+Center[point3d] = 98' 3.2550", -3' 4.0974", 0' 0.0000"
+Primary Vector[point3d] = 15' 11.0403", -33' 11.3961", 0' 0.0000"
+Secondary Vector[point3d] = 33' 11.3961", 15' 11.0403", 0' 0.0000"
+Axis Ratio[double] = 1.00000
+DWG Radius[double] = 37' 5.9644"
+Start Point[point3d] = 114' 2.2954", -37' 3.4935", 0' 0.0000"
+End Point[point3d] = 114' 2.2954", -37' 3.4935", 0' 0.0000"
+
+-------- BOUNDARY_TYPE_Outer --------

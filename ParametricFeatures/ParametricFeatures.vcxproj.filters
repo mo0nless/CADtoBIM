@@ -23,6 +23,8 @@
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
+    <ClCompile Include="modeler\properties\primitives\sources\TorusGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\sources\CurveGraphicsProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -54,5 +56,8 @@
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="mapper\IfcData\headers\IfcDataHandler.h" />
+    <ClInclude Include="modeler\properties\primitives\headers\TorusGraphicProperties.h" />
+    <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
+    <ClInclude Include="modeler\properties\primitives\headers\CurveGraphicsProperties.h" />
   </ItemGroup>
 </Project>

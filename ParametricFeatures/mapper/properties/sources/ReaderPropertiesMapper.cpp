@@ -9,6 +9,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	outfile.open(filePath, std::ios_base::app);
+
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
 	{
 		WString wStr;
@@ -38,6 +39,11 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
 			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
 			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+
+		//HARD CODED FOR CURVES//
+		if (propertyName == "Degree")
+			readerProperties.curveDegree = ecVal.GetInteger();
+		//---------------------//
 			
 	}
 	outfile.close();

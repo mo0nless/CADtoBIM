@@ -1,8 +1,10 @@
 #include "../headers/GraphicsProcessor.h"
 
-GraphicsProcessor::GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath)
-	: outfile(mOutfile), filePath(mFilePath)
+GraphicsProcessor::GraphicsProcessor()
 {
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
 	mdlOutput_messageCenter(DgnPlatform::OutputMessagePriority::Debug, myString.c_str(), myString.c_str(), DgnPlatform::OutputMessageAlert::None);
 }
@@ -37,9 +39,7 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 	outfile << "Centroid [Z] = " << centroid.z << std::endl;
 	outfile << std::endl;
 
-	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
-
-	
+	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);	
 
 	outfile << "Volume = " << volume << std::endl;
 	outfile << "Area = " << area << std::endl;
@@ -51,27 +51,6 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 	dictionaryProperties->getGraphicProperties()->setArea(area);
 	dictionaryProperties->getGraphicProperties()->setVolume(volume);
 	dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
-
-
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::AREA),
-	//	PropertyTypeValue("double", area)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RADIUS),
-	//	PropertyTypeValue("double", radius)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::VOLUME),
-	//	PropertyTypeValue("double", volume)
-	//);
-
 }
 
 inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -102,60 +81,414 @@ inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d&
 	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
 	outfile << std::endl;
 
-	//dictionaryProperties->getGraphicProperties()->matrixLocalToWorld = localToWorld;
-	//dictionaryProperties->getGraphicProperties()->vectorRotationAxis = vectorRotation;
-	//dictionaryProperties->getGraphicProperties()->range = range;
 	outfile.close();	
 }
 
-//! Collect output as text.
-//! @param[in] text The text data.
-//! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return SUCCESS; } // Don't export glyph geometry...
-
-//! Collect output as a single curve component.
-//! @param[in] curve The curve data.
-//! @param[in] isClosed The data is from a closed path or region instead of a physically closed path.
-//! @param[in] isFilled A closed path or region should have opaque fill.
-//! @remarks All curve geometry can be handled through _ProcessCurveVector.
-//! @see _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled)
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+inline void GraphicsProcessor::CurveParser(ICurvePrimitiveCR curve)
 {
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::fixed;
+	
+
 	switch (curve.GetCurvePrimitiveType())
 	{
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+	{
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
+		outfile << std::endl;
+		
+	}
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
+	{	
+		DEllipse3d ellipse;
+		DPoint3d centerOUT;
+		DVec3d directionX, directionY;
+		double* pQuatXYZW; 
+		double rx, ry, startAngle, sweepAngle;	
+
+		if (!curve.TryGetArc(ellipse))
+			break;
+
+		ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
+
+		/*outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
+		outfile << std::endl;
+		
+		outfile << "Center point [X] = " << centerOUT.x << std::endl;
+		outfile << "Center point [Y] = " << centerOUT.y << std::endl;
+		outfile << "Center point [Z] = " << centerOUT.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "directionX [X] = " << directionX.x << std::endl;
+		outfile << "directionX [Y] = " << directionX.y << std::endl;
+		outfile << "directionX [Z] = " << directionX.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "directionY [X] = " << directionY.x << std::endl;
+		outfile << "directionY [Y] = " << directionY.y << std::endl;
+		outfile << "directionY [Z] = " << directionY.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "Start Angle = " << startAngle << std::endl;
+		outfile << "Sweep Angle = " << sweepAngle << std::endl;
+		outfile << std::endl;*/
+
+		
+	}
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
+		outfile << std::endl;
+
+		MSBsplineCurvePtr bSpline = curve.GetBsplineCurvePtr();
+		DPoint3d startP, endP;
+		bvector<DPoint3d> polesControlP;
+
+		CurveGraphicProperties* curveGraphicsProperty = new CurveGraphicProperties();
+
+		if (bSpline != nullptr)
+		{
+			bSpline->ExtractEndPoints(startP, endP);
+			outfile << "BsplineCurve Length: " << bSpline->Length() << std::endl;
+			outfile << "BsplineCurve Order: " << bSpline->GetOrder() << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start point [X] = " << startP.x << std::endl;
+			outfile << "Start point [Y] = " << startP.y << std::endl;
+			outfile << "Start point [Z] = " << startP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End point [X] = " << endP.x << std::endl;
+			outfile << "End point [Y] = " << endP.y << std::endl;
+			outfile << "End point [Z] = " << endP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+			outfile << std::endl;
+
+			bSpline->GetPoles(polesControlP);
+			for (size_t k = 0; k < polesControlP.size(); k++)
+			{
+				outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
+				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
+				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
+				outfile << std::endl;
+			}
+
+			curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
+			curveGraphicsProperty->setIsSelfIntersect(false);
+			curveGraphicsProperty->setControlPoints(polesControlP);
+
+			// need to check for the knots and the weights
+		}
+		else if ((bSpline = curve.GetMSBsplineCurvePtr()) != nullptr)
+		{
+			bSpline->ExtractEndPoints(startP, endP);
+			outfile << "MSBsplineCurve Length: " << bSpline->Length() << std::endl;
+			outfile << "MSBsplineCurve Order: " << bSpline->GetOrder() << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start point [X] = " << startP.x << std::endl;
+			outfile << "Start point [Y] = " << startP.y << std::endl;
+			outfile << "Start point [Z] = " << startP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End point [X] = " << endP.x << std::endl;
+			outfile << "End point [Y] = " << endP.y << std::endl;
+			outfile << "End point [Z] = " << endP.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+			outfile << std::endl;
+			
+			bSpline->GetPoles(polesControlP);
+			for (size_t k = 0; k < polesControlP.size(); k++)
+			{
+				outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
+				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
+				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
+				outfile << std::endl;
+			}
+
+			curveGraphicsProperty->setIsClosed(bSpline->IsClosed());
+			curveGraphicsProperty->setIsSelfIntersect(false);
+			curveGraphicsProperty->setControlPoints(polesControlP);
+
+			// need to check for the knots and the weights
+
+		}
+
+		dictionaryProperties->getGraphicProperties()->setCurveGraphicsProperties(curveGraphicsProperty);
+
+		
+	}
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
+		outfile << std::endl;
+		
+	}
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
+		outfile << std::endl;
+		
+	}
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
+		outfile << std::endl;
+
+		DSegment3d segment, segment0, segment1;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+
+		if (curve.TryGetLine(segment))
+		{
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+		}
+		
+		curve.GetStartEnd(point0, point1);
+		
+		if (curve.GetLineCP() != nullptr)
+		{
+			outfile << "Components --------" << curve.NumComponent() << std::endl;
+			outfile << std::endl;
+
+			for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
+			{
+				DPoint3d point = curve.GetLineStringCP()->at(k);
+				
+				outfile << "point " << k << " [X] = " << point.x << std::endl;
+				outfile << "point " << k << " [Y] = " << point.y << std::endl;
+				outfile << "point " << k << " [Z] = " << point.z << std::endl;
+				outfile << std::endl;
+			}
+
+		}
+		
+	}
 		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
-		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
+		outfile << std::endl;
+
+		DSegment3d segment, segment0, segment1;
+		size_t startPointIndex;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+
+		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
+		{
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+		}
+
+		curve.GetStartEnd(point0, point1);
+
+		if (curve.GetLineStringCP() != nullptr)
+		{
+			outfile << "Components --------" << curve.NumComponent() << std::endl;
+
+			for (size_t k = 0; k < curve.GetLineStringCP()->size(); k++)
+			{
+				DPoint3d point = curve.GetLineStringCP()->at(k);
+				outfile << std::endl;
+				outfile << "point " << k << " [X] = " << point.x << std::endl;
+				outfile << "point " << k << " [Y] = " << point.y << std::endl;
+				outfile << "point " << k << " [Z] = " << point.z << std::endl;
+				outfile << std::endl;
+			}
+
+		}
+		
 	}
 
-	return ERROR;
-}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
+		outfile << std::endl;
+		
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
+		outfile << std::endl;
+		
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+	{
+		
+		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
+		outfile << std::endl;
+		
+	}
+		break;
+	default:
+		break;
+	}	
 
-//! Collect output as a CurveVector.
-//! @param[in] curves The curve data.
-//! @param[in] isFilled A closed path or region should have opaque fill.
-//! @return SUCCESS if handled, ERROR to output individual curves through _ProcessCurvePrimitive.
-BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
-{
-	return ERROR;
+	outfile.close();
 }
+#pragma warning( pop ) 
+
 
 //! Process surfaces and solids not handled directly or are clipped through _ProcessFaceta.
 //! @param[in] isPolyface facets are from a call to DrawPolyface, ex. mesh element.
@@ -175,11 +508,367 @@ bool GraphicsProcessor::_ProcessAsFacets(bool isPolyface) const { return true; }
 //! @see DgnPlatformLib::Host::SolidsKernelAdmin
 bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
 
+//! Collect output as text.
+//! @param[in] text The text data.
+//! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
+BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return SUCCESS; } // Don't export glyph geometry...
+
+//! Collect output as a single curve component.
+//! @param[in] curve The curve data.
+//! @param[in] isClosed The data is from a closed path or region instead of a physically closed path.
+//! @param[in] isFilled A closed path or region should have opaque fill.
+//! @remarks All curve geometry can be handled through _ProcessCurveVector.
+//! @see _ProcessCurveVector.
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled)
+{
+	outfile.open(filePath, std::ios_base::app);
+	switch (curve.GetCurvePrimitiveType())
+	{
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+	{
+		DSegment3d segment, segment0, segment1;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+
+		if (curve.TryGetLine(segment))
+		{
+			
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			outfile.close();
+		}
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString:
+	{
+		DSegment3d segment, segment0, segment1;
+		size_t startPointIndex;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+		
+		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
+		{
+			
+			outfile << "-------- " << elemClassName << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection"<< std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			outfile.close();
+		}
+	}
+		
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+		
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	}
+
+	return ERROR;
+}
+#pragma warning( pop ) 
+
+//! Collect output as a CurveVector.
+//! @param[in] curves The curve data.
+//! @param[in] isFilled A closed path or region should have opaque fill.
+//! @return SUCCESS if handled, ERROR to output individual curves through _ProcessCurvePrimitive.
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
+{
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::fixed;
+
+	if (!curves.empty()) 
+	{
+		switch (curves.GetBoundaryType())
+		{
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+				
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
+				
+
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
+								
+
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
+				
+				
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+				
+				
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
+		{
+			for (size_t i = 0; i < curves.size(); i++)
+			{
+				
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+				
+
+				ICurvePrimitivePtr curve = curves.at(i);
+				CurveParser(*curve);
+			}
+		}
+			break;
+		default:
+			break;
+		}
+	}
+	outfile.close();
+
+	return ERROR;
+}
+#pragma warning( pop ) 
+
+
 //! Collect output as a bspline surface.
 //! @param[in] surface The bspline surface data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "-------- _ProcessSurface(MSBsplineSurfaceCR surface) --------" << std::endl;
+	outfile.close();
 	return ERROR;
 }
 
@@ -261,10 +950,10 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	break;
 
 	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
-		outfile << elemClassName << "IS Sheet" << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+		outfile << elemClassName << "In SolidKernel Entity is: Sheet " << std::endl;
 		break;
 	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
-		outfile << elemClassName << "IS Wire" << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+		outfile << elemClassName << "In SolidKernel Entity is: Wire " << std::endl;
 		break;
 
 	default:
@@ -272,6 +961,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	}
 
 	outfile << std::endl;
+	outfile.close();
+
 	return ERROR; 
 }
 
@@ -326,9 +1017,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
-
-			
-
+						
+			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
 
 			
@@ -613,8 +1303,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
-
-
+			
 			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
 			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
@@ -781,8 +1470,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << std::endl;
 
 			outfile << "True if the end cap is enabled = " << sphereDetails.m_capped << std::endl;
+			outfile.close();
 
-		}
+		}		
 
 		PrintPrincipalAreaMoments(primitive);
 
@@ -795,7 +1485,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		dictionaryProperties->getGraphicProperties()->setSphereGraphicProperties(sphereGraphicProperties);
 
 	
-		outfile.close();
+		
 
 	}
 	break;
@@ -887,6 +1577,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		}
 
 		PrintPrincipalAreaMoments(primitive);
+
+		dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
+		dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
 
 		TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
 		torusGraphicProperties->setMinorRadius(torusDetails.m_minorRadius);

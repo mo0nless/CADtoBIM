@@ -8,6 +8,7 @@
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../common/utils/headers/PrimitiveTypeEnumUtils.h"
+#include "../common/enums/headers/CurvesTypeEnum.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
@@ -25,16 +26,16 @@ public:
 
 	//! The public constructor available.
 	//! @param[in] the current element
-	//! @param[in] the ofsstream instance
-	//! @param[in] the filepath to write
 	//! @param[in] the reference of the PropertiesDictionary
-	PropertiesReaderProcessor(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties,
-		SmartFeatureContainer& smartFeatureContainer);
+	PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
 
 	//! Get the class Name of the current element 
 	//! @return the string that has the class Name of the element.
 	std::string getElemClassName();
 private:
+	std::ofstream outfile;
+	std::string filePath;
+
 	std::string elemClassName;
 	PropertiesReaderProcessor();
 };
