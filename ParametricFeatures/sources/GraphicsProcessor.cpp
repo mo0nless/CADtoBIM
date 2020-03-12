@@ -902,6 +902,14 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector Y [Z] = " << torusDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
+			DVec3d vectorBaseZ;
+			vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+
+			// set x,y,z axis in dectionary
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
 			outfile << "Major Radius = " << torusDetails.m_majorRadius << std::endl;
 			outfile << "Minor Radius = " << torusDetails.m_minorRadius << std::endl;
 			outfile << "Sweep Angle = " << torusDetails.m_sweepAngle << std::endl;

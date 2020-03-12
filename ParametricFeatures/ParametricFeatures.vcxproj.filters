@@ -23,7 +23,6 @@
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
-    <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
@@ -58,7 +57,6 @@
     <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
-    <ClInclude Include="mapper\IfcData\headers\IfcDataHandler.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />

@@ -1,37 +1,35 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Cone
+Element Description: Torus
 Element ID: 1375
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = ConeElement, current element id = 1375, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnCone
+--------- className = TorusSolidElement, current element id = 1375, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnTorus
 elemInst Full class name: ----- :DgnElementSchema:SolidElement
 is NOT smart feature
 Capped[int] = Yes
-Cylindrical[boolean] = False
-Height[double] = 30' 10.3576"
-Base[point3d] = -45' 4.2578", 21' 5.0222", 0' 0.0000"
-Top[point3d] = -27' 11.6045", -4' 0.9657", 0' 0.0000"
-Base Radius[double] = 14' 0.5604"
-Top Radius[double] = 0' 0.8775"
+Center[point3d] = -40' 7.0000", -0' 10.7250", 0' 0.0000"
+Major Radius[double] = 16' 0.1572"
+Minor Radius[double] = 5' 4.4911"
+Sweep Angle[double] = 360.0000°
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Cone
+Element Description[string] = Torus
 Level[int] = Default
 Element ID[long] = 1375
 Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 3:45:30 PM
-Size[int] = 104
+Last Modified[dateTime] = 3/3/2020 5:36:34 PM
+Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Cone
+Type[string] = Solid
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -55,102 +53,111 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -56' 11.5217", -11' 11.9298", -14' 0.5605"
-Range High[point3d] = -16' 4.3406", 29' 3.9864", 14' 0.5605"
-Volume[double] = 6410.3852 Cu.'
-Surface Area[double] = 2122.7187 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 34.2901°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 214.2901°
-Orientation[int] = Back
+Range Low[point3d] = -61' 11.6483", -22' 3.3733", -5' 4.4911"
+Range High[point3d] = -19' 2.3517", 20' 5.9232", 5' 4.4911"
+Volume[double] = 9129.3985 Cu.'
+Surface Area[double] = 3397.4542 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Top
 
 ===================================================
 ===================================================
-Element Description: Cone
+Element Description: Torus
 Element: ID 1375
 ===================================================
 ===================================================
 
 --------  --------
-Range [XLength] = 8855511.030371
-Range [YLength] = 10196737.077944
-Range [ZLength] = 8562870.630245
+Range [XLength] = 14910425.058631
+Range [YLength] = 14910425.058631
+Range [ZLength] = 5148841.323764
 
 Quaternion Rotation
-qRotation [X] = 0.675684
-qRotation [Y] = 0.208449
-qRotation [Z] = 1960899.507327
-qRotation [W] = 0.675684
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1.000000
+qRotation [W] = 0.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.000000
 vRotation [Y] = 0.000000
 vRotation [Z] = 1.000000
 
-Origin [X] = -13824147.954501
-Origin [Y] = 6528363.762311
+Origin [X] = -12369799.211530
+Origin [Y] = -272415.921664
 Origin [Z] = 0.000000
 
-Center of BASE Circle [X] = -13824147.954501
-Center of BASE Circle [Y] = 6528363.762311
-Center of BASE Circle [Z] = 0.000000
+Range High = -4914586.682214
+Range Low = -19825011.740845
+DiagonalDistanceXY = 21086525.338664
+DiagonalDistance = 21706038.741222
+Range Difference = -14910425.058631
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.000000
+Axes Rotation (Quaternion) [Y] = 0.000000
+Axes Rotation (Quaternion) [Z] = 1.000000
+Axes Rotation (Quaternion) [W] = 0.000000
 
-Center of TOP Circle [X] = -8524354.019014
-Center of TOP Circle [Y] = -1243727.623817
-Center of TOP Circle [Z] = 0.000000
+Center Point Rotation [X] = -12369799.211530
+Center Point Rotation [Y] = -272415.921664
+Center Point Rotation [Z] = 0.000000
 
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.826196
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.563383
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+Center [X] = -12369799.211530
+Center [Y] = -272415.921664
+Center [Z] = 0.000000
 
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
+Vector X [X] = -1.000000
+Vector X [Y] = 0.000000
+Vector X [Z] = 0.000000
 
-0 Degree Vector of BASE circle Z [X] = 0.563383
-0 Degree Vector of BASE circle Z [Y] = -0.826196
-0 Degree Vector of BASE circle Z [Z] = 0.000000
+Vector Y [X] = 0.000000
+Vector Y [Y] = -1.000000
+Vector Y [Z] = 0.000000
 
-Radius at BASE = 4281435.315122
-Radius at TOP = 22287.583682
+Major Radius = 4880791.867434
+Minor Radius = 1638073.982906
+Sweep Angle = 6.283185
+Sweep Radians = 6.283185
+
+Radius Major (Elbow Radius) = 4880791.867434
+Radius Minor (Pipe Diameter) = 1638073.982906
 
 True if the end cap is enabled = 1
 
-Centroid [X] = -12566919.419805
-Centroid [Y] = 4684651.500316
+Centroid [X] = -12369799.211530
+Centroid [Y] = -272415.921664
 Centroid [Z] = 0.000000
 
-Volume = 181521893543817707520.000000
-Area = 197207024690544.718750
+Volume = 258515778020798791680.000000
+Area = 315633824501873.500000
 
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = ConeElement, current element id = 1376, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnCone
+--------- className = BoxSolidElement, current element id = 1403, id = 0 ---------
+elemInst Full class name: ----- :BaseElementSchema:MstnBox
 elemInst Full class name: ----- :DgnElementSchema:SolidElement
 is NOT smart feature
 Capped[int] = Yes
-Cylindrical[boolean] = False
-Height[double] = 15' 2.3408"
-Base[point3d] = -18' 6.8668", 19' 2.1449", 0' 0.0000"
-Top[point3d] = -4' 3.3992", 24' 4.1694", 0' 0.0000"
-Base Radius[double] = 7' 3.0956"
-Top Radius[double] = 0' 1.0289"
+Width[double] = 5' 10.2945"
+Length[double] = 12' 2.6771"
+Height[double] = 23' 8.0874"
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Cone
+Element Description[string] = Slab
 Level[int] = Default
-Element ID[long] = 1376
+Element ID[long] = 1403
 Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 4:39:59 PM
-Size[int] = 104
+Last Modified[dateTime] = 3/12/2020 10:23:06 AM
+Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Cone
+Type[string] = Solid
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -174,192 +181,49 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -21' 0.4930", 12' 4.2429", -7' 3.0957"
-Range High[point3d] = -1' 9.7730", 31' 2.0715", 7' 3.0957"
-Volume[double] = 848.2462 Cu.'
-Surface Area[double] = 553.1707 Sq.'
-Rotation-X[double] = -90.0000°
-Rotation-Y[double] = 70.1135°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 289.8865°
-Orientation[int] = Front
-
-===================================================
-===================================================
-Element Description: Cone
-Element: ID 1376
-===================================================
-===================================================
-
---------  --------
-Range [XLength] = 5116671.843267
-Range [YLength] = 4160621.608088
-Range [ZLength] = 4424458.521848
-
-Quaternion Rotation
-qRotation [X] = 0.578826
-qRotation [Y] = -0.406154
-qRotation [Z] = 0.406154
-qRotation [W] = -0.578826
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.709823
-vRotation [Y] = 0.498072
-vRotation [Z] = -0.498072
-
-Origin [X] = -5660816.135907
-Origin [Y] = 5845680.059476
-Origin [Z] = 0.000000
-
-Center of BASE Circle [X] = -5660816.135907
-Center of BASE Circle [Y] = 5845680.059476
-Center of BASE Circle [Z] = 0.000000
-
-Center of TOP Circle [X] = -1305539.931497
-Center of TOP Circle [Y] = 7421103.989096
-Center of TOP Circle [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.340157
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.940369
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -1.000000
-
-0 Degree Vector of BASE circle Z [X] = 0.940369
-0 Degree Vector of BASE circle Z [Y] = 0.340157
-0 Degree Vector of BASE circle Z [Z] = 0.000000
-
-Radius at BASE = 2212229.260924
-Radius at TOP = 26133.940216
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -4631383.523973
-Centroid [Y] = 6218054.323393
-Centroid [Z] = 0.000000
-
-Volume = 24019657740782882816.000000
-Area = 51391241273544.929688
-
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- className = ConeElement, current element id = 1377, id = 0 ---------
-elemInst Full class name: ----- :BaseElementSchema:MstnCone
-elemInst Full class name: ----- :DgnElementSchema:SolidElement
-is NOT smart feature
-Capped[int] = Yes
-Cylindrical[boolean] = True
-Height[double] = 11' 6.5215"
-Base[point3d] = -30' 3.3462", -10' 7.5301", 0' 0.0000"
-Top[point3d] = -30' 3.3462", -22' 2.0516", 0' 0.0000"
-Base Radius[double] = 5' 4.0421"
-Top Radius[double] = 
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Cylinder
-Level[int] = Default
-Element ID[long] = 1377
-Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 4:40:17 PM
-Size[int] = 104
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Cone
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -35' 7.3883", -22' 2.0517", -5' 4.0421"
-Range High[point3d] = -24' 11.3041", -10' 7.5301", 5' 4.0421"
-Volume[double] = 1032.8912 Cu.'
-Surface Area[double] = 566.0365 Sq.'
-Rotation-X[double] = 90.0000°
+Range Low[point3d] = -7' 1.6337", 6' 9.2859", 0' 0.0000"
+Range High[point3d] = 5' 1.0434", 12' 7.5805", 23' 8.0874"
+Volume[double] = 1695.0865 Cu.'
+Surface Area[double] = 999.2984 Sq.'
+Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
 Angle[double] = 180.0000°
-Orientation[int] = Back
+Orientation[int] = Top
 
 ===================================================
 ===================================================
-Element Description: Cylinder
-Element: ID 1377
+Element Description: Slab
+Element: ID 1403
 ===================================================
 ===================================================
 
 --------  --------
-Range [XLength] = 3253338.851487
-Range [YLength] = 3518446.776153
-Range [ZLength] = 3253338.851487
+Range [XLength] = 3725597.717026
+Range [YLength] = 1785480.453570
+Range [ZLength] = 7215819.957803
 
 Quaternion Rotation
-qRotation [X] = 0.707107
+qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.707107
+qRotation [Z] = 1343.114194
+qRotation [W] = 1343.113822
 
 Vector Rotation Axis Local to World
-vRotation [X] = 1.000000
+vRotation [X] = 0.000000
 vRotation [Y] = 0.000000
-vRotation [Z] = 0.000000
+vRotation [Z] = 1.000000
 
-Origin [X] = -9228994.231087
-Origin [Y] = -3239264.601336
+Origin [X] = 1550501.779141
+Origin [Y] = 3850143.081956
 Origin [Z] = 0.000000
 
-Center of BASE Circle [X] = -9228994.231087
-Center of BASE Circle [Y] = -3239264.601336
-Center of BASE Circle [Z] = 0.000000
 
-Center of TOP Circle [X] = -9228994.231087
-Center of TOP Circle [Y] = -6757711.377489
-Center of TOP Circle [Z] = 0.000000
+Centroid [X] = -312297.079372
+Centroid [Y] = 2957402.855171
+Centroid [Z] = 3607909.978901
 
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
-
-0 Degree Vector of BASE circle Z [X] = 0.000000
-0 Degree Vector of BASE circle Z [Y] = -1.000000
-0 Degree Vector of BASE circle Z [Z] = 0.000000
-
-Radius at BASE = 1626669.425744
-Radius at TOP = 1626669.425744
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -9228994.231087
-Centroid [Y] = -4998487.989413
-Centroid [Z] = 0.000000
-
-Volume = 29248221722008829952.000000
-Area = 52586511326202.546875
+Volume = 47999503764613914624.000000
+Area = 92837859508022.625000
 
 

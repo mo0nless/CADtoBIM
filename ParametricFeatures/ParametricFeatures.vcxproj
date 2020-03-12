@@ -25,7 +25,6 @@
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
-    <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SlabGraphicProperties.cpp" />
@@ -60,7 +59,6 @@
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
-    <ClInclude Include="mapper\IfcData\headers\IfcDataHandler.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />

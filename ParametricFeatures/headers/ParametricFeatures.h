@@ -13,7 +13,6 @@
 
 #include "GraphicsProcessor.h"
 #include "../common/utils/headers/StringUtils.hpp"
-#include "../mapper/ifcData/headers/IfcDataHandler.h"
 #include "../ifc/headers/IfcBuilder.h"
 
 

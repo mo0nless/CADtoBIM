@@ -75,7 +75,6 @@ appObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
-	$(o)IfcDataHandler$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
@@ -161,8 +160,6 @@ $(o)$(appName)$(oext) : $(baseDir)sources/$(appName).cpp $(baseDir)headers/$(app
 $(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)headers/$(appName).h 
 
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
-
-$(o)IfcDataHandler$(oext) : $(baseDir)mapper/ifcData/sources/IfcDataHandler.cpp $(baseDir)mapper/ifcData/headers/IfcDataHandler.h 
 
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
 
