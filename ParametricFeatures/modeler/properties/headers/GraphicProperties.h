@@ -1,7 +1,6 @@
 #pragma once
 
-#include <DgnPlatform/DgnECInstance.h>
-#include <DgnPlatform/DgnECManager.h>
+
 
 #include "../primitives/headers/SlabGraphicProperties.h"
 #include "../primitives/headers/ConeGraphicProperties.h"
@@ -9,9 +8,6 @@
 #include "../primitives/headers/CylinderGraphicProperties.h"
 #include "../primitives/headers/TorusGraphicProperties.h"
 #include "../primitives/headers/CurveGraphicsProperties.h"
-
-USING_NAMESPACE_BENTLEY_ECOBJECT;
-USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 /**
  *   Class contains needed graphic properties

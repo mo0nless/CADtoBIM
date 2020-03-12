@@ -15,14 +15,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="common\properties\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
-    <ClCompile Include="common\result_status\sources\ResultStatus.cpp" />
-    <ClCompile Include="common\result_status\sources\ResultStatusEnum.cpp" />
-    <ClCompile Include="mapper\properties\sources\GraphicPropertiesMapper.cpp" />
+    <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
+    <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
-    <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CurveGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
@@ -47,19 +49,21 @@
   <ItemGroup>
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
-    <ClInclude Include="common\properties\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\utils\headers\NumberUtils.h" />
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
-    <ClInclude Include="common\properties\headers\ReaderPropertiesEnum.h" />
-    <ClInclude Include="common\result_status\headers\ResultStatus.h" />
-    <ClInclude Include="common\result_status\headers\ResultStatusEnum.h" />
+    <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
+    <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
+    <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
-    <ClInclude Include="mapper\IfcData\headers\IfcDataHandler.h" />
+    <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
+    <ClInclude Include="ifc\headers\IfcBuilder.h" />
+    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
-    <ClInclude Include="mapper\properties\headers\GraphicPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />

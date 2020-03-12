@@ -75,14 +75,13 @@ appObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
-	$(o)IfcDataHandler$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
+	$(o)NumberUtils$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
-	$(o)GraphicPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)GeneralProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
@@ -96,6 +95,9 @@ appObjects = \
 	$(o)CylinderGraphicProperties$(oext) \
 	$(o)CurveGraphicsProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
+	$(o)IfcBooleanOperatorHandler$(oext) \
+	$(o)IfcPrimitivesBuilder$(oext) \
+	$(o)IfcBuilder$(oext) \
 
 
 
@@ -160,17 +162,13 @@ $(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)heade
 
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
 
-$(o)IfcDataHandler$(oext) : $(baseDir)mapper/ifcData/sources/IfcDataHandler.cpp $(baseDir)mapper/ifcData/headers/IfcDataHandler.h 
-
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
 
-$(o)ResultStatus$(oext) : $(baseDir)common/result_status/sources/ResultStatus.cpp $(baseDir)common/result_status/headers/ResultStatus.h
+$(o)ResultStatus$(oext) : $(baseDir)common/models/result_status/sources/ResultStatus.cpp $(baseDir)common/models/result_status/headers/ResultStatus.h
 
-$(o)ResultStatusEnum$(oext) : $(baseDir)common/result_status/sources/ResultStatusEnum.cpp $(baseDir)common/result_status/headers/ResultStatusEnum.h
+$(o)ResultStatusEnum$(oext) : $(baseDir)common/enums/sources/ResultStatusEnum.cpp $(baseDir)common/enums/headers/ResultStatusEnum.h
 
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
-
-$(o)GraphicPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/GraphicPropertiesMapper.cpp $(baseDir)mapper/properties/headers/GraphicPropertiesMapper.h
 
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
@@ -184,7 +182,7 @@ $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/so
 
 $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 
-$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
+$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/enums/sources/BooleanFunctionsEnum.cpp $(baseDir)common/enums/headers/BooleanFunctionsEnum.h
 
 $(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
 
@@ -199,6 +197,14 @@ $(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sou
 $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/CylinderGraphicProperties.h
 
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/TorusGraphicProperties.h
+
+$(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
+
+$(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
+
+$(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesBuilder.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesBuilder.h
+
+$(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
 
 $(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/primitives/headers/CurveGraphicsProperties.h
 

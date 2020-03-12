@@ -45,12 +45,12 @@ inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& prim
 	outfile << "Area = " << area << std::endl;
 	outfile << std::endl;
 	
-
 	outfile.close();
 
-	dictionaryProperties->getGraphicProperties()->setArea(area);
-	dictionaryProperties->getGraphicProperties()->setVolume(volume);
-	dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
+	// set properties in the dictionary
+	this->dictionaryProperties->getGraphicProperties()->setArea(area);
+	this->dictionaryProperties->getGraphicProperties()->setVolume(volume);
+	this->dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
 }
 
 inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -487,26 +487,91 @@ inline void GraphicsProcessor::CurveParser(ICurvePrimitiveCR curve)
 
 	outfile.close();
 }
-#pragma warning( pop ) 
+
+inline void GraphicsProcessor::setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail)
+{
+	// set slab properties
+	SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
+	slabProperties->setLength(dgnBoxDetail.m_topX);
+	slabProperties->setWidth(dgnBoxDetail.m_topY);
+	slabProperties->setHeight(dictionaryProperties->getGraphicProperties()->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY));
+
+	// set slab properties in graphic properties
+	dictionaryProperties->getGraphicProperties()->setSlabProperties(slabProperties);
+}
+
+inline void GraphicsProcessor::setConeGraphicProperties(DgnConeDetail cgnConeDetail)
+{
+	double height = (3 * dictionaryProperties->getGraphicProperties()->getVolume()) / (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
 
 
-//! Process surfaces and solids not handled directly or are clipped through _ProcessFaceta.
-//! @param[in] isPolyface facets are from a call to DrawPolyface, ex. mesh element.
-//! @return true to output facets for surface and solid geometry. If returning false,
-//! edge and face isoline curves will be output through _ProcessCurveVector.
-//! @remarks When both _ProcessAsFacets and _ProcessAsBody return true, _ProcessAsBody has precedence.
-//! @note When returning true you also need to implement _ProcessFacets.
-bool GraphicsProcessor::_ProcessAsFacets(bool isPolyface) const { return true; }
+	if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
+		(dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  cgnConeDetail.m_radiusA == cgnConeDetail.m_radiusB))
+	{
 
-//! Process surfaces and solids not handled directly or are clipped through _ProcessBody.
-//! @param[in] isCurved Graphics output would contain non-linear edge and/or non-planar face geometry.
-//! @return true to output solid kernel entities for surface and solid geometry. If returning false,
-//! facets will be output if _ProcessAsFacets returns true, otherwise edge and face isoline curves will
-//! be output through _ProcessCurveVector.
-//! @remarks Requires host implementation of SolidsKernelAdmin methods that take or return a ISolidKernelEntity.
-//! @note When returning true you also need to implement _ProcessBody.
-//! @see DgnPlatformLib::Host::SolidsKernelAdmin
-bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
+		// overrite primitive type enum value
+		dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER);
+
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
+		cylinderGraphicProperties->setRadius(cgnConeDetail.m_radiusA);
+		cylinderGraphicProperties->setHeight(height);
+
+		dictionaryProperties->getGraphicProperties()->setCylinderGraphicProperties(cylinderGraphicProperties);
+
+	}
+	else if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
+
+		if (cgnConeDetail.m_radiusB > 0 && cgnConeDetail.m_radiusA != cgnConeDetail.m_radiusB) {
+			// overrite primitive type enum value
+			dictionaryProperties->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE);
+		}
+
+		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
+
+		if (cgnConeDetail.m_radiusA > cgnConeDetail.m_radiusB)
+		{
+			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
+			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
+			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
+			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
+		}
+		else {
+			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(-1 * dictionaryProperties->getGraphicProperties()->getVectorAxisX());
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(-1 * dictionaryProperties->getGraphicProperties()->getVectorAxisY());
+			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(-1 * dictionaryProperties->getGraphicProperties()->getVectorAxisZ());
+
+			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusB);
+			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusA);
+			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerA);
+			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
+		}
+
+		coneGraphicProperties->setHeight(height);
+
+		dictionaryProperties->getGraphicProperties()->setConeGraphicProperties(coneGraphicProperties);
+	}
+}
+
+inline void GraphicsProcessor::setSphereGraphicProperties()
+{
+	SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
+
+	double radius = pow(((dictionaryProperties->getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
+	sphereGraphicProperties->setRadius(radius);
+
+	dictionaryProperties->getGraphicProperties()->setSphereGraphicProperties(sphereGraphicProperties);
+}
+
+inline void GraphicsProcessor::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians)
+{
+	TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
+	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
+	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
+	torusGraphicProperties->setSweepRadians(sweepRadians);
+
+	dictionaryProperties->getGraphicProperties()->setTorusGraphicProperties(torusGraphicProperties);
+}
 
 //! Collect output as text.
 //! @param[in] text The text data.
@@ -955,6 +1020,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
 		outfile << elemClassName << "In SolidKernel Entity is: Wire " << std::endl;
 		break;
+	case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
+		outfile << elemClassName << "IS minimal" << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+		break;
 
 	default:
 		break;
@@ -973,6 +1041,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
+
 	return ERROR; 
 }
 
@@ -1009,7 +1078,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
 					
-
 			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			
@@ -1021,7 +1089,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
 
-			
 			outfile << "Range High = " << range.high.x << std::endl;
 			outfile << "Range Low = " << range.low.x << std::endl;
 			outfile << "DiagonalDistanceXY = " << range.DiagonalDistanceXY() << std::endl;
@@ -1047,12 +1114,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector of BASE plane Y [Z] = " << boxDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
+			
 
-			// calculate base vector Z
+			// calculate axis Z
 			DVec3d vectorBaseZ;
 			vectorBaseZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
+
+			// set x,y,z axis in dectionary
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
 			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
 
 			outfile << "Vector of BASE plane Z [X] = " << vectorBaseZ.x << std::endl;
@@ -1093,17 +1163,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		PrintPrincipalAreaMoments(primitive);
 
-
-
-
-		// set slab properties
-		SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
-		slabProperties->setLength(boxDetails.m_topX);
-		slabProperties->setWidth(boxDetails.m_topY);
-		slabProperties->setHeight(dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY));
-
-		// set slab properties in graphic properties
-		dictionaryProperties->getGraphicProperties()->setSlabProperties(slabProperties);
+		// set slab graphic properties
+		setSlabGraphicProperties(boxDetails);
+		
 		
 
 
@@ -1185,28 +1247,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		PrintPrincipalAreaMoments(primitive);
 
-		double height = (3 * dictionaryProperties->getGraphicProperties()->getVolume()) / (PI*(pow(coneDetails.m_radiusA, 2) + coneDetails.m_radiusA*coneDetails.m_radiusB + pow(coneDetails.m_radiusB, 2)));
+		// set cone graphic properties
+		setConeGraphicProperties(coneDetails);
 
-
-		
-		if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
-			(dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  coneDetails.m_radiusA == coneDetails.m_radiusB)) {
-
-			CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
-			cylinderGraphicProperties->setRadius(coneDetails.m_radiusA);
-			cylinderGraphicProperties->setHeight(height);
-
-			dictionaryProperties->getGraphicProperties()->setCylinderGraphicProperties(cylinderGraphicProperties);
-
-		}else if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
-			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
-			coneGraphicProperties->setBaseRadius(coneDetails.m_radiusA);
-			coneGraphicProperties->setTopRadius(coneDetails.m_radiusB);
-
-			coneGraphicProperties->setHeight(height);
-
-			dictionaryProperties->getGraphicProperties()->setConeGraphicProperties(coneGraphicProperties);
-		}
 	}
 	break;
 
@@ -1476,16 +1519,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		PrintPrincipalAreaMoments(primitive);
 
-		
-		SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
-		
-		double radius = pow(((dictionaryProperties->getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
-		sphereGraphicProperties->setRadius(radius);
+		setSphereGraphicProperties();
 
-		dictionaryProperties->getGraphicProperties()->setSphereGraphicProperties(sphereGraphicProperties);
 
 	
-		
 
 	}
 	break;
@@ -1561,6 +1598,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector Y [Z] = " << torusDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
+			DVec3d vectorBaseZ;
+			vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+
+			outfile << "Vector Z [X] = " << vectorBaseZ.x << std::endl;
+			outfile << "Vector Z [Y] = " << vectorBaseZ.y << std::endl;
+			outfile << "Vector Z [Z] = " << vectorBaseZ.z << std::endl;
+			outfile << std::endl;
+
+			// set x,y,z axis in dectionary
+			dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
+			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
 			outfile << "Major Radius = " << torusDetails.m_majorRadius << std::endl;
 			outfile << "Minor Radius = " << torusDetails.m_minorRadius << std::endl;
 			outfile << "Sweep Angle = " << torusDetails.m_sweepAngle << std::endl;
@@ -1578,15 +1628,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		PrintPrincipalAreaMoments(primitive);
 
-		dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
-		dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
+		//set torus graphic properties
+		setTorusGraphicProperties(torusDetails, sweepRadians);
 
-		TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
-		torusGraphicProperties->setMinorRadius(torusDetails.m_minorRadius);
-		torusGraphicProperties->setMajorRadius(torusDetails.m_majorRadius);
-		torusGraphicProperties->setSweepRadians(sweepRadians);
-
-		dictionaryProperties->getGraphicProperties()->setTorusGraphicProperties(torusGraphicProperties);
 		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
 	}
 	break;

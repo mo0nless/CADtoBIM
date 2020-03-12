@@ -380,6 +380,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
+
 		propertiesDictionary->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP())));
 
 
@@ -409,11 +410,10 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	}
 
 	std::vector<DictionaryProperties*> newPropsDictVec;
-	auto iterator = propsDictVec.begin();
 
 	for (int i = 0; i < propsDictVec.size(); ++i) {
 		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-		if (propertiesDictionary->getIsSmartFeatureMissingReaderProperties()) {
+		if (propertiesDictionary->getAreReaderPropertiesFound()) {
 			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 			if (treeNode != nullptr) {
 				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
@@ -432,11 +432,14 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		{
 			newPropsDictVec.push_back(propertiesDictionary);
 		}
-		iterator++;
 	}
 
 	propsDictVec.clear();
 	
+	IfcBuilder* ifcBuilder = new IfcBuilder();
+	ifcBuilder->buildIfc(newPropsDictVec, *smartFeatureContainer);
+
+
 	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
 	
 	//buildIfc(newPropsDictVec);

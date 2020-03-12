@@ -11,6 +11,7 @@ namespace PrimitiveTypeEnum {
 		PYRAMID,
 		SPHERE,
 		TORUS,
+		TRUNCATED_CONE,
 		NONE
 
 	};

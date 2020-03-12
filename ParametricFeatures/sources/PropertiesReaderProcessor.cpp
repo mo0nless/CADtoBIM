@@ -45,11 +45,11 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 		elemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
-		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(true);
+		dictionaryProperties.setAreReaderPropertiesFound(true);
 	}
 	else{
 		// set value if reader properties exist for this element
-		dictionaryProperties.setIsSmartFeatureMissingReaderProperties(false);
+		dictionaryProperties.setAreReaderPropertiesFound(false);
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
