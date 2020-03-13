@@ -3,27 +3,29 @@
 Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file)
 {
 	
-	Ifc4::IfcRepresentationItem* my = nullptr;
+	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
 
 	if (smartFeatureTreeNode.getReaderProperties()->getBooleanFunction() != BooleanFunctions::BooleanFunctionsEnum::UNDEFINED)
 	{
-		my = solveBooleanOperaionts(smartFeatureTreeNode, file);
+		ifcRepresentationItem = solveBooleanOperaionts(smartFeatureTreeNode, file);
 	}
 	else
 	{
-
 		IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-		my = ifcPrimitivesBuilder->buildIfcPrimitive(smartFeatureTreeNode.getGeneralProperties()->getPrimitiveTypeEnum(), *smartFeatureTreeNode.getGraphicProperties(), file);
-		//my = PrimitivesSolver(primitiveType, graphicProperties);
+		ifcRepresentationItem = ifcPrimitivesBuilder->buildIfcPrimitive(smartFeatureTreeNode.getGeneralProperties()->getPrimitiveTypeEnum(), *smartFeatureTreeNode.getGraphicProperties(), file);
 	}
 
+	// handle when my is nullptr
+	if (ifcRepresentationItem != nullptr) 
+	{
+		file.addEntity(ifcRepresentationItem);
+	}
+	
 
-	file.addEntity(my);
-
-	return my;
+	return ifcRepresentationItem;
 }
 
-Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperaionts(SmartFeatureTreeNode & smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperaionts(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;
 
@@ -38,6 +40,20 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperaionts(S
 	else if (currentBooleanOperation == BooleanFunctions::BooleanFunctionsEnum::INTERSECTION) {
 		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
 	}
+	else {
+		// log boolean function not found or not mapped
+		return nullptr;
+	}
 
-	return new Ifc4::IfcBooleanResult(ifcOperatorBool, buildBooleanRepresentation(*smartFeatureTreeNode.getLeftNode(), file), buildBooleanRepresentation(*smartFeatureTreeNode.getRightNode(), file));
+	if (smartFeatureTreeNode.getLeftNode() == nullptr || smartFeatureTreeNode.getRightNode() == nullptr) {
+		return nullptr;
+	}
+
+	Ifc4::IfcRepresentationItem* leftRepresentationItem = buildBooleanRepresentation(*smartFeatureTreeNode.getLeftNode(), file);
+	Ifc4::IfcRepresentationItem* rightRepresentationItem = buildBooleanRepresentation(*smartFeatureTreeNode.getRightNode(), file);
+	if (leftRepresentationItem != nullptr && rightRepresentationItem != nullptr) {
+		return new Ifc4::IfcBooleanResult(ifcOperatorBool, leftRepresentationItem, rightRepresentationItem);
+	}
+	
+	return nullptr;
 }

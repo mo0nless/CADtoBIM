@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
@@ -46,6 +47,7 @@
     <None Include="ParametricFeatures.r" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />

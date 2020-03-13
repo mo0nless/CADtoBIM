@@ -1,6 +1,6 @@
 #include "../headers/IfcBuilder.h"
 
-void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, SmartFeatureContainer & smartFeatureContainer)
+void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<SmartFeatureContainer*> & smartFeatureContainerVector)
 {
 		std::string name = "PrimitiveTest";
 		IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
@@ -48,26 +48,29 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		Ifc4::IfcRepresentationItem* representationItem = nullptr;
 
-		if (smartFeatureContainer.getRoot() != nullptr)
-		{
-			IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-			representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-			//representationItem = PrimitivesMapperSwitch(*smartFeatContainer->getRoot());
+		if (!smartFeatureContainerVector.empty()) {
+			for (int i = 0; i < smartFeatureContainerVector.size(); ++i) {
+				SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
 
-			if (representationItem != nullptr) {
-				items->push(representationItem);
+				if (smartFeatureContainer.getRoot() != nullptr)
+				{
+					IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
+					representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
+
+					if (representationItem != nullptr) {
+						items->push(representationItem);
+					}
+				}
 			}
-		};
+		}
+
+		
 
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
-				//representationItem = PrimitivesMapperSwitch(*dictionaryProperties.at(i));
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-				
-
 				if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) {
 					continue;
 				}

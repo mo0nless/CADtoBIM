@@ -26,6 +26,7 @@
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
+    <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -60,5 +61,6 @@
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
+    <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
   </ItemGroup>
 </Project>
