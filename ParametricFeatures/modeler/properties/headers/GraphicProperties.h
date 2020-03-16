@@ -7,6 +7,7 @@
 #include "../primitives/headers/SphereGraphicProperties.h"
 #include "../primitives/headers/CylinderGraphicProperties.h"
 #include "../primitives/headers/TorusGraphicProperties.h"
+#include "../primitives/headers/CurveGraphicsProperties.h"
 
 /**
  *   Class contains needed graphic properties
@@ -28,6 +29,7 @@ private:
 	SphereGraphicProperties* sphereProperties;
 	CylinderGraphicProperties* cylinderProperties;
 	TorusGraphicProperties* torusProperties;
+	CurveGraphicProperties* curveProperties;
 
 public:
 	GraphicProperties();
@@ -64,5 +66,9 @@ public:
 
 	bool tryGetTorusGraphicProperties(TorusGraphicProperties& torusGraphicPropertiesR);
 	void setTorusGraphicProperties(TorusGraphicProperties* newTorusGraphicProperties);
+
+	bool tryGetCurveGraphicsProperties(CurveGraphicProperties& curveGraphicsPropertiesR);
+	void setCurveGraphicsProperties(CurveGraphicProperties* newCurveGraphicsProperties);
+
 
 };

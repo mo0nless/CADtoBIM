@@ -30,6 +30,7 @@ GraphicProperties::GraphicProperties()
 	this->sphereProperties = nullptr;
 	this->cylinderProperties = nullptr;
 	this->torusProperties = nullptr;
+	this->curveProperties = nullptr;
 }
 
 double GraphicProperties::getArea()
@@ -162,4 +163,19 @@ bool GraphicProperties::tryGetTorusGraphicProperties(TorusGraphicProperties & to
 void GraphicProperties::setTorusGraphicProperties(TorusGraphicProperties * newTorusGraphicProperties)
 {
 	this->torusProperties = newTorusGraphicProperties;
+}
+
+bool GraphicProperties::tryGetCurveGraphicsProperties(CurveGraphicProperties & curveGraphicsPropertiesR)
+{
+	if (this->curveProperties == nullptr)
+	{
+		return false;
+	}
+	curveGraphicsPropertiesR = *this->curveProperties;
+	return true;
+}
+
+void GraphicProperties::setCurveGraphicsProperties(CurveGraphicProperties * newCurveGraphicsProperties)
+{
+	this->curveProperties = newCurveGraphicsProperties;
 }

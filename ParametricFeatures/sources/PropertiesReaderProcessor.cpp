@@ -2,6 +2,8 @@
 
 PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 std::string PropertiesReaderProcessor::getElemClassName()
@@ -10,8 +12,7 @@ std::string PropertiesReaderProcessor::getElemClassName()
 }
 
 
-PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, DictionaryProperties& dictionaryProperties,
-	SmartFeatureContainer& smartFeatureContainer)
+PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
 	WString elDescr;
 
@@ -37,10 +38,10 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
-		outfile.open(filePath, std::ios_base::app);
+		/*outfile.open(filePath, std::ios_base::app);
 		outfile << std::endl;
-		outfile << "======================== pROPS nOT fOUND ===========================" << std::endl;
-		outfile.close();
+		outfile << "= Properties Not Found =" << std::endl;
+		outfile.close();*/
 		elemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
@@ -66,19 +67,19 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
 
-			for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
+			/*for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
 			{
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
 				outfile.close();
-			}
+			}*/
 			
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
+				
 				outfile.open(filePath, std::ios_base::app);
-
 				outfile << std::endl;
-				outfile << "is smart feature" << std::endl;
+				outfile << "Is smart feature" << std::endl;
 				outfile.close();
 
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByElementLocalNodeId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
@@ -89,13 +90,12 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 				}
 				else {
 					outfile.open(filePath, std::ios_base::app);
-					outfile << std::endl;
 					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
 					outfile.close();
-
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
 					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 				}
+				
 			}
 			else {
 				outfile.open(filePath, std::ios_base::app);
@@ -105,11 +105,12 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
 				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties());
 
+				
 			}			
 		}
 	}
 
-	outfile.open(filePath, std::ios_base::app);
+	/*outfile.open(filePath, std::ios_base::app);
 	outfile << std::endl;
 	outfile << "===================================================" << std::endl;
 	outfile << "===================================================" << std::endl;
@@ -118,7 +119,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	outfile << "===================================================" << std::endl;
 	outfile << "===================================================" << std::endl;
 	outfile << std::endl;
-	outfile.close();
+	outfile.close();*/
 }
 
 void PropertiesReaderProcessor::processAllProperties(ElementHandleCR currentElem, std::ofstream & outfile, std::string & filePath, DictionaryProperties & dictionaryProperties, SmartFeatureContainer & smartFeatureContainer)

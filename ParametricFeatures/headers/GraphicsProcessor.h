@@ -19,10 +19,8 @@ class GraphicsProcessor : public IElementGraphicsProcessor//, public LocateSubEn
 {
 public:
 	//! Default constructor of the class
-	//! @param[in] The offstream file used for writing in the file
-	//! @param[in] Output file to write down all the graphics and text properties of the element
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
-	GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath);
+	GraphicsProcessor();
 	void setPropertiesDictionary(DictionaryProperties* newDictionaryProperties);
 	void updateClassAndID(std::string elemClName, Int64 elemID);
 private:
@@ -32,6 +30,8 @@ private:
 	inline void setConeGraphicProperties(DgnConeDetail dgnConeDetail);
 	inline void setSphereGraphicProperties();
 	inline void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
+
+	inline void CurveParser(ICurvePrimitiveCR curve);
 
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
@@ -45,7 +45,7 @@ private:
 
 	
 	WString myString;
-	std::ofstream &outfile;
+	std::ofstream outfile;
 	std::string filePath;
 	Int64 elementID;
 	std::string elemClassName;

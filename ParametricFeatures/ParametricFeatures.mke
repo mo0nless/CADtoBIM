@@ -93,6 +93,7 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
+	$(o)CurveGraphicsProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)IfcPrimitivesBuilder$(oext) \
@@ -204,6 +205,8 @@ $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/I
 $(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesBuilder.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesBuilder.h
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
+
+$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/primitives/headers/CurveGraphicsProperties.h
 
 
 %include $(MDLMKI)dlmlink.mki

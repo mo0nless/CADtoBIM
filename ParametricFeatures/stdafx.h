@@ -43,7 +43,7 @@
 
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
-#include <DgnPlatform/ElementGeometry.h>
+//#include <DgnPlatform/ElementGeometry.h>
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementHandle.h>
 #include <DgnPlatform/DgnECInstance.h>

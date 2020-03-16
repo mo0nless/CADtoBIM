@@ -26,6 +26,7 @@
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
+    <ClCompile Include="modeler\properties\primitives\sources\CurveGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SlabGraphicProperties.cpp" />
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
@@ -69,6 +71,7 @@
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\ConeGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\headers\CurveGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\SphereGraphicProperties.h" />
