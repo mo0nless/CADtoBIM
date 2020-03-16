@@ -273,13 +273,13 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	f.close();
 }
 
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-StatusInt GetSmartFeatureTree(WCharCP unparsedP)
-{
-	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
-
+//#pragma warning( push )
+//#pragma warning( disable : 4700)
+//#pragma warning( disable : 4189)
+//StatusInt GetSmartFeatureTree(WCharCP unparsedP)
+//{
+//	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+//
 SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec) {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
@@ -293,7 +293,7 @@ SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, Sm
 	// Create the instance for the Graphics Processor
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 
-	PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
+	//PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
 
 	outfile.open(filePath);
 	outfile << "===================================================" << std::endl;
@@ -376,7 +376,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	std::cout << filePath << std::endl;
 
 	// Create the instance for the Graphics Processor
-	GraphicsProcessor graphicsProcessor = GraphicsProcessor(outfile, filePath);
+	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 
 	PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
 	outfile.open(filePath);
@@ -427,7 +427,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
 		
 		
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, outfile, filePath, *propertiesDictionary, *smartFeatureContainer);
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);

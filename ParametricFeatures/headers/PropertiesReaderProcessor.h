@@ -29,11 +29,6 @@ public:
 	//! @param[in] the reference of the PropertiesDictionary
 	PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
 
-	void processAllProperties(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties,
-		SmartFeatureContainer& smartFeatureContainer);
-
-	void processPropertiesOfNonSmartFeature(ElementHandleCR currentElem, std::ofstream& outfile, std::string& filePath, DictionaryProperties& dictionaryProperties);
-
 	//! Get the class Name of the current element 
 	//! @return the string that has the class Name of the element.
 	std::string getElemClassName();
