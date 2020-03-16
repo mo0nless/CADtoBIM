@@ -273,12 +273,14 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector) {
 	f.close();
 }
 
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-StatusInt GetSmartFeatureTree(WCharCP unparsedP)
-{
-	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+//#pragma warning( push )
+//#pragma warning( disable : 4700)
+//#pragma warning( disable : 4189)
+//StatusInt GetSmartFeatureTree(WCharCP unparsedP)
+//{
+//	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+//
+SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec) {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -291,7 +293,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	// Create the instance for the Graphics Processor
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 
-	PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
+	//PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
 
 	outfile.open(filePath);
 	outfile << "===================================================" << std::endl;
@@ -299,6 +301,91 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	std::vector<DictionaryProperties*>propsDictVec;
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
+	long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newLeafElementId = -1;
+	newCurrentElementId = currentElem.GetElementId();
+	
+		SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
+
+		sFeatNode->GetAllChildrenRecursively(sFeatVec);
+
+		for (size_t i = 0; i < sFeatVec.size(); i++)
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "start==================" << std::endl;
+			outfile.close();
+			if (sFeatVec.at(i)->GetParent() != nullptr)
+			{
+				outfile.open(filePath, std::ios_base::app);
+
+				outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
+				outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
+				outfile.close();
+
+				newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
+			}
+
+			newLocalNodeId = sFeatVec.at(i)->GetNodeId();
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Node ID: " << newLocalNodeId << std::endl;
+			outfile.close();
+
+			sFeatVec.at(i)->GetLeaf(leafNode);
+
+			if (leafNode.IsValid()) {
+
+				newLeafElementId = leafNode.GetElementId();
+
+				outfile.open(filePath, std::ios_base::app);
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "Leaf ID:  " << leafNode.GetElementId() << std::endl;
+				outfile.close();
+			}
+			outfile.open(filePath, std::ios_base::app);
+
+			outfile << "finish==================" << std::endl;
+			outfile.close();
+
+			smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newLeafElementId);
+		}
+		outfile.open(filePath, std::ios_base::app);
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
+		outfile << "Number of Child: " << sFeatNode->GetChildCount() << std::endl;
+		outfile.close();
+	
+
+	return smartFeatureContainer;
+}
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+StatusInt GetSmartFeatureTree(WCharCP unparsedP)
+{
+	DgnModelP dgnModel = ISessionMgr::GetActiveDgnModelP();
+	std::ofstream outfile;
+	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+
+	WString myString, sFeatTree;
+	WString dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
+
+	std::cout << filePath << std::endl;
+
+	// Create the instance for the Graphics Processor
+	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
+
+	PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
+	outfile.open(filePath);
+	outfile << "===================================================" << std::endl;
+	outfile.close(); 
+
+	std::vector<DictionaryProperties*>propsDictVec;
+	std::vector<SmartFeatureContainer*> smartFeatureContainerVector;
+	
 	
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
@@ -309,75 +396,26 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		WString elDescr;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		
-		long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newLeafElementId=-1;
+		SmartFeatureContainer* smartFeatureContainer = nullptr;
 
-		newCurrentElementId = currentElem.GetElementId();
-		
+		if (SmartFeatureElement::IsSmartFeature(currentElem))
+		{
+			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+			if (smartFeatureContainer != nullptr) 
+			{
+				smartFeatureContainerVector.push_back(smartFeatureContainer);
+			}
+		}
+
 		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
 		outfile << "===================================================" << std::endl;
-		outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP()) << std::endl;
+		outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP())<< std::endl;
 		outfile << "Element ID: " << currentElem.GetElementId() << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
 		outfile.close();
-
-		if (SmartFeatureElement::IsSmartFeature(currentElem))
-		{
-			SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
-
-			sFeatNode->GetAllChildrenRecursively(sFeatVec);
-			
-			for (size_t i = 0; i < sFeatVec.size(); i++)
-			{
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "start==================" << std::endl;
-				outfile.close();
-
-				if (sFeatVec.at(i)->GetParent() != nullptr)
-				{						
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << std::endl;
-					outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << std::endl;
-					outfile.close();
-					
-					newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
-				}
-
-				newLocalNodeId = sFeatVec.at(i)->GetNodeId();
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "Node ID: " << newLocalNodeId << std::endl;
-				outfile.close();
-								
-				sFeatVec.at(i)->GetLeaf(leafNode);
-
-				if (leafNode.IsValid()) {
-
-					newLeafElementId = leafNode.GetElementId();
-					
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "Leaf ID:  " << leafNode.GetElementId() << std::endl;				
-					outfile.close();
-				}
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "finish==================" << std::endl;
-				outfile << std::endl;
-				outfile.close();
-
-				smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newLeafElementId);
-			}
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << std::endl;
-			outfile << "Number of Child: " << sFeatNode->GetChildCount() << std::endl;
-			outfile << std::endl;
-			outfile.close();
-		}
-
 
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
 
@@ -388,7 +426,9 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
 		
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem,*propertiesDictionary,*smartFeatureContainer);
+		
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, *propertiesDictionary, *smartFeatureContainer);
+
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
 		graphicsProcessor.updateClassAndID(propertiesReaderProcessor->getElemClassName(), currentElem.GetElementId());
@@ -411,34 +451,47 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	std::vector<DictionaryProperties*> newPropsDictVec;
 
-	for (int i = 0; i < propsDictVec.size(); ++i) {
-		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-		if (propertiesDictionary->getAreReaderPropertiesFound()) {
-			SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
-			if (treeNode != nullptr) {
-				treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
-				treeNode->getGeneralProperties()->setPrimitiveTypeEnum(propertiesDictionary->getGeneralProperties()->getPrimitiveTypeEnum());
+	if (smartFeatureContainerVector.empty()) {
+		newPropsDictVec = propsDictVec;
+	}
+	else 
+	{
+		for (int i = 0; i < propsDictVec.size(); ++i) {
+			DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
+
+			for (int j = 0; j < smartFeatureContainerVector.size(); ++j) {
+				SmartFeatureContainer* smartFeatureContainer = smartFeatureContainerVector.at(j);
+
+				if (propertiesDictionary->getAreReaderPropertiesFound()) {
+					SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
+					if (treeNode != nullptr) {
+						treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
+						treeNode->getGeneralProperties()->setPrimitiveTypeEnum(propertiesDictionary->getGeneralProperties()->getPrimitiveTypeEnum());
+					}
+				}
+				else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
+				{
+					continue;
+				}
+				else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
+				{
+					continue;
+				}
+				else
+				{
+					newPropsDictVec.push_back(propertiesDictionary);
+				}
 			}
-		}	
-		else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
-		{
-			continue;
-		}
-		else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
-		{
-			continue;
-		}
-		else
-		{
-			newPropsDictVec.push_back(propertiesDictionary);
+
 		}
 	}
 
+	
+
 	propsDictVec.clear();
 	
-	//IfcBuilder* ifcBuilder = new IfcBuilder();
-	//ifcBuilder->buildIfc(newPropsDictVec, *smartFeatureContainer);
-
+	IfcBuilder* ifcBuilder = new IfcBuilder();
+	ifcBuilder->buildIfc(newPropsDictVec, smartFeatureContainerVector);
 
 	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
 	

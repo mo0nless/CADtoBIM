@@ -121,5 +121,3 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 	outfile << std::endl;
 	outfile.close();*/
 }
-
-
