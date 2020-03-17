@@ -1,46 +1,112 @@
 ===================================================
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+finish==================
 ===================================================
 ===================================================
-Element Description: Cone
-Element ID: 1375
+Element Description: Parametric Solid/Surface
+Element ID: 1493
 ===================================================
 ===================================================
+
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Thicken #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1493
+Model[string] = Default
+Last Modified[dateTime] = 3/17/2020 11:25:40 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 282' 5.2751", -55' 6.6023", 0' 0.0000"
+Range High[point3d] = 617' 1.9967", 279' 2.1193", 700' 5.1233"
+Volume[double] = 61635892.3858 Cu.'
+Surface Area[double] = 912546.8415 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Thicken #2
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = ParametricThicken
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Thickness[double] = 700' 5.1233"
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Solid 0
 
 
 ===================================================
 ===================================================
-Element Description: Cone
-Element: ID 1375
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Cone
-Element ID: 1376
-===================================================
-===================================================
-
-
-===================================================
-===================================================
-Element Description: Cone
-Element: ID 1376
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Cone
-Element ID: 1385
-===================================================
-===================================================
-
-
-===================================================
-===================================================
-Element Description: Cone
-Element: ID 1385
+Element Description: Parametric Solid/Surface
+Element: ID 1493
 ===================================================
 ===================================================
 
