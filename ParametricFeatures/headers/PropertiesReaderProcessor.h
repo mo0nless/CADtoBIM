@@ -23,11 +23,12 @@
 class PropertiesReaderProcessor
 {
 public:
+	PropertiesReaderProcessor();
 
 	//! The public constructor available.
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
-	PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
+	void getReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
 
 	//! Get the class Name of the current element 
 	//! @return the string that has the class Name of the element.
@@ -37,7 +38,7 @@ private:
 	std::string filePath;
 
 	std::string elemClassName;
-	PropertiesReaderProcessor();
+	
 };
 
 /// @endGroup

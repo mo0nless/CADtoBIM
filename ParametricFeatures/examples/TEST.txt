@@ -1,4 +1,324 @@
 ===================================================
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1436
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Outer --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1436
+===================================================
+===================================================
+
+Smart feature tree ===================================================
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+finish==================
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1440
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1440, id = 0 ---------
+
+Is smart feature
+is smart feature, but not found in the smartfeaturetree
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Solid of Revolution #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1440
+Model[string] = Default
+Last Modified[dateTime] = 3/12/2020 12:10:17 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -73' 10.2989", 11' 7.9297", -20' 8.8639"
+Range High[point3d] = 14' 6.0859", 199' 11.7469", 89' 4.5677"
+Volume[double] = 563281.3641 Cu.'
+Surface Area[double] = 42590.0329 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = Revolve, current element id = 1440, id = 2 ---------
+
+Is smart feature
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Solid of Revolution #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricRevolve
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Angle[double] = 136.9981°
+Capped[boolean] = True
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+Minimum Radius[double] = 48' 7.8100"
+Maximum Radius[double] = 110' 1.4316"
+Centroidal Radius[double] = 79' 4.6208"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureProfile, current element id = 1440, id = 1 ---------
+
+Is smart feature
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Solid 0
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1440
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1473
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Outer --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1473
+===================================================
+===================================================
+
+Smart feature tree ===================================================
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+finish==================
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1475
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1475, id = 0 ---------
+
+Is smart feature
+is smart feature, but not found in the smartfeaturetree
+NodeId[int] = 0
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Enabled[boolean] = 
+Label[string] = Solid of Revolution #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1475
+Model[string] = Default
+Last Modified[dateTime] = 3/12/2020 2:48:48 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Links[string] = 
+Property List[string] = 
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -236' 9.6544", -725' 1.1276", 69' 0.8590"
+Range High[point3d] = 182' 6.8792", -409' 1.7637", 263' 9.8593"
+Volume[double] = 9777752.9816 Cu.'
+Surface Area[double] = 271527.6300 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = Revolve, current element id = 1475, id = 2 ---------
+
+Is smart feature
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Solid of Revolution #2
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = ParametricRevolve
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Disabled[boolean] = 
+Angle[double] = 90.0000°
+Capped[boolean] = True
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+Minimum Radius[double] = 170' 11.5540"
+Maximum Radius[double] = 346' 0.7021"
+Centroidal Radius[double] = 258' 6.1280"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureProfile, current element id = 1475, id = 1 ---------
+
+Is smart feature
+NodeId[int] = 1
+Enabled[boolean] = 
+Label[string] = Profile #1
+Feature Status[string] = 
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+In SolidKernel Entity is: Solid 0
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1475
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1491
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Outer --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1491
+===================================================
+===================================================
+
+Smart feature tree ===================================================
 start==================
 Node ID: 2
 finish==================
@@ -14,6 +334,12 @@ Element ID: 1493
 ===================================================
 ===================================================
 
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1493, id = 0 ---------
+
+Is smart feature
+is smart feature, but not found in the smartfeaturetree
 NodeId[int] = 0
 Feature Status[string] = 
 Deletable[boolean] = True
@@ -72,6 +398,11 @@ Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
 Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = ThickenFeature, current element id = 1493, id = 2 ---------
+
+Is smart feature
 NodeId[int] = 2
 Enabled[boolean] = 
 Label[string] = Thicken #2
@@ -86,6 +417,11 @@ ReorderValid[boolean] = True
 IsTop[boolean] = True
 Disabled[boolean] = 
 Thickness[double] = 700' 5.1233"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureProfile, current element id = 1493, id = 1 ---------
+
+Is smart feature
 NodeId[int] = 1
 Enabled[boolean] = 
 Label[string] = Profile #1

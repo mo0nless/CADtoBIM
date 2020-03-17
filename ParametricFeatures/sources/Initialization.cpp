@@ -295,8 +295,8 @@ SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, Sm
 
 	//PersistentElementRefList *pGraElement = dgnModel->GetGraphicElementsP();
 
-	outfile.open(filePath);
-	outfile << "===================================================" << std::endl;
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "Smart feature tree ===================================================" << std::endl;
 	outfile.close(); 
 
 	std::vector<DictionaryProperties*>propsDictVec;
@@ -427,8 +427,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
 		
 		
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, *propertiesDictionary, *smartFeatureContainer);
-
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+		propertiesReaderProcessor->getReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
 		graphicsProcessor.setPropertiesDictionary(propertiesDictionary);
 		graphicsProcessor.updateClassAndID(propertiesReaderProcessor->getElemClassName(), currentElem.GetElementId());

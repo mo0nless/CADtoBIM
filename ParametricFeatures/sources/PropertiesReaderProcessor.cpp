@@ -12,7 +12,7 @@ std::string PropertiesReaderProcessor::getElemClassName()
 }
 
 
-PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
+void PropertiesReaderProcessor::getReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
 	WString elDescr;
 
