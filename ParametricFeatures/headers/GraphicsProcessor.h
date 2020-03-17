@@ -25,13 +25,13 @@ public:
 	void updateClassAndID(std::string elemClName, Int64 elemID);
 private:
 	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
-	inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
+	inline void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 	inline void setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail);
 	inline void setConeGraphicProperties(DgnConeDetail dgnConeDetail);
 	inline void setSphereGraphicProperties();
 	inline void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
 
-	inline void CurveParser(ICurvePrimitiveCR curve);
+	inline void CurveParser(ICurvePrimitivePtr curve);
 
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
@@ -45,7 +45,6 @@ private:
 
 	
 	WString myString;
-	std::ofstream outfile;
 	std::string filePath;
 	Int64 elementID;
 	std::string elemClassName;
