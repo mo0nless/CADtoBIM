@@ -30,7 +30,6 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		std::string valueAsString = StringUtils::getString(wStr);
 		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
-		readerProperties.setBooleanFunction(-1);
 
 		if (!valueAsString.empty()) {
 			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties);

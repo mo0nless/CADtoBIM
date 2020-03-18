@@ -2,6 +2,8 @@
 
 ReaderProperties::ReaderProperties()
 {
+	this->nodeId = -1;
+	this->booleanFunction = BooleanFunctions::BooleanFunctionsEnum::UNDEFINED;
 }
 
 int ReaderProperties::getNodeId()

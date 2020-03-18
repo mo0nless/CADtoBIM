@@ -1,6 +1,8 @@
 #pragma once
 
 #include "SmartFeatureTreeNode.h"
+#include "../../../../common/enums/headers/SmartFeatureContainerTypeEnum.h"
+
 
 /**
  *   Class contains the tree structure(root) of the smartfeature and methods to interact with it(insert, search...)
@@ -9,6 +11,7 @@ class SmartFeatureContainer {
 
 private:
 	SmartFeatureTreeNode* root;
+	SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum smartFeatureContainerTypeEnum;
 
 public:
 	SmartFeatureContainer();
@@ -28,4 +31,7 @@ public:
 	SmartFeatureTreeNode* searchByElementGlobalId(SmartFeatureTreeNode* searchNode, long searchedByElementId);
 
 	SmartFeatureTreeNode* getRoot();
+
+	SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum getSmartFeatureContainerTypeEnum();
+	void setSmartFeatureContainerTypeEnum(SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum newSmartFeatureContainerTypeEnum);
 };

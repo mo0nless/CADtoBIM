@@ -17,6 +17,7 @@
   <ItemGroup>
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\SmartFeatureContainerTypeEnum.cpp" />
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\SmartFeatureContainerTypeEnum.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
@@ -70,6 +72,7 @@
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
+    <ClInclude Include="modeler\properties\headers\SmartFeatureProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CurveGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CylinderGraphicProperties.h" />

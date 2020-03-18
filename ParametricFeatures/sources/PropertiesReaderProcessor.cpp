@@ -64,7 +64,10 @@ void PropertiesReaderProcessor::getReaderProperties(ElementHandleCR currentElem,
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
+			outfile << "--------- className = " << StringUtils::getString(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
+			
+			// set class name
+			dictionaryProperties.getGeneralProperties()->setClassName(StringUtils::getString(elemInst->GetClass().GetName()));
 			outfile.close();
 
 			/*for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)

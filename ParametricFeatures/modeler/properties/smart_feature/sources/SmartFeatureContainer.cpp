@@ -26,8 +26,8 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 		this->root = new SmartFeatureTreeNode();
 		this->root->getGeneralProperties()->setElementId(newLeafElementId);
 		this->root->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
-		this->root->getGeneralProperties()->setLocalParentNodeId(-1);
-		this->root->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
+		this->root->getGeneralProperties()->(-1);
+		this->root->getGeneralProperties()->setCusetLocalParentNodeIdrrentElementId(newCurrentElementId);
 		this->root->getGeneralProperties()->setIsSmartFeature(true);
 	}
 	else {

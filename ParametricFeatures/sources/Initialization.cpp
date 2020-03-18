@@ -420,9 +420,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
 
 		propertiesDictionary->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP())));
-
-
-		propertiesDictionary->getGeneralProperties()->setClassName(StringUtils::getString(elDescr.GetWCharCP())); //check the class name and element descriptor
 		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
 		

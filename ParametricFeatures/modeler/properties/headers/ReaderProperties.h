@@ -9,11 +9,6 @@
 class ReaderProperties {
 
 private:
-	std::string elementDescription;
-	long elementId;
-	int size;
-	std::string type;
-
 	int nodeId;
 	BooleanFunctions::BooleanFunctionsEnum booleanFunction;
 
@@ -25,14 +20,6 @@ public:
 
 	BooleanFunctions::BooleanFunctionsEnum getBooleanFunction();
 	void setBooleanFunction(int newBooleanFunctionInt);
-
-	double width;
-	double length;
-	double height;
-
-	double rotationX;
-	double rotationY;
-	double rotationZ;
 
 	//HARD CODED FOR CURVES
 	int curveDegree;

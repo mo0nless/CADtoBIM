@@ -18,7 +18,6 @@
     <ClCompile Include="modeler\properties\primitives\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CylinderGraphicProperties.cpp" />
-    <ClCompile Include="mapper\IfcData\sources\IfcDataHandler.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\CurveGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\sources\TorusGraphicProperties.cpp" />
@@ -30,6 +29,7 @@
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
     <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\SmartFeatureContainerTypeEnum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -68,5 +68,7 @@
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="modeler\properties\primitives\headers\CurveGraphicsProperties.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\SmartFeatureContainerTypeEnum.h" />
+    <ClInclude Include="modeler\properties\headers\SmartFeatureProperties.h" />
   </ItemGroup>
 </Project>
