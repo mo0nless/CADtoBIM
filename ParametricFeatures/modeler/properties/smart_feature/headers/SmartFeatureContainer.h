@@ -2,6 +2,7 @@
 
 #include "SmartFeatureTreeNode.h"
 
+
 /**
  *   Class contains the tree structure(root) of the smartfeature and methods to interact with it(insert, search...)
  */
@@ -26,4 +27,6 @@ public:
 	SmartFeatureTreeNode* searchByElementGlobalId(SmartFeatureTreeNode* searchNode, long searchedByElementId);
 
 	SmartFeatureTreeNode* getRoot();
+
+
 };

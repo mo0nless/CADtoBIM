@@ -1,13 +1,7 @@
 #pragma once
 
-
-
-#include "../primitives/headers/SlabGraphicProperties.h"
-#include "../primitives/headers/ConeGraphicProperties.h"
-#include "../primitives/headers/SphereGraphicProperties.h"
-#include "../primitives/headers/CylinderGraphicProperties.h"
-#include "../primitives/headers/TorusGraphicProperties.h"
-#include "../primitives/headers/CurveGraphicsProperties.h"
+#include "../primitives/graphic/headers/PrimitiveGraphicProperties.h"
+#include "../curves/graphic/headers/CurveGraphicProperties.h"
 
 /**
  *   Class contains needed graphic properties
@@ -24,12 +18,8 @@ private:
 	DVec3d vectorAxisY;
 	DVec3d vectorAxisZ;
 
-	SlabGraphicProperties* slabProperties;
-	ConeGraphicProperties* coneProperties;
-	SphereGraphicProperties* sphereProperties;
-	CylinderGraphicProperties* cylinderProperties;
-	TorusGraphicProperties* torusProperties;
-	CurveGraphicProperties* curveProperties;
+	PrimitiveGraphicProperties* primitiveGraphicProperties;
+	CurveGraphicProperties* curveGraphicProperties;
 
 public:
 	GraphicProperties();
@@ -52,23 +42,9 @@ public:
 	DVec3d getVectorAxisZ();
 	void setVectorAxisZ(DVec3d newVectorBaseZ);
 
-	bool tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR);
-	void setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties);
-
-	bool tryGetConeGraphicProperties(ConeGraphicProperties& coneGraphicPropertiesR);
-	void setConeGraphicProperties(ConeGraphicProperties* newConeGraphicProperties);
-
-	bool tryGetSphereGraphicProperties(SphereGraphicProperties& sphereGraphicPropertiesR);
-	void setSphereGraphicProperties(SphereGraphicProperties* newSphereGraphicProperties);
-
-	bool tryGetCylinderGraphicProperties(CylinderGraphicProperties& cylinderGraphicPropertiesR);
-	void setCylinderGraphicProperties(CylinderGraphicProperties* newCylinderGraphicProperties);
-
-	bool tryGetTorusGraphicProperties(TorusGraphicProperties& torusGraphicPropertiesR);
-	void setTorusGraphicProperties(TorusGraphicProperties* newTorusGraphicProperties);
-
-	bool tryGetCurveGraphicsProperties(CurveGraphicProperties& curveGraphicsPropertiesR);
+	bool tryGetCurveGraphicsProperties(CurveGraphicProperties*& curveGraphicsPropertiesR);
 	void setCurveGraphicsProperties(CurveGraphicProperties* newCurveGraphicsProperties);
 
-
+	bool tryGetPrimitiveGraphicProperties(PrimitiveGraphicProperties*& primitiveGraphicPropertiesR);
+	void setPrimitiveGraphicProperties(PrimitiveGraphicProperties* newPrimitiveGraphicProperties);
 };

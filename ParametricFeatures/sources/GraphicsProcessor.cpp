@@ -516,6 +516,15 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
+
+
+	//dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(new PrimitiveGraphicProperties());
+
+	// set primitive graphic dictionary
+	//PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
+	//primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(ele.GetWCharCP())));
+	//dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
+
 	std::ofstream outfile;
 	switch (primitive.GetSolidPrimitiveType())
 	{
@@ -637,6 +646,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnCone:
 	{
 		DgnConeDetail coneDetails;
@@ -782,6 +792,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		graphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnRotationalSweep:
 	{
 		DgnRotationalSweepDetail rotSweepDetails;
@@ -869,6 +880,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		graphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
 	{
 		DgnRuledSweepDetail ruledSweepDetails;
@@ -933,6 +945,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		graphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnSphere:
 	{
 		DgnSphereDetail sphereDetails;
@@ -989,6 +1002,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnTorusPipe:
 	{
 		DgnTorusPipeDetail torusDetails;
@@ -1096,7 +1110,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 	}
 	break;
+
 	default:
+		// set PrimitiveGraphicProperties to nullptr,because the primitive was not udentified
+		dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(nullptr);
 		break;
 	}
 

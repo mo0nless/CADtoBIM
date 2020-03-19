@@ -3,7 +3,6 @@
 #include "../../../properties/headers/ReaderProperties.h"
 #include "../../../properties/headers/GraphicProperties.h"
 
-
 /**
  *  The representation of the smartfeature tree structure, where every node has a parent and 2 children(binary tree without order)
  */

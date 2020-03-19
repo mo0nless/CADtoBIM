@@ -11,8 +11,8 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 	if (this->root == nullptr || newParentLocalNodeId <= 0) {
 		this->root = new SmartFeatureTreeNode();
 		this->root->getGeneralProperties()->setElementId(newLeafElementId);
-		this->root->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
-		this->root->getGeneralProperties()->setLocalParentNodeId(-1);
+		this->root->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
+		this->root->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(-1);
 		this->root->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
 		this->root->getGeneralProperties()->setIsSmartFeature(true);
 	}
@@ -22,8 +22,8 @@ void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newL
 
 			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode();
 			newNode->getGeneralProperties()->setElementId(newLeafElementId);
-			newNode->getGeneralProperties()->setLocalNodeId(newLocalNodeId);
-			newNode->getGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
+			newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
+			newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
 			newNode->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
 			newNode->getGeneralProperties()->setIsSmartFeature(true);
 
@@ -62,7 +62,7 @@ SmartFeatureTreeNode * SmartFeatureContainer::searchByElementLocalNodeId(SmartFe
 	if (searchNode == nullptr || searchedLocalId<=0) {
 		return nullptr;
 	}
-	if (searchNode->getGeneralProperties()->getLocalNodeId() == searchedLocalId) {
+	if (searchNode->getReaderProperties()->getSmartFeatureGeneralProperties()->getLocalNodeId() == searchedLocalId) {
 		return searchNode;
 	}
 

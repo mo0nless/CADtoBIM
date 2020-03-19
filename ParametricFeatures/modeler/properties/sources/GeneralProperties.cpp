@@ -6,8 +6,6 @@ GeneralProperties::GeneralProperties()
 	this->className = std::string();
 	this->elementId = -1;
 	this->currentElementId = -1;
-	this->localNodeId = -1;
-	this->localParentNodeId = -1;
 	this->isSmartFeature = false;
 }
 
@@ -51,32 +49,3 @@ void GeneralProperties::setCurrentElementId(long newCurrentElementId)
 	this->currentElementId = newCurrentElementId;
 }
 
-long GeneralProperties::getLocalNodeId()
-{
-	return this->localNodeId;
-}
-
-void GeneralProperties::setLocalNodeId(long newLocalNodeId)
-{
-	this->localNodeId = newLocalNodeId;
-}
-
-long GeneralProperties::getLocalParentNodeId()
-{
-	return this->localParentNodeId;
-}
-
-void GeneralProperties::setLocalParentNodeId(long newLocalParentNodeId)
-{
-	this->localParentNodeId = newLocalParentNodeId;
-}
-
-PrimitiveTypeEnum::PrimitiveTypeEnum GeneralProperties::getPrimitiveTypeEnum()
-{
-	return this->primitiveTypeEnum;
-}
-
-void GeneralProperties::setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum)
-{
-	this->primitiveTypeEnum = newPrimitiveTypeEnum;
-}

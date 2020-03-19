@@ -4,6 +4,8 @@
 #include "GraphicProperties.h"
 #include "GeneralProperties.h"
 
+
+
 /**
  *  Class stores ReaderProperties, GraphicProperties and other relevant properties
  */
@@ -15,6 +17,7 @@ private:
 	GraphicProperties* graphicProperties;
 
 	bool areReaderPropertiesFound;
+
 	
 
 public:

@@ -2,6 +2,11 @@
 
 ReaderProperties::ReaderProperties()
 {
+	this->nodeId = -1;
+	this->smartFeatureGeneralProperties = new SmartFeatureGeneralProperties();
+
+	this->booleanOperationProperties = nullptr;
+	this->createSolidsOperationProperties = nullptr;
 }
 
 int ReaderProperties::getNodeId()
@@ -14,13 +19,45 @@ void ReaderProperties::setNodeId(int newNodeId)
 	this->nodeId = newNodeId;
 }
 
-
-BooleanFunctions::BooleanFunctionsEnum ReaderProperties::getBooleanFunction()
+SmartFeatureGeneralProperties * ReaderProperties::getSmartFeatureGeneralProperties()
 {
-	return this->booleanFunction;
+	return this->smartFeatureGeneralProperties;
 }
 
-void ReaderProperties::setBooleanFunction(int newBooleanFunctionInt)
+void ReaderProperties::setSmartFeatureGeneralProperties(SmartFeatureGeneralProperties * newSmartFeatureGeneralProperties)
 {
-	this->booleanFunction = BooleanFunctions::getBooleanFunctionsEnumByIntValue(newBooleanFunctionInt);
+	this->smartFeatureGeneralProperties = newSmartFeatureGeneralProperties;
 }
+
+
+bool ReaderProperties::tryGetCreateSolidsOperationProperties(CreateSolidsOperationProperties & createSolidsOperationPropertiesR)
+{
+	if (this->createSolidsOperationProperties == nullptr)
+	{
+		return false;
+	}
+	createSolidsOperationPropertiesR = *this->createSolidsOperationProperties;
+	return true;
+}
+
+void ReaderProperties::setCreateSolidsOperationProperties(CreateSolidsOperationProperties * newCreateSolidsOperationProperties)
+{
+	this->createSolidsOperationProperties = newCreateSolidsOperationProperties;
+}
+
+bool ReaderProperties::tryGetBooleanOperationProperties(BooleanOperationProperties & booleanOperationPropertiesR)
+{
+	if (this->booleanOperationProperties == nullptr)
+	{
+		return false;
+	}
+	booleanOperationPropertiesR = *this->booleanOperationProperties;
+	return true;
+}
+
+void ReaderProperties::setBooleanOperationProperties(BooleanOperationProperties * newBooleanOperationProperties)
+{
+	this->booleanOperationProperties = newBooleanOperationProperties;
+}
+
+

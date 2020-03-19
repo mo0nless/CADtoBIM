@@ -100,6 +100,11 @@ appObjects = \
 	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)IfcPrimitivesBuilder$(oext) \
 	$(o)IfcBuilder$(oext) \
+	$(o)BooleanOperationProperties$(oext) \
+	$(o)CreateSolidsOperationProperties$(oext) \
+	$(o)PrimitiveGraphicProperties$(oext) \
+	$(o)SmartFeatureGeneralProperties$(oext) \
+	$(o)SmartFeatureTypeEnumUtils$(oext) \
 
 
 
@@ -188,15 +193,15 @@ $(o)ReaderPropertiesEnum$(oext) : $(baseDir)common/enums/sources/ReaderPropertie
 
 $(o)PrimitiveTypeEnum$(oext) : $(baseDir)common/enums/sources/PrimitiveTypeEnum.cpp $(baseDir)common/enums/headers/PrimitiveTypeEnum.h
 
-$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SlabGraphicProperties.h
+$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SlabGraphicProperties.h
 
-$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/ConeGraphicProperties.h
+$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h
 
-$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SphereGraphicProperties.h
+$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h
 
-$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/CylinderGraphicProperties.h
+$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h
 
-$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/TorusGraphicProperties.h
+$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
 
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
@@ -212,8 +217,17 @@ $(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitives
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
 
-$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/primitives/headers/CurveGraphicsProperties.h
+$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicProperties.h
 
+$(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
+
+$(o)CreateSolidsOperationProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/CreateSolidsOperationProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h
+
+$(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
+
+$(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
+
+$(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
 %include $(MDLMKI)dlmlink.mki
 
