@@ -7,6 +7,7 @@ class GeneralProperties {
 
 private:
 	std::string className;
+	std::string elementDescriptorName;
 
 	long elementId;
 	long currentElementId;
@@ -16,9 +17,12 @@ private:
 public:
 	GeneralProperties();
 
-	std::string getClassName();
-	void setClassName(std::string newClassName);
+	std::string getElementClassName();
+	void setElementClassName(std::string newClassName);
 
+	std::string getElementDescriptorName();
+	void setElementDescriptorName(std::string newElementDescriptorName);
+	
 	long getElementId();
 	void setElementId(long newElementId);
 

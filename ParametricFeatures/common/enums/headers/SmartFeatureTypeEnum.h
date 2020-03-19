@@ -13,4 +13,5 @@ namespace SmartFeatureTypeEnum {
 		UNDEFINED
 	};
 
+	SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
 }

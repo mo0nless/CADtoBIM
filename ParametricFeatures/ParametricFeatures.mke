@@ -104,7 +104,7 @@ appObjects = \
 	$(o)CreateSolidsOperationProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureGeneralProperties$(oext) \
-	$(o)SmartFeatureTypeEnumUtils$(oext) \
+	$(o)SmartFeatureTypeEnum$(oext) \
 
 
 
@@ -227,7 +227,7 @@ $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/
 
 $(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
 
-$(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
+$(o)SmartFeatureTypeEnum$(oext) : $(baseDir)common/enums/sources/SmartFeatureTypeEnum.cpp $(baseDir)common/enums/headers/SmartFeatureTypeEnum.h
 
 %include $(MDLMKI)dlmlink.mki
 

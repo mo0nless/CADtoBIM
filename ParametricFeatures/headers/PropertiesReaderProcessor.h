@@ -29,7 +29,8 @@ public:
 	//! The public constructor available.
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
-	void getReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
+	//! @param[in] the reference of the SmartFeatureContainer
+	void processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
 
 	//! Get the class Name of the current element 
 	//! @return the string that has the class Name of the element.

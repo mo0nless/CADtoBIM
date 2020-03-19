@@ -8,7 +8,7 @@ Element ID: 1375
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = BSplineCurveElement, current element id = 1375, id = 0 ---------
+--------- ClassName = BSplineCurveElement, current element id = 1375, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -123,7 +123,7 @@ Element ID: 1393
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = ArcElement, current element id = 1393, id = 0 ---------
+--------- ClassName = ArcElement, current element id = 1393, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -221,7 +221,7 @@ Element ID: 1394
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = BSplineCurveElement, current element id = 1394, id = 0 ---------
+--------- ClassName = BSplineCurveElement, current element id = 1394, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -336,7 +336,7 @@ Element ID: 1399
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = LineElement, current element id = 1399, id = 0 ---------
+--------- ClassName = LineElement, current element id = 1399, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -456,7 +456,7 @@ Element ID: 1400
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = LineElement, current element id = 1400, id = 0 ---------
+--------- ClassName = LineElement, current element id = 1400, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True

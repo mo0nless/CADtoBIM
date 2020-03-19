@@ -4,7 +4,7 @@
 InitializationUtilities::InitializationUtilities()
 {	
 	this->dgnModel = ISessionMgr::GetActiveDgnModelP();
-	this->dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName().AppendUtf8(".txt");
+	this->dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 
 	this->pGraElement = dgnModel->GetGraphicElementsP();
 
@@ -91,7 +91,6 @@ std::vector<DictionaryProperties*> InitializationUtilities::orderDictionaryPrope
 					SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 					if (treeNode != nullptr) {
 						treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
-						treeNode->getGeneralProperties()->setPrimitiveTypeEnum(propertiesDictionary->getGeneralProperties()->getPrimitiveTypeEnum());
 					}
 				}
 				else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
@@ -116,7 +115,7 @@ std::vector<DictionaryProperties*> InitializationUtilities::orderDictionaryPrope
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-void InitializationUtilities::analyzeDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+void InitializationUtilities::processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 	std::ofstream outfile;
 
@@ -128,19 +127,21 @@ void InitializationUtilities::analyzeDgnGraphicsElements(std::vector<DictionaryP
 	GraphicsProcessorUtilities graphicsProcessorUtils = graphicsProcessor.getGraphicsProcessorUtilities();
 
 	for (PersistentElementRefP elemRef : *pGraElement)
-	{
-		ElementHandle leafNode;
+	{		
 		ElementHandle currentElem(elemRef);
-		SmartFeatureNodePtr sFeatNode;
-		T_SmartFeatureVector sFeatVec;
 		WString elDescr;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
+			ElementHandle leafNode;
+			SmartFeatureNodePtr sFeatNode;
+			T_SmartFeatureVector sFeatVec;
+
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 			if (smartFeatureContainer != nullptr)
 			{
@@ -157,20 +158,19 @@ void InitializationUtilities::analyzeDgnGraphicsElements(std::vector<DictionaryP
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
 		outfile.close();
-				
-		propertiesDictionary->getGeneralProperties()->setPrimitiveTypeEnum(PrimitiveTypeEnum::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP())));
+		
+		//This is the one that we use for the ENUMS
+		propertiesDictionary->getGeneralProperties()->setElementDescriptorName(StringUtils::getString(elDescr.GetWCharCP())); 
+		//The class name is visible only from the reader properties executing the query and we set it later
 
-
-		propertiesDictionary->getGeneralProperties()->setClassName(StringUtils::getString(elDescr.GetWCharCP())); //check the class name and element descriptor
 		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
 		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
+		
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
-
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor(currentElem, *propertiesDictionary, *smartFeatureContainer);
-
-		graphicsProcessorUtils.setPropertiesDictionary(*propertiesDictionary);
-		graphicsProcessorUtils.updateClassAndID(propertiesReaderProcessor->getElemClassName(), currentElem.GetElementId());
-
+		graphicsProcessorUtils.setDictionaryProperties(*propertiesDictionary);
+		
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
 		propsDictVec.push_back(propertiesDictionary);

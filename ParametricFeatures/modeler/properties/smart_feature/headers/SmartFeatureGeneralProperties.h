@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
+#include "../../../../common/enums/headers/SmartFeatureTypeEnum.h"
 
 class SmartFeatureGeneralProperties {
 

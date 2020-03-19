@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../../headers/PropertiesReaderProcessor.h"
+#include "../../modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h"
+#include "../../modeler/properties/curves/graphic/headers/CurveGraphicProperties.h"
 
 class GraphicsProcessorUtilities
 {
@@ -16,16 +18,11 @@ public:
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
-	void setPropertiesDictionary(DictionaryProperties& newDictionaryProperties);
-	void updateClassAndID(std::string elemClName, Int64 elemID);
-
-	//std::ofstream* outfile;
-	std::string filePath;
-	Int64 elementID;
-	std::string elemClassName;
-	DictionaryProperties dictionaryProperties;
-	
+	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
+	DictionaryProperties* getDictionaryProperties();
+		
 private:
-	
+	std::string filePath;
+	DictionaryProperties dictionaryProperties;
 
 };

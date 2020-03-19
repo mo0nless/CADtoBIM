@@ -9,14 +9,24 @@ GeneralProperties::GeneralProperties()
 	this->isSmartFeature = false;
 }
 
-std::string GeneralProperties::getClassName()
+std::string GeneralProperties::getElementClassName()
 {
 	return this->className;
 }
 
-void GeneralProperties::setClassName(std::string newClassName)
+void GeneralProperties::setElementClassName(std::string newClassName)
 {
 	this->className = newClassName;
+}
+
+std::string GeneralProperties::getElementDescriptorName()
+{
+	return this->elementDescriptorName;
+}
+
+void GeneralProperties::setElementDescriptorName(std::string newElementDescriptorName)
+{
+	this->elementDescriptorName = newElementDescriptorName;
 }
 
 long GeneralProperties::getElementId()
