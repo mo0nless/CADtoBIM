@@ -8,13 +8,6 @@ DictionaryProperties::DictionaryProperties()
 	this->areReaderPropertiesFound = false;
 }
 
-DictionaryProperties::~DictionaryProperties()
-{
-	delete generalProperties;
-	delete readerProperties;
-	delete graphicProperties;
-}
-
 GeneralProperties * DictionaryProperties::getGeneralProperties()
 {
 	return this->generalProperties;

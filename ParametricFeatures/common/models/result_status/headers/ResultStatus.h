@@ -10,40 +10,40 @@ template <class T>
 class ResultStatus {
 
 private:
-	ResultStatusEnum resultStatusEnum;
+	ResultStatusEnum::ResultStatusEnum resultStatusEnum;
 	std::string errorText;
 public:
 	ResultStatus<T>();
-	ResultStatus<T>(ResultStatusEnum newResultStatusEnum);
-	ResultStatus<T>(ResultStatusEnum newResultStatusEnum, std::string newErrorText);
+	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum);
+	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, std::string newErrorText);
 
-	ResultStatusEnum getResultStatusEnum();
+	ResultStatusEnum::ResultStatusEnum getResultStatusEnum();
 	std::string getErrorText();
 };
 
 template<class T>
 inline ResultStatus<T>::ResultStatus()
 {
-	this->resultStatusEnum = ResultStatusEnum::SUCCESS;
+	this->resultStatusEnum = ResultStatusEnum::ResultStatusEnum::SUCCESS;
 	this->errorText = std::string();
 }
 
 template<class T>
-inline ResultStatus<T>::ResultStatus(ResultStatusEnum newResultStatusEnum)
+inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum)
 {
 	this->resultStatusEnum = newResultStatusEnum;
 	this->errorText = std::string();
 }
 
 template<class T>
-inline ResultStatus<T>::ResultStatus(ResultStatusEnum newResultStatusEnum, std::string newErrorText)
+inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, std::string newErrorText)
 {
 	this->resultStatusEnum = newResultStatusEnum;
 	this->errorText = newErrorText;
 }
 
 template<class T>
-inline ResultStatusEnum ResultStatus<T>::getResultStatusEnum()
+inline ResultStatusEnum::ResultStatusEnum ResultStatus<T>::getResultStatusEnum()
 {
 	return this->resultStatusEnum;
 }

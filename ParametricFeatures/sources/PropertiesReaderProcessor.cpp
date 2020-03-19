@@ -2,8 +2,6 @@
 
 PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 std::string PropertiesReaderProcessor::getElemClassName()
@@ -14,6 +12,10 @@ std::string PropertiesReaderProcessor::getElemClassName()
 
 PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
+	std::ofstream outfile;
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+
 	WString elDescr;
 
 	// Handles persistance of ECInstances
@@ -42,14 +44,14 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 		outfile << std::endl;
 		outfile << "= Properties Not Found =" << std::endl;
 		outfile.close();*/
-		elemClassName = "SmartFeatureSolid"; 
+		this->elemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
 		dictionaryProperties.setAreReaderPropertiesFound(true);
 	}
 	else{
 		// set value if reader properties exist for this element
-		dictionaryProperties.setAreReaderPropertiesFound(false);
+		dictionaryProperties.setAreReaderPropertiesFound(false);		
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
@@ -57,12 +59,14 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
 			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 
+			this->elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+			
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
-			outfile.close();
+			//outfile.close();
 
-			outfile.open(filePath, std::ios_base::app);
+			//outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName())<<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
@@ -109,15 +113,4 @@ PropertiesReaderProcessor::PropertiesReaderProcessor(ElementHandleCR currentElem
 			}			
 		}
 	}
-
-	/*outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "===================================================" << std::endl;
-	outfile << "===================================================" << std::endl;
-	outfile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP()) << std::endl;
-	outfile << "Element: ID " << currentElem.GetElementId() << std::endl;
-	outfile << "===================================================" << std::endl;
-	outfile << "===================================================" << std::endl;
-	outfile << std::endl;
-	outfile.close();*/
 }

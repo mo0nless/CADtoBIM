@@ -4,9 +4,7 @@
 #include <map>
 
 namespace CreateSolidFunctionsEnum {
-
-
-
+	
 	enum class CreateSolidFunctionsEnum
 	{
 		EXTRUDE,
@@ -16,6 +14,5 @@ namespace CreateSolidFunctionsEnum {
 		UNDEFINED
 	};
 
-	static std::map<CreateSolidFunctionsEnum, std::string> mappedValues;
 	CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(std::string className);
 }

@@ -1,10 +1,6 @@
 #pragma once
 
-#include "PropertiesReaderProcessor.h"
-
-//#include "../common/enums/headers/PrimitiveTypeEnum.h"
-//
-//#include "../mapper/properties/headers/GraphicPropertiesMapper.h"
+#include "../utilities/headers/GraphicsProcessorUtilities.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
@@ -15,24 +11,15 @@
 * @see ElementGraphicsOutput
 * @bsiclass                                                     
 +===============+===============+===============+===============+===============+======*/
-class GraphicsProcessor : public IElementGraphicsProcessor//, public LocateSubEntityTool
+class GraphicsProcessor : public IElementGraphicsProcessor
 {
 public:
 	//! Default constructor of the class
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
 	GraphicsProcessor();
-	void setPropertiesDictionary(DictionaryProperties* newDictionaryProperties);
-	void updateClassAndID(std::string elemClName, Int64 elemID);
+	GraphicsProcessorUtilities& getGraphicsProcessorUtilities();
 private:
-	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
-	inline void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
-	inline void setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail);
-	inline void setConeGraphicProperties(DgnConeDetail dgnConeDetail);
-	inline void setSphereGraphicProperties();
-	inline void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
-
-	inline void CurveParser(ICurvePrimitivePtr curve);
-
+	
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
 	virtual BentleyStatus _ProcessCurveVector(CurveVectorCR curves, bool isFilled) override;
@@ -43,12 +30,10 @@ private:
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
 
+	GraphicsProcessorUtilities graphicsProcessorUtils;
 	
-	WString myString;
 	std::string filePath;
-	Int64 elementID;
-	std::string elemClassName;
-	DictionaryProperties* dictionaryProperties;
+
 	SolidLocationDetail solidDetails;
 };
 /// @endGroup

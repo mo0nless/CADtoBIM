@@ -19,7 +19,6 @@ private:
 
 public:
 	DictionaryProperties();
-	~DictionaryProperties();
 
 	GeneralProperties* getGeneralProperties();
 	ReaderProperties* getReaderProperties();

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <map>
+#include <string>
+
 namespace CurvesTypeEnum
 {
 	enum CurvesTypeEnum
@@ -15,4 +18,6 @@ namespace CurvesTypeEnum
 		POINT_STRING,
 		SPIRAL
 	};
+
+	CurvesTypeEnum getCurvesTypeEnumByClassName(std::string className);
 }

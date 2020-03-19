@@ -11,8 +11,7 @@
 * REMEMBER THAT THE INCLUDES ORDER MATTER
 */
 
-#include "GraphicsProcessor.h"
-#include "../common/utils/headers/StringUtils.hpp"
+#include "../utilities/headers/InitializationUtilities.h"
 #include "../ifc/headers/IfcBuilder.h"
 
 

@@ -11,7 +11,7 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 #include "../../../modeler/properties/headers/ReaderProperties.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
-#include "../../../common/utils/headers/ReaderPropertiesEnumUtils.h"
+#include "../../../common/enums/headers/ReaderPropertiesEnum.h"
 
 /**
 *  Class used to map reader properties from the modeler to the object ReaderProperties

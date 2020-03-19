@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <map>
+
 namespace ReaderPropertiesEnum {
 
 
@@ -12,4 +15,11 @@ namespace ReaderPropertiesEnum {
 		ROTATION,
 		NONE
 	};
+
+	/**
+	*  static method to retrieve enum value based on the string(label) value received from the modeler
+	*  @param stringValue[in]
+	*  @return ReaderPropertiesEnum
+	*/
+	ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
 }

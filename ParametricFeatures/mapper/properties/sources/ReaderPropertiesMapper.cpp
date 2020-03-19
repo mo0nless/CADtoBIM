@@ -52,7 +52,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 
 void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties)
 {
-	ReaderPropertiesEnum::ReaderPropertiesEnum value = ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue);
+	ReaderPropertiesEnum::ReaderPropertiesEnum value = ReaderPropertiesEnum::getElementPropertiesEnumByStringValue(labelValue);
 
 	switch (value)
 	{

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+#include <map>
 
 namespace PrimitiveTypeEnum {
 
@@ -15,4 +17,6 @@ namespace PrimitiveTypeEnum {
 		NONE
 
 	};
+
+	PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string className);
 }

@@ -15,11 +15,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\PrimitiveTypeEnum.cpp" />
+    <ClCompile Include="common\enums\sources\ReaderPropertiesEnum.cpp" />
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
-    <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
@@ -42,6 +43,8 @@
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
+    <ClCompile Include="utilities\sources\GraphicsProcessorUtilities.cpp" />
+    <ClCompile Include="utilities\sources\InitializationUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -53,8 +56,6 @@
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
-    <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
-    <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
     <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
@@ -79,6 +80,8 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="utilities\headers\GraphicsProcessorUtilities.h" />
+    <ClInclude Include="utilities\headers\InitializationUtilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

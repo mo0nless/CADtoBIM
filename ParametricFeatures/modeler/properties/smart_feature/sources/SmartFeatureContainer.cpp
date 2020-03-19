@@ -1,24 +1,10 @@
 #include "../headers/SmartFeatureContainer.h"
 
-void SmartFeatureContainer::DestroyRecursive(SmartFeatureTreeNode* node)
-{
-	if (node)
-	{
-		DestroyRecursive(node->getLeftNode());
-		DestroyRecursive(node->getRightNode());
-		delete node;
-	}
-}
-
 SmartFeatureContainer::SmartFeatureContainer()
 {
 	this->root = nullptr;
 }
 
-SmartFeatureContainer::~SmartFeatureContainer()
-{
-	DestroyRecursive(this->root);
-}
 
 void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newLeafElementId)
 {

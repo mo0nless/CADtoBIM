@@ -2,12 +2,13 @@
 
 #include "../stdafx.h"
 #include "../common/utils/headers/StringUtils.hpp"
+
 #include "../modeler/properties/headers/DictionaryProperties.h"
 
 #include "../mapper/properties/headers/ReaderPropertiesMapper.h"
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
-#include "../common/utils/headers/PrimitiveTypeEnumUtils.h"
+#include "../common/enums/headers/PrimitiveTypeEnum.h"
 #include "../common/enums/headers/CurvesTypeEnum.h"
 
 /// @addtogroup ElementProperties
@@ -33,9 +34,6 @@ public:
 	//! @return the string that has the class Name of the element.
 	std::string getElemClassName();
 private:
-	std::ofstream outfile;
-	std::string filePath;
-
 	std::string elemClassName;
 	PropertiesReaderProcessor();
 };
