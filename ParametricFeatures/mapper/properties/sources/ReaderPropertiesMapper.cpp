@@ -53,7 +53,8 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 {
 
 	SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
-
+	
+	readerProperties.getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
 
 	switch (smartFeatureTypeEnum)
 	{
