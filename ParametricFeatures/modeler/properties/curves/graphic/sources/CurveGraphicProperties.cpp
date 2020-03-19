@@ -1,4 +1,4 @@
-#include "../headers/CurveGraphicsProperties.h"
+#include "../headers/CurveGraphicProperties.h"
 
 
 CurveGraphicProperties::CurveGraphicProperties()

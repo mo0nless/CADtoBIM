@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SmartFeatureTreeNode.h"
-#include "../../../../common/enums/headers/SmartFeatureContainerTypeEnum.h"
 
 
 /**
@@ -11,7 +10,6 @@ class SmartFeatureContainer {
 
 private:
 	SmartFeatureTreeNode* root;
-	SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum smartFeatureContainerTypeEnum;
 
 public:
 	SmartFeatureContainer();
@@ -32,6 +30,5 @@ public:
 
 	SmartFeatureTreeNode* getRoot();
 
-	SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum getSmartFeatureContainerTypeEnum();
-	void setSmartFeatureContainerTypeEnum(SmartFeatureContainerTypeEnum::SmartFeatureContainerTypeEnum newSmartFeatureContainerTypeEnum);
+
 };

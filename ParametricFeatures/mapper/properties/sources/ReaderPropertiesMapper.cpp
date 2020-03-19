@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties, std::string& className)
 {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -32,7 +32,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 
 
 		if (!valueAsString.empty()) {
-			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties);
+			mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties,className);
 		}
 		
 		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
@@ -49,23 +49,34 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	
 }
 
-void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties)
+void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, std::string& className)
 {
-	ReaderPropertiesEnum::ReaderPropertiesEnum value = ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue);
 
-	switch (value)
+	SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
+
+
+	switch (smartFeatureTypeEnum)
 	{
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::NODE_ID:
-		readerProperties.setNodeId(eCValue.GetInteger());
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::BOOLEAN_FEATURE:
+		if (ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue) == ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION)
+		{
+			BooleanOperationProperties* booleanOperationProperties = new BooleanOperationProperties();
+			booleanOperationProperties->setBooleanFunction(eCValue.GetInteger());
+			readerProperties.setBooleanOperationProperties(booleanOperationProperties);
+		}
 		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION:
-		readerProperties.setBooleanFunction(eCValue.GetInteger());
+
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::CREATE_SOLIDS:
+		readerProperties.setCreateSolidsOperationProperties(nullptr);
 		break;
-	case ReaderPropertiesEnum::ReaderPropertiesEnum::NONE:
+
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED:
+		//log as info or warning missing mapping
 		break;
 	default:
-		// TODO add info log
 		break;
 	}
+
+	
 
 }

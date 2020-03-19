@@ -49,23 +49,27 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		Ifc4::IfcRepresentationItem* representationItem = nullptr;
 
 		if (!smartFeatureContainerVector.empty()) {
-			for (int i = 0; i < smartFeatureContainerVector.size(); ++i) {
+			for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
+			{
 				SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
 
 				if (smartFeatureContainer.getRoot() != nullptr)
 				{
-					IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-					representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-
-					if (representationItem != nullptr) {
-						items->push(representationItem);
+					if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
+						IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
+						representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
 					}
+				}
+
+				if (representationItem != nullptr) 
+				{
+					items->push(representationItem);
 				}
 			}
 		}
 
 		
-
+		// create simple primitives, which are not a smartfeature
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
@@ -76,7 +80,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 				}
 
 				IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-				representationItem = ifcPrimitivesBuilder->buildIfcPrimitive(dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum(), *dictionaryProperties.getGraphicProperties(), file);
+				representationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*dictionaryProperties.getGraphicProperties(), file);
 
 
 				if (representationItem != nullptr) {

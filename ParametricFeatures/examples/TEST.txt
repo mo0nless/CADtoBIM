@@ -1,66 +1,284 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Circle
-Element ID: 1436
+Element Description: Slab
+Element ID: 1375
 ===================================================
 ===================================================
 
+-------- SmartFeatureSolid --------
+Range [XLength] = 8290766.750564
+Range [YLength] = 945254.357772
+Range [ZLength] = 11679521.091728
 
--------- BOUNDARY_TYPE_Outer --------
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1708.765936
+qRotation [W] = 1708.765643
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = -7055104.215116
+Origin [Y] = 5478081.142564
+Origin [Z] = 0.000000
+
+Range High = -7055104.215116
+Range Low = -15345870.965681
+DiagonalDistanceXY = 8344478.360758
+DiagonalDistance = 14354146.858844
+Range Difference = -8290766.750564
+Corner [1] - [X] = -7055104.215116
+Corner [1] - [Y] = 5478081.142564
+Corner [1] - [Z] = 0.000000
+
+Corner [2] - [X] = -15345870.965681
+Corner [2] - [Y] = 5478081.142564
+Corner [2] - [Z] = 0.000000
+
+Corner [3] - [X] = -7055104.215116
+Corner [3] - [Y] = 4532826.784792
+Corner [3] - [Z] = 0.000000
+
+Corner [4] - [X] = -15345870.965681
+Corner [4] - [Y] = 4532826.784792
+Corner [4] - [Z] = 0.000000
+
+Corner [5] - [X] = -7055104.215116
+Corner [5] - [Y] = 5478081.142564
+Corner [5] - [Z] = 11679521.091728
+
+Corner [6] - [X] = -15345870.965681
+Corner [6] - [Y] = 5478081.142564
+Corner [6] - [Z] = 11679521.091728
+
+Corner [7] - [X] = -7055104.215116
+Corner [7] - [Y] = 4532826.784792
+Corner [7] - [Z] = 11679521.091728
+
+Corner [8] - [X] = -15345870.965681
+Corner [8] - [Y] = 4532826.784792
+Corner [8] - [Z] = 11679521.091728
+
+Vector of BASE plane X [X] = -1.000000
+Vector of BASE plane X [Y] = 0.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = 0.000000
+Vector of BASE plane Y [Y] = -1.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Vector of BASE plane Z [X] = 0.000000
+Vector of BASE plane Z [Y] = 0.000000
+Vector of BASE plane Z [Z] = 1.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 8290766.750564
+AY top rectangle y size = 945254.357772
+BX top rectangle x size = 8290766.750564
+BY top rectangle y size = 945254.357772
+
+Origin of BASE rectangle [X] = -7055104.215116
+Origin of BASE rectangle [Y] = 5478081.142564
+Origin of BASE rectangle [Z] = 0.000000
+
+Origin of TOP rectangle [X] = -7055104.215116
+Origin of TOP rectangle [Y] = 5478081.142564
+Origin of TOP rectangle [Z] = 11679521.091728
+
+Size at the BASE [X] = 8290766.750564
+Size at the BASE [Y] = 945254.357772
+
+Size at the TOP [X] = 8290766.750564
+Size at the TOP [Y] = 945254.357772
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -11200487.590398
+Centroid [Y] = 5005453.963678
+Centroid [Z] = 5839760.545864
+
+Volume = 91531044966575898624.000000
+Area = 231418373477417.093750
+
+SmartFeatureSolidIn SolidKernel Entity is: Solid 0
+
 
 ===================================================
 ===================================================
-Element Description: Circle
-Element: ID 1436
+Element Description: Slab
+Element: ID 1375
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Slab
+Element ID: 1382
+===================================================
+===================================================
+
+-------- SmartFeatureSolid --------
+Range [XLength] = 996990.938359
+Range [YLength] = 3465932.645165
+Range [ZLength] = 11679521.091728
+
+Quaternion Rotation
+qRotation [X] = 1708.765789
+qRotation [Y] = -1708.765789
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.707107
+vRotation [Y] = -0.707107
+vRotation [Z] = 0.000000
+
+Origin [X] = -7055104.215116
+Origin [Y] = 4532826.784792
+Origin [Z] = 11679521.091728
+
+Range High = -7055104.215116
+Range Low = -8052095.153475
+DiagonalDistanceXY = 3606477.510257
+DiagonalDistance = 12223661.193117
+Range Difference = -996990.938359
+Corner [1] - [X] = -7055104.215116
+Corner [1] - [Y] = 4532826.784792
+Corner [1] - [Z] = 11679521.091728
+
+Corner [2] - [X] = -7055104.215116
+Corner [2] - [Y] = 1066894.139627
+Corner [2] - [Z] = 11679521.091728
+
+Corner [3] - [X] = -8052095.153475
+Corner [3] - [Y] = 4532826.784792
+Corner [3] - [Z] = 11679521.091728
+
+Corner [4] - [X] = -8052095.153475
+Corner [4] - [Y] = 1066894.139627
+Corner [4] - [Z] = 11679521.091728
+
+Corner [5] - [X] = -7055104.215116
+Corner [5] - [Y] = 4532826.784792
+Corner [5] - [Z] = 0.000000
+
+Corner [6] - [X] = -7055104.215116
+Corner [6] - [Y] = 1066894.139627
+Corner [6] - [Z] = 0.000000
+
+Corner [7] - [X] = -8052095.153475
+Corner [7] - [Y] = 4532826.784792
+Corner [7] - [Z] = 0.000000
+
+Corner [8] - [X] = -8052095.153475
+Corner [8] - [Y] = 1066894.139627
+Corner [8] - [Z] = 0.000000
+
+Vector of BASE plane X [X] = 0.000000
+Vector of BASE plane X [Y] = -1.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = -1.000000
+Vector of BASE plane Y [Y] = 0.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Vector of BASE plane Z [X] = -0.000000
+Vector of BASE plane Z [Y] = -0.000000
+Vector of BASE plane Z [Z] = -1.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 3465932.645165
+AY top rectangle y size = 996990.938359
+BX top rectangle x size = 3465932.645165
+BY top rectangle y size = 996990.938359
+
+Origin of BASE rectangle [X] = -7055104.215116
+Origin of BASE rectangle [Y] = 4532826.784792
+Origin of BASE rectangle [Z] = 11679521.091728
+
+Origin of TOP rectangle [X] = -7055104.215116
+Origin of TOP rectangle [Y] = 4532826.784792
+Origin of TOP rectangle [Z] = 0.000000
+
+Size at the BASE [X] = 3465932.645165
+Size at the BASE [Y] = 996990.938359
+
+Size at the TOP [X] = 3465932.645165
+Size at the TOP [Y] = 996990.938359
+
+True if the end cap is enabled = 1
+
+Centroid [X] = -7553599.684296
+Centroid [Y] = 2799860.462209
+Centroid [Z] = 5839760.545864
+
+Volume = 40358625312266690560.000000
+Area = 111160627129469.312500
+
+SmartFeatureSolidIn SolidKernel Entity is: Solid 0
+
+
+===================================================
+===================================================
+Element Description: Slab
+Element: ID 1382
 ===================================================
 ===================================================
 
 Smart feature tree ===================================================
 start==================
-Node ID: 2
+Node ID: 3
 finish==================
 start==================
 Parent Ref Count: 2
-Parent ID: 2
+Parent ID: 3
 Node ID: 1
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 3
+Node ID: 2
 finish==================
 ===================================================
 ===================================================
 Element Description: Parametric Solid/Surface
-Element ID: 1440
+Element ID: 1390
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 1440, id = 0 ---------
+--------- className = SmartFeatureContainer, current element id = 1390, id = 0 ---------
 
 Is smart feature
 is smart feature, but not found in the smartfeaturetree
 NodeId[int] = 0
 Feature Status[string] = 
-Deletable[boolean] = False
+Deletable[boolean] = True
 IconName[string] = ParametricSolid
 DepthId[int] = 0
-Name[string] = Solid of Revolution #2
+Name[string] = Union #3
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
+ReorderValid[boolean] = False
 IsTop[boolean] = True
 Enabled[boolean] = 
-Label[string] = Solid of Revolution #2
+Label[string] = Union #3
 DynamicLabel[string] = Parametric Solid
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
 Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
-Element ID[long] = 1440
+Element ID[long] = 1390
 Model[string] = Default
-Last Modified[dateTime] = 3/12/2020 12:10:17 PM
+Last Modified[dateTime] = 2/28/2020 2:23:25 PM
 Size[int] = 76
 Linkages[int] = 2
-XAttributes[int] = 6
+XAttributes[int] = 7
 Links[string] = 
 Property List[string] = 
 Type[string] = Parametric Solid/Surface
@@ -87,10 +305,10 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -73' 10.2989", 11' 7.9297", -20' 8.8639"
-Range High[point3d] = 14' 6.0859", 199' 11.7469", 89' 4.5677"
-Volume[double] = 563281.3641 Cu.'
-Surface Area[double] = 42590.0329 Sq.'
+Range Low[point3d] = -56' 6.0232", 21' 1.5333", 10' 11.3892"
+Range High[point3d] = -29' 3.6150", 35' 7.2021", 49' 3.2129"
+Volume[double] = 4657.6397 Cu.'
+Surface Area[double] = 3436.8116 Sq.'
 Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
@@ -98,338 +316,55 @@ Angle[double] = 0.0000°
 Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = Revolve, current element id = 1440, id = 2 ---------
+--------- className = BooleanFeature, current element id = 1390, id = 3 ---------
 
 Is smart feature
-NodeId[int] = 2
+NodeId[int] = 3
 Enabled[boolean] = 
-Label[string] = Solid of Revolution #2
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricRevolve
-DepthId[int] = 0
-Name[string] = Solid of Revolution #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Disabled[boolean] = 
-Angle[double] = 136.9981°
-Capped[boolean] = True
-Thickness Mode: [int] = None
-Thickness[double] = 0' 0.0000"
-Minimum Radius[double] = 48' 7.8100"
-Maximum Radius[double] = 110' 1.4316"
-Centroidal Radius[double] = 79' 4.6208"
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureProfile, current element id = 1440, id = 1 ---------
-
-Is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Profile #1
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = Circle
-DepthId[int] = 1
-Name[string] = Profile #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-In SolidKernel Entity is: Solid 0
-
-
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1440
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Circle
-Element ID: 1473
-===================================================
-===================================================
-
-
--------- BOUNDARY_TYPE_Outer --------
-
-===================================================
-===================================================
-Element Description: Circle
-Element: ID 1473
-===================================================
-===================================================
-
-Smart feature tree ===================================================
-start==================
-Node ID: 2
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 2
-Node ID: 1
-finish==================
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1475
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 1475, id = 0 ---------
-
-Is smart feature
-is smart feature, but not found in the smartfeaturetree
-NodeId[int] = 0
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricSolid
-DepthId[int] = 0
-Name[string] = Solid of Revolution #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Solid of Revolution #2
-DynamicLabel[string] = Parametric Solid
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 1475
-Model[string] = Default
-Last Modified[dateTime] = 3/12/2020 2:48:48 PM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 6
-Links[string] = 
-Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -236' 9.6544", -725' 1.1276", 69' 0.8590"
-Range High[point3d] = 182' 6.8792", -409' 1.7637", 263' 9.8593"
-Volume[double] = 9777752.9816 Cu.'
-Surface Area[double] = 271527.6300 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Top
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = Revolve, current element id = 1475, id = 2 ---------
-
-Is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Solid of Revolution #2
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricRevolve
-DepthId[int] = 0
-Name[string] = Solid of Revolution #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Disabled[boolean] = 
-Angle[double] = 90.0000°
-Capped[boolean] = True
-Thickness Mode: [int] = None
-Thickness[double] = 0' 0.0000"
-Minimum Radius[double] = 170' 11.5540"
-Maximum Radius[double] = 346' 0.7021"
-Centroidal Radius[double] = 258' 6.1280"
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureProfile, current element id = 1475, id = 1 ---------
-
-Is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Profile #1
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = Circle
-DepthId[int] = 1
-Name[string] = Profile #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-In SolidKernel Entity is: Solid 0
-
-
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1475
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Circle
-Element ID: 1491
-===================================================
-===================================================
-
-
--------- BOUNDARY_TYPE_Outer --------
-
-===================================================
-===================================================
-Element Description: Circle
-Element: ID 1491
-===================================================
-===================================================
-
-Smart feature tree ===================================================
-start==================
-Node ID: 2
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 2
-Node ID: 1
-finish==================
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1493
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 1493, id = 0 ---------
-
-Is smart feature
-is smart feature, but not found in the smartfeaturetree
-NodeId[int] = 0
+Label[string] = Union #3
 Feature Status[string] = 
 Deletable[boolean] = True
-IconName[string] = ParametricSolid
+IconName[string] = ParametricUnion
 DepthId[int] = 0
-Name[string] = Thicken #2
+Name[string] = Union #3
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Thicken #2
-DynamicLabel[string] = Parametric Solid
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 1493
-Model[string] = Default
-Last Modified[dateTime] = 3/17/2020 11:25:40 AM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 6
-Links[string] = 
-Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 282' 5.2751", -55' 6.6023", 0' 0.0000"
-Range High[point3d] = 617' 1.9967", 279' 2.1193", 700' 5.1233"
-Volume[double] = 61635892.3858 Cu.'
-Surface Area[double] = 912546.8415 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Top
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = ThickenFeature, current element id = 1493, id = 2 ---------
-
-Is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Thicken #2
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricThicken
-DepthId[int] = 0
-Name[string] = Thicken #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
+ReorderValid[boolean] = False
 IsTop[boolean] = True
 Disabled[boolean] = 
-Thickness[double] = 700' 5.1233"
+BooleanFunction[int] = 1
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureProfile, current element id = 1493, id = 1 ---------
+--------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
 
 Is smart feature
 NodeId[int] = 1
 Enabled[boolean] = 
-Label[string] = Profile #1
+Label[string] = Slab #1
 Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = Circle
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
 DepthId[int] = 1
-Name[string] = Profile #1
+Name[string] = Slab #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+Disabled[boolean] = 
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
+
+Is smart feature
+NodeId[int] = 2
+Enabled[boolean] = 
+Label[string] = Slab #2
+Feature Status[string] = 
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 1
+Name[string] = Slab #2
 MoveToTopValid[boolean] = False
 MoveAboveValid[boolean] = False
 ReorderValid[boolean] = False
@@ -442,7 +377,7 @@ In SolidKernel Entity is: Solid 0
 ===================================================
 ===================================================
 Element Description: Parametric Solid/Surface
-Element: ID 1493
+Element: ID 1390
 ===================================================
 ===================================================
 
