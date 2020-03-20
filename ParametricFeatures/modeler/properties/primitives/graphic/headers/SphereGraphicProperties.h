@@ -3,7 +3,7 @@
 class SphereGraphicProperties {
 
 private:
-	double radius;
+	double mRadius;
 
 public:
 	SphereGraphicProperties();

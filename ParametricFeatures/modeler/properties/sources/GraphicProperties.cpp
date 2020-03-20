@@ -2,119 +2,119 @@
 
 GraphicProperties::GraphicProperties()
 {
-	this->area = 0;
-	this->volume = 0;
+	this->mArea = 0;
+	this->mVolume = 0;
 
-	this->centroid = DVec3d();
-	this->centroid.x = 0;
-	this->centroid.y = 0;
-	this->centroid.z = 0;
+	this->mCentroid = DVec3d();
+	this->mCentroid.x = 0;
+	this->mCentroid.y = 0;
+	this->mCentroid.z = 0;
 
-	this->vectorAxisX = DVec3d();
-	this->vectorAxisX.x = 1;
-	this->vectorAxisX.y = 0;
-	this->vectorAxisX.z = 0;
+	this->mVectorAxisX = DVec3d();
+	this->mVectorAxisX.x = 1;
+	this->mVectorAxisX.y = 0;
+	this->mVectorAxisX.z = 0;
 
-	this->vectorAxisY = DVec3d();
-	this->vectorAxisY.x = 0;
-	this->vectorAxisY.y = 1;
-	this->vectorAxisY.z = 0;
+	this->mVectorAxisY = DVec3d();
+	this->mVectorAxisY.x = 0;
+	this->mVectorAxisY.y = 1;
+	this->mVectorAxisY.z = 0;
 
-	this->vectorAxisZ = DVec3d();
-	this->vectorAxisZ.x = 0;
-	this->vectorAxisZ.y = 0;
-	this->vectorAxisZ.z = 1;
+	this->mVectorAxisZ = DVec3d();
+	this->mVectorAxisZ.x = 0;
+	this->mVectorAxisZ.y = 0;
+	this->mVectorAxisZ.z = 1;
 
-	this->curveGraphicProperties = nullptr;
-	this->primitiveGraphicProperties = nullptr;
+	this->mCurveGraphicProperties = nullptr;
+	this->mPrimitiveGraphicProperties = nullptr;
 }
 
 double GraphicProperties::getArea()
 {
-	return this->area;
+	return this->mArea;
 }
 
 void GraphicProperties::setArea(double newArea)
 {
-	this->area = newArea;
+	this->mArea = newArea;
 }
 
 double GraphicProperties::getVolume()
 {
-	return this->volume;
+	return this->mVolume;
 }
 
 void GraphicProperties::setVolume(double newVolume)
 {
-	this->volume = newVolume;
+	this->mVolume = newVolume;
 }
 
 DVec3d GraphicProperties::getCentroid()
 {
-	return this->centroid;
+	return this->mCentroid;
 }
 
 void GraphicProperties::setCentroid(DVec3d newCentroid)
 {
-	this->centroid = newCentroid;
+	this->mCentroid = newCentroid;
 }
 
 DVec3d GraphicProperties::getVectorAxisX()
 {
-	return this->vectorAxisX;
+	return this->mVectorAxisX;
 }
 
 void GraphicProperties::setVectorAxisX(DVec3d newVectorBaseX)
 {
-	this->vectorAxisX = newVectorBaseX;
+	this->mVectorAxisX = newVectorBaseX;
 }
 
 DVec3d GraphicProperties::getVectorAxisY()
 {
-	return this->vectorAxisY;
+	return this->mVectorAxisY;
 }
 
 void GraphicProperties::setVectorAxisY(DVec3d newVectorBaseY)
 {
-	this->vectorAxisY = newVectorBaseY;
+	this->mVectorAxisY = newVectorBaseY;
 }
 
 DVec3d GraphicProperties::getVectorAxisZ()
 {
-	return this->vectorAxisZ;
+	return this->mVectorAxisZ;
 }
 
 void GraphicProperties::setVectorAxisZ(DVec3d newVectorBaseZ)
 {
-	this->vectorAxisZ = newVectorBaseZ;
+	this->mVectorAxisZ = newVectorBaseZ;
 }
 
 bool GraphicProperties::tryGetCurveGraphicsProperties(CurveGraphicProperties*& curveGraphicsPropertiesR)
 {
-	if (this->curveGraphicProperties == nullptr)
+	if (this->mCurveGraphicProperties == nullptr)
 	{
 		return false;
 	}
-	curveGraphicsPropertiesR = this->curveGraphicProperties;
+	curveGraphicsPropertiesR = this->mCurveGraphicProperties;
 	return true;
 }
 
 void GraphicProperties::setCurveGraphicsProperties(CurveGraphicProperties * newCurveGraphicsProperties)
 {
-	this->curveGraphicProperties = newCurveGraphicsProperties;
+	this->mCurveGraphicProperties = newCurveGraphicsProperties;
 }
 
 bool GraphicProperties::tryGetPrimitiveGraphicProperties(PrimitiveGraphicProperties*& primitiveGraphicPropertiesR)
 {
-	if (this->primitiveGraphicProperties == nullptr)
+	if (this->mPrimitiveGraphicProperties == nullptr)
 	{
 		return false;
 	}
-	primitiveGraphicPropertiesR = this->primitiveGraphicProperties;
+	primitiveGraphicPropertiesR = this->mPrimitiveGraphicProperties;
 	return true;
 }
 
 void GraphicProperties::setPrimitiveGraphicProperties(PrimitiveGraphicProperties * newPrimitiveGraphicProperties)
 {
-	this->primitiveGraphicProperties = newPrimitiveGraphicProperties;
+	this->mPrimitiveGraphicProperties = newPrimitiveGraphicProperties;
 }

@@ -4,8 +4,8 @@
 class CylinderGraphicProperties {
 
 private:
-	double radius;
-	double height;
+	double mRadius;
+	double mHeight;
 
 public:
 	CylinderGraphicProperties();

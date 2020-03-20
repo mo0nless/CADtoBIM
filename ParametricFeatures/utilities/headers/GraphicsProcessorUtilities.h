@@ -23,6 +23,6 @@ public:
 		
 private:
 	std::string filePath;
-	DictionaryProperties dictionaryProperties;
+	DictionaryProperties mDictionaryProperties;
 
 };

@@ -5,7 +5,7 @@
 class BooleanOperationProperties {
 
 private:
-	BooleanFunctions::BooleanFunctionsEnum booleanFunction;
+	BooleanFunctions::BooleanFunctionsEnum mBooleanFunction;
 
 public:
 	BooleanOperationProperties();

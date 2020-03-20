@@ -9,7 +9,7 @@
 class SmartFeatureContainer {
 
 private:
-	SmartFeatureTreeNode* root;
+	SmartFeatureTreeNode* mRoot;
 
 public:
 	SmartFeatureContainer();

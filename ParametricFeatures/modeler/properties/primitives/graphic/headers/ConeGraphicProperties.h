@@ -9,11 +9,11 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 class ConeGraphicProperties {
 
 private:
-	double baseRadius;
-	double topRadius;
-	double height;
-	DPoint3d topOrigin;
-	DPoint3d baseOrigin;
+	double mBaseRadius;
+	double mTopRadius;
+	double mHeight;
+	DPoint3d mTopOrigin;
+	DPoint3d mBaseOrigin;
 
 public:
 	ConeGraphicProperties();

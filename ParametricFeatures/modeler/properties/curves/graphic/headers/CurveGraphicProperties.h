@@ -21,8 +21,8 @@ public:
 	bvector<DPoint3d> getControlPoints();
 
 private:
-	int degree;
-	bool isClosed;
-	bool isSelfIntersect;
-	bvector<DPoint3d> controlPoints;
+	int mDegree;
+	bool mIsClosed;
+	bool mIsSelfIntersect;
+	bvector<DPoint3d> mControlPoints;
 };

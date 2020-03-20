@@ -2,37 +2,37 @@
 
 SlabGraphicProperties::SlabGraphicProperties()
 {
-	this->length = 0;
-	this->width = 0;
-	this->height = 0;
+	this->mLength = 0;
+	this->mWidth = 0;
+	this->mHeight = 0;
 }
 
 double SlabGraphicProperties::getLength()
 {
-	return this->length;
+	return this->mLength;
 }
 
 void SlabGraphicProperties::setLength(double newLength)
 {
-	this->length = newLength;
+	this->mLength = newLength;
 }
 
 double SlabGraphicProperties::getWidth()
 {
-	return this->width;
+	return this->mWidth;
 }
 
 void SlabGraphicProperties::setWidth(double newWidth)
 {
-	this->width = newWidth;
+	this->mWidth = newWidth;
 }
 
 double SlabGraphicProperties::getHeight()
 {
-	return this->height;
+	return this->mHeight;
 }
 
 void SlabGraphicProperties::setHeight(double newHeight)
 {
-	this->height = newHeight;
+	this->mHeight = newHeight;
 }

@@ -30,10 +30,10 @@ private:
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
 
-	GraphicsProcessorUtilities graphicsProcessorUtils;
+	GraphicsProcessorUtilities mGraphicsProcessorUtils;
 	
 	std::string filePath;
 
-	SolidLocationDetail solidDetails;
+	SolidLocationDetail mSolidDetails;
 };
 /// @endGroup

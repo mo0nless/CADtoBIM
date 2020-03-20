@@ -3,9 +3,9 @@
 class TorusGraphicProperties {
 
 private:
-	double minorRadius;
-	double majorRadius;
-	double sweepRadians;
+	double mMinorRadius;
+	double mMajorRadius;
+	double mSweepRadians;
 
 public:
 	TorusGraphicProperties();

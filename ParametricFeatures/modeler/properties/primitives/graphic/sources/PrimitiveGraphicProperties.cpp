@@ -2,92 +2,92 @@
 
 PrimitiveGraphicProperties::PrimitiveGraphicProperties()
 {
-	this->primitiveTypeEnum = PrimitiveTypeEnum::PrimitiveTypeEnum::NONE;
-	this->slabProperties = nullptr;
-	this->coneProperties = nullptr;
-	this->cylinderProperties = nullptr;
-	this->sphereProperties = nullptr;
-	this->torusProperties = nullptr;
+	this->mPrimitiveTypeEnum = PrimitiveTypeEnum::PrimitiveTypeEnum::NONE;
+	this->mSlabProperties = nullptr;
+	this->mConeProperties = nullptr;
+	this->mCylinderProperties = nullptr;
+	this->mSphereProperties = nullptr;
+	this->mTorusProperties = nullptr;
 }
 
 PrimitiveTypeEnum::PrimitiveTypeEnum PrimitiveGraphicProperties::getPrimitiveTypeEnum()
 {
-	return this->primitiveTypeEnum;
+	return this->mPrimitiveTypeEnum;
 }
 
 void PrimitiveGraphicProperties::setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum)
 {
-	this->primitiveTypeEnum = newPrimitiveTypeEnum;
+	this->mPrimitiveTypeEnum = newPrimitiveTypeEnum;
 }
 
 bool PrimitiveGraphicProperties::tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR)
 {
 
-	if (this->slabProperties == nullptr) {
+	if (this->mSlabProperties == nullptr) {
 		return false;
 	}
-	slabGraphicPropertiesR = *this->slabProperties;
+	slabGraphicPropertiesR = *this->mSlabProperties;
 	return true;
 }
 
 void PrimitiveGraphicProperties::setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties)
 {
-	this->slabProperties = newSlabGraphicProperties;
+	this->mSlabProperties = newSlabGraphicProperties;
 }
 
 bool PrimitiveGraphicProperties::tryGetConeGraphicProperties(ConeGraphicProperties & coneGraphicPropertiesR)
 {
 
-	if (this->coneProperties == nullptr) {
+	if (this->mConeProperties == nullptr) {
 		return false;
 	}
-	coneGraphicPropertiesR = *this->coneProperties;
+	coneGraphicPropertiesR = *this->mConeProperties;
 	return true;
 }
 
 void PrimitiveGraphicProperties::setConeGraphicProperties(ConeGraphicProperties * newConeGraphicProperties)
 {
-	this->coneProperties = newConeGraphicProperties;
+	this->mConeProperties = newConeGraphicProperties;
 }
 
 bool PrimitiveGraphicProperties::tryGetSphereGraphicProperties(SphereGraphicProperties & sphereGraphicPropertiesR)
 {
-	if (this->sphereProperties == nullptr) {
+	if (this->mSphereProperties == nullptr) {
 		return false;
 	}
-	sphereGraphicPropertiesR = *this->sphereProperties;
+	sphereGraphicPropertiesR = *this->mSphereProperties;
 	return true;
 }
 
 void PrimitiveGraphicProperties::setSphereGraphicProperties(SphereGraphicProperties * newSphereGraphicProperties)
 {
-	this->sphereProperties = newSphereGraphicProperties;
+	this->mSphereProperties = newSphereGraphicProperties;
 }
 
 bool PrimitiveGraphicProperties::tryGetCylinderGraphicProperties(CylinderGraphicProperties & cylinderGraphicPropertiesR)
 {
-	if (this->cylinderProperties == nullptr) {
+	if (this->mCylinderProperties == nullptr) {
 		return false;
 	}
-	cylinderGraphicPropertiesR = *this->cylinderProperties;
+	cylinderGraphicPropertiesR = *this->mCylinderProperties;
 	return true;
 }
 
 void PrimitiveGraphicProperties::setCylinderGraphicProperties(CylinderGraphicProperties * newCylinderGraphicProperties)
 {
-	this->cylinderProperties = newCylinderGraphicProperties;
+	this->mCylinderProperties = newCylinderGraphicProperties;
 }
 
 bool PrimitiveGraphicProperties::tryGetTorusGraphicProperties(TorusGraphicProperties & torusGraphicPropertiesR)
 {
-	if (this->torusProperties == nullptr) {
+	if (this->mTorusProperties == nullptr) {
 		return false;
 	}
-	torusGraphicPropertiesR = *this->torusProperties;
+	torusGraphicPropertiesR = *this->mTorusProperties;
 	return true;
 }
 
 void PrimitiveGraphicProperties::setTorusGraphicProperties(TorusGraphicProperties * newTorusGraphicProperties)
 {
-	this->torusProperties = newTorusGraphicProperties;
+	this->mTorusProperties = newTorusGraphicProperties;
 }

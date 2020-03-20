@@ -3,10 +3,10 @@
 
 InitializationUtilities::InitializationUtilities()
 {	
-	this->dgnModel = ISessionMgr::GetActiveDgnModelP();
-	this->dgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
+	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
+	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 
-	this->pGraElement = dgnModel->GetGraphicElementsP();
+	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
 	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -87,7 +87,7 @@ std::vector<DictionaryProperties*> InitializationUtilities::orderDictionaryPrope
 			for (int j = 0; j < smartFeatureContainerVector.size(); ++j) {
 				SmartFeatureContainer* smartFeatureContainer = smartFeatureContainerVector.at(j);
 
-				if (propertiesDictionary->getAreReaderPropertiesFound()) {
+				if (!propertiesDictionary->getAreReaderPropertiesFound()) {
 					SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
 					if (treeNode != nullptr) {
 						treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());

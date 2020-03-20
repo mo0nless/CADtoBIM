@@ -2,26 +2,26 @@
 
 CylinderGraphicProperties::CylinderGraphicProperties()
 {
-	this->radius = 0;
-	this->height = 0;
+	this->mRadius = 0;
+	this->mHeight = 0;
 }
 
 double CylinderGraphicProperties::getRadius()
 {
-	return this->radius;
+	return this->mRadius;
 }
 
 void CylinderGraphicProperties::setRadius(double newRadius)
 {
-	this->radius = newRadius;
+	this->mRadius = newRadius;
 }
 
 double CylinderGraphicProperties::getHeight()
 {
-	return this->height;
+	return this->mHeight;
 }
 
 void CylinderGraphicProperties::setHeight(double newHeight)
 {
-	this->height = newHeight;
+	this->mHeight = newHeight;
 }

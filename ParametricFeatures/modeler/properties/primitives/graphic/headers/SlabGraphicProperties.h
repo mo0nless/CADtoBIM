@@ -3,9 +3,9 @@
 class SlabGraphicProperties {
 
 private:
-	double length;
-	double width;
-	double height;
+	double mLength;
+	double mWidth;
+	double mHeight;
 
 public:
 	SlabGraphicProperties();

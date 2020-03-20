@@ -3,59 +3,59 @@
 
 GeneralProperties::GeneralProperties()
 {
-	this->className = std::string();
-	this->elementId = -1;
-	this->currentElementId = -1;
-	this->isSmartFeature = false;
+	this->mElementClassName = std::string();
+	this->mElementId = -1;
+	this->mCurrentElementId = -1;
+	this->mIsSmartFeature = false;
 }
 
 std::string GeneralProperties::getElementClassName()
 {
-	return this->className;
+	return this->mElementClassName;
 }
 
 void GeneralProperties::setElementClassName(std::string newClassName)
 {
-	this->className = newClassName;
+	this->mElementClassName = newClassName;
 }
 
 std::string GeneralProperties::getElementDescriptorName()
 {
-	return this->elementDescriptorName;
+	return this->mElementDescriptorName;
 }
 
 void GeneralProperties::setElementDescriptorName(std::string newElementDescriptorName)
 {
-	this->elementDescriptorName = newElementDescriptorName;
+	this->mElementDescriptorName = newElementDescriptorName;
 }
 
 long GeneralProperties::getElementId()
 {
-	return this->elementId;
+	return this->mElementId;
 }
 
 void GeneralProperties::setElementId(long newElementId)
 {
-	this->elementId = newElementId;
+	this->mElementId = newElementId;
 }
 
 bool GeneralProperties::getIsSmartFeature()
 {
-	return this->isSmartFeature;
+	return this->mIsSmartFeature;
 }
 
 void GeneralProperties::setIsSmartFeature(bool newIsSmartFeature)
 {
-	this->isSmartFeature = newIsSmartFeature;
+	this->mIsSmartFeature = newIsSmartFeature;
 }
 
 long GeneralProperties::getCurrentElementId()
 {
-	return this->currentElementId;
+	return this->mCurrentElementId;
 }
 
 void GeneralProperties::setCurrentElementId(long newCurrentElementId)
 {
-	this->currentElementId = newCurrentElementId;
+	this->mCurrentElementId = newCurrentElementId;
 }
 

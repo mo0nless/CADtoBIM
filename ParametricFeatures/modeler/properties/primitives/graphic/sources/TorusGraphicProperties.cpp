@@ -2,37 +2,37 @@
 
 TorusGraphicProperties::TorusGraphicProperties()
 {
-	this->minorRadius = 0;
-	this->majorRadius = 0;
-	this->sweepRadians = 0;
+	this->mMinorRadius = 0;
+	this->mMajorRadius = 0;
+	this->mSweepRadians = 0;
 }
 
 double TorusGraphicProperties::getMinorRadius()
 {
-	return this->minorRadius;
+	return this->mMinorRadius;
 }
 
 void TorusGraphicProperties::setMinorRadius(double newMinorRadius)
 {
-	this->minorRadius = newMinorRadius;
+	this->mMinorRadius = newMinorRadius;
 }
 
 double TorusGraphicProperties::getMajorRadius()
 {
-	return this->majorRadius;
+	return this->mMajorRadius;
 }
 
 void TorusGraphicProperties::setMajorRadius(double newMajorRadius)
 {
-	this->majorRadius = newMajorRadius;
+	this->mMajorRadius = newMajorRadius;
 }
 
 double TorusGraphicProperties::getSweepRadians()
 {
-	return this->sweepRadians;
+	return this->mSweepRadians;
 }
 
 void TorusGraphicProperties::setSweepRadians(double newSweepRadians)
 {
-	this->sweepRadians = newSweepRadians;
+	this->mSweepRadians = newSweepRadians;
 }

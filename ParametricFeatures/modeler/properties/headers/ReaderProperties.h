@@ -11,11 +11,11 @@
 class ReaderProperties {
 
 private:
-	int nodeId;
-	SmartFeatureGeneralProperties* smartFeatureGeneralProperties;
+	int mNodeId;
+	SmartFeatureGeneralProperties* mSmartFeatureGeneralProperties;
 
-	CreateSolidsOperationProperties* createSolidsOperationProperties;
-	BooleanOperationProperties* booleanOperationProperties;
+	CreateSolidsOperationProperties* mCreateSolidsOperationProperties;
+	BooleanOperationProperties* mBooleanOperationProperties;
 
 public:
 	ReaderProperties();

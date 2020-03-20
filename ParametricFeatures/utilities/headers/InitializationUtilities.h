@@ -17,7 +17,7 @@ private:
 
 	PersistentElementRefList* pGraElement;
 	std::string filePath;
-	DgnModelP dgnModel;
-	WString dgnFileName;
+	DgnModelP mDgnModel;
+	WString mDgnFileName;
 
 };

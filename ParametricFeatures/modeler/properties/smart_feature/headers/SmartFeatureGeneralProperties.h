@@ -5,10 +5,10 @@
 class SmartFeatureGeneralProperties {
 
 private:
-	long localNodeId;
-	long localParentNodeId;
+	long mLocalNodeId;
+	long mLocalParentNodeId;
 
-	SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum;
+	SmartFeatureTypeEnum::SmartFeatureTypeEnum mSmartFeatureTypeEnum;
 
 
 public:

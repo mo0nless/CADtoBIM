@@ -2,15 +2,15 @@
 
 SphereGraphicProperties::SphereGraphicProperties()
 {
-	this->radius = 0;
+	this->mRadius = 0;
 }
 
 double SphereGraphicProperties::getRadius()
 {
-	return this->radius;
+	return this->mRadius;
 }
 
 void SphereGraphicProperties::setRadius(double newRadius)
 {
-	this->radius = newRadius;
+	this->mRadius = newRadius;
 }

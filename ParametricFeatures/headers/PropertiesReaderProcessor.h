@@ -32,11 +32,8 @@ public:
 	//! @param[in] the reference of the SmartFeatureContainer
 	void processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
 
-	//! Get the class Name of the current element 
-	//! @return the string that has the class Name of the element.
-	std::string getElemClassName();
 private:
-	std::string elemClassName;
+	std::string mElemClassName;
 	
 };
 

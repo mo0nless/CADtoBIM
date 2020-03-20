@@ -2,15 +2,15 @@
 
 BooleanOperationProperties::BooleanOperationProperties()
 {
-	this->booleanFunction = BooleanFunctions::BooleanFunctionsEnum::UNDEFINED;
+	this->mBooleanFunction = BooleanFunctions::BooleanFunctionsEnum::UNDEFINED;
 }
 
 BooleanFunctions::BooleanFunctionsEnum BooleanOperationProperties::getBooleanFunction()
 {
-	return this->booleanFunction;
+	return this->mBooleanFunction;
 }
 
 void BooleanOperationProperties::setBooleanFunction(int newBooleanFunctionInt)
 {
-	this->booleanFunction = BooleanFunctions::getBooleanFunctionsEnumByIntValue(newBooleanFunctionInt);
+	this->mBooleanFunction = BooleanFunctions::getBooleanFunctionsEnumByIntValue(newBooleanFunctionInt);
 }

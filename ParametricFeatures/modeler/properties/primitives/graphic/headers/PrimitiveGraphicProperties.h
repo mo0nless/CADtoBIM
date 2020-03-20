@@ -12,13 +12,13 @@
 class PrimitiveGraphicProperties {
 
 private:
-	PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum;
+	PrimitiveTypeEnum::PrimitiveTypeEnum mPrimitiveTypeEnum;
 
-	SlabGraphicProperties* slabProperties;
-	ConeGraphicProperties* coneProperties;
-	SphereGraphicProperties* sphereProperties;
-	CylinderGraphicProperties* cylinderProperties;
-	TorusGraphicProperties* torusProperties;
+	SlabGraphicProperties* mSlabProperties;
+	ConeGraphicProperties* mConeProperties;
+	SphereGraphicProperties* mSphereProperties;
+	CylinderGraphicProperties* mCylinderProperties;
+	TorusGraphicProperties* mTorusProperties;
 
 public:
 	PrimitiveGraphicProperties();

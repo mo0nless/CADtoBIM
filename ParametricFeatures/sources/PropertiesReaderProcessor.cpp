@@ -4,12 +4,6 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
 }
 
-std::string PropertiesReaderProcessor::getElemClassName()
-{
-	return this->elemClassName;
-}
-
-
 void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
 	std::ofstream outfile;
@@ -44,14 +38,14 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 		outfile << std::endl;
 		outfile << "= Properties Not Found =" << std::endl;
 		outfile.close();*/
-		this->elemClassName = "SmartFeatureSolid"; 
+		this->mElemClassName = "SmartFeatureSolid"; 
 
 		// set value if reader properties are missing for this element
-		dictionaryProperties.setAreReaderPropertiesFound(true);
+		dictionaryProperties.setAreReaderPropertiesFound(false);
 	}
 	else{
 		// set value if reader properties exist for this element
-		dictionaryProperties.setAreReaderPropertiesFound(false);		
+		dictionaryProperties.setAreReaderPropertiesFound(true);		
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
@@ -59,18 +53,18 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
 			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 
-			this->elemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+			this->mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
 			
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
 			
 			outfile << std::endl;
-			outfile << "--------- ClassName = " << elemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
+			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
 
 			// set class name
-			dictionaryProperties.getGeneralProperties()->setElementClassName(elemClassName);
+			dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
 			
 
 			/*for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
@@ -92,14 +86,14 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 
 				if (currentNode != nullptr) {
 					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), elemClassName);
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), mElemClassName);
 				}
 				else {
 					outfile.open(filePath, std::ios_base::app);
 					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
 					outfile.close();
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), elemClassName);
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), mElemClassName);
 				}
 				
 			}
@@ -109,7 +103,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 				outfile.close();
 
 				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
-				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), elemClassName);
+				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), mElemClassName);
 
 				
 			}			

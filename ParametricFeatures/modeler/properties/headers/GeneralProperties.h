@@ -6,13 +6,13 @@
 class GeneralProperties {
 
 private:
-	std::string className;
-	std::string elementDescriptorName;
+	std::string mElementClassName;
+	std::string mElementDescriptorName;
 
-	long elementId;
-	long currentElementId;
+	long mElementId;
+	long mCurrentElementId;
 
-	bool isSmartFeature;
+	bool mIsSmartFeature;
 
 public:
 	GeneralProperties();

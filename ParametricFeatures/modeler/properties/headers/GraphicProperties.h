@@ -9,17 +9,17 @@
 class GraphicProperties {
 
 private:
-	double area;
-	double volume;
+	double mArea;
+	double mVolume;
 
-	DVec3d centroid;
+	DVec3d mCentroid;
 
-	DVec3d vectorAxisX;
-	DVec3d vectorAxisY;
-	DVec3d vectorAxisZ;
+	DVec3d mVectorAxisX;
+	DVec3d mVectorAxisY;
+	DVec3d mVectorAxisZ;
 
-	PrimitiveGraphicProperties* primitiveGraphicProperties;
-	CurveGraphicProperties* curveGraphicProperties;
+	PrimitiveGraphicProperties* mPrimitiveGraphicProperties;
+	CurveGraphicProperties* mCurveGraphicProperties;
 
 public:
 	GraphicProperties();

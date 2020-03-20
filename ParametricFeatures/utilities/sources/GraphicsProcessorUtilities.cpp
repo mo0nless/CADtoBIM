@@ -9,12 +9,12 @@ GraphicsProcessorUtilities::GraphicsProcessorUtilities()
 
 void GraphicsProcessorUtilities::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
 {
-	this->dictionaryProperties = newDictionaryProperties;
+	this->mDictionaryProperties = newDictionaryProperties;
 }
 
 DictionaryProperties * GraphicsProcessorUtilities::getDictionaryProperties()
 {
-	return &this->dictionaryProperties;
+	return &this->mDictionaryProperties;
 }
 
 void GraphicsProcessorUtilities::setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail)
@@ -23,20 +23,20 @@ void GraphicsProcessorUtilities::setSlabGraphicProperties(DgnBoxDetail dgnBoxDet
 	SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
 	slabProperties->setLength(dgnBoxDetail.m_topX);
 	slabProperties->setWidth(dgnBoxDetail.m_topY);
-	slabProperties->setHeight(dictionaryProperties.getGraphicProperties()->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY));
+	slabProperties->setHeight(mDictionaryProperties.getGraphicProperties()->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY));
 
 	// set slab properties in graphic properties
 	PrimitiveGraphicProperties* primitiveGraphicProperties;
-	dictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
+	mDictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
 	primitiveGraphicProperties->setSlabProperties(slabProperties);
 }
 
 void GraphicsProcessorUtilities::setConeGraphicProperties(DgnConeDetail cgnConeDetail)
 {
-	double height = (3 * dictionaryProperties.getGraphicProperties()->getVolume()) / (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
+	double height = (3 * mDictionaryProperties.getGraphicProperties()->getVolume()) / (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
 
 	PrimitiveGraphicProperties* primitiveGraphicProperties;
-	dictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
+	mDictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
 
 	if (primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
 		(primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  cgnConeDetail.m_radiusA == cgnConeDetail.m_radiusB))
@@ -70,9 +70,9 @@ void GraphicsProcessorUtilities::setConeGraphicProperties(DgnConeDetail cgnConeD
 		}
 		else {
 			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
-			dictionaryProperties.getGraphicProperties()->setVectorAxisX(-1 * dictionaryProperties.getGraphicProperties()->getVectorAxisX());
-			dictionaryProperties.getGraphicProperties()->setVectorAxisY(-1 * dictionaryProperties.getGraphicProperties()->getVectorAxisY());
-			dictionaryProperties.getGraphicProperties()->setVectorAxisZ(-1 * dictionaryProperties.getGraphicProperties()->getVectorAxisZ());
+			mDictionaryProperties.getGraphicProperties()->setVectorAxisX(-1 * mDictionaryProperties.getGraphicProperties()->getVectorAxisX());
+			mDictionaryProperties.getGraphicProperties()->setVectorAxisY(-1 * mDictionaryProperties.getGraphicProperties()->getVectorAxisY());
+			mDictionaryProperties.getGraphicProperties()->setVectorAxisZ(-1 * mDictionaryProperties.getGraphicProperties()->getVectorAxisZ());
 
 			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusB);
 			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusA);
@@ -90,11 +90,11 @@ void GraphicsProcessorUtilities::setSphereGraphicProperties()
 {
 	SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
 
-	double radius = pow(((dictionaryProperties.getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
+	double radius = pow(((mDictionaryProperties.getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
 	sphereGraphicProperties->setRadius(radius);
 
 	PrimitiveGraphicProperties* primitiveGraphicProperties;
-	dictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
+	mDictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
 	primitiveGraphicProperties->setSphereGraphicProperties(sphereGraphicProperties);
 }
 
@@ -106,7 +106,7 @@ void GraphicsProcessorUtilities::setTorusGraphicProperties(DgnTorusPipeDetail dg
 	torusGraphicProperties->setSweepRadians(sweepRadians);
 
 	PrimitiveGraphicProperties* primitiveGraphicProperties;
-	dictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
+	mDictionaryProperties.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
 	primitiveGraphicProperties->setTorusGraphicProperties(torusGraphicProperties);
 }
 
@@ -138,9 +138,9 @@ void GraphicsProcessorUtilities::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pr
 	outfile.close();
 
 	// set properties in the dictionary
-	this->dictionaryProperties.getGraphicProperties()->setArea(area);
-	this->dictionaryProperties.getGraphicProperties()->setVolume(volume);
-	this->dictionaryProperties.getGraphicProperties()->setCentroid(centroid);
+	this->mDictionaryProperties.getGraphicProperties()->setArea(area);
+	this->mDictionaryProperties.getGraphicProperties()->setVolume(volume);
+	this->mDictionaryProperties.getGraphicProperties()->setCentroid(centroid);
 }
 
 void GraphicsProcessorUtilities::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -195,7 +195,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 		
@@ -232,7 +232,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 		
 			//outfile << "pQuatXYZW [X] = " << *pQuatXYZW << std::endl;
@@ -265,7 +265,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -376,7 +376,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -410,7 +410,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -422,7 +422,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 
 			if (curve->TryGetLine(segment))
 			{
-				outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+				outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 				outfile << std::endl;
 
 				outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
@@ -523,7 +523,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -637,7 +637,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -653,7 +653,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -679,7 +679,7 @@ void GraphicsProcessorUtilities::CurveParser(CurveVectorCP curvesVector)
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << dictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << mDictionaryProperties.getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
