@@ -1,177 +1,23 @@
 #include "../headers/GraphicsProcessor.h"
 
-GraphicsProcessor::GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath)
-	: outfile(mOutfile), filePath(mFilePath)
+GraphicsProcessor::GraphicsProcessor()	
 {
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+
+	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
 	mdlOutput_messageCenter(DgnPlatform::OutputMessagePriority::Debug, myString.c_str(), myString.c_str(), DgnPlatform::OutputMessageAlert::None);
+
+	this->mGraphicsProcessorUtils = GraphicsProcessorUtilities();
 }
 
-
-void GraphicsProcessor::setPropertiesDictionary(DictionaryProperties* newDictionaryProperties)
+GraphicsProcessorUtilities & GraphicsProcessor::getGraphicsProcessorUtilities()
 {
-	this->dictionaryProperties = newDictionaryProperties;
+	// TODO: insert return statement here
+	return this->mGraphicsProcessorUtils;
 }
 
-void GraphicsProcessor::updateClassAndID(std::string elemClName, Int64 elmID)
-{
-	this->elemClassName = elemClName;
-	this->elementID = elmID;
-}
-
-inline void GraphicsProcessor::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive)
-{
-	double area, volume;
-	DVec3d centroid;
-	RotMatrix axes;
-	DVec3d momentxyz;
-	
-	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
-
-	outfile.open(filePath, std::ios_base::app);
-
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << "Centroid [X] = " << centroid.x << std::endl;
-	outfile << "Centroid [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid [Z] = " << centroid.z << std::endl;
-	outfile << std::endl;
-
-	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
-
-	
-
-	outfile << "Volume = " << volume << std::endl;
-	outfile << "Area = " << area << std::endl;
-	outfile << std::endl;
-
-	outfile.close();
-
-	dictionaryProperties->getGraphicProperties()->setArea(area);
-	dictionaryProperties->getGraphicProperties()->setVolume(volume);
-	dictionaryProperties->getGraphicProperties()->setCentroid(centroid);
-
-
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::AREA),
-	//	PropertyTypeValue("double", area)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RADIUS),
-	//	PropertyTypeValue("double", radius)
-	//);
-
-	//propsDictionary->addGraphicProperty(
-	//	PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//		elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::VOLUME),
-	//	PropertyTypeValue("double", volume)
-	//);
-
-}
-
-inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld)
-{
-	outfile.open(filePath, std::ios_base::app);
-
-	outfile << std::fixed;
-	outfile << "Range [XLength] = " << range.XLength() << std::endl;
-	outfile << "Range [YLength] = " << range.YLength() << std::endl;
-	outfile << "Range [ZLength] = " << range.ZLength() << std::endl;
-	outfile << std::endl;
-
-	outfile << "Quaternion Rotation" << std::endl;
-	outfile << "qRotation [X] = " << qRotation.x << std::endl;
-	outfile << "qRotation [Y] = " << qRotation.y << std::endl;
-	outfile << "qRotation [Z] = " << qRotation.z << std::endl;
-	outfile << "qRotation [W] = " << qRotation.w << std::endl;
-	outfile << std::endl;
-
-	outfile << "Euler Rotation ?" << std::endl;
-	outfile << "Rotation [X] = " << rotation.x << std::endl;
-	outfile << "Rotation [Y] = " << rotation.y << std::endl;
-	outfile << "Rotation [Z] = " << rotation.z << std::endl;
-	outfile << std::endl;
-
-	outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
-	outfile << "Origin [Y] = " << localToWorld.Origin().y << std::endl;
-	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
-	outfile << std::endl;
-
-	outfile.close();
-	
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::RANGE),
-	//	PropertyTypeValue("DRange3d", range)
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::ORIGIN),
-	//	PropertyTypeValue("DPoint3d", localToWorld.Origin())
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::EULER_ROTATION),
-	//	PropertyTypeValue("DVec3d", rotation)
-	//);
-
-	//propsDictionary->addGraphicProperty(PropertyObjAttribute<GraphicProperties2::GraphicPropertiesEnum>(
-	//	elementID, elemClassName, GraphicProperties2::GraphicPropertiesEnum::QUATERNION_ROTATION),
-	//	PropertyTypeValue("DPoint4d", qRotation)
-	//);
-}
-
-//! Collect output as text.
-//! @param[in] text The text data.
-//! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return SUCCESS; } // Don't export glyph geometry...
-
-//! Collect output as a single curve component.
-//! @param[in] curve The curve data.
-//! @param[in] isClosed The data is from a closed path or region instead of a physically closed path.
-//! @param[in] isFilled A closed path or region should have opaque fill.
-//! @remarks All curve geometry can be handled through _ProcessCurveVector.
-//! @see _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled)
-{
-	switch (curve.GetCurvePrimitiveType())
-	{
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
-		break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
-		break;
-	}
-
-	return ERROR;
-}
-
-//! Collect output as a CurveVector.
-//! @param[in] curves The curve data.
-//! @param[in] isFilled A closed path or region should have opaque fill.
-//! @return SUCCESS if handled, ERROR to output individual curves through _ProcessCurvePrimitive.
-BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
-{
-	return ERROR;
-}
 
 //! Process surfaces and solids not handled directly or are clipped through _ProcessFaceta.
 //! @param[in] isPolyface facets are from a call to DrawPolyface, ex. mesh element.
@@ -191,11 +37,353 @@ bool GraphicsProcessor::_ProcessAsFacets(bool isPolyface) const { return true; }
 //! @see DgnPlatformLib::Host::SolidsKernelAdmin
 bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
 
+//! Collect output as text.
+//! @param[in] text The text data.
+//! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
+BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return SUCCESS; } // Don't export glyph geometry...
+
+//! Collect output as a single curve component.
+//! @param[in] curve The curve data.
+//! @param[in] isClosed The data is from a closed path or region instead of a physically closed path.
+//! @param[in] isFilled A closed path or region should have opaque fill.
+//! @remarks All curve geometry can be handled through _ProcessCurveVector.
+//! @see _ProcessCurveVector.
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled)
+{
+	std::ofstream outfile;
+	switch (curve.GetCurvePrimitiveType())
+	{
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+	{
+		DSegment3d segment, segment0, segment1;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+
+		if (curve.TryGetLine(segment))
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------- " << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection" << std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			outfile.close();
+		}
+	}
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString:
+	{
+		DSegment3d segment, segment0, segment1;
+		size_t startPointIndex;
+		DPoint3d tangent, originStartPoint0, point0, point1, centroid;
+		double fraction0, fraction1, lineLength;
+		
+		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------- " << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << std::endl;
+
+			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
+			outfile << "Start Point [Y]: " << segment.point[0].y << std::endl;
+			outfile << "Start Point [Z]: " << segment.point[0].z << std::endl;
+			outfile << std::endl;
+
+			outfile << "End Point [X]: " << segment.point[1].x << std::endl;
+			outfile << "End Point [Y]: " << segment.point[1].y << std::endl;
+			outfile << "End Point [Z]: " << segment.point[1].z << std::endl;
+			outfile << std::endl;
+
+			segment.FromOriginAndDirection(originStartPoint0, tangent);
+
+			outfile << "FromOriginAndDirection"<< std::endl;
+			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
+			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
+			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Tangent [X]: " << tangent.x << std::endl;
+			outfile << "Tangent [Y]: " << tangent.y << std::endl;
+			outfile << "Tangent [Z]: " << tangent.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+			outfile << std::endl;
+
+			segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachBounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
+
+			outfile << "==============================================" << std::endl;
+
+			outfile << "ClosestApproachUnbounded: " << std::endl;
+			outfile << std::endl;
+
+			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
+
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << "Centroid [X] = " << centroid.x << std::endl;
+			outfile << "Centroid [Y] = " << centroid.y << std::endl;
+			outfile << "Centroid [Z] = " << centroid.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
+			outfile << std::endl;
+
+			outfile << "==============================================" << std::endl;
+
+			outfile.close();
+		}
+	}
+		
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
+		outfile << std::endl;
+		outfile.close();
+		break;
+	}
+
+	return ERROR;
+}
+#pragma warning( pop ) 
+
+//! Collect output as a CurveVector.
+//! @param[in] curves The curve data.
+//! @param[in] isFilled A closed path or region should have opaque fill.
+//! @return SUCCESS if handled, ERROR to output individual curves through _ProcessCurvePrimitive.
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
+{
+	std::ofstream outfile;
+	if (!curves.empty()) 
+	{
+		switch (curves.GetBoundaryType())
+		{
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+
+			mGraphicsProcessorUtils.CurveParser(&curves);
+		}
+			break;
+		default:
+			break;
+		}
+	}
+	
+	return ERROR;
+}
+#pragma warning( pop ) 
+
+
 //! Collect output as a bspline surface.
 //! @param[in] surface The bspline surface data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {
+	std::ofstream outfile;
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "-------- _ProcessSurface(MSBsplineSurfaceCR surface) --------" << std::endl;
+	outfile.close();
 	return ERROR;
 }
 
@@ -209,8 +397,10 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( disable : 4267)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {
+	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::fixed;
+	outfile.close();
 
 	switch (entity.GetEntityType())
 	{
@@ -224,6 +414,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		CurveVectorPtr curveFacesEval;
 		CurveVectorPtr curveEdgesEval;
 		CurveVectorPtr curveVerticesEval;
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 
 		/*DPoint3d point;*/
 		/*DVec3d normal, uDir, vDir;*/
@@ -254,17 +450,17 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		//			outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
 		//			outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
 
-		//			if (SolidUtil::GetFaceVertices(subEntitiesVertices, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i))) == SUCCESS)
-		//			{
-		//				for (size_t k = 0; k < subEntitiesVertices.size(); k++)
-		//				{
-		//					SolidUtil::EvaluateVertex(dynamic_cast<ISubEntityCR>(*subEntitiesVertices.at(i)), point);
+					/*outfile << "Faces Point " << i << " X : " << point.x << std::endl;
+					outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
+					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;*/
 
 		//					outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
 		//					outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
 		//					outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
 
-		//					mdlSolid_closestPointToSurface(&mdlSolid_clstPt, &mdlSolid_normal, &mdlSolid_param, &mdlSolid_point, i);
+							/*outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
+							outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
+							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;*/
 
 		//					SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, mdlSolid_param);
 		//				}
@@ -277,17 +473,32 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	break;
 
 	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
-		outfile << elemClassName << "IS Sheet" << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 		break;
 	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
-		outfile << elemClassName << "IS Wire" << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
+		break;
+	case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
+		outfile.open(filePath, std::ios_base::app);
+		outfile << mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+		outfile << std::endl;
+		outfile.close();
 		break;
 
 	default:
 		break;
 	}
 
-	outfile << std::endl;
+
 	return ERROR; 
 }
 
@@ -305,7 +516,18 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 //! @param[in] primitive The solid primitive data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
-{	
+{
+
+	mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setPrimitiveGraphicProperties(new PrimitiveGraphicProperties());
+
+	// set primitive graphic dictionary
+	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
+	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(
+		mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementDescriptorName()
+	));
+	mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
+
+	std::ofstream outfile;
 	switch (primitive.GetSolidPrimitiveType())
 	{
 	case SolidPrimitiveType::SolidPrimitiveType_DgnBox:
@@ -313,10 +535,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		DgnBoxDetail boxDetails;
 		bvector<DPoint3d> corners;
 		DRange3d range;
-		DVec3d rotation;
+		DVec3d vectorRotation;
 		DPoint4d qRotation;
 
-		Transform localToWorld;
+		Transform localToWorld, locTWor, worldToLocal;
 		double ax;
 		double ay;
 		double bx;
@@ -325,28 +547,26 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			boxDetails.GetCorners(corners);
 			boxDetails.GetRange(range);
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
-			
 
-			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
+			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
+					
+			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
-
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
-
 			
 
-			outfile.open(filePath, std::ios_base::app);
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
+						
+			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
 
-			
 			outfile << "Range High = " << range.high.x << std::endl;
 			outfile << "Range Low = " << range.low.x << std::endl;
 			outfile << "DiagonalDistanceXY = " << range.DiagonalDistanceXY() << std::endl;
@@ -371,14 +591,16 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector of BASE plane Y [Y] = " << boxDetails.m_vectorY.y << std::endl;
 			outfile << "Vector of BASE plane Y [Z] = " << boxDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
+			
 
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
-
-			// calculate base vector Z
+			// calculate axis Z
 			DVec3d vectorBaseZ;
 			vectorBaseZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
+			// set x,y,z axis in dectionary
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
 
 			outfile << "Vector of BASE plane Z [X] = " << vectorBaseZ.x << std::endl;
 			outfile << "Vector of BASE plane Z [Y] = " << vectorBaseZ.y << std::endl;
@@ -416,24 +638,17 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		};
 
-		PrintPrincipalAreaMoments(primitive);
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 
-
-
-
-		// set slab properties
-		SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
-		slabProperties->setLength(boxDetails.m_topX);
-		slabProperties->setWidth(boxDetails.m_topY);
-		slabProperties->setHeight(dictionaryProperties->getGraphicProperties()->getVolume() / (boxDetails.m_topX*boxDetails.m_topY));
-
-		// set slab properties in graphic properties
-		dictionaryProperties->getGraphicProperties()->setSlabProperties(slabProperties);
+		// set slab graphic properties
+		mGraphicsProcessorUtils.setSlabGraphicProperties(boxDetails);
+		
 		
 
 
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnCone:
 	{
 		DgnConeDetail coneDetails;
@@ -449,7 +664,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnConeDetail(coneDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			coneDetails.GetRange(range);
@@ -457,9 +672,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
+
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -488,9 +704,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			DVec3d vectorBaseZ;
 			vectorBaseZ.CrossProduct(coneDetails.m_vector0, coneDetails.m_vector90);
 
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(coneDetails.m_vector0);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(coneDetails.m_vector90);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisX(coneDetails.m_vector0);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisY(coneDetails.m_vector90);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
 
 			outfile << "0 Degree Vector of BASE circle Z [X] = " << vectorBaseZ.x << std::endl;
 			outfile << "0 Degree Vector of BASE circle Z [Y] = " << vectorBaseZ.y << std::endl;
@@ -507,30 +723,11 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrintPrincipalAreaMoments(primitive);
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 
-		double height = (3 * dictionaryProperties->getGraphicProperties()->getVolume()) / (PI*(pow(coneDetails.m_radiusA, 2) + coneDetails.m_radiusA*coneDetails.m_radiusB + pow(coneDetails.m_radiusB, 2)));
+		// set cone graphic properties
+		mGraphicsProcessorUtils.setConeGraphicProperties(coneDetails);
 
-
-		
-		if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
-			(dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  coneDetails.m_radiusA == coneDetails.m_radiusB)) {
-
-			CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
-			cylinderGraphicProperties->setRadius(coneDetails.m_radiusA);
-			cylinderGraphicProperties->setHeight(height);
-
-			dictionaryProperties->getGraphicProperties()->setCylinderGraphicProperties(cylinderGraphicProperties);
-
-		}else if (dictionaryProperties->getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
-			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
-			coneGraphicProperties->setBaseRadius(coneDetails.m_radiusA);
-			coneGraphicProperties->setTopRadius(coneDetails.m_radiusB);
-
-			coneGraphicProperties->setHeight(height);
-
-			dictionaryProperties->getGraphicProperties()->setConeGraphicProperties(coneGraphicProperties);
-		}
 	}
 	break;
 
@@ -549,7 +746,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			extrusionDetails.GetRange(range);
@@ -558,9 +755,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
+
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -593,10 +791,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnRotationalSweep:
 	{
 		DgnRotationalSweepDetail rotSweepDetails;
@@ -617,7 +815,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnRotationalSweepDetail(rotSweepDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			rotSweepDetails.GetRange(range);
@@ -626,10 +824,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
+			
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
-
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -681,13 +879,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrintPrincipalAreaMoments(primitive);
-
-		//dictionaryProperties->getGraphicProperties()->setConeRadius();
-
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
 	{
 		DgnRuledSweepDetail ruledSweepDetails;
@@ -702,7 +897,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			ruledSweepDetails.GetRange(range);
@@ -710,9 +905,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
+
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -748,10 +944,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnSphere:
 	{
 		DgnSphereDetail sphereDetails;
@@ -762,16 +958,17 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnSphereDetail(sphereDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			sphereDetails.GetRange(range);
 			sphereDetails.m_localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			sphereDetails.m_localToWorld.Matrix().GetQuaternion(qRotation, false);
 
-			primitive.ClosestPoint(sphereDetails.m_localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, sphereDetails.m_localToWorld);
+			primitive.ClosestPoint(sphereDetails.m_localToWorld.Origin(), this->mSolidDetails);
+
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, sphereDetails.m_localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -794,24 +991,20 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << std::endl;
 
 			outfile << "True if the end cap is enabled = " << sphereDetails.m_capped << std::endl;
+			outfile.close();
 
-		}
+		}		
 
-		PrintPrincipalAreaMoments(primitive);
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
 
-		
-		SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
-		
-		double radius = pow(((dictionaryProperties->getGraphicProperties()->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
-		sphereGraphicProperties->setRadius(radius);
+		mGraphicsProcessorUtils.setSphereGraphicProperties();
 
-		dictionaryProperties->getGraphicProperties()->setSphereGraphicProperties(sphereGraphicProperties);
 
 	
-		outfile.close();
 
 	}
 	break;
+
 	case SolidPrimitiveType::SolidPrimitiveType_DgnTorusPipe:
 	{
 		DgnTorusPipeDetail torusDetails;
@@ -833,7 +1026,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnTorusPipeDetail(torusDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< elemClassName <<" --------" << std::endl;
+			outfile << "-------- "<< mGraphicsProcessorUtils.getDictionaryProperties()->getGeneralProperties()->getElementClassName() <<" --------" << std::endl;
 			outfile.close();
 
 			torusDetails.GetRange(range);
@@ -843,9 +1036,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotationAxes.GetQuaternion(axesQuatRotation, false);
 
-			primitive.ClosestPoint(localToWorld.Origin(), this->solidDetails);
 
-			PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
+			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
+
+			mGraphicsProcessorUtils.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 
 			outfile.open(filePath, std::ios_base::app);
 
@@ -883,6 +1077,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector Y [Z] = " << torusDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
+			DVec3d vectorBaseZ;
+			vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+
+			outfile << "Vector Z [X] = " << vectorBaseZ.x << std::endl;
+			outfile << "Vector Z [Y] = " << vectorBaseZ.y << std::endl;
+			outfile << "Vector Z [Z] = " << vectorBaseZ.z << std::endl;
+			outfile << std::endl;
+
+			// set x,y,z axis in dectionary
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
+			mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+
 			outfile << "Major Radius = " << torusDetails.m_majorRadius << std::endl;
 			outfile << "Minor Radius = " << torusDetails.m_minorRadius << std::endl;
 			outfile << "Sweep Angle = " << torusDetails.m_sweepAngle << std::endl;
@@ -898,11 +1105,17 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrintPrincipalAreaMoments(primitive);
-		//GraphicPropertiesMapper::mapPrincipalMomentsToGraphicProperties(primitive, *dictionaryProperties->getGraphicProperties());
+		mGraphicsProcessorUtils.PrintPrincipalAreaMoments(primitive);
+
+		//set torus graphic properties
+		mGraphicsProcessorUtils.setTorusGraphicProperties(torusDetails, sweepRadians);
+
 	}
 	break;
+
 	default:
+		// set PrimitiveGraphicProperties to nullptr,because the primitive was not identified
+		mGraphicsProcessorUtils.getDictionaryProperties()->getGraphicProperties()->setPrimitiveGraphicProperties(nullptr);
 		break;
 	}
 

@@ -4,18 +4,20 @@
 #include "GraphicProperties.h"
 #include "GeneralProperties.h"
 
+
+
 /**
  *  Class stores ReaderProperties, GraphicProperties and other relevant properties
  */
 class DictionaryProperties {
 
 private:
-	GeneralProperties* generalProperties;
-	ReaderProperties* readerProperties;
-	GraphicProperties* graphicProperties;
+	GeneralProperties* mGeneralProperties;
+	ReaderProperties* mReaderProperties;
+	GraphicProperties* mGraphicProperties;
 
 	bool areReaderPropertiesFound;
-	bool isSmartFeature;
+
 	
 
 public:
@@ -24,10 +26,7 @@ public:
 	GeneralProperties* getGeneralProperties();
 	ReaderProperties* getReaderProperties();
 	GraphicProperties* getGraphicProperties();
-
-	bool getIsSmartFeature();
-	void setIsSmartFeature(bool newIsSmartFeature);
-
+	
 	bool getAreReaderPropertiesFound();
 	void setAreReaderPropertiesFound(bool newAreReaderPropertiesFound);
 

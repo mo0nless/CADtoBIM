@@ -11,11 +11,8 @@
 * REMEMBER THAT THE INCLUDES ORDER MATTER
 */
 
-#include "IfcGenerator.h"
-#include "GraphicsProcessor.h"
-#include "../common/utils/headers/StringUtils.hpp"
-#include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-
+#include "../utilities/headers/InitializationUtilities.h"
+#include "../ifc/headers/IfcBuilder.h"
 
 
 #define CMD_TREE 0x0100000000000000UI64

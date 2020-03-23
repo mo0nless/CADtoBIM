@@ -75,15 +75,14 @@ appObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
-	$(o)IfcGenerator$(oext) \
+	$(o)GraphicsProcessorUtilities$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
-	$(o)ReaderPropertiesEnumUtils$(oext) \
+	$(o)NumberUtils$(oext) \
+	$(o)InitializationUtilities$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
-	$(o)MappingHandler$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
-	$(o)GraphicPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)GeneralProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
@@ -95,7 +94,18 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
-
+	$(o)CurveGraphicsProperties$(oext) \
+	$(o)TorusGraphicProperties$(oext) \
+	$(o)IfcBooleanOperatorHandler$(oext) \
+	$(o)IfcPrimitivesBuilder$(oext) \
+	$(o)IfcBuilder$(oext) \
+	$(o)BooleanOperationProperties$(oext) \
+	$(o)CreateSolidsOperationProperties$(oext) \
+	$(o)PrimitiveGraphicProperties$(oext) \
+	$(o)SmartFeatureGeneralProperties$(oext) \
+	$(o)SmartFeatureTypeEnumUtils$(oext) \
+	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)ReaderPropertiesEnumUtilss$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -157,21 +167,13 @@ $(o)$(appName)$(oext) : $(baseDir)sources/$(appName).cpp $(baseDir)headers/$(app
 
 $(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)headers/$(appName).h 
 
-$(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
-
-$(o)IfcGenerator$(oext) : $(baseDir)sources/IfcGenerator.cpp $(baseDir)headers/IfcGenerator.h 
-
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
 
-$(o)ResultStatus$(oext) : $(baseDir)common/result_status/sources/ResultStatus.cpp $(baseDir)common/result_status/headers/ResultStatus.h
+$(o)ResultStatus$(oext) : $(baseDir)common/models/result_status/sources/ResultStatus.cpp $(baseDir)common/models/result_status/headers/ResultStatus.h
 
-$(o)ResultStatusEnum$(oext) : $(baseDir)common/result_status/sources/ResultStatusEnum.cpp $(baseDir)common/result_status/headers/ResultStatusEnum.h
-
-$(o)MappingHandler$(oext) : $(baseDir)mapper/sources/MappingHandler.cpp $(baseDir)mapper/headers/MappingHandler.h
+$(o)ResultStatusEnum$(oext) : $(baseDir)common/enums/sources/ResultStatusEnum.cpp $(baseDir)common/enums/headers/ResultStatusEnum.h
 
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
-
-$(o)GraphicPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/GraphicPropertiesMapper.cpp $(baseDir)mapper/properties/headers/GraphicPropertiesMapper.h
 
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
@@ -185,20 +187,49 @@ $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/so
 
 $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 
-$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/properties/sources/BooleanFunctionsEnum.cpp $(baseDir)common/properties/headers/BooleanFunctionsEnum.h
+$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/enums/sources/BooleanFunctionsEnum.cpp $(baseDir)common/enums/headers/BooleanFunctionsEnum.h
 
-$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
+$(o)ReaderPropertiesEnumUtilss$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
 
 $(o)PrimitiveTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PrimitiveTypeEnumUtils.cpp $(baseDir)common/utils/headers/PrimitiveTypeEnumUtils.h
 
-$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SlabGraphicProperties.h
+$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SlabGraphicProperties.h
 
-$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/ConeGraphicProperties.h
+$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h
 
-$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/SphereGraphicProperties.h
+$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h
 
-$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/headers/CylinderGraphicProperties.h
+$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h
 
+$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
+
+$(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
+
+$(o)GraphicsProcessorUtilities$(oext) : $(baseDir)utilities/sources/GraphicsProcessorUtilities.cpp $(baseDir)utilities/headers/GraphicsProcessorUtilities.h 
+
+$(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
+
+$(o)InitializationUtilities$(oext) : $(baseDir)utilities/sources/InitializationUtilities.cpp $(baseDir)utilities/headers/InitializationUtilities.h
+
+$(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
+
+$(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesBuilder.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesBuilder.h
+
+$(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
+
+$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicProperties.h
+
+$(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
+
+$(o)CreateSolidsOperationProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/CreateSolidsOperationProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h
+
+$(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
+
+$(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
+
+$(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
+
+$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
 
 %include $(MDLMKI)dlmlink.mki
 

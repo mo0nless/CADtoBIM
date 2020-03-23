@@ -2,34 +2,25 @@
 
 DictionaryProperties::DictionaryProperties()
 {
-	this->generalProperties = new GeneralProperties();
-	this->readerProperties = new ReaderProperties();
-	this->graphicProperties = new GraphicProperties();
+	this->mGeneralProperties = new GeneralProperties();
+	this->mReaderProperties = new ReaderProperties();
+	this->mGraphicProperties = new GraphicProperties();
+	this->areReaderPropertiesFound = true;
 }
 
 GeneralProperties * DictionaryProperties::getGeneralProperties()
 {
-	return this->generalProperties;
+	return this->mGeneralProperties;
 }
 
 ReaderProperties * DictionaryProperties::getReaderProperties()
 {
-	return this->readerProperties;
+	return this->mReaderProperties;
 }
 
 GraphicProperties * DictionaryProperties::getGraphicProperties()
 {
-	return this->graphicProperties;
-}
-
-bool DictionaryProperties::getIsSmartFeature()
-{
-	return this->isSmartFeature;
-}
-
-void DictionaryProperties::setIsSmartFeature(bool newIsSmartFeature)
-{
-	this->isSmartFeature = newIsSmartFeature;
+	return this->mGraphicProperties;
 }
 
 bool DictionaryProperties::getAreReaderPropertiesFound()

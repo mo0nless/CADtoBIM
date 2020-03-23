@@ -1,16 +1,17 @@
 #include "../headers/PrimitiveTypeEnumUtils.h"
 
 
-std::map<PrimitiveTypeEnum::PrimitiveTypeEnum, std::string> PrimitiveTypeEnumUtils::mappedValues = {
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::BOX, "Slab" },
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::CONE, "Cone" },
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER, "Cylinder" },
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE, "Sphere" },
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS, "Torus" },
-	{ PrimitiveTypeEnum::PrimitiveTypeEnum::NONE,"" },
+std::map<PrimitiveTypeEnum, std::string> PrimitiveTypeEnumUtils::mappedValues = {
+	{ PrimitiveTypeEnum::BOX, "Slab" },
+	{ PrimitiveTypeEnum::CONE, "Cone" },
+	{ PrimitiveTypeEnum::CYLINDER, "Cylinder" },
+	{ PrimitiveTypeEnum::SPHERE, "Sphere" },
+	{ PrimitiveTypeEnum::TORUS, "Torus" },
+	{ PrimitiveTypeEnum::TRUNCATED_CONE, "Truncated Cone" },
+	{ PrimitiveTypeEnum::NONE,"" },
 };
 
-PrimitiveTypeEnum::PrimitiveTypeEnum PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription)
+PrimitiveTypeEnum PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription)
 {
 	for (auto const& element : mappedValues) {
 		if (element.second == primitiveElementDescription) {
@@ -18,5 +19,5 @@ PrimitiveTypeEnum::PrimitiveTypeEnum PrimitiveTypeEnumUtils::getPrimitiveTypeEnu
 		}
 	}
 	// TODO add warning log value not found
-	return PrimitiveTypeEnum::PrimitiveTypeEnum::NONE;
+	return PrimitiveTypeEnum::NONE;
 }

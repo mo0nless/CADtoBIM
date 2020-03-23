@@ -1,7 +1,9 @@
 #pragma once
 
 #include<string>
-#include "../../../common/properties/headers/BooleanFunctionsEnum.h"
+#include "../smart_feature/headers/SmartFeatureGeneralProperties.h"
+#include "../boolean_operations/headers/BooleanOperationProperties.h"
+#include "../create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
 
 /**
 *   Class contains needed reader properties
@@ -9,13 +11,11 @@
 class ReaderProperties {
 
 private:
-	std::string elementDescription;
-	long elementId;
-	int size;
-	std::string type;
+	int mNodeId;
+	SmartFeatureGeneralProperties* mSmartFeatureGeneralProperties;
 
-	int nodeId;
-	BooleanFunctions::BooleanFunctionsEnum booleanFunction;
+	CreateSolidsOperationProperties* mCreateSolidsOperationProperties;
+	BooleanOperationProperties* mBooleanOperationProperties;
 
 public:
 	ReaderProperties();
@@ -23,16 +23,15 @@ public:
 	int getNodeId();
 	void setNodeId(int newNodeId);
 
-	BooleanFunctions::BooleanFunctionsEnum getBooleanFunction();
-	void setBooleanFunction(int newBooleanFunctionInt);
+	//HARD CODED FOR CURVES
+	int curveDegree;
 
-	double width;
-	double length;
-	double height;
+	SmartFeatureGeneralProperties* getSmartFeatureGeneralProperties();
+	void setSmartFeatureGeneralProperties(SmartFeatureGeneralProperties* newSmartFeatureGeneralProperties);
 
-	double rotationX;
-	double rotationY;
-	double rotationZ;
+	bool tryGetCreateSolidsOperationProperties(CreateSolidsOperationProperties& createSolidsOperationPropertiesR);
+	void setCreateSolidsOperationProperties(CreateSolidsOperationProperties* newCreateSolidsOperationProperties);
 
-
+	bool tryGetBooleanOperationProperties(BooleanOperationProperties& booleanOperationPropertiesR);
+	void setBooleanOperationProperties(BooleanOperationProperties* newBooleanOperationProperties);
 };

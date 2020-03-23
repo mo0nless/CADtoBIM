@@ -1,310 +1,40 @@
 ===================================================
 ===================================================
 ===================================================
-Element Description: Slab
-Element ID: 1375
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 4940
 ===================================================
 ===================================================
 
 
-======================== pROPS nOT fOUND ===========================
-
-===================================================
-===================================================
-Element Description: Slab
-Element: ID 1375
-===================================================
-===================================================
-
--------- SmartFeatureSolid --------
-Range [XLength] = 8290766.750564
-Range [YLength] = 945254.357772
-Range [ZLength] = 11679521.091728
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 1708.765936
-qRotation [W] = 1708.765643
-
-Euler Rotation ?
-Rotation [X] = 0.000000
-Rotation [Y] = 0.000000
-Rotation [Z] = 1.000000
-
-Origin [X] = -7055104.215116
-Origin [Y] = 5478081.142564
-Origin [Z] = 0.000000
-
-Range High = -7055104.215116
-Range Low = -15345870.965681
-DiagonalDistanceXY = 8344478.360758
-DiagonalDistance = 14354146.858844
-Range Difference = -8290766.750564
-Corner [1] - [X] = -7055104.215116
-Corner [1] - [Y] = 5478081.142564
-Corner [1] - [Z] = 0.000000
-
-Corner [2] - [X] = -15345870.965681
-Corner [2] - [Y] = 5478081.142564
-Corner [2] - [Z] = 0.000000
-
-Corner [3] - [X] = -7055104.215116
-Corner [3] - [Y] = 4532826.784792
-Corner [3] - [Z] = 0.000000
-
-Corner [4] - [X] = -15345870.965681
-Corner [4] - [Y] = 4532826.784792
-Corner [4] - [Z] = 0.000000
-
-Corner [5] - [X] = -7055104.215116
-Corner [5] - [Y] = 5478081.142564
-Corner [5] - [Z] = 11679521.091728
-
-Corner [6] - [X] = -15345870.965681
-Corner [6] - [Y] = 5478081.142564
-Corner [6] - [Z] = 11679521.091728
-
-Corner [7] - [X] = -7055104.215116
-Corner [7] - [Y] = 4532826.784792
-Corner [7] - [Z] = 11679521.091728
-
-Corner [8] - [X] = -15345870.965681
-Corner [8] - [Y] = 4532826.784792
-Corner [8] - [Z] = 11679521.091728
-
-Vector of BASE plane X [X] = -1.000000
-Vector of BASE plane X [Y] = 0.000000
-Vector of BASE plane X [Z] = 0.000000
-
-Vector of BASE plane Y [X] = 0.000000
-Vector of BASE plane Y [Y] = -1.000000
-Vector of BASE plane Y [Z] = 0.000000
-
-Vector of BASE plane Z [X] = 0.000000
-Vector of BASE plane Z [Y] = 0.000000
-Vector of BASE plane Z [Z] = 1.000000
-
-Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
-AX base rectangle x size = 8290766.750564
-AY top rectangle y size = 945254.357772
-BX top rectangle x size = 8290766.750564
-BY top rectangle y size = 945254.357772
-
-Origin of BASE rectangle [X] = -7055104.215116
-Origin of BASE rectangle [Y] = 5478081.142564
-Origin of BASE rectangle [Z] = 0.000000
-
-Origin of TOP rectangle [X] = -7055104.215116
-Origin of TOP rectangle [Y] = 5478081.142564
-Origin of TOP rectangle [Z] = 11679521.091728
-
-Size at the BASE [X] = 8290766.750564
-Size at the BASE [Y] = 945254.357772
-
-Size at the TOP [X] = 8290766.750564
-Size at the TOP [Y] = 945254.357772
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -11200487.590398
-Centroid [Y] = 5005453.963678
-Centroid [Z] = 5839760.545864
-
-Volume = 91531044966575898624.000000
-Area = 231418373477417.093750
-
-
-
-======================== pROPS nOT fOUND ===========================
-
-===================================================
-===================================================
-Element Description: Slab
-Element: ID 1382
-===================================================
-===================================================
-
--------- SmartFeatureSolid --------
-Range [XLength] = 996990.938359
-Range [YLength] = 3465932.645165
-Range [ZLength] = 11679521.091728
-
-Quaternion Rotation
-qRotation [X] = 1708.765789
-qRotation [Y] = -1708.765789
-qRotation [Z] = 0.000000
-qRotation [W] = 0.000000
-
-Euler Rotation ?
-Rotation [X] = 0.707107
-Rotation [Y] = -0.707107
-Rotation [Z] = 0.000000
-
-Origin [X] = -7055104.215116
-Origin [Y] = 4532826.784792
-Origin [Z] = 11679521.091728
-
-Range High = -7055104.215116
-Range Low = -8052095.153475
-DiagonalDistanceXY = 3606477.510257
-DiagonalDistance = 12223661.193117
-Range Difference = -996990.938359
-Corner [1] - [X] = -7055104.215116
-Corner [1] - [Y] = 4532826.784792
-Corner [1] - [Z] = 11679521.091728
-
-Corner [2] - [X] = -7055104.215116
-Corner [2] - [Y] = 1066894.139627
-Corner [2] - [Z] = 11679521.091728
-
-Corner [3] - [X] = -8052095.153475
-Corner [3] - [Y] = 4532826.784792
-Corner [3] - [Z] = 11679521.091728
-
-Corner [4] - [X] = -8052095.153475
-Corner [4] - [Y] = 1066894.139627
-Corner [4] - [Z] = 11679521.091728
-
-Corner [5] - [X] = -7055104.215116
-Corner [5] - [Y] = 4532826.784792
-Corner [5] - [Z] = 0.000000
-
-Corner [6] - [X] = -7055104.215116
-Corner [6] - [Y] = 1066894.139627
-Corner [6] - [Z] = 0.000000
-
-Corner [7] - [X] = -8052095.153475
-Corner [7] - [Y] = 4532826.784792
-Corner [7] - [Z] = 0.000000
-
-Corner [8] - [X] = -8052095.153475
-Corner [8] - [Y] = 1066894.139627
-Corner [8] - [Z] = 0.000000
-
-Vector of BASE plane X [X] = 0.000000
-Vector of BASE plane X [Y] = -1.000000
-Vector of BASE plane X [Z] = 0.000000
-
-Vector of BASE plane Y [X] = -1.000000
-Vector of BASE plane Y [Y] = 0.000000
-Vector of BASE plane Y [Z] = 0.000000
-
-Vector of BASE plane Z [X] = -0.000000
-Vector of BASE plane Z [Y] = -0.000000
-Vector of BASE plane Z [Z] = -1.000000
-
-Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
-AX base rectangle x size = 3465932.645165
-AY top rectangle y size = 996990.938359
-BX top rectangle x size = 3465932.645165
-BY top rectangle y size = 996990.938359
-
-Origin of BASE rectangle [X] = -7055104.215116
-Origin of BASE rectangle [Y] = 4532826.784792
-Origin of BASE rectangle [Z] = 11679521.091728
-
-Origin of TOP rectangle [X] = -7055104.215116
-Origin of TOP rectangle [Y] = 4532826.784792
-Origin of TOP rectangle [Z] = 0.000000
-
-Size at the BASE [X] = 3465932.645165
-Size at the BASE [Y] = 996990.938359
-
-Size at the TOP [X] = 3465932.645165
-Size at the TOP [Y] = 996990.938359
-
-True if the end cap is enabled = 1
-
-Centroid [X] = -7553599.684296
-Centroid [Y] = 2799860.462209
-Centroid [Z] = 5839760.545864
-
-Volume = 40358625312266690560.000000
-Area = 111160627129469.312500
-
-
-Node ID: 3
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 3
-Node ID: 1
-leaf id:  1375
-Display Handler 0000024EA992A7B0
-Dependent Elem 0000024EBA6E1CB0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 3
-Node ID: 2
-leaf id:  1382
-Display Handler 0000024EA992A7B0
-Dependent Elem 0000024EBA6E1CD0
-Dependent Current Elem 0000000000000000
-Element Level 64
-Element Ref 0000000000000000
-finish==================
-Smart Feat Element Node ID: 3
-Number of Child: 2
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1390
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureContainer, current element id = 1390, id = 0 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
-elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
-elemInst Full class name: ----- :BaseElementSchema:MstnVolume
-elemInst Full class name: ----- :BaseElementSchema:MstnRotation
-
-is smart feature
-is smart feature, but not found in the smartfeaturetree
-NodeId[int] = 0
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricSolid
-DepthId[int] = 0
-Name[string] = Union #3
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Union #3
-DynamicLabel[string] = Parametric Solid
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = NormalCellElement, current element id = 4940, id = 0 ---------
+is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 1390
+Element Description[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Level[int] = 
+Element ID[long] = 4940
 Model[string] = Default
-Last Modified[dateTime] = 2/28/2020 2:23:25 PM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 7
+Last Modified[dateTime] = 3/10/2020 11:54:28 AM
+Size[int] = 258
+Linkages[int] = 5
+XAttributes[int] = 5
 Links[string] = 
 Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
+Type[string] = Linear
+Color[int] = 
+Weight[int] = 
+Line Style[int] = 
 Class[int] = Primary
-Transparency[double] = 0
+Transparency[double] = 
 Priority[int] = 
 Template[long] = (None)
 Modified[boolean] = Modified
-New[boolean] = New
+New[boolean] = Not New
 Solid[boolean] = 
 View Dependent[boolean] = 
-Snappable[boolean] = Snappable
+Snappable[boolean] = 
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Line Style Parameters[LineStyleParametersStruct] = 
@@ -316,81 +46,1369 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -56' 6.0232", 21' 1.5333", 10' 11.3892"
-Range High[point3d] = -29' 3.6150", 35' 7.2021", 49' 3.2129"
-Volume[double] = 4657.6397 Cu.'
-Surface Area[double] = 3436.8116 Sq.'
-Rotation-X[double] = 0.0000°
+Range Low[point3d] = 41' 8.2943", 38' 9.0659", 20' 3.1250"
+Range High[point3d] = 42' 11.0443", 39' 11.8159", 22' 10.1724"
+Area[double] = 
+Perimeter[double] = 
+Fill[binary] = 
+Front Clip Depth[double] = 
+Back Clip Depth[double] = 
+Front Clip[boolean] = 
+Back Clip[boolean] = 
+Pattern Definition[int] = 
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Number of elements[int] = 2
+Total Length[double] = 
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = -180.0000°
+Rotation-Y[double] = -90.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 90.0000°
+Orientation[int] = Right
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 20' 3.1250"
+Cell Name[string] = 
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+Annotation Scale[double] = 
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- className = PIPE, current element id = 4940, id = 1 ---------
+is NOT smart feature
+Design State[string] = 
+Guid[string] = 863e7684-b22f-4379-bf2b-07fe99096e25
+Design State[string] = 
+Create Time[dateTime] = 
+Created By[string] = 
+Modification Time[dateTime] = 3/10/2020 11:54:28 AM
+Modified By[string] = FX6021
+Is Tag Reserved[boolean] = 
+Name[string] = Pipe 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B36.10 12 PE Pipe
+Alias[string] = 
+PDx State[string] = 
+Psds State[string] = 
+Active Item[boolean] = False
+Functional InstanceId[string] = 
+Designer[string] = Administrator
+Size[string] = 
+Material[string] = STL
+Elevation[double] = 0 ft
+Paint Code[string] = 
+Created Timestamp[dateTime] = 9/10/2013 9:44:17 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 138.471 lb
+Manufacturer[string] = MFACT
+Device Type Code[string] = 
+Number[string] = 
+Model[string] = 
+Nominal Size[string] = 
+Plant Area[string] = ?
+Plant[string] = 
+Service[string] = S
+System[string] = S
+Unit[string] = U
+Additional Code[string] = 
+Equipment Unit Classification[string] = 
+Component Classification[string] = 
+Component Number[string] = 
+Pipe Tag Number[string] = 
+Related Equipment Plant[string] = 
+Related Piping Plant[string] = 
+Equipment Unit Code[string] = 
+Related Equipment System[string] = 
+Related Piping System[string] = 
+Detail_Sketch[string] = 
+Stock Number[string] = 
+Suffix[string] = 
+Order Number[string] = 
+Code[string] = 
+Type[string] = 
+Areaid[string] = 
+Nominal Diameter[double] = 12 in
+Rating[string] = 
+Schedule[string] = 40
+Short Description[string] = Pipe
+Specification[string] = EX-OPM
+Spec ID[string] = 258855df2c6c483cba6b62075bc7bf72
+Standard[string] = ASME - B36.10
+Unit Number[string] = 
+Option Code[string] = 
+Notes[string] = 
+Catalog Name[string] = 
+EC Class Name[string] = PIPE
+Unit Of Measure[string] = IN
+Piece Mark[string] = 
+Fabrication Category[string] = 
+Line Number[string] = U-S-1-EX-OPM
+Insulation Thickness[double] = 1 in
+Insulation Material[string] = ARNOSITE_ASBESTOS
+Length[double] = 31.0474 in
+Inside Diameter[double] = 0 in
+Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
+Outside Diameter[double] = 0 in
+Pipe Flange Type[string] = 
+Grade[string] = 
+Shop Field[string] = 
+Hub Depth[double] = 0 in
+Hub Width[double] = 0 in
+Tracing[string] = 
+Component Name[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Component State[string] = Design
+Length Effective[double] = 31.0474
+Design Length Center To Branch End Effective[double] = 0.0000
+Design Length Center To Outlet End Effective[double] = 0.0000
+Design Length Center To Run End Effective[double] = 0.0000
+Wall Thickness[double] = 0.3750
+Update Graphics[boolean] = True
+Nominal Diameter Run End[double] = 12.0000
+Element Geometry[binary] = <null>
+Spool Id[string] = 
+Transformation Matrix[bentley:TRANSFORM3D] = 
+Spool Number[int] = 
+Branch Code[string] = 
+Sequence Number[string] = 
+Weight[double] = 53.52 lb
+--------  --------
+Range [XLength] = 323850.000000
+Range [YLength] = 323850.000000
+Range [ZLength] = 788602.922519
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 444.016307
+qRotation [W] = 444.017433
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 12894800.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6175375.000000
+
+Center of BASE Circle [X] = 12894800.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 6175375.000000
+
+Center of TOP Circle [X] = 12894800.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 6963977.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle Z [X] = -0.000000
+0 Degree Vector of BASE circle Z [Y] = -0.000000
+0 Degree Vector of BASE circle Z [Z] = 1.000000
+
+Radius at BASE = 161925.000000
+Radius at TOP = 161925.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6569676.461259
+
+Volume = 0.000000
+Area = 802328383574.598267
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------  --------
+Range [XLength] = 374650.000000
+Range [YLength] = 374650.000000
+Range [ZLength] = 788602.922519
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 444.016307
+qRotation [W] = 444.017433
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 12894800.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6175375.000000
+
+Center of BASE Circle [X] = 12894800.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 6175375.000000
+
+Center of TOP Circle [X] = 12894800.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 6963977.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
+
+0 Degree Vector of BASE circle Z [X] = -0.000000
+0 Degree Vector of BASE circle Z [Y] = 0.000000
+0 Degree Vector of BASE circle Z [Z] = 1.000000
+
+Radius at BASE = 187325.000000
+Radius at TOP = 187325.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6569676.461259
+
+Volume = 0.000000
+Area = 928183816292.182251
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_Open --------
+
+-------- BOUNDARY_TYPE_None --------
+
+-------- BOUNDARY_TYPE_None --------
+
+===================================================
+===================================================
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 4940
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 4994
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = NormalCellElement, current element id = 4994, id = 0 ---------
+is NOT smart feature
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Level[int] = 
+Element ID[long] = 4994
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:35 AM
+Size[int] = 252
+Linkages[int] = 5
+XAttributes[int] = 5
+Links[string] = 
+Property List[string] = 
+Type[string] = Linear
+Color[int] = 
+Weight[int] = 
+Line Style[int] = 
+Class[int] = Primary
+Transparency[double] = 
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 22' 2.9763", 38' 9.0659", 23' 8.7973"
+Range High[point3d] = 40' 9.6693", 39' 11.8159", 24' 11.5474"
+Area[double] = 
+Perimeter[double] = 
+Fill[binary] = 
+Front Clip Depth[double] = 
+Back Clip Depth[double] = 
+Front Clip[boolean] = 
+Back Clip[boolean] = 
+Pattern Definition[int] = 
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Number of elements[int] = 2
+Total Length[double] = 
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = 180.0000°
 Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Bottom
+Origin[point3d] = 40' 9.6693", 39' 4.4409", 24' 4.1724"
+Cell Name[string] = 
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+Annotation Scale[double] = 
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- className = PIPE, current element id = 4994, id = 1 ---------
+is NOT smart feature
+Design State[string] = 
+Guid[string] = a8c6d11b-756e-4a53-bbab-375b3eb9d88c
+Design State[string] = 
+Create Time[dateTime] = 
+Created By[string] = 
+Modification Time[dateTime] = 
+Modified By[string] = 
+Is Tag Reserved[boolean] = 
+Name[string] = Pipe 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B36.10 12 PE Pipe
+Alias[string] = 
+PDx State[string] = 
+Psds State[string] = 
+Active Item[boolean] = False
+Functional InstanceId[string] = 
+Designer[string] = Administrator
+Size[string] = 
+Material[string] = STL
+Elevation[double] = 0 ft
+Paint Code[string] = 
+Created Timestamp[dateTime] = 9/10/2013 9:44:17 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 993.21 lb
+Manufacturer[string] = MFACT
+Device Type Code[string] = 
+Number[string] = 
+Model[string] = 
+Nominal Size[string] = 
+Plant Area[string] = No Name
+Plant[string] = 
+Service[string] = S
+System[string] = S
+Unit[string] = U
+Additional Code[string] = 
+Equipment Unit Classification[string] = 
+Component Classification[string] = 
+Component Number[string] = 
+Pipe Tag Number[string] = 
+Related Equipment Plant[string] = 
+Related Piping Plant[string] = 
+Equipment Unit Code[string] = 
+Related Equipment System[string] = 
+Related Piping System[string] = 
+Detail_Sketch[string] = 
+Stock Number[string] = 
+Suffix[string] = 
+Order Number[string] = 
+Code[string] = 
+Type[string] = 
+Areaid[string] = 
+Nominal Diameter[double] = 12 in
+Rating[string] = 
+Schedule[string] = 40
+Short Description[string] = Pipe
+Specification[string] = EX-OPM
+Spec ID[string] = 258855df2c6c483cba6b62075bc7bf72
+Standard[string] = ASME - B36.10
+Unit Number[string] = 
+Option Code[string] = 
+Notes[string] = 
+Catalog Name[string] = 
+EC Class Name[string] = PIPE
+Unit Of Measure[string] = IN
+Piece Mark[string] = 
+Fabrication Category[string] = 
+Line Number[string] = U-S-1-EX-OPM
+Insulation Thickness[double] = 1 in
+Insulation Material[string] = ARNOSITE_ASBESTOS
+Length[double] = 222.693 in
+Inside Diameter[double] = 0 in
+Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
+Outside Diameter[double] = 0 in
+Pipe Flange Type[string] = 
+Grade[string] = 
+Shop Field[string] = 
+Hub Depth[double] = 0 in
+Hub Width[double] = 0 in
+Tracing[string] = 
+Component Name[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Component State[string] = Design
+Length Effective[double] = 222.6929
+Design Length Center To Branch End Effective[double] = 0.0000
+Design Length Center To Outlet End Effective[double] = 0.0000
+Design Length Center To Run End Effective[double] = 0.0000
+Wall Thickness[double] = 0.3750
+Update Graphics[boolean] = True
+Nominal Diameter Run End[double] = 12.0000
+Element Geometry[binary] = <null>
+Spool Id[string] = 
+Transformation Matrix[bentley:TRANSFORM3D] = 
+Spool Number[int] = 
+Branch Code[string] = 
+Sequence Number[string] = 
+Weight[double] = 53.52 lb
+--------  --------
+Range [XLength] = 5656400.000000
+Range [YLength] = 323850.000000
+Range [ZLength] = 323850.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = -0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Center of BASE Circle [X] = 12437600.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 7421177.922519
+
+Center of TOP Circle [X] = 6781200.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 7421177.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle Z [X] = -1.000000
+0 Degree Vector of BASE circle Z [Y] = 0.000000
+0 Degree Vector of BASE circle Z [Z] = -0.000000
+
+Radius at BASE = 161925.000000
+Radius at TOP = 161925.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 9609400.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Volume = 0.000000
+Area = 5754848402485.101563
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------  --------
+Range [XLength] = 5656400.000000
+Range [YLength] = 374650.000000
+Range [ZLength] = 374650.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = -0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Center of BASE Circle [X] = 12437600.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 7421177.922519
+
+Center of TOP Circle [X] = 6781200.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 7421177.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle Z [X] = -1.000000
+0 Degree Vector of BASE circle Z [Y] = 0.000000
+0 Degree Vector of BASE circle Z [Z] = -0.000000
+
+Radius at BASE = 187325.000000
+Radius at TOP = 187325.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 9609400.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Volume = 0.000000
+Area = 6657569720521.980469
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_Open --------
+
+-------- BOUNDARY_TYPE_None --------
+
+-------- BOUNDARY_TYPE_None --------
+
+===================================================
+===================================================
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 4994
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 5005
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = NormalCellElement, current element id = 5005, id = 0 ---------
+is NOT smart feature
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Level[int] = 
+Element ID[long] = 5005
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 252
+Linkages[int] = 5
+XAttributes[int] = 5
+Links[string] = 
+Property List[string] = 
+Type[string] = elbow
+Color[int] = 
+Weight[int] = 
+Line Style[int] = 
+Class[int] = Primary
+Transparency[double] = 
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 40' 9.6693", 38' 9.0659", 22' 10.1723"
+Range High[point3d] = 42' 11.0443", 39' 11.8159", 24' 11.5474"
+Area[double] = 
+Perimeter[double] = 
+Fill[binary] = 
+Front Clip Depth[double] = 
+Back Clip Depth[double] = 
+Front Clip[boolean] = 
+Back Clip[boolean] = 
+Pattern Definition[int] = 
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Number of elements[int] = 2
+Total Length[double] = 
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = -180.0000°
+Rotation-Y[double] = -90.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 90.0000°
+Orientation[int] = Right
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 22' 10.1724"
+Cell Name[string] = 
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+Annotation Scale[double] = 
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- className = LONG_RADIUS_90_DEGREE_PIPE_ELBOW, current element id = 5005, id = 1 ---------
+is NOT smart feature
+Design State[string] = 
+Guid[string] = d6302bb1-971f-45b4-af03-5b402791e3cd
+Design State[string] = 
+Create Time[dateTime] = 
+Created By[string] = 
+Modification Time[dateTime] = 
+Modified By[string] = 
+Is Tag Reserved[boolean] = 
+Name[string] = Pipe Elbow 90 Degree Long Radius 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B16.9 12 BW Pipe Elbow 90 Degree Long Radius
+Alias[string] = 
+PDx State[string] = 
+Psds State[string] = 
+Active Item[boolean] = False
+Functional InstanceId[string] = 
+Designer[string] = Administrator
+Size[string] = 
+Material[string] = STL
+Elevation[double] = 0 ft
+Paint Code[string] = 
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 125 lb
+Manufacturer[string] = MFACT
+Device Type Code[string] = 
+Number[string] = 
+Model[string] = 
+Nominal Size[string] = 
+Plant Area[string] = No Name
+Plant[string] = 
+Service[string] = S
+System[string] = S
+Unit[string] = U
+Additional Code[string] = 
+Equipment Unit Classification[string] = 
+Component Classification[string] = 
+Component Number[string] = 
+Pipe Tag Number[string] = 
+Related Equipment Plant[string] = 
+Related Piping Plant[string] = 
+Equipment Unit Code[string] = 
+Related Equipment System[string] = 
+Related Piping System[string] = 
+Detail_Sketch[string] = 
+Stock Number[string] = 
+Suffix[string] = 
+Order Number[string] = 
+Code[string] = 
+Type[string] = 
+Areaid[string] = 
+Nominal Diameter[double] = 12 in
+Rating[string] = 
+Schedule[string] = 40
+Short Description[string] = Pipe Elbow 90 Degree Long Radius
+Specification[string] = EX-OPM
+Spec ID[string] = af623c9e74d145eca2a72fc075f53a30
+Standard[string] = ASME - B36.10
+Weight[double] = 
+Unit Number[string] = 
+Option Code[string] = 
+Notes[string] = 
+Catalog Name[string] = 
+EC Class Name[string] = LONG_RADIUS_90_DEGREE_PIPE_ELBOW
+Unit Of Measure[string] = IN
+Piece Mark[string] = 
+Fabrication Category[string] = 
+Line Number[string] = U-S-1-EX-OPM
+Insulation Thickness[double] = 1 in
+Insulation Material[string] = ARNOSITE_ASBESTOS
+Length[double] = 36 in
+Inside Diameter[double] = 0 in
+Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
+Outside Diameter[double] = 0 in
+Pipe Flange Type[string] = 
+Grade[string] = 
+Shop Field[string] = 
+Hub Depth[double] = 0 in
+Hub Width[double] = 0 in
+Tracing[string] = 
+Component Name[string] = Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Component State[string] = Design
+Length Effective[double] = 36.0000
+Design Length Center To Branch End Effective[double] = 0.0000
+Design Length Center To Outlet End Effective[double] = 18.0000
+Design Length Center To Run End Effective[double] = 18.0000
+Wall Thickness[double] = 0.3750
+Update Graphics[boolean] = True
+Nominal Diameter Run End[double] = 12.0000
+Element Geometry[binary] = <null>
+Spool Id[string] = 
+Transformation Matrix[bentley:TRANSFORM3D] = 
+Spool Number[int] = 
+Angle[double] = 90.0000
+Design Length Center To Outlet End[double] = 18.0000
+Design Length Center To Run End[double] = 18.0000
+Major Radius[double] = 0.0000
+Minor Radius[double] = 0.0000
+--------  --------
+Range [XLength] = 712479.718882
+Range [YLength] = 417204.718882
+Range [ZLength] = 712479.718882
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = -0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.577350
+vRotation [Y] = -0.577350
+vRotation [Z] = -0.577350
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
+
+Range High = 13103402.359441
+Range Low = 12390922.640559
+DiagonalDistanceXY = 825643.462564
+DiagonalDistance = 1090556.957290
+Range Difference = 712479.718882
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.500000
+Axes Rotation (Quaternion) [Y] = 0.500000
+Axes Rotation (Quaternion) [Z] = 0.500000
+Axes Rotation (Quaternion) [W] = -0.500000
+
+Center Point Rotation [X] = 12437600.000000
+Center Point Rotation [Y] = 12000000.000000
+Center Point Rotation [Z] = 6963977.922519
+
+Center [X] = 12437600.000000
+Center [Y] = 12000000.000000
+Center [Z] = 6963977.922519
+
+Vector X [X] = 0.000000
+Vector X [Y] = 0.000000
+Vector X [Z] = 1.000000
+
+Vector Y [X] = 1.000000
+Vector Y [Y] = 0.000000
+Vector Y [Z] = 0.000000
+
+Vector Z [X] = 0.000000
+Vector Z [Y] = 1.000000
+Vector Z [Z] = 0.000000
+
+Major Radius = 457200.000000
+Minor Radius = 161925.000000
+Sweep Angle = 1.570796
+Sweep Radians = 1.570796
+
+Radius Major (Elbow Radius) = 457200.000000
+Radius Minor (Pipe Diameter) = 161925.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12746917.134540
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7273295.057059
+
+Volume = 0.000000
+Area = 730667638677.931396
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_Open --------
+--------  --------
+Range [XLength] = 743073.849499
+Range [YLength] = 473198.849499
+Range [ZLength] = 743073.849499
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = -0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.577350
+vRotation [Y] = -0.577350
+vRotation [Z] = -0.577350
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
+
+Range High = 13131399.424749
+Range Low = 12388325.575251
+DiagonalDistanceXY = 880951.699570
+DiagonalDistance = 1152490.625899
+Range Difference = 743073.849499
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.500000
+Axes Rotation (Quaternion) [Y] = 0.500000
+Axes Rotation (Quaternion) [Z] = 0.500000
+Axes Rotation (Quaternion) [W] = -0.500000
+
+Center Point Rotation [X] = 12437600.000000
+Center Point Rotation [Y] = 12000000.000000
+Center Point Rotation [Z] = 6963977.922519
+
+Center [X] = 12437600.000000
+Center [Y] = 12000000.000000
+Center [Z] = 6963977.922519
+
+Vector X [X] = 0.000000
+Vector X [Y] = 0.000000
+Vector X [Z] = 1.000000
+
+Vector Y [X] = 1.000000
+Vector Y [Y] = 0.000000
+Vector Y [Z] = -0.000000
+
+Vector Z [X] = -0.000000
+Vector Z [Y] = 1.000000
+Vector Z [Z] = 0.000000
+
+Major Radius = 457200.000000
+Minor Radius = 187325.000000
+Sweep Angle = 1.570796
+Sweep Radians = 1.570796
+
+Radius Major (Elbow Radius) = 457200.000000
+Radius Minor (Pipe Diameter) = 187325.000000
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12753093.230526
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7279471.153045
+
+Volume = 0.000000
+Area = 845282170235.253906
+
+In SolidKernel Entity is: Sheet 1
+
+
+-------- BOUNDARY_TYPE_None --------
+
+-------- BOUNDARY_TYPE_None --------
+
+===================================================
+===================================================
+Element Description: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 5005
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element ID: 5029
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = NormalCellElement, current element id = 5029, id = 0 ---------
+is NOT smart feature
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] =  12  U-S-1-EX-OPM
+Level[int] = 
+Element ID[long] = 5029
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 224
+Linkages[int] = 5
+XAttributes[int] = 4
+Links[string] = 
+Property List[string] = 
+Type[string] = Generic
+Color[int] = 
+Weight[int] = 
+Line Style[int] = 
+Class[int] = Primary
+Transparency[double] = 
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 42' 3.4693", 39' 4.2409", 22' 9.9723"
+Range High[point3d] = 42' 3.8693", 39' 4.6409", 22' 10.3724"
+Area[double] = 
+Perimeter[double] = 
+Fill[binary] = 
+Front Clip Depth[double] = 
+Back Clip Depth[double] = 
+Front Clip[boolean] = 
+Back Clip[boolean] = 
+Pattern Definition[int] = 
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Number of elements[int] = 2
+Total Length[double] = 
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = -90.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 90.0000°
 Angle[double] = 0.0000°
-Orientation[int] = Top
+Orientation[int] = Left
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 22' 10.1724"
+Cell Name[string] = 
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+Annotation Scale[double] = 
 
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = BooleanFeature, current element id = 1390, id = 3 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- className = WELD, current element id = 5029, id = 1 ---------
+is NOT smart feature
+Design State[string] = 
+Guid[string] = 4b5d9259-3ca0-47d7-85b1-03c08312c644
+Design State[string] = 
+Create Time[dateTime] = 
+Created By[string] = 
+Modification Time[dateTime] = 
+Modified By[string] = 
+Is Tag Reserved[boolean] = 
+Name[string] = 
+Description[string] = 
+Alias[string] = 
+PDx State[string] = 
+Psds State[string] = 
+Active Item[boolean] = False
+Functional InstanceId[string] = 
+Designer[string] = Administrator
+Size[string] = 
+Material[string] = 
+Elevation[double] = 0 ft
+Paint Code[string] = 
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 0 lb
+Manufacturer[string] = 
+Device Type Code[string] = 
+Number[string] = 
+Model[string] = 
+Nominal Size[string] = 
+Plant Area[string] = No Name
+Plant[string] = 
+Service[string] = 
+System[string] = 
+Unit[string] = U
+Additional Code[string] = 
+Equipment Unit Classification[string] = 
+Component Classification[string] = 
+Component Number[string] = 
+Pipe Tag Number[string] = 
+Related Equipment Plant[string] = 
+Related Piping Plant[string] = 
+Equipment Unit Code[string] = 
+Related Equipment System[string] = 
+Related Piping System[string] = 
+Detail_Sketch[string] = 
+Option Code[string] = 
+Catalog Name[string] = 
+EC Class Name[string] = 
+Notes[string] = 
+Unit Of Measure[string] = 
+Component State[string] = Design
+Short Description[string] = 
+P1_X[double] = 0.0000
+P1_Y[double] = 0.0000
+P1_Z[double] = 0.0000
+Grade[string] = 
+Element Geometry[binary] = <null>
+Line Number[string] = U-S-1-EX-OPM
+Order Number[string] = 
+Piece Mark[string] = 
+Shop Field[string] = 0
+Stock Number[string] = 
+Suffix[string] = 
+Transformation Matrix[bentley:TRANSFORM3D] = 
+Unit Number[string] = 
+P2_X[double] = 0.0000
+P2_Y[double] = 0.0000
+P2_Z[double] = 0.0000
+Field Length[double] = 0.0000
+Type[string] = SHOP
+Component Name[string] =  12  U-S-1-EX-OPM
+Nominal Diameter[double] = 12.0000
+Spool Id[string] = 
+Spool Number[int] = 
+--------  --------
+Range [XLength] = 10160.000000
+Range [YLength] = 10160.000000
+Range [ZLength] = 10160.000000
 
-is smart feature
-NodeId[int] = 3
-Enabled[boolean] = 
-Label[string] = Union #3
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = ParametricUnion
-DepthId[int] = 0
-Name[string] = Union #3
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = True
-Disabled[boolean] = 
-BooleanFunction[int] = 1
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 35.640567
+qRotation [Z] = 0.000000
+qRotation [W] = -35.640567
 
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 1390, id = 1 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
 
-is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Slab #1
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = PlaceSlab
-DepthId[int] = 1
-Name[string] = Slab #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
+Origin [X] = 12894800.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
 
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- className = SmartFeatureSolid, current element id = 1390, id = 2 ---------
-elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+Range High = 12899880.000000
+Range Low = 12889720.000000
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
 
-is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Slab #2
-Feature Status[string] = 
-Deletable[boolean] = True
-IconName[string] = PlaceSlab
-DepthId[int] = 1
-Name[string] = Slab #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
+DiagonalDistanceXY = 14368.409794
+DiagonalDistance = 17597.636205
+Range Difference = 10160.000000
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6963977.922519
+
+Volume = 549135785347.261597
+Area = 324292786.622399
+
+In SolidKernel Entity is: Solid 0
+
+
+-------- BOUNDARY_TYPE_None --------
 
 ===================================================
 ===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1390
+Element Description:  12  U-S-1-EX-OPM
+Element: ID 5029
 ===================================================
 ===================================================
 
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element ID: 5039
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- className = NormalCellElement, current element id = 5039, id = 0 ---------
+is NOT smart feature
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] =  12  U-S-1-EX-OPM
+Level[int] = 
+Element ID[long] = 5039
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 224
+Linkages[int] = 5
+XAttributes[int] = 4
+Links[string] = 
+Property List[string] = 
+Type[string] = Generic
+Color[int] = 
+Weight[int] = 
+Line Style[int] = 
+Class[int] = Primary
+Transparency[double] = 
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = 40' 9.4693", 39' 4.2409", 24' 3.9723"
+Range High[point3d] = 40' 9.8693", 39' 4.6409", 24' 4.3724"
+Area[double] = 
+Perimeter[double] = 
+Fill[binary] = 
+Front Clip Depth[double] = 
+Back Clip Depth[double] = 
+Front Clip[boolean] = 
+Back Clip[boolean] = 
+Pattern Definition[int] = 
+Pattern Name[string] = <null>
+Pattern Cell[string] = 
+Scale[double] = 
+Is Annotation[boolean] = 
+Space[double] = 
+Cross Space[double] = 
+Cross Hatch[boolean] = 
+Pattern Angle[double] = 
+Cross Pattern Angle[double] = 
+Associative[boolean] = 
+Pattern Origin[point3d] = 
+Island Detection[int] = 
+XX-HatchEcsOrigin-XX[point3d] = 
+User Defined[boolean] = 
+Hatch Color[int] = 
+Hatch Weight[int] = 
+Hatch Line Style[int] = 
+Number of elements[int] = 2
+Total Length[double] = 
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Front
+Origin[point3d] = 40' 9.6693", 39' 4.4409", 24' 4.1724"
+Cell Name[string] = 
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+Annotation Scale[double] = 
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- className = WELD, current element id = 5039, id = 1 ---------
+is NOT smart feature
+Design State[string] = 
+Guid[string] = 5b832a57-c80d-4b34-94c6-7549aa211589
+Design State[string] = 
+Create Time[dateTime] = 
+Created By[string] = 
+Modification Time[dateTime] = 
+Modified By[string] = 
+Is Tag Reserved[boolean] = 
+Name[string] = 
+Description[string] = 
+Alias[string] = 
+PDx State[string] = 
+Psds State[string] = 
+Active Item[boolean] = False
+Functional InstanceId[string] = 
+Designer[string] = Administrator
+Size[string] = 
+Material[string] = 
+Elevation[double] = 0 ft
+Paint Code[string] = 
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 0 lb
+Manufacturer[string] = 
+Device Type Code[string] = 
+Number[string] = 
+Model[string] = 
+Nominal Size[string] = 
+Plant Area[string] = No Name
+Plant[string] = 
+Service[string] = 
+System[string] = 
+Unit[string] = U
+Additional Code[string] = 
+Equipment Unit Classification[string] = 
+Component Classification[string] = 
+Component Number[string] = 
+Pipe Tag Number[string] = 
+Related Equipment Plant[string] = 
+Related Piping Plant[string] = 
+Equipment Unit Code[string] = 
+Related Equipment System[string] = 
+Related Piping System[string] = 
+Detail_Sketch[string] = 
+Option Code[string] = 
+Catalog Name[string] = 
+EC Class Name[string] = 
+Notes[string] = 
+Unit Of Measure[string] = 
+Component State[string] = Design
+Short Description[string] = 
+P1_X[double] = 0.0000
+P1_Y[double] = 0.0000
+P1_Z[double] = 0.0000
+Grade[string] = 
+Element Geometry[binary] = <null>
+Line Number[string] = U-S-1-EX-OPM
+Order Number[string] = 
+Piece Mark[string] = 
+Shop Field[string] = 0
+Stock Number[string] = 
+Suffix[string] = 
+Transformation Matrix[bentley:TRANSFORM3D] = 
+Unit Number[string] = 
+P2_X[double] = 0.0000
+P2_Y[double] = 0.0000
+P2_Z[double] = 0.0000
+Field Length[double] = 0.0000
+Type[string] = SHOP
+Component Name[string] =  12  U-S-1-EX-OPM
+Nominal Diameter[double] = 12.0000
+Spool Id[string] = 
+Spool Number[int] = 
+--------  --------
+Range [XLength] = 10160.000000
+Range [YLength] = 10160.000000
+Range [ZLength] = 10160.000000
+
+Quaternion Rotation
+qRotation [X] = 61.727223
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 1.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Range High = 12442680.000000
+Range Low = 12432520.000000
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
+
+DiagonalDistanceXY = 14368.409794
+DiagonalDistance = 17597.636205
+Range Difference = 10160.000000
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 0
+
+Centroid [X] = 12437600.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Volume = 549135785347.261597
+Area = 324292786.622399
+
+In SolidKernel Entity is: Solid 0
+
+
+-------- BOUNDARY_TYPE_None --------
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element: ID 5039
+===================================================
+===================================================
 

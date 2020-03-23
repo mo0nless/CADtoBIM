@@ -1,15 +1,7 @@
 #pragma once
 
-#include <DgnPlatform/DgnECInstance.h>
-#include <DgnPlatform/DgnECManager.h>
-
-#include "../primitives/headers/SlabGraphicProperties.h"
-#include "../primitives/headers/ConeGraphicProperties.h"
-#include "../primitives/headers/SphereGraphicProperties.h"
-#include "../primitives/headers/CylinderGraphicProperties.h"
-
-USING_NAMESPACE_BENTLEY_ECOBJECT;
-USING_NAMESPACE_BENTLEY_DGNPLATFORM;
+#include "../primitives/graphic/headers/PrimitiveGraphicProperties.h"
+#include "../curves/graphic/headers/CurveGraphicProperties.h"
 
 /**
  *   Class contains needed graphic properties
@@ -17,19 +9,17 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 class GraphicProperties {
 
 private:
-	double area;
-	double volume;
+	double mArea;
+	double mVolume;
 
-	DVec3d centroid;
+	DVec3d mCentroid;
 
-	DVec3d vectorAxisX;
-	DVec3d vectorAxisY;
-	DVec3d vectorAxisZ;
+	DVec3d mVectorAxisX;
+	DVec3d mVectorAxisY;
+	DVec3d mVectorAxisZ;
 
-	SlabGraphicProperties* slabProperties;
-	ConeGraphicProperties* coneProperties;
-	SphereGraphicProperties* sphereProperties;
-	CylinderGraphicProperties* cylinderProperties;
+	PrimitiveGraphicProperties* mPrimitiveGraphicProperties;
+	CurveGraphicProperties* mCurveGraphicProperties;
 
 public:
 	GraphicProperties();
@@ -52,16 +42,9 @@ public:
 	DVec3d getVectorAxisZ();
 	void setVectorAxisZ(DVec3d newVectorBaseZ);
 
-	bool tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR);
-	void setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties);
+	bool tryGetCurveGraphicsProperties(CurveGraphicProperties*& curveGraphicsPropertiesR);
+	void setCurveGraphicsProperties(CurveGraphicProperties* newCurveGraphicsProperties);
 
-	bool tryGetConeGraphicProperties(ConeGraphicProperties& coneGraphicPropertiesR);
-	void setConeGraphicProperties(ConeGraphicProperties* newConeGraphicProperties);
-
-	bool tryGetSphereGraphicProperties(SphereGraphicProperties& sphereGraphicPropertiesR);
-	void setSphereGraphicProperties(SphereGraphicProperties* newSphereGraphicProperties);
-
-	bool tryGetCylinderGraphicProperties(CylinderGraphicProperties& cylinderGraphicPropertiesR);
-	void setCylinderGraphicProperties(CylinderGraphicProperties* newCylinderGraphicProperties);
-
+	bool tryGetPrimitiveGraphicProperties(PrimitiveGraphicProperties*& primitiveGraphicPropertiesR);
+	void setPrimitiveGraphicProperties(PrimitiveGraphicProperties* newPrimitiveGraphicProperties);
 };

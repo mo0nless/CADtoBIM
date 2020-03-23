@@ -1,10 +1,6 @@
 #pragma once
 
-#include "PropertiesReaderProcessor.h"
-
-//#include "../common/enums/headers/PrimitiveTypeEnum.h"
-//
-//#include "../mapper/properties/headers/GraphicPropertiesMapper.h"
+#include "../utilities/headers/GraphicsProcessorUtilities.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
@@ -15,20 +11,15 @@
 * @see ElementGraphicsOutput
 * @bsiclass                                                     
 +===============+===============+===============+===============+===============+======*/
-class GraphicsProcessor : public IElementGraphicsProcessor//, public LocateSubEntityTool
+class GraphicsProcessor : public IElementGraphicsProcessor
 {
 public:
 	//! Default constructor of the class
-	//! @param[in] The offstream file used for writing in the file
-	//! @param[in] Output file to write down all the graphics and text properties of the element
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
-	GraphicsProcessor(std::ofstream &mOutfile, std::string& mFilePath);
-	void setPropertiesDictionary(DictionaryProperties* newDictionaryProperties);
-	void updateClassAndID(std::string elemClName, Int64 elemID);
+	GraphicsProcessor();
+	GraphicsProcessorUtilities& getGraphicsProcessorUtilities();
 private:
-	inline void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
-	inline void GraphicsProcessor::PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
-
+	
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
 	virtual BentleyStatus _ProcessCurveVector(CurveVectorCR curves, bool isFilled) override;
@@ -39,13 +30,10 @@ private:
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
 
+	GraphicsProcessorUtilities mGraphicsProcessorUtils;
 	
-	WString myString;
-	std::ofstream &outfile;
 	std::string filePath;
-	Int64 elementID;
-	std::string elemClassName;
-	DictionaryProperties* dictionaryProperties;
-	SolidLocationDetail solidDetails;
+
+	SolidLocationDetail mSolidDetails;
 };
 /// @endGroup
