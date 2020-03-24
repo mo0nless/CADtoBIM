@@ -8,8 +8,6 @@
 class IfcPrimitivesBuilder {
 
 public:
-	//void buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector);
-
 	Ifc4::IfcRepresentationItem* buildIfcPrimitive(GraphicProperties& graphicProperties, IfcHierarchyHelper<Ifc4>& file);
 
 private:

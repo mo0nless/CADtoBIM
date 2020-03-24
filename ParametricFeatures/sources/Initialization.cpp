@@ -10,8 +10,8 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 	boost::none_t const null = boost::none;
 	std::string name = "PrimitiveTest";
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -59,12 +59,12 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 		/*Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(dictionaryProperties, file);
 
 		Ifc4::IfcRepresentationItem* item = nullptr;
-		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX||
-			dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) 
+		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::BOX||
+			dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::CONE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) 
 		{
 			item = buildPrimitive(dictionaryProperties, place, file);
 		}
-		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) 
+		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) 
 		{
 			item = buildComplexPrimitive(dictionaryProperties, place, file);
 		}
@@ -91,7 +91,17 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 
 		file.addEntities(temp->generalize());
 
+		// TODO [MP[ check this shit out
+		// set primitive graphic dictionary if it's a primitive
+		//PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum = PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP()));
+		//if (primitiveTypeEnum != PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::NONE) {
+		//	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
+		//	primitiveGraphicProperties->setPrimitiveTypeEnum(primitiveTypeEnum);
+		//	propertiesDictionary->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
+		//}
+
 		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> controlP(temp);
+
 
 		Ifc4::IfcRepresentationItem* item = new Ifc4::IfcBSplineCurve(
 			curveProperties->getDegree(),

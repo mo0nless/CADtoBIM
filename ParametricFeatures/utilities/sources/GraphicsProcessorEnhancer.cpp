@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -38,12 +38,12 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 	PrimitiveGraphicProperties* primitiveGraphicProperties;
 	pDictionaryProperties->getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties);
 
-	if (primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER ||
-		(primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE &&  cgnConeDetail.m_radiusA == cgnConeDetail.m_radiusB))
+	if (primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER ||
+		(primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE &&  cgnConeDetail.m_radiusA == cgnConeDetail.m_radiusB))
 	{
 
 		// overwrite primitive type enum value
-		primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER);
+		primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::CYLINDER);
 
 		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 		cylinderGraphicProperties->setRadius(cgnConeDetail.m_radiusA);
@@ -52,11 +52,11 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 		primitiveGraphicProperties->setCylinderGraphicProperties(cylinderGraphicProperties);
 
 	}
-	else if (primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE) {
+	else if (primitiveGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE) {
 
 		if (cgnConeDetail.m_radiusB > 0 && cgnConeDetail.m_radiusA != cgnConeDetail.m_radiusB) {
 			// overrite primitive type enum value
-			primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE);
+			primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::TRUNCATED_CONE);
 		}
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();

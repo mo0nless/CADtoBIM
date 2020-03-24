@@ -10,7 +10,6 @@ namespace SmartFeatureTypeEnum {
 	enum class SmartFeatureTypeEnum {
 		BOOLEAN_FEATURE,
 		CREATE_SOLIDS,
-		//COMPLEX_STRING_ELEMENT,
 		UNDEFINED
 	};
 

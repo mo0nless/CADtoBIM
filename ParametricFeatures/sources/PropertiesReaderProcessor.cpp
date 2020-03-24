@@ -58,7 +58,12 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
-			
+			outfile.close();
+
+			// get class name
+			std::string className = StringUtils::getString(elemInst->GetClass().GetName());
+
+			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
 			outfile.close();
@@ -75,7 +80,10 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			}*/
 			
 			
-			if (SmartFeatureElement::IsSmartFeature(currentElem)) {
+			if (SmartFeatureElement::IsSmartFeature(currentElem)) 
+			{
+
+				SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
 				
 				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
@@ -84,26 +92,35 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 
 				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByElementLocalNodeId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 
-				if (currentNode != nullptr) {
+				if (currentNode != nullptr) 
+				{
+
+					// set class name in the ReaderProperties
+					currentNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
 					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), mElemClassName);
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), smartFeatureTypeEnum);
 				}
-				else {
+				else 
+				{
 					outfile.open(filePath, std::ios_base::app);
 					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
 					outfile.close();
+
+					// set class name in the ReaderProperties
+					dictionaryProperties.getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
 					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), mElemClassName);
+					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), smartFeatureTypeEnum);
 				}
 				
 			}
-			else {
+			else 
+			{
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "is NOT smart feature" << std::endl;
 				outfile.close();
 
 				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
-				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), mElemClassName);
+				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), SmartFeatureTypeEnum::UNDEFINED);
 
 				
 			}			
