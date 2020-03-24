@@ -1,7 +1,11 @@
 #pragma once
 
+#include <map>
+#include <string>
 
-enum class PrimitiveTypeEnum {
+namespace PrimitiveTypeEnum {
+
+	enum class PrimitiveTypeEnum {
 
 		BOX,
 		CONE,
@@ -13,3 +17,6 @@ enum class PrimitiveTypeEnum {
 		NONE
 
 	};
+
+	PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
+}

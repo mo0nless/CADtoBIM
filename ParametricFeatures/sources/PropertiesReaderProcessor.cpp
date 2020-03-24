@@ -83,7 +83,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) 
 			{
 
-				SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
+				SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnum::getSmartFeatureTypeEnumByClassName(className);
 				
 				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
@@ -120,7 +120,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 				outfile.close();
 
 				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
-				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), SmartFeatureTypeEnum::UNDEFINED);
+				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED);
 
 				
 			}			

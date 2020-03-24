@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../utilities/headers/GraphicsProcessorUtilities.h"
+#include "../utilities/headers/GraphicsProcessorEnhancer.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
@@ -17,7 +17,7 @@ public:
 	//! Default constructor of the class
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
 	GraphicsProcessor();
-	GraphicsProcessorUtilities& getGraphicsProcessorUtilities();
+	GraphicsProcessorEnhancer* getGraphicsProcessorEnhancer();
 private:
 	
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
@@ -30,7 +30,7 @@ private:
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
 
-	GraphicsProcessorUtilities mGraphicsProcessorUtils;
+	GraphicsProcessorEnhancer mGraphicsProcessorEnhancer;
 	
 	std::string filePath;
 

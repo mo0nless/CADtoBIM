@@ -22,7 +22,7 @@ private:
 	*   @param eCValue[in] value of the property
 	*   @param readerProperties[out] store property and it's value
 	*/
-	static void mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum);
+	static void mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum);
 
 public:
 	/**
@@ -30,7 +30,7 @@ public:
 	*   @param dgnElementECInstanceP[in] properties from modeler to be mapped
 	*   @param readerProperties[out] modeler properties are maped into this object
 	*/
-	static void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum);
+	static void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties &readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum);
 
 
 	

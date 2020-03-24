@@ -3,11 +3,11 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	outfile.open(filePath, std::ios_base::app);
 
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
@@ -40,8 +40,8 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
 
 		//HARD CODED FOR CURVES//
-		if (propertyName == "Degree")
-			readerProperties.curveDegree = ecVal.GetInteger();
+		/*if (propertyName == "Degree")
+			readerProperties.curveDegree = ecVal.GetInteger();*/
 		//---------------------//
 			
 	}
@@ -49,12 +49,12 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	
 }
 
-void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum)
+void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum)
 {
 
 	switch (smartFeatureTypeEnum)
 	{
-	case SmartFeatureTypeEnum::BOOLEAN_FEATURE:
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::BOOLEAN_FEATURE:
 		//if (ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue) == ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION)
 		//{
 		//	BooleanOperationProperties* booleanOperationProperties = new BooleanOperationProperties();
@@ -66,11 +66,11 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 		BooleanOperationReaderPropertiesMapper::mapBooleanOperationReaderPropertiesToReaderProperties(labelValue, eCValue, readerProperties);
 		break;
 
-	case SmartFeatureTypeEnum::CREATE_SOLIDS:
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::CREATE_SOLIDS:
 		readerProperties.setCreateSolidsOperationProperties(nullptr);
 		break;
 
-	case SmartFeatureTypeEnum::UNDEFINED:
+	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED:
 		//log as info or warning missing mapping
 		break;
 	default:

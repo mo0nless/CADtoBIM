@@ -2,14 +2,14 @@
 
 #include "../stdafx.h"
 #include "../common/utils/headers/StringUtils.hpp"
-#include "../common/utils/headers/SmartFeatureTypeEnumUtils.h"
+#include "../common/enums/headers/SmartFeatureTypeEnum.h"
 
 #include "../modeler/properties/headers/DictionaryProperties.h"
 
 #include "../mapper/properties/headers/ReaderPropertiesMapper.h"
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
-#include "../common/utils/headers/PrimitiveTypeEnumUtils.h"
+#include "../common/enums/headers/PrimitiveTypeEnum.h"
 #include "../common/enums/headers/CurvesTypeEnum.h"
 
 /// @addtogroup ElementProperties

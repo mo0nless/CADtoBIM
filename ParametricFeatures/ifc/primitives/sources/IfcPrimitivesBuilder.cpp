@@ -10,13 +10,13 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(GraphicPro
 	if (graphicProperties.tryGetPrimitiveGraphicProperties(primitiveGraphicProperties)) 
 	{
 
-		PrimitiveTypeEnum primitiveType = primitiveGraphicProperties->getPrimitiveTypeEnum();
-		if (primitiveType == PrimitiveTypeEnum::SPHERE || primitiveType == PrimitiveTypeEnum::BOX ||
-			primitiveType == PrimitiveTypeEnum::CONE || primitiveType == PrimitiveTypeEnum::CYLINDER)
+		PrimitiveTypeEnum::PrimitiveTypeEnum primitiveType = primitiveGraphicProperties->getPrimitiveTypeEnum();
+		if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE || primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX ||
+			primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE || primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER)
 		{
 			ifcRepresentationItem = buildBasicPrimitive(graphicProperties, file);
 		}
-		else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE)
+		else if (primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE)
 		{
 			ifcRepresentationItem = buildComplexPrimitive(graphicProperties, file);
 		}
@@ -33,9 +33,9 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(GraphicP
 	if (graphicProperties.tryGetPrimitiveGraphicProperties(primitiveGraphicProperties))
 	{
 
-		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties->getPrimitiveTypeEnum();
+		PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties->getPrimitiveTypeEnum();
 
-		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
+		if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE) {
 
 			SphereGraphicProperties sphereGraphicProperties;
 			if (primitiveGraphicProperties->tryGetSphereGraphicProperties(sphereGraphicProperties)) {
@@ -48,7 +48,7 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(GraphicP
 				// TODO log sphere properties not found
 			}
 		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX)
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX)
 		{
 			SlabGraphicProperties slabGraphicProperties;
 			if (primitiveGraphicProperties->tryGetSlabProperties(slabGraphicProperties)) {
@@ -62,7 +62,7 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(GraphicP
 			}
 
 		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER)
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER)
 		{
 			CylinderGraphicProperties cylinderGraphicProperties;
 			if (primitiveGraphicProperties->tryGetCylinderGraphicProperties(cylinderGraphicProperties)) {
@@ -75,7 +75,7 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(GraphicP
 				// TODO log cylinder properties not found
 			}
 		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::CONE)
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE)
 		{
 			ConeGraphicProperties coneGraphicProperties;
 			if (primitiveGraphicProperties->tryGetConeGraphicProperties(coneGraphicProperties)) {
@@ -115,9 +115,9 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(Graphi
 	if (graphicProperties.tryGetPrimitiveGraphicProperties(primitiveGraphicProperties))
 	{
 
-		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties->getPrimitiveTypeEnum();
+		PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties->getPrimitiveTypeEnum();
 
-		if (primitiveTypeEnum == PrimitiveTypeEnum::TORUS)
+		if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS)
 		{
 
 			TorusGraphicProperties torusGraphicProperties;
@@ -140,7 +140,7 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(Graphi
 				// TODO log sphere properties not found
 			}
 		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::TRUNCATED_CONE)
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::PrimitiveTypeEnum::TRUNCATED_CONE)
 		{
 			ConeGraphicProperties coneGraphicProperties;
 			if (primitiveGraphicProperties->tryGetConeGraphicProperties(coneGraphicProperties))

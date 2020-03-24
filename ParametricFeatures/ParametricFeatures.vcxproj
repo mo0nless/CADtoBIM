@@ -17,13 +17,13 @@
   <ItemGroup>
     <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
+    <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
-    <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
@@ -37,6 +37,7 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
+    <ClCompile Include="modeler\properties\curves\reader\sources\CurveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
@@ -54,8 +55,8 @@
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
-    <ClCompile Include="utilities\sources\GraphicsProcessorUtilities.cpp" />
-    <ClCompile Include="utilities\sources\InitializationUtilities.cpp" />
+    <ClCompile Include="utilities\sources\GraphicsProcessorEnhancer.cpp" />
+    <ClCompile Include="utilities\sources\InitializationEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -109,8 +110,8 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="utilities\headers\GraphicsProcessorUtilities.h" />
-    <ClInclude Include="utilities\headers\InitializationUtilities.h" />
+    <ClInclude Include="utilities\headers\GraphicsProcessorEnhancer.h" />
+    <ClInclude Include="utilities\headers\InitializationEnhancer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

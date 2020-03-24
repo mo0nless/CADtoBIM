@@ -3,10 +3,10 @@
 ReaderProperties::ReaderProperties()
 {
 	this->mNodeId = -1;
-	this->mSmartFeatureGeneralProperties = new SmartFeatureGeneralProperties();
+	this->pSmartFeatureGeneralProperties = new SmartFeatureGeneralProperties();
 
-	this->mBooleanOperationProperties = nullptr;
-	this->mCreateSolidsOperationProperties = nullptr;
+	this->pBooleanOperationProperties = nullptr;
+	this->pCreateSolidsOperationProperties = nullptr;
 }
 
 int ReaderProperties::getNodeId()
@@ -21,43 +21,58 @@ void ReaderProperties::setNodeId(int newNodeId)
 
 SmartFeatureGeneralProperties * ReaderProperties::getSmartFeatureGeneralProperties()
 {
-	return this->mSmartFeatureGeneralProperties;
+	return this->pSmartFeatureGeneralProperties;
 }
 
 void ReaderProperties::setSmartFeatureGeneralProperties(SmartFeatureGeneralProperties * newSmartFeatureGeneralProperties)
 {
-	this->mSmartFeatureGeneralProperties = newSmartFeatureGeneralProperties;
+	this->pSmartFeatureGeneralProperties = newSmartFeatureGeneralProperties;
 }
 
 
 bool ReaderProperties::tryGetCreateSolidsOperationProperties(CreateSolidsOperationProperties & createSolidsOperationPropertiesR)
 {
-	if (this->mCreateSolidsOperationProperties == nullptr)
+	if (this->pCreateSolidsOperationProperties == nullptr)
 	{
 		return false;
 	}
-	createSolidsOperationPropertiesR = *this->mCreateSolidsOperationProperties;
+	createSolidsOperationPropertiesR = *this->pCreateSolidsOperationProperties;
 	return true;
 }
 
 void ReaderProperties::setCreateSolidsOperationProperties(CreateSolidsOperationProperties * newCreateSolidsOperationProperties)
 {
-	this->mCreateSolidsOperationProperties = newCreateSolidsOperationProperties;
+	this->pCreateSolidsOperationProperties = newCreateSolidsOperationProperties;
 }
 
 bool ReaderProperties::tryGetBooleanOperationProperties(BooleanOperationProperties & booleanOperationPropertiesR)
 {
-	if (this->mBooleanOperationProperties == nullptr)
+	if (this->pBooleanOperationProperties == nullptr)
 	{
 		return false;
 	}
-	booleanOperationPropertiesR = *this->mBooleanOperationProperties;
+	booleanOperationPropertiesR = *this->pBooleanOperationProperties;
 	return true;
 }
 
 void ReaderProperties::setBooleanOperationProperties(BooleanOperationProperties * newBooleanOperationProperties)
 {
-	this->mBooleanOperationProperties = newBooleanOperationProperties;
+	this->pBooleanOperationProperties = newBooleanOperationProperties;
+}
+
+bool ReaderProperties::tryGetCurveReaderProperties(CurveReaderProperties & curveReaderPropertiesR)
+{
+	if (this->pCurveReaderProperties == nullptr)
+	{
+		return false;
+	}
+	curveReaderPropertiesR = *this->pCurveReaderProperties;
+	return true;
+}
+
+void ReaderProperties::setCurveReaderProperties(CurveReaderProperties * newCurveReaderProperties)
+{
+	this->pCurveReaderProperties = newCurveReaderProperties;
 }
 
 

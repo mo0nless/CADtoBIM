@@ -15,4 +15,5 @@ namespace ReaderPropertiesEnum {
 		NONE
 	};
 
+	ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
 }

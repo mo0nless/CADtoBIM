@@ -4,17 +4,18 @@
 #include "../../modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h"
 #include "../../modeler/properties/curves/graphic/headers/CurveGraphicProperties.h"
 
-class GraphicsProcessorUtilities
+class GraphicsProcessorEnhancer
 {
 public:
-	GraphicsProcessorUtilities();
+	GraphicsProcessorEnhancer();
 
 	void setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail);
 	void setConeGraphicProperties(DgnConeDetail dgnConeDetail);
 	void setSphereGraphicProperties();
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
 
-	void CurveParser(CurveVectorCP curvesVector);
+	void processCurvePrimitives(CurveVectorCP curvesVector); 
+	void processCurvePrimitives(ICurvePrimitivePtr curve, CurveGraphicProperties* curveGraphicProperties);
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
@@ -23,6 +24,6 @@ public:
 		
 private:
 	std::string filePath;
-	DictionaryProperties mDictionaryProperties;
+	DictionaryProperties* pDictionaryProperties;
 
 };

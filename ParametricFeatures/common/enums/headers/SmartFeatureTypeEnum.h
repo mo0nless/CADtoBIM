@@ -1,5 +1,10 @@
 #pragma once
 
+#include <string>
+#include <map>
+#include <vector>
+
+namespace SmartFeatureTypeEnum {
 
 enum class SmartFeatureTypeEnum {
 	BOOLEAN_FEATURE,
@@ -7,3 +12,5 @@ enum class SmartFeatureTypeEnum {
 	UNDEFINED
 };
 
+	SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
+}

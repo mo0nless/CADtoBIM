@@ -10,7 +10,7 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 #include <string>
 
-#include "../../../common/utils/headers/ReaderPropertiesEnumUtils.h"
+#include "../../../common/enums/headers/ReaderPropertiesEnum.h"
 #include "../../../modeler/properties/headers/ReaderProperties.h"
 
 

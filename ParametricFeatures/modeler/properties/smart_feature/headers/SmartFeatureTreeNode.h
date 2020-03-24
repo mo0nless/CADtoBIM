@@ -9,12 +9,12 @@
 class SmartFeatureTreeNode {
 
 private:
-	GeneralProperties* mGeneralProperties;
-	ReaderProperties* mReaderProperties;
-	GraphicProperties* mGraphicProperties;
+	GeneralProperties* pGeneralProperties;
+	ReaderProperties* pReaderProperties;
+	GraphicProperties* pGraphicProperties;
 
-	SmartFeatureTreeNode* mRightNode;
-	SmartFeatureTreeNode* mLeftNode;
+	SmartFeatureTreeNode* pRightNode;
+	SmartFeatureTreeNode* pLeftNode;
 
 public:
 	SmartFeatureTreeNode();

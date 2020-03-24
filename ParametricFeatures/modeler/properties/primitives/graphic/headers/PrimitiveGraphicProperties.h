@@ -12,19 +12,19 @@
 class PrimitiveGraphicProperties {
 
 private:
-	PrimitiveTypeEnum mPrimitiveTypeEnum;
+	PrimitiveTypeEnum::PrimitiveTypeEnum mPrimitiveTypeEnum;
 
-	SlabGraphicProperties* mSlabProperties;
-	ConeGraphicProperties* mConeProperties;
-	SphereGraphicProperties* mSphereProperties;
-	CylinderGraphicProperties* mCylinderProperties;
-	TorusGraphicProperties* mTorusProperties;
+	SlabGraphicProperties* pSlabProperties;
+	ConeGraphicProperties* pConeProperties;
+	SphereGraphicProperties* pSphereProperties;
+	CylinderGraphicProperties* pCylinderProperties;
+	TorusGraphicProperties* pTorusProperties;
 
 public:
 	PrimitiveGraphicProperties();
 
-	PrimitiveTypeEnum getPrimitiveTypeEnum();
-	void setPrimitiveTypeEnum(PrimitiveTypeEnum newPrimitiveTypeEnum);
+	PrimitiveTypeEnum::PrimitiveTypeEnum getPrimitiveTypeEnum();
+	void setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum);
 
 	bool tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR);
 	void setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties);

@@ -4,7 +4,7 @@ SmartFeatureGeneralProperties::SmartFeatureGeneralProperties()
 {
 	this->mLocalNodeId = -1;
 	this->mLocalParentNodeId = -1;
-	this->smartFeatureTypeEnum = SmartFeatureTypeEnum::UNDEFINED;
+	this->smartFeatureTypeEnum = SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED;
 }
 
 long SmartFeatureGeneralProperties::getLocalNodeId()
@@ -27,12 +27,12 @@ void SmartFeatureGeneralProperties::setLocalParentNodeId(long newLocalParentNode
 	this->mLocalParentNodeId = newLocalParentNodeId;
 }
 
-SmartFeatureTypeEnum SmartFeatureGeneralProperties::getSmartFeatureTypeEnum()
+SmartFeatureTypeEnum::SmartFeatureTypeEnum SmartFeatureGeneralProperties::getSmartFeatureTypeEnum()
 {
 	return this->smartFeatureTypeEnum;
 }
 
-void SmartFeatureGeneralProperties::setSmartFeatureTypeEnum(SmartFeatureTypeEnum newSmartFeatureTypeEnum)
+void SmartFeatureGeneralProperties::setSmartFeatureTypeEnum(SmartFeatureTypeEnum::SmartFeatureTypeEnum newSmartFeatureTypeEnum)
 {
 	this->smartFeatureTypeEnum = newSmartFeatureTypeEnum;;
 }
