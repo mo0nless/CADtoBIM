@@ -1,4 +1,4 @@
-===================================================
+
 ===================================================
 ===================================================
 Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
@@ -8,7 +8,7 @@ Element ID: 4940
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = NormalCellElement, current element id = 4940, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 4940, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -91,7 +91,7 @@ Annotation Purpose[boolean] = False
 Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- className = PIPE, current element id = 4940, id = 1 ---------
+--------- ClassName = PIPE, current element id = 4940, id = 1 ---------
 is NOT smart feature
 Design State[string] = 
 Guid[string] = 863e7684-b22f-4379-bf2b-07fe99096e25
@@ -243,6 +243,62 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+--------  --------
+
+Start Point [X]: 1.28948e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 6.17538e+06
+
+End Point [X]: 1.28948e+07
+End Point [Y]: 1.2e+07
+End Point [Z]: 6.96398e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 0
+
+Tangent [X]: 0
+Tangent [Y]: 0
+Tangent [Z]: 0
+
+Curve Line String Length: 788603
+
+==============================================
+ClosestApproachBounded: 
+
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6175375.000000
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+==============================================
+ClosestApproachUnbounded: 
+
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6175375.000000
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+Components --------1
+
+point 0 [X] = 12894800.000000
+point 0 [Y] = 12000000.000000
+point 0 [Z] = 6175375.000000
+
+
+point 1 [X] = 12894800.000000
+point 1 [Y] = 12000000.000000
+point 1 [Z] = 6963977.922519
+
 --------  --------
 Range [XLength] = 374650.000000
 Range [YLength] = 374650.000000
@@ -299,10 +355,82 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+--------  --------
+
+Start Point [X]: 1.28948e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 6.17538e+06
+
+End Point [X]: 1.28948e+07
+End Point [Y]: 1.2e+07
+End Point [Z]: 6.96398e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 0
+
+Tangent [X]: 0
+Tangent [Y]: 0
+Tangent [Z]: 0
+
+Curve Line String Length: 788603
+
+==============================================
+ClosestApproachBounded: 
+
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6175375.000000
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+==============================================
+ClosestApproachUnbounded: 
+
+
+Centroid [X] = 12894800.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 6175375.000000
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+Components --------1
+
+point 0 [X] = 12894800.000000
+point 0 [Y] = 12000000.000000
+point 0 [Z] = 6175375.000000
+
+
+point 1 [X] = 12894800.000000
+point 1 [Y] = 12000000.000000
+point 1 [Z] = 6963977.922519
+
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.17538e+06
+
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
 
 ===================================================
 ===================================================
@@ -320,7 +448,7 @@ Element ID: 4994
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = NormalCellElement, current element id = 4994, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 4994, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -403,7 +531,7 @@ Annotation Purpose[boolean] = False
 Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- className = PIPE, current element id = 4994, id = 1 ---------
+--------- ClassName = PIPE, current element id = 4994, id = 1 ---------
 is NOT smart feature
 Design State[string] = 
 Guid[string] = a8c6d11b-756e-4a53-bbab-375b3eb9d88c
@@ -555,6 +683,62 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+--------  --------
+
+Start Point [X]: 1.24376e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 7.42118e+06
+
+End Point [X]: 6.7812e+06
+End Point [Y]: 1.2e+07
+End Point [Z]: 7.42118e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 0
+
+Tangent [X]: 0
+Tangent [Y]: 0
+Tangent [Z]: 0
+
+Curve Line String Length: 5.6564e+06
+
+==============================================
+ClosestApproachBounded: 
+
+
+Centroid [X] = 12437600.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+==============================================
+ClosestApproachUnbounded: 
+
+
+Centroid [X] = 12437600.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+Components --------1
+
+point 0 [X] = 12437600.000000
+point 0 [Y] = 12000000.000000
+point 0 [Z] = 7421177.922519
+
+
+point 1 [X] = 6781200.000000
+point 1 [Y] = 12000000.000000
+point 1 [Z] = 7421177.922519
+
 --------  --------
 Range [XLength] = 5656400.000000
 Range [YLength] = 374650.000000
@@ -611,10 +795,82 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+--------  --------
+
+Start Point [X]: 1.24376e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 7.42118e+06
+
+End Point [X]: 6.7812e+06
+End Point [Y]: 1.2e+07
+End Point [Z]: 7.42118e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 0
+
+Tangent [X]: 0
+Tangent [Y]: 0
+Tangent [Z]: 0
+
+Curve Line String Length: 5.6564e+06
+
+==============================================
+ClosestApproachBounded: 
+
+
+Centroid [X] = 12437600.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+==============================================
+ClosestApproachUnbounded: 
+
+
+Centroid [X] = 12437600.000000
+Centroid [Y] = 12000000.000000
+Centroid [Z] = 7421177.922519
+
+Wire centroid Line Length: 0.000000
+
+==============================================
+Components --------1
+
+point 0 [X] = 12437600.000000
+point 0 [Y] = 12000000.000000
+point 0 [Z] = 7421177.922519
+
+
+point 1 [X] = 6781200.000000
+point 1 [Y] = 12000000.000000
+point 1 [Z] = 7421177.922519
+
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 6.7812e+06
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
 
 ===================================================
 ===================================================
@@ -632,7 +888,7 @@ Element ID: 5005
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = NormalCellElement, current element id = 5005, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 5005, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -715,7 +971,7 @@ Annotation Purpose[boolean] = False
 Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- className = LONG_RADIUS_90_DEGREE_PIPE_ELBOW, current element id = 5005, id = 1 ---------
+--------- ClassName = LONG_RADIUS_90_DEGREE_PIPE_ELBOW, current element id = 5005, id = 1 ---------
 is NOT smart feature
 Design State[string] = 
 Guid[string] = d6302bb1-971f-45b4-af03-5b402791e3cd
@@ -886,6 +1142,25 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_Open --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+--------  --------
+
+Center point [X] = 1.24376e+07
+Center point [Y] = 1.2e+07
+Center point [Z] = 6.96398e+06
+
+directionX [X] = 1
+directionX [Y] = 0
+directionX [Z] = 1.14424e-17
+
+directionY [X] = -1.14424e-17
+directionY [Y] = 0
+directionY [Z] = 1
+
+Start Angle = 0
+Sweep Angle = 1.5708
+
 --------  --------
 Range [XLength] = 743073.849499
 Range [YLength] = 473198.849499
@@ -958,8 +1233,24 @@ In SolidKernel Entity is: Sheet 1
 
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
 
 ===================================================
 ===================================================
@@ -977,7 +1268,7 @@ Element ID: 5029
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = NormalCellElement, current element id = 5029, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 5029, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -1060,7 +1351,7 @@ Annotation Purpose[boolean] = False
 Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- className = WELD, current element id = 5029, id = 1 ---------
+--------- ClassName = WELD, current element id = 5029, id = 1 ---------
 is NOT smart feature
 Design State[string] = 
 Guid[string] = 4b5d9259-3ca0-47d7-85b1-03c08312c644
@@ -1182,6 +1473,14 @@ In SolidKernel Entity is: Solid 0
 
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
 
 ===================================================
 ===================================================
@@ -1199,7 +1498,7 @@ Element ID: 5039
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- className = NormalCellElement, current element id = 5039, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 5039, id = 0 ---------
 is NOT smart feature
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -1282,7 +1581,7 @@ Annotation Purpose[boolean] = False
 Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- className = WELD, current element id = 5039, id = 1 ---------
+--------- ClassName = WELD, current element id = 5039, id = 1 ---------
 is NOT smart feature
 Design State[string] = 
 Guid[string] = 5b832a57-c80d-4b34-94c6-7549aa211589
@@ -1404,6 +1703,14 @@ In SolidKernel Entity is: Solid 0
 
 
 -------- BOUNDARY_TYPE_None --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
 
 ===================================================
 ===================================================
