@@ -40,6 +40,8 @@
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
+    <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
+    <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -93,5 +95,7 @@
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
+    <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
+    <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
   </ItemGroup>
 </Project>

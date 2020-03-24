@@ -23,7 +23,7 @@ public:
 	int getNodeId();
 	void setNodeId(int newNodeId);
 
-	//HARD CODED FOR CURVES
+	// TODO [SB] HARD CODED FOR CURVES
 	int curveDegree;
 
 	SmartFeatureGeneralProperties* getSmartFeatureGeneralProperties();

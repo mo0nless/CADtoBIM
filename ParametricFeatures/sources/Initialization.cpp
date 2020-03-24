@@ -154,10 +154,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	IfcBuilder* ifcBuilder = new IfcBuilder();
 	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
 
-	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
-	
-	//buildIfc(newPropsDictVec);
-
 	//outfile.close();
 
 	return SUCCESS;

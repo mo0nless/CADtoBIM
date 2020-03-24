@@ -35,6 +35,8 @@
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ThickenReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
+    <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
@@ -92,6 +94,8 @@
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
+    <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
+    <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\reader\headers\PrimitiveReaderProperties.h" />
