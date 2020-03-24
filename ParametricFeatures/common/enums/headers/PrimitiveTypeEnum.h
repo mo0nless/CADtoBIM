@@ -1,9 +1,5 @@
 #pragma once
 
-#include <map>
-#include <string>
-
-namespace PrimitiveTypeEnum {
 
 	enum class PrimitiveTypeEnum {
 
@@ -18,5 +14,4 @@ namespace PrimitiveTypeEnum {
 
 	};
 
-	PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
-}
+

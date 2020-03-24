@@ -4,7 +4,7 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentati
 {
 	
 	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
-	//if (smartFeatureTreeNode.getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() != SmartFeatureTypeEnum::SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
+	//if (smartFeatureTreeNode.getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() != SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
 	//	return nullptr;
 	//}
 	BooleanOperationProperties booleanOperationProperties;
