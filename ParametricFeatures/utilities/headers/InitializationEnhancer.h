@@ -2,7 +2,6 @@
 
 #include "../../headers/GraphicsProcessor.h"
 #include "../../common/utils/headers/StringUtils.hpp"
-//#include "GraphicsProcessorUtilities.h"
 
 class InitializationEnhancer
 {

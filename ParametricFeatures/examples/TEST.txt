@@ -400,9 +400,9 @@ Starting Point [X]: 0
 Starting Point [Y]: 0
 Starting Point [Z]: 0
 
-Tangent [X]: 7.46967e-310
-Tangent [Y]: 6.95318e-310
-Tangent [Z]: 3.82078e-312
+Tangent [X]: 3.0252e-310
+Tangent [Y]: 6.95195e-310
+Tangent [Z]: 4.60929e-312
 
 Curve Line String Length: 5.03042e+06
 
@@ -520,9 +520,9 @@ Starting Point [X]: 0
 Starting Point [Y]: 0
 Starting Point [Z]: 0
 
-Tangent [X]: 7.46967e-310
-Tangent [Y]: 6.95318e-310
-Tangent [Z]: 3.82078e-312
+Tangent [X]: 3.0252e-310
+Tangent [Y]: 6.95195e-310
+Tangent [Z]: 4.60929e-312
 
 Curve Line String Length: 5.03042e+06
 

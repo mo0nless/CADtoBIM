@@ -2,20 +2,23 @@
 
 namespace ResultStatusEnum 
 {
-	std::string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) {
+	const std::map<ResultStatusEnum, std::string> mappedValues =
+	{
+		{ ResultStatusEnum::SUCCESS,"Success" },
+		{ ResultStatusEnum::NO_RESULT,"NoResult" },
+		{ ResultStatusEnum::ERROR,"Error" },
 
-		std::map<ResultStatusEnum, std::string> mappedValues =
-		{
-			{ ResultStatusEnum::SUCCESS,"Success" },
-			{ ResultStatusEnum::NO_RESULT,"NoResult" },
-			{ ResultStatusEnum::ERROR,"Error" },
+	};
 
-		};
-
-		if (mappedValues.find(resultStatusEnum) == mappedValues.end()) {
-			return std::string();
+	std::string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) 
+	{
+		for (auto const& element : mappedValues) {
+			if (element.first == resultStatusEnum) {
+				return element.second;
+			}
 		}
-		return mappedValues[resultStatusEnum];
+
+		return std::string();
 	}
 
 }

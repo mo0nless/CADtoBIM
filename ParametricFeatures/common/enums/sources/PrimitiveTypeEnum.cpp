@@ -2,18 +2,18 @@
 
 namespace PrimitiveTypeEnum
 {
+	const std::map<PrimitiveTypeEnum, std::string> mappedValues = {
+		{ PrimitiveTypeEnum::BOX, "Slab" },
+		{ PrimitiveTypeEnum::CONE, "Cone" },
+		{ PrimitiveTypeEnum::CYLINDER, "Cylinder" },
+		{ PrimitiveTypeEnum::SPHERE, "Sphere" },
+		{ PrimitiveTypeEnum::TORUS, "Torus" },
+		{ PrimitiveTypeEnum::TRUNCATED_CONE, "Truncated Cone" },
+		{ PrimitiveTypeEnum::NONE,"" },
+	};
+
 	PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription)
 	{
-		std::map<PrimitiveTypeEnum, std::string> mappedValues = {
-			{ PrimitiveTypeEnum::BOX, "Slab" },
-			{ PrimitiveTypeEnum::CONE, "Cone" },
-			{ PrimitiveTypeEnum::CYLINDER, "Cylinder" },
-			{ PrimitiveTypeEnum::SPHERE, "Sphere" },
-			{ PrimitiveTypeEnum::TORUS, "Torus" },
-			{ PrimitiveTypeEnum::TRUNCATED_CONE, "Truncated Cone" },
-			{ PrimitiveTypeEnum::NONE,"" },
-		};
-
 		for (auto const& element : mappedValues) {
 			if (element.second == primitiveElementDescription) {
 				return element.first;

@@ -2,20 +2,20 @@
 
 PrimitiveGraphicProperties::PrimitiveGraphicProperties()
 {
-	this->mPrimitiveTypeEnum = PrimitiveTypeEnum::NONE;
-	this->mSlabProperties = nullptr;
-	this->mConeProperties = nullptr;
-	this->mCylinderProperties = nullptr;
-	this->mSphereProperties = nullptr;
-	this->mTorusProperties = nullptr;
+	this->mPrimitiveTypeEnum = PrimitiveTypeEnum::PrimitiveTypeEnum::NONE;
+	this->pSlabProperties = nullptr;
+	this->pConeProperties = nullptr;
+	this->pCylinderProperties = nullptr;
+	this->pSphereProperties = nullptr;
+	this->pTorusProperties = nullptr;
 }
 
-PrimitiveTypeEnum PrimitiveGraphicProperties::getPrimitiveTypeEnum()
+PrimitiveTypeEnum::PrimitiveTypeEnum PrimitiveGraphicProperties::getPrimitiveTypeEnum()
 {
 	return this->mPrimitiveTypeEnum;
 }
 
-void PrimitiveGraphicProperties::setPrimitiveTypeEnum(PrimitiveTypeEnum newPrimitiveTypeEnum)
+void PrimitiveGraphicProperties::setPrimitiveTypeEnum(PrimitiveTypeEnum::PrimitiveTypeEnum newPrimitiveTypeEnum)
 {
 	this->mPrimitiveTypeEnum = newPrimitiveTypeEnum;
 }

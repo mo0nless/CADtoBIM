@@ -89,7 +89,7 @@ appObjects = \
 	$(o)ReaderProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
-	$(o)PrimitiveTypeEnumUtils$(oext) \
+	$(o)PrimitiveTypeEnum$(oext) \
 	$(o)SlabGraphicProperties$(oext) \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
@@ -104,6 +104,9 @@ appObjects = \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureGeneralProperties$(oext) \
 	$(o)SmartFeatureTypeEnum$(oext) \
+	$(o)CurvesTypeEnum$(oext) \
+	$(o)ReaderPropertiesEnum$(oext) \
+	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -226,6 +229,7 @@ $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/
 $(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
 
 $(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
+
 $(o)SmartFeatureTypeEnum$(oext) : $(baseDir)common/enums/sources/SmartFeatureTypeEnum.cpp $(baseDir)common/enums/headers/SmartFeatureTypeEnum.h
 
 $(o)CurvesTypeEnum$(oext) : $(baseDir)common/enums/sources/CurvesTypeEnum.cpp $(baseDir)common/enums/headers/CurvesTypeEnum.h

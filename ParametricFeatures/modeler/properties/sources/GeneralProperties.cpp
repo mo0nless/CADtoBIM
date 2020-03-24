@@ -4,6 +4,7 @@
 GeneralProperties::GeneralProperties()
 {
 	this->mElementClassName = std::string();
+	this->mElementDescriptorName = std::string();
 	this->mElementId = -1;
 	this->mCurrentElementId = -1;
 	this->mIsSmartFeature = false;
