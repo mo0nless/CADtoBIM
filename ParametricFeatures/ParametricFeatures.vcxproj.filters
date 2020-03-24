@@ -18,7 +18,6 @@
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
-    <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="modeler\properties\boolean_operations\sources\BooleanOperationProperties.cpp" />
@@ -38,14 +37,10 @@
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ThickenReaderProperties.cpp" />
+    <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
-    <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
-    <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
-    <ClCompile Include="utilities\sources\GraphicsProcessorUtilities.cpp" />
-    <ClCompile Include="utilities\sources\InitializationUtilities.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -95,13 +90,9 @@
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\RevolveReaderProperties.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\ThickenReaderProperties.h" />
-    <ClInclude Include="common\enums\headers\ShapeProfileEnum.h" />
-    <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
-    <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
-    <ClInclude Include="utilities\headers\GraphicsProcessorUtilities.h" />
-    <ClInclude Include="utilities\headers\InitializationUtilities.h" />
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
   </ItemGroup>
 </Project>
