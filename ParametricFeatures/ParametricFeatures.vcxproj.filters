@@ -35,7 +35,6 @@
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
-    <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
     <ClCompile Include="utilities\sources\GraphicsProcessorUtilities.cpp" />
     <ClCompile Include="utilities\sources\InitializationUtilities.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
@@ -93,5 +92,6 @@
     <ClInclude Include="utilities\headers\InitializationUtilities.h" />
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
   </ItemGroup>
 </Project>

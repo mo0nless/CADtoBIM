@@ -17,7 +17,6 @@
   <ItemGroup>
     <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
-    <ClCompile Include="common\enums\sources\CreateSolidFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
@@ -74,6 +73,7 @@
     <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
     <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
