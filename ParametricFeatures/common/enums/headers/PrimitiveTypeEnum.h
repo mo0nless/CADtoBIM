@@ -17,6 +17,4 @@ namespace PrimitiveTypeEnum {
 		NONE
 
 	};
-
-	PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
 }

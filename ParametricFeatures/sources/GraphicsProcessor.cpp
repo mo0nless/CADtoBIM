@@ -538,7 +538,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	
 	// set primitive graphic dictionary
 	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::getPrimitiveTypeEnumByElementDescription(
+	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(
 		dictionaryProperties->getGeneralProperties()->getElementDescriptorName()
 	));
 	dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);

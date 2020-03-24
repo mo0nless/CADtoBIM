@@ -7,8 +7,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 
 	WString elDescr;
 
@@ -83,7 +83,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			if (SmartFeatureElement::IsSmartFeature(currentElem)) 
 			{
 
-				SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnum::getSmartFeatureTypeEnumByClassName(className);
+				SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
 				
 				outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;

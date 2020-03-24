@@ -5,6 +5,7 @@
 
 #include "../../enums/headers/PrimitiveTypeEnum.h"
 
+
 /**
 *  Class used to contain the immutable map between ReaderPropertiesEnum and the string value from the modeler
 */
@@ -16,7 +17,7 @@ public:
 	*  @param stringValue[in]
 	*  @return PrimitiveTypeEnum
 	*/
-	static PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
+	static PrimitiveTypeEnum::PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
 
 private:
 	/**
@@ -27,6 +28,6 @@ private:
 	/**
 	* map contains relevant and needed primitives, enum as keys and values as the string(label) value from modeler
 	*/
-	static std::map<PrimitiveTypeEnum, std::string> mappedValues;
+	static std::map<PrimitiveTypeEnum::PrimitiveTypeEnum, std::string> mappedValues;
 
 };

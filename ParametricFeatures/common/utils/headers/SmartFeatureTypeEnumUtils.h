@@ -8,10 +8,10 @@
 class SmartFeatureTypeEnumUtils {
 public:
 
-	static SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
+	static SmartFeatureTypeEnum::SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
 
 private:
 
 	SmartFeatureTypeEnumUtils() {};
-	static std::map<SmartFeatureTypeEnum, std::vector<std::string>> mappedValues;
+	static std::map<SmartFeatureTypeEnum::SmartFeatureTypeEnum, std::vector<std::string>> mappedValues;
 };
