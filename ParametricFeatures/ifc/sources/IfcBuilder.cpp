@@ -86,7 +86,6 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 					items->push(representationItem);
 				}
 
-
 			}
 		}
 
