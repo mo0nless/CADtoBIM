@@ -5,6 +5,7 @@
 
 #include "../../enums/headers/PrimitiveTypeEnum.h"
 
+
 /**
 *  Class used to contain the immutable map between ReaderPropertiesEnum and the string value from the modeler
 */

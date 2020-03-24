@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+#include <string>
 
 	enum class PrimitiveTypeEnum {
 
@@ -13,5 +15,4 @@
 		NONE
 
 	};
-
 

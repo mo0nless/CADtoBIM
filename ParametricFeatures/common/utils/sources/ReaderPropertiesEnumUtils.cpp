@@ -2,15 +2,15 @@
 
 
 
-std::map<ReaderPropertiesEnum::ReaderPropertiesEnum, std::string> ReaderPropertiesEnumUtils::mappedValues =
+std::map<ReaderPropertiesEnum, std::string> ReaderPropertiesEnumUtils::mappedValues =
 {
-	{ ReaderPropertiesEnum::ReaderPropertiesEnum::NODE_ID, "NodeId" },
-	{ ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION,"BooleanFunction" },
-	{ ReaderPropertiesEnum::ReaderPropertiesEnum::ROTATION,"Rotation" },
-	{ ReaderPropertiesEnum::ReaderPropertiesEnum::NONE,"" },
+	{ ReaderPropertiesEnum::NODE_ID, "NodeId" },
+	{ ReaderPropertiesEnum::BOOLEAN_FUNCTION,"BooleanFunction" },
+	{ ReaderPropertiesEnum::ROTATION,"Rotation" },
+	{ ReaderPropertiesEnum::NONE,"" },
 };
 
-ReaderPropertiesEnum::ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(std::string stringValue)
+ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(std::string stringValue)
 {
 	for (auto const& element : mappedValues) 
 	{
@@ -20,5 +20,5 @@ ReaderPropertiesEnum::ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElement
 		}
 	}
 	// TODO add warning log value not found
-	return ReaderPropertiesEnum::ReaderPropertiesEnum::NONE;
+	return ReaderPropertiesEnum::NONE;
 }

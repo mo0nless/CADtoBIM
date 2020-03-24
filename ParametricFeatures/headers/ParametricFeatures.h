@@ -11,7 +11,7 @@
 * REMEMBER THAT THE INCLUDES ORDER MATTER
 */
 
-#include "../utilities/headers/InitializationEnhancer.h"
+#include "../enhancer/headers/InitializationEnhancer.h"
 #include "../ifc/headers/IfcBuilder.h"
 
 

@@ -55,8 +55,8 @@
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
-    <ClCompile Include="utilities\sources\GraphicsProcessorEnhancer.cpp" />
-    <ClCompile Include="utilities\sources\InitializationEnhancer.cpp" />
+    <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
+    <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -110,8 +110,8 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="utilities\headers\GraphicsProcessorEnhancer.h" />
-    <ClInclude Include="utilities\headers\InitializationEnhancer.h" />
+    <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
+    <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../utilities/headers/GraphicsProcessorEnhancer.h"
+#include "../enhancer/headers/GraphicsProcessorEnhancer.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup

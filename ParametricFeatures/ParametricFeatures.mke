@@ -206,11 +206,11 @@ $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/grap
 
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
-$(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)utilities/sources/GraphicsProcessorEnhancer.cpp $(baseDir)utilities/headers/GraphicsProcessorEnhancer.h 
+$(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
 
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
 
-$(o)InitializationEnhancer$(oext) : $(baseDir)utilities/sources/InitializationEnhancer.cpp $(baseDir)utilities/headers/InitializationEnhancer.h
+$(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnhancer.cpp $(baseDir)enhancer/headers/InitializationEnhancer.h
 
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
