@@ -8,7 +8,7 @@ private:
 	long mLocalNodeId;
 	long mLocalParentNodeId;
 
-	SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum;
+	SmartFeatureTypeEnum smartFeatureTypeEnum;
 
 
 public:
@@ -20,6 +20,6 @@ public:
 	long getLocalParentNodeId();
 	void setLocalParentNodeId(long newLocalParentNodeId);
 
-	SmartFeatureTypeEnum::SmartFeatureTypeEnum getSmartFeatureTypeEnum();
-	void setSmartFeatureTypeEnum(SmartFeatureTypeEnum::SmartFeatureTypeEnum newSmartFeatureTypeEnum);
+	SmartFeatureTypeEnum getSmartFeatureTypeEnum();
+	void setSmartFeatureTypeEnum(SmartFeatureTypeEnum newSmartFeatureTypeEnum);
 };

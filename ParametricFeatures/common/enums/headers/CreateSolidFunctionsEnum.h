@@ -4,7 +4,6 @@
 #include <map>
 #include <string>
 
-namespace CreateSolidFunctionsEnum {
 
 	enum class CreateSolidFunctionsEnum
 	{
@@ -14,6 +13,3 @@ namespace CreateSolidFunctionsEnum {
 		REVOLVE,
 		UNDEFINED
 	};
-
-	CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(std::string className);
-}

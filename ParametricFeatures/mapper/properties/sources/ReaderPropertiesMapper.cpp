@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties & readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum)
 {
 	std::ofstream outfile;
 	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -49,12 +49,12 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	
 }
 
-void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum::SmartFeatureTypeEnum smartFeatureTypeEnum)
+void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum)
 {
 
 	switch (smartFeatureTypeEnum)
 	{
-	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::BOOLEAN_FEATURE:
+	case SmartFeatureTypeEnum::BOOLEAN_FEATURE:
 		//if (ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue) == ReaderPropertiesEnum::ReaderPropertiesEnum::BOOLEAN_FUNCTION)
 		//{
 		//	BooleanOperationProperties* booleanOperationProperties = new BooleanOperationProperties();
@@ -66,11 +66,11 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 		BooleanOperationReaderPropertiesMapper::mapBooleanOperationReaderPropertiesToReaderProperties(labelValue, eCValue, readerProperties);
 		break;
 
-	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::CREATE_SOLIDS:
+	case SmartFeatureTypeEnum::CREATE_SOLIDS:
 		readerProperties.setCreateSolidsOperationProperties(nullptr);
 		break;
 
-	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED:
+	case SmartFeatureTypeEnum::UNDEFINED:
 		//log as info or warning missing mapping
 		break;
 	default:

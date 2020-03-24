@@ -20,11 +20,9 @@ public:
 	SmartFeatureTreeNode();
 
 	GeneralProperties* getGeneralProperties();
-
 	ReaderProperties* getReaderProperties();
 
 	GraphicProperties* getGraphicProperties();
-
 	void setGraphicProperties(GraphicProperties* newGraphicProperties);
 
 	void setLeftNode(SmartFeatureTreeNode* newLeftNode);

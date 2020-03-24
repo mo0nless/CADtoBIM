@@ -59,12 +59,12 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 		/*Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(dictionaryProperties, file);
 
 		Ifc4::IfcRepresentationItem* item = nullptr;
-		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::BOX||
-			dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::CONE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) 
+		if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::SPHERE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::BOX||
+			dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CONE || dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::CYLINDER) 
 		{
 			item = buildPrimitive(dictionaryProperties, place, file);
 		}
-		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) 
+		else if (dictionaryProperties.getGeneralProperties()->getPrimitiveTypeEnum() == PrimitiveTypeEnum::PrimitiveTypeEnum::TORUS) 
 		{
 			item = buildComplexPrimitive(dictionaryProperties, place, file);
 		}
@@ -93,8 +93,8 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 
 		// TODO [MP[ check this shit out
 		// set primitive graphic dictionary if it's a primitive
-		//PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum = PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP()));
-		//if (primitiveTypeEnum != PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::PrimitiveTypeEnum::NONE) {
+		//PrimitiveTypeEnum::PrimitiveTypeEnum primitiveTypeEnum = PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(StringUtils::getString(elDescr.GetWCharCP()));
+		//if (primitiveTypeEnum != PrimitiveTypeEnum::PrimitiveTypeEnum::NONE) {
 		//	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
 		//	primitiveGraphicProperties->setPrimitiveTypeEnum(primitiveTypeEnum);
 		//	propertiesDictionary->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
@@ -153,10 +153,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 	//IfcBuilder* ifcBuilder = new IfcBuilder();
 	//ifcBuilder->buildIfc(newPropsDictVec, smartFeatureContainerVector);
-
-	//IfcDataHandler ifcDataHandler = IfcDataHandler(newPropsDictVec, smartFeatureContainer);
-	
-	//buildIfc(newPropsDictVec);
 
 	//outfile.close();
 
