@@ -2,7 +2,7 @@
 
 namespace CurvesTypeEnum
 {
-	CurvesTypeEnum getCurvesTypeEnumByClassName(std::string className)
+	CurvesTypeEnum getCurvesTypeEnumByClassName(std::string elementDescriptor)
 	{
 		std::map<CurvesTypeEnum, std::string> mappedValues =
 		{
@@ -16,13 +16,15 @@ namespace CurvesTypeEnum
 			{ CurvesTypeEnum::PARTIAL_CURVE,"Partial Curve" },
 			{ CurvesTypeEnum::POINT_STRING,"Point String" },
 			{ CurvesTypeEnum::SPIRAL,"Spiral" },
-
+			{ CurvesTypeEnum::NONE,"" },
 		};
 
 		for (auto const& element : mappedValues) {
-			if (element.second == className) {
+			if (element.second == elementDescriptor) {
 				return element.first;
 			}
 		}
+
+		return CurvesTypeEnum::NONE;
 	}
 }

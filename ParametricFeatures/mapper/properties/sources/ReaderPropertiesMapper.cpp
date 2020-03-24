@@ -40,8 +40,8 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
 
 		//HARD CODED FOR CURVES//
-		if (propertyName == "Degree")
-			readerProperties.curveDegree = ecVal.GetInteger();
+		/*if (propertyName == "Degree")
+			readerProperties.curveDegree = ecVal.GetInteger();*/
 		//---------------------//
 			
 	}
@@ -69,6 +69,9 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::CREATE_SOLIDS:
 		readerProperties.setCreateSolidsOperationProperties(nullptr);
 		break;
+
+	/*case SmartFeatureTypeEnum::SmartFeatureTypeEnum::COMPLEX_STRING_ELEMENT:
+		break;*/
 
 	case SmartFeatureTypeEnum::SmartFeatureTypeEnum::UNDEFINED:
 		//log as info or warning missing mapping

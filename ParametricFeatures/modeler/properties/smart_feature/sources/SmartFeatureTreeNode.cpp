@@ -2,49 +2,49 @@
 
 SmartFeatureTreeNode::SmartFeatureTreeNode()
 {
-	this->mLeftNode = nullptr;
-	this->mRightNode = nullptr;
-	this->mGeneralProperties = new GeneralProperties();
-	this->mReaderProperties = new ReaderProperties();
-	this->mGraphicProperties = new GraphicProperties();
+	this->pLeftNode = nullptr;
+	this->pRightNode = nullptr;
+	this->pGeneralProperties = new GeneralProperties();
+	this->pReaderProperties = new ReaderProperties();
+	this->pGraphicProperties = new GraphicProperties();
 }
 
 GeneralProperties * SmartFeatureTreeNode::getGeneralProperties()
 {
-	return this->mGeneralProperties;
+	return this->pGeneralProperties;
 }
 
 ReaderProperties * SmartFeatureTreeNode::getReaderProperties()
 {
-	return this->mReaderProperties;
+	return this->pReaderProperties;
 }
 
 GraphicProperties * SmartFeatureTreeNode::getGraphicProperties()
 {
-	return this->mGraphicProperties;
+	return this->pGraphicProperties;
 }
 
 void SmartFeatureTreeNode::setGraphicProperties(GraphicProperties* newGraphicProperties)
 {
-	this->mGraphicProperties = newGraphicProperties;
+	this->pGraphicProperties = newGraphicProperties;
 }
 
 void SmartFeatureTreeNode::setLeftNode(SmartFeatureTreeNode* newLeftNode)
 {
-	this->mLeftNode = newLeftNode;
+	this->pLeftNode = newLeftNode;
 }
 
 void SmartFeatureTreeNode::setRightNode(SmartFeatureTreeNode* newRightNode)
 {
-	this->mRightNode = newRightNode;
+	this->pRightNode = newRightNode;
 }
 
 SmartFeatureTreeNode * SmartFeatureTreeNode::getLeftNode()
 {
-	return this->mLeftNode;
+	return this->pLeftNode;
 }
 
 SmartFeatureTreeNode * SmartFeatureTreeNode::getRightNode()
 {
-	return this->mRightNode;
+	return this->pRightNode;
 }

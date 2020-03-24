@@ -94,7 +94,7 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> controlP(temp);
 
 		Ifc4::IfcRepresentationItem* item = new Ifc4::IfcBSplineCurve(
-			dictionaryProperties.getReaderProperties()->curveDegree,
+			curveProperties->getDegree(),
 			controlP,
 			Ifc4::IfcBSplineCurveForm::IfcBSplineCurveForm_UNSPECIFIED,
 			curveProperties->getIsCLosed(),
@@ -132,14 +132,14 @@ void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector)
 #pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
-	InitializationUtilities* initUtilities = new InitializationUtilities();
+	InitializationEnhancer* initializationEnhancer = new InitializationEnhancer();
 	
 	std::vector<DictionaryProperties*> propsDictVec;
 	std::vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
-	initUtilities->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+	initializationEnhancer->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
 	
-	propsDictVec = initUtilities->orderDictionaryPropertyAndSmartFeature(propsDictVec, smartFeatureContainerVector);
+	propsDictVec = initializationEnhancer->orderDictionaryPropertyAndSmartFeature(propsDictVec, smartFeatureContainerVector);
 
 	//IfcBuilder* ifcBuilder = new IfcBuilder();
 	//ifcBuilder->buildIfc(newPropsDictVec, smartFeatureContainerVector);

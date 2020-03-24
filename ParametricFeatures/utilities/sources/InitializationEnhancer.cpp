@@ -1,7 +1,7 @@
-#include "../headers/InitializationUtilities.h"
+#include "../headers/InitializationEnhancer.h"
 
 
-InitializationUtilities::InitializationUtilities()
+InitializationEnhancer::InitializationEnhancer()
 {	
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
@@ -12,7 +12,7 @@ InitializationUtilities::InitializationUtilities()
 	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
-SmartFeatureContainer * InitializationUtilities::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
+SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
 {
 	std::ofstream outfile;
 
@@ -72,7 +72,7 @@ SmartFeatureContainer * InitializationUtilities::createSmartFeatureContainer(Ele
 	return smartFeatureContainer;
 }
 
-std::vector<DictionaryProperties*> InitializationUtilities::orderDictionaryPropertyAndSmartFeature(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+std::vector<DictionaryProperties*> InitializationEnhancer::orderDictionaryPropertyAndSmartFeature(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 	std::vector<DictionaryProperties*> newPropsDictVec;
 
@@ -115,7 +115,7 @@ std::vector<DictionaryProperties*> InitializationUtilities::orderDictionaryPrope
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-void InitializationUtilities::processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 	std::ofstream outfile;
 
@@ -124,7 +124,7 @@ void InitializationUtilities::processDgnGraphicsElements(std::vector<DictionaryP
 	outfile.close();
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
-	GraphicsProcessorUtilities graphicsProcessorUtils = graphicsProcessor.getGraphicsProcessorUtilities();
+	GraphicsProcessorEnhancer* graphicsProcessorEnhancer = graphicsProcessor.getGraphicsProcessorEnhancer();
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{		
@@ -169,7 +169,7 @@ void InitializationUtilities::processDgnGraphicsElements(std::vector<DictionaryP
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
-		graphicsProcessorUtils.setDictionaryProperties(*propertiesDictionary);
+		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);
 		
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 

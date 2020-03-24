@@ -4,10 +4,10 @@
 #include "../../common/utils/headers/StringUtils.hpp"
 //#include "GraphicsProcessorUtilities.h"
 
-class InitializationUtilities
+class InitializationEnhancer
 {
 public:
-	InitializationUtilities();
+	InitializationEnhancer();
 	
 	std::vector<DictionaryProperties*> orderDictionaryPropertyAndSmartFeature(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 	void processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector);

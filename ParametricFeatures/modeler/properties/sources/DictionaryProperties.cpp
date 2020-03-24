@@ -2,25 +2,25 @@
 
 DictionaryProperties::DictionaryProperties()
 {
-	this->mGeneralProperties = new GeneralProperties();
-	this->mReaderProperties = new ReaderProperties();
-	this->mGraphicProperties = new GraphicProperties();
+	this->pGeneralProperties = new GeneralProperties();
+	this->pReaderProperties = new ReaderProperties();
+	this->pGraphicProperties = new GraphicProperties();
 	this->areReaderPropertiesFound = true;
 }
 
 GeneralProperties * DictionaryProperties::getGeneralProperties()
 {
-	return this->mGeneralProperties;
+	return this->pGeneralProperties;
 }
 
 ReaderProperties * DictionaryProperties::getReaderProperties()
 {
-	return this->mReaderProperties;
+	return this->pReaderProperties;
 }
 
 GraphicProperties * DictionaryProperties::getGraphicProperties()
 {
-	return this->mGraphicProperties;
+	return this->pGraphicProperties;
 }
 
 bool DictionaryProperties::getAreReaderPropertiesFound()

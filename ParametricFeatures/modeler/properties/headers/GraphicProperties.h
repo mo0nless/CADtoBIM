@@ -18,8 +18,8 @@ private:
 	DVec3d mVectorAxisY;
 	DVec3d mVectorAxisZ;
 
-	PrimitiveGraphicProperties* mPrimitiveGraphicProperties;
-	CurveGraphicProperties* mCurveGraphicProperties;
+	PrimitiveGraphicProperties* pPrimitiveGraphicProperties;
+	CurveGraphicProperties* pCurveGraphicProperties;
 
 public:
 	GraphicProperties();

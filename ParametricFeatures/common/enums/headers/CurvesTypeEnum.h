@@ -16,7 +16,8 @@ namespace CurvesTypeEnum
 		INTERPOLATION_CURVE,
 		PARTIAL_CURVE,
 		POINT_STRING,
-		SPIRAL
+		SPIRAL,
+		NONE
 	};
 
 	CurvesTypeEnum getCurvesTypeEnumByClassName(std::string className);

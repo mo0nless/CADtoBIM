@@ -12,9 +12,9 @@
 class DictionaryProperties {
 
 private:
-	GeneralProperties* mGeneralProperties;
-	ReaderProperties* mReaderProperties;
-	GraphicProperties* mGraphicProperties;
+	GeneralProperties* pGeneralProperties;
+	ReaderProperties* pReaderProperties;
+	GraphicProperties* pGraphicProperties;
 
 	bool areReaderPropertiesFound;
 
