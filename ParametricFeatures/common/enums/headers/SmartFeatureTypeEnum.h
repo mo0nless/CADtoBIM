@@ -6,12 +6,12 @@
 
 namespace SmartFeatureTypeEnum {
 
-
-	enum class SmartFeatureTypeEnum {
-		BOOLEAN_FEATURE,
-		CREATE_SOLIDS,
-		UNDEFINED
-	};
+enum class SmartFeatureTypeEnum {
+	BOOLEAN_FEATURE,
+	CREATE_SOLIDS,
+	PIPES,
+	UNDEFINED
+};
 
 	SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
 }
