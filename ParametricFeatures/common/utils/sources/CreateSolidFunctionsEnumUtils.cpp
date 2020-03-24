@@ -1,17 +1,17 @@
 #include "../headers/CreateSolidFunctionsEnumUtils.h"
 
 
-std::map<CreateSolidFunctionsEnum::CreateSolidFunctionsEnum, std::string> CreateSolidFunctionsEnumUtils::mappedValues = {
-	{ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::REVOLVE, "Revolve" },
-	{ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::EXTRUDE, "Extrude" },
-	{ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::THICKEN, "Thiken" },
-	{ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::EXTRUDE_ALONG, "Extrude Along" },
-	{ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::UNDEFINED, "" },
+std::map<CreateSolidFunctionsEnum, std::string> CreateSolidFunctionsEnumUtils::mappedValues = {
+	{ CreateSolidFunctionsEnum::REVOLVE, "Revolve" },
+	{ CreateSolidFunctionsEnum::EXTRUDE, "Extrude" },
+	{ CreateSolidFunctionsEnum::THICKEN, "Thiken" },
+	{ CreateSolidFunctionsEnum::EXTRUDE_ALONG, "Extrude Along" },
+	{ CreateSolidFunctionsEnum::UNDEFINED, "" },
 };
 
 
 
-CreateSolidFunctionsEnum::CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(std::string className)
+CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(std::string className)
 {
 	for (auto const& element : mappedValues) {
 		if (element.second == className) {
@@ -19,5 +19,5 @@ CreateSolidFunctionsEnum::CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils
 		}
 	}
 	// TODO add warning log value not found
-	return CreateSolidFunctionsEnum::CreateSolidFunctionsEnum::UNDEFINED;
+	return CreateSolidFunctionsEnum::UNDEFINED;
 }

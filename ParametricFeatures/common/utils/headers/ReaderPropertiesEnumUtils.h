@@ -16,7 +16,7 @@ public:
 	*  @param stringValue[in]
 	*  @return ReaderPropertiesEnum
 	*/
-	static ReaderPropertiesEnum::ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
+	static ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
 
 private:
 	/**
@@ -27,6 +27,6 @@ private:
 	/**
 	* map contains relevant and needed properties from the reader, enum as keys and values as the string(label) value from modeler
 	*/
-	static std::map<ReaderPropertiesEnum::ReaderPropertiesEnum, std::string> mappedValues;
+	static std::map<ReaderPropertiesEnum, std::string> mappedValues;
 
 };

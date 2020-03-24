@@ -3,8 +3,6 @@
 #include <map>
 #include <string>
 
-namespace PrimitiveTypeEnum {
-
 	enum class PrimitiveTypeEnum {
 
 		BOX,
@@ -17,4 +15,4 @@ namespace PrimitiveTypeEnum {
 		NONE
 
 	};
-}
+

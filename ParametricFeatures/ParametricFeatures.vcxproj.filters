@@ -31,8 +31,6 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureGeneralProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\reader\sources\CurveReaderProperties.cpp" />
-    <ClCompile Include="utilities\sources\GraphicsProcessorEnhancer.cpp" />
-    <ClCompile Include="utilities\sources\InitializationEnhancer.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
@@ -44,6 +42,8 @@
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
+    <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
+    <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -86,8 +86,6 @@
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\TorusGraphicProperties.h" />
-    <ClInclude Include="utilities\headers\GraphicsProcessorEnhancer.h" />
-    <ClInclude Include="utilities\headers\InitializationEnhancer.h" />
     <ClInclude Include="common\enums\headers\ShapeProfileEnum.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
@@ -99,5 +97,7 @@
     <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
     <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
+    <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
+    <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
   </ItemGroup>
 </Project>
