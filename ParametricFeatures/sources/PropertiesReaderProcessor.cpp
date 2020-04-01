@@ -7,8 +7,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 
 	WString elDescr;
 
@@ -46,6 +46,8 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	else{
 		// set value if reader properties exist for this element
 		dictionaryProperties.setAreReaderPropertiesFound(true);		
+
+
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
@@ -71,6 +73,9 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			// set class name
 			dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
 			
+			ReaderPropertyBundle* readerPropertyBundle = new ReaderPropertyBundle(mElemClassName, elemInst->GetLocalId());
+			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertyBundle);
+			dictionaryProperties.getReaderProperties()->addReaderPropertyBundle(readerPropertyBundle);
 
 			/*for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
 			{
@@ -79,51 +84,51 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 				outfile.close();
 			}*/
 			
-			
-			if (SmartFeatureElement::IsSmartFeature(currentElem)) 
-			{
+			//
+			//if (SmartFeatureElement::IsSmartFeature(currentElem)) 
+			//{
 
-				SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
-				
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "Is smart feature" << std::endl;
-				outfile.close();
+			//	SmartFeatureTypeEnum smartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(className);
+			//	
+			//	outfile.open(filePath, std::ios_base::app);
+			//	outfile << std::endl;
+			//	outfile << "Is smart feature" << std::endl;
+			//	outfile.close();
 
-				SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByElementLocalNodeId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
+			//	SmartFeatureTreeNode* currentNode = smartFeatureContainer.searchByElementLocalNodeId(smartFeatureContainer.getRoot(), elemInst->GetLocalId());
 
-				if (currentNode != nullptr) 
-				{
+			//	if (currentNode != nullptr) 
+			//	{
 
-					// set class name in the ReaderProperties
-					currentNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
-					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), smartFeatureTypeEnum);
-				}
-				else 
-				{
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
-					outfile.close();
+			//		// set class name in the ReaderProperties
+			//		currentNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
+			//		// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode
+			//		ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *currentNode->getReaderProperties(), smartFeatureTypeEnum);
+			//	}
+			//	else 
+			//	{
+			//		outfile.open(filePath, std::ios_base::app);
+			//		outfile << "is smart feature, but not found in the smartfeaturetree" << std::endl;
+			//		outfile.close();
 
-					// set class name in the ReaderProperties
-					dictionaryProperties.getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
-					// if node is not found, pass the ReaderProperties from the dictionary properties to map 
-					ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), smartFeatureTypeEnum);
-				}
-				
-			}
-			else 
-			{
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "is NOT smart feature" << std::endl;
-				outfile.close();
+			//		// set class name in the ReaderProperties
+			//		dictionaryProperties.getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
+			//		// if node is not found, pass the ReaderProperties from the dictionary properties to map 
+			//		ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), smartFeatureTypeEnum);
+			//	}
+			//	
+			//}
+			//else 
+			//{
+			//	outfile.open(filePath, std::ios_base::app);
+			//	outfile << "is NOT smart feature" << std::endl;
+			//	outfile.close();
 
-				// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
-				ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), SmartFeatureTypeEnum::UNDEFINED);
+			//	// if it's not a smart feature, pass the ReaderProperties from the dictionary properties to map 
+			//	ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, *dictionaryProperties.getReaderProperties(), SmartFeatureTypeEnum::UNDEFINED);
 
-				
-			}			
+			//	
+			//}			
 		}
 	}
 }

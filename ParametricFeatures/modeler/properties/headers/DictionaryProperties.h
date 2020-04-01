@@ -16,6 +16,7 @@ private:
 	ReaderProperties* pReaderProperties;
 	GraphicProperties* pGraphicProperties;
 
+	
 	bool areReaderPropertiesFound;
 
 	

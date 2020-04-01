@@ -5,6 +5,8 @@
 #include "../boolean_operations/headers/BooleanOperationProperties.h"
 #include "../create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
 #include "../curves/reader/headers/CurveReaderProperties.h"
+#include "../reader/headers/ReaderPropertyBundle.h"
+
 
 /**
 *   Class contains needed reader properties
@@ -12,6 +14,9 @@
 class ReaderProperties {
 
 private:
+	std::vector<ReaderPropertyBundle*> readerPropertyBundleVector;
+
+
 	int mNodeId;
 	SmartFeatureGeneralProperties* pSmartFeatureGeneralProperties;
 
@@ -21,6 +26,9 @@ private:
 
 public:
 	ReaderProperties();
+
+	std::vector<ReaderPropertyBundle*> getReaderPropertyBundleVector();
+	void addReaderPropertyBundle(ReaderPropertyBundle* readerPropertyBundle);
 
 	int getNodeId();
 	void setNodeId(int newNodeId);

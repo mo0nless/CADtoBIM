@@ -5,6 +5,11 @@ TorusGraphicProperties::TorusGraphicProperties()
 	this->mMinorRadius = 0;
 	this->mMajorRadius = 0;
 	this->mSweepRadians = 0;
+
+	this->centerPointOfRotation = DPoint3d();
+	centerPointOfRotation.x = 0;
+	centerPointOfRotation.y = 0;
+	centerPointOfRotation.z = 0;
 }
 
 double TorusGraphicProperties::getMinorRadius()
@@ -35,4 +40,14 @@ double TorusGraphicProperties::getSweepRadians()
 void TorusGraphicProperties::setSweepRadians(double newSweepRadians)
 {
 	this->mSweepRadians = newSweepRadians;
+}
+
+DPoint3d TorusGraphicProperties::getCenterPointOfRotation()
+{
+	return this->centerPointOfRotation;
+}
+
+void TorusGraphicProperties::setCenterPointOfRotation(DPoint3d newCenterPointOfRotation)
+{
+	this->centerPointOfRotation = newCenterPointOfRotation;
 }

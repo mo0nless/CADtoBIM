@@ -4,11 +4,10 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentati
 {
 	
 	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
-	//if (smartFeatureTreeNode.getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() != SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
-	//	return nullptr;
-	//}
+	if (smartFeatureTreeNode.getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() != SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
+		return nullptr;
+	}
 	BooleanOperationProperties booleanOperationProperties;
-	PrimitiveGraphicProperties* primitiveGraphicProperties;
 	if (smartFeatureTreeNode.getReaderProperties()->tryGetBooleanOperationProperties(booleanOperationProperties)) {
 		if (booleanOperationProperties.getBooleanFunction() != BooleanFunctions::BooleanFunctionsEnum::UNDEFINED)
 		{
@@ -16,11 +15,11 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentati
 		}
 
 	}
-	else if(smartFeatureTreeNode.getGraphicProperties()->tryGetPrimitiveGraphicProperties(primitiveGraphicProperties))
-	{
-		IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-		ifcRepresentationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*smartFeatureTreeNode.getGraphicProperties(), file);
-	}
+	//else
+	//{
+	//	IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
+	//	ifcRepresentationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*smartFeatureTreeNode.getGraphicProperties(), file);
+	//}
 
 	// handle when ifcRepresentationItem is nullptr
 	if (ifcRepresentationItem != nullptr) 

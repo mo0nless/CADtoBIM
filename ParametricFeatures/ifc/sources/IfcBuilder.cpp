@@ -77,16 +77,15 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 				if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) {
 					continue;
 				}
+				for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) {
+					IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
+					representationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector() ,file);
 
-				IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-				representationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*dictionaryProperties.getGraphicProperties(), file);
 
-
-				if (representationItem != nullptr) {
-					items->push(representationItem);
+					if (representationItem != nullptr) {
+						items->push(representationItem);
+					}
 				}
-
-
 			}
 		}
 

@@ -4,6 +4,11 @@ CylinderGraphicProperties::CylinderGraphicProperties()
 {
 	this->mRadius = 0;
 	this->mHeight = 0;
+
+	this->baseOrigin = DPoint3d();
+	baseOrigin.x = 0;
+	baseOrigin.y = 0;
+	baseOrigin.z = 0;
 }
 
 double CylinderGraphicProperties::getRadius()
@@ -24,4 +29,14 @@ double CylinderGraphicProperties::getHeight()
 void CylinderGraphicProperties::setHeight(double newHeight)
 {
 	this->mHeight = newHeight;
+}
+
+DPoint3d CylinderGraphicProperties::getBaseOrigin()
+{
+	return this->baseOrigin;
+}
+
+void CylinderGraphicProperties::setBaseOrigin(DPoint3d newBaseOrigin)
+{
+	this->baseOrigin = newBaseOrigin;
 }

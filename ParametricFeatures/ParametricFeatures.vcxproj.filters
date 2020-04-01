@@ -44,6 +44,9 @@
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
     <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveCommonGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
+    <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -99,5 +102,8 @@
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
     <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveCommonGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
+    <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyBundle.h" />
   </ItemGroup>
 </Project>

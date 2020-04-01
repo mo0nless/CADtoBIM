@@ -7,11 +7,15 @@
 #include "../headers/SphereGraphicProperties.h"
 #include "../headers/CylinderGraphicProperties.h"
 #include "../headers/TorusGraphicProperties.h"
+#include "../headers/PrimitiveCommonGraphicProperties.h"
 
 
 class PrimitiveGraphicProperties {
 
 private:
+
+	PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties;
+
 	PrimitiveTypeEnum mPrimitiveTypeEnum;
 
 	SlabGraphicProperties* pSlabProperties;
@@ -41,5 +45,7 @@ public:
 	bool tryGetTorusGraphicProperties(TorusGraphicProperties& torusGraphicPropertiesR);
 	void setTorusGraphicProperties(TorusGraphicProperties* newTorusGraphicProperties);
 
+	PrimitiveCommonGraphicProperties& getPrimitiveCommonGraphicProperties();
+	void setPrimitiveCommonGraphicProperties(PrimitiveCommonGraphicProperties* newPrimitiveCommonGraphicProperties);
 
 };

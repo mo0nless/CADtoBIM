@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -537,11 +537,11 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 	
 	// set primitive graphic dictionary
-	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(
-		dictionaryProperties->getGeneralProperties()->getElementDescriptorName()
-	));
-	dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
+	//PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
+	//primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(
+	//	dictionaryProperties->getGeneralProperties()->getElementDescriptorName()
+	//));
+	//dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(primitiveGraphicProperties);
 
 	std::ofstream outfile;
 	switch (primitive.GetSolidPrimitiveType())
@@ -607,21 +607,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector of BASE plane Y [Y] = " << boxDetails.m_vectorY.y << std::endl;
 			outfile << "Vector of BASE plane Y [Z] = " << boxDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
-			
-
-			// calculate axis Z
-			DVec3d vectorBaseZ;
-			vectorBaseZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
-
-			// set x,y,z axis in dectionary
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(boxDetails.m_vectorX);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(boxDetails.m_vectorY);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
-
-			outfile << "Vector of BASE plane Z [X] = " << vectorBaseZ.x << std::endl;
-			outfile << "Vector of BASE plane Z [Y] = " << vectorBaseZ.y << std::endl;
-			outfile << "Vector of BASE plane Z [Z] = " << vectorBaseZ.z << std::endl;
-			outfile << std::endl;
 
 			outfile << "Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)" << std::endl;
 			outfile << "AX base rectangle x size = " << ax << std::endl;
@@ -654,13 +639,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		};
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 
 		// set slab graphic properties
-		mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails);
-		
-		
-
+		mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -717,17 +699,12 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << std::endl;
 
 
-			DVec3d vectorBaseZ;
-			vectorBaseZ.CrossProduct(coneDetails.m_vector0, coneDetails.m_vector90);
+			//DVec3d vectorBaseZ;
+			//vectorBaseZ.CrossProduct(coneDetails.m_vector0, coneDetails.m_vector90);
 
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(coneDetails.m_vector0);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(coneDetails.m_vector90);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
-
-			outfile << "0 Degree Vector of BASE circle Z [X] = " << vectorBaseZ.x << std::endl;
-			outfile << "0 Degree Vector of BASE circle Z [Y] = " << vectorBaseZ.y << std::endl;
-			outfile << "0 Degree Vector of BASE circle Z [Z] = " << vectorBaseZ.z << std::endl;
-			outfile << std::endl;
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisX(coneDetails.m_vector0);
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisY(coneDetails.m_vector90);
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
 			
 
 			outfile << "Radius at BASE = " << coneDetails.m_radiusA << std::endl;
@@ -739,10 +716,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 
 		// set cone graphic properties
-		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails);
+		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -1011,12 +988,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		}		
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-
-		mGraphicsProcessorEnhancer.setSphereGraphicProperties();
-
-
-	
+		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		mGraphicsProcessorEnhancer.setSphereGraphicProperties(primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -1093,18 +1066,18 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Vector Y [Z] = " << torusDetails.m_vectorY.z << std::endl;
 			outfile << std::endl;
 
-			DVec3d vectorBaseZ;
-			vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+			//DVec3d vectorBaseZ;
+			//vectorBaseZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
 
-			outfile << "Vector Z [X] = " << vectorBaseZ.x << std::endl;
-			outfile << "Vector Z [Y] = " << vectorBaseZ.y << std::endl;
-			outfile << "Vector Z [Z] = " << vectorBaseZ.z << std::endl;
-			outfile << std::endl;
+			//outfile << "Vector Z [X] = " << vectorBaseZ.x << std::endl;
+			//outfile << "Vector Z [Y] = " << vectorBaseZ.y << std::endl;
+			//outfile << "Vector Z [Z] = " << vectorBaseZ.z << std::endl;
+			//outfile << std::endl;
 
-			// set x,y,z axis in dectionary
-			dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
-			dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
+			//// set x,y,z axis in dectionary
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisX(torusDetails.m_vectorX);
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisY(torusDetails.m_vectorY);
+			//dictionaryProperties->getGraphicProperties()->setVectorAxisZ(vectorBaseZ);
 
 			outfile << "Major Radius = " << torusDetails.m_majorRadius << std::endl;
 			outfile << "Minor Radius = " << torusDetails.m_minorRadius << std::endl;
@@ -1121,17 +1094,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-
-		//set torus graphic properties
-		mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians);
+		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, primitiveCommonGraphicProperties);
 
 	}
 	break;
 
 	default:
 		// set PrimitiveGraphicProperties to nullptr,because the primitive was not identified
-		dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(nullptr);
+		//dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(nullptr);
 		break;
 	}
 

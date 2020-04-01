@@ -4,6 +4,7 @@
 
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "BooleanOperationReaderPropertiesMapper.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertyBundle.h"
 
 /**
 *  Class used to map reader properties from the modeler to the object ReaderProperties
@@ -30,7 +31,7 @@ public:
 	*   @param dgnElementECInstanceP[in] properties from modeler to be mapped
 	*   @param readerProperties[out] modeler properties are maped into this object
 	*/
-	static void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum);
+	static void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertyBundle *&readerPropertyBundle );
 
 
 	

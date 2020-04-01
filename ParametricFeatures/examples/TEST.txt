@@ -1,28 +1,34 @@
 
 ===================================================
 ===================================================
-Element Description: Bspline Curve
+Element Description: Cylinder
 Element ID: 1375
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1375, id = 0 ---------
-is NOT smart feature
+--------- ClassName = ConeElement, current element id = 1375, id = 0 ---------
+Capped[int] = Yes
+Cylindrical[boolean] = True
+Height[double] = 39' 9.2120"
+Base[point3d] = -85' 4.4851", 4' 9.4609", -0' 2.1437"
+Top[point3d] = -45' 7.2731", 4' 9.4609", -0' 2.1437"
+Base Radius[double] = 8' 0.4114"
+Top Radius[double] = 
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
+Element Description[string] = Cylinder
 Level[int] = Default
 Element ID[long] = 1375
 Model[string] = Default
-Last Modified[dateTime] = 3/11/2020 3:29:27 PM
-Size[int] = 60
+Last Modified[dateTime] = 3/25/2020 1:30:54 PM
+Size[int] = 104
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Bspline Curve
+Type[string] = Cone
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -32,112 +38,122 @@ Priority[int] =
 Template[long] = (None)
 Modified[boolean] = Modified
 New[boolean] = Not New
-Solid[boolean] = Solid
+Solid[boolean] = 
 View Dependent[boolean] = 
-Snappable[boolean] = Snappable
+Snappable[boolean] = 
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
+Thickness[double] = 
 Graphic Group[int] = 
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
+Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -63' 5.7846", -25' 0.9291", 0' 0.0000"
-Range High[point3d] = -16' 2.5481", 15' 4.6409", 0' 0.0000"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 75' 7.5900"
-Planar[boolean] = Yes
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -28895573.4651, -77802433.3074, 0.0000
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
+Range Low[point3d] = -85' 4.4851", -3' 2.9505", -8' 2.5551"
+Range High[point3d] = -45' 7.2731", 12' 9.8723", 7' 10.2677"
+Volume[double] = 8064.4365 Cu.'
+Surface Area[double] = 2413.0842 Sq.'
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 90.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 270.0000°
+Orientation[int] = Back
+-------- ConeElement --------
+Range [XLength] = 12121183.932176
+Range [YLength] = 4897697.916829
+Range [ZLength] = 4897697.916829
 
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = 0.500000
 
--------- BSplineCurveElement --------
+Vector Rotation Axis Local to World
+vRotation [X] = 0.577350
+vRotation [Y] = 0.577350
+vRotation [Z] = 0.577350
 
-BsplineCurve Length: 2.30528e+07
-BsplineCurve Order: 4
+Origin [X] = -26021920.961188
+Origin [Y] = 1459507.929798
+Origin [Z] = -54450.252205
 
-Start point [X] = -1.93493e+07
-Start point [Y] = -558139
-Start point [Z] = 0
+Center of BASE Circle [X] = -26021920.961188
+Center of BASE Circle [Y] = 1459507.929798
+Center of BASE Circle [Z] = -54450.252205
 
-End point [X] = -4.94152e+06
-End point [Y] = 1.05745e+06
-End point [Z] = 0
+Center of TOP Circle [X] = -13900737.029012
+Center of TOP Circle [Y] = 1459507.929798
+Center of TOP Circle [Z] = -54450.252205
 
-Is Closed = 0
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
+
+Radius at BASE = 2448848.958415
+Radius at TOP = 2448848.958415
+
+True if the end cap is enabled = 1
+
+Centroid1 [X] = -19961328.995100
+Centroid1 [Y] = 1459507.929798
+Centroid1 [Z] = -54450.252205
+Area1 = 224182857126766.593750
+
+Centroid2 [X] = -19961328.995100
+Centroid2 [Y] = 1459507.929798
+Centroid2 [Z] = -54450.252205
+Volume = 228359410222836383744.000000
+Area2 = 224182857126766.593750
+
+
+ Cylinder 
+
+ConeElementIn SolidKernel Entity is: Solid 0
 
 
 ===================================================
 ===================================================
-Element Description: Bspline Curve
+Element Description: Cylinder
 Element: ID 1375
 ===================================================
 ===================================================
 
 ===================================================
 ===================================================
-Element Description: Arc
-Element ID: 1393
+Element Description: Torus
+Element ID: 1376
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ArcElement, current element id = 1393, id = 0 ---------
-is NOT smart feature
+--------- ClassName = TorusSolidElement, current element id = 1376, id = 0 ---------
+Capped[int] = Yes
+Center[point3d] = -87' 0.7839", -15' 6.6556", -0' 1.9397"
+Major Radius[double] = 22' 2.0519"
+Minor Radius[double] = 6' 0.3619"
+Sweep Angle[double] = 180.1240°
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Arc
+Element Description[string] = Torus
 Level[int] = Default
-Element ID[long] = 1393
+Element ID[long] = 1376
 Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:33 AM
-Size[int] = 96
+Last Modified[dateTime] = 3/31/2020 2:14:23 PM
+Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Arc
+Type[string] = Solid
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -149,448 +165,135 @@ Modified[boolean] = Modified
 New[boolean] = Not New
 Solid[boolean] = 
 View Dependent[boolean] = 
-Snappable[boolean] = Snappable
+Snappable[boolean] = 
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
+Thickness[double] = 
 Graphic Group[int] = 
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
+Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -36' 4.8473", 15' 6.8768", -6' 9.2328"
-Range High[point3d] = -15' 2.1100", 43' 5.8657", 12' 1.6358"
-Rotation-X[double] = 45.0000°
-Rotation-Y[double] = -35.2644°
-Rotation-Z[double] = 129.8485°
-Angle[double] = 0.0000°
-Orientation[int] = 
-Primary Axis[double] = 17' 2.6607"
-Secondary Axis[double] = 17' 2.6607"
-Center[point3d] = -22' 4.1096", 29' 7.6146", 7' 3.5050"
-Start Angle[double] = 0.0000°
-Sweep Angle[double] = 170.7930°
-Length[double] = 51' 4.0347"
-Primary Vector[point3d] = -9' 0.1203", 13' 10.2511", 4' 10.1308"
-Secondary Vector[point3d] = -10' 9.5470", -2' 4.8615", -13' 2.4084"
-Start Point[point3d] = -31' 4.2299", 43' 5.8657", 12' 1.6358"
-End Point[point3d] = -15' 2.1100", 15' 6.8874", 0' 4.7774"
-End Angle[double] = 170.7930°
-Axis Ratio[double] = 1.00000
-Area[double] = 418.3217 Sq.'
-Normal[point3d] = -0.5774, -0.5774, 0.5774
-Radius[double] = 17' 2.6607"
+Range Low[point3d] = -115' 3.1977", -43' 9.0694", -6' 2.3017"
+Range High[point3d] = -87' 0.0517", 12' 7.7583", 5' 10.4222"
+Volume[double] = 7962.3473 Cu.'
+Surface Area[double] = 2869.3167 Sq.'
+Rotation-X[double] = 180.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 89.8760°
+Angle[double] = 270.1240°
+Orientation[int] = Bottom
+-------- TorusSolidElement --------
+Range [XLength] = 10572013.242711
+Range [YLength] = 19149113.424853
+Range [ZLength] = 5633694.937465
 
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+Quaternion Rotation
+qRotation [X] = 0.707871
+qRotation [Y] = -0.706341
+qRotation [Z] = 0.000000
+qRotation [W] = -0.000000
 
--------- ArcElement --------
+Vector Rotation Axis Local to World
+vRotation [X] = 0.707871
+vRotation [Y] = -0.706341
+vRotation [Z] = 0.000000
 
-Center point [X] = -6.80998e+06
-Center point [Y] = 9.03261e+06
-Center point [Z] = 2.22263e+06
+Origin [X] = -26537509.819221
+Origin [Y] = -4741051.258242
+Origin [Z] = -49269.643477
 
-directionX [X] = -0.523178
-directionX [Y] = 0.804464
-directionX [Z] = 0.281286
+Range High = -25540058.317690
+Range Low = -36112071.560401
+DiagonalDistanceXY = 21873637.305257
+DiagonalDistance = 22587486.084342
+Range Difference = -10572013.242711
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.707871
+Axes Rotation (Quaternion) [Y] = -0.706341
+Axes Rotation (Quaternion) [Z] = 0.000000
+Axes Rotation (Quaternion) [W] = -0.000000
 
-directionY [X] = -0.626858
-directionY [Y] = -0.139656
-directionY [Z] = -0.766515
+Center Point Rotation [X] = -26537509.819221
+Center Point Rotation [Y] = -4741051.258242
+Center Point Rotation [Z] = -49269.643477
 
-Start Angle = 0
-Sweep Angle = 2.9809
+Center [X] = -26537509.819221
+Center [Y] = -4741051.258242
+Center [Z] = -49269.643477
+
+Vector X [X] = 0.002163
+Vector X [Y] = -0.999998
+Vector X [Z] = 0.000000
+
+Vector Y [X] = -0.999998
+Vector Y [Y] = -0.002163
+Vector Y [Z] = -0.000000
+
+Major Radius = 6757719.301204
+Minor Radius = 1837991.810668
+Sweep Angle = 3.143756
+Sweep Radians = 3.143756
+
+Radius Major (Elbow Radius) = 6757719.301204
+Radius Minor (Pipe Diameter) = 1837991.810668
+
+True if the end cap is enabled = 1
+
+Centroid1 [X] = -30640087.345426
+Centroid1 [Y] = -4745488.993396
+Centroid1 [Z] = -49269.643477
+Area1 = 266568240172705.718750
+
+Centroid2 [X] = -30916149.425817
+Centroid2 [Y] = -4745787.608204
+Centroid2 [Z] = -49269.643477
+Volume = 225468565664759676928.000000
+Area2 = 266568240172705.718750
+
+
+ Torus 
+
+TorusSolidElementIn SolidKernel Entity is: Solid 0
 
 
 ===================================================
 ===================================================
-Element Description: Arc
-Element: ID 1393
+Element Description: Torus
+Element: ID 1376
 ===================================================
 ===================================================
 
 ===================================================
 ===================================================
-Element Description: Bspline Curve
-Element ID: 1394
+Element Description: Sphere
+Element ID: 1451
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1394, id = 0 ---------
-is NOT smart feature
+--------- ClassName = SphereSolidElement, current element id = 1451, id = 0 ---------
+Capped[int] = Yes
+Center[point3d] = -29' 9.3723", 3' 8.3801", 0' 0.0000"
+Radius[double] = 8' 10.4421"
+Diameter[double] = 17' 8.8841"
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
+Element Description[string] = Sphere
 Level[int] = Default
-Element ID[long] = 1394
+Element ID[long] = 1451
 Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:00 AM
+Last Modified[dateTime] = 4/1/2020 11:48:24 AM
 Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Bspline Curve
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -28' 4.9809", 20' 5.3877", 5' 0.4189"
-Range High[point3d] = 0' 5.4877", 49' 9.3341", 33' 0.6981"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 468' 1.9551"
-Planar[boolean] = No
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -115469036.6088, 79209671.9635, 27475793.5226
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- BSplineCurveElement --------
-
-BsplineCurve Length: 1.42696e+08
-BsplineCurve Order: 4
-
-Start point [X] = -297920
-Start point [Y] = 7.84362e+06
-Start point [Z] = 7.5457e+06
-
-End point [X] = -4.61491e+06
-End point [Y] = 1.14859e+07
-End point [Z] = 1.53464e+06
-
-Is Closed = 0
-
-
-===================================================
-===================================================
-Element Description: Bspline Curve
-Element: ID 1394
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Line
-Element ID: 1399
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1399, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1399
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:52 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -48' 3.3680", 9' 10.4435", 0' 0.0000"
-Range High[point3d] = -31' 9.3201", 9' 10.4435", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.47159e+07
-Start Point [Y]: 3.00847e+06
-Start Point [Z]: 0
-
-End Point [X]: -9.68553e+06
-End Point [Y]: 3.00847e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 3.0252e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.60929e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -14715946.709695
-point 0 [Y] = 3008465.045454
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -9685530.120453
-point 1 [Y] = 3008465.045454
-point 1 [Z] = 0.000000
-
-
-===================================================
-===================================================
-Element Description: Line
-Element: ID 1399
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Line
-Element ID: 1400
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1400, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1400
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:56 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -37' 8.4936", 3' 3.4593", 0' 0.0000"
-Range High[point3d] = -21' 2.4456", 3' 3.4594", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.14933e+07
-Start Point [Y]: 1.00227e+06
-Start Point [Z]: 0
-
-End Point [X]: -6.46292e+06
-End Point [Y]: 1.00227e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 3.0252e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.60929e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -11493336.082212
-point 0 [Y] = 1002267.475449
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -6462919.492971
-point 1 [Y] = 1002267.475449
-point 1 [Z] = 0.000000
-
-
-===================================================
-===================================================
-Element Description: Line
-Element: ID 1400
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Complex Chain
-Element ID: 1401
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ComplexStringElement, current element id = 1401, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Complex Chain
-Level[int] = Default
-Element ID[long] = 1401
-Model[string] = Default
-Last Modified[dateTime] = 3/20/2020 2:09:36 PM
-Size[int] = 56
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Complex Chain
+Type[string] = Solid
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -606,589 +309,110 @@ Snappable[boolean] =
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
+Thickness[double] = 
 Graphic Group[int] = 
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
+Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -64' 7.8687", -33' 1.2766", 0' 0.0000"
-Range High[point3d] = -41' 2.2693", -8' 10.1193", 0' 0.0000"
-Number of elements[int] = 3
-Total Length[double] = 51' 3.0572"
+Range Low[point3d] = -38' 7.8144", -5' 2.0620", -8' 10.4421"
+Range High[point3d] = -20' 10.9302", 12' 6.8221", 8' 10.4421"
+Volume[double] = 2923.3758 Cu.'
+Surface Area[double] = 988.7213 Sq.'
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 90.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 270.0000°
+Orientation[int] = Back
+-------- SphereSolidElement --------
+Range [XLength] = 5407256.486906
+Range [YLength] = 5407256.486906
+Range [ZLength] = 5407256.486906
 
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = 0.500000
 
--------- ComplexStringElement --------
+Vector Rotation Axis Local to World
+vRotation [X] = 0.577350
+vRotation [Y] = 0.577350
+vRotation [Z] = 0.577350
 
-BsplineCurve Length: 4.67655e+06
-BsplineCurve Order: 4
+Origin [X] = -9077257.232784
+Origin [Y] = 1127253.296360
+Origin [Z] = 0.000000
 
-Start point [X] = -1.97071e+07
-Start point [Y] = -5.29169e+06
-Start point [Z] = 0
+Range High = -6373628.989332
+Range Low = -11780885.476237
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
 
-End point [X] = -1.68382e+07
-End point [Y] = -5.48837e+06
-End point [Z] = 0
+DiagonalDistanceXY = 7647015.459012
+DiagonalDistance = 9365642.964877
+Range Difference = -5407256.486906
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
 
-Is Closed = 0
+True if the end cap is enabled = 1
 
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
+Centroid1 [X] = -9077257.232784
+Centroid1 [Y] = 1127253.296360
+Centroid1 [Z] = 0.000000
+Area1 = 91855214004582.171875
 
--------- ComplexStringElement --------
+Centroid2 [X] = -9077257.232784
+Centroid2 [Y] = 1127253.296360
+Centroid2 [Z] = 0.000000
+Volume = 82780783630401601536.000000
+Area2 = 91855214004582.171875
 
-BsplineCurve Length: 5.09859e+06
-BsplineCurve Order: 4
 
-Start point [X] = -1.68382e+07
-Start point [Y] = -5.48837e+06
-Start point [Z] = 0
+ Sphere 
 
-End point [X] = -1.45194e+07
-End point [Y] = -7.45523e+06
-End point [Z] = 0
-
-Is Closed = 0
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 5.84732e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.45194e+07
-Start point [Y] = -7.45523e+06
-Start point [Z] = 0
-
-End point [X] = -1.50303e+07
-End point [Y] = -2.69543e+06
-End point [Z] = 0
-
-Is Closed = 0
+SphereSolidElementIn SolidKernel Entity is: Solid 0
 
 
 ===================================================
 ===================================================
-Element Description: Complex Chain
-Element: ID 1401
+Element Description: Sphere
+Element: ID 1451
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Sphere
+Element ID: 1478
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1375, id = 0 ---------
-is NOT smart feature
+--------- ClassName = SphereSolidElement, current element id = 1478, id = 0 ---------
+Capped[int] = Yes
+Center[point3d] = -75' 3.7749", -36' 6.5399", 0' 0.0000"
+Radius[double] = 7' 8.2498"
+Diameter[double] = 15' 4.4996"
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
+Element Description[string] = Sphere
 Level[int] = Default
-Element ID[long] = 1375
+Element ID[long] = 1478
 Model[string] = Default
-Last Modified[dateTime] = 3/11/2020 3:29:27 PM
+Last Modified[dateTime] = 4/1/2020 11:48:28 AM
 Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Links[string] = 
 Property List[string] = 
-Type[string] = Bspline Curve
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -63' 5.7846", -25' 0.9291", 0' 0.0000"
-Range High[point3d] = -16' 2.5481", 15' 4.6409", 0' 0.0000"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 75' 7.5900"
-Planar[boolean] = Yes
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -28895573.4651, -77802433.3074, 0.0000
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- BSplineCurveElement --------
-
-BsplineCurve Length: 2.30528e+07
-BsplineCurve Order: 4
-
-Start point [X] = -1.93493e+07
-Start point [Y] = -558139
-Start point [Z] = 0
-
-End point [X] = -4.94152e+06
-End point [Y] = 1.05745e+06
-End point [Z] = 0
-
-Is Closed = 0
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ArcElement, current element id = 1393, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Arc
-Level[int] = Default
-Element ID[long] = 1393
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:33 AM
-Size[int] = 96
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Arc
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -36' 4.8473", 15' 6.8768", -6' 9.2328"
-Range High[point3d] = -15' 2.1100", 43' 5.8657", 12' 1.6358"
-Rotation-X[double] = 45.0000°
-Rotation-Y[double] = -35.2644°
-Rotation-Z[double] = 129.8485°
-Angle[double] = 0.0000°
-Orientation[int] = 
-Primary Axis[double] = 17' 2.6607"
-Secondary Axis[double] = 17' 2.6607"
-Center[point3d] = -22' 4.1096", 29' 7.6146", 7' 3.5050"
-Start Angle[double] = 0.0000°
-Sweep Angle[double] = 170.7930°
-Length[double] = 51' 4.0347"
-Primary Vector[point3d] = -9' 0.1203", 13' 10.2511", 4' 10.1308"
-Secondary Vector[point3d] = -10' 9.5470", -2' 4.8615", -13' 2.4084"
-Start Point[point3d] = -31' 4.2299", 43' 5.8657", 12' 1.6358"
-End Point[point3d] = -15' 2.1100", 15' 6.8874", 0' 4.7774"
-End Angle[double] = 170.7930°
-Axis Ratio[double] = 1.00000
-Area[double] = 418.3217 Sq.'
-Normal[point3d] = -0.5774, -0.5774, 0.5774
-Radius[double] = 17' 2.6607"
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
-
--------- ArcElement --------
-
-Center point [X] = -6.80998e+06
-Center point [Y] = 9.03261e+06
-Center point [Z] = 2.22263e+06
-
-directionX [X] = -0.523178
-directionX [Y] = 0.804464
-directionX [Z] = 0.281286
-
-directionY [X] = -0.626858
-directionY [Y] = -0.139656
-directionY [Z] = -0.766515
-
-Start Angle = 0
-Sweep Angle = 2.9809
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1394, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
-Level[int] = Default
-Element ID[long] = 1394
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:00 AM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Bspline Curve
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -28' 4.9809", 20' 5.3877", 5' 0.4189"
-Range High[point3d] = 0' 5.4877", 49' 9.3341", 33' 0.6981"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 468' 1.9551"
-Planar[boolean] = No
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -115469036.6088, 79209671.9635, 27475793.5226
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- BSplineCurveElement --------
-
-BsplineCurve Length: 1.42696e+08
-BsplineCurve Order: 4
-
-Start point [X] = -297920
-Start point [Y] = 7.84362e+06
-Start point [Z] = 7.5457e+06
-
-End point [X] = -4.61491e+06
-End point [Y] = 1.14859e+07
-End point [Z] = 1.53464e+06
-
-Is Closed = 0
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1399, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1399
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:52 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -48' 3.3680", 9' 10.4435", 0' 0.0000"
-Range High[point3d] = -31' 9.3201", 9' 10.4435", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.47159e+07
-Start Point [Y]: 3.00847e+06
-Start Point [Z]: 0
-
-End Point [X]: -9.68553e+06
-End Point [Y]: 3.00847e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 9.32301e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.6217e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -14715946.709695
-point 0 [Y] = 3008465.045454
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -9685530.120453
-point 1 [Y] = 3008465.045454
-point 1 [Z] = 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1400, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1400
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:56 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -37' 8.4936", 3' 3.4593", 0' 0.0000"
-Range High[point3d] = -21' 2.4456", 3' 3.4594", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.14933e+07
-Start Point [Y]: 1.00227e+06
-Start Point [Z]: 0
-
-End Point [X]: -6.46292e+06
-End Point [Y]: 1.00227e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 9.32301e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.6217e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -11493336.082212
-point 0 [Y] = 1002267.475449
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -6462919.492971
-point 1 [Y] = 1002267.475449
-point 1 [Z] = 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ComplexStringElement, current element id = 1401, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Complex Chain
-Level[int] = Default
-Element ID[long] = 1401
-Model[string] = Default
-Last Modified[dateTime] = 3/20/2020 2:09:36 PM
-Size[int] = 56
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Complex Chain
+Type[string] = Solid
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -1204,658 +428,80 @@ Snappable[boolean] =
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
+Thickness[double] = 
 Graphic Group[int] = 
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
+Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -64' 7.8687", -33' 1.2766", 0' 0.0000"
-Range High[point3d] = -41' 2.2693", -8' 10.1193", 0' 0.0000"
-Number of elements[int] = 3
-Total Length[double] = 51' 3.0572"
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 4.67655e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.97071e+07
-Start point [Y] = -5.29169e+06
-Start point [Z] = 0
-
-End point [X] = -1.68382e+07
-End point [Y] = -5.48837e+06
-End point [Z] = 0
-
-Is Closed = 0
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 5.09859e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.68382e+07
-Start point [Y] = -5.48837e+06
-Start point [Z] = 0
-
-End point [X] = -1.45194e+07
-End point [Y] = -7.45523e+06
-End point [Z] = 0
-
-Is Closed = 0
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 5.84732e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.45194e+07
-Start point [Y] = -7.45523e+06
-Start point [Z] = 0
-
-End point [X] = -1.50303e+07
-End point [Y] = -2.69543e+06
-End point [Z] = 0
-
-Is Closed = 0
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1375, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
-Level[int] = Default
-Element ID[long] = 1375
-Model[string] = Default
-Last Modified[dateTime] = 3/11/2020 3:29:27 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Bspline Curve
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -63' 5.7846", -25' 0.9291", 0' 0.0000"
-Range High[point3d] = -16' 2.5481", 15' 4.6409", 0' 0.0000"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 75' 7.5900"
-Planar[boolean] = Yes
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -28895573.4651, -77802433.3074, 0.0000
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- BSplineCurveElement --------
-
-BsplineCurve Length: 2.30528e+07
-BsplineCurve Order: 4
-
-Start point [X] = -1.93493e+07
-Start point [Y] = -558139
-Start point [Z] = 0
-
-End point [X] = -4.94152e+06
-End point [Y] = 1.05745e+06
-End point [Z] = 0
-
-Is Closed = 0
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ArcElement, current element id = 1393, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Arc
-Level[int] = Default
-Element ID[long] = 1393
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:33 AM
-Size[int] = 96
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Arc
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -36' 4.8473", 15' 6.8768", -6' 9.2328"
-Range High[point3d] = -15' 2.1100", 43' 5.8657", 12' 1.6358"
-Rotation-X[double] = 45.0000°
-Rotation-Y[double] = -35.2644°
-Rotation-Z[double] = 129.8485°
-Angle[double] = 0.0000°
-Orientation[int] = 
-Primary Axis[double] = 17' 2.6607"
-Secondary Axis[double] = 17' 2.6607"
-Center[point3d] = -22' 4.1096", 29' 7.6146", 7' 3.5050"
-Start Angle[double] = 0.0000°
-Sweep Angle[double] = 170.7930°
-Length[double] = 51' 4.0347"
-Primary Vector[point3d] = -9' 0.1203", 13' 10.2511", 4' 10.1308"
-Secondary Vector[point3d] = -10' 9.5470", -2' 4.8615", -13' 2.4084"
-Start Point[point3d] = -31' 4.2299", 43' 5.8657", 12' 1.6358"
-End Point[point3d] = -15' 2.1100", 15' 6.8874", 0' 4.7774"
-End Angle[double] = 170.7930°
-Axis Ratio[double] = 1.00000
-Area[double] = 418.3217 Sq.'
-Normal[point3d] = -0.5774, -0.5774, 0.5774
-Radius[double] = 17' 2.6607"
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
-
--------- ArcElement --------
-
-Center point [X] = -6.80998e+06
-Center point [Y] = 9.03261e+06
-Center point [Z] = 2.22263e+06
-
-directionX [X] = -0.523178
-directionX [Y] = 0.804464
-directionX [Z] = 0.281286
-
-directionY [X] = -0.626858
-directionY [Y] = -0.139656
-directionY [Z] = -0.766515
-
-Start Angle = 0
-Sweep Angle = 2.9809
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = BSplineCurveElement, current element id = 1394, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Bspline Curve
-Level[int] = Default
-Element ID[long] = 1394
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:15:00 AM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Bspline Curve
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -28' 4.9809", 20' 5.3877", 5' 0.4189"
-Range High[point3d] = 0' 5.4877", 49' 9.3341", 33' 0.6981"
-Order[int] = 4
-Closed[boolean] = No
-Rational[boolean] = No
-Length[double] = 468' 1.9551"
-Planar[boolean] = No
-Control Polygon[boolean] = Hidden
-Control Point Data[BsplineControlPointData] = 
-Fit Point Data[BsplineFitPointData] = 
-Knot Data[BsplineKnotData] = 
-Start Point Data[BsplineStartEndPointData] = 
-End Point Data[BsplineStartEndPointData] = 
-Degree[int] = 3
-DWG Closed[boolean] = No
-Tangent[point3d] = -115469036.6088, 79209671.9635, 27475793.5226
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- BSplineCurveElement --------
-
-BsplineCurve Length: 1.42696e+08
-BsplineCurve Order: 4
-
-Start point [X] = -297920
-Start point [Y] = 7.84362e+06
-Start point [Z] = 7.5457e+06
-
-End point [X] = -4.61491e+06
-End point [Y] = 1.14859e+07
-End point [Z] = 1.53464e+06
-
-Is Closed = 0
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1399, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1399
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:52 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -48' 3.3680", 9' 10.4435", 0' 0.0000"
-Range High[point3d] = -31' 9.3201", 9' 10.4435", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.47159e+07
-Start Point [Y]: 3.00847e+06
-Start Point [Z]: 0
-
-End Point [X]: -9.68553e+06
-End Point [Y]: 3.00847e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 9.32301e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.6217e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -14715946.709695
-Centroid [Y] = 3008465.045454
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -14715946.709695
-point 0 [Y] = 3008465.045454
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -9685530.120453
-point 1 [Y] = 3008465.045454
-point 1 [Z] = 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 1400, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = Default
-Element ID[long] = 1400
-Model[string] = Default
-Last Modified[dateTime] = 3/19/2020 11:27:56 AM
-Size[int] = 76
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Line
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -37' 8.4936", 3' 3.4593", 0' 0.0000"
-Range High[point3d] = -21' 2.4456", 3' 3.4594", 0' 0.0000"
-Count[int] = 1
-Total Length[double] = 16' 6.0479"
-Area[double] = 
-Elevation[double] = 0' 0.0000"
-Segments[baseElem:Segment] = 
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- LineElement --------
-
-Start Point [X]: -1.14933e+07
-Start Point [Y]: 1.00227e+06
-Start Point [Z]: 0
-
-End Point [X]: -6.46292e+06
-End Point [Y]: 1.00227e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 0
-
-Tangent [X]: 9.32301e-310
-Tangent [Y]: 6.95195e-310
-Tangent [Z]: 4.6217e-312
-
-Curve Line String Length: 5.03042e+06
-
-==============================================
-ClosestApproachBounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-==============================================
-ClosestApproachUnbounded: 
-
-
-Centroid [X] = -11493336.082212
-Centroid [Y] = 1002267.475449
-Centroid [Z] = 0.000000
-
-Wire centroid Line Length: 0.000000
-
-==============================================
-Components --------1
-
-point 0 [X] = -11493336.082212
-point 0 [Y] = 1002267.475449
-point 0 [Z] = 0.000000
-
-
-point 1 [X] = -6462919.492971
-point 1 [Y] = 1002267.475449
-point 1 [Z] = 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ComplexStringElement, current element id = 1401, id = 0 ---------
-is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Complex Chain
-Level[int] = Default
-Element ID[long] = 1401
-Model[string] = Default
-Last Modified[dateTime] = 3/20/2020 2:09:36 PM
-Size[int] = 56
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Complex Chain
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -64' 7.8687", -33' 1.2766", 0' 0.0000"
-Range High[point3d] = -41' 2.2693", -8' 10.1193", 0' 0.0000"
-Number of elements[int] = 3
-Total Length[double] = 51' 3.0572"
-
--------- BOUNDARY_TYPE_Open --------
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 4.67655e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.97071e+07
-Start point [Y] = -5.29169e+06
-Start point [Z] = 0
-
-End point [X] = -1.68382e+07
-End point [Y] = -5.48837e+06
-End point [Z] = 0
-
-Is Closed = 0
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 5.09859e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.68382e+07
-Start point [Y] = -5.48837e+06
-Start point [Z] = 0
-
-End point [X] = -1.45194e+07
-End point [Y] = -7.45523e+06
-End point [Z] = 0
-
-Is Closed = 0
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
--------- ComplexStringElement --------
-
-BsplineCurve Length: 5.84732e+06
-BsplineCurve Order: 4
-
-Start point [X] = -1.45194e+07
-Start point [Y] = -7.45523e+06
-Start point [Z] = 0
-
-End point [X] = -1.50303e+07
-End point [Y] = -2.69543e+06
-End point [Z] = 0
-
-Is Closed = 0
+Range Low[point3d] = -83' 0.0247", -44' 2.7897", -7' 8.2498"
+Range High[point3d] = -67' 7.5251", -28' 10.2901", 7' 8.2498"
+Volume[double] = 1903.0094 Cu.'
+Surface Area[double] = 742.6396 Sq.'
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 90.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 270.0000°
+Orientation[int] = Back
+-------- SphereSolidElement --------
+Range [XLength] = 4686288.955318
+Range [YLength] = 4686288.955318
+Range [ZLength] = 4686288.955318
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = 0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.577350
+vRotation [Y] = 0.577350
+vRotation [Z] = 0.577350
+
+Origin [X] = -22955882.215843
+Origin [Y] = -11138914.042500
+Origin [Z] = 0.000000
+
+Range High = -20612737.738184
+Range Low = -25299026.693502
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
+
+DiagonalDistanceXY = 6627413.397811
+DiagonalDistance = 8116890.569560
+Range Difference = -4686288.955318
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 1
+
+Centroid1 [X] = -22955882.215843
+Centroid1 [Y] = -11138914.042500
+Centroid1 [Z] = 0.000000
+Area1 = 68993471852330.554688
+
+Centroid2 [X] = -22955882.215843
+Centroid2 [Y] = -11138914.042500
+Centroid2 [Z] = 0.000000
+Volume = 53887224188442116096.000000
+Area2 = 68993471852330.554688
+
+
+ Sphere 
+
+SphereSolidElementIn SolidKernel Entity is: Solid 0
+
+
+===================================================
+===================================================
+Element Description: Sphere
+Element: ID 1478
+===================================================
+===================================================
 

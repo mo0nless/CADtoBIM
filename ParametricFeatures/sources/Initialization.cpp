@@ -151,8 +151,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	
 	propsDictVec = initializationEnhancer->orderDictionaryPropertyAndSmartFeature(propsDictVec, smartFeatureContainerVector);
 
-	//IfcBuilder* ifcBuilder = new IfcBuilder();
-	//ifcBuilder->buildIfc(newPropsDictVec, smartFeatureContainerVector);
+	IfcBuilder* ifcBuilder = new IfcBuilder();
+	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
 
 	//outfile.close();
 

@@ -107,6 +107,9 @@ appObjects = \
 	$(o)CurvesTypeEnum$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)PrimitiveCommonGraphicProperties$(oext) \
+	$(o)ReaderPropertyDefinition$(oext) \
+	$(o)ReaderPropertyBundle$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -204,6 +207,8 @@ $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/g
 
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
 
+$(o)PrimitiveCommonGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveCommonGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveCommonGraphicProperties.h
+
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
@@ -233,6 +238,10 @@ $(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
 $(o)CurvesTypeEnum$(oext) : $(baseDir)common/enums/sources/CurvesTypeEnum.cpp $(baseDir)common/enums/headers/CurvesTypeEnum.h
+
+$(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
+
+$(o)ReaderPropertyBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyBundle.h
 
 %include $(MDLMKI)dlmlink.mki
 
