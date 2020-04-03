@@ -16,7 +16,6 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 class BooleanOperationReaderPropertiesMapper {
 
-
 private:
 	BooleanOperationReaderPropertiesMapper() {};
 

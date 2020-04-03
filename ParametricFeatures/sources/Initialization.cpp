@@ -146,7 +146,7 @@
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	InitializationEnhancer* initializationEnhancer = new InitializationEnhancer();
-	
+
 	std::vector<DictionaryProperties*> propsDictVec;
 	std::vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
