@@ -25,7 +25,7 @@ GraphicProperties::GraphicProperties()
 	this->mVectorAxisZ.y = 0;
 	this->mVectorAxisZ.z = 1;
 
-	this->pCurveGraphicProperties = nullptr;
+	this->pCurvesPrimitivesContainer = nullptr;
 	this->pPrimitiveGraphicProperties = nullptr;
 }
 
@@ -89,19 +89,19 @@ void GraphicProperties::setVectorAxisZ(DVec3d newVectorBaseZ)
 	this->mVectorAxisZ = newVectorBaseZ;
 }
 
-bool GraphicProperties::tryGetCurveGraphicsProperties(CurveGraphicProperties*& curveGraphicsPropertiesR)
+bool GraphicProperties::tryGetCurvesPrimitivesContainer(CurvesPrimitivesContainer*& curvesPrimitivesContainersR)
 {
-	if (this->pCurveGraphicProperties == nullptr)
+	if (this->pCurvesPrimitivesContainer == nullptr)
 	{
 		return false;
 	}
-	curveGraphicsPropertiesR = this->pCurveGraphicProperties;
+	curvesPrimitivesContainersR = this->pCurvesPrimitivesContainer;
 	return true;
 }
 
-void GraphicProperties::setCurveGraphicsProperties(CurveGraphicProperties * newCurveGraphicsProperties)
+void GraphicProperties::setCurvesPrimitivesContainer(CurvesPrimitivesContainer* newCurvesPrimitivesContainer)
 {
-	this->pCurveGraphicProperties = newCurveGraphicsProperties;
+	this->pCurvesPrimitivesContainer = newCurvesPrimitivesContainer;
 }
 
 bool GraphicProperties::tryGetPrimitiveGraphicProperties(PrimitiveGraphicProperties*& primitiveGraphicPropertiesR)

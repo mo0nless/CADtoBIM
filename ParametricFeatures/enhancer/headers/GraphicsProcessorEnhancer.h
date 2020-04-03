@@ -2,7 +2,7 @@
 
 #include "../../headers/PropertiesReaderProcessor.h"
 #include "../../modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h"
-#include "../../modeler/properties/curves/graphic/headers/CurveGraphicProperties.h"
+#include "../../modeler/properties/curves/headers/CurvesPrimitivesContainer.h"
 
 class GraphicsProcessorEnhancer
 {
@@ -14,8 +14,7 @@ public:
 	void setSphereGraphicProperties();
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians);
 
-	void processCurvePrimitives(CurveVectorCP curvesVector); 
-	void processCurvePrimitives(ICurvePrimitivePtr curve, CurveGraphicProperties* curveGraphicProperties);
+	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 

@@ -1,27 +1,28 @@
 #pragma once
 
 #include "RevolveReaderProperties.h"
-#include "ThickenReaderProperties.h"
-#include "../../../../../common/enums/headers/ShapeProfileEnum.h"
+#include "ExtrusionReaderProperties.h"
+#include "../../../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
+//#include "../../../../../common/enums/headers/CreateSolidFunctionsEnum.h"
 
 class CreateSolidsOperationProperties {
 
 private:
-	ShapeProfileEnum shapeProfileEnum;
+	CreateSolidFunctionsEnum mCreateSolidFunctionsEnum;
 
 	RevolveReaderProperties* revolveReaderProperties;
-	ThickenReaderProperties* thickenReaderProperties;
+	ExtrusionReaderProperties* extrusionReaderProperties;
 
 public:
 	CreateSolidsOperationProperties();
 
-	ShapeProfileEnum getShapeProfileEnum();
-	void setShapeProfileEnum(ShapeProfileEnum newShapeProfileEnum);
+	CreateSolidFunctionsEnum getCreateSolidTypeEnum();
+	void setCreateSolidTypeEnum(CreateSolidFunctionsEnum value);
 
-	bool tryGetRevolveReaderProperties(RevolveReaderProperties& revolveReaderPropertiesR);
+	bool tryGetRevolveReaderProperties(RevolveReaderProperties*& revolveReaderPropertiesR);
 	void setRevolveReaderProperties(RevolveReaderProperties* newRevolveReaderProperties);
 
-	bool tryGetThickenReaderProperties(ThickenReaderProperties& thickenReaderPropertiesR);
-	void setThickenReaderProperties(ThickenReaderProperties* newThickenReaderProperties);
+	bool tryGetExtrusionReaderProperties(ExtrusionReaderProperties*& extrusionReaderPropertiesR);
+	void setExtrusionReaderProperties(ExtrusionReaderProperties* newExtrusionReaderProperties);
 
 };

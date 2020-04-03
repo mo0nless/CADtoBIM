@@ -94,7 +94,6 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 
 				if (currentNode != nullptr) 
 				{
-
 					// set class name in the ReaderProperties
 					currentNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setSmartFeatureTypeEnum(smartFeatureTypeEnum);
 					// if it's a smart feature and the node is found, pass to the mapper the ReaderProperties of the SmartFeatureTreeNode

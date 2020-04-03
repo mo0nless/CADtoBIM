@@ -13,5 +13,5 @@ public:
 	Ifc4::IfcRepresentationItem* buildBooleanRepresentation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file);
 
 private:
-	Ifc4::IfcRepresentationItem* solveBooleanOperaionts(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, BooleanOperationProperties& booleanOperationProperties);
+	Ifc4::IfcRepresentationItem* solveBooleanOperations(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, BooleanOperationProperties& booleanOperationProperties);
 };

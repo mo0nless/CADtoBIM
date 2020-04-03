@@ -30,7 +30,7 @@ void ReaderProperties::setSmartFeatureGeneralProperties(SmartFeatureGeneralPrope
 }
 
 
-bool ReaderProperties::tryGetCreateSolidsOperationProperties(CreateSolidsOperationProperties & createSolidsOperationPropertiesR)
+bool ReaderProperties::tryGetCreateSolidsOperationProperties(CreateSolidsOperationProperties& createSolidsOperationPropertiesR)
 {
 	if (this->pCreateSolidsOperationProperties == nullptr)
 	{
@@ -58,21 +58,6 @@ bool ReaderProperties::tryGetBooleanOperationProperties(BooleanOperationProperti
 void ReaderProperties::setBooleanOperationProperties(BooleanOperationProperties * newBooleanOperationProperties)
 {
 	this->pBooleanOperationProperties = newBooleanOperationProperties;
-}
-
-bool ReaderProperties::tryGetCurveReaderProperties(CurveReaderProperties & curveReaderPropertiesR)
-{
-	if (this->pCurveReaderProperties == nullptr)
-	{
-		return false;
-	}
-	curveReaderPropertiesR = *this->pCurveReaderProperties;
-	return true;
-}
-
-void ReaderProperties::setCurveReaderProperties(CurveReaderProperties * newCurveReaderProperties)
-{
-	this->pCurveReaderProperties = newCurveReaderProperties;
 }
 
 

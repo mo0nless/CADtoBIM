@@ -2,27 +2,27 @@
 
 CreateSolidsOperationProperties::CreateSolidsOperationProperties()
 {
-	this->shapeProfileEnum = ShapeProfileEnum::UNDEFINED;
+	this->mCreateSolidFunctionsEnum = CreateSolidFunctionsEnum::UNDEFINED;
 	this->revolveReaderProperties = nullptr;
-	this->thickenReaderProperties = nullptr;
+	this->extrusionReaderProperties = nullptr;
 }
 
-ShapeProfileEnum CreateSolidsOperationProperties::getShapeProfileEnum()
+CreateSolidFunctionsEnum CreateSolidsOperationProperties::getCreateSolidTypeEnum()
 {
-	return this->shapeProfileEnum;
+	return this->mCreateSolidFunctionsEnum;
 }
 
-void CreateSolidsOperationProperties::setShapeProfileEnum(ShapeProfileEnum newShapeProfileEnum)
+void CreateSolidsOperationProperties::setCreateSolidTypeEnum(CreateSolidFunctionsEnum value)
 {
-	this->shapeProfileEnum = newShapeProfileEnum;
+	this->mCreateSolidFunctionsEnum = value;
 }
 
-bool CreateSolidsOperationProperties::tryGetRevolveReaderProperties(RevolveReaderProperties& revolveReaderPropertiesR)
+bool CreateSolidsOperationProperties::tryGetRevolveReaderProperties(RevolveReaderProperties*& revolveReaderPropertiesR)
 {
 	if (this->revolveReaderProperties == nullptr) {
 		return false;
 	}
-	revolveReaderPropertiesR = *this->revolveReaderProperties;
+	revolveReaderPropertiesR = this->revolveReaderProperties;
 	return true;
 }
 
@@ -31,17 +31,17 @@ void CreateSolidsOperationProperties::setRevolveReaderProperties(RevolveReaderPr
 	this->revolveReaderProperties = newRevolveReaderProperties;
 }
 
-bool CreateSolidsOperationProperties::tryGetThickenReaderProperties(ThickenReaderProperties& thickenReaderPropertiesR)
+bool CreateSolidsOperationProperties::tryGetExtrusionReaderProperties(ExtrusionReaderProperties*& extrusionReaderPropertiesR)
 {
-	if (this->thickenReaderProperties == nullptr) {
+	if (this->extrusionReaderProperties == nullptr) {
 		return false;
 	}
-	thickenReaderPropertiesR = *this->thickenReaderProperties;
+	extrusionReaderPropertiesR = this->extrusionReaderProperties;
 	return true;
 }
 
-void CreateSolidsOperationProperties::setThickenReaderProperties(ThickenReaderProperties * newThickenReaderProperties)
+void CreateSolidsOperationProperties::setExtrusionReaderProperties(ExtrusionReaderProperties * newThickenReaderProperties)
 {
-	this->thickenReaderProperties = newThickenReaderProperties;
+	this->extrusionReaderProperties = newThickenReaderProperties;
 }
 

@@ -4,7 +4,6 @@
 #include "../smart_feature/headers/SmartFeatureGeneralProperties.h"
 #include "../boolean_operations/headers/BooleanOperationProperties.h"
 #include "../create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
-#include "../curves/reader/headers/CurveReaderProperties.h"
 
 /**
 *   Class contains needed reader properties
@@ -17,7 +16,6 @@ private:
 
 	CreateSolidsOperationProperties* pCreateSolidsOperationProperties;
 	BooleanOperationProperties* pBooleanOperationProperties;
-	CurveReaderProperties* pCurveReaderProperties;
 
 public:
 	ReaderProperties();
@@ -33,7 +31,4 @@ public:
 
 	bool tryGetBooleanOperationProperties(BooleanOperationProperties& booleanOperationPropertiesR);
 	void setBooleanOperationProperties(BooleanOperationProperties* newBooleanOperationProperties);
-
-	bool tryGetCurveReaderProperties(CurveReaderProperties& curveReaderProperties);
-	void setCurveReaderProperties(CurveReaderProperties* newCurveReaderProperties);
 };

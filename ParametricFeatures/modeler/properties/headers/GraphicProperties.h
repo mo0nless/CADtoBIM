@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../primitives/graphic/headers/PrimitiveGraphicProperties.h"
-#include "../curves/graphic/headers/CurveGraphicProperties.h"
+#include "../curves/headers/CurvesPrimitivesContainer.h"
 
 /**
  *   Class contains needed graphic properties
@@ -19,7 +19,7 @@ private:
 	DVec3d mVectorAxisZ;
 
 	PrimitiveGraphicProperties* pPrimitiveGraphicProperties;
-	CurveGraphicProperties* pCurveGraphicProperties;
+	CurvesPrimitivesContainer* pCurvesPrimitivesContainer;
 
 public:
 	GraphicProperties();
@@ -42,8 +42,8 @@ public:
 	DVec3d getVectorAxisZ();
 	void setVectorAxisZ(DVec3d newVectorBaseZ);
 
-	bool tryGetCurveGraphicsProperties(CurveGraphicProperties*& curveGraphicsPropertiesR);
-	void setCurveGraphicsProperties(CurveGraphicProperties* newCurveGraphicsProperties);
+	bool tryGetCurvesPrimitivesContainer(CurvesPrimitivesContainer*& curvesPrimitivesContainersR);
+	void setCurvesPrimitivesContainer(CurvesPrimitivesContainer* newCurvesPrimitivesContainer);
 
 	bool tryGetPrimitiveGraphicProperties(PrimitiveGraphicProperties*& primitiveGraphicPropertiesR);
 	void setPrimitiveGraphicProperties(PrimitiveGraphicProperties* newPrimitiveGraphicProperties);

@@ -22,3 +22,8 @@ ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByString
 	// TODO add warning log value not found
 	return ReaderPropertiesEnum::NONE;
 }
+
+ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByInt(int primitiveBentleyInt)
+{
+	return ReaderPropertiesEnum(primitiveBentleyInt);
+}

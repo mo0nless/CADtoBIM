@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../../../../common/enums/headers/SmartFeatureTypeEnum.h"
+#include "../../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
+#include "../../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 
 class SmartFeatureGeneralProperties {
 
@@ -8,8 +9,8 @@ private:
 	long mLocalNodeId;
 	long mLocalParentNodeId;
 
-	SmartFeatureTypeEnum smartFeatureTypeEnum;
-
+	SmartFeatureTypeEnum mSmartFeatureTypeEnum;
+	CreateSolidFunctionsEnum mCreateSolidFunctionsEnum;
 
 public:
 	SmartFeatureGeneralProperties();
@@ -21,5 +22,9 @@ public:
 	void setLocalParentNodeId(long newLocalParentNodeId);
 
 	SmartFeatureTypeEnum getSmartFeatureTypeEnum();
+	void setSmartFeatureTypeEnum(std::string newClassName);
 	void setSmartFeatureTypeEnum(SmartFeatureTypeEnum newSmartFeatureTypeEnum);
+
+	CreateSolidFunctionsEnum getCreateSolidTypeEnum();
+
 };

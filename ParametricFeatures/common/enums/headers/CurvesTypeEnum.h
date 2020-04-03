@@ -1,24 +1,39 @@
 #pragma once
 
-#include <map>
-#include <string>
+//ORDER matters for mapping functions
+//The CurvesTypeEnum & CurvesBoundaryTypeEnum enumeration classes order represent the same as the one in Bentley OpenPlant Environment
 
-namespace CurvesTypeEnum
+enum class CurvesTypeEnum
 {
-	enum CurvesTypeEnum
-	{
-		LINE,
-		ARC,
-		LINE_STRING,
-		BSPLINE,
-		AKIMA_CURVE,
-		CURVE_VECTOR,
-		INTERPOLATION_CURVE,
-		PARTIAL_CURVE,
-		POINT_STRING,
-		SPIRAL,
-		NONE
-	};
+	NONE = 0,
+	LINE = 1,
+	LINE_STRING = 2,
+	ARC = 3,
+	BSPLINE = 4,
+	INTERPOLATION_CURVE = 5,
+	AKIMA_CURVE = 6,
+	POINT_STRING = 7,
+	CURVE_VECTOR = 8,	
+	SPIRAL = 9,
+	PARTIAL_CURVE = 10,
+};
 
-	CurvesTypeEnum getCurvesTypeEnumByClassName(std::string className);
-}
+enum class CurvesBoundaryTypeEnum
+{	
+	NONE_BOUNDARY = 0,
+	OPEN = 1,
+	OUTER = 2,
+	INNER = 3,
+	PARITY_REGION = 4,
+	UNION_REGION = 5,
+	
+};
+
+enum class CurvesContainerTypeEnum
+{
+	NONE_CONTAINER = 0,
+	COMPLEX_CHAIN = 1,
+	CIRCLE = 2,
+	ELLIPSE = 3,
+	SHAPE = 4,
+};

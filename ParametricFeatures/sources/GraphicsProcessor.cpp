@@ -59,30 +59,40 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 	{
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
@@ -96,6 +106,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 		if (curve.TryGetLine(segment))
 		{
 			outfile.open(filePath, std::ios_base::app);
+			outfile << "======================AAAAAAAAAAA========================" << std::endl;
+			outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 			outfile << "-------- " << dictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 
@@ -181,6 +193,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 		if (curve.TryGetSegmentInLineString(segment, startPointIndex))
 		{
 			outfile.open(filePath, std::ios_base::app);
+			outfile << "======================AAAAAAAAAAA========================" << std::endl;
+			outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 			outfile << "-------- " << dictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
 			outfile << std::endl;
 
@@ -259,18 +273,24 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 		break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 		outfile.open(filePath, std::ios_base::app);
+		outfile << "======================AAAAAAAAAAA========================" << std::endl;
+		outfile << "=========================AAAAAAAAAA=====================" << std::endl;
 		outfile << "-------- CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
@@ -292,10 +312,40 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
-
+	
 	std::ofstream outfile;
 	if (!curves.empty()) 
 	{
+		CurvesPrimitivesContainer* curvesPrimitivesContainer = new CurvesPrimitivesContainer();
+		curvesPrimitivesContainer->setElementContainerDescriptor(dictionaryProperties->getGeneralProperties()->getElementDescriptorName());
+		curvesPrimitivesContainer->setIsClosed(curves.IsPhysicallyClosedPath());
+
+		if (isFilled)
+		{
+			DPoint3d centroID, fixedPoint;
+			DRange3d range;
+			DVec3d normal, row, column, planeVectorX, planeVectorY;
+			double area, scalar;
+			DMatrix4d products;
+			RotMatrix rotMatrix;
+			Transform localToWorld, worldToLocal;
+
+			curves.CentroidNormalArea(centroID, normal, area);
+			curves.ComputeSecondMomentAreaProducts(products);			
+			curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+
+			//localToWorld.GetFixedPlane()
+			localToWorld.GetFixedPlane(fixedPoint, planeVectorX, planeVectorY);
+			products.GetBlocks(rotMatrix, row, column, scalar);
+			//rotMatrix.
+
+			curvesPrimitivesContainer->setDirectionXY(planeVectorX, planeVectorY);
+			curvesPrimitivesContainer->setIsFilled(isFilled);
+			curvesPrimitivesContainer->setArea(area);
+			curvesPrimitivesContainer->setCentroIDxy(centroID);
+			curvesPrimitivesContainer->setNormal(normal);
+		}
+
 		switch (curves.GetBoundaryType())
 		{
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
@@ -303,17 +353,17 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+			
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
-
-			/*for each (ICurvePrimitivePtr curve in curves)
+			for each (ICurvePrimitivePtr curve in curves)
 			{
-				CurveGraphicProperties* curveGraphicProperties = new CurveGraphicProperties();
-				curveGraphicProperties->setCurvesTypeEnum(dictionaryProperties->getGeneralProperties()->getElementDescriptorName());
-
-			}*/
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
@@ -322,10 +372,17 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+			
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
@@ -334,10 +391,17 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+						
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
@@ -346,10 +410,17 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+			
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
@@ -358,10 +429,17 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+			
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
@@ -370,15 +448,24 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+			outfile << "Is Filled:" << isFilled << std::endl;
 			outfile.flush();
 			outfile.close();
+			
+			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
 
-			mGraphicsProcessorEnhancer.processCurvePrimitives(&curves);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
+				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
 			break;
 		default:
 			break;
 		}
+
+		dictionaryProperties->getGraphicProperties()->setCurvesPrimitivesContainer(curvesPrimitivesContainer);
 	}
 	
 	return ERROR;

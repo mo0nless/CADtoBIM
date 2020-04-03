@@ -1,12 +1,17 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../../common/utils/headers/NumberUtils.h"
+#include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
+#include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../curves/headers/IfcCurvesPrimitivesBuilder.h"
+#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
+//#include "../../../modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
 
 class IfcCreateSolidsOperationBuilder {
 
 public:
-	Ifc4::IfcRepresentationItem* buildIfcProfileDefinition(GraphicProperties& graphicProperties, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcRepresentationItem* buildIfcCreateSolidsOperation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file);
+
+private:
 
 };

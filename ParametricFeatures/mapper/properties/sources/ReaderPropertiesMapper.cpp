@@ -62,12 +62,12 @@ void ReaderPropertiesMapper::mapPropertyToReaderPropertiesMember(std::string lab
 		//	readerProperties.setBooleanOperationProperties(booleanOperationProperties);
 		//}
 
-		// TODO [MP] check this
+		// TODO [MP] check this		
 		BooleanOperationReaderPropertiesMapper::mapBooleanOperationReaderPropertiesToReaderProperties(labelValue, eCValue, readerProperties);
 		break;
 
 	case SmartFeatureTypeEnum::CREATE_SOLIDS:
-		readerProperties.setCreateSolidsOperationProperties(nullptr);
+		CreateSolidsOperationPropertiesReaderMapper::mapCreateSolidsOperationPropertiesToReaderProperties(labelValue, eCValue, readerProperties);
 		break;
 
 	case SmartFeatureTypeEnum::UNDEFINED:

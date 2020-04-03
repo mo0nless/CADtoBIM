@@ -9,7 +9,13 @@
 	{
 		EXTRUDE,
 		EXTRUDE_ALONG,
-		THICKEN,
 		REVOLVE,
 		UNDEFINED
+	};
+
+	enum class CreateSolidPropertiesEnum
+	{
+		THICKNESS,
+		DISTANCE,
+		NONE,
 	};

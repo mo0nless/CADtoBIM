@@ -35,7 +35,7 @@ double RevolveReaderProperties::getMaximumRadius()
 
 void RevolveReaderProperties::setMaximumRadius(double newMaximumRadius)
 {
-	this->maximumRadius = maximumRadius;
+	this->maximumRadius = newMaximumRadius;
 }
 
 double RevolveReaderProperties::getCentroidalRadius()

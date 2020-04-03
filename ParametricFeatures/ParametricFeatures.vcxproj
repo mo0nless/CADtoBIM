@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="common\enums\sources\CurvesTypeEnum.cpp" />
+    <ClCompile Include="common\utils\sources\CurvesTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
@@ -24,20 +24,26 @@
     <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
+    <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
+    <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\properties\boolean_operations\sources\BooleanOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
-    <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ThickenReaderProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\AkimaGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\sources\CurvesPrimitivesContainer.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
-    <ClCompile Include="modeler\properties\curves\reader\sources\CurveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
@@ -67,9 +73,10 @@
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
-    <ClInclude Include="common\enums\headers\ShapeProfileEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
+    <ClInclude Include="common\interfaces\graphics\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
     <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
@@ -78,20 +85,30 @@
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
+    <ClInclude Include="enhancer\headers\IfcOperationsEnhancer.h" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
+    <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
+    <ClInclude Include="mapper\properties\headers\CreateSolidsOperationPropertiesReaderMapper.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\CreateSolidsOperationProperties.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\RevolveReaderProperties.h" />
-    <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\ThickenReaderProperties.h" />
-    <ClInclude Include="modeler\properties\curves\reader\headers\CurveReaderProperties.h" />
+    <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\ExtrusionReaderProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\AkimaGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\InterpolationGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\LineGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="modeler\properties\curves\headers\CurvesPrimitivesContainer.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
@@ -102,7 +119,7 @@
     <ClInclude Include="modeler\properties\primitives\reader\headers\PrimitiveReaderProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureGeneralProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />

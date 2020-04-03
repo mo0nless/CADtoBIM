@@ -12,7 +12,7 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentati
 	if (smartFeatureTreeNode.getReaderProperties()->tryGetBooleanOperationProperties(booleanOperationProperties)) {
 		if (booleanOperationProperties.getBooleanFunction() != BooleanFunctions::BooleanFunctionsEnum::UNDEFINED)
 		{
-			ifcRepresentationItem = solveBooleanOperaionts(smartFeatureTreeNode, file, booleanOperationProperties);
+			ifcRepresentationItem = solveBooleanOperations(smartFeatureTreeNode, file, booleanOperationProperties);
 		}
 
 	}
@@ -33,7 +33,7 @@ Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::buildBooleanRepresentati
 	return ifcRepresentationItem;
 }
 
-Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperaionts(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, 
+Ifc4::IfcRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperations(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, 
 	BooleanOperationProperties& booleanOperationProperties)
 {
 	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;

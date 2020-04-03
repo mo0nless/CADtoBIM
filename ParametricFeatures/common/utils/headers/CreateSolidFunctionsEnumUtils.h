@@ -11,8 +11,9 @@ class CreateSolidFunctionsEnumUtils {
 private:
 	CreateSolidFunctionsEnumUtils() {};
 	static std::map<CreateSolidFunctionsEnum, std::string> mappedValues;
+	static std::map<CreateSolidPropertiesEnum, std::string> mappedValuesProps;
 
 public:
-	CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(std::string className);
-
+	static CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(std::string className);
+	static CreateSolidPropertiesEnum getSolidPropertiesEnumByClassName(std::string className);
 };

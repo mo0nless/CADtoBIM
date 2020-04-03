@@ -4,7 +4,7 @@
 
 std::map<SmartFeatureTypeEnum, std::vector<std::string>> SmartFeatureTypeEnumUtils::mappedValues = {
 	{ SmartFeatureTypeEnum::BOOLEAN_FEATURE,{ "BooleanFeature" } },
-	{ SmartFeatureTypeEnum::CREATE_SOLIDS,{ "Revolve", "ThickenFeature" } },
+	{ SmartFeatureTypeEnum::CREATE_SOLIDS,{ "Revolve", "ThickenFeature", "Extrude", "ExtrudeAlong"} },
 	{ SmartFeatureTypeEnum::UNDEFINED,{ "" } },
 };
 

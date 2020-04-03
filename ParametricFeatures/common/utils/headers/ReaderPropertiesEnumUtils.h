@@ -17,6 +17,7 @@ public:
 	*  @return ReaderPropertiesEnum
 	*/
 	static ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
+	static ReaderPropertiesEnum getElementPropertiesEnumByInt(int primitiveBentleyInt);
 
 private:
 	/**

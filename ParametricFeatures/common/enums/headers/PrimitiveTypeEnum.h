@@ -5,14 +5,13 @@
 
 	enum class PrimitiveTypeEnum {
 
-		BOX,
-		CONE,
-		CYLINDER,
-		PYRAMID,
-		SPHERE,
-		TORUS,
-		TRUNCATED_CONE,
-		NONE
+		NONE = 0,
+		TORUS = 1,
+		CONE = 2,
+		BOX = 3,
+		SPHERE = 4,
+		CYLINDER = 5,
+		PYRAMID = 6,
+		TRUNCATED_CONE = 7,
 
 	};
-

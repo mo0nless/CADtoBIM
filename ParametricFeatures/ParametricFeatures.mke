@@ -76,6 +76,7 @@ appObjects = \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
 	$(o)GraphicsProcessorEnhancer$(oext) \
+	$(o)IfcOperationsEnhancer$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
 	$(o)NumberUtils$(oext) \
@@ -94,19 +95,30 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
-	$(o)CurveGraphicsProperties$(oext) \
+	$(o)BsplineGraphicProperties$(oext) \
+	$(o)ArcGraphicProperties$(oext) \
+	$(o)InterpolationGraphicProperties$(oext) \
+	$(o)LineGraphicProperties$(oext) \
+	$(o)AkimaGraphicProperties$(oext) \
+	$(o)CurvesPrimitivesContainer$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
+	$(o)IfcCreateSolidsOperationBuilder$(oext) \
+	$(o)IfcCurvesPrimitivesBuilder$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)IfcPrimitivesBuilder$(oext) \
 	$(o)IfcBuilder$(oext) \
 	$(o)BooleanOperationProperties$(oext) \
 	$(o)CreateSolidsOperationProperties$(oext) \
+	$(o)ExtrusionReaderProperties$(oext) \
+	$(o)RevolveReaderProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureGeneralProperties$(oext) \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
-	$(o)CurvesTypeEnum$(oext) \
+	$(o)CurvesTypeEnumUtils$(oext) \
+	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -208,9 +220,15 @@ $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDi
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
 
+$(o)IfcOperationsEnhancer$(oext) : $(baseDir)enhancer/sources/IfcOperationsEnhancer.cpp $(baseDir)enhancer/headers/IfcOperationsEnhancer.h 
+
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
 
 $(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnhancer.cpp $(baseDir)enhancer/headers/InitializationEnhancer.h
+
+$(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
+
+$(o)IfcCurvesPrimitivesBuilder$(oext) : $(baseDir)ifc/curves/sources/IfcCurvesPrimitivesBuilder.cpp $(baseDir)ifc/curves/headers/IfcCurvesPrimitivesBuilder.h
 
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
@@ -218,21 +236,39 @@ $(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitives
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
 
-$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicProperties.h
+$(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/BsplineGraphicProperties.h
+
+$(o)ArcGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ArcGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ArcGraphicProperties.h
+
+$(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/InterpolationGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/InterpolationGraphicProperties.h
+
+$(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineGraphicProperties.h
+
+$(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
+
+$(o)CurvesPrimitivesContainer$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesPrimitivesContainer.cpp $(baseDir)modeler/properties/curves/headers/CurvesPrimitivesContainer.h
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 
 $(o)CreateSolidsOperationProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/CreateSolidsOperationProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h
 
+$(o)ExtrusionReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/ExtrusionReaderProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/ExtrusionReaderProperties.h
+
+$(o)RevolveReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/RevolveReaderProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/RevolveReaderProperties.h
+
 $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
 
 $(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
 
-$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
-
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
-$(o)CurvesTypeEnum$(oext) : $(baseDir)common/enums/sources/CurvesTypeEnum.cpp $(baseDir)common/enums/headers/CurvesTypeEnum.h
+$(o)CurvesTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/CurvesTypeEnumUtils.cpp $(baseDir)common/utils/headers/CurvesTypeEnumUtils.h
+
+$(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
+
+$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
+
+$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
 
 %include $(MDLMKI)dlmlink.mki
 

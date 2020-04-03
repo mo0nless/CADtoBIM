@@ -4,8 +4,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 {
 		std::string name = "PrimitiveTest";
 		IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-		//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-		std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 		typedef Ifc4::IfcGloballyUniqueId guid2;
 
 		Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -54,10 +54,24 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 				if (smartFeatureContainer.getRoot() != nullptr)
 				{
-					if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
-						IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-						representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
+					switch (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum())
+					{
+						case SmartFeatureTypeEnum::BOOLEAN_FEATURE: 
+						{
+							IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
+							representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
+						}
+						break;
+						case SmartFeatureTypeEnum::CREATE_SOLIDS:
+						{
+							IfcCreateSolidsOperationBuilder* ifcCreateSolidsOperationBuilder = new IfcCreateSolidsOperationBuilder();
+							representationItem = ifcCreateSolidsOperationBuilder->buildIfcCreateSolidsOperation(*smartFeatureContainer.getRoot(), file);
+						}
+						default:
+							break;
 					}
+					
+
 				}
 
 				if (representationItem != nullptr) 
@@ -86,7 +100,28 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 					items->push(representationItem);
 				}
 
+				IfcCurvesPrimitivesBuilder* ifcCurvesPrimitivesBuilder = new IfcCurvesPrimitivesBuilder();
+				std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = ifcCurvesPrimitivesBuilder->buildIfcCurvesPrimitives(*dictionaryProperties.getGraphicProperties(), file);
+				
+				if (!ifcCurvesItemsVector.empty()) {
+					for each (Ifc4::IfcCurve* curve in ifcCurvesItemsVector)
+					{
+						CurvesPrimitivesContainer* curveCotainer;
+						dictionaryProperties.getGraphicProperties()->tryGetCurvesPrimitivesContainer(curveCotainer);
 
+						/*if(curveCotainer->getIsFilled())
+						{
+							Ifc4::IfcPlane* plane = new Ifc4::IfcPlane();
+							representationItem = new Ifc4::IfcCurveBoundedPlane(plane,curve,boost::none);
+						}
+						else*/
+						representationItem = curve;
+
+						if (representationItem != nullptr) {
+							items->push(representationItem);
+						}
+					}
+				}
 			}
 		}
 

@@ -4,7 +4,8 @@ SmartFeatureGeneralProperties::SmartFeatureGeneralProperties()
 {
 	this->mLocalNodeId = -1;
 	this->mLocalParentNodeId = -1;
-	this->smartFeatureTypeEnum = SmartFeatureTypeEnum::UNDEFINED;
+	this->mSmartFeatureTypeEnum = SmartFeatureTypeEnum::UNDEFINED;
+	this->mCreateSolidFunctionsEnum = CreateSolidFunctionsEnum::UNDEFINED;
 }
 
 long SmartFeatureGeneralProperties::getLocalNodeId()
@@ -29,10 +30,24 @@ void SmartFeatureGeneralProperties::setLocalParentNodeId(long newLocalParentNode
 
 SmartFeatureTypeEnum SmartFeatureGeneralProperties::getSmartFeatureTypeEnum()
 {
-	return this->smartFeatureTypeEnum;
+	return this->mSmartFeatureTypeEnum;
+}
+
+CreateSolidFunctionsEnum SmartFeatureGeneralProperties::getCreateSolidTypeEnum()
+{
+	return this->mCreateSolidFunctionsEnum;
 }
 
 void SmartFeatureGeneralProperties::setSmartFeatureTypeEnum(SmartFeatureTypeEnum newSmartFeatureTypeEnum)
 {
-	this->smartFeatureTypeEnum = newSmartFeatureTypeEnum;;
+	this->mSmartFeatureTypeEnum = newSmartFeatureTypeEnum;
+}
+
+void SmartFeatureGeneralProperties::setSmartFeatureTypeEnum(std::string newClassName)
+{
+	this->mSmartFeatureTypeEnum = SmartFeatureTypeEnumUtils::getSmartFeatureTypeEnumByClassName(newClassName);
+	if (mSmartFeatureTypeEnum == SmartFeatureTypeEnum::CREATE_SOLIDS)
+	{
+		this->mCreateSolidFunctionsEnum = CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(newClassName);
+	}
 }
