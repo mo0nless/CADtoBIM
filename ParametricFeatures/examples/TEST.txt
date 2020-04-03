@@ -22,7 +22,7 @@ End Point [Y]: 9.40317e+06
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 8.98156e-310
+Starting Point [X]: 3.2057e-310
 Starting Point [Y]: 6.95275e-310
 Starting Point [Z]: 1.49702e-321
 
@@ -199,13 +199,13 @@ End Point [Y]: -6.73765e+06
 End Point [Z]: 5.30686e+06
 
 FromOriginAndDirection
-Starting Point [X]: 8.98156e-310
+Starting Point [X]: 3.2057e-310
 Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 2.72527e-320
+Starting Point [Z]: 2.72477e-320
 
 Tangent [X]: 0
 Tangent [Y]: 4.04739e-320
-Tangent [Z]: 2.72527e-320
+Tangent [Z]: 2.72477e-320
 
 Curve Line String Length: 7.75459e+06
 
@@ -448,13 +448,13 @@ End Point [Y]: -755487
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 8.98156e-310
+Starting Point [X]: 3.2057e-310
 Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 6.36999e-320
+Starting Point [Z]: 6.369e-320
 
 Tangent [X]: 0
 Tangent [Y]: 8.09477e-320
-Tangent [Z]: 6.36999e-320
+Tangent [Z]: 6.369e-320
 
 Curve Line String Length: 3.42481e+06
 
@@ -561,13 +561,13 @@ End Point [Y]: -6.9418e+06
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 8.98156e-310
+Starting Point [X]: 3.2057e-310
 Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 7.96977e-320
+Starting Point [Z]: 7.96631e-320
 
 Tangent [X]: 0
 Tangent [Y]: 8.09477e-320
-Tangent [Z]: 7.96977e-320
+Tangent [Z]: 7.96631e-320
 
 Curve Line String Length: 2.67942e+06
 
