@@ -6,9 +6,6 @@ Element ID: 1539
 ===================================================
 ===================================================
 
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
 
 --------  --------
@@ -22,13 +19,13 @@ End Point [Y]: 9.40317e+06
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 3.2057e-310
-Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 1.49702e-321
+Starting Point [X]: 1.05806e-311
+Starting Point [Y]: 9.88131e-324
+Starting Point [Z]: 1.058e-311
 
-Tangent [X]: 0
-Tangent [Y]: 2.02369e-320
-Tangent [Z]: 1.49702e-321
+Tangent [X]: 3.16202e-322
+Tangent [Y]: 1.20343e-312
+Tangent [Z]: 1.20343e-312
 
 Curve Line String Length: 8.55956e+06
 
@@ -64,110 +61,16 @@ Element ID: 1541
 
 Is smart feature
 is smart feature, but not found in the smartfeaturetree
-NodeId[int] = 0
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricSolid
-DepthId[int] = 0
-Name[string] = Solid of Extrusion #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Solid of Extrusion #2
-DynamicLabel[string] = Parametric Solid
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 1541
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 10:54:11 AM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 6
-Links[string] = 
-Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -43' 9.8235", 6' 8.3994", 0' 0.0000"
-Range High[point3d] = -15' 8.8331", 30' 10.2036", 24' 6.7193"
-Volume[double] = 16656.6193 Cu.'
-Surface Area[double] = 3922.0781 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- ClassName = Extrude, current element id = 1541, id = 2 ---------
 
 Is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Solid of Extrusion #2
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricExtrude
-DepthId[int] = 0
-Name[string] = Solid of Extrusion #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Disabled[boolean] = 
-Distance[double] = 24' 6.7192"
-X Scale[double] = 1.0000
-Y Scale[double] = 1.0000
-Spin Angle[double] = 0.0000°
-Both Ways[boolean] = False
-Thickness Mode: [int] = None
-Thickness[double] = 0' 0.0000"
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- ClassName = SmartFeatureProfile, current element id = 1541, id = 1 ---------
 
 Is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Profile #1
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = Shape
-DepthId[int] = 1
-Name[string] = Profile #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-SmartFeatureProfileIn SolidKernel Entity is: Solid 0
-
 
 ===================================================
 ===================================================
@@ -183,9 +86,6 @@ Element ID: 1542
 ===================================================
 ===================================================
 
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
 
 --------  --------
@@ -199,13 +99,13 @@ End Point [Y]: -6.73765e+06
 End Point [Z]: 5.30686e+06
 
 FromOriginAndDirection
-Starting Point [X]: 3.2057e-310
-Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 2.72477e-320
+Starting Point [X]: 1.05806e-311
+Starting Point [Y]: 9.88131e-324
+Starting Point [Z]: 1.058e-311
 
-Tangent [X]: 0
-Tangent [Y]: 4.04739e-320
-Tangent [Z]: 2.72477e-320
+Tangent [X]: 3.16202e-322
+Tangent [Y]: 1.20343e-312
+Tangent [Z]: 1.20343e-312
 
 Curve Line String Length: 7.75459e+06
 
@@ -241,110 +141,16 @@ Element ID: 1544
 
 Is smart feature
 is smart feature, but not found in the smartfeaturetree
-NodeId[int] = 0
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricSolid
-DepthId[int] = 0
-Name[string] = Solid of Extrusion #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Enabled[boolean] = 
-Label[string] = Solid of Extrusion #2
-DynamicLabel[string] = Parametric Solid
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Parametric Solid/Surface
-Level[int] = Default
-Element ID[long] = 1544
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 11:43:08 AM
-Size[int] = 76
-Linkages[int] = 2
-XAttributes[int] = 6
-Links[string] = 
-Property List[string] = 
-Type[string] = Parametric Solid/Surface
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -10' 4.1863", -8' 7.6575", -0' 0.5198"
-Range High[point3d] = 40' 8.9715", 16' 9.6416", 17' 4.9313"
-Volume[double] = 22690.1078 Cu.'
-Surface Area[double] = 5271.7814 Sq.'
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Top
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- ClassName = Extrude, current element id = 1544, id = 2 ---------
 
 Is smart feature
-NodeId[int] = 2
-Enabled[boolean] = 
-Label[string] = Solid of Extrusion #2
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = ParametricExtrude
-DepthId[int] = 0
-Name[string] = Solid of Extrusion #2
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = True
-IsTop[boolean] = True
-Disabled[boolean] = 
-Distance[double] = 51' 1.1578"
-X Scale[double] = 1.0000
-Y Scale[double] = 1.0000
-Spin Angle[double] = 0.0000°
-Both Ways[boolean] = False
-Thickness Mode: [int] = None
-Thickness[double] = 0' 0.0000"
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- ClassName = SmartFeatureProfile, current element id = 1544, id = 1 ---------
 
 Is smart feature
-NodeId[int] = 1
-Enabled[boolean] = 
-Label[string] = Profile #1
-Feature Status[string] = 
-Deletable[boolean] = False
-IconName[string] = Shape
-DepthId[int] = 1
-Name[string] = Profile #1
-MoveToTopValid[boolean] = False
-MoveAboveValid[boolean] = False
-ReorderValid[boolean] = False
-IsTop[boolean] = False
-Hidden[boolean] = True
-Disabled[boolean] = 
-SmartFeatureProfileIn SolidKernel Entity is: Solid 0
-
 
 ===================================================
 ===================================================
@@ -364,77 +170,6 @@ Element ID: 1546
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 1546, id = 0 ---------
 is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Default
-Element ID[long] = 1546
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 11:42:23 AM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Shape
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -54' 9.9462", -8' 9.7578", 0' 0.0000"
-Range High[point3d] = -43' 7.1113", -2' 5.7436", 0' 0.0000"
-Count[int] = 4
-Segments[Segment] = 
-Total Length[double] = 35' 1.6982"
-Area[double] = 71.1762 Sq.'
-Elevation[double] = 0' 0.0000"
-Area[double] = 71.1762 Sq.'
-Perimeter[double] = 35' 1.6982"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
 
 -------- ShapeElement --------
@@ -448,13 +183,13 @@ End Point [Y]: -755487
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 3.2057e-310
-Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 6.369e-320
+Starting Point [X]: 1.05806e-311
+Starting Point [Y]: 9.88131e-324
+Starting Point [Z]: 1.058e-311
 
-Tangent [X]: 0
-Tangent [Y]: 8.09477e-320
-Tangent [Z]: 6.369e-320
+Tangent [X]: 3.16202e-322
+Tangent [Y]: 1.20343e-312
+Tangent [Z]: 1.20343e-312
 
 Curve Line String Length: 3.42481e+06
 
@@ -477,77 +212,6 @@ Element ID: 1547
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 1547, id = 0 ---------
 is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Default
-Element ID[long] = 1547
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 11:42:34 AM
-Size[int] = 140
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Shape
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -54' 5.2968", -22' 9.2993", 0' 0.0000"
-Range High[point3d] = -45' 7.8076", -13' 11.8102", 0' 0.0000"
-Count[int] = 6
-Segments[Segment] = 
-Total Length[double] = 35' 1.9564"
-Area[double] = 52.2629 Sq.'
-Elevation[double] = 0' 0.0000"
-Area[double] = 52.2629 Sq.'
-Perimeter[double] = 35' 1.9564"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
 
 -------- ShapeElement --------
@@ -561,13 +225,13 @@ End Point [Y]: -6.9418e+06
 End Point [Z]: 0
 
 FromOriginAndDirection
-Starting Point [X]: 3.2057e-310
-Starting Point [Y]: 6.95275e-310
-Starting Point [Z]: 7.96631e-320
+Starting Point [X]: 1.05806e-311
+Starting Point [Y]: 9.88131e-324
+Starting Point [Z]: 1.058e-311
 
-Tangent [X]: 0
-Tangent [Y]: 8.09477e-320
-Tangent [Z]: 7.96631e-320
+Tangent [X]: 3.16202e-322
+Tangent [Y]: 1.20343e-312
+Tangent [Z]: 1.20343e-312
 
 Curve Line String Length: 2.67942e+06
 
@@ -590,86 +254,6 @@ Element ID: 1548
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = EllipseElement, current element id = 1548, id = 0 ---------
 is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Circle
-Level[int] = Default
-Element ID[long] = 1548
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 11:42:43 AM
-Size[int] = 88
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Ellipse
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -36' 10.7231", -22' 0.1201", 0' 0.0000"
-Range High[point3d] = -23' 11.3348", -9' 0.7318", 0' 0.0000"
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 28.6335°
-Angle[double] = 28.6335°
-Orientation[int] = Top
-Area[double] = 131.6934 Sq.'
-Perimeter[double] = 40' 8.1667"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Primary Axis[double] = 6' 5.6941"
-Secondary Axis[double] = 
-Center[point3d] = -30' 5.0290", -15' 6.4259", 0' 0.0000"
-Primary Vector[point3d] = 5' 8.1924", 3' 1.2314", 0' 0.0000"
-Secondary Vector[point3d] = -3' 1.2314", 5' 8.1924", 0' 0.0000"
-Axis Ratio[double] = 1.00000
-DWG Radius[double] = 6' 5.6941"
-Start Point[point3d] = -24' 8.8366", -12' 5.1945", 0' 0.0000"
-End Point[point3d] = -24' 8.8366", -12' 5.1945", 0' 0.0000"
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
 
 Is Circular: 1
@@ -691,86 +275,6 @@ Element ID: 1549
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = EllipseElement, current element id = 1549, id = 0 ---------
 is NOT smart feature
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Ellipse
-Level[int] = Default
-Element ID[long] = 1549
-Model[string] = Default
-Last Modified[dateTime] = 4/3/2020 11:42:50 AM
-Size[int] = 88
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Ellipse
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-View Dependent[boolean] = 
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 0' 0.0000"
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -39' 7.0667", -5' 0.7698", 0' 0.0000"
-Range High[point3d] = -21' 2.9913", 2' 2.1036", 0' 0.0000"
-Rotation-X[double] = 0.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -0.0000°
-Angle[double] = 360.0000°
-Orientation[int] = Top
-Area[double] = 104.2763 Sq.'
-Perimeter[double] = 42' 1.1342"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Primary Axis[double] = 9' 2.0377"
-Secondary Axis[double] = 3' 7.4367"
-Center[point3d] = -30' 5.0290", -1' 5.3331", 0' 0.0000"
-Primary Vector[point3d] = 9' 2.0377", -0' 0.0000", 0' 0.0000"
-Secondary Vector[point3d] = 0' 0.0000", 3' 7.4367", 0' 0.0000"
-Axis Ratio[double] = 2.53329
-DWG Radius[double] = 9' 2.0377"
-Start Point[point3d] = -21' 2.9913", -1' 5.3331", 0' 0.0000"
-End Point[point3d] = -21' 2.9913", -1' 5.3331", 0' 0.0000"
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
 --------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
 
 Is Circular: 0
