@@ -42,7 +42,22 @@ void GraphicsProcessorEnhancer::setSlabGraphicProperties(DgnBoxDetail dgnBoxDeta
 	SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
 	slabProperties->setLength(dgnBoxDetail.m_topX);
 	slabProperties->setWidth(dgnBoxDetail.m_topY);
-	//slabProperties->setHeight(pDictionaryProperties->getGraphicProperties()->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY));
+
+	double height;
+	if (primitiveCommonGraphicProperties->getVolume() > 0) 
+	{
+		height = primitiveCommonGraphicProperties->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY);
+	}
+	else 
+	{
+		double x = abs(dgnBoxDetail.m_baseOrigin.x - dgnBoxDetail.m_topOrigin.x);
+		double y = abs(dgnBoxDetail.m_baseOrigin.y - dgnBoxDetail.m_topOrigin.y);
+		double z = abs(dgnBoxDetail.m_baseOrigin.z - dgnBoxDetail.m_topOrigin.z);
+
+		height = sqrt(x*x + y*y + z*z);
+	}
+
+	slabProperties->setHeight(height);
 
 	// set slab properties in graphic properties
 	primitiveGraphicProperties->setSlabProperties(slabProperties);
@@ -130,7 +145,8 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
 			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
 		}
-		else {
+		else 
+		{
 			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
 			primitiveCommonGraphicProperties->setVectorAxisX(-1 * primitiveCommonGraphicProperties->getVectorAxisX());
 			primitiveCommonGraphicProperties->setVectorAxisY(-1 * primitiveCommonGraphicProperties->getVectorAxisY());
@@ -160,7 +176,8 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(PrimitiveCommonGraphi
 	outfile << std::endl;
 
 	double radius;
-	if (primitiveCommonGraphicProperties->getVolume() > 0) {
+	if (primitiveCommonGraphicProperties->getVolume() > 0) 
+	{
 		radius = pow(((primitiveCommonGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
 	}
 	else 
@@ -280,6 +297,7 @@ void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d
 	outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
 	outfile << "Origin [Y] = " << localToWorld.Origin().y << std::endl;
 	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
+
 	outfile << std::endl;
 
 	outfile.close();
@@ -297,7 +315,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 	for each (ICurvePrimitivePtr curve in *curvesVector)
 	{
 		CurveGraphicProperties* curveGraphicProperties = new CurveGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(pDictionaryProperties->getGeneralProperties()->getElementDescriptorName());
+		curveGraphicProperties->setCurvesTypeEnum(pDictionaryProperties->getElementName());
 
 		switch (curve->GetCurvePrimitiveType())
 		{
@@ -308,7 +326,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 		
@@ -354,7 +372,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 		
 			//outfile << "pQuatXYZW [X] = " << *pQuatXYZW << std::endl;
@@ -407,7 +425,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -515,7 +533,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -554,7 +572,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -566,7 +584,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 
 			if (curve->TryGetLine(segment))
 			{
-				outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+				outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 				outfile << std::endl;
 
 				outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
@@ -673,7 +691,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -794,7 +812,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -810,7 +828,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -843,7 +861,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(CurveVectorCP curvesVecto
 			outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 			outfile << std::endl;
 
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 			outfile.close();
 
@@ -881,7 +899,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -927,7 +945,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 
 		//outfile << "pQuatXYZW [X] = " << *pQuatXYZW << std::endl;
@@ -980,7 +998,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1088,7 +1106,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1127,7 +1145,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1139,7 +1157,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 
 		if (curve->TryGetLine(segment))
 		{
-			outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile << std::endl;
 
 			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
@@ -1246,7 +1264,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1367,7 +1385,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1383,7 +1401,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -1416,7 +1434,7 @@ void GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve,
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 

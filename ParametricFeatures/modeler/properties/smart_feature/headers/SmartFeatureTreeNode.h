@@ -9,25 +9,24 @@
 class SmartFeatureTreeNode {
 
 private:
-	GeneralProperties* pGeneralProperties;
-	ReaderProperties* pReaderProperties;
-	GraphicProperties* pGraphicProperties;
 
-	SmartFeatureTreeNode* pRightNode;
-	SmartFeatureTreeNode* pLeftNode;
+	long globalNodeId;
+	long localNodeId;
+	long localParentNodeId;
+
+	SmartFeatureTreeNode* rightNode;
+	SmartFeatureTreeNode* leftNode;
 
 public:
-	SmartFeatureTreeNode();
-
-	GeneralProperties* getGeneralProperties();
-	ReaderProperties* getReaderProperties();
-
-	GraphicProperties* getGraphicProperties();
-	void setGraphicProperties(GraphicProperties* newGraphicProperties);
+	SmartFeatureTreeNode(long newGlobalNodeId,long newLocalNodeId,long newLocalParentNodeId);
 
 	void setLeftNode(SmartFeatureTreeNode* newLeftNode);
 	void setRightNode(SmartFeatureTreeNode* newRightNode);
 
 	SmartFeatureTreeNode* getLeftNode();
 	SmartFeatureTreeNode* getRightNode();
+
+	long getGlobalNodeId();
+	long getLocalNodeId();
+	long getLocalParentNodeId();
 };

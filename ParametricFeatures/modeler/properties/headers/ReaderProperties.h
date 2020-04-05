@@ -17,6 +17,7 @@ private:
 	std::vector<ReaderPropertyBundle*> readerPropertyBundleVector;
 
 
+	// everything down below should be removed
 	int mNodeId;
 	SmartFeatureGeneralProperties* pSmartFeatureGeneralProperties;
 

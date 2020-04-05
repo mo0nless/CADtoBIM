@@ -28,7 +28,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
 	
-	dictionaryProperties.getGeneralProperties()->setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
+	//dictionaryProperties.getGeneralProperties()->setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 	
@@ -40,13 +40,9 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 		outfile.close();*/
 		this->mElemClassName = "SmartFeatureSolid"; 
 
-		// set value if reader properties are missing for this element
-		dictionaryProperties.setAreReaderPropertiesFound(false);
 	}
-	else{
-		// set value if reader properties exist for this element
-		dictionaryProperties.setAreReaderPropertiesFound(true);		
-
+	else
+	{
 
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
@@ -71,7 +67,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			outfile.close();
 
 			// set class name
-			dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
+			//dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
 			
 			ReaderPropertyBundle* readerPropertyBundle = new ReaderPropertyBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertyBundle);

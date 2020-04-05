@@ -1,31 +1,35 @@
 #include "../headers/SmartFeatureContainer.h"
 
-SmartFeatureContainer::SmartFeatureContainer()
+
+
+SmartFeatureContainer::SmartFeatureContainer(long newElementId)
 {
-	this->pRoot = nullptr;
+	this->elementId = newElementId;
+	this->root = nullptr;
 }
 
-
-void SmartFeatureContainer::insertNodeInTree(long newCurrentElementId, long newLocalNodeId, long newParentLocalNodeId, long newLeafElementId)
+void SmartFeatureContainer::insertNodeInTree(long newLocalNodeId, long newParentLocalNodeId, long newGlobalNodeid)
 {
-	if (this->pRoot == nullptr || newParentLocalNodeId <= 0) {
-		this->pRoot = new SmartFeatureTreeNode();
-		this->pRoot->getGeneralProperties()->setElementId(newLeafElementId);
-		this->pRoot->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
-		this->pRoot->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(-1);
-		this->pRoot->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
-		this->pRoot->getGeneralProperties()->setIsSmartFeature(true);
+	if (this->root == nullptr || newParentLocalNodeId <= 0) 
+	{
+		this->root = new SmartFeatureTreeNode(newGlobalNodeid, newLocalNodeId, -1);
+		//this->pRoot->getGeneralProperties()->setElementId(newGlobalNodeid);
+		//this->pRoot->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
+		//this->pRoot->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(-1);
+		//this->pRoot->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
+		//this->pRoot->getGeneralProperties()->setIsSmartFeature(true);
 	}
-	else {
-		SmartFeatureTreeNode* parent = searchByElementLocalNodeId(this->pRoot, newParentLocalNodeId);
+	else 
+	{
+		SmartFeatureTreeNode* parent = searchByElementLocalNodeId(this->root, newParentLocalNodeId);
 		if (parent != nullptr) {
 
-			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode();
-			newNode->getGeneralProperties()->setElementId(newLeafElementId);
-			newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
-			newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
-			newNode->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
-			newNode->getGeneralProperties()->setIsSmartFeature(true);
+			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode(newGlobalNodeid, newLocalNodeId, newGlobalNodeid);
+			//newNode->getGeneralProperties()->setElementId(newGlobalNodeid);
+			//newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
+			//newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);
+			//newNode->getGeneralProperties()->setCurrentElementId(newCurrentElementId);
+			//newNode->getGeneralProperties()->setIsSmartFeature(true);
 
 			if (parent->getLeftNode() == nullptr) {
 
@@ -49,28 +53,28 @@ int SmartFeatureContainer::getTreeMaxDepth(SmartFeatureTreeNode* treeNode)
 	}
 	else
 	{
-		int lDepth = getTreeMaxDepth(treeNode->getLeftNode());
-		int rDepth = getTreeMaxDepth(treeNode->getRightNode());
+		int leftNodeDepth = getTreeMaxDepth(treeNode->getLeftNode());
+		int rightNodeDepth = getTreeMaxDepth(treeNode->getRightNode());
 
-		if (lDepth > rDepth) return(lDepth + 1);
-		else return(rDepth + 1);
+		if (leftNodeDepth > rightNodeDepth) return(leftNodeDepth + 1);
+		else return(rightNodeDepth + 1);
 	}
 }
 
-SmartFeatureTreeNode * SmartFeatureContainer::searchByElementLocalNodeId(SmartFeatureTreeNode * searchNode, long searchedLocalId)
+SmartFeatureTreeNode * SmartFeatureContainer::searchByElementLocalNodeId(SmartFeatureTreeNode * searchNode, long searchedLocalNodeId)
 {
-	if (searchNode == nullptr || searchedLocalId<=0) {
+	if (searchNode == nullptr || searchedLocalNodeId<=0) {
 		return nullptr;
 	}
-	if (searchNode->getReaderProperties()->getSmartFeatureGeneralProperties()->getLocalNodeId() == searchedLocalId) {
+	if (searchNode->getLocalNodeId() == searchedLocalNodeId) {
 		return searchNode;
 	}
 
-	SmartFeatureTreeNode* leftNode = searchByElementLocalNodeId(searchNode->getLeftNode(), searchedLocalId);
+	SmartFeatureTreeNode* leftNode = searchByElementLocalNodeId(searchNode->getLeftNode(), searchedLocalNodeId);
 	if (leftNode != nullptr) {
 		return leftNode;
 	}
-	SmartFeatureTreeNode* rightNode = searchByElementLocalNodeId(searchNode->getRightNode(), searchedLocalId);
+	SmartFeatureTreeNode* rightNode = searchByElementLocalNodeId(searchNode->getRightNode(), searchedLocalNodeId);
 	if (rightNode != nullptr) {
 		return rightNode;
 	}
@@ -78,20 +82,20 @@ SmartFeatureTreeNode * SmartFeatureContainer::searchByElementLocalNodeId(SmartFe
 	return nullptr;
 }
 
-SmartFeatureTreeNode * SmartFeatureContainer::searchByElementGlobalId(SmartFeatureTreeNode * searchNode, long searchedElementId)
+SmartFeatureTreeNode * SmartFeatureContainer::searchByElementGlobalId(SmartFeatureTreeNode * searchNode, long searchedGlobalNodeId)
 {
-	if (searchNode == nullptr || searchedElementId <=0) {
+	if (searchNode == nullptr || searchedGlobalNodeId <=0) {
 		return nullptr;
 	}
-	if (searchNode->getGeneralProperties()->getElementId() == searchedElementId) {
+	if (searchNode->getGlobalNodeId() == searchedGlobalNodeId) {
 		return searchNode;
 	}
 
-	SmartFeatureTreeNode* leftNode = searchByElementGlobalId(searchNode->getLeftNode(), searchedElementId);
+	SmartFeatureTreeNode* leftNode = searchByElementGlobalId(searchNode->getLeftNode(), searchedGlobalNodeId);
 	if (leftNode != nullptr) {
 		return leftNode;
 	}
-	SmartFeatureTreeNode* rightNode = searchByElementGlobalId(searchNode->getRightNode(), searchedElementId);
+	SmartFeatureTreeNode* rightNode = searchByElementGlobalId(searchNode->getRightNode(), searchedGlobalNodeId);
 	if (rightNode != nullptr) {
 		return rightNode;
 	}
@@ -101,5 +105,10 @@ SmartFeatureTreeNode * SmartFeatureContainer::searchByElementGlobalId(SmartFeatu
 
 SmartFeatureTreeNode * SmartFeatureContainer::getRoot()
 {
-	return this->pRoot;
+	return this->root;
+}
+
+long SmartFeatureContainer::getElementId()
+{
+	return this->elementId;
 }

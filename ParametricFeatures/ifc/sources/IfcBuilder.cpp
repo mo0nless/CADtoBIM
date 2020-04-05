@@ -23,84 +23,137 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		file.addEntity(project);
 
+		//if (!smartFeatureContainerVector.empty()) {
+		//	for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
+		//	{
+		//		SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
 
-		Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
-		Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+		//		if (smartFeatureContainer.getRoot() != nullptr)
+		//		{
+		//			if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
+		//				IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
+		//				representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
+		//			}
+		//		}
 
-		Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(
-			guid2::IfcGloballyUniqueId(name),
-			0,
-			name,
-			boost::none,
-			boost::none,
-			0,
-			0,
-			boost::none,
-			boost::none
-		);
+		//		if (representationItem != nullptr) 
+		//		{
+		//			items->push(representationItem);
+		//		}
+		//	}
+		//}
 
-		file.addBuildingProduct(primitive);
+		//Ifc4::IfcBuildingElementProxy* ifcBuildingElementProxy = nullptr;
+		//
+		//// create simple primitives, which are not a smartfeature
+		//if (!dictionaryPropertiesVector.empty())
+		//{
+		//	for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+		//	{
+		//		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+		//		//if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) 
+		//		//{
+		//		//	continue;
+		//		//}
+		//		for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) 
+		//		{
+		//			IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
+		//			ifcBuildingElementProxy = ifcPrimitivesBuilder->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector() ,file);
 
-		primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
-		primitive->setObjectPlacement(file.addLocalPlacement());
+
+		//			if (ifcBuildingElementProxy != nullptr) {
+		//				/*file.addBuildingProduct(ifcBuildingElementProxy);*/
+		//				//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
 
 
-		Ifc4::IfcRepresentationItem* representationItem = nullptr;
+		//			}
+		//		}
+		//	}
+		//}
 
-		if (!smartFeatureContainerVector.empty()) {
-			for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
-			{
-				SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
+		IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
+		std::vector<Ifc4::IfcRepresentationItem*>ifcRepresentationVector = ifcPrimitivesBuilder->buildIfcPrimitives(dictionaryPropertiesVector,file);
 
-				if (smartFeatureContainer.getRoot() != nullptr)
-				{
-					if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
-						IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-						representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-					}
-				}
-
-				if (representationItem != nullptr) 
-				{
-					items->push(representationItem);
-				}
-			}
-		}
-
-		
-		// create simple primitives, which are not a smartfeature
-		if (!dictionaryPropertiesVector.empty())
+		for (auto const& ifcRepresentationItem : ifcRepresentationVector)
 		{
-			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+			typedef Ifc4::IfcGloballyUniqueId guid;
+			Ifc4::IfcBuildingElementProxy* ifcBuildingElementProxy = new Ifc4::IfcBuildingElementProxy(guid::IfcGloballyUniqueId(name),0,name,boost::none,boost::none,0,0,boost::none,boost::none);
+			ifcBuildingElementProxy->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+			ifcBuildingElementProxy->setObjectPlacement(file.addLocalPlacement());
+
+			Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+			Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+
+
+			if (ifcRepresentationItem != nullptr) 
 			{
-				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-				if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) {
-					continue;
-				}
-				for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) {
-					IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-					representationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector() ,file);
+
+				/*std::string colourName = "myColour";
+				Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
+				file.addEntity(ifcColour);
+
+				Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(ifcColour, 1, new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
+				file.addEntity(ifcSurfaceStyleRendering);
+
+				IfcEntityList* entityList3 = new IfcEntityList();
+				entityList3->push(ifcSurfaceStyleRendering);
+				boost::shared_ptr<IfcEntityList> unitEntity3(entityList3);
+				Ifc4::IfcSurfaceStyle* ifcSurfaceStyle = new Ifc4::IfcSurfaceStyle(colourName, Ifc4::IfcSurfaceSide::IfcSurfaceSide_BOTH, unitEntity3);
+				file.addEntity(ifcSurfaceStyle);
+
+				IfcEntityList* entityList4 = new IfcEntityList();
+				entityList4->push(ifcSurfaceStyle);
+				boost::shared_ptr<IfcEntityList> unitEntity4(entityList4);
+				Ifc4::IfcPresentationStyleAssignment* ifcPresentationStyleAssignment = new Ifc4::IfcPresentationStyleAssignment(unitEntity4);
+				file.addEntity(ifcPresentationStyleAssignment);
+
+				IfcEntityList* entityList5 = new IfcEntityList();
+				entityList5->push(ifcPresentationStyleAssignment);
+				boost::shared_ptr<IfcEntityList> unitEntity5(entityList5);
+				Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcRepresentationItem, unitEntity5, boost::none);
+				file.addEntity(ifcStyledItem);
 
 
-					if (representationItem != nullptr) {
-						items->push(representationItem);
-					}
-				}
+				IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>* ceva2 = new IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>();
+				ceva2->push(ifcStyledItem);
+				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> unitEntity6(ceva2);
+				Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), boost::none,
+					boost::none, unitEntity6);
+				file.addEntity(ifcStyledRepresentation);
+
+
+				IfcTemplatedEntityList<Ifc4::IfcRepresentation>* ceva1 = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
+				ceva1->push(ifcStyledRepresentation);
+				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> unitEntity7(ceva1);
+				Ifc4::IfcMaterial* IfcMaterial = new Ifc4::IfcMaterial("Material", boost::none, boost::none);
+
+				Ifc4::IfcMaterialDefinitionRepresentation* ifcMaterialDefinitionRepresentation = new Ifc4::IfcMaterialDefinitionRepresentation(boost::none,boost::none,
+					unitEntity7, IfcMaterial);
+				file.addEntity(ifcMaterialDefinitionRepresentation);
+
+				IfcEntityList* entityList8 = new IfcEntityList();
+				entityList8->push(ifcBuildingElementProxy);
+				boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
+				Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(),
+					boost::none,boost::none, unitEntity8, IfcMaterial);
+				file.addEntity(ifcRelAssociatesMaterial);*/
+
+				items->push(ifcRepresentationItem);
 			}
+
+			Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
+
+			reps->push(rep);
+			file.addEntity(rep);
+
+			Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
+
+			file.addEntity(shape);
+
+			ifcBuildingElementProxy->setRepresentation(shape);
+
+			file.addBuildingProduct(ifcBuildingElementProxy);
 		}
-
-		Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(
-			file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
-
-		reps->push(rep);
-		file.addEntity(rep);
-
-		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
-
-		file.addEntity(shape);
-
-		primitive->setRepresentation(shape);
-
 		std::ofstream f;
 		f.open(filename);
 		f << file;

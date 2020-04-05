@@ -11,10 +11,10 @@ Element ID: 1375
 --------- ClassName = ConeElement, current element id = 1375, id = 0 ---------
 Capped[int] = Yes
 Cylindrical[boolean] = True
-Height[double] = 39' 9.2120"
-Base[point3d] = -85' 4.4851", 4' 9.4609", -0' 2.1437"
-Top[point3d] = -45' 7.2731", 4' 9.4609", -0' 2.1437"
-Base Radius[double] = 8' 0.4114"
+Height[double] = 40' 4.4320"
+Base[point3d] = -48' 3.3784", 14' 0.1251", 0' 0.0000"
+Top[point3d] = -9' 6.5615", 2' 7.6713", 0' 0.0000"
+Base Radius[double] = 16' 8.3877"
 Top Radius[double] = 
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
@@ -22,7 +22,7 @@ Element Description[string] = Cylinder
 Level[int] = Default
 Element ID[long] = 1375
 Model[string] = Default
-Last Modified[dateTime] = 3/25/2020 1:30:54 PM
+Last Modified[dateTime] = 3/24/2020 8:25:36 PM
 Size[int] = 104
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -36,7 +36,7 @@ Class[int] = Primary
 Transparency[double] = 0
 Priority[int] = 
 Template[long] = (None)
-Modified[boolean] = Modified
+Modified[boolean] = Not Modified
 New[boolean] = Not New
 Solid[boolean] = 
 View Dependent[boolean] = 
@@ -52,456 +52,76 @@ Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
 Assigned Material[string] = 
 Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -85' 4.4851", -3' 2.9505", -8' 2.5551"
-Range High[point3d] = -45' 7.2731", 12' 9.8723", 7' 10.2677"
-Volume[double] = 8064.4365 Cu.'
-Surface Area[double] = 2413.0842 Sq.'
+Range Low[point3d] = -52' 11.8232", -13' 4.6025", -16' 8.3877"
+Range High[point3d] = -4' 10.1167", 30' 0.3990", 16' 8.3877"
+Volume[double] = 35365.6063 Cu.'
+Surface Area[double] = 5987.7643 Sq.'
 Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
+Rotation-Y[double] = 73.6396°
 Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
+Angle[double] = 253.6396°
 Orientation[int] = Back
--------- ConeElement --------
-Range [XLength] = 12121183.932176
-Range [YLength] = 4897697.916829
-Range [ZLength] = 4897697.916829
+-------- Cylinder --------
+Range [XLength] = 14673744.305372
+Range [YLength] = 13233436.860973
+Range [ZLength] = 10179695.596719
 
 Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = 0.500000
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
+qRotation [X] = 0.566056
+qRotation [Y] = 0.423769
+qRotation [Z] = 0.423769
+qRotation [W] = 0.566056
 
 Vector Rotation Axis Local to World
-vRotation [X] = 0.577350
-vRotation [Y] = 0.577350
-vRotation [Z] = 0.577350
+vRotation [X] = 0.686656
+vRotation [Y] = 0.514054
+vRotation [Z] = 0.514054
 
-Origin [X] = -26021920.961188
-Origin [Y] = 1459507.929798
-Origin [Z] = -54450.252205
+Origin [X] = -14716210.116879
+Origin [Y] = 4270378.332584
+Origin [Z] = 0.000000
 
-Center of BASE Circle [X] = -26021920.961188
-Center of BASE Circle [Y] = 1459507.929798
-Center of BASE Circle [Z] = -54450.252205
+Center of BASE Circle [X] = -14716210.116879
+Center of BASE Circle [Y] = 4270378.332584
+Center of BASE Circle [Z] = 0.000000
 
-Center of TOP Circle [X] = -13900737.029012
-Center of TOP Circle [Y] = 1459507.929798
-Center of TOP Circle [Z] = -54450.252205
+Center of TOP Circle [X] = -2909862.130993
+Center of TOP Circle [Y] = 804450.918183
+Center of TOP Circle [Z] = 0.000000
 
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.281678
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.959509
 0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
 
 0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
 0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
 0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
 
-Radius at BASE = 2448848.958415
-Radius at TOP = 2448848.958415
+Radius at BASE = 5089847.798360
+Radius at TOP = 5089847.798360
 
 True if the end cap is enabled = 1
 
-Centroid1 [X] = -19961328.995100
-Centroid1 [Y] = 1459507.929798
-Centroid1 [Z] = -54450.252205
-Area1 = 224182857126766.593750
+Centroid1 [X] = -8813036.123936
+Centroid1 [Y] = 2537414.625383
+Centroid1 [Z] = 0.000000
+Area1 = 556281510251311.187500
 
-Centroid2 [X] = -19961328.995100
-Centroid2 [Y] = 1459507.929798
-Centroid2 [Z] = -54450.252205
-Volume = 228359410222836383744.000000
-Area2 = 224182857126766.593750
+Centroid2 [X] = -8813036.123936
+Centroid2 [Y] = 2537414.625383
+Centroid2 [Z] = 0.000000
+Volume = 1001442447466035412992.000000
+Area2 = 556281510251311.187500
 
 
  Cylinder 
 
-ConeElementIn SolidKernel Entity is: Solid 0
 
 
 ===================================================
 ===================================================
 Element Description: Cylinder
 Element: ID 1375
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Torus
-Element ID: 1376
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = TorusSolidElement, current element id = 1376, id = 0 ---------
-Capped[int] = Yes
-Center[point3d] = -87' 0.7839", -15' 6.6556", -0' 1.9397"
-Major Radius[double] = 22' 2.0519"
-Minor Radius[double] = 6' 0.3619"
-Sweep Angle[double] = 180.1240°
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Torus
-Level[int] = Default
-Element ID[long] = 1376
-Model[string] = Default
-Last Modified[dateTime] = 3/31/2020 2:14:23 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -115' 3.1977", -43' 9.0694", -6' 2.3017"
-Range High[point3d] = -87' 0.0517", 12' 7.7583", 5' 10.4222"
-Volume[double] = 7962.3473 Cu.'
-Surface Area[double] = 2869.3167 Sq.'
-Rotation-X[double] = 180.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 89.8760°
-Angle[double] = 270.1240°
-Orientation[int] = Bottom
--------- TorusSolidElement --------
-Range [XLength] = 10572013.242711
-Range [YLength] = 19149113.424853
-Range [ZLength] = 5633694.937465
-
-Quaternion Rotation
-qRotation [X] = 0.707871
-qRotation [Y] = -0.706341
-qRotation [Z] = 0.000000
-qRotation [W] = -0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707871
-vRotation [Y] = -0.706341
-vRotation [Z] = 0.000000
-
-Origin [X] = -26537509.819221
-Origin [Y] = -4741051.258242
-Origin [Z] = -49269.643477
-
-Range High = -25540058.317690
-Range Low = -36112071.560401
-DiagonalDistanceXY = 21873637.305257
-DiagonalDistance = 22587486.084342
-Range Difference = -10572013.242711
-Axes Coordinates Axes, XY in major Plane, Z through hole
-Axes Rotation (Quaternion) [X] = 0.707871
-Axes Rotation (Quaternion) [Y] = -0.706341
-Axes Rotation (Quaternion) [Z] = 0.000000
-Axes Rotation (Quaternion) [W] = -0.000000
-
-Center Point Rotation [X] = -26537509.819221
-Center Point Rotation [Y] = -4741051.258242
-Center Point Rotation [Z] = -49269.643477
-
-Center [X] = -26537509.819221
-Center [Y] = -4741051.258242
-Center [Z] = -49269.643477
-
-Vector X [X] = 0.002163
-Vector X [Y] = -0.999998
-Vector X [Z] = 0.000000
-
-Vector Y [X] = -0.999998
-Vector Y [Y] = -0.002163
-Vector Y [Z] = -0.000000
-
-Major Radius = 6757719.301204
-Minor Radius = 1837991.810668
-Sweep Angle = 3.143756
-Sweep Radians = 3.143756
-
-Radius Major (Elbow Radius) = 6757719.301204
-Radius Minor (Pipe Diameter) = 1837991.810668
-
-True if the end cap is enabled = 1
-
-Centroid1 [X] = -30640087.345426
-Centroid1 [Y] = -4745488.993396
-Centroid1 [Z] = -49269.643477
-Area1 = 266568240172705.718750
-
-Centroid2 [X] = -30916149.425817
-Centroid2 [Y] = -4745787.608204
-Centroid2 [Z] = -49269.643477
-Volume = 225468565664759676928.000000
-Area2 = 266568240172705.718750
-
-
- Torus 
-
-TorusSolidElementIn SolidKernel Entity is: Solid 0
-
-
-===================================================
-===================================================
-Element Description: Torus
-Element: ID 1376
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Sphere
-Element ID: 1451
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = SphereSolidElement, current element id = 1451, id = 0 ---------
-Capped[int] = Yes
-Center[point3d] = -29' 9.3723", 3' 8.3801", 0' 0.0000"
-Radius[double] = 8' 10.4421"
-Diameter[double] = 17' 8.8841"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
-Level[int] = Default
-Element ID[long] = 1451
-Model[string] = Default
-Last Modified[dateTime] = 4/1/2020 11:48:24 AM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -38' 7.8144", -5' 2.0620", -8' 10.4421"
-Range High[point3d] = -20' 10.9302", 12' 6.8221", 8' 10.4421"
-Volume[double] = 2923.3758 Cu.'
-Surface Area[double] = 988.7213 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Back
--------- SphereSolidElement --------
-Range [XLength] = 5407256.486906
-Range [YLength] = 5407256.486906
-Range [ZLength] = 5407256.486906
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = 0.500000
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.577350
-vRotation [Y] = 0.577350
-vRotation [Z] = 0.577350
-
-Origin [X] = -9077257.232784
-Origin [Y] = 1127253.296360
-Origin [Z] = 0.000000
-
-Range High = -6373628.989332
-Range Low = -11780885.476237
-Start Latitude LatitudeToVFraction = 0.000000
-latitudeSweep LatitudeToVFraction = 1.500000
-
-DiagonalDistanceXY = 7647015.459012
-DiagonalDistance = 9365642.964877
-Range Difference = -5407256.486906
-Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
-Latitude for Truncation Plane Parallel to the Equator.
-Start Latitude = -1.570796
-Latitude Difference from Start Truncation Plane to end Truncation Plane.
-Latitude Sweep = 3.141593
-
-True if the end cap is enabled = 1
-
-Centroid1 [X] = -9077257.232784
-Centroid1 [Y] = 1127253.296360
-Centroid1 [Z] = 0.000000
-Area1 = 91855214004582.171875
-
-Centroid2 [X] = -9077257.232784
-Centroid2 [Y] = 1127253.296360
-Centroid2 [Z] = 0.000000
-Volume = 82780783630401601536.000000
-Area2 = 91855214004582.171875
-
-
- Sphere 
-
-SphereSolidElementIn SolidKernel Entity is: Solid 0
-
-
-===================================================
-===================================================
-Element Description: Sphere
-Element: ID 1451
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Sphere
-Element ID: 1478
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = SphereSolidElement, current element id = 1478, id = 0 ---------
-Capped[int] = Yes
-Center[point3d] = -75' 3.7749", -36' 6.5399", 0' 0.0000"
-Radius[double] = 7' 8.2498"
-Diameter[double] = 15' 4.4996"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
-Level[int] = Default
-Element ID[long] = 1478
-Model[string] = Default
-Last Modified[dateTime] = 4/1/2020 11:48:28 AM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Links[string] = 
-Property List[string] = 
-Type[string] = Solid
-Color[int] = 2
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = -83' 0.0247", -44' 2.7897", -7' 8.2498"
-Range High[point3d] = -67' 7.5251", -28' 10.2901", 7' 8.2498"
-Volume[double] = 1903.0094 Cu.'
-Surface Area[double] = 742.6396 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Back
--------- SphereSolidElement --------
-Range [XLength] = 4686288.955318
-Range [YLength] = 4686288.955318
-Range [ZLength] = 4686288.955318
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = 0.500000
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.577350
-vRotation [Y] = 0.577350
-vRotation [Z] = 0.577350
-
-Origin [X] = -22955882.215843
-Origin [Y] = -11138914.042500
-Origin [Z] = 0.000000
-
-Range High = -20612737.738184
-Range Low = -25299026.693502
-Start Latitude LatitudeToVFraction = 0.000000
-latitudeSweep LatitudeToVFraction = 1.500000
-
-DiagonalDistanceXY = 6627413.397811
-DiagonalDistance = 8116890.569560
-Range Difference = -4686288.955318
-Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
-Latitude for Truncation Plane Parallel to the Equator.
-Start Latitude = -1.570796
-Latitude Difference from Start Truncation Plane to end Truncation Plane.
-Latitude Sweep = 3.141593
-
-True if the end cap is enabled = 1
-
-Centroid1 [X] = -22955882.215843
-Centroid1 [Y] = -11138914.042500
-Centroid1 [Z] = 0.000000
-Area1 = 68993471852330.554688
-
-Centroid2 [X] = -22955882.215843
-Centroid2 [Y] = -11138914.042500
-Centroid2 [Z] = 0.000000
-Volume = 53887224188442116096.000000
-Area2 = 68993471852330.554688
-
-
- Sphere 
-
-SphereSolidElementIn SolidKernel Entity is: Solid 0
-
-
-===================================================
-===================================================
-Element Description: Sphere
-Element: ID 1478
 ===================================================
 ===================================================
 

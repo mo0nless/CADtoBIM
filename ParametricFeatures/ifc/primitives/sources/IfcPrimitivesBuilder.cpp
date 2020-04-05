@@ -1,22 +1,79 @@
 #include "../headers/IfcPrimitivesBuilder.h"
 
 
+std::vector<Ifc4::IfcRepresentationItem*> IfcPrimitivesBuilder::buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file)
+{
+	Ifc4::IfcRepresentationItem* ifcBuildingElementProxy = nullptr;
+	std::vector<Ifc4::IfcRepresentationItem*> ifcRepresentationItemVector;
+
+	// create simple primitives, which are not a smartfeature
+	if (!dictionaryPropertiesVector.empty())
+	{
+		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+		{
+			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+			//if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) 
+			//{
+			//	continue;
+			//}
+			for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector())
+			{
+				ifcBuildingElementProxy = buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector(), file);
+
+
+				if (ifcBuildingElementProxy != nullptr) {
+					ifcRepresentationItemVector.push_back(ifcBuildingElementProxy);
+					/*file.addBuildingProduct(ifcBuildingElementProxy);*/
+					//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
+
+
+				}
+			}
+		}
+	}
+
+	return ifcRepresentationItemVector;
+}
 
 Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, std::vector<ReaderPropertyBundle*> readerPropertiesVector,
 	IfcHierarchyHelper<Ifc4>& file)
 {
-	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
+	//std::string name = "PrimitiveTest";
+	//typedef Ifc4::IfcGloballyUniqueId guid;
+	//Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(guid::IfcGloballyUniqueId(name),0,name,boost::none,boost::none,0,0,boost::none,boost::none);
+	//primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+	//primitive->setObjectPlacement(file.addLocalPlacement());
 
-		PrimitiveTypeEnum primitiveType = primitiveGraphicProperties.getPrimitiveTypeEnum();
-		if (primitiveType == PrimitiveTypeEnum::SPHERE || primitiveType == PrimitiveTypeEnum::BOX ||
+	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
+	//Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
+	//Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+
+	PrimitiveTypeEnum primitiveType = primitiveGraphicProperties.getPrimitiveTypeEnum();
+	if (primitiveType == PrimitiveTypeEnum::SPHERE || primitiveType == PrimitiveTypeEnum::BOX ||
 			primitiveType == PrimitiveTypeEnum::CONE || primitiveType == PrimitiveTypeEnum::CYLINDER)
-		{
-			ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, readerPropertiesVector, file);
-		}
-		else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE)
-		{
-			ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file);
-		}
+	{
+		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, readerPropertiesVector, file);
+	}
+	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE)
+	{
+		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file);
+	}
+
+	//if (ifcRepresentationItem != nullptr) 
+	//{
+	//	items->push(ifcRepresentationItem);
+	//}
+
+	//Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
+
+	//reps->push(rep);
+	//file.addEntity(rep);
+
+	//Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
+
+	//file.addEntity(shape);
+
+	//primitive->setRepresentation(shape);
 
 	return ifcRepresentationItem;
 	
@@ -135,9 +192,9 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(Primit
 					NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMinorRadius()));
 				Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
-				// !!! torus placement axes should be provided in the order of X,Z
+				// !!! torus placement axes should be provided in the order of Z,Y
 				Ifc4::IfcAxis2Placement3D* torusPlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *torusPointPlacement,
-					primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisX(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ());
+					primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisY(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ());
 				ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, torusPlacement, localAxis1Placement, torusGraphicProperties.getSweepRadians());
 			}
 			else
@@ -189,9 +246,9 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(Primit
 		}
 	
 
-	if (ifcRepresentationItem != nullptr) {
+	if (ifcRepresentationItem != nullptr) 
+	{
 		file.addEntity(ifcRepresentationItem);
-
 	}
 
 	return ifcRepresentationItem;
