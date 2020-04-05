@@ -9,6 +9,16 @@ ReaderProperties::ReaderProperties()
 	this->pCreateSolidsOperationProperties = nullptr;
 }
 
+std::vector<ReaderPropertyBundle*> ReaderProperties::getReaderPropertyBundleVector()
+{
+	return this->readerPropertyBundleVector;
+}
+
+void ReaderProperties::addReaderPropertyBundle(ReaderPropertyBundle * readerPropertyBundle)
+{
+	this->readerPropertyBundleVector.push_back(readerPropertyBundle);
+}
+
 int ReaderProperties::getNodeId()
 {
 	return this->mNodeId;

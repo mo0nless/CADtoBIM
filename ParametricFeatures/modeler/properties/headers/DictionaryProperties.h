@@ -3,7 +3,7 @@
 #include "ReaderProperties.h"
 #include "GraphicProperties.h"
 #include "GeneralProperties.h"
-
+#include "../smart_feature/headers/SmartFeatureContainer.h"
 
 
 /**
@@ -12,22 +12,21 @@
 class DictionaryProperties {
 
 private:
-	GeneralProperties* pGeneralProperties;
+	long elementId;
+	std::string elementName;
+
 	ReaderProperties* pReaderProperties;
 	GraphicProperties* pGraphicProperties;
+	SmartFeatureContainer * smartFeatureContainer;
 
-	bool areReaderPropertiesFound;
-
-	
 
 public:
-	DictionaryProperties();
+	DictionaryProperties(long newElementId, std::string newElementName);
 
-	GeneralProperties* getGeneralProperties();
 	ReaderProperties* getReaderProperties();
 	GraphicProperties* getGraphicProperties();
-	
-	bool getAreReaderPropertiesFound();
-	void setAreReaderPropertiesFound(bool newAreReaderPropertiesFound);
+	SmartFeatureContainer* getSmartFeatureContainer();
+
+	std::string getElementName();
 
 };

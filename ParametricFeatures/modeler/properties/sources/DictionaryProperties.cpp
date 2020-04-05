@@ -1,16 +1,15 @@
 #include "../headers/DictionaryProperties.h"
 
-DictionaryProperties::DictionaryProperties()
+
+
+DictionaryProperties::DictionaryProperties(long newElementId, std::string newElementName)
 {
-	this->pGeneralProperties = new GeneralProperties();
+	this->elementId = newElementId;
+	this->elementName = newElementName;
+
 	this->pReaderProperties = new ReaderProperties();
 	this->pGraphicProperties = new GraphicProperties();
-	this->areReaderPropertiesFound = true;
-}
-
-GeneralProperties * DictionaryProperties::getGeneralProperties()
-{
-	return this->pGeneralProperties;
+	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 }
 
 ReaderProperties * DictionaryProperties::getReaderProperties()
@@ -23,12 +22,12 @@ GraphicProperties * DictionaryProperties::getGraphicProperties()
 	return this->pGraphicProperties;
 }
 
-bool DictionaryProperties::getAreReaderPropertiesFound()
+SmartFeatureContainer * DictionaryProperties::getSmartFeatureContainer()
 {
-	return this->areReaderPropertiesFound;
+	return this->smartFeatureContainer;
 }
 
-void DictionaryProperties::setAreReaderPropertiesFound(bool newAreReaderPropertiesFound)
+std::string DictionaryProperties::getElementName()
 {
-	this->areReaderPropertiesFound = newAreReaderPropertiesFound;
+	return this->elementName;
 }

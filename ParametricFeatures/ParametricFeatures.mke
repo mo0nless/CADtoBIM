@@ -118,6 +118,9 @@ appObjects = \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)PrimitiveCommonGraphicProperties$(oext) \
+	$(o)ReaderPropertyDefinition$(oext) \
+	$(o)ReaderPropertyBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 
 
@@ -216,6 +219,8 @@ $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/g
 
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
 
+$(o)PrimitiveCommonGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveCommonGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveCommonGraphicProperties.h
+
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
@@ -269,6 +274,10 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 $(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
 
 $(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
+
+$(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
+
+$(o)ReaderPropertyBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyBundle.h
 
 %include $(MDLMKI)dlmlink.mki
 

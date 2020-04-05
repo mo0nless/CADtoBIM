@@ -5,10 +5,17 @@ ConeGraphicProperties::ConeGraphicProperties()
 	this->mBaseRadius = 0;
 	this->mTopRadius = 0;
 	this->mHeight = 0;
+
 	this->mTopOrigin = DPoint3d();
 	mTopOrigin.x = 0;
 	mTopOrigin.y = 0;
 	mTopOrigin.z = 0;
+
+	this->mBaseOrigin = DPoint3d();
+	mBaseOrigin.x = 0;
+	mBaseOrigin.y = 0;
+	mBaseOrigin.z = 0;
+
 }
 
 double ConeGraphicProperties::getBaseRadius()

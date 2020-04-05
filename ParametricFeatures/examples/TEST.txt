@@ -1,287 +1,127 @@
 
 ===================================================
 ===================================================
-Element Description: Shape
-Element ID: 1539
-===================================================
-===================================================
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
---------  --------
-
-Start Point [X]: -1.33559e+07
-Start Point [Y]: 9.40317e+06
-Start Point [Z]: 0
-
-End Point [X]: -4.79636e+06
-End Point [Y]: 9.40317e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 1.05806e-311
-Starting Point [Y]: 9.88131e-324
-Starting Point [Z]: 1.058e-311
-
-Tangent [X]: 3.16202e-322
-Tangent [Y]: 1.20343e-312
-Tangent [Z]: 1.20343e-312
-
-Curve Line String Length: 8.55956e+06
-
-
-===================================================
-===================================================
-Element Description: Shape
-Element: ID 1539
-===================================================
-===================================================
-
-start==================
-Node ID: 2
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 2
-Node ID: 1
-Leaf ID:  1539
-finish==================
-Smart Feat Element Node ID: 2
-Number of Child: 1
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1541
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = SmartFeatureContainer, current element id = 1541, id = 0 ---------
-
-Is smart feature
-is smart feature, but not found in the smartfeaturetree
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = Extrude, current element id = 1541, id = 2 ---------
-
-Is smart feature
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = SmartFeatureProfile, current element id = 1541, id = 1 ---------
-
-Is smart feature
-
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1541
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Shape
-Element ID: 1542
-===================================================
-===================================================
-
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
---------  --------
-
-Start Point [X]: 0
-Start Point [Y]: -1.44922e+07
-Start Point [Z]: 5.30686e+06
-
-End Point [X]: 0
-End Point [Y]: -6.73765e+06
-End Point [Z]: 5.30686e+06
-
-FromOriginAndDirection
-Starting Point [X]: 1.05806e-311
-Starting Point [Y]: 9.88131e-324
-Starting Point [Z]: 1.058e-311
-
-Tangent [X]: 3.16202e-322
-Tangent [Y]: 1.20343e-312
-Tangent [Z]: 1.20343e-312
-
-Curve Line String Length: 7.75459e+06
-
-
-===================================================
-===================================================
-Element Description: Shape
-Element: ID 1542
-===================================================
-===================================================
-
-start==================
-Node ID: 2
-finish==================
-start==================
-Parent Ref Count: 2
-Parent ID: 2
-Node ID: 1
-Leaf ID:  1542
-finish==================
-Smart Feat Element Node ID: 2
-Number of Child: 1
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element ID: 1544
-===================================================
-===================================================
-
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = SmartFeatureContainer, current element id = 1544, id = 0 ---------
-
-Is smart feature
-is smart feature, but not found in the smartfeaturetree
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = Extrude, current element id = 1544, id = 2 ---------
-
-Is smart feature
-
------------- Instance Schema full name: SmartFeaturesSchema.01.00
---------- ClassName = SmartFeatureProfile, current element id = 1544, id = 1 ---------
-
-Is smart feature
-
-===================================================
-===================================================
-Element Description: Parametric Solid/Surface
-Element: ID 1544
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Shape
-Element ID: 1546
+Element Description: Cylinder
+Element ID: 1375
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 1546, id = 0 ---------
-is NOT smart feature
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+--------- ClassName = ConeElement, current element id = 1375, id = 0 ---------
+Capped[int] = Yes
+Cylindrical[boolean] = True
+Height[double] = 40' 4.4320"
+Base[point3d] = -48' 3.3784", 14' 0.1251", 0' 0.0000"
+Top[point3d] = -9' 6.5615", 2' 7.6713", 0' 0.0000"
+Base Radius[double] = 16' 8.3877"
+Top Radius[double] = 
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Cylinder
+Level[int] = Default
+Element ID[long] = 1375
+Model[string] = Default
+Last Modified[dateTime] = 3/24/2020 8:25:36 PM
+Size[int] = 104
+Linkages[int] = 0
+XAttributes[int] = 0
+Links[string] = 
+Property List[string] = 
+Type[string] = Cone
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Priority[int] = 
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Solid[boolean] = 
+View Dependent[boolean] = 
+Snappable[boolean] = 
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Line Style Parameters[LineStyleParametersStruct] = 
+Thickness[double] = 
+Graphic Group[int] = 
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Assigned Material[string] = 
+Material Projection Parameters[baseElem:MaterialProjectionClass] = 
+Range Low[point3d] = -52' 11.8232", -13' 4.6025", -16' 8.3877"
+Range High[point3d] = -4' 10.1167", 30' 0.3990", 16' 8.3877"
+Volume[double] = 35365.6063 Cu.'
+Surface Area[double] = 5987.7643 Sq.'
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 73.6396°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 253.6396°
+Orientation[int] = Back
+-------- Cylinder --------
+Range [XLength] = 14673744.305372
+Range [YLength] = 13233436.860973
+Range [ZLength] = 10179695.596719
 
--------- ShapeElement --------
+Quaternion Rotation
+qRotation [X] = 0.566056
+qRotation [Y] = 0.423769
+qRotation [Z] = 0.423769
+qRotation [W] = 0.566056
 
-Start Point [X]: -1.67118e+07
-Start Point [Y]: -755487
-Start Point [Z]: 0
+Vector Rotation Axis Local to World
+vRotation [X] = 0.686656
+vRotation [Y] = 0.514054
+vRotation [Z] = 0.514054
 
-End Point [X]: -1.3287e+07
-End Point [Y]: -755487
-End Point [Z]: 0
+Origin [X] = -14716210.116879
+Origin [Y] = 4270378.332584
+Origin [Z] = 0.000000
 
-FromOriginAndDirection
-Starting Point [X]: 1.05806e-311
-Starting Point [Y]: 9.88131e-324
-Starting Point [Z]: 1.058e-311
+Center of BASE Circle [X] = -14716210.116879
+Center of BASE Circle [Y] = 4270378.332584
+Center of BASE Circle [Z] = 0.000000
 
-Tangent [X]: 3.16202e-322
-Tangent [Y]: 1.20343e-312
-Tangent [Z]: 1.20343e-312
+Center of TOP Circle [X] = -2909862.130993
+Center of TOP Circle [Y] = 804450.918183
+Center of TOP Circle [Z] = 0.000000
 
-Curve Line String Length: 3.42481e+06
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.281678
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.959509
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 1.000000
+
+Radius at BASE = 5089847.798360
+Radius at TOP = 5089847.798360
+
+True if the end cap is enabled = 1
+
+Centroid1 [X] = -8813036.123936
+Centroid1 [Y] = 2537414.625383
+Centroid1 [Z] = 0.000000
+Area1 = 556281510251311.187500
+
+Centroid2 [X] = -8813036.123936
+Centroid2 [Y] = 2537414.625383
+Centroid2 [Z] = 0.000000
+Volume = 1001442447466035412992.000000
+Area2 = 556281510251311.187500
+
+
+ Cylinder 
+
 
 
 ===================================================
 ===================================================
-Element Description: Shape
-Element: ID 1546
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Shape
-Element ID: 1547
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 1547, id = 0 ---------
-is NOT smart feature
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- ShapeElement --------
-
-Start Point [X]: -1.65937e+07
-Start Point [Y]: -4.26238e+06
-Start Point [Z]: 0
-
-End Point [X]: -1.65937e+07
-End Point [Y]: -6.9418e+06
-End Point [Z]: 0
-
-FromOriginAndDirection
-Starting Point [X]: 1.05806e-311
-Starting Point [Y]: 9.88131e-324
-Starting Point [Z]: 1.058e-311
-
-Tangent [X]: 3.16202e-322
-Tangent [Y]: 1.20343e-312
-Tangent [Z]: 1.20343e-312
-
-Curve Line String Length: 2.67942e+06
-
-
-===================================================
-===================================================
-Element Description: Shape
-Element: ID 1547
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Circle
-Element ID: 1548
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = EllipseElement, current element id = 1548, id = 0 ---------
-is NOT smart feature
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
-
-Is Circular: 1
-===================================================
-===================================================
-Element Description: Circle
-Element: ID 1548
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Ellipse
-Element ID: 1549
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = EllipseElement, current element id = 1549, id = 0 ---------
-is NOT smart feature
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
-
-Is Circular: 0
-===================================================
-===================================================
-Element Description: Ellipse
-Element: ID 1549
+Element Description: Cylinder
+Element: ID 1375
 ===================================================
 ===================================================
 

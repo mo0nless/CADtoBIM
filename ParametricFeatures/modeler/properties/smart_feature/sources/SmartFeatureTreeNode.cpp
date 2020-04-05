@@ -1,50 +1,47 @@
 #include "../headers/SmartFeatureTreeNode.h"
 
-SmartFeatureTreeNode::SmartFeatureTreeNode()
-{
-	this->pLeftNode = nullptr;
-	this->pRightNode = nullptr;
-	this->pGeneralProperties = new GeneralProperties();
-	this->pReaderProperties = new ReaderProperties();
-	this->pGraphicProperties = new GraphicProperties();
-}
 
-GeneralProperties * SmartFeatureTreeNode::getGeneralProperties()
+SmartFeatureTreeNode::SmartFeatureTreeNode(long newGlobalNodeId, long newLocalNodeId, long newLocalParentNodeId)
 {
-	return this->pGeneralProperties;
-}
-
-ReaderProperties * SmartFeatureTreeNode::getReaderProperties()
-{
-	return this->pReaderProperties;
-}
-
-GraphicProperties * SmartFeatureTreeNode::getGraphicProperties()
-{
-	return this->pGraphicProperties;
-}
-
-void SmartFeatureTreeNode::setGraphicProperties(GraphicProperties* newGraphicProperties)
-{
-	this->pGraphicProperties = newGraphicProperties;
+	this->globalNodeId = newGlobalNodeId;
+	this->localNodeId = newLocalNodeId;
+	this->localParentNodeId = newLocalParentNodeId;
+	
+	this->rightNode = nullptr;
+	this->leftNode = nullptr;
 }
 
 void SmartFeatureTreeNode::setLeftNode(SmartFeatureTreeNode* newLeftNode)
 {
-	this->pLeftNode = newLeftNode;
+	this->leftNode = newLeftNode;
 }
 
 void SmartFeatureTreeNode::setRightNode(SmartFeatureTreeNode* newRightNode)
 {
-	this->pRightNode = newRightNode;
+	this->rightNode = newRightNode;
 }
 
 SmartFeatureTreeNode * SmartFeatureTreeNode::getLeftNode()
 {
-	return this->pLeftNode;
+	return this->leftNode;
 }
 
 SmartFeatureTreeNode * SmartFeatureTreeNode::getRightNode()
 {
-	return this->pRightNode;
+	return this->rightNode;
+}
+
+long SmartFeatureTreeNode::getGlobalNodeId()
+{
+	return this->globalNodeId;
+}
+
+long SmartFeatureTreeNode::getLocalNodeId()
+{
+	return this->localNodeId;
+}
+
+long SmartFeatureTreeNode::getLocalParentNodeId()
+{
+	return this->localParentNodeId;
 }

@@ -8,6 +8,7 @@ PrimitiveGraphicProperties::PrimitiveGraphicProperties()
 	this->pCylinderProperties = nullptr;
 	this->pSphereProperties = nullptr;
 	this->pTorusProperties = nullptr;
+
 }
 
 PrimitiveTypeEnum PrimitiveGraphicProperties::getPrimitiveTypeEnum()
@@ -90,4 +91,14 @@ bool PrimitiveGraphicProperties::tryGetTorusGraphicProperties(TorusGraphicProper
 void PrimitiveGraphicProperties::setTorusGraphicProperties(TorusGraphicProperties * newTorusGraphicProperties)
 {
 	this->pTorusProperties = newTorusGraphicProperties;
+}
+
+PrimitiveCommonGraphicProperties & PrimitiveGraphicProperties::getPrimitiveCommonGraphicProperties()
+{
+	return *this->primitiveCommonGraphicProperties;
+}
+
+void PrimitiveGraphicProperties::setPrimitiveCommonGraphicProperties(PrimitiveCommonGraphicProperties * newPrimitiveCommonGraphicProperties)
+{
+	this->primitiveCommonGraphicProperties = newPrimitiveCommonGraphicProperties;
 }

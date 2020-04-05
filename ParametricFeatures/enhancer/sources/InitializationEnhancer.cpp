@@ -16,9 +16,8 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 {
 	std::ofstream outfile;
 
-	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer();
-	long newCurrentElementId = -1, newLocalNodeId = -1, newParentLocalNodeId = -1, newLeafElementId = -1;
-	newCurrentElementId = currentElem.GetElementId();
+	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer(currentElem.GetElementId());
+	long newLocalNodeId = -1, newParentLocalNodeId = -1, newGlobalNodeId = -1;
 
 	SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
 
@@ -49,7 +48,7 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 
 		if (leafNode.IsValid()) {
 
-			newLeafElementId = leafNode.GetElementId();
+			newGlobalNodeId = leafNode.GetElementId();
 			
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "Leaf ID:  " << leafNode.GetElementId() << std::endl;
@@ -60,7 +59,7 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 		outfile << "finish==================" << std::endl;
 		outfile.close();
 
-		smartFeatureContainer->insertNodeInTree(newCurrentElementId, newLocalNodeId, newParentLocalNodeId, newLeafElementId);
+		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
 	}
 
 	outfile.open(filePath, std::ios_base::app);
@@ -74,42 +73,43 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 
 std::vector<DictionaryProperties*> InitializationEnhancer::orderDictionaryPropertyAndSmartFeature(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
-	std::vector<DictionaryProperties*> newPropsDictVec;
+	return propsDictVec;
+	//std::vector<DictionaryProperties*> newPropsDictVec;
 
-	if (smartFeatureContainerVector.empty()) {
-		return propsDictVec;
-	}
-	else
-	{
-		for (int i = 0; i < propsDictVec.size(); ++i) {
-			DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
+	//if (smartFeatureContainerVector.empty()) {
+	//	return propsDictVec;
+	//}
+	//else
+	//{
+	//	for (int i = 0; i < propsDictVec.size(); ++i) {
+	//		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
 
-			for (int j = 0; j < smartFeatureContainerVector.size(); ++j) {
-				SmartFeatureContainer* smartFeatureContainer = smartFeatureContainerVector.at(j);
+	//		for (int j = 0; j < smartFeatureContainerVector.size(); ++j) {
+	//			SmartFeatureContainer* smartFeatureContainer = smartFeatureContainerVector.at(j);
 
-				if (!propertiesDictionary->getAreReaderPropertiesFound()) {
-					SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
-					if (treeNode != nullptr) {
-						treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
-					}
-				}
-				else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
-				{
-					continue;
-				}
-				else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
-				{
-					continue;
-				}
-				else
-				{
-					newPropsDictVec.push_back(propertiesDictionary);
-				}
-			}
+	//			if (!propertiesDictionary->getAreReaderPropertiesFound()) {
+	//				SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
+	//				if (treeNode != nullptr) {
+	//					//treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
+	//				}
+	//			}
+	//			else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
+	//			{
+	//				continue;
+	//			}
+	//			else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
+	//			{
+	//				continue;
+	//			}
+	//			else
+	//			{
+	//				newPropsDictVec.push_back(propertiesDictionary);
+	//			}
+	//		}
 
-		}
-		return newPropsDictVec;
-	}
+	//	}
+	//	return newPropsDictVec;
+	//}
 }
 
 #pragma warning( push )
@@ -134,7 +134,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
-		DictionaryProperties* propertiesDictionary = new DictionaryProperties();
+		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
@@ -158,13 +158,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		outfile << "===================================================" << std::endl;
 		outfile << std::endl;
 		outfile.close();
-		
-		//This is the one that we use for the ENUMS
-		propertiesDictionary->getGeneralProperties()->setElementDescriptorName(StringUtils::getString(elDescr.GetWCharCP())); 
-		//The class name is visible only from the reader properties executing the query and we set it later
-
-		propertiesDictionary->getGeneralProperties()->setElementId(currentElem.GetElementId());
-		propertiesDictionary->getGeneralProperties()->setCurrentElementId(currentElem.GetElementId());
+	
 		
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);

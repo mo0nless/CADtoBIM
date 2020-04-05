@@ -6,12 +6,12 @@
 
 
 class IfcBooleanOperatorHandler {
-private:
+
 
 public:
 	IfcBooleanOperatorHandler() {};
-	Ifc4::IfcRepresentationItem* buildBooleanRepresentation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file);
+	/*Ifc4::IfcRepresentationItem* buildBooleanRepresentation(std::vector<IfcBuilderBundle*> ifcBuilderBundleVector);*/
 
 private:
-	Ifc4::IfcRepresentationItem* solveBooleanOperations(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, BooleanOperationProperties& booleanOperationProperties);
+	/*Ifc4::IfcRepresentationItem* solveBooleanOperaionts(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file, BooleanOperationProperties& booleanOperationProperties);*/
 };
