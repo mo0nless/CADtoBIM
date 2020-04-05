@@ -317,7 +317,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 	if (!curves.empty()) 
 	{
 		CurvesPrimitivesContainer* curvesPrimitivesContainer = new CurvesPrimitivesContainer();
-		curvesPrimitivesContainer->setElementContainerDescriptor(dictionaryProperties->getGeneralProperties()->getElementDescriptorName());
+		curvesPrimitivesContainer->setElementContainerDescriptor(dictionaryProperties->getElementName());
 		curvesPrimitivesContainer->setIsClosed(curves.IsPhysicallyClosedPath());
 
 		if (isFilled)

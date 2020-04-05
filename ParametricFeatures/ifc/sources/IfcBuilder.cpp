@@ -4,8 +4,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 {
 		std::string name = "PrimitiveTest";
 		IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-		std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-		//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 		typedef Ifc4::IfcGloballyUniqueId guid2;
 
 		Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -23,6 +23,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		file.addEntity(project);
 
+		// TODO [MP/SB] find another implementation for smart feature
 		//if (!smartFeatureContainerVector.empty()) {
 		//	for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
 		//	{
@@ -117,6 +118,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 			if (ifcRepresentationItem != nullptr) 
 			{
 
+				// TODO [MP] find more abstract implementation usingg IfcProperty and IfcPropertySet
 				/*std::string colourName = "myColour";
 				Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
 				file.addEntity(ifcColour);
@@ -170,7 +172,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 				items->push(ifcRepresentationItem);
 			}
 
-		//TODO [MP] curves builder
+		//TODO [MP/SB] curves builder, find another implementatino
 
 		//	IfcCurvesPrimitivesBuilder* ifcCurvesPrimitivesBuilder = new IfcCurvesPrimitivesBuilder();
 		//	std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = ifcCurvesPrimitivesBuilder->buildIfcCurvesPrimitives(*dictionaryProperties.getGraphicProperties(), file);
@@ -195,7 +197,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		//		}
 		//	}
 		//}
-		}
+		//}
 
 			Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
 

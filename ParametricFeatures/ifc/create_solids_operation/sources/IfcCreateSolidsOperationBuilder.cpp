@@ -9,7 +9,8 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 	Ifc4::IfcRepresentationItem* item = nullptr;
 
 	CreateSolidsOperationProperties createSolidsOperationProperties;
-	smartFeatureTreeNode.getReaderProperties()->tryGetCreateSolidsOperationProperties(createSolidsOperationProperties);
+	//TODO [MP/SB] find another implementation
+	//smartFeatureTreeNode.getReaderProperties()->tryGetCreateSolidsOperationProperties(createSolidsOperationProperties);
 
 	switch (createSolidsOperationProperties.getCreateSolidTypeEnum())
 	{
@@ -21,7 +22,8 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 			GraphicProperties* graphicProperties = nullptr;
 
 			CurvesPrimitivesContainer* curvesPrimitivesContainer;
-			if (smartFeatureTreeNode.getLeftNode()->getGraphicProperties()->tryGetCurvesPrimitivesContainer(curvesPrimitivesContainer))
+			//TODO [MP/SB] find another implementation
+			/*if (smartFeatureTreeNode.getLeftNode()->getGraphicProperties()->tryGetCurvesPrimitivesContainer(curvesPrimitivesContainer))
 			{
 				graphicProperties = smartFeatureTreeNode.getLeftNode()->getGraphicProperties();
 			}
@@ -29,7 +31,10 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 			{
 				graphicProperties = smartFeatureTreeNode.getRightNode()->getGraphicProperties();
 			}
-			else break;
+			else
+			{
+				break;
+			}*/
 
 			if(curvesPrimitivesContainer->getBoundaryTypeCurvesContainer() == CurvesBoundaryTypeEnum::OUTER)
 			{

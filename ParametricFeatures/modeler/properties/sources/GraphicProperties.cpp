@@ -2,7 +2,7 @@
 
 GraphicProperties::GraphicProperties()
 {
-	this->pCurveGraphicProperties = nullptr;
+	this->pCurvesPrimitivesContainer = nullptr;
 }
 
 

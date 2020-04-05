@@ -4,7 +4,7 @@
 #include "../smart_feature/headers/SmartFeatureGeneralProperties.h"
 #include "../boolean_operations/headers/BooleanOperationProperties.h"
 #include "../create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
-#include "../curves/reader/headers/CurveReaderProperties.h"
+//#include "../curves/reader/headers/CurveReaderProperties.h"
 #include "../reader/headers/ReaderPropertyBundle.h"
 
 
