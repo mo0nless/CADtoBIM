@@ -90,6 +90,7 @@
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
     <ClInclude Include="enhancer\headers\IfcOperationsEnhancer.h" />
     <ClInclude Include="headers\GraphicsProcessor.h" />
+    <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />

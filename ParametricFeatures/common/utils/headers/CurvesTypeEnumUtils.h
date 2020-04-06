@@ -7,12 +7,12 @@
 class CurvesTypeEnumUtils
 {
 public:	
-	static CurvesContainerTypeEnum getCurvesContainerTypeEnumByDescriptor(std::string elementDescriptor);
-	static CurvesTypeEnum getCurvesTypeEnumByInt(int curvebentleyInt);
+	static CurvesShapeTypeEnum getCurvesContainerTypeEnumByDescriptor(std::string elementDescriptor);
+	static CurvesPrimitivesTypeEnum getCurvesTypeEnumByInt(int curvebentleyInt);
 	static CurvesBoundaryTypeEnum getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt);
 
 private:
-	static std::map<CurvesContainerTypeEnum, std::string> mappedValuesDescriptor;
+	static std::map<CurvesShapeTypeEnum, std::string> mappedValuesDescriptor;
 	CurvesTypeEnumUtils() {};
 
 };
