@@ -223,14 +223,13 @@ IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcCurvesPrimitivesBuild
 	return tempEntityList;
 }
 
-std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTypes(CurvesPrimitivesContainer* curveContainer, IfcHierarchyHelper<Ifc4>& file, std::vector<Ifc4::IfcCurve*>& repItemsVector)
+void IfcCurvesPrimitivesBuilder::buildCurvesContainerTypes(CurvesPrimitivesContainer* curveContainer, IfcHierarchyHelper<Ifc4>& file, std::vector<Ifc4::IfcCurve*>& repItemsVector)
 {
 	switch (curveContainer->getContainerTypeEnum())
 	{
 	case CurvesContainerTypeEnum::COMPLEX_CHAIN:
 	{
 		IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-
 		tempEntityList = buildIfcCompositeCurveSegment(curveContainer, file);
 
 		if (tempEntityList == nullptr)
@@ -263,7 +262,6 @@ std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTyp
 		if (curveContainer->getIsFilled())
 		{
 			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-
 			tempEntityList = buildIfcCompositeCurveSegment(curveContainer, file);
 
 			if (tempEntityList == nullptr)
@@ -301,7 +299,6 @@ std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTyp
 		if (curveContainer->getIsFilled())
 		{
 			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-
 			tempEntityList = buildIfcCompositeCurveSegment(curveContainer, file);
 
 			if (tempEntityList == nullptr)
@@ -338,7 +335,6 @@ std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTyp
 		if (curveContainer->getIsFilled())
 		{
 			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-
 			tempEntityList = buildIfcCompositeCurveSegment(curveContainer, file);
 
 			if (tempEntityList == nullptr)
@@ -370,7 +366,7 @@ std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTyp
 		}
 	}
 	break;
-	// The Default operations handles the standard curves creation (only curves primitives)
+	// The Default operation handles the standard curves creation (only curves primitives)
 	default:
 	{
 		for each (ICurveGraphicProperties* curveProperties in curveContainer->getCurvesPrimitivesContainerVector())
@@ -386,8 +382,6 @@ std::vector<Ifc4::IfcCurve*> IfcCurvesPrimitivesBuilder::buildCurvesContainerTyp
 	}
 	break;
 	}
-
-	return std::vector<Ifc4::IfcCurve*>();
 }
 
 

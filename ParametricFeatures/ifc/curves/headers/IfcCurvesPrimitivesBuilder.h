@@ -11,7 +11,7 @@ public:
 	std::vector<Ifc4::IfcCurve*> buildIfcCurvesPrimitives(GraphicProperties& graphicProperties, IfcHierarchyHelper<Ifc4>& file);
 private:	
 	Ifc4::IfcCurve* buildIfcCurvesRepresentationItems(ICurveGraphicProperties* curveProperties, IfcHierarchyHelper<Ifc4>& file, CurvesContainerTypeEnum curveContainerType);
-	std::vector<Ifc4::IfcCurve*> buildCurvesContainerTypes(CurvesPrimitivesContainer* curveContainer, IfcHierarchyHelper<Ifc4>& file, std::vector<Ifc4::IfcCurve*>& repItemsVector);
+	void buildCurvesContainerTypes(CurvesPrimitivesContainer* curveContainer, IfcHierarchyHelper<Ifc4>& file, std::vector<Ifc4::IfcCurve*>& repItemsVector);
 	IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* buildIfcCompositeCurveSegment(CurvesPrimitivesContainer* curveContainer, IfcHierarchyHelper<Ifc4>& file);
 
 };
