@@ -102,28 +102,62 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 //		}
 
 		IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-		std::vector<Ifc4::IfcRepresentationItem*>ifcRepresentationVector = ifcPrimitivesBuilder->buildIfcPrimitives(dictionaryPropertiesVector,file);
+		std::vector<Ifc4::IfcRepresentation*>ifcRepresentationVector = ifcPrimitivesBuilder->buildIfcPrimitives(dictionaryPropertiesVector,file);
 
+		//Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(
 		for (auto const& ifcRepresentationItem : ifcRepresentationVector)
 		{
 			typedef Ifc4::IfcGloballyUniqueId guid;
-			Ifc4::IfcBuildingElementProxy* ifcBuildingElementProxy = new Ifc4::IfcBuildingElementProxy(guid::IfcGloballyUniqueId(name),0,name,boost::none,boost::none,0,0,boost::none,boost::none);
-			ifcBuildingElementProxy->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
-			ifcBuildingElementProxy->setObjectPlacement(file.addLocalPlacement());
+			Ifc4::IfcProduct* ifcBuildingElementProxy = new Ifc4::IfcProduct(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(),name,
+				boost::none,boost::none, file.addLocalPlacement(),0);
+			//ifcBuildingElementProxy->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
+			//ifcBuildingElementProxy->setObjectPlacement(file.addLocalPlacement());
 
 			Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
-			Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+			/*Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());*/
 
 
 			if (ifcRepresentationItem != nullptr) 
 			{
 
-				// TODO [MP] find more abstract implementation usingg IfcProperty and IfcPropertySet
-				/*std::string colourName = "myColour";
-				Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
-				file.addEntity(ifcColour);
+				
+				//std::string propertyName = "IfcColourRgb";
+				//std::string propertyDesc = "colourName, 0.8, 0.7, 0.1";
+				//Ifc4::IfcProperty* ifcProperty = new Ifc4::IfcProperty(propertyName, propertyDesc);
+				//file.addEntity(ifcProperty);
 
-				Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(ifcColour, 1, new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
+
+				//IfcTemplatedEntityList<Ifc4::IfcProperty>* templatedList1 = new IfcTemplatedEntityList<Ifc4::IfcProperty>();
+				//templatedList1->push(ifcProperty);
+				//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcProperty>> propertySetList(templatedList1);
+
+				//std::string propertySetName = "propertySetName";
+				//Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), propertySetName, boost::none, propertySetList);
+				//file.addEntity(ifcPropertySet);
+
+				//std::string refDefinesName = "refDefinesName";
+				//IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>* templatedList2 = new IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>();
+				//templatedList2->push(ifcBuildingElementProxy);
+				//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinitionList(templatedList2);
+
+				////new Ifc4::IfcRelDefinesByProperties()
+				//Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), refDefinesName,
+				//	boost::none, objectDefinitionList, ifcPropertySet);
+				//file.addEntity(ifcRelDefinesByProperties);
+
+				//Ifc4::IfcProductRepresentation* IfcProductRepresentation = new Ifc4::IfcProductRepresentation()
+
+				// TODO [MP] find more abstract implementation usingg IfcProperty and IfcPropertySet
+				/*std::string culoare = "RED";
+				Ifc4::IfcColourSpecification* cacat = new Ifc4::IfcColourSpecification(culoare);*/
+				//Ifc4::IfcPreDefinedColour* ceva = new Ifc4::IfcPreDefinedColour("RED");
+				
+				/*file.addEntity(cacat);
+				std::string colourName = "myColour";*/
+				/*Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
+				file.addEntity(ifcColour);*/
+
+				/*Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(cacat, 1, new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
 				file.addEntity(ifcSurfaceStyleRendering);
 
 				IfcEntityList* entityList3 = new IfcEntityList();
@@ -169,7 +203,10 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 					boost::none,boost::none, unitEntity8, IfcMaterial);
 				file.addEntity(ifcRelAssociatesMaterial);*/
 
-				items->push(ifcRepresentationItem);
+				//items->push(ifcRepresentationItem);
+
+				reps->push(ifcRepresentationItem);
+				file.addEntity(ifcRepresentationItem);
 			}
 
 		//TODO [MP/SB] curves builder, find another implementatino
@@ -199,10 +236,10 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		//}
 		//}
 
-			Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
+			//Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
 
-			reps->push(rep);
-			file.addEntity(rep);
+			//reps->push(rep);
+			//file.addEntity(rep);
 
 			Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
 

@@ -9,7 +9,7 @@
 class IfcPrimitivesBuilder {
 
 public:
-	std::vector<Ifc4::IfcRepresentationItem*> buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file);
+	std::vector<Ifc4::IfcRepresentation*> buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
 	Ifc4::IfcRepresentationItem* buildIfcPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, std::vector<ReaderPropertyBundle*> readerPropertiesVector, IfcHierarchyHelper<Ifc4>& file);

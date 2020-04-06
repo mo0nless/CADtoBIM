@@ -1,10 +1,9 @@
 #include "../headers/IfcPrimitivesBuilder.h"
 
 
-std::vector<Ifc4::IfcRepresentationItem*> IfcPrimitivesBuilder::buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file)
+std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	Ifc4::IfcRepresentationItem* ifcBuildingElementProxy = nullptr;
-	std::vector<Ifc4::IfcRepresentationItem*> ifcRepresentationItemVector;
+	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
 	// create simple primitives, which are not a smartfeature
 	if (!dictionaryPropertiesVector.empty())
@@ -12,27 +11,33 @@ std::vector<Ifc4::IfcRepresentationItem*> IfcPrimitivesBuilder::buildIfcPrimitiv
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-			//if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) 
-			//{
-			//	continue;
-			//}
+
+			IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>* ifcTemplatedEntityList = new IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>();
+
 			for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector())
 			{
-				ifcBuildingElementProxy = buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector(), file);
+				Ifc4::IfcRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector(), file);
 
 
-				if (ifcBuildingElementProxy != nullptr) {
-					ifcRepresentationItemVector.push_back(ifcBuildingElementProxy);
+				if (ifcRepresentationItem != nullptr) 
+				{
+					ifcTemplatedEntityList->push(ifcRepresentationItem);
+
+					//ifcRepresentationItemVector.push_back(ifcRepresentationItem);
 					/*file.addBuildingProduct(ifcBuildingElementProxy);*/
 					//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
 
 
 				}
 			}
+
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> sharedIfcTemplatedEntityList(ifcTemplatedEntityList);
+			Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), std::string("ceva"), std::string("ceva"), sharedIfcTemplatedEntityList);
+			ifcRepresentationVector.push_back(ifcRepresentation);
 		}
 	}
 
-	return ifcRepresentationItemVector;
+	return ifcRepresentationVector;
 }
 
 Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, std::vector<ReaderPropertyBundle*> readerPropertiesVector,
