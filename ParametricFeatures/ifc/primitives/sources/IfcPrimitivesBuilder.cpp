@@ -11,28 +11,22 @@ std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(s
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>* ifcTemplatedEntityList = new IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>();
+			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
 			for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector())
 			{
-				Ifc4::IfcRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector(), file);
+				Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*primitivePropertiesValue, file);
 
 
 				if (ifcRepresentationItem != nullptr) 
 				{
 					ifcTemplatedEntityList->push(ifcRepresentationItem);
-
-					//ifcRepresentationItemVector.push_back(ifcRepresentationItem);
-					/*file.addBuildingProduct(ifcBuildingElementProxy);*/
-					//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
-
-
 				}
 			}
 
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> sharedIfcTemplatedEntityList(ifcTemplatedEntityList);
-			Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), std::string("ceva"), std::string("ceva"), sharedIfcTemplatedEntityList);
+			//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> sharedIfcTemplatedEntityList(ifcTemplatedEntityList);
+			Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), 
+				std::string("ceva"), std::string("ceva"), ifcTemplatedEntityList);
 			ifcRepresentationVector.push_back(ifcRepresentation);
 		}
 	}
@@ -40,61 +34,37 @@ std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(s
 	return ifcRepresentationVector;
 }
 
-Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, std::vector<ReaderPropertyBundle*> readerPropertiesVector,
-	IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
-	//std::string name = "PrimitiveTest";
-	//typedef Ifc4::IfcGloballyUniqueId guid;
-	//Ifc4::IfcBuildingElementProxy* primitive = new Ifc4::IfcBuildingElementProxy(guid::IfcGloballyUniqueId(name),0,name,boost::none,boost::none,0,0,boost::none,boost::none);
-	//primitive->setOwnerHistory(file.getSingle<Ifc4::IfcOwnerHistory>());
-	//primitive->setObjectPlacement(file.addLocalPlacement());
-
-	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
-	//Ifc4::IfcRepresentation::list::ptr reps(new Ifc4::IfcRepresentation::list());
-	//Ifc4::IfcRepresentationItem::list::ptr items(new Ifc4::IfcRepresentationItem::list());
+	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 	PrimitiveTypeEnum primitiveType = primitiveGraphicProperties.getPrimitiveTypeEnum();
 	if (primitiveType == PrimitiveTypeEnum::SPHERE || primitiveType == PrimitiveTypeEnum::BOX ||
 			primitiveType == PrimitiveTypeEnum::CONE || primitiveType == PrimitiveTypeEnum::CYLINDER)
 	{
-		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, readerPropertiesVector, file);
+		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
 	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file);
 	}
 
-	//if (ifcRepresentationItem != nullptr) 
-	//{
-	//	items->push(ifcRepresentationItem);
-	//}
-
-	//Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
-
-	//reps->push(rep);
-	//file.addEntity(rep);
-
-	//Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, reps);
-
-	//file.addEntity(shape);
-
-	//primitive->setRepresentation(shape);
-
 	return ifcRepresentationItem;
 	
 }
 
-Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, std::vector<ReaderPropertyBundle*> readerPropertiesVector,
-	IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcCsgSolid * IfcPrimitivesBuilder::buildBasicPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
-	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
+	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 
-		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
+		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) 
+		{
 
 			SphereGraphicProperties sphereGraphicProperties;
-			if (primitiveGraphicProperties.tryGetSphereGraphicProperties(sphereGraphicProperties)) {
+			if (primitiveGraphicProperties.tryGetSphereGraphicProperties(sphereGraphicProperties)) 
+			{
 
 				Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getCentroid(),
 					primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisX());
@@ -172,9 +142,9 @@ Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildBasicPrimitive(Primitiv
 	return nullptr;
 }
 
-Ifc4::IfcRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(PrimitiveGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
-	Ifc4::IfcRepresentationItem* ifcRepresentationItem = nullptr;
+	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 

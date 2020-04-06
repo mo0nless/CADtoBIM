@@ -257,7 +257,7 @@ End Point [Y]: 1.2e+07
 End Point [Z]: 6.96398e+06
 
 FromOriginAndDirection
-Starting Point [X]: 1.37624e-309
+Starting Point [X]: 6.42646e-310
 Starting Point [Y]: 6.95291e-310
 Starting Point [Z]: 3.63682e-320
 
@@ -339,7 +339,7 @@ End Point [Y]: 1.2e+07
 End Point [Z]: 6.96398e+06
 
 FromOriginAndDirection
-Starting Point [X]: 1.37624e-309
+Starting Point [X]: 6.42646e-310
 Starting Point [Y]: 6.95291e-310
 Starting Point [Z]: 4.68868e-320
 
@@ -637,7 +637,7 @@ End Point [Y]: 1.2e+07
 End Point [Z]: 7.42118e+06
 
 FromOriginAndDirection
-Starting Point [X]: 1.37624e-309
+Starting Point [X]: 6.42646e-310
 Starting Point [Y]: 6.95291e-310
 Starting Point [Z]: 8.97964e-320
 
@@ -719,7 +719,7 @@ End Point [Y]: 1.2e+07
 End Point [Z]: 7.42118e+06
 
 FromOriginAndDirection
-Starting Point [X]: 1.37624e-309
+Starting Point [X]: 6.42646e-310
 Starting Point [Y]: 6.95291e-310
 Starting Point [Z]: 1.00315e-319
 

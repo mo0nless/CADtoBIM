@@ -119,8 +119,6 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 			if (ifcRepresentationItem != nullptr) 
 			{
-
-				
 				//std::string propertyName = "IfcColourRgb";
 				//std::string propertyDesc = "colourName, 0.8, 0.7, 0.1";
 				//Ifc4::IfcProperty* ifcProperty = new Ifc4::IfcProperty(propertyName, propertyDesc);
