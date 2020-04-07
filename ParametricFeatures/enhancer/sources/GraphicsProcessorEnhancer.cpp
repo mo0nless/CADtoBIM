@@ -17,92 +17,66 @@ DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
-//void GraphicsProcessorEnhancer::setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-//{
-//	std::ofstream outfile;
-//	outfile.open(filePath, std::ios_base::app);
-//	outfile << std::fixed;
-//	outfile << std::endl;
-//	outfile << " BOX "<< std::endl;
-//	outfile << std::endl;
-//
-//	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-//	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::BOX);
-//
-//	// calculate axis Z
-//	DVec3d vectorBaseZ;
-//	vectorBaseZ.CrossProduct(dgnBoxDetail.m_vectorX, dgnBoxDetail.m_vectorY);
-//
-//	// set x,y,z axis in dectionary
-//	primitiveCommonGraphicProperties->setVectorAxisX(dgnBoxDetail.m_vectorX);
-//	primitiveCommonGraphicProperties->setVectorAxisY(dgnBoxDetail.m_vectorY);
-//	primitiveCommonGraphicProperties->setVectorAxisZ(vectorBaseZ);
-//
-//	// set slab properties
-//	SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
-//	slabProperties->setLength(dgnBoxDetail.m_topX);
-//	slabProperties->setWidth(dgnBoxDetail.m_topY);
-//
-//	double height;
-//	if (primitiveCommonGraphicProperties->getVolume() > 0) 
-//	{
-//		height = primitiveCommonGraphicProperties->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY);
-//	}
-//	else 
-//	{
-//		double x = abs(dgnBoxDetail.m_baseOrigin.x - dgnBoxDetail.m_topOrigin.x);
-//		double y = abs(dgnBoxDetail.m_baseOrigin.y - dgnBoxDetail.m_topOrigin.y);
-//		double z = abs(dgnBoxDetail.m_baseOrigin.z - dgnBoxDetail.m_topOrigin.z);
-//
-//		height = sqrt(x*x + y*y + z*z);
-//	}
-//
-//	slabProperties->setHeight(height);
-//
-//	// set slab properties in graphic properties
-//	primitiveGraphicProperties->setSlabProperties(slabProperties);
-//	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-//
-//	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-//}
+void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
+{
+	// TODO to be removed
+	// write to file the type of solide which was parsed
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " BOX "<< std::endl;
+	//outfile << std::endl;
+
+	// calculate height of the box
+	double height;
+	if (boxGraphicProperties->getVolume() > 0) {
+		height = boxGraphicProperties->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY);
+	}
+	else {
+		double x = abs(dgnBoxDetail.m_baseOrigin.x - dgnBoxDetail.m_topOrigin.x);
+		double y = abs(dgnBoxDetail.m_baseOrigin.y - dgnBoxDetail.m_topOrigin.y);
+		double z = abs(dgnBoxDetail.m_baseOrigin.z - dgnBoxDetail.m_topOrigin.z);
+
+		height = sqrt(x*x + y*y + z*z);
+	}
+
+	// set box properties
+	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
+	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
+	boxGraphicProperties->setHeight(height);
+
+	// add box graphic property to dictionary
+	pDictionaryProperties->addGraphicProperty(boxGraphicProperties);
+}
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
 {
+	// calculate height of the cone
 	double height;
-	if (coneGraphicProperties->getVolume() > 0)
-	{
+	if (coneGraphicProperties->getVolume() > 0) {
 		 height = (3 * coneGraphicProperties->getVolume()) /
 			 (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
 	}
-	else 
-	{
+	else {
 		double x = abs(cgnConeDetail.m_centerA.x - cgnConeDetail.m_centerB.x);
 		double y = abs(cgnConeDetail.m_centerA.y - cgnConeDetail.m_centerB.y);
 		double z = abs(cgnConeDetail.m_centerA.z - cgnConeDetail.m_centerB.z);
 
 		height = sqrt(x*x + y*y + z*z);
 	}
+	// set cone properties
 	coneGraphicProperties->setHeight(height);
 
-	/*Transform localToWorld;
-	Transform worldToLocal;
-	DVec3d columnVectorX, columnVectorY, columnVectorZ;
-	cgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
-
-
-	localToWorld.GetMatrixColumn(columnVectorX, 0);
-	localToWorld.GetMatrixColumn(columnVectorY, 1);
-	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	columnVectorZ = cgnConeDetail.ParameterizationSign()*columnVectorZ;*/
-
-
-/*	if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE) {
-		coneGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+	if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE) {
+		coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
+		coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
+		coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
+		coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
 	}
-	else */if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::TRUNCATED_CONE) {
+	else if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::TRUNCATED_CONE) {
 		if (cgnConeDetail.m_radiusA > cgnConeDetail.m_radiusB)
 		{
-			//coneGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
 			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
 			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
@@ -112,18 +86,24 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 		{
 			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
 			coneGraphicProperties->setVectorAxis(-1* coneGraphicProperties->getVectorAxisX(), -1* coneGraphicProperties->getVectorAxisY(), -1* coneGraphicProperties->getVectorAxisZ());
+
+			// inverse the base radius with top radius
 			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusB);
 			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusA);
+			
+			// inverse the base origin with top origin
 			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerA);
 			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
 		}
 	}
+	// add property to the dictionary
 	this->pDictionaryProperties->addGraphicProperty(coneGraphicProperties);
 
 }
 
 void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
 {
+	// calculate height of the cylinder
 	double height;
 	if (cylinderGraphicProperties->getVolume() > 0)
 	{
@@ -138,30 +118,20 @@ void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnCo
 
 		height = sqrt(x*x + y*y + z*z);
 	}
+	// set cylinder properties
 	cylinderGraphicProperties->setHeight(height);
 	cylinderGraphicProperties->setRadius(dgnConeDetail.m_radiusA);
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
 
-	/*Transform localToWorld;
-	Transform worldToLocal;
-	DVec3d columnVectorX, columnVectorY, columnVectorZ;
-	dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
-
-
-	localToWorld.GetMatrixColumn(columnVectorX, 0);
-	localToWorld.GetMatrixColumn(columnVectorY, 1);
-	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	columnVectorZ = dgnConeDetail.ParameterizationSign()*columnVectorZ;
-
-	cylinderGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);*/
+	// add property to the dictionary
 	this->pDictionaryProperties->addGraphicProperty(cylinderGraphicProperties);
 
 }
 
 SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnConeDetail dgnConeDetail)
 {
-	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
-	{
+	// open plant modeler treats the cylinder as cone. in order to distinguish between them, we compare the radius to determine which exact solid we're dealing with
+	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0) {
 		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
@@ -169,11 +139,9 @@ SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnCon
 		outfile << " Cylinder " << std::endl;
 		outfile << std::endl;
 
-		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties(PrimitiveTypeEnum::CYLINDER);
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 		return cylinderGraphicProperties;
-	}
-	else if (dgnConeDetail.m_radiusB == 0)
-	{
+	} else if (dgnConeDetail.m_radiusB == 0) {
 			std::ofstream outfile;
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
@@ -183,9 +151,7 @@ SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnCon
 
 			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
 			return coneGraphicProperties;
-	}
-	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
-	{
+	} else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB) {
 			std::ofstream outfile;
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
@@ -198,71 +164,54 @@ SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnCon
 	}
 
 	return nullptr;
-	
 }
 
-//void GraphicsProcessorEnhancer::setSphereGraphicProperties(PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-//{
-//	std::ofstream outfile;
-//	outfile.open(filePath, std::ios_base::app);
-//	outfile << std::fixed;
-//	outfile << std::endl;
-//	outfile << " Sphere " << std::endl;
-//	outfile << std::endl;
-//
-//	double radius;
-//	if (primitiveCommonGraphicProperties->getVolume() > 0) 
-//	{
-//		radius = pow(((primitiveCommonGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
-//	}
-//	else 
-//	{
-//		radius = -1;
-//	}
-//	SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
-//	sphereGraphicProperties->setRadius(radius);
-//
-//	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-//	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::SPHERE);
-//
-//	primitiveGraphicProperties->setSphereGraphicProperties(sphereGraphicProperties);
-//	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-//
-//	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-//}
+void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
+{
+	// TODO to enable if needed, but to be removed at the end
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " Sphere " << std::endl;
+	//outfile << std::endl;
 
-//void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-//{
-//	std::ofstream outfile;
-//	outfile.open(filePath, std::ios_base::app);
-//	outfile << std::fixed;
-//	outfile << std::endl;
-//	outfile << " Torus " << std::endl;
-//	outfile << std::endl;
-//
-//	TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
-//	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
-//	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
-//	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
-//	torusGraphicProperties->setSweepRadians(sweepRadians);
-//
-//	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-//	primitiveGraphicProperties->setTorusGraphicProperties(torusGraphicProperties);
-//	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::TORUS);
-//
-//	// calculate axis Z
-//	DVec3d vectorBaseZ;
-//	vectorBaseZ.CrossProduct(dgnTorusPipeDetail.m_vectorX, dgnTorusPipeDetail.m_vectorY);
-//
-//	// set x,y,z axis in dectionary
-//	primitiveCommonGraphicProperties->setVectorAxisX(dgnTorusPipeDetail.m_vectorX);
-//	primitiveCommonGraphicProperties->setVectorAxisY(dgnTorusPipeDetail.m_vectorY);
-//	primitiveCommonGraphicProperties->setVectorAxisZ(vectorBaseZ);
-//
-//	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-//	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-//
-//}
+	// calculate the radius
+	double radius;
+	if (sphereGraphicProperties->getVolume() > 0) {
+		radius = pow(((sphereGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
+	} else {
+		radius = -1;
+	}
+	// set radius
+	sphereGraphicProperties->setRadius(radius);
+
+	// add property to the dictionary
+	pDictionaryProperties->addGraphicProperty(sphereGraphicProperties);
+}
+
+void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
+{
+	// TODO to be enabled if needed, remove at the end
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " Torus " << std::endl;
+	//outfile << std::endl;
+
+	// set torus properties
+	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
+	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
+	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
+	torusGraphicProperties->setSweepRadians(sweepRadians);
+
+
+
+	// add torus property to the dictionary
+	pDictionaryProperties->addGraphicProperty(torusGraphicProperties);
+
+}
 
 void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperty*& graphicProperty)
 {
@@ -273,6 +222,8 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 	DVec3d momentxyz;
 
 	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
+
+	// set the centroid values from here, because in the function bellow sometimes is 0
 	graphicProperty->setCentroid(centroid);
 	graphicProperty->setArea(area);
 
@@ -302,7 +253,7 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 
 }
 
-void GraphicsProcessorEnhancer::setGraphicPropertyAxes(GraphicProperty *& graphicProperty, Transform& localToWorld, const double parametrizationSign)
+void GraphicsProcessorEnhancer::setGraphicPropertyAxes(GraphicProperty*& graphicProperty, Transform& localToWorld, const double parametrizationSign)
 {
 	DVec3d columnVectorX, columnVectorY, columnVectorZ;
 

@@ -2,6 +2,11 @@
 
 ConeGraphicProperties::ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum):SolidPrimitiveProperty(primitiveTypeEnum)
 {
+
+	if (primitiveTypeEnum != PrimitiveTypeEnum::CONE || primitiveTypeEnum != PrimitiveTypeEnum::TRUNCATED_CONE) {
+		// throw exception and log 
+	}
+
 	this->mBaseRadius = 0;
 	this->mTopRadius = 0;
 	this->mHeight = 0;

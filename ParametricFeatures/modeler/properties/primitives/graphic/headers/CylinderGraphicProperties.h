@@ -1,10 +1,5 @@
 #pragma once
 
-//#include <DgnPlatform/DgnECInstance.h>
-//#include <DgnPlatform/DgnECManager.h>
-//
-//USING_NAMESPACE_BENTLEY_ECOBJECT;
-//USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 #include "SolidPrimitiveProperty.h"
 
@@ -16,7 +11,7 @@ private:
 	DPoint3d baseOrigin;
 
 public:
-	CylinderGraphicProperties(PrimitiveTypeEnum newPrimitiveTypeEnum);
+	CylinderGraphicProperties();
 
 	double getRadius();
 	void setRadius(double newRadius);

@@ -5,19 +5,23 @@
 #include "../../modeler/properties/curves/headers/CurvesPrimitivesContainer.h"
 #include "../../modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 
 class GraphicsProcessorEnhancer
 {
 public:
 	GraphicsProcessorEnhancer();
 
-	//void setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties);
+	void setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& BoxGraphicProperties);
 	void setConeGraphicProperties(DgnConeDetail dgnConeDetail, ConeGraphicProperties*& coneGraphicProperties);
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
+	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
+	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
 	SolidPrimitiveProperty* handleConeAndCylinder(DgnConeDetail dgnConeDetail);
 
-	//void setSphereGraphicProperties(PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties);
-	//void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties);
+
 
 	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
 

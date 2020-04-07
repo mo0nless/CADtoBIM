@@ -1,12 +1,9 @@
 #pragma once
 
-#include <DgnPlatform/DgnECInstance.h>
-#include <DgnPlatform/DgnECManager.h>
+#include "SolidPrimitiveProperty.h"
 
-USING_NAMESPACE_BENTLEY_ECOBJECT;
-USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
-class TorusGraphicProperties {
+class TorusGraphicProperties: public SolidPrimitiveProperty {
 
 private:
 	double mMinorRadius;

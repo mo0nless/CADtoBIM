@@ -91,7 +91,7 @@ appObjects = \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
 	$(o)PrimitiveTypeEnumUtils$(oext) \
-	$(o)SlabGraphicProperties$(oext) \
+	$(o)BoxGraphicProperties$(oext) \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
@@ -209,7 +209,7 @@ $(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderProp
 
 $(o)PrimitiveTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PrimitiveTypeEnumUtils.cpp $(baseDir)common/utils/headers/PrimitiveTypeEnumUtils.h
 
-$(o)SlabGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SlabGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SlabGraphicProperties.h
+$(o)BoxGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/BoxGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h
 
 $(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h
 

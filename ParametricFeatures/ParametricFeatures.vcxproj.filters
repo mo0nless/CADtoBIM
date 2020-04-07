@@ -23,7 +23,6 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\SlabGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureGeneralProperties.cpp" />
@@ -53,6 +52,7 @@
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyBundle.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperty.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -89,7 +89,6 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureGeneralProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\TorusGraphicProperties.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
@@ -121,5 +120,6 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperty.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
   </ItemGroup>
 </Project>

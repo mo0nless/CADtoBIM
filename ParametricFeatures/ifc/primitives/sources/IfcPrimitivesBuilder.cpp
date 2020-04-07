@@ -61,70 +61,53 @@ Ifc4::IfcCsgSolid * IfcPrimitivesBuilder::buildBasicPrimitive(SolidPrimitiveProp
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
+		Ifc4::IfcAxis2Placement3D* placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file);
 
-		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) 
-		{
+		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
 
-			//SphereGraphicProperties sphereGraphicProperties;
-			//if (primitiveGraphicProperties.tryGetSphereGraphicProperties(sphereGraphicProperties)) 
-			//{
+			SphereGraphicProperties& sphereGraphicProperties = dynamic_cast<SphereGraphicProperties&>(primitiveGraphicProperties);
+			ifcRepresentationItem = new Ifc4::IfcSphere(placement, NumberUtils::convertMicrometersToMetters(sphereGraphicProperties.getRadius()));
 
-			//	Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getCentroid(),
-			//		primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisX());
-			//	ifcRepresentationItem = new Ifc4::IfcSphere(place, NumberUtils::convertMicrometersToMetters(sphereGraphicProperties.getRadius()));
-			//}
-			//else
-			//{
-			//	// TODO log sphere properties not found
-			//}
-		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX)
-		{
-			//SlabGraphicProperties slabGraphicProperties;
-			//if (primitiveGraphicProperties.tryGetSlabProperties(slabGraphicProperties)) {
-			//	Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getCentroid(),
-			//		primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisX());
-			//	ifcRepresentationItem = new Ifc4::IfcBlock(place, NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getLength()),
-			//		NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getWidth()), NumberUtils::convertMicrometersToMetters(slabGraphicProperties.getHeight()));
-			//}
-			//else {
-			//	// TODO log slab properties not found
-			//}
+		} else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX) {
 
-		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER)
-		{
+			BoxGraphicProperties& boxGraphicProperties = dynamic_cast<BoxGraphicProperties&>(primitiveGraphicProperties);
+
+			ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getLength()),
+			NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getWidth()), NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getHeight()));
+
+		} else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
 			CylinderGraphicProperties& cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties&>(primitiveGraphicProperties);
 			
-				// the cylinder point of placement is the base origin, not the centroid
-				DVec3d* cylinderPlacement = new DVec3d();
-				cylinderPlacement->x = cylinderGraphicProperties.getBaseOrigin().x;
-				cylinderPlacement->y = cylinderGraphicProperties.getBaseOrigin().y;
-				cylinderPlacement->z = cylinderGraphicProperties.getBaseOrigin().z;
+			// the cylinder point of placement is the base origin, not the centroid
+			DVec3d* cylinderPlacement = new DVec3d();
+			cylinderPlacement->x = cylinderGraphicProperties.getBaseOrigin().x;
+			cylinderPlacement->y = cylinderGraphicProperties.getBaseOrigin().y;
+			cylinderPlacement->z = cylinderGraphicProperties.getBaseOrigin().z;
 
-				Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *cylinderPlacement,
-					cylinderGraphicProperties.getVectorAxisZ(), cylinderGraphicProperties.getVectorAxisX());
-				ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(place, NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getHeight()),
-					NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getRadius()));
+			// overwrite the placement value
+			placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *cylinderPlacement,
+			cylinderGraphicProperties.getVectorAxisZ(), cylinderGraphicProperties.getVectorAxisX());
+
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(placement, NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getHeight()),
+			NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getRadius()));
 
 		}
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::CONE)
 		{
 			ConeGraphicProperties& coneGraphicProperties = dynamic_cast<ConeGraphicProperties&>(primitiveGraphicProperties);
 
+			// the cone point of placement is the base origin, not the centroid
+			DVec3d* conePlacement = new DVec3d();
+			conePlacement->x = coneGraphicProperties.getBaseOrigin().x;
+			conePlacement->y = coneGraphicProperties.getBaseOrigin().y;
+			conePlacement->z = coneGraphicProperties.getBaseOrigin().z;
 
-				// the cone point of placement is the base origin, not the centroid
-				DVec3d* conePlacement = new DVec3d();
-				conePlacement->x = coneGraphicProperties.getBaseOrigin().x;
-				conePlacement->y = coneGraphicProperties.getBaseOrigin().y;
-				conePlacement->z = coneGraphicProperties.getBaseOrigin().z;
-
-				Ifc4::IfcAxis2Placement3D* place = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *conePlacement, coneGraphicProperties.getVectorAxisZ(),coneGraphicProperties.getVectorAxisX());
-				ifcRepresentationItem = new Ifc4::IfcRightCircularCone(place, NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getHeight()),
-					NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
+			// overwrite the placement value
+			placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *conePlacement, coneGraphicProperties.getVectorAxisZ(),coneGraphicProperties.getVectorAxisX());
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(placement, NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getHeight()),
+			NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
 		}
 	
-
 	if (ifcRepresentationItem != nullptr) {
 		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(ifcRepresentationItem);
 		file.addEntity(ifcRepresentationItem);
@@ -142,69 +125,60 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimiti
 
 		if (primitiveTypeEnum == PrimitiveTypeEnum::TORUS)
 		{
+			TorusGraphicProperties& torusGraphicProperties = dynamic_cast<TorusGraphicProperties&>(primitiveGraphicProperties);
 
-			//TorusGraphicProperties torusGraphicProperties;
-			//if (primitiveGraphicProperties.tryGetTorusGraphicProperties(torusGraphicProperties))
-			//{
-			//	// the cone point of placement is the base origin, not the centroid
-			//	DVec3d* torusPointPlacement = new DVec3d();
-			//	torusPointPlacement->x = torusGraphicProperties.getCenterPointOfRotation().x;
-			//	torusPointPlacement->y = torusGraphicProperties.getCenterPointOfRotation().y;
-			//	torusPointPlacement->z = torusGraphicProperties.getCenterPointOfRotation().z;
+			// torus placement is NOT the centroid, but the center of rotation
+			DVec3d* torusPointPlacement = new DVec3d();
+			torusPointPlacement->x = torusGraphicProperties.getCenterPointOfRotation().x;
+			torusPointPlacement->y = torusGraphicProperties.getCenterPointOfRotation().y;
+			torusPointPlacement->z = torusGraphicProperties.getCenterPointOfRotation().z;
 
-			//	Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
-			//		NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMajorRadius())), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+			Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
+				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMajorRadius())), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
-			//	Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
-			//		NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMinorRadius()));
-			//	Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+			Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
+				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMinorRadius()));
+			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
-			//	// !!! torus placement axes should be provided in the order of Z,Y
-			//	Ifc4::IfcAxis2Placement3D* torusPlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *torusPointPlacement,
-			//		primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisY(), primitiveGraphicProperties.getPrimitiveCommonGraphicProperties().getVectorAxisZ());
-			//	ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, torusPlacement, localAxis1Placement, torusGraphicProperties.getSweepRadians());
-			//}
-			//else
-			//{
-			//	// TODO log sphere properties not found
-			//}
-		}
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::TRUNCATED_CONE)
-		{
+			// !!! torus placement axes should be provided in the order of Z,Y
+			Ifc4::IfcAxis2Placement3D* torusPlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *torusPointPlacement,
+				torusGraphicProperties.getVectorAxisY(), torusGraphicProperties.getVectorAxisZ());
+
+			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDefinition, torusPlacement, localAxis1Placement, torusGraphicProperties.getSweepRadians());
+		} else if (primitiveTypeEnum == PrimitiveTypeEnum::TRUNCATED_CONE) {
+
 			ConeGraphicProperties& coneGraphicProperties = dynamic_cast<ConeGraphicProperties&>(primitiveGraphicProperties);
 
+			double similarityRatio = coneGraphicProperties.getTopRadius() / coneGraphicProperties.getBaseRadius();
+			double smallConeHeight = (similarityRatio*coneGraphicProperties.getHeight()) / (1 - similarityRatio);
 
+			// !!! overrite the place for cone, as the cone is positioned in the space not based on the centroid, but the base origin
+			DVec3d* bigConePlacementVector = new DVec3d();
+			bigConePlacementVector->x = coneGraphicProperties.getBaseOrigin().x;
+			bigConePlacementVector->y = coneGraphicProperties.getBaseOrigin().y;
+			bigConePlacementVector->z = coneGraphicProperties.getBaseOrigin().z;
 
-				double similarityRatio = coneGraphicProperties.getTopRadius() / coneGraphicProperties.getBaseRadius();
-				double smallConeHeight = (similarityRatio*coneGraphicProperties.getHeight()) / (1 - similarityRatio);
-
-				// !!! overrite the place for cone, as the cone is positioned in the space not based on the centroid, but the base origin
-				DVec3d* bigConePlacementVector = new DVec3d();
-				bigConePlacementVector->x = coneGraphicProperties.getBaseOrigin().x;
-				bigConePlacementVector->y = coneGraphicProperties.getBaseOrigin().y;
-				bigConePlacementVector->z = coneGraphicProperties.getBaseOrigin().z;
-
-				Ifc4::IfcAxis2Placement3D* bigConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *bigConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
+			Ifc4::IfcAxis2Placement3D* bigConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *bigConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
 					coneGraphicProperties.getVectorAxisX());
 
-				DVec3d* smallConePlacementVector = new DVec3d();
-				smallConePlacementVector->x = coneGraphicProperties.getTopOrigin().x;
-				smallConePlacementVector->y = coneGraphicProperties.getTopOrigin().y;
-				smallConePlacementVector->z = coneGraphicProperties.getTopOrigin().z;
-				Ifc4::IfcAxis2Placement3D* smallConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *smallConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
-					coneGraphicProperties.getVectorAxisX());
+			DVec3d* smallConePlacementVector = new DVec3d();
+			smallConePlacementVector->x = coneGraphicProperties.getTopOrigin().x;
+			smallConePlacementVector->y = coneGraphicProperties.getTopOrigin().y;
+			smallConePlacementVector->z = coneGraphicProperties.getTopOrigin().z;
+			Ifc4::IfcAxis2Placement3D* smallConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *smallConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
+				coneGraphicProperties.getVectorAxisX());
 
-				Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* bigCompleteCone = new Ifc4::IfcRightCircularCone(bigConePlacement,
-					NumberUtils::convertMicrometersToMetters((coneGraphicProperties.getHeight() + smallConeHeight)),
-					NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
+			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* bigCompleteCone = new Ifc4::IfcRightCircularCone(bigConePlacement,
+				NumberUtils::convertMicrometersToMetters((coneGraphicProperties.getHeight() + smallConeHeight)),
+				NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
 
-				Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* smallCompleteCone = new Ifc4::IfcRightCircularCone(smallConePlacement,
-					NumberUtils::convertMicrometersToMetters(smallConeHeight), NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getTopRadius()));
+			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* smallCompleteCone = new Ifc4::IfcRightCircularCone(smallConePlacement,
+				NumberUtils::convertMicrometersToMetters(smallConeHeight), NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getTopRadius()));
 
-				file.addEntity(bigCompleteCone);
-				file.addEntity(smallCompleteCone);
+			file.addEntity(bigCompleteCone);
+			file.addEntity(smallCompleteCone);
 
-				ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
+			ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
 
 		}
 	
@@ -217,6 +191,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimiti
 	return ifcRepresentationItem;
 }
 
+// the default placement is the centroid and Z,X axis
+Ifc4::IfcAxis2Placement3D * IfcPrimitivesBuilder::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+{
+	return buildIfcAxis2Placement3D(primitiveGraphicProperties,file,primitiveGraphicProperties.getCentroid(),primitiveGraphicProperties.getVectorAxisZ(),primitiveGraphicProperties.getVectorAxisX());
+}
+
+// in particular cases, we have to specify other point of placement and axes
 Ifc4::IfcAxis2Placement3D * IfcPrimitivesBuilder::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties,IfcHierarchyHelper<Ifc4>& file,
 	DVec3d pointOfPlacement, DVec3d axe1, DVec3d axe2)
 {

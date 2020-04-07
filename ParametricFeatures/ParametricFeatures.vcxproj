@@ -48,7 +48,7 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\SlabGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyBundle.cpp" />
@@ -128,7 +128,7 @@
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\SlabGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\TorusGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
