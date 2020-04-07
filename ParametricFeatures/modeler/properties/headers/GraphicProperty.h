@@ -11,7 +11,7 @@ private:
 	double volume;
 	double area;
 
-	DVec3d centroid;
+	DVec3d centroid; 
 
 	DVec3d vectorAxisX;
 	DVec3d vectorAxisY;
