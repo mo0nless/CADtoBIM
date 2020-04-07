@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../../common/interfaces/graphics/ICurvesGraphicsProperties.h"
+#include "ICurvesGraphicsProperties.h"
 
 class LineGraphicProperties: public ICurveGraphicProperties
 {

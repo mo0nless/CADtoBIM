@@ -18,10 +18,10 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 		{
 			ExtrusionReaderProperties* extrusionReaderProperties;
 			createSolidsOperationProperties.tryGetExtrusionReaderProperties(extrusionReaderProperties);
-			
-			GraphicProperties* graphicProperties = nullptr;
 
-			CurvesPrimitivesContainer* curvesPrimitivesContainer;
+			//GraphicProperties* graphicProperties = nullptr;
+
+			//CurvesPrimitivesContainer* curvesPrimitivesContainer;
 			//TODO [MP/SB] find another implementation
 			/*if (smartFeatureTreeNode.getLeftNode()->getGraphicProperties()->tryGetCurvesPrimitivesContainer(curvesPrimitivesContainer))
 			{
@@ -36,33 +36,34 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 				break;
 			}*/
 
-			if(curvesPrimitivesContainer->getBoundaryTypeCurvesContainer() == CurvesBoundaryTypeEnum::OUTER)
-			{
-				IfcCurvesPrimitivesBuilder* ifcCurvesPrimitivesBuilder = new IfcCurvesPrimitivesBuilder();
-				std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = ifcCurvesPrimitivesBuilder->buildIfcCurvesPrimitives(
-					*graphicProperties,
-					file
-				);
+			//	if(curvesPrimitivesContainer->getBoundaryTypeCurvesContainer() == CurvesBoundaryTypeEnum::OUTER)
+			//	{
+			//		IfcCurvesPrimitivesBuilder* ifcCurvesPrimitivesBuilder = new IfcCurvesPrimitivesBuilder();
+			//		std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = ifcCurvesPrimitivesBuilder->buildIfcCurvesPrimitives(
+			//			*graphicProperties,
+			//			file
+			//		);
 
-				Ifc4::IfcArbitraryClosedProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
-					Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
-					boost::none,
-					ifcCurvesItemsVector[0]
-				);
+			//		Ifc4::IfcArbitraryClosedProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
+			//			Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
+			//			boost::none,
+			//			ifcCurvesItemsVector[0]
+			//		);
 
-				Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-					IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curvesPrimitivesContainer->getCentroIDxy()),
-					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionZ()), //Need to be Checked
-					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionX()) //Need to be Checked
-				);
+			//		Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
+			//			IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curvesPrimitivesContainer->getCentroIDxy()),
+			//			IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionZ()), //Need to be Checked
+			//			IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionX()) //Need to be Checked
+			//		);
 
-				item  = new Ifc4::IfcExtrudedAreaSolid(
-					profileDef,
-					place,
-					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getNormal()), //Need to be Checked
-					NumberUtils::convertMicrometersToMetters(extrusionReaderProperties->getDistance())
-				);
-			}
+			//		item  = new Ifc4::IfcExtrudedAreaSolid(
+			//			profileDef,
+			//			place,
+			//			IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getNormal()), //Need to be Checked
+			//			NumberUtils::convertMicrometersToMetters(extrusionReaderProperties->getDistance())
+			//		);
+			//	}
+			//}
 		}
 		break;
 		default:

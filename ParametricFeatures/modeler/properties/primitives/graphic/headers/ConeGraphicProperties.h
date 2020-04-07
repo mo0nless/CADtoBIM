@@ -1,12 +1,8 @@
 #pragma once
 
-#include <DgnPlatform/DgnECInstance.h>
-#include <DgnPlatform/DgnECManager.h>
+#include "SolidPrimitiveProperty.h"
 
-USING_NAMESPACE_BENTLEY_ECOBJECT;
-USING_NAMESPACE_BENTLEY_DGNPLATFORM;
-
-class ConeGraphicProperties {
+class ConeGraphicProperties : public SolidPrimitiveProperty {
 
 private:
 	double mBaseRadius;
@@ -16,7 +12,7 @@ private:
 	DPoint3d mBaseOrigin;
 
 public:
-	ConeGraphicProperties();
+	ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum);
 
 	double getBaseRadius();
 	void setBaseRadius(double newBaseRadius);

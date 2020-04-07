@@ -86,7 +86,7 @@ appObjects = \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)GeneralProperties$(oext) \
-	$(o)GraphicProperties$(oext) \
+	$(o)GraphicProperty$(oext) \
 	$(o)ReaderProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
@@ -118,10 +118,10 @@ appObjects = \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
-	$(o)PrimitiveCommonGraphicProperties$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
 	$(o)ReaderPropertyBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
+	$(o)SolidPrimitiveProperty$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/Dictionar
 
 $(o)GeneralProperties$(oext) : $(baseDir)modeler/properties/sources/GeneralProperties.cpp $(baseDir)modeler/properties/headers/GeneralProperties.h
 
-$(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
+$(o)GraphicProperty$(oext) : $(baseDir)modeler/properties/sources/GraphicProperty.cpp $(baseDir)modeler/properties/headers/GraphicProperty.h
 
 $(o)ReaderProperties$(oext) : $(baseDir)modeler/properties/sources/ReaderProperties.cpp $(baseDir)modeler/properties/headers/ReaderProperties.h
 
@@ -218,8 +218,6 @@ $(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/gra
 $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h
 
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
-
-$(o)PrimitiveCommonGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveCommonGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveCommonGraphicProperties.h
 
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
@@ -278,6 +276,9 @@ $(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/proper
 $(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
 
 $(o)ReaderPropertyBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyBundle.h
+
+$(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SolidPrimitiveProperty.h
+
 
 %include $(MDLMKI)dlmlink.mki
 

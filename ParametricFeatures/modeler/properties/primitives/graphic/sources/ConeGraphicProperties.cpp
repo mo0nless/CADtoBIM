@@ -1,6 +1,6 @@
 #include "../headers/ConeGraphicProperties.h"
 
-ConeGraphicProperties::ConeGraphicProperties()
+ConeGraphicProperties::ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum):SolidPrimitiveProperty(primitiveTypeEnum)
 {
 	this->mBaseRadius = 0;
 	this->mTopRadius = 0;

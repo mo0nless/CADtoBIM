@@ -46,7 +46,7 @@
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveCommonGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SlabGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SphereGraphicProperties.cpp" />
@@ -58,7 +58,7 @@
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicProperty.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
@@ -77,7 +77,7 @@
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
-    <ClInclude Include="common\interfaces\graphics\ICurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
@@ -115,8 +115,8 @@
     <ClInclude Include="modeler\properties\curves\headers\CurvesPrimitivesContainer.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
-    <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveCommonGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicProperty.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
     <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveGraphicProperties.h" />

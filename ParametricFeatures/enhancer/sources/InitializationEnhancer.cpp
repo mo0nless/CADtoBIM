@@ -143,8 +143,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 			T_SmartFeatureVector sFeatVec;
 
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
-			if (smartFeatureContainer != nullptr)
-			{
+			if (smartFeatureContainer != nullptr) {
 				smartFeatureContainerVector.push_back(smartFeatureContainer);
 			}
 		}

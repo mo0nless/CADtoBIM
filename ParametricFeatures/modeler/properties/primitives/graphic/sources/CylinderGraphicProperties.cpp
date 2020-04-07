@@ -1,6 +1,6 @@
 #include "../headers/CylinderGraphicProperties.h"
 
-CylinderGraphicProperties::CylinderGraphicProperties()
+CylinderGraphicProperties::CylinderGraphicProperties(PrimitiveTypeEnum newPrimitiveTypeEnum):SolidPrimitiveProperty(newPrimitiveTypeEnum)
 {
 	this->mRadius = 0;
 	this->mHeight = 0;

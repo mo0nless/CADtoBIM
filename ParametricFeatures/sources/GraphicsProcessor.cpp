@@ -213,7 +213,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			break;
 		}
 
-		dictionaryProperties->getGraphicProperties()->setCurvesPrimitivesContainer(curvesPrimitivesContainer);
+		//dictionaryProperties->getGraphicProperties()->setCurvesPrimitivesContainer(curvesPrimitivesContainer);
 	}
 	
 	return ERROR;
@@ -474,10 +474,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		};
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 
 		// set slab graphic properties
-		mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails, primitiveCommonGraphicProperties);
+		//mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -504,7 +504,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			coneDetails.GetTransforms(localToWorld, worldToLocal, radiusA, radiusB);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
@@ -541,12 +540,34 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << coneDetails.m_capped << std::endl;
 
 			outfile.close();
+			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
+
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)solidPrimitiveProperty);
+			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+
+			if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
+				CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
+				if (cylinderGraphicProperties != nullptr) {
+					mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
+				}
+			}
+			else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
+
+				ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
+				if (coneGraphicProperties != nullptr ) {
+					mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
+
+				}
+			}
 		}
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 
 		// set cone graphic properties
-		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
+
+		//mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -611,7 +632,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -699,7 +720,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -764,7 +785,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -815,8 +836,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		}		
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		mGraphicsProcessorEnhancer.setSphereGraphicProperties(primitiveCommonGraphicProperties);
+		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.setSphereGraphicProperties(primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -908,8 +929,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, primitiveCommonGraphicProperties);
+		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, primitiveCommonGraphicProperties);
 
 	}
 	break;

@@ -1,16 +1,15 @@
+
 #pragma once
 
-#include <DgnPlatform/DgnECInstance.h>
-#include <DgnPlatform/DgnECManager.h>
 
-USING_NAMESPACE_BENTLEY_ECOBJECT;
-USING_NAMESPACE_BENTLEY_DGNPLATFORM;
+#include <DgnPlatform/ElementGeometry.h>
 
-class PrimitiveCommonGraphicProperties {
+class GraphicProperty {
 
 private:
-	double area;
+
 	double volume;
+	double area;
 
 	DVec3d centroid;
 
@@ -19,23 +18,20 @@ private:
 	DVec3d vectorAxisZ;
 
 public:
-	PrimitiveCommonGraphicProperties();
+	GraphicProperty() {};
+	virtual ~GraphicProperty() {}
 
 	double getArea();
 	void setArea(double newArea);
 
 	double getVolume();
 	void setVolume(double newVolume);
-
+	
 	DVec3d getCentroid();
 	void setCentroid(DVec3d newCentroid);
-
+	
+	void setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ);
 	DVec3d getVectorAxisX();
-	void setVectorAxisX(DVec3d newVectorBaseX);
-
 	DVec3d getVectorAxisY();
-	void setVectorAxisY(DVec3d newVectorBaseY);
-
 	DVec3d getVectorAxisZ();
-	void setVectorAxisZ(DVec3d newVectorBaseZ);
 };

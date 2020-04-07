@@ -7,7 +7,6 @@
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
@@ -50,9 +49,10 @@
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveCommonGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicProperty.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -63,7 +63,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
-    <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
@@ -107,7 +106,6 @@
     <ClInclude Include="modeler\properties\curves\headers\CurvesPrimitivesContainer.h" />
     <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
     <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />
-    <ClInclude Include="common\interfaces\graphics\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\InterpolationGraphicProperties.h" />
@@ -117,9 +115,11 @@
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\ExtrusionReaderProperties.h" />
     <ClInclude Include="mapper\properties\headers\CreateSolidsOperationPropertiesReaderMapper.h" />
     <ClInclude Include="enhancer\headers\IfcOperationsEnhancer.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveCommonGraphicProperties.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyBundle.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicProperty.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
   </ItemGroup>
 </Project>
