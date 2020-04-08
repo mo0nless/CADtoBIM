@@ -98,6 +98,7 @@ appObjects = \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
 	$(o)LineGraphicProperties$(oext) \
+	$(o)PointStringGraphicProperties$(oext) \
 	$(o)AkimaGraphicProperties$(oext) \
 	$(o)CurvesShapesPrimitives$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
@@ -244,6 +245,8 @@ $(o)ArcGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/so
 $(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/InterpolationGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/InterpolationGraphicProperties.h
 
 $(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineGraphicProperties.h
+
+$(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/PointStringGraphicProperties.h
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 

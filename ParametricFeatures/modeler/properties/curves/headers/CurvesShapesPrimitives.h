@@ -5,6 +5,7 @@
 #include "../graphic/headers/InterpolationGraphicProperties.h"
 #include "../graphic/headers/LineGraphicProperties.h"
 #include "../graphic/headers/AkimaGraphicProperties.h"
+#include "../graphic/headers/PointStringGraphicProperties.h"
 #include "../../headers/GraphicProperties.h"
 #include <vector>
 

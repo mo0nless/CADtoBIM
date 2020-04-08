@@ -434,13 +434,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		DVec3d directionX, directionY;
 		double* pQuatXYZW = nullptr;
 		double rx, ry, startAngle, sweepAngle, endAngle, length;
-
-		/*DPoint4dP poleArray;
-		DPoint3dP circlePoleArray;
-		int maxPole;
-		int* pNumPole = nullptr;
-		int* pNumSpan = nullptr;*/
-
+		
 		if (!curve->TryGetArc(ellipse))
 			break;
 
@@ -460,71 +454,11 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		curveGraphicProperties->setCenterOut(centerOUT);
 		curveGraphicProperties->setRadiusXY(rx, ry);
 		curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
-		/*ellipse.QuadricBezierPoles(poleArray, circlePoleArray, pNumPole, pNumSpan, maxPole);		
-		
-		ellipse.GetLimits(startAngle, endAngle);
-		*/
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
 		outfile << "Is Circular: " << ellipse.IsCircular();
-
-		/*outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
-		
-		outfile << std::endl;*/
-
-		//outfile << "pQuatXYZW [X] = " << *pQuatXYZW << std::endl;
-		
-
-		/*if (pNumPole != nullptr) {
-			outfile << "Number of Poles = " << *pNumPole << std::endl;
-			outfile << std::endl;
-		}
-		
-		outfile << "Max Poles = " << maxPole << std::endl;
-		outfile << std::endl;
-
-		if (pNumSpan != nullptr) {
-			outfile << "Number of Span = " << *pNumSpan << std::endl;
-			outfile << std::endl;
-		}
-
-		if (circlePoleArray != nullptr) {
-			outfile << "circlePoleArray point [X] = " << circlePoleArray->x << std::endl;
-			outfile << "circlePoleArray point [Y] = " << circlePoleArray->y << std::endl;
-			outfile << "circlePoleArray point [Z] = " << circlePoleArray->z << std::endl;
-			outfile << std::endl;
-		}
-		
-		if (poleArray != nullptr) {
-			DPoint3d rPoint;
-			poleArray->GetProjectedXYZ(rPoint);
-
-			outfile << "Normalized point [X] = " << rPoint.x << std::endl;
-			outfile << "Normalized point [Y] = " << rPoint.y << std::endl;
-			outfile << "Normalized point [Z] = " << rPoint.z << std::endl;
-			outfile << std::endl;
-		}*/
-
-		/*outfile << "Center point [X] = " << centerOUT.x << std::endl;
-		outfile << "Center point [Y] = " << centerOUT.y << std::endl;
-		outfile << "Center point [Z] = " << centerOUT.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "directionX [X] = " << directionX.x << std::endl;
-		outfile << "directionX [Y] = " << directionX.y << std::endl;
-		outfile << "directionX [Z] = " << directionX.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "directionY [X] = " << directionY.x << std::endl;
-		outfile << "directionY [Y] = " << directionY.y << std::endl;
-		outfile << "directionY [Z] = " << directionY.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "Start Angle = " << startAngle << std::endl;
-		outfile << "Sweep Angle = " << sweepAngle << std::endl;
-		outfile << std::endl;*/
 		outfile.close();
 
 		return curveGraphicProperties;
@@ -584,7 +518,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 				bvector<size_t> multiplicityKnots;
 				size_t highIndex, lowIndex;
 				bSpline->GetKnots(inKnots);
-								
+
 				bSpline->CompressKnots(inKnots, int(bSpline->GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
 
 				curveGraphicProperties->setAreKnotsValid(bSpline->AreKnotsValid());
@@ -596,49 +530,10 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setOrder(bSpline->GetOrder());
 
-			//return curveGraphicProperties;
-			// need to check for the knots and the weights
+			return curveGraphicProperties;
+
 		}
-		else if ((bSpline = curve->GetMSBsplineCurvePtr()) != nullptr)
-		{
-			bSpline->ExtractEndPoints(startP, endP);
-			outfile << "MSBsplineCurve Length: " << bSpline->Length() << std::endl;
-			outfile << "MSBsplineCurve Order: " << bSpline->GetOrder() << std::endl;
-			outfile << std::endl;
-
-			outfile << "Start point [X] = " << startP.x << std::endl;
-			outfile << "Start point [Y] = " << startP.y << std::endl;
-			outfile << "Start point [Z] = " << startP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "End point [X] = " << endP.x << std::endl;
-			outfile << "End point [Y] = " << endP.y << std::endl;
-			outfile << "End point [Z] = " << endP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-			outfile << std::endl;
-
-			bSpline->GetPoles(polesControlP);
-			for (size_t k = 0; k < polesControlP.size(); k++)
-			{
-				/*outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
-				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
-				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
-				outfile << std::endl;*/
-			}
-
-			curveGraphicProperties->setIsClosed(bSpline->IsClosed());
-			curveGraphicProperties->setIsSelfIntersect(false);
-			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setOrder(bSpline->GetOrder());
-
-			// need to check for the knots and the weights
-			//return curveGraphicProperties;
-
-		}	
-
-		return curveGraphicProperties;
+		else break;
 	}
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
@@ -928,7 +823,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
@@ -944,12 +839,12 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			return processCurvePrimitives(curve->GetPartialCurveDetailCP()->parentCurve);
 		}
 
-		return curveGraphicProperties;
+		//return curveGraphicProperties;
 	}
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		PointStringGraphicProperties* curveGraphicProperties = new PointStringGraphicProperties();
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
@@ -985,7 +880,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
 		//curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
@@ -1000,7 +895,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		{
 			//DSpiral2dPlacementCP spiralPlace = curve->GetSpiralPlacementCP();
 		}
-		return curveGraphicProperties;
+		//return curveGraphicProperties;
 	}
 	break;
 	default:

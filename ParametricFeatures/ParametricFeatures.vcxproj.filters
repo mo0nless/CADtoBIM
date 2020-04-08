@@ -51,6 +51,10 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\sources\CurvesShapesPrimitives.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -116,5 +120,10 @@
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\headers\CurvesShapesPrimitives.h" />
+    <ClInclude Include="ifc\headers\IfcBundle.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
+    <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
   </ItemGroup>
 </Project>

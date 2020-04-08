@@ -547,28 +547,28 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			// get local to world class to get the X,Y,Z axes 
 			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
-			/*SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
+			//SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
 
-			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
+			//// set centroid, area and volume
+			//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
 
-			// set Z,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+			//// set Z,Y,Z axes
+			//mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
 
-			if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
-				CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
-				if (cylinderGraphicProperties != nullptr) {
-					mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
-				}
-			}
-			else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
+			//if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
+			//	CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
+			//	if (cylinderGraphicProperties != nullptr) {
+			//		mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
+			//	}
+			//}
+			//else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
 
-				ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
-				if (coneGraphicProperties != nullptr ) {
-					mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
+			//	ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
+			//	if (coneGraphicProperties != nullptr ) {
+			//		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
 
-				}
-			}*/
+			//	}
+			//}
 
 			mGraphicsProcessorEnhancer.processConeAndCylinder(primitive);
 		}

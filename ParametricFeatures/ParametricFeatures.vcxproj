@@ -43,6 +43,7 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\sources\CurvesShapesPrimitives.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
