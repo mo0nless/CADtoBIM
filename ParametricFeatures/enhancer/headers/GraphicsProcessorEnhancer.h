@@ -26,10 +26,10 @@ public:
 	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
 
 	// use this method to set centroid, area and volume
-	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperty*& graphicProperty);
+	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 
 	// use this method to set vector axis X,Y,Z
-	void setGraphicPropertyAxes(GraphicProperty*& graphicProperty, Transform& localToWorld, const double parametrizationSign = 1);
+	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign = 1);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);

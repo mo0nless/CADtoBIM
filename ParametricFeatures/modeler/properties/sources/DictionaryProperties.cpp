@@ -7,30 +7,28 @@ DictionaryProperties::DictionaryProperties(long newElementId, std::string newEle
 	this->elementId = newElementId;
 	this->elementName = newElementName;
 
-	this->pReaderProperties = new ReaderProperties();
-	//this->pGraphicProperties = new GraphicProperties();
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 }
 
-ReaderProperties * DictionaryProperties::getReaderProperties()
+std::vector<ReaderPropertiesBundle*> DictionaryProperties::getReaderPropertiesBundleVector()
 {
-	return this->pReaderProperties;
+	return this->readerPropertiesBundleVector;
 }
 
-std::vector<GraphicProperty*> DictionaryProperties::getGraphicProperties()
+void DictionaryProperties::addReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
 {
-	return this->graphicProperties;
+	this->readerPropertiesBundleVector.push_back(readerPropertiesBundle);
 }
 
-void DictionaryProperties::addGraphicProperty(GraphicProperty * graphicProperty)
+std::vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
 {
-	this->graphicProperties.push_back(graphicProperty);
+	return this->graphicPropertiesVector;
 }
 
-//GraphicProperties * DictionaryProperties::getGraphicProperties()
-//{
-//	return this->pGraphicProperties;
-//}
+void DictionaryProperties::addGraphicProperties(GraphicProperties * graphicProperties)
+{
+	this->graphicPropertiesVector.push_back(graphicProperties);
+}
 
 SmartFeatureContainer * DictionaryProperties::getSmartFeatureContainer()
 {

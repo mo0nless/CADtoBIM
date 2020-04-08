@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../properties/headers/GeneralProperties.h"
-#include "../../../properties/headers/ReaderProperties.h"
+//#include "../../../properties/headers/GeneralProperties.h"
+//#include "../../../properties/headers/ReaderProperties.h"
 //#include "../../../properties/headers/GraphicProperties.h"
 
 /**

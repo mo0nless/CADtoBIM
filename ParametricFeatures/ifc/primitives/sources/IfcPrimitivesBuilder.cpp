@@ -13,9 +13,9 @@ std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(s
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
-			for (GraphicProperty* graphicProperty : dictionaryProperties.getGraphicProperties())
+			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
 			{
-				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(graphicProperty);
+				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(graphicProperties);
 				if (solidPrimitiveProperty != nullptr) {
 					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file);
 					if (ifcRepresentationItem != nullptr)

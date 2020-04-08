@@ -47,7 +47,7 @@ void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetai
 	boxGraphicProperties->setHeight(height);
 
 	// add box graphic property to dictionary
-	pDictionaryProperties->addGraphicProperty(boxGraphicProperties);
+	pDictionaryProperties->addGraphicProperties(boxGraphicProperties);
 }
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
@@ -97,7 +97,7 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 		}
 	}
 	// add property to the dictionary
-	this->pDictionaryProperties->addGraphicProperty(coneGraphicProperties);
+	this->pDictionaryProperties->addGraphicProperties(coneGraphicProperties);
 
 }
 
@@ -124,7 +124,7 @@ void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnCo
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
 
 	// add property to the dictionary
-	this->pDictionaryProperties->addGraphicProperty(cylinderGraphicProperties);
+	this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
 
 }
 
@@ -187,7 +187,7 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperti
 	sphereGraphicProperties->setRadius(radius);
 
 	// add property to the dictionary
-	pDictionaryProperties->addGraphicProperty(sphereGraphicProperties);
+	pDictionaryProperties->addGraphicProperties(sphereGraphicProperties);
 }
 
 void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
@@ -209,11 +209,11 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 
 
 	// add torus property to the dictionary
-	pDictionaryProperties->addGraphicProperty(torusGraphicProperties);
+	pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
 
 }
 
-void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperty*& graphicProperty)
+void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
 	std::ofstream outfile;
 	double area, volume;
@@ -224,8 +224,8 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
 
 	// set the centroid values from here, because in the function bellow sometimes is 0
-	graphicProperty->setCentroid(centroid);
-	graphicProperty->setArea(area);
+	GraphicProperties->setCentroid(centroid);
+	GraphicProperties->setArea(area);
 
 	outfile.open(filePath, std::ios_base::app);
 
@@ -240,7 +240,7 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 
 
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
-	graphicProperty->setVolume(volume);
+	GraphicProperties->setVolume(volume);
 
 	outfile << "Centroid2 [X] = " << centroid.x << std::endl;
 	outfile << "Centroid2 [Y] = " << centroid.y << std::endl;
@@ -253,7 +253,7 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 
 }
 
-void GraphicsProcessorEnhancer::setGraphicPropertyAxes(GraphicProperty*& graphicProperty, Transform& localToWorld, const double parametrizationSign)
+void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign)
 {
 	DVec3d columnVectorX, columnVectorY, columnVectorZ;
 
@@ -262,7 +262,7 @@ void GraphicsProcessorEnhancer::setGraphicPropertyAxes(GraphicProperty*& graphic
 	localToWorld.GetMatrixColumn(columnVectorZ, 2);
 	columnVectorZ = parametrizationSign * columnVectorZ;
 
-	graphicProperty->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 }
 
 void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)

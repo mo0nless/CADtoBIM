@@ -2,10 +2,10 @@
 
 #include<vector>
 
-#include "ReaderPropertyDefinition.h"
+#include "../reader/headers/ReaderPropertyDefinition.h"
 
 
-class ReaderPropertyBundle {
+class ReaderPropertiesBundle {
 
 private:
 	std::string className;
@@ -13,7 +13,7 @@ private:
 	std::vector<ReaderPropertyDefinition> properties;
 
 public:
-	ReaderPropertyBundle(std::string newClassName,int newLocalId);
+	ReaderPropertiesBundle(std::string newClassName, int newLocalId);
 
 	std::string getCassName();
 	int getLocalId();

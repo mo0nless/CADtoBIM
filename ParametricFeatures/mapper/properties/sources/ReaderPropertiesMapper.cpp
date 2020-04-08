@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <filesystem>
 
-void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertyBundle *&readerPropertyBundle)
+void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle*& readerPropertiesBundle)
 {
 	std::ofstream outfile;
 	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -33,7 +33,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 
 		if (!valueAsString.empty()) {
 			//mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties,smartFeatureTypeEnum);
-			readerPropertyBundle->addProperty(ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal));
+			readerPropertiesBundle->addProperty(ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal));
 			//ReaderPropertyDefinition* readerPropertyDefinition =
 
 		}

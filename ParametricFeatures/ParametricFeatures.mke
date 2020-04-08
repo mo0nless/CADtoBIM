@@ -86,8 +86,7 @@ appObjects = \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)GeneralProperties$(oext) \
-	$(o)GraphicProperty$(oext) \
-	$(o)ReaderProperties$(oext) \
+	$(o)GraphicProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
 	$(o)PrimitiveTypeEnumUtils$(oext) \
@@ -119,7 +118,7 @@ appObjects = \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
-	$(o)ReaderPropertyBundle$(oext) \
+	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
 
@@ -195,9 +194,7 @@ $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/Dictionar
 
 $(o)GeneralProperties$(oext) : $(baseDir)modeler/properties/sources/GeneralProperties.cpp $(baseDir)modeler/properties/headers/GeneralProperties.h
 
-$(o)GraphicProperty$(oext) : $(baseDir)modeler/properties/sources/GraphicProperty.cpp $(baseDir)modeler/properties/headers/GraphicProperty.h
-
-$(o)ReaderProperties$(oext) : $(baseDir)modeler/properties/sources/ReaderProperties.cpp $(baseDir)modeler/properties/headers/ReaderProperties.h
+$(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
 
 $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureContainer.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureContainer.h
 
@@ -275,7 +272,7 @@ $(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/proper
 
 $(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
 
-$(o)ReaderPropertyBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyBundle.h
+$(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/headers/ReaderPropertiesBundle.h
 
 $(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SolidPrimitiveProperty.h
 

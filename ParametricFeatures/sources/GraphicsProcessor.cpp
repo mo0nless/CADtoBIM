@@ -479,10 +479,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			BoxGraphicProperties* boxGraphicProperties = new BoxGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)boxGraphicProperties);
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)boxGraphicProperties);
 
 			// set X,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)boxGraphicProperties, localToWorld, boxDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)boxGraphicProperties, localToWorld, boxDetails.ParameterizationSign());
 			mGraphicsProcessorEnhancer.setBoxGraphicProperties(boxDetails, boxGraphicProperties);
 		}
 
@@ -554,10 +554,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)solidPrimitiveProperty);
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
 
 			// set Z,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
 
 			if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
 				CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
@@ -849,7 +849,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)sphereGraphicProperties);
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)sphereGraphicProperties);
 			
 			// set spehere properties
 			mGraphicsProcessorEnhancer.setSphereGraphicProperties(sphereGraphicProperties);
@@ -950,10 +950,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)torusGraphicProperties);
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)torusGraphicProperties);
 
 			// set X,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)torusGraphicProperties, localToWorld, torusDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)torusGraphicProperties, localToWorld, torusDetails.ParameterizationSign());
 			mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, torusGraphicProperties);
 		}
 
