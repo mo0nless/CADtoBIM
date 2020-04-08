@@ -82,7 +82,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			//first 2 enum suggested by Thibaut
 			curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
 
-			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)curvesShapesPrimitives, localToWorld);
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)curvesShapesPrimitives, localToWorld);
 						
 			curvesShapesPrimitives->setIsFilled(isFilled);
 			curvesShapesPrimitives->setArea(area);

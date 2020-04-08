@@ -17,6 +17,91 @@ DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
+void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
+{
+	std::ofstream outfile;
+	double area, volume;
+	DVec3d centroid;
+	RotMatrix axes;
+	DVec3d momentxyz;
+
+	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
+
+	// set the centroid values from here, because in the function bellow sometimes is 0
+	GraphicProperties->setCentroid(centroid);
+	GraphicProperties->setArea(area);
+
+	outfile.open(filePath, std::ios_base::app);
+
+	outfile << std::fixed;
+	outfile << std::endl;
+	outfile << "Centroid1 [X] = " << centroid.x << std::endl;
+	outfile << "Centroid1 [Y] = " << centroid.y << std::endl;
+	outfile << "Centroid1 [Z] = " << centroid.z << std::endl;
+	outfile << "Area1 = " << area << std::endl;
+
+	outfile << std::endl;
+
+
+	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
+	GraphicProperties->setVolume(volume);
+
+	outfile << "Centroid2 [X] = " << centroid.x << std::endl;
+	outfile << "Centroid2 [Y] = " << centroid.y << std::endl;
+	outfile << "Centroid2 [Z] = " << centroid.z << std::endl;
+	outfile << "Volume = " << volume << std::endl;
+	outfile << "Area2 = " << area << std::endl;
+	outfile << std::endl;
+
+	outfile.close();
+
+}
+
+void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign)
+{
+	DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+	localToWorld.GetMatrixColumn(columnVectorX, 0);
+	localToWorld.GetMatrixColumn(columnVectorY, 1);
+	localToWorld.GetMatrixColumn(columnVectorZ, 2);
+	columnVectorZ = parametrizationSign * columnVectorZ;
+
+	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+}
+
+void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
+{
+	std::ofstream outfile;
+	outfile.open(filePath, std::ios_base::app);
+
+	outfile << std::fixed;
+	outfile << "Range [XLength] = " << range.XLength() << std::endl;
+	outfile << "Range [YLength] = " << range.YLength() << std::endl;
+	outfile << "Range [ZLength] = " << range.ZLength() << std::endl;
+	outfile << std::endl;
+
+	outfile << "Quaternion Rotation" << std::endl;
+	outfile << "qRotation [X] = " << qRotation.x << std::endl;
+	outfile << "qRotation [Y] = " << qRotation.y << std::endl;
+	outfile << "qRotation [Z] = " << qRotation.z << std::endl;
+	outfile << "qRotation [W] = " << qRotation.w << std::endl;
+	outfile << std::endl;
+
+	outfile << "Vector Rotation Axis Local to World" << std::endl;
+	outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
+	outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
+	outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
+	outfile << std::endl;
+
+	outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
+	outfile << "Origin [Y] = " << localToWorld.Origin().y << std::endl;
+	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
+
+	outfile << std::endl;
+
+	outfile.close();
+}
+
 void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
 	// TODO to be removed
@@ -180,11 +265,36 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperti
 	double radius;
 	if (sphereGraphicProperties->getVolume() > 0) {
 		radius = pow(((sphereGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
-	} else {
+	}
+	else {
 		radius = -1;
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
+}
+
+void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
+{
+	// TODO to be enabled if needed, remove at the end
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " Torus " << std::endl;
+	//outfile << std::endl;
+
+	// set torus properties
+	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
+	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
+	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
+	torusGraphicProperties->setSweepRadians(sweepRadians);
+
+
+
+	// add torus property to the dictionary
+	pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
+
+}
 
 void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
 {
@@ -204,10 +314,10 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 		outfile << " Cylinder " << std::endl;
 		outfile << std::endl;
 
-		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties(PrimitiveTypeEnum::CYLINDER);
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 		
-		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)cylinderGraphicProperties);
-		setGraphicPropertyAxes((GraphicProperty*&)cylinderGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)cylinderGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)cylinderGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
 		setCylinderGraphicProperties(dgnConeDetail, cylinderGraphicProperties);
 
 	}
@@ -221,8 +331,8 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 		outfile << std::endl;
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
-		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)coneGraphicProperties);
-		setGraphicPropertyAxes((GraphicProperty*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
 		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
 	}
 	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
@@ -235,8 +345,8 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 		outfile << std::endl;
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
-		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)coneGraphicProperties);
-		setGraphicPropertyAxes((GraphicProperty*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
 		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
 	}
 
@@ -271,93 +381,6 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 //
 //	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
 //}
-
-}
-
-void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
-{
-	std::ofstream outfile;
-	double area, volume;
-	DVec3d centroid;
-	RotMatrix axes;
-	DVec3d momentxyz;
-
-	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
-
-	// set the centroid values from here, because in the function bellow sometimes is 0
-	GraphicProperties->setCentroid(centroid);
-	GraphicProperties->setArea(area);
-
-	outfile.open(filePath, std::ios_base::app);
-
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << "Centroid1 [X] = " << centroid.x << std::endl;
-	outfile << "Centroid1 [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid1 [Z] = " << centroid.z << std::endl;
-	outfile << "Area1 = " << area << std::endl;
-
-	outfile << std::endl;
-
-
-	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
-	GraphicProperties->setVolume(volume);
-
-	outfile << "Centroid2 [X] = " << centroid.x << std::endl;
-	outfile << "Centroid2 [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid2 [Z] = " << centroid.z << std::endl;
-	outfile << "Volume = " << volume << std::endl;
-	outfile << "Area2 = " << area << std::endl;
-	outfile << std::endl;
-
-	outfile.close();
-
-}
-
-void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign)
-{
-	DVec3d columnVectorX, columnVectorY, columnVectorZ;
-
-	localToWorld.GetMatrixColumn(columnVectorX, 0);
-	localToWorld.GetMatrixColumn(columnVectorY, 1);
-	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	columnVectorZ = parametrizationSign * columnVectorZ;
-
-	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
-}
-
-void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
-{
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-
-	outfile << std::fixed;
-	outfile << "Range [XLength] = " << range.XLength() << std::endl;
-	outfile << "Range [YLength] = " << range.YLength() << std::endl;
-	outfile << "Range [ZLength] = " << range.ZLength() << std::endl;
-	outfile << std::endl;
-
-	outfile << "Quaternion Rotation" << std::endl;
-	outfile << "qRotation [X] = " << qRotation.x << std::endl;
-	outfile << "qRotation [Y] = " << qRotation.y << std::endl;
-	outfile << "qRotation [Z] = " << qRotation.z << std::endl;
-	outfile << "qRotation [W] = " << qRotation.w << std::endl;
-	outfile << std::endl;
-
-	outfile << "Vector Rotation Axis Local to World" << std::endl;
-	outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
-	outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
-	outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
-	outfile << std::endl;
-
-	outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
-	outfile << "Origin [Y] = " << localToWorld.Origin().y << std::endl;
-	outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
-
-	outfile << std::endl;
-
-	outfile.close();
-}
 
 
 #pragma warning( push )

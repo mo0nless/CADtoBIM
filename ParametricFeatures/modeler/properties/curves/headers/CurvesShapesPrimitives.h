@@ -5,10 +5,10 @@
 #include "../graphic/headers/InterpolationGraphicProperties.h"
 #include "../graphic/headers/LineGraphicProperties.h"
 #include "../graphic/headers/AkimaGraphicProperties.h"
-#include "../../headers/GraphicProperty.h"
+#include "../../headers/GraphicProperties.h"
 #include <vector>
 
-class CurvesShapesPrimitives: public GraphicProperty
+class CurvesShapesPrimitives: public GraphicProperties
 {
 public:
 	CurvesShapesPrimitives(CurvesShapeTypeEnum newShapeType);
