@@ -1,8 +1,7 @@
 #pragma once
 
-#include "ReaderProperties.h"
-#include "GraphicProperty.h"
-#include "GeneralProperties.h"
+#include "ReaderPropertiesBundle.h"
+#include "GraphicProperties.h"
 #include "../smart_feature/headers/SmartFeatureContainer.h"
 
 
@@ -15,21 +14,21 @@ private:
 	long elementId;
 	std::string elementName;
 
-	ReaderProperties* pReaderProperties;
-	std::vector<GraphicProperty*> graphicProperties;
-	//GraphicProperties* pGraphicProperties;
+	std::vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
+	std::vector<GraphicProperties*> graphicPropertiesVector;
+
 	SmartFeatureContainer * smartFeatureContainer;
 
 
 public:
 	DictionaryProperties(long newElementId, std::string newElementName);
 
-	ReaderProperties* getReaderProperties();
+	std::vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
+	void addReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
 
-	std::vector<GraphicProperty*> getGraphicProperties();
-	void addGraphicProperty(GraphicProperty* graphicProperty);
+	std::vector<GraphicProperties*> getGraphicPropertiesVector();
+	void addGraphicProperties(GraphicProperties* graphicProperties);
 
-	//GraphicProperties* getGraphicProperties();
 	SmartFeatureContainer* getSmartFeatureContainer();
 
 	std::string getElementName();

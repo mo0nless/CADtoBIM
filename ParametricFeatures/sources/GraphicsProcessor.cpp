@@ -394,7 +394,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< dictionaryProperties->getElementName() <<" --------" << std::endl;
+			outfile << "-------- " << dictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile.close();
 
 			boxDetails.GetCorners(corners);
@@ -402,15 +402,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
 			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
-					
+
 			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-			
+
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
 			mGraphicsProcessorEnhancer.PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
-						
+
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
 
@@ -462,18 +462,25 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			outfile << "Size at the TOP [X] = " << boxDetails.m_topX << std::endl;
 			outfile << "Size at the TOP [Y] = " << boxDetails.m_topY << std::endl;
-			
+
 			outfile << std::endl;
 
 			outfile << "True if the end cap is enabled = " << boxDetails.m_capped << std::endl;
 
 			outfile.close();
-		};
 
-		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+			// get local to world class to get the X,Y,Z axes 
+			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
-		// set slab graphic properties
-		//mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails, primitiveCommonGraphicProperties);
+			BoxGraphicProperties* boxGraphicProperties = new BoxGraphicProperties();
+
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)boxGraphicProperties);
+
+			// set X,Y,Z axes
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)boxGraphicProperties, localToWorld, boxDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setBoxGraphicProperties(boxDetails, boxGraphicProperties);
+		}
 
 	}
 	break;
@@ -536,12 +543,17 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << coneDetails.m_capped << std::endl;
 
 			outfile.close();
+
+			// get local to world class to get the X,Y,Z axes 
 			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
 			/*SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
 
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)solidPrimitiveProperty);
-			mGraphicsProcessorEnhancer.setGraphicPropertyAxes((GraphicProperty*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
+
+			// set Z,Y,Z axes
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
 
 			if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
 				CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
@@ -832,10 +844,14 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << sphereDetails.m_capped << std::endl;
 			outfile.close();
 
-		}		
+			SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
 
-		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		//mGraphicsProcessorEnhancer.setSphereGraphicProperties(primitiveCommonGraphicProperties);
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)sphereGraphicProperties);
+			
+			// set spehere properties
+			mGraphicsProcessorEnhancer.setSphereGraphicProperties(sphereGraphicProperties);
+		}		
 
 	}
 	break;
@@ -925,10 +941,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << torusDetails.m_capped << std::endl;
 
 			outfile.close();
-		}
 
-		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		//mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, primitiveCommonGraphicProperties);
+			// get local to world class to get the X,Y,Z axes 
+			torusDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
+
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)torusGraphicProperties);
+
+			// set X,Y,Z axes
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)torusGraphicProperties, localToWorld, torusDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, torusGraphicProperties);
+		}
 
 	}
 	break;

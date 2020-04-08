@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../../../../common/enums/headers/PrimitiveTypeEnum.h"
-#include "../../../headers/GraphicProperty.h"
+#include "../../../headers/GraphicProperties.h"
 
-class SolidPrimitiveProperty : public GraphicProperty  {
+class SolidPrimitiveProperty : public GraphicProperties  {
 
 private:
 	PrimitiveTypeEnum primitiveTypeEnum;

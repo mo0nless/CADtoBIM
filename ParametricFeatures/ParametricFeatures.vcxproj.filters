@@ -7,7 +7,6 @@
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\ReaderProperties.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
@@ -23,7 +22,6 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ConeGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\PrimitiveGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\SlabGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureGeneralProperties.cpp" />
@@ -49,8 +47,6 @@
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
-    <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyBundle.cpp" />
-    <ClCompile Include="modeler\properties\sources\GraphicProperty.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
@@ -65,7 +61,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
-    <ClInclude Include="modeler\properties\headers\ReaderProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
@@ -91,7 +86,6 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureGeneralProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\SlabGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\TorusGraphicProperties.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
@@ -117,10 +111,8 @@
     <ClInclude Include="mapper\properties\headers\CreateSolidsOperationPropertiesReaderMapper.h" />
     <ClInclude Include="enhancer\headers\IfcOperationsEnhancer.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
-    <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyBundle.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
-    <ClInclude Include="modeler\properties\headers\GraphicProperty.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\headers\CurvesShapesPrimitives.h" />

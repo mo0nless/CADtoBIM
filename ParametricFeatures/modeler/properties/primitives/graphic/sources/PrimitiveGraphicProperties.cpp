@@ -21,19 +21,19 @@
 //	this->mPrimitiveTypeEnum = newPrimitiveTypeEnum;
 //}
 //
-//bool PrimitiveGraphicProperties::tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR)
+//bool PrimitiveGraphicProperties::tryGetSlabProperties(BoxGraphicProperties& BoxGraphicPropertiesR)
 //{
 //
 //	if (this->pSlabProperties == nullptr) {
 //		return false;
 //	}
-//	slabGraphicPropertiesR = *this->pSlabProperties;
+//	BoxGraphicPropertiesR = *this->pSlabProperties;
 //	return true;
 //}
 //
-//void PrimitiveGraphicProperties::setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties)
+//void PrimitiveGraphicProperties::setSlabProperties(BoxGraphicProperties* newBoxGraphicProperties)
 //{
-//	this->pSlabProperties = newSlabGraphicProperties;
+//	this->pSlabProperties = newBoxGraphicProperties;
 //}
 //
 //bool PrimitiveGraphicProperties::tryGetConeGraphicProperties(ConeGraphicProperties & coneGraphicPropertiesR)

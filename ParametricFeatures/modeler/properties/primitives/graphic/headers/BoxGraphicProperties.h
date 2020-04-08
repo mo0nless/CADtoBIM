@@ -1,6 +1,8 @@
 #pragma once
 
-class SlabGraphicProperties {
+#include"SolidPrimitiveProperty.h"
+
+class BoxGraphicProperties : public SolidPrimitiveProperty {
 
 private:
 	double mLength;
@@ -8,7 +10,7 @@ private:
 	double mHeight;
 
 public:
-	SlabGraphicProperties();
+	BoxGraphicProperties();
 
 	double getLength();
 	void setLength(double newLength);

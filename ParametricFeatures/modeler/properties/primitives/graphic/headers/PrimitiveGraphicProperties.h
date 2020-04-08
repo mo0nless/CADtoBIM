@@ -2,7 +2,7 @@
 //
 //#include "../../../../../common/enums/headers/PrimitiveTypeEnum.h"
 //
-//#include "../headers/SlabGraphicProperties.h"
+//#include "../headers/BoxGraphicProperties.h"
 //#include "../headers/ConeGraphicProperties.h"
 //#include "../headers/SphereGraphicProperties.h"
 //#include "../headers/CylinderGraphicProperties.h"
@@ -18,7 +18,7 @@
 //
 //	PrimitiveTypeEnum mPrimitiveTypeEnum;
 //
-//	SlabGraphicProperties* pSlabProperties;
+//	BoxGraphicProperties* pSlabProperties;
 //	ConeGraphicProperties* pConeProperties;
 //	SphereGraphicProperties* pSphereProperties;
 //	CylinderGraphicProperties* pCylinderProperties;
@@ -30,8 +30,8 @@
 //	PrimitiveTypeEnum getPrimitiveTypeEnum();
 //	void setPrimitiveTypeEnum(PrimitiveTypeEnum newPrimitiveTypeEnum);
 //
-//	bool tryGetSlabProperties(SlabGraphicProperties& slabGraphicPropertiesR);
-//	void setSlabProperties(SlabGraphicProperties* newSlabGraphicProperties);
+//	bool tryGetSlabProperties(BoxGraphicProperties& BoxGraphicPropertiesR);
+//	void setSlabProperties(BoxGraphicProperties* newBoxGraphicProperties);
 //
 //	bool tryGetConeGraphicProperties(ConeGraphicProperties& coneGraphicPropertiesR);
 //	void setConeGraphicProperties(ConeGraphicProperties* newConeGraphicProperties);

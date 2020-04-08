@@ -11,7 +11,7 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 #include <string>
 
 #include "../../../common/utils/headers/ReaderPropertiesEnumUtils.h"
-#include "../../../modeler/properties/headers/ReaderProperties.h"
+//#include "../../../modeler/properties/headers/ReaderProperties.h"
 
 
 class BooleanOperationReaderPropertiesMapper {
@@ -20,5 +20,5 @@ private:
 	BooleanOperationReaderPropertiesMapper() {};
 
 public:
-	static void mapBooleanOperationReaderPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties);
+	//static void mapBooleanOperationReaderPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties);
 };

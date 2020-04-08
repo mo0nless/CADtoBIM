@@ -6,6 +6,9 @@
 #include "../../../modeler/properties/primitives/graphic/headers/SolidPrimitiveProperty.h"
 #include "../../../modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 
 
 
@@ -19,6 +22,8 @@ private:
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcAxis2Placement3D* buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, DVec3d pointOfPlacement, DVec3d axe1, DVec3d axe2);
+
+	Ifc4::IfcAxis2Placement3D* buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcAxis2Placement3D* buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, DVec3d pointOfPlacement, DVec3d zAxis, DVec3d xAxis);
 
 };

@@ -59,7 +59,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		//		for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) 
 		//		{
 		//			IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-		//			ifcBuildingElementProxy = ifcPrimitivesBuilder->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertyBundleVector() ,file);
+		//			ifcBuildingElementProxy = ifcPrimitivesBuilder->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertiesBundleVector() ,file);
 
 
 		//			if (ifcBuildingElementProxy != nullptr) {

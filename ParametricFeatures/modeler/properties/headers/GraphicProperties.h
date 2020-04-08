@@ -4,7 +4,7 @@
 
 #include <DgnPlatform/ElementGeometry.h>
 
-class GraphicProperty {
+class GraphicProperties {
 
 private:
 
@@ -18,8 +18,8 @@ private:
 	DVec3d vectorAxisZ;
 
 public:
-	GraphicProperty() {};
-	virtual ~GraphicProperty() {}
+	GraphicProperties() {};
+	virtual ~GraphicProperties() {}
 
 	double getArea();
 	void setArea(double newArea);

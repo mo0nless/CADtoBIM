@@ -1,6 +1,8 @@
 #pragma once
 
-class SphereGraphicProperties {
+#include "SolidPrimitiveProperty.h"
+
+class SphereGraphicProperties : public SolidPrimitiveProperty {
 
 private:
 	double mRadius;
