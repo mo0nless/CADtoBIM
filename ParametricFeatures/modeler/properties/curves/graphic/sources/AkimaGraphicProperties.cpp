@@ -1,6 +1,6 @@
 #include "../headers/AkimaGraphicProperties.h"
 
 
-AkimaGraphicProperties::AkimaGraphicProperties()
+AkimaGraphicProperties::AkimaGraphicProperties(): ICurveGraphicProperties(CurvesPrimitivesTypeEnum::AKIMA_CURVE)
 {
 }

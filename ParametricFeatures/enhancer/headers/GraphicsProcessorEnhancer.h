@@ -2,7 +2,7 @@
 
 #include "../../headers/PropertiesReaderProcessor.h"
 //#include "../../modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h"
-#include "../../modeler/properties/curves/headers/CurvesPrimitivesContainer.h"
+#include "../../modeler/properties/curves/headers/CurvesShapesPrimitives.h"
 #include "../../modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h"
 
@@ -15,6 +15,7 @@ public:
 	void setConeGraphicProperties(DgnConeDetail dgnConeDetail, ConeGraphicProperties*& coneGraphicProperties);
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	SolidPrimitiveProperty* handleConeAndCylinder(DgnConeDetail dgnConeDetail);
+	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
 	//void setSphereGraphicProperties(PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties);
 	//void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties);

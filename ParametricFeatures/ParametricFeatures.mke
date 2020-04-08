@@ -100,7 +100,7 @@ appObjects = \
 	$(o)InterpolationGraphicProperties$(oext) \
 	$(o)LineGraphicProperties$(oext) \
 	$(o)AkimaGraphicProperties$(oext) \
-	$(o)CurvesPrimitivesContainer$(oext) \
+	$(o)CurvesShapesPrimitives$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcCurvesPrimitivesBuilder$(oext) \
@@ -122,6 +122,7 @@ appObjects = \
 	$(o)ReaderPropertyBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
+	$(o)ICurvesGraphicsProperties$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -249,7 +250,9 @@ $(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/s
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)CurvesPrimitivesContainer$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesPrimitivesContainer.cpp $(baseDir)modeler/properties/curves/headers/CurvesPrimitivesContainer.h
+$(o)ICurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ICurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ICurvesGraphicsProperties.h
+
+$(o)CurvesShapesPrimitives$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesShapesPrimitives.cpp $(baseDir)modeler/properties/curves/headers/CurvesShapesPrimitives.h
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 

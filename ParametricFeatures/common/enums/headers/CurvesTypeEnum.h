@@ -3,7 +3,7 @@
 //ORDER matters for mapping functions
 //The CurvesTypeEnum & CurvesBoundaryTypeEnum enumeration classes order represent the same as the one in Bentley OpenPlant Environment
 
-enum class CurvesTypeEnum
+enum class CurvesPrimitivesTypeEnum
 {
 	NONE = 0,
 	LINE = 1,
@@ -29,11 +29,12 @@ enum class CurvesBoundaryTypeEnum
 	
 };
 
-enum class CurvesContainerTypeEnum
+enum class CurvesShapeTypeEnum
 {
 	NONE_CONTAINER = 0,
 	COMPLEX_CHAIN = 1,
 	CIRCLE = 2,
 	ELLIPSE = 3,
 	SHAPE = 4,
+	CURVE = 5,
 };

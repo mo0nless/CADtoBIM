@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -201,6 +201,62 @@ SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnCon
 	
 }
 
+void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
+{
+	DgnConeDetail dgnConeDetail;
+	Transform localToWorld;
+	Transform worldToLocal;
+
+	primitive.TryGetDgnConeDetail(dgnConeDetail);
+	dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Cylinder " << std::endl;
+		outfile << std::endl;
+
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties(PrimitiveTypeEnum::CYLINDER);
+		
+		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)cylinderGraphicProperties);
+		setGraphicPropertyAxes((GraphicProperty*&)cylinderGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setCylinderGraphicProperties(dgnConeDetail, cylinderGraphicProperties);
+
+	}
+	else if (dgnConeDetail.m_radiusB == 0)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Cone " << std::endl;
+		outfile << std::endl;
+
+		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
+		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)coneGraphicProperties);
+		setGraphicPropertyAxes((GraphicProperty*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
+	}
+	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Truncated cone " << std::endl;
+		outfile << std::endl;
+
+		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
+		PrintPrincipalAreaMoments(primitive, (GraphicProperty*&)coneGraphicProperties);
+		setGraphicPropertyAxes((GraphicProperty*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
+	}
+
+}
+
 //void GraphicsProcessorEnhancer::setSphereGraphicProperties(PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
 //{
 //	std::ofstream outfile;
@@ -361,7 +417,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
 	{
 		AkimaGraphicProperties* curveGraphicProperties = new AkimaGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
@@ -394,7 +449,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
 	{
 		ArcGraphicProperties* curveGraphicProperties = new ArcGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc);
 
 		DEllipse3d ellipse;
 		DPoint3d centerOUT, startPoint, endPoint, centroID;
@@ -500,7 +554,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
 	{
 		BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
@@ -612,7 +665,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 	{
 		ICurveGraphicProperties* curveGraphicProperties = nullptr;
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
@@ -635,7 +687,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
 	{
 		InterpolationGraphicProperties* curveGraphicProperties = new InterpolationGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
@@ -681,7 +732,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
 	{
 		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
@@ -788,7 +838,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
 	{
 		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
@@ -901,7 +950,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
 	{
 		ICurveGraphicProperties* curveGraphicProperties = nullptr;
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
@@ -922,8 +970,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = new ICurveGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString);
+		ICurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;

@@ -1,15 +1,15 @@
 #include "../headers/CurvesTypeEnumUtils.h"
 
-std::map<CurvesContainerTypeEnum, std::string> CurvesTypeEnumUtils::mappedValuesDescriptor =
+std::map<CurvesShapeTypeEnum, std::string> CurvesTypeEnumUtils::mappedValuesDescriptor =
 {	
-	{ CurvesContainerTypeEnum::COMPLEX_CHAIN,"Complex Chain" },
-	{ CurvesContainerTypeEnum::CIRCLE,"Circle" },
-	{ CurvesContainerTypeEnum::ELLIPSE,"Ellipse" },
-	{ CurvesContainerTypeEnum::SHAPE,"Shape" },
-	{ CurvesContainerTypeEnum::NONE_CONTAINER,"" },
+	{ CurvesShapeTypeEnum::COMPLEX_CHAIN,"Complex Chain" },
+	{ CurvesShapeTypeEnum::CIRCLE,"Circle" },
+	{ CurvesShapeTypeEnum::ELLIPSE,"Ellipse" },
+	{ CurvesShapeTypeEnum::SHAPE,"Shape" },
+	{ CurvesShapeTypeEnum::NONE_CONTAINER,"" },
 };
 
-CurvesContainerTypeEnum CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(std::string elementDescriptor)
+CurvesShapeTypeEnum CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(std::string elementDescriptor)
 {
 
 	for (auto const& element : mappedValuesDescriptor) {
@@ -18,12 +18,12 @@ CurvesContainerTypeEnum CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescrip
 		}
 	}
 
-	return CurvesContainerTypeEnum::NONE_CONTAINER;
+	return CurvesShapeTypeEnum::CURVE;
 }
 
-CurvesTypeEnum CurvesTypeEnumUtils::getCurvesTypeEnumByInt(int curvebentleyInt)
+CurvesPrimitivesTypeEnum CurvesTypeEnumUtils::getCurvesTypeEnumByInt(int curvebentleyInt)
 {
-	return CurvesTypeEnum(curvebentleyInt);
+	return CurvesPrimitivesTypeEnum(curvebentleyInt);
 }
 
 CurvesBoundaryTypeEnum CurvesTypeEnumUtils::getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt)

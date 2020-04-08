@@ -1,6 +1,6 @@
 #include "../headers/ArcGraphicProperties.h"
 
-ArcGraphicProperties::ArcGraphicProperties()
+ArcGraphicProperties::ArcGraphicProperties():ICurveGraphicProperties(CurvesPrimitivesTypeEnum::ARC)
 {
 	this->mDirectionX = DVec3d();
 	this->mDirectionY = DVec3d();
