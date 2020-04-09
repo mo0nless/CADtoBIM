@@ -41,11 +41,14 @@
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\AkimaGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\sources\CurvesPrimitivesContainer.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\sources\CurvesShapesPrimitives.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
@@ -115,10 +118,12 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\InterpolationGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
-    <ClInclude Include="modeler\properties\curves\headers\CurvesPrimitivesContainer.h" />
+    <ClInclude Include="modeler\properties\curves\headers\CurvesShapesPrimitives.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />

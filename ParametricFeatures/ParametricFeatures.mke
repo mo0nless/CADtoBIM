@@ -98,8 +98,9 @@ appObjects = \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
 	$(o)LineGraphicProperties$(oext) \
+	$(o)PointStringGraphicProperties$(oext) \
 	$(o)AkimaGraphicProperties$(oext) \
-	$(o)CurvesPrimitivesContainer$(oext) \
+	$(o)CurvesShapesPrimitives$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcCurvesPrimitivesBuilder$(oext) \
@@ -124,6 +125,7 @@ appObjects = \
 	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
+	$(o)ICurvesGraphicsProperties$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -253,9 +255,13 @@ $(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/
 
 $(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineGraphicProperties.h
 
+$(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/PointStringGraphicProperties.h
+
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)CurvesPrimitivesContainer$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesPrimitivesContainer.cpp $(baseDir)modeler/properties/curves/headers/CurvesPrimitivesContainer.h
+$(o)ICurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ICurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ICurvesGraphicsProperties.h
+
+$(o)CurvesShapesPrimitives$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesShapesPrimitives.cpp $(baseDir)modeler/properties/curves/headers/CurvesShapesPrimitives.h
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 

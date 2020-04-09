@@ -36,7 +36,6 @@
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
     <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\curves\sources\CurvesPrimitivesContainer.cpp" />
     <ClCompile Include="common\utils\sources\CurvesTypeEnumUtils.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
@@ -48,10 +47,14 @@
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\sources\CurvesShapesPrimitives.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
-    <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
+	<ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -103,7 +106,6 @@
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
     <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
-    <ClInclude Include="modeler\properties\curves\headers\CurvesPrimitivesContainer.h" />
     <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
     <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
@@ -119,11 +121,14 @@
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\headers\CurvesShapesPrimitives.h" />
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
-    <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
+	<ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
   </ItemGroup>

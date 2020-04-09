@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -64,34 +64,30 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 	std::ofstream outfile;
 	if (!curves.empty()) 
 	{
-		CurvesPrimitivesContainer* curvesPrimitivesContainer = new CurvesPrimitivesContainer();
-		curvesPrimitivesContainer->setElementContainerDescriptor(dictionaryProperties->getElementName());
-		curvesPrimitivesContainer->setIsClosed(curves.IsPhysicallyClosedPath());
+		CurvesShapeTypeEnum curveVectorShape = CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(dictionaryProperties->getElementName());
+		CurvesShapesPrimitives* curvesShapesPrimitives = new CurvesShapesPrimitives(curveVectorShape);
+		curvesShapesPrimitives->setIsClosed(curves.IsPhysicallyClosedPath());
 
 		if (isFilled)
 		{
-			DPoint3d centroID, fixedPoint;
+			DPoint3d center;
 			DRange3d range;
-			DVec3d normal, row, column, planeVectorX, planeVectorY;
-			double area, scalar;
-			DMatrix4d products;
-			RotMatrix rotMatrix;
+			DVec3d normal, centroID;
+			double area;
 			Transform localToWorld, worldToLocal;
 
-			curves.CentroidNormalArea(centroID, normal, area);
-			curves.ComputeSecondMomentAreaProducts(products);			
+			curves.CentroidNormalArea(center, normal, area);
+			centroID.Init(center);
+
+			//first 2 enum suggested by Thibaut
 			curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
 
-			//localToWorld.GetFixedPlane()
-			localToWorld.GetFixedPlane(fixedPoint, planeVectorX, planeVectorY);
-			products.GetBlocks(rotMatrix, row, column, scalar);
-			//rotMatrix.
-
-			curvesPrimitivesContainer->setDirectionXY(planeVectorX, planeVectorY);
-			curvesPrimitivesContainer->setIsFilled(isFilled);
-			curvesPrimitivesContainer->setArea(area);
-			curvesPrimitivesContainer->setCentroIDxy(centroID);
-			curvesPrimitivesContainer->setNormal(normal);
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)curvesShapesPrimitives, localToWorld);
+						
+			curvesShapesPrimitives->setIsFilled(isFilled);
+			curvesShapesPrimitives->setArea(area);
+			curvesShapesPrimitives->setCentroid(centroID);
+			curvesShapesPrimitives->setNormal(normal);
 		}
 
 		switch (curves.GetBoundaryType())
@@ -105,12 +101,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -124,12 +120,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -143,12 +139,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 						
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -162,12 +158,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -181,12 +177,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -200,12 +196,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			outfile.flush();
 			outfile.close();
 			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
+			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
 
 			for each (ICurvePrimitivePtr curve in curves)
 			{
 				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
 			}
 		}
 			break;
@@ -551,28 +547,30 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			// get local to world class to get the X,Y,Z axes 
 			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
-			SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
+			//SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
 
-			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
+			//// set centroid, area and volume
+			//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
 
-			// set Z,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+			//// set Z,Y,Z axes
+			//mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
 
-			if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
-				CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
-				if (cylinderGraphicProperties != nullptr) {
-					mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
-				}
-			}
-			else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
+			//if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
+			//	CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
+			//	if (cylinderGraphicProperties != nullptr) {
+			//		mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
+			//	}
+			//}
+			//else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
 
-				ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
-				if (coneGraphicProperties != nullptr ) {
-					mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
+			//	ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
+			//	if (coneGraphicProperties != nullptr ) {
+			//		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
 
-				}
-			}
+			//	}
+			//}
+
+			mGraphicsProcessorEnhancer.processConeAndCylinder(primitive);
 		}
 
 		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
