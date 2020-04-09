@@ -28,7 +28,11 @@
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
-    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcBundle.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
@@ -77,6 +81,8 @@
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="ifc\headers\IfcBundle.h" />
+    <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
@@ -95,7 +101,7 @@
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
-    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
+    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />

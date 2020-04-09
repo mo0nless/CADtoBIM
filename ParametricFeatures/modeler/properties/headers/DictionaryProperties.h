@@ -32,5 +32,7 @@ public:
 	SmartFeatureContainer* getSmartFeatureContainer();
 
 	std::string getElementName();
+	long getElementId();
+
 
 };

@@ -17,8 +17,8 @@
 //	}
 //	//else
 //	//{
-//	//	IfcPrimitivesBuilder* ifcPrimitivesBuilder = new IfcPrimitivesBuilder();
-//	//	ifcRepresentationItem = ifcPrimitivesBuilder->buildIfcPrimitive(*smartFeatureTreeNode.getGraphicProperties(), file);
+//	//	IfcPrimitivesEnhancer* IfcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
+//	//	ifcRepresentationItem = IfcPrimitivesEnhancer->buildIfcPrimitive(*smartFeatureTreeNode.getGraphicProperties(), file);
 //	//}
 //
 //	// handle when ifcRepresentationItem is nullptr

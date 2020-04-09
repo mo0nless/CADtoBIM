@@ -15,7 +15,6 @@
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
-    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="modeler\properties\boolean_operations\sources\BooleanOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
@@ -52,6 +51,11 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
+    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
+    <ClCompile Include="ifc\sources\IfcBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -76,7 +80,6 @@
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
-    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesBuilder.h" />
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
@@ -120,5 +123,8 @@
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
+    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
   </ItemGroup>
 </Project>

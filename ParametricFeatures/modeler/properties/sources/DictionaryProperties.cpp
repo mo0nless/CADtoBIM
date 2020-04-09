@@ -39,3 +39,8 @@ std::string DictionaryProperties::getElementName()
 {
 	return this->elementName;
 }
+
+long DictionaryProperties::getElementId()
+{
+	return this->elementId;
+}

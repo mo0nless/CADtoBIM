@@ -104,8 +104,11 @@ appObjects = \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcCurvesPrimitivesBuilder$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
-	$(o)IfcPrimitivesBuilder$(oext) \
+	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcBuilder$(oext) \
+	$(o)IfcBundle$(oext) \
+	$(o)IfcGraphicPropertiesBundle$(oext) \
+	$(o)IfcReaderPropertiesBundle$(oext) \
 	$(o)BooleanOperationProperties$(oext) \
 	$(o)CreateSolidsOperationProperties$(oext) \
 	$(o)ExtrusionReaderProperties$(oext) \
@@ -232,9 +235,15 @@ $(o)IfcCurvesPrimitivesBuilder$(oext) : $(baseDir)ifc/curves/sources/IfcCurvesPr
 
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
-$(o)IfcPrimitivesBuilder$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesBuilder.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesBuilder.h
+$(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesEnhancer.h
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
+
+$(o)IfcBundle$(oext) : $(baseDir)ifc/sources/IfcBundle.cpp $(baseDir)ifc/headers/IfcBundle.h
+
+$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/headers/IfcGraphicPropertiesBundle.h
+
+$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/headers/IfcReaderPropertiesBundle.h
 
 $(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/BsplineGraphicProperties.h
 

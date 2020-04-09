@@ -2,7 +2,7 @@
 
 #include"../../../stdafx.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../primitives/headers/IfcPrimitivesBuilder.h"
+#include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
 
 class IfcBooleanOperatorHandler {

@@ -1,16 +1,19 @@
-#include "../headers/IfcPrimitivesBuilder.h"
+#include "../headers/IfcPrimitivesEnhancer.h"
 
 
-std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
-	// create simple primitives, which are not a smartfeature
 	if (!dictionaryPropertiesVector.empty())
 	{
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+
+			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
+			IfcBundle*& ifcBundle = ifcBundleVector.at(i);
+
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
 			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
@@ -20,24 +23,17 @@ std::vector<Ifc4::IfcRepresentation*> IfcPrimitivesBuilder::buildIfcPrimitives(s
 					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file);
 					if (ifcRepresentationItem != nullptr)
 					{
+						ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
 						ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
 				}
-
-				
 			}
-
-			//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> sharedIfcTemplatedEntityList(ifcTemplatedEntityList);
-			Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), 
-				std::string("ceva"), std::string("ceva"), ifcTemplatedEntityList);
-			ifcRepresentationVector.push_back(ifcRepresentation);
 		}
 	}
 
-	return ifcRepresentationVector;
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -56,7 +52,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildIfcPrimitive(S
 	
 }
 
-Ifc4::IfcCsgSolid * IfcPrimitivesBuilder::buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -110,14 +106,13 @@ Ifc4::IfcCsgSolid * IfcPrimitivesBuilder::buildBasicPrimitive(SolidPrimitiveProp
 	
 	if (ifcRepresentationItem != nullptr) {
 		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(ifcRepresentationItem);
-		file.addEntity(ifcRepresentationItem);
 		return solid;
 
 	}
 	return nullptr;
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -175,30 +170,22 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesBuilder::buildComplexPrimiti
 			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* smallCompleteCone = new Ifc4::IfcRightCircularCone(smallConePlacement,
 				NumberUtils::convertMicrometersToMetters(smallConeHeight), NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getTopRadius()));
 
-			file.addEntity(bigCompleteCone);
-			file.addEntity(smallCompleteCone);
-
 			ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
 
 		}
-	
 
-	if (ifcRepresentationItem != nullptr) 
-	{
-		file.addEntity(ifcRepresentationItem);
-	}
 
 	return ifcRepresentationItem;
 }
 
 // the default placement is the centroid and Z,X axis
-Ifc4::IfcAxis2Placement3D * IfcPrimitivesBuilder::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcAxis2Placement3D * IfcPrimitivesEnhancer::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	return buildIfcAxis2Placement3D(primitiveGraphicProperties,file,primitiveGraphicProperties.getCentroid(),primitiveGraphicProperties.getVectorAxisZ(),primitiveGraphicProperties.getVectorAxisX());
 }
 
 // in particular cases, we have to specify other point of placement and axes
-Ifc4::IfcAxis2Placement3D * IfcPrimitivesBuilder::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties,IfcHierarchyHelper<Ifc4>& file,
+Ifc4::IfcAxis2Placement3D * IfcPrimitivesEnhancer::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties,IfcHierarchyHelper<Ifc4>& file,
 	DVec3d pointOfPlacement, DVec3d axe1, DVec3d axe2)
 {
 	double centroid_x = NumberUtils::convertMicrometersToMetters(pointOfPlacement.x);
@@ -219,5 +206,6 @@ Ifc4::IfcAxis2Placement3D * IfcPrimitivesBuilder::buildIfcAxis2Placement3D(Solid
 		file.addTriplet<Ifc4::IfcDirection>(z_axis_x, z_axis_y, z_axis_z),
 		file.addTriplet<Ifc4::IfcDirection>(x_axis_x, x_axis_y, x_axis_z)
 	);
+
 	return place;
 }

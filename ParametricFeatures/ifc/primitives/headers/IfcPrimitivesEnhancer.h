@@ -9,16 +9,16 @@
 #include "../../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
+#include "../../headers/IfcBundle.h"
 
 
-
-class IfcPrimitivesBuilder {
+class IfcPrimitivesEnhancer {
 
 public:
-	std::vector<Ifc4::IfcRepresentation*> buildIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
-	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties,IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties ,IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
