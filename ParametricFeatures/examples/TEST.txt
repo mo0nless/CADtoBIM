@@ -1369,13 +1369,13 @@ End Point [Y]: 1.24826e+07
 End Point [Z]: 5.73617e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 1.88906e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 2.02369e-319
-Tangent [Z]: 1.88906e-319
+Tangent [X]: 2.02369e-319
+Tangent [Y]: 1.88906e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 96520
 
@@ -1395,13 +1395,13 @@ End Point [Y]: 1.24826e+07
 End Point [Z]: 5.90021e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 1.91762e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 2.02369e-319
-Tangent [Z]: 1.91762e-319
+Tangent [X]: 2.02369e-319
+Tangent [Y]: 1.91707e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 96520
 
@@ -1623,13 +1623,13 @@ End Point [Y]: 1.24572e+07
 End Point [Z]: 5.8166e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 2.24069e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 2.42843e-319
-Tangent [Z]: 2.24069e-319
+Tangent [X]: 2.42843e-319
+Tangent [Y]: 2.2396e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 457200
 
@@ -3041,13 +3041,13 @@ End Point [Y]: 1.15174e+07
 End Point [Z]: 6.09494e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 4.23469e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 4.24976e-319
-Tangent [Z]: 4.23469e-319
+Tangent [X]: 4.24976e-319
+Tangent [Y]: 4.23301e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 96520
 
@@ -3067,13 +3067,13 @@ End Point [Y]: 1.15174e+07
 End Point [Z]: 6.25898e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 4.26324e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 4.45212e-319
-Tangent [Z]: 4.26324e-319
+Tangent [X]: 4.45212e-319
+Tangent [Y]: 4.26102e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 96520
 
@@ -3295,13 +3295,13 @@ End Point [Y]: 1.15428e+07
 End Point [Z]: 6.17538e+06
 
 FromOriginAndDirection
-Starting Point [X]: 5.02213e-310
-Starting Point [Y]: 6.95291e-310
-Starting Point [Z]: 4.58636e-319
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 2.12888e-312
 
-Tangent [X]: 0
-Tangent [Y]: 4.65449e-319
-Tangent [Z]: 4.58636e-319
+Tangent [X]: 4.65449e-319
+Tangent [Y]: 4.5836e-319
+Tangent [Z]: 4.94066e-324
 
 Curve Line String Length: 457200
 
