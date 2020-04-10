@@ -6,8 +6,6 @@ class PointStringGraphicProperties: public ICurveGraphicProperties
 public:
 	PointStringGraphicProperties();
 	
-
 private:
-
 };
 

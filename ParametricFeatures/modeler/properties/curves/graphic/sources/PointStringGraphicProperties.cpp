@@ -4,3 +4,4 @@ PointStringGraphicProperties::PointStringGraphicProperties():ICurveGraphicProper
 {
 
 }
+

@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -64,152 +64,44 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 	std::ofstream outfile;
 	if (!curves.empty()) 
 	{
-		CurvesShapeTypeEnum curveVectorShape = CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(dictionaryProperties->getElementName());
-		CurvesShapesPrimitives* curvesShapesPrimitives = new CurvesShapesPrimitives(curveVectorShape);
-		curvesShapesPrimitives->setIsClosed(curves.IsPhysicallyClosedPath());
-
-		if (isFilled)
+		//TODO [SB] Verify that it's the correct way to identify shapes
+		CurvesShapeTypeEnum curveShapesTypeEnum = CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(dictionaryProperties->getElementName());
+		
+		switch (curveShapesTypeEnum)
 		{
-			DPoint3d center;
-			DRange3d range;
-			DVec3d normal, centroID;
-			double area;
-			Transform localToWorld, worldToLocal;
-
-			curves.CentroidNormalArea(center, normal, area);
-			centroID.Init(center);
-
-			//first 2 enum suggested by Thibaut
-			curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-
-			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)curvesShapesPrimitives, localToWorld);
-						
-			curvesShapesPrimitives->setIsFilled(isFilled);
-			curvesShapesPrimitives->setArea(area);
-			curvesShapesPrimitives->setCentroid(centroID);
-			curvesShapesPrimitives->setNormal(normal);
-		}
-
-		switch (curves.GetBoundaryType())
-		{
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
-		{
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::CIRCLE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
+				CircleShapesGraphicProperties* shapesGraphicProperties = new CircleShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::SHAPE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
+				GenericShapesGraphicProperties* shapesGraphicProperties = new GenericShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-						
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::COMPLEX_CHAIN:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
+				ComplexChainShapesGraphicProperties* shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::ELLIPSE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
+				EllipseShapesGraphicProperties* shapesGraphicProperties = new EllipseShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::CURVE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
+				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesShapesPrimitives->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesShapesPrimitives->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			default:
+				break;
 		}
-			break;
-		default:
-			break;
-		}
-
-		//dictionaryProperties->getGraphicProperties()->setCurvesPrimitivesContainer(curvesPrimitivesContainer);
 	}
 	
 	return ERROR;
@@ -244,7 +136,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::fixed;
 	outfile.close();
-
+	
 	//DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 
 	switch (entity.GetEntityType())

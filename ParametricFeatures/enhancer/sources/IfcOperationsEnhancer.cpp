@@ -32,3 +32,15 @@ Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(
 
 	return dir;
 }
+
+Ifc4::IfcAxis2Placement3D * IfcOperationsEnhancer::buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX)
+{
+	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
+		IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(pointOfPlacement),
+		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorZ),
+		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorX)
+	);
+
+	return place;
+}
+

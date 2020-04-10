@@ -27,7 +27,7 @@
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
-    <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
+    <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
@@ -48,7 +48,12 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\sources\CurvesShapesPrimitives.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\CircleShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\ComplexChainShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\EllipseShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\GenericShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\IShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
@@ -102,7 +107,7 @@
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
-    <ClInclude Include="ifc\curves\headers\IfcCurvesPrimitivesBuilder.h" />
+    <ClInclude Include="ifc\curves\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="headers\ParametricFeatures.h" />
@@ -123,7 +128,9 @@
     <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
-    <ClInclude Include="modeler\properties\curves\headers\CurvesShapesPrimitives.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\IShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
@@ -134,6 +141,9 @@
     <ClInclude Include="modeler\properties\primitives\reader\headers\PrimitiveReaderProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureGeneralProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />

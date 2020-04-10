@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -125,6 +125,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 	GraphicsProcessorEnhancer* graphicsProcessorEnhancer = graphicsProcessor.getGraphicsProcessorEnhancer();
+	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{		
@@ -159,7 +160,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		outfile.close();
 	
 		
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+		//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
 		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);

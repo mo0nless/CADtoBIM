@@ -5,8 +5,10 @@ ICurveGraphicProperties::ICurveGraphicProperties(CurvesPrimitivesTypeEnum newCur
 	this->mCurvesTypeEnum = newCurveType;
 }
 
-void ICurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints) {
+void ICurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints) 
+{
 	this->mControlPoints = newControlPoints;
+	this->mNumCPoints = (int)newControlPoints.size();
 };
 
 bvector<DPoint3d> ICurveGraphicProperties::getControlPoints() 
@@ -17,4 +19,9 @@ bvector<DPoint3d> ICurveGraphicProperties::getControlPoints()
 CurvesPrimitivesTypeEnum ICurveGraphicProperties::getCurvesTypeEnum() 
 { 
 	return mCurvesTypeEnum; 
-};
+}
+int ICurveGraphicProperties::getNumberControlPoints()
+{
+	return this->mNumCPoints;
+}
+;
