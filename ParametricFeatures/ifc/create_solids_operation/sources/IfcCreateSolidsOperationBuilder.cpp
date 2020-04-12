@@ -39,8 +39,8 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 
 	//			if(curvesPrimitivesContainer->getBoundaryTypeCurvesContainer() == CurvesBoundaryTypeEnum::OUTER)
 	//			{
-	//				IfcCurvesPrimitivesBuilder* ifcCurvesPrimitivesBuilder = new IfcCurvesPrimitivesBuilder();
-	//				std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = ifcCurvesPrimitivesBuilder->buildIfcCurvesPrimitives(
+	//				IfcShapesEnhancer* IfcShapesEnhancer = new IfcShapesEnhancer();
+	//				std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = IfcShapesEnhancer->buildIfcCurvesPrimitives(
 	//					*graphicProperties,
 	//					file
 	//				);

@@ -27,7 +27,7 @@ public:
 	double getRadiusY();
 
 	void setCenterOut(DPoint3d newCenter);
-	DPoint3d getCenterOut();
+	DVec3d getCenterOut();
 
 	void setStartAngle(double newStartAngle);
 	double getStartAngle();
@@ -41,7 +41,7 @@ private:
 	double mLength;
 	double mSweepAngle;
 	double mStartAngle;
-	DPoint3d mCenter;
+	DVec3d mCenter;
 	DVec3d mDirectionX;
 	DVec3d mDirectionY;
 	DVec3d mDirectionZ;

@@ -94,16 +94,23 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
+	$(o)ICurvesGraphicsProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
 	$(o)LineGraphicProperties$(oext) \
+	$(o)LineStringGraphicProperties$(oext) \
 	$(o)PointStringGraphicProperties$(oext) \
 	$(o)AkimaGraphicProperties$(oext) \
-	$(o)CurvesShapesPrimitives$(oext) \
+	$(o)CurvesShapesGraphicProperties$(oext) \
+	$(o)IShapesGraphicProperties$(oext) \
+	$(o)CircleShapesGraphicProperties$(oext) \
+	$(o)ComplexChainShapesGraphicProperties$(oext) \
+	$(o)EllipseShapesGraphicProperties$(oext) \
+	$(o)GenericShapesGraphicProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
-	$(o)IfcCurvesPrimitivesBuilder$(oext) \
+	$(o)IfcShapesEnhancer$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcBuilder$(oext) \
@@ -125,7 +132,6 @@ appObjects = \
 	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
-	$(o)ICurvesGraphicsProperties$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -233,7 +239,7 @@ $(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnh
 
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
-$(o)IfcCurvesPrimitivesBuilder$(oext) : $(baseDir)ifc/curves/sources/IfcCurvesPrimitivesBuilder.cpp $(baseDir)ifc/curves/headers/IfcCurvesPrimitivesBuilder.h
+$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/curves/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/curves/headers/IfcShapesEnhancer.h
 
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
@@ -255,13 +261,25 @@ $(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/
 
 $(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineGraphicProperties.h
 
+$(o)LineStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineStringGraphicProperties.h
+
 $(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/PointStringGraphicProperties.h
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
 $(o)ICurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ICurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ICurvesGraphicsProperties.h
 
-$(o)CurvesShapesPrimitives$(oext) : $(baseDir)modeler/properties/curves/sources/CurvesShapesPrimitives.cpp $(baseDir)modeler/properties/curves/headers/CurvesShapesPrimitives.h
+$(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
+
+$(o)IShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/IShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/IShapesGraphicProperties.h
+
+$(o)CircleShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CircleShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CircleShapesGraphicProperties.h
+
+$(o)ComplexChainShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/ComplexChainShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/ComplexChainShapesGraphicProperties.h
+
+$(o)EllipseShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/EllipseShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/EllipseShapesGraphicProperties.h
+
+$(o)GenericShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/GenericShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/GenericShapesGraphicProperties.h
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 

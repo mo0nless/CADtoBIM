@@ -2,7 +2,12 @@
 
 #include "../../headers/PropertiesReaderProcessor.h"
 //#include "../../modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h"
-#include "../../modeler/properties/curves/headers/CurvesShapesPrimitives.h"
+#include "../../modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h"
+#include "../../modeler/properties/shapes/headers/CircleShapesGraphicProperties.h"
+#include "../../modeler/properties/shapes/headers/ComplexChainShapesGraphicProperties.h"
+#include "../../modeler/properties/shapes/headers/EllipseShapesGraphicProperties.h"
+#include "../../modeler/properties/shapes/headers/GenericShapesGraphicProperties.h"
+
 #include "../../modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
@@ -22,8 +27,7 @@ public:
 	SolidPrimitiveProperty* handleConeAndCylinder(DgnConeDetail dgnConeDetail);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
-
-
+	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties);
 	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
 
 	// use this method to set centroid, area and volume
