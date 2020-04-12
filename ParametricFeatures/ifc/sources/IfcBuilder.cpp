@@ -117,12 +117,14 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 		ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcBundleVector, file);
+		
 		typedef Ifc4::IfcGloballyUniqueId guid;
 
 		for (auto const& ifcBundle : ifcBundleVector) {
 			Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
 
 			for (auto const& ifcGraphicPropertiesBundle : ifcBundle->getIfcGraphicPropertiesBundleVector()) {
+
 				if (ifcGraphicPropertiesBundle->getIfcRepresentationItem() != nullptr && ifcGraphicPropertiesBundle->getShow()) {
 					ifcRepresentationItemList->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
 				}
@@ -130,6 +132,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 			Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
 				ifcBundle->getModelerElementName(), ifcBundle->getModelerElementName(), ifcRepresentationItemList);
+
 			Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 			ifcRepresentationList->push(ifcRepresentation);
 
@@ -139,9 +142,10 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 			Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(guid::IfcGloballyUniqueId(ifcBundle->getModelerElementName()), file.getSingle<Ifc4::IfcOwnerHistory>(), ifcBundle->getModelerElementName(),
 				ifcBundle->getModelerElementName(), boost::none, file.addLocalPlacement(), shape, boost::none);
-
-
 			file.addBuildingProduct(ifcElement);
+
+			ifcBundle->setIfcElement(ifcElement);
+			
 		}
 
 		//TODO [MP/SB] curves builder, find another implementatino

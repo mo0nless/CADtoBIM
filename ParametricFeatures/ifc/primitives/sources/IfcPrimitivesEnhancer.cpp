@@ -24,7 +24,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 					if (ifcRepresentationItem != nullptr)
 					{
 						ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
-						ifcTemplatedEntityList->push(ifcRepresentationItem);
+						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
 				}
 			}

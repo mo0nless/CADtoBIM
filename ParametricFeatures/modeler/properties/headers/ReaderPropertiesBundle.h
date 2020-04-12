@@ -10,7 +10,7 @@ class ReaderPropertiesBundle {
 private:
 	std::string className;
 	int localId;
-	std::vector<ReaderPropertyDefinition> properties;
+	std::vector<ReaderPropertyDefinition*> properties;
 
 public:
 	ReaderPropertiesBundle(std::string newClassName, int newLocalId);
@@ -18,7 +18,7 @@ public:
 	std::string getCassName();
 	int getLocalId();
 
-	std::vector<ReaderPropertyDefinition> getProperties();
-	void addProperty(ReaderPropertyDefinition readerPropertyDefinition);
+	std::vector<ReaderPropertyDefinition*> getProperties();
+	void addProperty(ReaderPropertyDefinition* readerPropertyDefinition);
 
 };

@@ -1,2198 +1,38 @@
 
 ===================================================
 ===================================================
-Element Description: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
-Element ID: 4878
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 4940
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4878, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 4940, id = 0 ---------
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
-Level[int] = 
-Element ID[long] = 4878
+Element Description[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID[long] = 4940
 Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:44:29 AM
-Size[int] = 252
-Linkages[int] = 5
-XAttributes[int] = 6
-Links[string] = 
-Property List[string] = 
-Type[string] = Valve
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 41' 5.1693", 38' 5.9409", 19' 1.1250"
-Range High[point3d] = 43' 2.1693", 40' 2.9409", 20' 3.1250"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = -180.0000°
-Rotation-Y[double] = -90.0000°
-Rotation-Z[double] = -180.0000°
-Angle[double] = 90.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 19' 1.1250"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = GATE_VALVE, current element id = 4878, id = 1 ---------
-Design State[string] = 
-Guid[string] = 46b16a7f-8541-416e-ab8f-1fe6bf227790
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = HV-10
-Description[string] = GATE VALVE, 150LB, RF, CS
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = Administrator
-Size[string] = 
-Material[string] = CS
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:43:45 AM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0 lb
-Manufacturer[string] = CRN
-Device Type Code[string] = HV
-Number[string] = 10
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = S
-System[string] = S
-Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Stock Number[string] = 
-Suffix[string] = 
-Order Number[string] = 
-Code[string] = 
-Type[string] = 
-Areaid[string] = 
-Nominal Diameter[double] = 12 in
-Rating[string] = CL150
-Schedule[string] = 
-Short Description[string] = GATE VALVE
-Specification[string] = EX-OPM
-Spec ID[string] = 04370d41c94e498daaba6858b89359f4
-Standard[string] = CRANE
-Weight[double] = 0 lb
-Unit Number[string] = 
-Option Code[string] = 
-Notes[string] = 
-Catalog Name[string] = 
-EC Class Name[string] = GATE_VALVE
-Unit Of Measure[string] = IN
-Piece Mark[string] = 
-Fabrication Category[string] = 
-Line Number[string] = U-S-1-EX-OPM
-Insulation Thickness[double] = 1 in
-Insulation Material[string] = ARNOSITE_ASBESTOS
-Length[double] = 14 in
-Inside Diameter[double] = 0 in
-Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
-Outside Diameter[double] = 0 in
-Pipe Flange Type[string] = 
-Grade[string] = 
-Shop Field[string] = FIELD
-Hub Depth[double] = 0 in
-Hub Width[double] = 0 in
-Tracing[string] = 
-Component Name[string] = GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
-Component State[string] = Design
-Length Effective[double] = 14.0000
-Design Length Center To Branch End Effective[double] = 0.0000
-Design Length Center To Outlet End Effective[double] = 7.0000
-Design Length Center To Run End Effective[double] = 7.0000
-Wall Thickness[double] = 0.0000
-Update Graphics[boolean] = True
-Nominal Diameter Run End[double] = 0.0000
-Element Geometry[binary] = <null>
-Spool Id[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Spool Number[int] = 
-Design Pressure[double] = 0 lbf/in² (Gauge)
-Design Temperature[double] = 0.00 °F
-Operating Temperature[double] = 0.00 °F
-Operator[string] = HAND_WHEEL
-HandWheel Diameter[double] = 0.0000
-HandWheel Length[double] = 0.0000
-Flow Rate[double] = 0 gal/min
-Function[string] = 
-End To End Length[double] = 0 in
-Material Mark[string] = 
-Direction[string] = 
-Pattern[string] = 
-Upper Limit Operating Pressure[double] = 0 lbf/in² (Gauge)
-Design Length Center To Outlet End[double] = 7 in
-Design Length Center To Run End[double] = 7 in
-Operating Temperature Range[double] = 0 °F
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 323850.000000
-Range [YLength] = 323850.000000
-Range [ZLength] = 146050.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 191.084405
-qRotation [W] = 191.081789
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5851525.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5851525.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5997575.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = -1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 0.000000
-
-True if the end cap is enabled = 0
-
- Cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 5900208.333333
-Area1 = 110927811835.532928
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 110927811835.532928
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 323850.000000
-Range [YLength] = 323850.000000
-Range [ZLength] = 146050.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = -191.081789
-qRotation [W] = 191.084405
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5997575.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5997575.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6143625.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 0.000000
-Radius at TOP = 161925.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6094941.666667
-Area1 = 110927811835.532928
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 110927811835.532928
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 374650.000000
-Range [YLength] = 374650.000000
-Range [ZLength] = 146050.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = 0.000000
-qRotation [Z] = 191.084405
-qRotation [W] = 191.081789
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5851525.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5851525.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5997575.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = -1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 187325.000000
-Radius at TOP = 25400.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 5906021.268657
-Area1 = 145728693980.013824
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 145728693980.013824
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 374650.000000
-Range [YLength] = 374650.000000
-Range [ZLength] = 146050.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 191.081789
-qRotation [W] = 191.084405
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5997575.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5997575.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6143625.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 25400.000000
-Radius at TOP = 187325.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6089128.731343
-Area1 = 145728693980.013855
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 145728693980.013855
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 31750.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 89.091245
-qRotation [W] = 89.096857
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5819775.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5819775.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5851525.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 241300.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 5835650.000000
-Area1 = 48137210514.262299
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 48137210514.262299
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5819775.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5819775.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5819775.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5851525.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5851525.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5851525.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 57150.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 119.529285
-qRotation [W] = 119.533468
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5819775.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5819775.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5876925.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 266700.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 5848350.000000
-Area1 = 95767713549.427094
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 95767713549.427094
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5819775.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5819775.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5819775.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5876925.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5876925.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5876925.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 31750.000000
-
-Quaternion Rotation
-qRotation [X] = 89.091245
-qRotation [Y] = 89.096857
-qRotation [Z] = 0.000000
-qRotation [W] = 0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707085
-vRotation [Y] = 0.707129
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6175375.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6175375.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6143625.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 241300.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6159500.000000
-Area1 = 48137210514.262299
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 48137210514.262299
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.866025
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.866025
-vRotation [Z] = 0.500000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6175375.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6175375.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6175375.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.866025
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.866025
-vRotation [Z] = 0.500000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6143625.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6143625.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6143625.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 57150.000000
-
-Quaternion Rotation
-qRotation [X] = 119.529285
-qRotation [Y] = 119.533468
-qRotation [Z] = 0.000000
-qRotation [W] = 0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707094
-vRotation [Y] = 0.707119
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6175375.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6175375.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6118225.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 266700.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6146800.000000
-Area1 = 95767713549.427094
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 95767713549.427094
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.866025
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.866025
-vRotation [Z] = 0.500000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6175375.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6175375.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6175375.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.000000
-qRotation [Y] = 0.866025
-qRotation [Z] = 0.500000
-qRotation [W] = 0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
-vRotation [Y] = 0.866025
-vRotation [Z] = 0.500000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6118225.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6118225.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6118225.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 5.81978e+06
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 6.17538e+06
-
-
-===================================================
-===================================================
-Element Description: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
-Element: ID 4878
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: GASKET 12 IN NON-STANDARD
-Element ID: 4902
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4902, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = GASKET 12 IN NON-STANDARD
-Level[int] = 
-Element ID[long] = 4902
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:43:55 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 4
-Links[string] = 
-Property List[string] = 
-Type[string] = Generic
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 41' 6.1693", 37' 5.6409", 18' 9.8333"
-Range High[point3d] = 43' 1.1693", 41' 3.2409", 19' 4.2917"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = -90.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -90.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 19' 1.0625"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = GASKET, current element id = 4902, id = 1 ---------
-Design State[string] = 
-Guid[string] = efbf890c-e8b3-422e-b843-16756afbb604
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = GASKET
-Description[string] = DUCTILE IRON FLANGE GASKET
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = Administrator
-Size[string] = 
-Material[string] = RUB
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:43:49 AM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0.8 lb
-Manufacturer[string] = 
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = S
-Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Option Code[string] = 
-EC Class Name[string] = GASKET
-Unit Of Measure[string] = IN
-Element Geometry[binary] = <null>
-P1_Y[double] = 0.0000
-P1_Z[double] = 0.0000
-P1_X[double] = -0.0625
-P2_X[double] = 0.0625
-P2_Y[double] = 0.0000
-P2_Z[double] = 0.0000
-Facing[string] = RAISED_FACE
-Component State[string] = Design
-Grade[string] = 
-Order Number[string] = 
-Piece Mark[string] = 
-Shop Field[string] = FIELD
-Specification ID[string] = 86b64bbfa8a14c4380b29f405b4ba303
-Stock Number[string] = 
-Suffix[string] = 
-Tag Number[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Unit Number[string] = 
-Diameter[double] = 19.0000
-Gasket Type[string] = 
-Code[string] = 
-Fabrication Category[string] = 
-Length[double] = 0.1250
-Line Number[string] = <Undefined>
-Nominal Diameter[double] = 12.0000
-Rating[string] = CL125
-Schedule[string] = 
-Short Description[string] = GASKET
-Specification[string] = EX-OPM
-Standard[string] = NON-STANDARD
-System[string] = 
-Component Name[string] = GASKET 12 IN NON-STANDARD
-Thickness[double] = 0.0000
--------- GASKET 12 IN NON-STANDARD --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 3175.000000
-
-Quaternion Rotation
-qRotation [X] = 28.178006
-qRotation [Y] = 28.178006
-qRotation [Z] = 0.000000
-qRotation [W] = 0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = 0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 5819775.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 5819775.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5816600.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
-
-Radius at BASE = 241300.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 5821362.500000
-Area1 = 4813721051.426229
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 4813721051.426229
-
-
-
--------- BOUNDARY_TYPE_Open --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-Start Point [X]: 1.28948e+07
-Start Point [Y]: 1.25791e+07
-Start Point [Z]: 5.73617e+06
-
-End Point [X]: 1.28948e+07
-End Point [Y]: 1.24826e+07
-End Point [Z]: 5.73617e+06
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
-
-Tangent [X]: 2.02369e-319
-Tangent [Y]: 1.88906e-319
-Tangent [Z]: 4.94066e-324
-
-Curve Line String Length: 96520
-
-
--------- BOUNDARY_TYPE_Open --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-Start Point [X]: 1.28948e+07
-Start Point [Y]: 1.25791e+07
-Start Point [Z]: 5.90021e+06
-
-End Point [X]: 1.28948e+07
-End Point [Y]: 1.24826e+07
-End Point [Z]: 5.90021e+06
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
-
-Tangent [X]: 2.02369e-319
-Tangent [Y]: 1.91707e-319
-Tangent [Z]: 4.94066e-324
-
-Curve Line String Length: 96520
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 5.8166e+06
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 5.81978e+06
-
-
-===================================================
-===================================================
-Element Description: GASKET 12 IN NON-STANDARD
-Element: ID 4902
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: MACHINE BOLT 12 IN AWWA / C115
-Element ID: 4911
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4911, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = MACHINE BOLT 12 IN AWWA / C115
-Level[int] = 
-Element ID[long] = 4911
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:43:55 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 4
-Links[string] = 
-Property List[string] = 
-Type[string] = Generic
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 42' 2.1693", 39' 4.4409", 18' 11.5000"
-Range High[point3d] = 42' 5.1693", 40' 10.4409", 19' 2.5000"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = -90.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -90.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 19' 1.0000"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = BOLT, current element id = 4911, id = 1 ---------
-Design State[string] = 
-Guid[string] = 54b9bf1e-cde2-432c-ba2b-a6ed44ce53fd
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = MACHINE BOLT
-Description[string] = ASTM A 193 GR. B7 Machine Bolts with A194 GR. 2H Nuts
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = Administrator
-Size[string] = 
-Material[string] = CS
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:43:54 AM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0 lb
-Manufacturer[string] = 
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = 
-System[string] = 
-Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Option Code[string] = 
-Catalog Name[string] = 
-EC Class Name[string] = BOLT
-Notes[string] = 
-Unit Of Measure[string] = IN
-Component State[string] = Design
-Short Description[string] = MACHINE BOLT
-P1_X[double] = 0.0000
-P1_Y[double] = 0.0000
-P1_Z[double] = 0.0000
-Grade[string] = 
-Element Geometry[binary] = <null>
-Line Number[string] = <Undefined>
-Order Number[string] = 
-Piece Mark[string] = 
-Shop Field[string] = FIELD
-Stock Number[string] = 
-Suffix[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Unit Number[string] = 
-Bolt Increment Length[double] = 0.2500
-Bolt Extension Length[double] = 0.3750
-Nut Length[double] = 0.7500
-Component Name[string] = MACHINE BOLT 12 IN AWWA / C115
-Bolt Diameter[double] = 0.8750
-Bolt Length[double] = 4.0000
-Code[string] = 
-Diameter[double] = 0.0000
-Facing[string] = RAISED_FACE
-Length[double] = 0.0000
-Nominal Diameter[double] = 12.0000
-Number Of Bolts[int] = 12
-Rating[string] = CL150
-Schedule[string] = 
-Specification[string] = EX-OPM
-Standard[string] = AWWA / C115
-
--------- BOUNDARY_TYPE_Open --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- MACHINE BOLT 12 IN AWWA / C115 --------
-
-Start Point [X]: 1.28948e+07
-Start Point [Y]: 1.2e+07
-Start Point [Z]: 5.8166e+06
-
-End Point [X]: 1.28948e+07
-End Point [Y]: 1.24572e+07
-End Point [Z]: 5.8166e+06
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
-
-Tangent [X]: 2.42843e-319
-Tangent [Y]: 2.2396e-319
-Tangent [Z]: 4.94066e-324
-
-Curve Line String Length: 457200
-
-
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
-
-Is Circular: 1
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- MACHINE BOLT 12 IN AWWA / C115 --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 5.8166e+06
-
-
-===================================================
-===================================================
-Element Description: MACHINE BOLT 12 IN AWWA / C115
-Element: ID 4911
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Hand wheel topwork
-Element ID: 4918
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4918, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Hand wheel topwork
-Level[int] = 
-Element ID[long] = 4918
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:44:05 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 4
-Links[string] = 
-Property List[string] = 
-Type[string] = Topwork
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 41' 0.7943", 36' 7.7159", 18' 5.1250"
-Range High[point3d] = 43' 6.5443", 39' 4.4409", 20' 10.8750"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = -0.0000°
-Rotation-Z[double] = 90.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 19' 8.0000"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = HAND_WHEEL, current element id = 4918, id = 1 ---------
-Design State[string] = 
-Guid[string] = e78a6552-3f35-4278-98d4-2a7ac5e19303
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = 
-Description[string] = Hand wheel topwork
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = 
-Size[string] = 
-Material[string] = 
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0 lb
-Manufacturer[string] = 
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = 
-System[string] = 
-Unit[string] = 
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Option Code[string] = 
-Unit of Measure[string] = IN
-Component Name[string] = Hand wheel topwork
-Specification[string] = EX-OPM
-UPDATE_GRAPHICS[boolean] = 
-Angle[double] = 0.0000
-Diameter[double] = 25.5000
-Length[double] = 30.6000
-Nominal Diameter[double] = 12.0000
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Pipeline[string] = 
-Piece Mark[string] = 
-Element Geometry[binary] = <null>
--------- Hand wheel topwork --------
-Range [XLength] = 863058.893836
-Range [YLength] = 215358.893836
-Range [ZLength] = 863058.893836
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = -0.500000
-qRotation [W] = -0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.577350
-vRotation [Y] = 0.577350
-vRotation [Z] = 0.577350
-
-Origin [X] = 12894800.000000
-Origin [Y] = 11222760.000000
-Origin [Z] = 5994400.000000
-
-Range High = 13326329.446918
-Range Low = 12463270.553082
-DiagonalDistanceXY = 889522.404093
-DiagonalDistance = 1239403.389382
-Range Difference = 863058.893836
-Axes Coordinates Axes, XY in major Plane, Z through hole
-Axes Rotation (Quaternion) [X] = 0.500000
-Axes Rotation (Quaternion) [Y] = -0.500000
-Axes Rotation (Quaternion) [Z] = -0.500000
-Axes Rotation (Quaternion) [W] = -0.500000
-
-Center Point Rotation [X] = 12894800.000000
-Center Point Rotation [Y] = 11222760.000000
-Center Point Rotation [Z] = 5994400.000000
-
-Center [X] = 12894800.000000
-Center [Y] = 11222760.000000
-Center [Z] = 5994400.000000
-
-Vector X [X] = 0.000000
-Vector X [Y] = 0.000000
-Vector X [Z] = -1.000000
-
-Vector Y [X] = -1.000000
-Vector Y [Y] = 0.000000
-Vector Y [Z] = 0.000000
-
-Major Radius = 323850.000000
-Minor Radius = 53975.000000
-Sweep Angle = 6.283185
-Sweep Radians = 6.283185
-
-Radius Major (Elbow Radius) = 323850.000000
-Radius Minor (Pipe Diameter) = 53975.000000
-
-True if the end cap is enabled = 0
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 11222760.000000
-Centroid1 [Z] = 5994400.000000
-Area1 = 690074992084.713013
-
-Centroid2 [X] = 12894800.000000
-Centroid2 [Y] = 11222760.000000
-Centroid2 [Z] = 5994400.000000
-Volume = 18623398848886192.000000
-Area2 = 690074992084.713013
-
-
--------- Hand wheel topwork --------
-Range [XLength] = 335966.090503
-Range [YLength] = 92528.571429
-Range [ZLength] = 197711.639199
-
-Quaternion Rotation
-qRotation [X] = 457.193417
-qRotation [Y] = -0.001412
-qRotation [Z] = 166.406298
-qRotation [W] = 166.406298
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.939692
-vRotation [Y] = -0.000003
-vRotation [Z] = 0.342023
-
-Origin [X] = 12590480.544758
-Origin [Y] = 11222760.000000
-Origin [Z] = 5883636.776584
-
-Center of BASE Circle [X] = 12590480.544758
-Center of BASE Circle [Y] = 11222760.000000
-Center of BASE Circle [Z] = 5883636.776584
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 11222760.000000
-Center of TOP Circle [Z] = 5994400.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.342020
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.939693
-
-Radius at BASE = 46264.285714
-Radius at TOP = 46264.285714
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12438320.817138
-Centroid1 [Y] = 11222760.000000
-Centroid1 [Z] = 5828255.164876
-Area1 = 94139010938.042236
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 94139010938.042236
-
-
--------- Hand wheel topwork --------
-Range [XLength] = 279047.765370
-Range [YLength] = 92528.571429
-Range [ZLength] = 307559.712160
-
-Quaternion Rotation
-qRotation [X] = -208.968869
-qRotation [Y] = 0.000645
-qRotation [Z] = 249.040405
-qRotation [W] = 249.040405
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.642786
-vRotation [Y] = 0.000002
-vRotation [Z] = 0.766046
-
-Origin [X] = 13102966.767397
-Origin [Y] = 11222760.000000
-Origin [Z] = 5746316.507096
-
-Center of BASE Circle [X] = 13102966.767397
-Center of BASE Circle [Y] = 11222760.000000
-Center of BASE Circle [Z] = 5746316.507096
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 11222760.000000
-Center of TOP Circle [Z] = 5994400.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.766044
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.642788
-
-Radius at BASE = 46264.285714
-Radius at TOP = 46264.285714
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 13207050.151095
-Centroid1 [Y] = 11222760.000000
-Centroid1 [Z] = 5622274.760644
-Area1 = 94139010938.042435
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 94139010938.042435
-
-
--------- Hand wheel topwork --------
-Range [XLength] = 242057.093433
-Range [YLength] = 92528.571429
-Range [ZLength] = 326726.612730
-
-Quaternion Rotation
-qRotation [X] = 264.793942
-qRotation [Y] = 264.793942
-qRotation [Z] = -152.878309
-qRotation [W] = 0.000472
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.654654
-vRotation [Y] = 0.654654
-vRotation [Z] = -0.377963
-
-Origin [X] = 13056725.000000
-Origin [Y] = 11222760.000000
-Origin [Z] = 6274862.327016
-
-Center of BASE Circle [X] = 13056725.000000
-Center of BASE Circle [Y] = 11222760.000000
-Center of BASE Circle [Z] = 6274862.327016
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 11222760.000000
-Center of TOP Circle [Z] = 5994400.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.866025
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.500000
-
-Radius at BASE = 46264.285714
-Radius at TOP = 46264.285714
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 13137687.500000
-Centroid1 [Y] = 11222760.000000
-Centroid1 [Z] = 6415093.490523
-Area1 = 94139010938.042358
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 94139010938.042358
-
-
--------- Hand wheel topwork --------
-Range [XLength] = 107950.000000
-Range [YLength] = 777240.000000
-Range [ZLength] = 107950.000000
-
-Quaternion Rotation
-qRotation [X] = -0.500000
-qRotation [Y] = 0.500000
-qRotation [Z] = 0.500000
-qRotation [W] = -0.500000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.577350
-vRotation [Y] = -0.577350
-vRotation [Z] = -0.577350
-
-Origin [X] = 12894800.000000
-Origin [Y] = 11222760.000000
-Origin [Z] = 5994400.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 11222760.000000
-Center of BASE Circle [Z] = 5994400.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 5994400.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 53975.000000
-Radius at TOP = 53975.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 10834140.000000
-Centroid1 [Z] = 5994400.000000
-Area1 = 263589230626.518311
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 263589230626.518311
-
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- Hand wheel topwork --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 5.9944e+06
-
-
-===================================================
-===================================================
-Element Description: Hand wheel topwork
-Element: ID 4918
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
-Element ID: 4951
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4951, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
-Level[int] = 
-Element ID[long] = 4951
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:44:34 AM
-Size[int] = 252
+Last Modified[dateTime] = 3/10/2020 11:54:28 AM
+Size[int] = 258
 Linkages[int] = 5
 XAttributes[int] = 5
-Links[string] = 
-Property List[string] = 
-Type[string] = Reducer
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
+Type[string] = Linear
 Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
 Template[long] = (None)
 Modified[boolean] = Modified
 New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 41' 5.1693", 38' 5.9409", 20' 3.2500"
-Range High[point3d] = 43' 2.1693", 40' 2.9409", 20' 7.7500"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
+Range Low[point3d] = 41' 8.2943", 38' 9.0659", 20' 3.1250"
+Range High[point3d] = 42' 11.0443", 39' 11.8159", 22' 10.1724"
 Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
 Number of elements[int] = 2
-Total Length[double] = 
 Scale X[double] = 1.00000
 Scale Y[double] = 1.00000
 Scale Z[double] = 1.00000
@@ -2201,97 +41,50 @@ Rotation-Y[double] = -90.0000°
 Rotation-Z[double] = -180.0000°
 Angle[double] = 90.0000°
 Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 20' 3.2500"
-Cell Name[string] = 
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 20' 3.1250"
 Cell Type[boolean] = Graphic
 Is Annotation[boolean] = False
 Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
 
 ------------ Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = WELD_NECK_FLANGE, current element id = 4951, id = 1 ---------
-Design State[string] = 
-Guid[string] = 94cf58fa-c13e-4a75-b0a3-1e56cf5c7332
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = Weld Neck Flange 12 EX-OPM U-S-1-EX-OPM
-Description[string] = 150LB RF Weld Neck Flange - ASME - B16.5
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
+--------- ClassName = PIPE, current element id = 4940, id = 1 ---------
+Guid[string] = 863e7684-b22f-4379-bf2b-07fe99096e25
+Modification Time[dateTime] = 3/10/2020 11:54:28 AM
+Modified By[string] = FX6021
+Name[string] = Pipe 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B36.10 12 PE Pipe
 Active Item[boolean] = False
-Functional InstanceId[string] = 
 Designer[string] = Administrator
-Size[string] = 
 Material[string] = STL
 Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:44:29 AM
+Created Timestamp[dateTime] = 9/10/2013 9:44:17 AM
 Total Weight[double] = 0 lb
-Dry Weight[double] = 0 lb
+Dry Weight[double] = 138.471 lb
 Manufacturer[string] = MFACT
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
+Plant Area[string] = ?
 Service[string] = S
 System[string] = S
 Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Stock Number[string] = 
-Suffix[string] = 
-Order Number[string] = 
-Code[string] = 
-Type[string] = 
-Areaid[string] = 
 Nominal Diameter[double] = 12 in
-Rating[string] = CL150
-Schedule[string] = 
-Short Description[string] = Weld Neck Flange
+Schedule[string] = 40
+Short Description[string] = Pipe
 Specification[string] = EX-OPM
-Spec ID[string] = 2bda53124b0541cd8c5800f743698512
-Standard[string] = ASME - B16.5
-Weight[double] = 
-Unit Number[string] = 
-Option Code[string] = 
-Notes[string] = 
-Catalog Name[string] = 
-EC Class Name[string] = WELD_NECK_FLANGE
+Spec ID[string] = 258855df2c6c483cba6b62075bc7bf72
+Standard[string] = ASME - B36.10
+EC Class Name[string] = PIPE
 Unit Of Measure[string] = IN
-Piece Mark[string] = 
-Fabrication Category[string] = 
 Line Number[string] = U-S-1-EX-OPM
 Insulation Thickness[double] = 1 in
 Insulation Material[string] = ARNOSITE_ASBESTOS
-Length[double] = 4.5 in
+Length[double] = 31.0474 in
 Inside Diameter[double] = 0 in
 Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
 Outside Diameter[double] = 0 in
-Pipe Flange Type[string] = 
-Grade[string] = 
-Shop Field[string] = 
 Hub Depth[double] = 0 in
 Hub Width[double] = 0 in
-Tracing[string] = 
-Component Name[string] = Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Component Name[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
 Component State[string] = Design
-Length Effective[double] = 4.5000
+Length Effective[double] = 31.0474
 Design Length Center To Branch End Effective[double] = 0.0000
 Design Length Center To Outlet End Effective[double] = 0.0000
 Design Length Center To Run End Effective[double] = 0.0000
@@ -2299,730 +92,61 @@ Wall Thickness[double] = 0.3750
 Update Graphics[boolean] = True
 Nominal Diameter Run End[double] = 12.0000
 Element Geometry[binary] = <null>
-Spool Id[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Spool Number[int] = 
-Direction[string] = 
-End To End Length[double] = 0 in
-Series[string] = 
-Design Thickness Of Flanged End[double] = 1.25 in
-Outside Diameter Of Flanged End[double] = 19 in
-Bolt Tp[string] = 
-Hub Angle[double] = 0.0000
-Hub Angle Upper Limit[double] = 0.0000
-Hub Cylinder Length[double] = 0.0000
-Length Piping Flange Hub[double] = 0.0000
-Length Piping Flange Hub Cylinder[double] = 0.0000
-Length Piping Flange Hub Cylinder Lower Limit[double] = 0.0000
-Length Piping Flange Hub Cylinder Upper Limit[double] = 0.0000
-Nominal Outside Diameter Of Hub[double] = 0.0000
-Outside Diameter Of Hub[double] = 14.0250
-Outside Diameter Of Hub Design[double] = 0.0000
-Taper Angle[double] = 0.0000
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 403225.000000
-Range [YLength] = 403225.000000
-Range [ZLength] = 82550.000000
+Weight[double] = 53.52 lb
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 323850.000000
+Range [YLength] = 323850.000000
+Range [ZLength] = 788602.922519
 
 Quaternion Rotation
-qRotation [X] = -0.000000
+qRotation [X] = 0.000000
 qRotation [Y] = -0.000000
-qRotation [Z] = -143.656709
-qRotation [W] = 143.660189
+qRotation [Z] = 444.016307
+qRotation [W] = 444.017433
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
+vRotation [X] = 0.000000
 vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 12894800.000000
 Origin [Y] = 12000000.000000
-Origin [Z] = 6210300.000000
+Origin [Z] = 6175375.000000
 
 Center of BASE Circle [X] = 12894800.000000
 Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6210300.000000
+Center of BASE Circle [Z] = 6175375.000000
 
 Center of TOP Circle [X] = 12894800.000000
 Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6292850.000000
+Center of TOP Circle [Z] = 6963977.922519
 
 0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
 0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
 0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
 
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.000000
 0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
 
-Radius at BASE = 201612.500000
+Radius at BASE = 161925.000000
 Radius at TOP = 161925.000000
 
 True if the end cap is enabled = 0
 
- Truncated cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6250072.998544
-Area1 = 104609161389.216888
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 104609161389.216888
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 454025.000000
-Range [YLength] = 454025.000000
-Range [ZLength] = 82550.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 143.656709
-qRotation [W] = 143.660189
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6210300.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6210300.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6292850.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 227012.500000
-Radius at TOP = 187325.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6250257.151980
-Area1 = 119227035469.806137
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 119227035469.806137
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 31750.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 89.091245
-qRotation [W] = 89.096857
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6178550.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6178550.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6210300.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 241300.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
  Cylinder 
 
 
 Centroid1 [X] = 12894800.000000
 Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6194425.000000
-Area1 = 48137210514.262299
+Centroid1 [Z] = 6569676.461259
+Area1 = 802328383574.598267
 
 Centroid2 [X] = 0.000000
 Centroid2 [Y] = 0.000000
 Centroid2 [Z] = 0.000000
 Volume = 0.000000
-Area2 = 48137210514.262299
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6178550.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6178550.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6178550.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6210300.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6210300.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6210300.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 161925.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 57150.000000
-
-Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 119.529285
-qRotation [W] = 119.533468
-
-Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = 1.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6178550.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6178550.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6235700.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 266700.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6207125.000000
-Area1 = 95767713549.427094
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 95767713549.427094
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6178550.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6178550.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6178550.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-Range [XLength] = 533400.000000
-Range [YLength] = 533400.000000
-Range [ZLength] = 0.000000
-
-Quaternion Rotation
-qRotation [X] = 0.500000
-qRotation [Y] = -0.500000
-qRotation [Z] = 0.000000
-qRotation [W] = 0.866025
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = -0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6235700.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6235700.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6235700.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 188341.000000
-Radius at TOP = 266700.000000
-
-True if the end cap is enabled = 0
-
- Truncated cone 
-
-
-Centroid1 [X] = -nan(ind)
-Centroid1 [Y] = -nan(ind)
-Centroid1 [Z] = -nan(ind)
-Area1 = -nan(ind)
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = -nan(ind)
-
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 6.17855e+06
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5 --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 6.29285e+06
-
-
-===================================================
-===================================================
-Element Description: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
-Element: ID 4951
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: GASKET 12 IN NON-STANDARD
-Element ID: 4968
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4968, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = GASKET 12 IN NON-STANDARD
-Level[int] = 
-Element ID[long] = 4968
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:44:34 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 4
-Links[string] = 
-Property List[string] = 
-Type[string] = Generic
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 41' 6.1693", 37' 5.6409", 19' 11.9583"
-Range High[point3d] = 43' 1.1693", 41' 3.2409", 20' 6.4167"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 90.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 20' 3.1875"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = GASKET, current element id = 4968, id = 1 ---------
-Design State[string] = 
-Guid[string] = 3a5d05c3-b124-4e85-9f62-df184e9d50ea
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = GASKET
-Description[string] = DUCTILE IRON FLANGE GASKET
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = Administrator
-Size[string] = 
-Material[string] = RUB
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:44:29 AM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0.8 lb
-Manufacturer[string] = 
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = S
-Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Option Code[string] = 
-EC Class Name[string] = GASKET
-Unit Of Measure[string] = IN
-Element Geometry[binary] = <null>
-P1_Y[double] = 0.0000
-P1_Z[double] = 0.0000
-P1_X[double] = -0.0625
-P2_X[double] = 0.0625
-P2_Y[double] = 0.0000
-P2_Z[double] = 0.0000
-Facing[string] = RAISED_FACE
-Component State[string] = Design
-Grade[string] = 
-Order Number[string] = 
-Piece Mark[string] = 
-Shop Field[string] = FIELD
-Specification ID[string] = 86b64bbfa8a14c4380b29f405b4ba303
-Stock Number[string] = 
-Suffix[string] = 
-Tag Number[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Unit Number[string] = 
-Diameter[double] = 19.0000
-Gasket Type[string] = 
-Code[string] = 
-Fabrication Category[string] = 
-Length[double] = 0.1250
-Line Number[string] = U-S-1-EX-OPM
-Nominal Diameter[double] = 12.0000
-Rating[string] = CL125
-Schedule[string] = 
-Short Description[string] = GASKET
-Specification[string] = EX-OPM
-Standard[string] = NON-STANDARD
-System[string] = 
-Component Name[string] = GASKET 12 IN NON-STANDARD
-Thickness[double] = 0.0000
--------- GASKET 12 IN NON-STANDARD --------
-Range [XLength] = 482600.000000
-Range [YLength] = 482600.000000
-Range [ZLength] = 3175.000000
-
-Quaternion Rotation
-qRotation [X] = 28.178006
-qRotation [Y] = 28.178006
-qRotation [Z] = 0.000000
-qRotation [W] = -0.000000
-
-Vector Rotation Axis Local to World
-vRotation [X] = 0.707107
-vRotation [Y] = 0.707107
-vRotation [Z] = 0.000000
-
-Origin [X] = 12894800.000000
-Origin [Y] = 12000000.000000
-Origin [Z] = 6178550.000000
-
-Center of BASE Circle [X] = 12894800.000000
-Center of BASE Circle [Y] = 12000000.000000
-Center of BASE Circle [Z] = 6178550.000000
-
-Center of TOP Circle [X] = 12894800.000000
-Center of TOP Circle [Y] = 12000000.000000
-Center of TOP Circle [Z] = 6175375.000000
-
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 1.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
-
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = -1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
-
-Radius at BASE = 241300.000000
-Radius at TOP = 241300.000000
-
-True if the end cap is enabled = 0
-
- Cylinder 
-
-
-Centroid1 [X] = 12894800.000000
-Centroid1 [Y] = 12000000.000000
-Centroid1 [Z] = 6180137.500000
-Area1 = 4813721051.426229
-
-Centroid2 [X] = 0.000000
-Centroid2 [Y] = 0.000000
-Centroid2 [Z] = 0.000000
-Volume = 0.000000
-Area2 = 4813721051.426229
+Area2 = 802328383574.598267
 
 
 
@@ -3030,302 +154,969 @@ Area2 = 4813721051.426229
 Is Filled:0
 --------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
 
--------- GASKET 12 IN NON-STANDARD --------
-
-Start Point [X]: 1.28948e+07
-Start Point [Y]: 1.14209e+07
-Start Point [Z]: 6.09494e+06
-
-End Point [X]: 1.28948e+07
-End Point [Y]: 1.15174e+07
-End Point [Z]: 6.09494e+06
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
-
-Tangent [X]: 4.24976e-319
-Tangent [Y]: 4.23301e-319
-Tangent [Z]: 4.94066e-324
-
-Curve Line String Length: 96520
-
-
--------- BOUNDARY_TYPE_Open --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-Start Point [X]: 1.28948e+07
-Start Point [Y]: 1.14209e+07
-Start Point [Z]: 6.25898e+06
-
-End Point [X]: 1.28948e+07
-End Point [Y]: 1.15174e+07
-End Point [Z]: 6.25898e+06
-
-FromOriginAndDirection
-Starting Point [X]: 0
-Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
-
-Tangent [X]: 4.45212e-319
-Tangent [Y]: 4.26102e-319
-Tangent [Z]: 4.94066e-324
-
-Curve Line String Length: 96520
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 6.17538e+06
-
-
--------- BOUNDARY_TYPE_None --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
-
--------- GASKET 12 IN NON-STANDARD --------
-
-point 0 [X] = 1.28948e+07
-point 0 [Y] = 1.2e+07
-point 0 [Z] = 6.17855e+06
-
-
-===================================================
-===================================================
-Element Description: GASKET 12 IN NON-STANDARD
-Element: ID 4968
-===================================================
-===================================================
-
-===================================================
-===================================================
-Element Description: MACHINE BOLT 12 IN AWWA / C115
-Element ID: 4977
-===================================================
-===================================================
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 4977, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = MACHINE BOLT 12 IN AWWA / C115
-Level[int] = 
-Element ID[long] = 4977
-Model[string] = Default
-Last Modified[dateTime] = 9/10/2013 3:44:34 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 4
-Links[string] = 
-Property List[string] = 
-Type[string] = Generic
-Color[int] = 
-Weight[int] = 
-Line Style[int] = 
-Class[int] = Primary
-Transparency[double] = 
-Priority[int] = 
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = 
-View Dependent[boolean] = 
-Snappable[boolean] = 
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Line Style Parameters[LineStyleParametersStruct] = 
-Thickness[double] = 
-Graphic Group[int] = 
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Assigned Material[string] = 
-Material Projection Parameters[baseElem:MaterialProjectionClass] = 
-Range Low[point3d] = 42' 2.1693", 37' 10.4409", 20' 1.6250"
-Range High[point3d] = 42' 5.1693", 39' 4.4409", 20' 4.6250"
-Area[double] = 
-Perimeter[double] = 
-Fill[binary] = 
-Front Clip Depth[double] = 
-Back Clip Depth[double] = 
-Front Clip[boolean] = 
-Back Clip[boolean] = 
-Pattern Definition[int] = 
-Pattern Name[string] = <null>
-Pattern Cell[string] = 
-Scale[double] = 
-Is Annotation[boolean] = 
-Space[double] = 
-Cross Space[double] = 
-Cross Hatch[boolean] = 
-Pattern Angle[double] = 
-Cross Pattern Angle[double] = 
-Associative[boolean] = 
-Pattern Origin[point3d] = 
-Island Detection[int] = 
-XX-HatchEcsOrigin-XX[point3d] = 
-User Defined[boolean] = 
-Hatch Color[int] = 
-Hatch Weight[int] = 
-Hatch Line Style[int] = 
-Number of elements[int] = 2
-Total Length[double] = 
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 90.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Right
-Origin[point3d] = 42' 3.6693", 39' 4.4409", 20' 3.1250"
-Cell Name[string] = 
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
-Annotation Scale[double] = 
-
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = BOLT, current element id = 4977, id = 1 ---------
-Design State[string] = 
-Guid[string] = e1d1966a-75cf-4583-8a95-35b5bc1efe95
-Design State[string] = 
-Create Time[dateTime] = 
-Created By[string] = 
-Modification Time[dateTime] = 
-Modified By[string] = 
-Is Tag Reserved[boolean] = 
-Name[string] = MACHINE BOLT
-Description[string] = ASTM A 193 GR. B7 Machine Bolts with A194 GR. 2H Nuts
-Alias[string] = 
-PDx State[string] = 
-Psds State[string] = 
-Active Item[boolean] = False
-Functional InstanceId[string] = 
-Designer[string] = Administrator
-Size[string] = 
-Material[string] = CS
-Elevation[double] = 0 ft
-Paint Code[string] = 
-Created Timestamp[dateTime] = 9/10/2013 9:44:33 AM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 0 lb
-Manufacturer[string] = 
-Device Type Code[string] = 
-Number[string] = 
-Model[string] = 
-Nominal Size[string] = 
-Plant Area[string] = No Name
-Plant[string] = 
-Service[string] = 
-System[string] = 
-Unit[string] = U
-Additional Code[string] = 
-Equipment Unit Classification[string] = 
-Component Classification[string] = 
-Component Number[string] = 
-Pipe Tag Number[string] = 
-Related Equipment Plant[string] = 
-Related Piping Plant[string] = 
-Equipment Unit Code[string] = 
-Related Equipment System[string] = 
-Related Piping System[string] = 
-Detail_Sketch[string] = 
-Option Code[string] = 
-Catalog Name[string] = 
-EC Class Name[string] = BOLT
-Notes[string] = 
-Unit Of Measure[string] = IN
-Component State[string] = Design
-Short Description[string] = MACHINE BOLT
-P1_X[double] = 0.0000
-P1_Y[double] = 0.0000
-P1_Z[double] = 0.0000
-Grade[string] = 
-Element Geometry[binary] = <null>
-Line Number[string] = U-S-1-EX-OPM
-Order Number[string] = 
-Piece Mark[string] = 
-Shop Field[string] = FIELD
-Stock Number[string] = 
-Suffix[string] = 
-Transformation Matrix[bentley:TRANSFORM3D] = 
-Unit Number[string] = 
-Bolt Increment Length[double] = 0.2500
-Bolt Extension Length[double] = 0.3750
-Nut Length[double] = 0.7500
-Component Name[string] = MACHINE BOLT 12 IN AWWA / C115
-Bolt Diameter[double] = 0.8750
-Bolt Length[double] = 4.0000
-Code[string] = 
-Diameter[double] = 0.0000
-Facing[string] = RAISED_FACE
-Length[double] = 0.0000
-Nominal Diameter[double] = 12.0000
-Number Of Bolts[int] = 12
-Rating[string] = CL150
-Schedule[string] = 
-Specification[string] = EX-OPM
-Standard[string] = AWWA / C115
-
--------- BOUNDARY_TYPE_Open --------
-Is Filled:0
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
-
--------- MACHINE BOLT 12 IN AWWA / C115 --------
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
 
 Start Point [X]: 1.28948e+07
 Start Point [Y]: 1.2e+07
 Start Point [Z]: 6.17538e+06
 
 End Point [X]: 1.28948e+07
-End Point [Y]: 1.15428e+07
-End Point [Z]: 6.17538e+06
+End Point [Y]: 1.2e+07
+End Point [Z]: 6.96398e+06
 
 FromOriginAndDirection
 Starting Point [X]: 0
 Starting Point [Y]: 0
-Starting Point [Z]: 2.12888e-312
+Starting Point [Z]: 4.05579e-312
 
-Tangent [X]: 4.65449e-319
-Tangent [Y]: 4.5836e-319
+Tangent [X]: 4.04739e-320
+Tangent [Y]: 2.47922e-320
 Tangent [Z]: 4.94066e-324
 
-Curve Line String Length: 457200
+Curve Line String Length: 788603
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 374650.000000
+Range [YLength] = 374650.000000
+Range [ZLength] = 788602.922519
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 444.016307
+qRotation [W] = 444.017433
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 12894800.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6175375.000000
+
+Center of BASE Circle [X] = 12894800.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 6175375.000000
+
+Center of TOP Circle [X] = 12894800.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 6963977.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 1.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 0.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.000000
+
+Radius at BASE = 187325.000000
+Radius at TOP = 187325.000000
+
+True if the end cap is enabled = 0
+
+ Cylinder 
 
 
--------- BOUNDARY_TYPE_Outer --------
-Is Filled:1
---------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+Centroid1 [X] = 12894800.000000
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 6569676.461259
+Area1 = 928183816292.182251
 
-Is Circular: 1
+Centroid2 [X] = 0.000000
+Centroid2 [Y] = 0.000000
+Centroid2 [Z] = 0.000000
+Volume = 0.000000
+Area2 = 928183816292.182251
+
+
+
+-------- BOUNDARY_TYPE_Open --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+Start Point [X]: 1.28948e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 6.17538e+06
+
+End Point [X]: 1.28948e+07
+End Point [Y]: 1.2e+07
+End Point [Z]: 6.96398e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 4.05579e-312
+
+Tangent [X]: 4.04739e-320
+Tangent [Y]: 3.52565e-320
+Tangent [Z]: 4.94066e-324
+
+Curve Line String Length: 788603
+
+
 -------- BOUNDARY_TYPE_None --------
 Is Filled:0
 --------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
 
--------- MACHINE BOLT 12 IN AWWA / C115 --------
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
 
 point 0 [X] = 1.28948e+07
 point 0 [Y] = 1.2e+07
 point 0 [Z] = 6.17538e+06
 
 
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
+
 ===================================================
 ===================================================
-Element Description: MACHINE BOLT 12 IN AWWA / C115
-Element: ID 4977
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 4940
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 4994
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = NormalCellElement, current element id = 4994, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID[long] = 4994
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:35 AM
+Size[int] = 252
+Linkages[int] = 5
+XAttributes[int] = 5
+Type[string] = Linear
+Class[int] = Primary
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = Not New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 22' 2.9763", 38' 9.0659", 23' 8.7973"
+Range High[point3d] = 40' 9.6693", 39' 11.8159", 24' 11.5474"
+Pattern Name[string] = <null>
+Number of elements[int] = 2
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = 180.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Bottom
+Origin[point3d] = 40' 9.6693", 39' 4.4409", 24' 4.1724"
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- ClassName = PIPE, current element id = 4994, id = 1 ---------
+Guid[string] = a8c6d11b-756e-4a53-bbab-375b3eb9d88c
+Name[string] = Pipe 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B36.10 12 PE Pipe
+Active Item[boolean] = False
+Designer[string] = Administrator
+Material[string] = STL
+Elevation[double] = 0 ft
+Created Timestamp[dateTime] = 9/10/2013 9:44:17 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 993.21 lb
+Manufacturer[string] = MFACT
+Plant Area[string] = No Name
+Service[string] = S
+System[string] = S
+Unit[string] = U
+Nominal Diameter[double] = 12 in
+Schedule[string] = 40
+Short Description[string] = Pipe
+Specification[string] = EX-OPM
+Spec ID[string] = 258855df2c6c483cba6b62075bc7bf72
+Standard[string] = ASME - B36.10
+EC Class Name[string] = PIPE
+Unit Of Measure[string] = IN
+Line Number[string] = U-S-1-EX-OPM
+Insulation Thickness[double] = 1 in
+Insulation Material[string] = ARNOSITE_ASBESTOS
+Length[double] = 222.693 in
+Inside Diameter[double] = 0 in
+Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
+Outside Diameter[double] = 0 in
+Hub Depth[double] = 0 in
+Hub Width[double] = 0 in
+Component Name[string] = Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Component State[string] = Design
+Length Effective[double] = 222.6929
+Design Length Center To Branch End Effective[double] = 0.0000
+Design Length Center To Outlet End Effective[double] = 0.0000
+Design Length Center To Run End Effective[double] = 0.0000
+Wall Thickness[double] = 0.3750
+Update Graphics[boolean] = True
+Nominal Diameter Run End[double] = 12.0000
+Element Geometry[binary] = <null>
+Weight[double] = 53.52 lb
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 5656400.000000
+Range [YLength] = 323850.000000
+Range [ZLength] = 323850.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = -0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Center of BASE Circle [X] = 12437600.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 7421177.922519
+
+Center of TOP Circle [X] = 6781200.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 7421177.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+
+Radius at BASE = 161925.000000
+Radius at TOP = 161925.000000
+
+True if the end cap is enabled = 0
+
+ Cylinder 
+
+
+Centroid1 [X] = 9609400.000000
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 7421177.922519
+Area1 = 5754848402485.101563
+
+Centroid2 [X] = 0.000000
+Centroid2 [Y] = 0.000000
+Centroid2 [Z] = 0.000000
+Volume = 0.000000
+Area2 = 5754848402485.101563
+
+
+
+-------- BOUNDARY_TYPE_Open --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+Start Point [X]: 1.24376e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 7.42118e+06
+
+End Point [X]: 6.7812e+06
+End Point [Y]: 1.2e+07
+End Point [Z]: 7.42118e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 4.05579e-312
+
+Tangent [X]: 8.09477e-320
+Tangent [Y]: 6.62591e-320
+Tangent [Z]: 4.94066e-324
+
+Curve Line String Length: 5.6564e+06
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 5656400.000000
+Range [YLength] = 374650.000000
+Range [ZLength] = 374650.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = -0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Center of BASE Circle [X] = 12437600.000000
+Center of BASE Circle [Y] = 12000000.000000
+Center of BASE Circle [Z] = 7421177.922519
+
+Center of TOP Circle [X] = 6781200.000000
+Center of TOP Circle [Y] = 12000000.000000
+Center of TOP Circle [Z] = 7421177.922519
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 1.000000
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+
+Radius at BASE = 187325.000000
+Radius at TOP = 187325.000000
+
+True if the end cap is enabled = 0
+
+ Cylinder 
+
+
+Centroid1 [X] = 9609400.000000
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 7421177.922519
+Area1 = 6657569720521.980469
+
+Centroid2 [X] = 0.000000
+Centroid2 [Y] = 0.000000
+Centroid2 [Z] = 0.000000
+Volume = 0.000000
+Area2 = 6657569720521.980469
+
+
+
+-------- BOUNDARY_TYPE_Open --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+Start Point [X]: 1.24376e+07
+Start Point [Y]: 1.2e+07
+Start Point [Z]: 7.42118e+06
+
+End Point [X]: 6.7812e+06
+End Point [Y]: 1.2e+07
+End Point [Z]: 7.42118e+06
+
+FromOriginAndDirection
+Starting Point [X]: 0
+Starting Point [Y]: 0
+Starting Point [Z]: 4.05579e-312
+
+Tangent [X]: 8.09477e-320
+Tangent [Y]: 7.67235e-320
+Tangent [Z]: 4.94066e-324
+
+Curve Line String Length: 5.6564e+06
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+-------- Pipe 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+point 0 [X] = 6.7812e+06
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
+
+===================================================
+===================================================
+Element Description: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 4994
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID: 5005
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = NormalCellElement, current element id = 5005, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID[long] = 5005
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 252
+Linkages[int] = 5
+XAttributes[int] = 5
+Type[string] = elbow
+Class[int] = Primary
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 40' 9.6693", 38' 9.0659", 22' 10.1723"
+Range High[point3d] = 42' 11.0443", 39' 11.8159", 24' 11.5474"
+Pattern Name[string] = <null>
+Number of elements[int] = 2
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = -180.0000°
+Rotation-Y[double] = -90.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 90.0000°
+Orientation[int] = Right
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 22' 10.1724"
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- ClassName = LONG_RADIUS_90_DEGREE_PIPE_ELBOW, current element id = 5005, id = 1 ---------
+Guid[string] = d6302bb1-971f-45b4-af03-5b402791e3cd
+Name[string] = Pipe Elbow 90 Degree Long Radius 12 EX-OPM U-S-1-EX-OPM
+Description[string] = B16.9 12 BW Pipe Elbow 90 Degree Long Radius
+Active Item[boolean] = False
+Designer[string] = Administrator
+Material[string] = STL
+Elevation[double] = 0 ft
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 125 lb
+Manufacturer[string] = MFACT
+Plant Area[string] = No Name
+Service[string] = S
+System[string] = S
+Unit[string] = U
+Nominal Diameter[double] = 12 in
+Schedule[string] = 40
+Short Description[string] = Pipe Elbow 90 Degree Long Radius
+Specification[string] = EX-OPM
+Spec ID[string] = af623c9e74d145eca2a72fc075f53a30
+Standard[string] = ASME - B36.10
+EC Class Name[string] = LONG_RADIUS_90_DEGREE_PIPE_ELBOW
+Unit Of Measure[string] = IN
+Line Number[string] = U-S-1-EX-OPM
+Insulation Thickness[double] = 1 in
+Insulation Material[string] = ARNOSITE_ASBESTOS
+Length[double] = 36 in
+Inside Diameter[double] = 0 in
+Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
+Outside Diameter[double] = 0 in
+Hub Depth[double] = 0 in
+Hub Width[double] = 0 in
+Component Name[string] = Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Component State[string] = Design
+Length Effective[double] = 36.0000
+Design Length Center To Branch End Effective[double] = 0.0000
+Design Length Center To Outlet End Effective[double] = 18.0000
+Design Length Center To Run End Effective[double] = 18.0000
+Wall Thickness[double] = 0.3750
+Update Graphics[boolean] = True
+Nominal Diameter Run End[double] = 12.0000
+Element Geometry[binary] = <null>
+Angle[double] = 90.0000
+Design Length Center To Outlet End[double] = 18.0000
+Design Length Center To Run End[double] = 18.0000
+Major Radius[double] = 0.0000
+Minor Radius[double] = 0.0000
+-------- Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 712479.718882
+Range [YLength] = 417204.718882
+Range [ZLength] = 712479.718882
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = -0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.577350
+vRotation [Y] = -0.577350
+vRotation [Z] = -0.577350
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
+
+Range High = 13103402.359441
+Range Low = 12390922.640559
+DiagonalDistanceXY = 825643.462564
+DiagonalDistance = 1090556.957290
+Range Difference = 712479.718882
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.500000
+Axes Rotation (Quaternion) [Y] = 0.500000
+Axes Rotation (Quaternion) [Z] = 0.500000
+Axes Rotation (Quaternion) [W] = -0.500000
+
+Center Point Rotation [X] = 12437600.000000
+Center Point Rotation [Y] = 12000000.000000
+Center Point Rotation [Z] = 6963977.922519
+
+Center [X] = 12437600.000000
+Center [Y] = 12000000.000000
+Center [Z] = 6963977.922519
+
+Vector X [X] = 0.000000
+Vector X [Y] = 0.000000
+Vector X [Z] = 1.000000
+
+Vector Y [X] = 1.000000
+Vector Y [Y] = 0.000000
+Vector Y [Z] = 0.000000
+
+Major Radius = 457200.000000
+Minor Radius = 161925.000000
+Sweep Angle = 1.570796
+Sweep Radians = 1.570796
+
+Radius Major (Elbow Radius) = 457200.000000
+Radius Minor (Pipe Diameter) = 161925.000000
+
+True if the end cap is enabled = 0
+
+Centroid1 [X] = 12746917.134540
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 7273295.057059
+Area1 = 730667638677.931396
+
+Centroid2 [X] = 0.000000
+Centroid2 [Y] = 0.000000
+Centroid2 [Z] = 0.000000
+Volume = 0.000000
+Area2 = 730667638677.931396
+
+
+
+-------- BOUNDARY_TYPE_Open --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1-------- Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+Range [XLength] = 743073.849499
+Range [YLength] = 473198.849499
+Range [ZLength] = 743073.849499
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = -0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.577350
+vRotation [Y] = -0.577350
+vRotation [Z] = -0.577350
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
+
+Range High = 13131399.424749
+Range Low = 12388325.575251
+DiagonalDistanceXY = 880951.699570
+DiagonalDistance = 1152490.625899
+Range Difference = 743073.849499
+Axes Coordinates Axes, XY in major Plane, Z through hole
+Axes Rotation (Quaternion) [X] = 0.500000
+Axes Rotation (Quaternion) [Y] = 0.500000
+Axes Rotation (Quaternion) [Z] = 0.500000
+Axes Rotation (Quaternion) [W] = -0.500000
+
+Center Point Rotation [X] = 12437600.000000
+Center Point Rotation [Y] = 12000000.000000
+Center Point Rotation [Z] = 6963977.922519
+
+Center [X] = 12437600.000000
+Center [Y] = 12000000.000000
+Center [Z] = 6963977.922519
+
+Vector X [X] = 0.000000
+Vector X [Y] = 0.000000
+Vector X [Z] = 1.000000
+
+Vector Y [X] = 1.000000
+Vector Y [Y] = 0.000000
+Vector Y [Z] = -0.000000
+
+Major Radius = 457200.000000
+Minor Radius = 187325.000000
+Sweep Angle = 1.570796
+Sweep Radians = 1.570796
+
+Radius Major (Elbow Radius) = 457200.000000
+Radius Minor (Pipe Diameter) = 187325.000000
+
+True if the end cap is enabled = 0
+
+Centroid1 [X] = 12753093.230526
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 7279471.153045
+Area1 = 845282170235.253906
+
+Centroid2 [X] = 0.000000
+Centroid2 [Y] = 0.000000
+Centroid2 [Z] = 0.000000
+Volume = 0.000000
+Area2 = 845282170235.253906
+
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+-------- Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+-------- Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10 --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
+
+===================================================
+===================================================
+Element Description: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element: ID 5005
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element ID: 5029
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = NormalCellElement, current element id = 5029, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] =  12  U-S-1-EX-OPM
+Element ID[long] = 5029
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 224
+Linkages[int] = 5
+XAttributes[int] = 4
+Type[string] = Generic
+Class[int] = Primary
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 42' 3.4693", 39' 4.2409", 22' 9.9723"
+Range High[point3d] = 42' 3.8693", 39' 4.6409", 22' 10.3724"
+Pattern Name[string] = <null>
+Number of elements[int] = 2
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = -90.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 90.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Left
+Origin[point3d] = 42' 3.6693", 39' 4.4409", 22' 10.1724"
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- ClassName = WELD, current element id = 5029, id = 1 ---------
+Guid[string] = 4b5d9259-3ca0-47d7-85b1-03c08312c644
+Active Item[boolean] = False
+Designer[string] = Administrator
+Elevation[double] = 0 ft
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 0 lb
+Plant Area[string] = No Name
+Unit[string] = U
+Component State[string] = Design
+P1_X[double] = 0.0000
+P1_Y[double] = 0.0000
+P1_Z[double] = 0.0000
+Element Geometry[binary] = <null>
+Line Number[string] = U-S-1-EX-OPM
+Shop Field[string] = 0
+P2_X[double] = 0.0000
+P2_Y[double] = 0.0000
+P2_Z[double] = 0.0000
+Field Length[double] = 0.0000
+Type[string] = SHOP
+Component Name[string] =  12  U-S-1-EX-OPM
+Nominal Diameter[double] = 12.0000
+--------  12  U-S-1-EX-OPM --------
+Range [XLength] = 10160.000000
+Range [YLength] = 10160.000000
+Range [ZLength] = 10160.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 35.640567
+qRotation [Z] = 0.000000
+qRotation [W] = -35.640567
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -1.000000
+vRotation [Z] = -0.000000
+
+Origin [X] = 12894800.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 6963977.922519
+
+Range High = 12899880.000000
+Range Low = 12889720.000000
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
+
+DiagonalDistanceXY = 14368.409794
+DiagonalDistance = 17597.636205
+Range Difference = 10160.000000
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 0
+
+Centroid1 [X] = 12894800.000000
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 6963977.922519
+Area1 = 324292786.622399
+
+Centroid2 [X] = 12894800.000000
+Centroid2 [Y] = 12000000.000000
+Centroid2 [Z] = 6963977.922519
+Volume = 549135785347.261597
+Area2 = 324292786.622399
+
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  12  U-S-1-EX-OPM --------
+
+point 0 [X] = 1.28948e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 6.96398e+06
+
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element: ID 5029
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element ID: 5039
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = NormalCellElement, current element id = 5039, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] =  12  U-S-1-EX-OPM
+Element ID[long] = 5039
+Model[string] = Default
+Last Modified[dateTime] = 9/10/2013 3:45:23 AM
+Size[int] = 224
+Linkages[int] = 5
+XAttributes[int] = 4
+Type[string] = Generic
+Class[int] = Primary
+Template[long] = (None)
+Modified[boolean] = Not Modified
+New[boolean] = Not New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 40' 9.4693", 39' 4.2409", 24' 3.9723"
+Range High[point3d] = 40' 9.8693", 39' 4.6409", 24' 4.3724"
+Pattern Name[string] = <null>
+Number of elements[int] = 2
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = -180.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Front
+Origin[point3d] = 40' 9.6693", 39' 4.4409", 24' 4.1724"
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+
+------------ Instance Schema full name: OpenPlant_3D.01.08
+--------- ClassName = WELD, current element id = 5039, id = 1 ---------
+Guid[string] = 5b832a57-c80d-4b34-94c6-7549aa211589
+Active Item[boolean] = False
+Designer[string] = Administrator
+Elevation[double] = 0 ft
+Created Timestamp[dateTime] = 9/10/2013 9:45:23 AM
+Total Weight[double] = 0 lb
+Dry Weight[double] = 0 lb
+Plant Area[string] = No Name
+Unit[string] = U
+Component State[string] = Design
+P1_X[double] = 0.0000
+P1_Y[double] = 0.0000
+P1_Z[double] = 0.0000
+Element Geometry[binary] = <null>
+Line Number[string] = U-S-1-EX-OPM
+Shop Field[string] = 0
+P2_X[double] = 0.0000
+P2_Y[double] = 0.0000
+P2_Z[double] = 0.0000
+Field Length[double] = 0.0000
+Type[string] = SHOP
+Component Name[string] =  12  U-S-1-EX-OPM
+Nominal Diameter[double] = 12.0000
+--------  12  U-S-1-EX-OPM --------
+Range [XLength] = 10160.000000
+Range [YLength] = 10160.000000
+Range [ZLength] = 10160.000000
+
+Quaternion Rotation
+qRotation [X] = 61.727223
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 1.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 0.000000
+
+Origin [X] = 12437600.000000
+Origin [Y] = 12000000.000000
+Origin [Z] = 7421177.922519
+
+Range High = 12442680.000000
+Range Low = 12432520.000000
+Start Latitude LatitudeToVFraction = 0.000000
+latitudeSweep LatitudeToVFraction = 1.500000
+
+DiagonalDistanceXY = 14368.409794
+DiagonalDistance = 17597.636205
+Range Difference = 10160.000000
+Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
+Latitude for Truncation Plane Parallel to the Equator.
+Start Latitude = -1.570796
+Latitude Difference from Start Truncation Plane to end Truncation Plane.
+Latitude Sweep = 3.141593
+
+True if the end cap is enabled = 0
+
+Centroid1 [X] = 12437600.000000
+Centroid1 [Y] = 12000000.000000
+Centroid1 [Z] = 7421177.922519
+Area1 = 324292786.622399
+
+Centroid2 [X] = 12437600.000000
+Centroid2 [Y] = 12000000.000000
+Centroid2 [Z] = 7421177.922519
+Volume = 549135785347.261597
+Area2 = 324292786.622399
+
+
+
+-------- BOUNDARY_TYPE_None --------
+Is Filled:0
+--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------
+
+--------  12  U-S-1-EX-OPM --------
+
+point 0 [X] = 1.24376e+07
+point 0 [Y] = 1.2e+07
+point 0 [Z] = 7.42118e+06
+
+
+===================================================
+===================================================
+Element Description:  12  U-S-1-EX-OPM
+Element: ID 5039
 ===================================================
 ===================================================
 

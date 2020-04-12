@@ -16,12 +16,12 @@ int ReaderPropertiesBundle::getLocalId()
 	return this->localId;
 }
 
-std::vector<ReaderPropertyDefinition> ReaderPropertiesBundle::getProperties()
+std::vector<ReaderPropertyDefinition*> ReaderPropertiesBundle::getProperties()
 {
 	return this->properties;
 }
 
-void ReaderPropertiesBundle::addProperty(ReaderPropertyDefinition readerPropertyDefinition)
+void ReaderPropertiesBundle::addProperty(ReaderPropertyDefinition* readerPropertyDefinition)
 {
 	this->properties.push_back(readerPropertyDefinition);
 }

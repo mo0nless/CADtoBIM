@@ -18,6 +18,7 @@
     <ClCompile Include="common\utils\sources\CurvesTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
+    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
+    <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
@@ -82,10 +84,13 @@
     <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
+    <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />

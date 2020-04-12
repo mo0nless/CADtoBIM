@@ -30,19 +30,23 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		std::string valueAsString = StringUtils::getString(wStr);
 		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
-
 		if (!valueAsString.empty()) {
 			//mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties,smartFeatureTypeEnum);
-			readerPropertiesBundle->addProperty(ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal));
+			readerPropertiesBundle->addProperty(new ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal));
 			//ReaderPropertyDefinition* readerPropertyDefinition =
 
+			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
+				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
+				<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+
+			//outfile << "val " << propertyName << "["
+			//	<< StringUtils::getString(ecProp->GetTypeName()) << "] "
+			//	<< "= " << ecVal.GetUtf8CP() << std::endl;
 		}
 
 		
 		
-		outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
-			<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-			<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+
 
 		//HARD CODED FOR CURVES//
 		/*if (propertyName == "Degree")
