@@ -4,8 +4,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 {
 		std::string name = "PrimitiveTest";
 		IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-		std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-		//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 		typedef Ifc4::IfcGloballyUniqueId guid2;
 
 		Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -118,8 +118,9 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 		ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcBundleVector, file);
 
-		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-		ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcBundleVector, file);
+		// TODO fix error which appears in ifc reader
+		//IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+		//ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcBundleVector, file);
 
 		typedef Ifc4::IfcGloballyUniqueId guid;
 
