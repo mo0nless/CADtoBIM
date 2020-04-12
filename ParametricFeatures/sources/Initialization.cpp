@@ -18,6 +18,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	IfcBuilder* ifcBuilder = new IfcBuilder();
 	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
 	
+
 	return SUCCESS;
 }
 #pragma warning( pop ) 

@@ -3,7 +3,7 @@
 #include "../../../stdafx.h"
 #include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../curves/headers/IfcCurvesPrimitivesBuilder.h"
+#include "../../curves/headers/IfcShapesEnhancer.h"
 #include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 //#include "../../../modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
 

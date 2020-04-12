@@ -1,7 +1,7 @@
 #include "../headers/InterpolationGraphicProperties.h"
 
 
-InterpolationGraphicProperties::InterpolationGraphicProperties()
+InterpolationGraphicProperties::InterpolationGraphicProperties():ICurveGraphicProperties(CurvesPrimitivesTypeEnum::INTERPOLATION_CURVE)
 {
 	this->mDegree = 0;
 	this->mOrder = 0;

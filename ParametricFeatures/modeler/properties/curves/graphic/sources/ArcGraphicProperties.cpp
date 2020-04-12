@@ -1,6 +1,6 @@
 #include "../headers/ArcGraphicProperties.h"
 
-ArcGraphicProperties::ArcGraphicProperties()
+ArcGraphicProperties::ArcGraphicProperties():ICurveGraphicProperties(CurvesPrimitivesTypeEnum::ARC)
 {
 	this->mDirectionX = DVec3d();
 	this->mDirectionY = DVec3d();
@@ -8,7 +8,7 @@ ArcGraphicProperties::ArcGraphicProperties()
 	this->mLength = 0.0;
 	this->mIsCircular = false;
 	this->mIsFullEllipse = false;
-	this->mCenter = DPoint3d();
+	this->mCenter = DVec3d();
 	this->mSweepAngle = 0.0;
 	this->mStartAngle = 0.0;
 	this->mRadiusX = 0.0;
@@ -85,10 +85,10 @@ double ArcGraphicProperties::getRadiusY()
 
 void ArcGraphicProperties::setCenterOut(DPoint3d newCenter)
 {
-	this->mCenter = newCenter;
+	this->mCenter.Init(newCenter);
 }
 
-DPoint3d ArcGraphicProperties::getCenterOut()
+DVec3d ArcGraphicProperties::getCenterOut()
 {
 	return this->mCenter;
 }

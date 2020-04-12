@@ -64,156 +64,44 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 	std::ofstream outfile;
 	if (!curves.empty()) 
 	{
-		CurvesPrimitivesContainer* curvesPrimitivesContainer = new CurvesPrimitivesContainer();
-		curvesPrimitivesContainer->setElementContainerDescriptor(dictionaryProperties->getElementName());
-		curvesPrimitivesContainer->setIsClosed(curves.IsPhysicallyClosedPath());
-
-		if (isFilled)
+		//TODO [SB] Verify that it's the correct way to identify shapes
+		CurvesShapeTypeEnum curveShapesTypeEnum = CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(dictionaryProperties->getElementName());
+		
+		switch (curveShapesTypeEnum)
 		{
-			DPoint3d centroID, fixedPoint;
-			DRange3d range;
-			DVec3d normal, row, column, planeVectorX, planeVectorY;
-			double area, scalar;
-			DMatrix4d products;
-			RotMatrix rotMatrix;
-			Transform localToWorld, worldToLocal;
-
-			curves.CentroidNormalArea(centroID, normal, area);
-			curves.ComputeSecondMomentAreaProducts(products);			
-			curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-
-			//localToWorld.GetFixedPlane()
-			localToWorld.GetFixedPlane(fixedPoint, planeVectorX, planeVectorY);
-			products.GetBlocks(rotMatrix, row, column, scalar);
-			//rotMatrix.
-
-			curvesPrimitivesContainer->setDirectionXY(planeVectorX, planeVectorY);
-			curvesPrimitivesContainer->setIsFilled(isFilled);
-			curvesPrimitivesContainer->setArea(area);
-			curvesPrimitivesContainer->setCentroIDxy(centroID);
-			curvesPrimitivesContainer->setNormal(normal);
-		}
-
-		switch (curves.GetBoundaryType())
-		{
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
-		{
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::CIRCLE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				CircleShapesGraphicProperties* shapesGraphicProperties = new CircleShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::SHAPE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				GenericShapesGraphicProperties* shapesGraphicProperties = new GenericShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-						
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::COMPLEX_CHAIN:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				ComplexChainShapesGraphicProperties* shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::ELLIPSE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				EllipseShapesGraphicProperties* shapesGraphicProperties = new EllipseShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
+			case CurvesShapeTypeEnum::CURVE:
 			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
+				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
-		}
 			break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
-		{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
-			outfile << "Is Filled:" << isFilled << std::endl;
-			outfile.flush();
-			outfile.close();
-			
-			curvesPrimitivesContainer->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				ICurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(curve);
-				curvesPrimitivesContainer->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			default:
+				break;
 		}
-			break;
-		default:
-			break;
-		}
-
-		dictionaryProperties->getGraphicProperties()->setCurvesPrimitivesContainer(curvesPrimitivesContainer);
 	}
 	
 	return ERROR;
@@ -248,7 +136,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::fixed;
 	outfile.close();
-
+	
 	//DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 
 	switch (entity.GetEntityType())
@@ -398,7 +286,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------- "<< dictionaryProperties->getElementName() <<" --------" << std::endl;
+			outfile << "-------- " << dictionaryProperties->getElementName() << " --------" << std::endl;
 			outfile.close();
 
 			boxDetails.GetCorners(corners);
@@ -406,15 +294,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
 			boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
-					
+
 			localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-			
+
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
 			mGraphicsProcessorEnhancer.PrintPrincipalProperties(range, vectorRotation, qRotation, localToWorld);
-						
+
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::fixed;
 
@@ -466,18 +354,25 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			outfile << "Size at the TOP [X] = " << boxDetails.m_topX << std::endl;
 			outfile << "Size at the TOP [Y] = " << boxDetails.m_topY << std::endl;
-			
+
 			outfile << std::endl;
 
 			outfile << "True if the end cap is enabled = " << boxDetails.m_capped << std::endl;
 
 			outfile.close();
-		};
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+			// get local to world class to get the X,Y,Z axes 
+			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
-		// set slab graphic properties
-		mGraphicsProcessorEnhancer.setSlabGraphicProperties(boxDetails, primitiveCommonGraphicProperties);
+			BoxGraphicProperties* boxGraphicProperties = new BoxGraphicProperties();
+
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)boxGraphicProperties);
+
+			// set X,Y,Z axes
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)boxGraphicProperties, localToWorld, boxDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setBoxGraphicProperties(boxDetails, boxGraphicProperties);
+		}
 
 	}
 	break;
@@ -504,7 +399,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			coneDetails.GetTransforms(localToWorld, worldToLocal, radiusA, radiusB);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
@@ -541,12 +435,41 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << coneDetails.m_capped << std::endl;
 
 			outfile.close();
+
+			// get local to world class to get the X,Y,Z axes 
+			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			//SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
+
+			//// set centroid, area and volume
+			//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
+
+			//// set Z,Y,Z axes
+			//mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
+
+			//if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
+			//	CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
+			//	if (cylinderGraphicProperties != nullptr) {
+			//		mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
+			//	}
+			//}
+			//else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
+
+			//	ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
+			//	if (coneGraphicProperties != nullptr ) {
+			//		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
+
+			//	}
+			//}
+
+			mGraphicsProcessorEnhancer.processConeAndCylinder(primitive);
 		}
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 
 		// set cone graphic properties
-		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
+
+		//mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -611,7 +534,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -699,7 +622,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -764,7 +687,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 		}
 
-		mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
+		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -813,10 +736,14 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << sphereDetails.m_capped << std::endl;
 			outfile.close();
 
-		}		
+			SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		mGraphicsProcessorEnhancer.setSphereGraphicProperties(primitiveCommonGraphicProperties);
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)sphereGraphicProperties);
+			
+			// set spehere properties
+			mGraphicsProcessorEnhancer.setSphereGraphicProperties(sphereGraphicProperties);
+		}		
 
 	}
 	break;
@@ -906,10 +833,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << torusDetails.m_capped << std::endl;
 
 			outfile.close();
-		}
 
-		PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-		mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, primitiveCommonGraphicProperties);
+			// get local to world class to get the X,Y,Z axes 
+			torusDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
+
+			// set centroid, area and volume
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)torusGraphicProperties);
+
+			// set X,Y,Z axes
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)torusGraphicProperties, localToWorld, torusDetails.ParameterizationSign());
+			mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, torusGraphicProperties);
+		}
 
 	}
 	break;

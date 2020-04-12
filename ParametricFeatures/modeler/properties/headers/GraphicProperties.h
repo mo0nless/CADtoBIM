@@ -1,23 +1,37 @@
+
 #pragma once
 
-#include "../primitives/graphic/headers/PrimitiveGraphicProperties.h"
-#include "../curves/headers/CurvesPrimitivesContainer.h"
 
-/**
- *   Class contains needed graphic properties
- */
+#include <DgnPlatform/ElementGeometry.h>
+
 class GraphicProperties {
 
 private:
-	std::vector<PrimitiveGraphicProperties*> primitiveGraphicPropertiesVector;
-	CurvesPrimitivesContainer* pCurvesPrimitivesContainer;
+
+	double volume;
+	double area;
+
+	DVec3d centroid; 
+
+	DVec3d vectorAxisX;
+	DVec3d vectorAxisY;
+	DVec3d vectorAxisZ;
 
 public:
-	GraphicProperties();
+	GraphicProperties() {};
+	virtual ~GraphicProperties() {}
 
-	bool tryGetCurvesPrimitivesContainer(CurvesPrimitivesContainer*& curvesPrimitivesContainersR);
-	void setCurvesPrimitivesContainer(CurvesPrimitivesContainer* newCurvesPrimitivesContainer);
+	double getArea();
+	void setArea(double newArea);
 
-	void addPrimitiveGraphicProperties(PrimitiveGraphicProperties* newPrimitiveGraphicProperties);
-	std::vector<PrimitiveGraphicProperties*> getPrimitiveGraphicPropertiesVector();
+	double getVolume();
+	void setVolume(double newVolume);
+	
+	DVec3d getCentroid();
+	void setCentroid(DVec3d newCentroid);
+	
+	void setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ);
+	DVec3d getVectorAxisX();
+	DVec3d getVectorAxisY();
+	DVec3d getVectorAxisZ();
 };

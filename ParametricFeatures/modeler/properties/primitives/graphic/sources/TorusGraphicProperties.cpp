@@ -1,6 +1,6 @@
 #include "../headers/TorusGraphicProperties.h"
 
-TorusGraphicProperties::TorusGraphicProperties()
+TorusGraphicProperties::TorusGraphicProperties():SolidPrimitiveProperty(PrimitiveTypeEnum::TORUS)
 {
 	this->mMinorRadius = 0;
 	this->mMajorRadius = 0;

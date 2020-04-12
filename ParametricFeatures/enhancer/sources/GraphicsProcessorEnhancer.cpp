@@ -17,219 +17,7 @@ DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
-void GraphicsProcessorEnhancer::setSlabGraphicProperties(DgnBoxDetail dgnBoxDetail, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-{
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << " BOX "<< std::endl;
-	outfile << std::endl;
-
-	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::BOX);
-
-	// calculate axis Z
-	DVec3d vectorBaseZ;
-	vectorBaseZ.CrossProduct(dgnBoxDetail.m_vectorX, dgnBoxDetail.m_vectorY);
-
-	// set x,y,z axis in dectionary
-	primitiveCommonGraphicProperties->setVectorAxisX(dgnBoxDetail.m_vectorX);
-	primitiveCommonGraphicProperties->setVectorAxisY(dgnBoxDetail.m_vectorY);
-	primitiveCommonGraphicProperties->setVectorAxisZ(vectorBaseZ);
-
-	// set slab properties
-	SlabGraphicProperties* slabProperties = new SlabGraphicProperties();
-	slabProperties->setLength(dgnBoxDetail.m_topX);
-	slabProperties->setWidth(dgnBoxDetail.m_topY);
-
-	double height;
-	if (primitiveCommonGraphicProperties->getVolume() > 0) 
-	{
-		height = primitiveCommonGraphicProperties->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY);
-	}
-	else 
-	{
-		double x = abs(dgnBoxDetail.m_baseOrigin.x - dgnBoxDetail.m_topOrigin.x);
-		double y = abs(dgnBoxDetail.m_baseOrigin.y - dgnBoxDetail.m_topOrigin.y);
-		double z = abs(dgnBoxDetail.m_baseOrigin.z - dgnBoxDetail.m_topOrigin.z);
-
-		height = sqrt(x*x + y*y + z*z);
-	}
-
-	slabProperties->setHeight(height);
-
-	// set slab properties in graphic properties
-	primitiveGraphicProperties->setSlabProperties(slabProperties);
-	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-
-	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-}
-
-void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-{
-	double height;
-	if (primitiveCommonGraphicProperties->getVolume() > 0) 
-	{
-		 height = (3 * primitiveCommonGraphicProperties->getVolume()) / 
-			 (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
-	}
-	else 
-	{
-		double x = abs(cgnConeDetail.m_centerA.x - cgnConeDetail.m_centerB.x);
-		double y = abs(cgnConeDetail.m_centerA.y - cgnConeDetail.m_centerB.y);
-		double z = abs(cgnConeDetail.m_centerA.z - cgnConeDetail.m_centerB.z);
-
-		height = sqrt(x*x + y*y + z*z);
-	}
-
-	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	// calculate axis Z
-	DVec3d vectorBaseZ;
-	vectorBaseZ.CrossProduct(cgnConeDetail.m_vector0, cgnConeDetail.m_vector90);
-
-	// set x,y,z axis in dectionary
-	primitiveCommonGraphicProperties->setVectorAxisX(cgnConeDetail.m_vector0);
-	primitiveCommonGraphicProperties->setVectorAxisY(cgnConeDetail.m_vector90);
-	primitiveCommonGraphicProperties->setVectorAxisZ(vectorBaseZ);
-
-
-	if (cgnConeDetail.m_radiusA == cgnConeDetail.m_radiusB && cgnConeDetail.m_radiusA > 0)
-	{
-		std::ofstream outfile;
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::fixed;
-		outfile << std::endl;
-		outfile << " Cylinder " << std::endl;
-		outfile << std::endl;
-		primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::CYLINDER);
-
-		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
-		cylinderGraphicProperties->setRadius(cgnConeDetail.m_radiusA);
-		cylinderGraphicProperties->setHeight(height);
-		cylinderGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
-
-
-		primitiveGraphicProperties->setCylinderGraphicProperties(cylinderGraphicProperties);
-
-	}
-	else {
-		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties();
-
-		if (cgnConeDetail.m_radiusB == 0)
-		{
-			primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::CONE);
-			std::ofstream outfile;
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << " Cone " << std::endl;
-			outfile << std::endl;
-		}
-		else if (cgnConeDetail.m_radiusB > 0 && cgnConeDetail.m_radiusA != cgnConeDetail.m_radiusB)
-		{
-			primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::TRUNCATED_CONE);
-			std::ofstream outfile;
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << " Truncated cone " << std::endl;
-			outfile << std::endl;
-		}
-
-
-		if (cgnConeDetail.m_radiusA > cgnConeDetail.m_radiusB)
-		{
-			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
-			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
-			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
-			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
-		}
-		else 
-		{
-			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
-			primitiveCommonGraphicProperties->setVectorAxisX(-1 * primitiveCommonGraphicProperties->getVectorAxisX());
-			primitiveCommonGraphicProperties->setVectorAxisY(-1 * primitiveCommonGraphicProperties->getVectorAxisY());
-			primitiveCommonGraphicProperties->setVectorAxisZ(-1 * primitiveCommonGraphicProperties->getVectorAxisZ());
-
-			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusB);
-			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusA);
-			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerA);
-			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
-		}
-
-		coneGraphicProperties->setHeight(height);
-		primitiveGraphicProperties->setConeGraphicProperties(coneGraphicProperties);
-		
-	}
-	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-}
-
-void GraphicsProcessorEnhancer::setSphereGraphicProperties(PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-{
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << " Sphere " << std::endl;
-	outfile << std::endl;
-
-	double radius;
-	if (primitiveCommonGraphicProperties->getVolume() > 0) 
-	{
-		radius = pow(((primitiveCommonGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
-	}
-	else 
-	{
-		radius = -1;
-	}
-	SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
-	sphereGraphicProperties->setRadius(radius);
-
-	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::SPHERE);
-
-	primitiveGraphicProperties->setSphereGraphicProperties(sphereGraphicProperties);
-	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-
-	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-}
-
-void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties)
-{
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << " Torus " << std::endl;
-	outfile << std::endl;
-
-	TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
-	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
-	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
-	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
-	torusGraphicProperties->setSweepRadians(sweepRadians);
-
-	PrimitiveGraphicProperties* primitiveGraphicProperties = new PrimitiveGraphicProperties();
-	primitiveGraphicProperties->setTorusGraphicProperties(torusGraphicProperties);
-	primitiveGraphicProperties->setPrimitiveTypeEnum(PrimitiveTypeEnum::TORUS);
-
-	// calculate axis Z
-	DVec3d vectorBaseZ;
-	vectorBaseZ.CrossProduct(dgnTorusPipeDetail.m_vectorX, dgnTorusPipeDetail.m_vectorY);
-
-	// set x,y,z axis in dectionary
-	primitiveCommonGraphicProperties->setVectorAxisX(dgnTorusPipeDetail.m_vectorX);
-	primitiveCommonGraphicProperties->setVectorAxisY(dgnTorusPipeDetail.m_vectorY);
-	primitiveCommonGraphicProperties->setVectorAxisZ(vectorBaseZ);
-
-	primitiveGraphicProperties->setPrimitiveCommonGraphicProperties(primitiveCommonGraphicProperties);
-	pDictionaryProperties->getGraphicProperties()->addPrimitiveGraphicProperties(primitiveGraphicProperties);
-
-}
-
-PrimitiveCommonGraphicProperties* GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive)
+void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
 	std::ofstream outfile;
 	double area, volume;
@@ -238,6 +26,10 @@ PrimitiveCommonGraphicProperties* GraphicsProcessorEnhancer::PrintPrincipalAreaM
 	DVec3d momentxyz;
 
 	primitive.ComputePrincipalAreaMoments(area, centroid, axes, momentxyz);
+
+	// set the centroid values from here, because in the function bellow sometimes is 0
+	GraphicProperties->setCentroid(centroid);
+	GraphicProperties->setArea(area);
 
 	outfile.open(filePath, std::ios_base::app);
 
@@ -250,11 +42,9 @@ PrimitiveCommonGraphicProperties* GraphicsProcessorEnhancer::PrintPrincipalAreaM
 
 	outfile << std::endl;
 
-	PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = new PrimitiveCommonGraphicProperties();
-	primitiveCommonGraphicProperties->setArea(area);
-	primitiveCommonGraphicProperties->setCentroid(centroid);
 
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
+	GraphicProperties->setVolume(volume);
 
 	outfile << "Centroid2 [X] = " << centroid.x << std::endl;
 	outfile << "Centroid2 [Y] = " << centroid.y << std::endl;
@@ -264,10 +54,19 @@ PrimitiveCommonGraphicProperties* GraphicsProcessorEnhancer::PrintPrincipalAreaM
 	outfile << std::endl;
 
 	outfile.close();
-	primitiveCommonGraphicProperties->setVolume(volume);
 
-	return primitiveCommonGraphicProperties;
+}
 
+void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign)
+{
+	DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+	localToWorld.GetMatrixColumn(columnVectorX, 0);
+	localToWorld.GetMatrixColumn(columnVectorY, 1);
+	localToWorld.GetMatrixColumn(columnVectorZ, 2);
+	columnVectorZ = parametrizationSign * columnVectorZ;
+
+	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 }
 
 void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -303,6 +102,255 @@ void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d
 	outfile.close();
 }
 
+void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
+{
+	// TODO to be removed
+	// write to file the type of solide which was parsed
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " BOX "<< std::endl;
+	//outfile << std::endl;
+
+	// calculate height of the box
+	double height;
+	if (boxGraphicProperties->getVolume() > 0) {
+		height = boxGraphicProperties->getVolume() / (dgnBoxDetail.m_topX * dgnBoxDetail.m_topY);
+	}
+	else {
+		double x = abs(dgnBoxDetail.m_baseOrigin.x - dgnBoxDetail.m_topOrigin.x);
+		double y = abs(dgnBoxDetail.m_baseOrigin.y - dgnBoxDetail.m_topOrigin.y);
+		double z = abs(dgnBoxDetail.m_baseOrigin.z - dgnBoxDetail.m_topOrigin.z);
+
+		height = sqrt(x*x + y*y + z*z);
+	}
+
+	// set box properties
+	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
+	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
+	boxGraphicProperties->setHeight(height);
+
+	// add box graphic property to dictionary
+	pDictionaryProperties->addGraphicProperties(boxGraphicProperties);
+}
+
+void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
+{
+	// calculate height of the cone
+	double height;
+	if (coneGraphicProperties->getVolume() > 0) {
+		 height = (3 * coneGraphicProperties->getVolume()) /
+			 (PI*(pow(cgnConeDetail.m_radiusA, 2) + cgnConeDetail.m_radiusA*cgnConeDetail.m_radiusB + pow(cgnConeDetail.m_radiusB, 2)));
+	}
+	else {
+		double x = abs(cgnConeDetail.m_centerA.x - cgnConeDetail.m_centerB.x);
+		double y = abs(cgnConeDetail.m_centerA.y - cgnConeDetail.m_centerB.y);
+		double z = abs(cgnConeDetail.m_centerA.z - cgnConeDetail.m_centerB.z);
+
+		height = sqrt(x*x + y*y + z*z);
+	}
+	// set cone properties
+	coneGraphicProperties->setHeight(height);
+
+	if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE) {
+		coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
+		coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
+		coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
+		coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
+	}
+	else if (coneGraphicProperties->getPrimitiveTypeEnum() == PrimitiveTypeEnum::TRUNCATED_CONE) {
+		if (cgnConeDetail.m_radiusA > cgnConeDetail.m_radiusB)
+		{
+			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusA);
+			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusB);
+			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerB);
+			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerA);
+		}
+		else
+		{
+			// inverse the axes to handle a trimmed cone where the top radius is bigger than the base radius
+			coneGraphicProperties->setVectorAxis(-1* coneGraphicProperties->getVectorAxisX(), -1* coneGraphicProperties->getVectorAxisY(), -1* coneGraphicProperties->getVectorAxisZ());
+
+			// inverse the base radius with top radius
+			coneGraphicProperties->setBaseRadius(cgnConeDetail.m_radiusB);
+			coneGraphicProperties->setTopRadius(cgnConeDetail.m_radiusA);
+			
+			// inverse the base origin with top origin
+			coneGraphicProperties->setTopOrigin(cgnConeDetail.m_centerA);
+			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
+		}
+	}
+	// add property to the dictionary
+	this->pDictionaryProperties->addGraphicProperties(coneGraphicProperties);
+
+}
+
+void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
+{
+	// calculate height of the cylinder
+	double height;
+	if (cylinderGraphicProperties->getVolume() > 0)
+	{
+		height = (3 * cylinderGraphicProperties->getVolume()) /
+			(PI*(pow(dgnConeDetail.m_radiusA, 2) + dgnConeDetail.m_radiusA*dgnConeDetail.m_radiusB + pow(dgnConeDetail.m_radiusB, 2)));
+	}
+	else
+	{
+		double x = abs(dgnConeDetail.m_centerA.x - dgnConeDetail.m_centerB.x);
+		double y = abs(dgnConeDetail.m_centerA.y - dgnConeDetail.m_centerB.y);
+		double z = abs(dgnConeDetail.m_centerA.z - dgnConeDetail.m_centerB.z);
+
+		height = sqrt(x*x + y*y + z*z);
+	}
+	// set cylinder properties
+	cylinderGraphicProperties->setHeight(height);
+	cylinderGraphicProperties->setRadius(dgnConeDetail.m_radiusA);
+	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
+
+	// add property to the dictionary
+	this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
+
+}
+
+SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnConeDetail dgnConeDetail)
+{
+	// open plant modeler treats the cylinder as cone. in order to distinguish between them, we compare the radius to determine which exact solid we're dealing with
+	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0) {
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Cylinder " << std::endl;
+		outfile << std::endl;
+
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
+		return cylinderGraphicProperties;
+	} else if (dgnConeDetail.m_radiusB == 0) {
+			std::ofstream outfile;
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << " Cone " << std::endl;
+			outfile << std::endl;
+
+			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
+			return coneGraphicProperties;
+	} else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB) {
+			std::ofstream outfile;
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::fixed;
+			outfile << std::endl;
+			outfile << " Truncated cone " << std::endl;
+			outfile << std::endl;
+
+			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
+			return coneGraphicProperties;
+	}
+
+	return nullptr;
+}
+
+void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
+{
+	// TODO to enable if needed, but to be removed at the end
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " Sphere " << std::endl;
+	//outfile << std::endl;
+
+	// calculate the radius
+	double radius;
+	if (sphereGraphicProperties->getVolume() > 0) {
+		radius = pow(((sphereGraphicProperties->getVolume() / M_PI)*(3. / 4.)), 1. / 3.);
+	}
+	else {
+		radius = -1;
+	}
+	// set radius
+	sphereGraphicProperties->setRadius(radius);
+}
+
+void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
+{
+	// TODO to be enabled if needed, remove at the end
+	//std::ofstream outfile;
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << std::endl;
+	//outfile << " Torus " << std::endl;
+	//outfile << std::endl;
+
+	// set torus properties
+	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
+	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
+	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
+	torusGraphicProperties->setSweepRadians(sweepRadians);
+
+
+
+	// add torus property to the dictionary
+	pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
+
+}
+
+void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
+{
+	DgnConeDetail dgnConeDetail;
+	Transform localToWorld;
+	Transform worldToLocal;
+
+	primitive.TryGetDgnConeDetail(dgnConeDetail);
+	dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Cylinder " << std::endl;
+		outfile << std::endl;
+
+		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
+		
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)cylinderGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)cylinderGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setCylinderGraphicProperties(dgnConeDetail, cylinderGraphicProperties);
+
+	}
+	else if (dgnConeDetail.m_radiusB == 0)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Cone " << std::endl;
+		outfile << std::endl;
+
+		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
+	}
+	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
+	{
+		std::ofstream outfile;
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::fixed;
+		outfile << std::endl;
+		outfile << " Truncated cone " << std::endl;
+		outfile << std::endl;
+
+		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
+		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
+		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
+	}
+
+}
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -317,7 +365,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
 	{
 		AkimaGraphicProperties* curveGraphicProperties = new AkimaGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
@@ -350,20 +397,13 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
 	{
 		ArcGraphicProperties* curveGraphicProperties = new ArcGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc);
 
 		DEllipse3d ellipse;
 		DPoint3d centerOUT, startPoint, endPoint, centroID;
 		DVec3d directionX, directionY;
 		double* pQuatXYZW = nullptr;
 		double rx, ry, startAngle, sweepAngle, endAngle, length;
-
-		/*DPoint4dP poleArray;
-		DPoint3dP circlePoleArray;
-		int maxPole;
-		int* pNumPole = nullptr;
-		int* pNumSpan = nullptr;*/
-
+		
 		if (!curve->TryGetArc(ellipse))
 			break;
 
@@ -383,71 +423,11 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		curveGraphicProperties->setCenterOut(centerOUT);
 		curveGraphicProperties->setRadiusXY(rx, ry);
 		curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
-		/*ellipse.QuadricBezierPoles(poleArray, circlePoleArray, pNumPole, pNumSpan, maxPole);		
-		
-		ellipse.GetLimits(startAngle, endAngle);
-		*/
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
 		outfile << "Is Circular: " << ellipse.IsCircular();
-
-		/*outfile << "-------- " << pDictionaryProperties->getGeneralProperties()->getElementClassName() << " --------" << std::endl;
-		
-		outfile << std::endl;*/
-
-		//outfile << "pQuatXYZW [X] = " << *pQuatXYZW << std::endl;
-		
-
-		/*if (pNumPole != nullptr) {
-			outfile << "Number of Poles = " << *pNumPole << std::endl;
-			outfile << std::endl;
-		}
-		
-		outfile << "Max Poles = " << maxPole << std::endl;
-		outfile << std::endl;
-
-		if (pNumSpan != nullptr) {
-			outfile << "Number of Span = " << *pNumSpan << std::endl;
-			outfile << std::endl;
-		}
-
-		if (circlePoleArray != nullptr) {
-			outfile << "circlePoleArray point [X] = " << circlePoleArray->x << std::endl;
-			outfile << "circlePoleArray point [Y] = " << circlePoleArray->y << std::endl;
-			outfile << "circlePoleArray point [Z] = " << circlePoleArray->z << std::endl;
-			outfile << std::endl;
-		}
-		
-		if (poleArray != nullptr) {
-			DPoint3d rPoint;
-			poleArray->GetProjectedXYZ(rPoint);
-
-			outfile << "Normalized point [X] = " << rPoint.x << std::endl;
-			outfile << "Normalized point [Y] = " << rPoint.y << std::endl;
-			outfile << "Normalized point [Z] = " << rPoint.z << std::endl;
-			outfile << std::endl;
-		}*/
-
-		/*outfile << "Center point [X] = " << centerOUT.x << std::endl;
-		outfile << "Center point [Y] = " << centerOUT.y << std::endl;
-		outfile << "Center point [Z] = " << centerOUT.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "directionX [X] = " << directionX.x << std::endl;
-		outfile << "directionX [Y] = " << directionX.y << std::endl;
-		outfile << "directionX [Z] = " << directionX.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "directionY [X] = " << directionY.x << std::endl;
-		outfile << "directionY [Y] = " << directionY.y << std::endl;
-		outfile << "directionY [Z] = " << directionY.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "Start Angle = " << startAngle << std::endl;
-		outfile << "Sweep Angle = " << sweepAngle << std::endl;
-		outfile << std::endl;*/
 		outfile.close();
 
 		return curveGraphicProperties;
@@ -456,7 +436,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
 	{
 		BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
@@ -470,45 +449,25 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		DPoint3d startP, endP;
 		bvector<DPoint3d> polesControlP;
 
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 
 		if (bSpline != nullptr)
 		{
 			bSpline->ExtractEndPoints(startP, endP);
 
-			outfile << "BsplineCurve Length: " << bSpline->Length() << std::endl;
-			outfile << "BsplineCurve Order: " << bSpline->GetOrder() << std::endl;
-			outfile << std::endl;
-
-			outfile << "Start point [X] = " << startP.x << std::endl;
-			outfile << "Start point [Y] = " << startP.y << std::endl;
-			outfile << "Start point [Z] = " << startP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "End point [X] = " << endP.x << std::endl;
-			outfile << "End point [Y] = " << endP.y << std::endl;
-			outfile << "End point [Z] = " << endP.z << std::endl;
-			outfile << std::endl;
-
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
 			outfile << std::endl;
+			outfile.close();
 
 			bSpline->GetPoles(polesControlP);
-			for (size_t k = 0; k < polesControlP.size(); k++)
-			{
-				/*outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
-				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
-				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
-				outfile << std::endl;*/
-			}
-
+			
 			if (bSpline->AreKnotsValid()) {
 
 				bvector<double> inKnots, outKnots;
 				bvector<size_t> multiplicityKnots;
 				size_t highIndex, lowIndex;
 				bSpline->GetKnots(inKnots);
-								
+
 				bSpline->CompressKnots(inKnots, int(bSpline->GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
 
 				curveGraphicProperties->setAreKnotsValid(bSpline->AreKnotsValid());
@@ -520,55 +479,15 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setOrder(bSpline->GetOrder());
 
-			//return curveGraphicProperties;
-			// need to check for the knots and the weights
-		}
-		else if ((bSpline = curve->GetMSBsplineCurvePtr()) != nullptr)
-		{
-			bSpline->ExtractEndPoints(startP, endP);
-			outfile << "MSBsplineCurve Length: " << bSpline->Length() << std::endl;
-			outfile << "MSBsplineCurve Order: " << bSpline->GetOrder() << std::endl;
-			outfile << std::endl;
+			return curveGraphicProperties;
 
-			outfile << "Start point [X] = " << startP.x << std::endl;
-			outfile << "Start point [Y] = " << startP.y << std::endl;
-			outfile << "Start point [Z] = " << startP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "End point [X] = " << endP.x << std::endl;
-			outfile << "End point [Y] = " << endP.y << std::endl;
-			outfile << "End point [Z] = " << endP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-			outfile << std::endl;
-
-			bSpline->GetPoles(polesControlP);
-			for (size_t k = 0; k < polesControlP.size(); k++)
-			{
-				/*outfile << "Control point " << k << " [X] = " << polesControlP[k].x << std::endl;
-				outfile << "Control point " << k << " [Y] = " << polesControlP[k].y << std::endl;
-				outfile << "Control point " << k << " [Z] = " << polesControlP[k].z << std::endl;
-				outfile << std::endl;*/
-			}
-
-			curveGraphicProperties->setIsClosed(bSpline->IsClosed());
-			curveGraphicProperties->setIsSelfIntersect(false);
-			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setOrder(bSpline->GetOrder());
-
-			// need to check for the knots and the weights
-			//return curveGraphicProperties;
-
-		}	
-
-		return curveGraphicProperties;
+		}		
+		else { break; }
 	}
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector);
+		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
@@ -580,18 +499,17 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			CurveVectorCP cPvector = curve->GetChildCurveVectorCP();
 			for each (ICurvePrimitivePtr c in *cPvector)
 			{
-				// NEEDS TO BE CHECKED
+				//TODO [SB] NEEDS TO BE CHECKED Curve Vector
 				return processCurvePrimitives(c); 
 			}
 		}
 
-		return curveGraphicProperties;
+		//return curveGraphicProperties;
 	}
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
 	{
 		InterpolationGraphicProperties* curveGraphicProperties = new InterpolationGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
@@ -637,7 +555,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
 	{
 		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
@@ -691,48 +608,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setDirectionTanget(directionTangent);
-
-			/*segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-			outfile << "==============================================" << std::endl;
-
-			outfile << "ClosestApproachBounded: " << std::endl;
-			outfile << std::endl;
-
-			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << "Centroid [X] = " << centroid.x << std::endl;
-			outfile << "Centroid [Y] = " << centroid.y << std::endl;
-			outfile << "Centroid [Z] = " << centroid.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-			outfile << std::endl;
-
-			outfile << "==============================================" << std::endl;
-
-			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-			outfile << "==============================================" << std::endl;
-
-			outfile << "ClosestApproachUnbounded: " << std::endl;
-			outfile << std::endl;
-
-			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << "Centroid [X] = " << centroid.x << std::endl;
-			outfile << "Centroid [Y] = " << centroid.y << std::endl;
-			outfile << "Centroid [Z] = " << centroid.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-			outfile << std::endl;
-
-			outfile << "==============================================" << std::endl;*/
 			
 		}
 
@@ -743,8 +618,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
 	{
-		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString);
+		LineStringGraphicProperties* curveGraphicProperties = new LineStringGraphicProperties();
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
@@ -804,48 +678,6 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setDirectionTanget(directionTangent);
 
-			/*segment.ClosestApproachBounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-			outfile << "==============================================" << std::endl;
-
-			outfile << "ClosestApproachBounded: " << std::endl;
-			outfile << std::endl;
-
-			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << "Centroid [X] = " << centroid.x << std::endl;
-			outfile << "Centroid [Y] = " << centroid.y << std::endl;
-			outfile << "Centroid [Z] = " << centroid.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-			outfile << std::endl;
-
-			outfile << "==============================================" << std::endl;
-
-			segment.ClosestApproachUnbounded(fraction0, fraction1, point0, point1, segment0, segment1);
-
-			outfile << "==============================================" << std::endl;
-
-			outfile << "ClosestApproachUnbounded: " << std::endl;
-			outfile << std::endl;
-
-			segment.WireCentroid(lineLength, centroid, fraction0, fraction1);
-
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << "Centroid [X] = " << centroid.x << std::endl;
-			outfile << "Centroid [Y] = " << centroid.y << std::endl;
-			outfile << "Centroid [Z] = " << centroid.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Wire centroid Line Length: " << lineLength << std::endl;
-			outfile << std::endl;
-
-			outfile << "==============================================" << std::endl;*/
-
 		}	
 
 		outfile.close();		
@@ -856,8 +688,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve);
+		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
@@ -869,17 +700,16 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 		if (curve->GetPartialCurveDetailCP() != nullptr)
 		{
-			// NEEDS TO BE CHECKED
+			//TODO [SB] NEEDS TO BE CHECKED the partial curve composition
 			return processCurvePrimitives(curve->GetPartialCurveDetailCP()->parentCurve);
 		}
 
-		return curveGraphicProperties;
+		//return curveGraphicProperties;
 	}
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = new ICurveGraphicProperties();
-		curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString);
+		PointStringGraphicProperties* curveGraphicProperties = new PointStringGraphicProperties();
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
@@ -915,7 +745,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 	{
-		ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
 		//curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
@@ -926,11 +756,12 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << std::endl;
 		outfile.close();
 
+		//TODO [SB] Needs to be checked how to handle Spiral 
 		if (curve->GetSpiralPlacementCP() != nullptr)
 		{
 			//DSpiral2dPlacementCP spiralPlace = curve->GetSpiralPlacementCP();
 		}
-		return curveGraphicProperties;
+		//return curveGraphicProperties;
 	}
 	break;
 	default:
@@ -939,7 +770,155 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 	outfile.flush();
 
-	//Handle the output for null pointer
+	//TODO [SB] Handle the output for null pointer
 	return nullptr;
 }
 #pragma warning (pop)
+
+
+void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties)
+{
+	std::ofstream outfile;
+
+	DPoint3d center;
+	DRange3d range;
+	DVec3d normal, centroID;
+	double area;
+	Transform localToWorld, worldToLocal;
+
+	curves.CentroidNormalArea(center, normal, area);
+	centroID.Init(center);
+
+	//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
+	curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+
+	setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+
+	shapesGraphicProperties->setIsFilled(isFilled);
+	shapesGraphicProperties->setArea(area);
+	shapesGraphicProperties->setCentroid(centroID);
+	shapesGraphicProperties->setNormal(normal);
+	shapesGraphicProperties->setIsClosed(curves.IsPhysicallyClosedPath());
+
+	switch (curves.GetBoundaryType())
+	{
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+	{
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
+	{
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
+	{
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
+	{
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
+	{
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+		
+		outfile.flush();
+		outfile.close();
+
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
+
+		for each (ICurvePrimitivePtr curve in curves)
+		{
+			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+	}
+	break;
+	default:
+		break;
+	}
+
+	//Add the shape to the Dictionary
+	pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+}

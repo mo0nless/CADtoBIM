@@ -12,14 +12,14 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 #include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
-#include "../../../modeler/properties/headers/ReaderProperties.h"
+////#include "../../../modeler/properties/headers/ReaderProperties.h"
 
 class CreateSolidsOperationPropertiesReaderMapper
 {
 public:
-	static void mapCreateSolidsOperationPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties & readerProperties);
+	//static void mapCreateSolidsOperationPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties & readerProperties);
 private:
-	CreateSolidsOperationPropertiesReaderMapper();
+	//CreateSolidsOperationPropertiesReaderMapper();
 
 
 

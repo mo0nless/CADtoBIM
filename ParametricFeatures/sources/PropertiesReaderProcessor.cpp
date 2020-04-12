@@ -69,9 +69,9 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			// set class name
 			//dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
 			
-			ReaderPropertyBundle* readerPropertyBundle = new ReaderPropertyBundle(mElemClassName, elemInst->GetLocalId());
-			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertyBundle);
-			dictionaryProperties.getReaderProperties()->addReaderPropertyBundle(readerPropertyBundle);
+			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
+			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
+			dictionaryProperties.addReaderPropertiesBundle(readerPropertiesBundle);
 
 			/*for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
 			{

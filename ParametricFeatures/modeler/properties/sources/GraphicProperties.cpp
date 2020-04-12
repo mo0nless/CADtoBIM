@@ -1,33 +1,53 @@
 #include "../headers/GraphicProperties.h"
 
-GraphicProperties::GraphicProperties()
+double GraphicProperties::getArea()
 {
-	this->pCurvesPrimitivesContainer = nullptr;
+	return this->area;
 }
 
-
-bool GraphicProperties::tryGetCurvesPrimitivesContainer(CurvesPrimitivesContainer*& curvesPrimitivesContainersR)
+void GraphicProperties::setArea(double newArea)
 {
-	if (this->pCurvesPrimitivesContainer == nullptr)
-	{
-		return false;
-	}
-	curvesPrimitivesContainersR = this->pCurvesPrimitivesContainer;
-	return true;
+	this->area = newArea;
 }
 
-void GraphicProperties::setCurvesPrimitivesContainer(CurvesPrimitivesContainer* newCurvesPrimitivesContainer)
+double GraphicProperties::getVolume()
 {
-	this->pCurvesPrimitivesContainer = newCurvesPrimitivesContainer;
+	return this->volume;
 }
 
-void GraphicProperties::addPrimitiveGraphicProperties(PrimitiveGraphicProperties * newPrimitiveGraphicProperties)
+void GraphicProperties::setVolume(double newVolume)
 {
-	this->primitiveGraphicPropertiesVector.push_back(newPrimitiveGraphicProperties);
+	this->volume = newVolume;
 }
 
-std::vector<PrimitiveGraphicProperties*> GraphicProperties::getPrimitiveGraphicPropertiesVector()
+DVec3d GraphicProperties::getCentroid()
 {
-	return this->primitiveGraphicPropertiesVector;
+	return this->centroid;
 }
 
+void GraphicProperties::setCentroid(DVec3d newCentroid)
+{
+	this->centroid = newCentroid;
+}
+
+void GraphicProperties::setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ)
+{
+	this->vectorAxisX = newVectorAxisX;
+	this->vectorAxisY = newVectorAxisY;
+	this->vectorAxisZ = newVectorAxisZ;
+}
+
+DVec3d GraphicProperties::getVectorAxisX()
+{
+	return this->vectorAxisX;
+}
+
+DVec3d GraphicProperties::getVectorAxisY()
+{
+	return this->vectorAxisY;
+}
+
+DVec3d GraphicProperties::getVectorAxisZ()
+{
+	return this->vectorAxisZ;
+}

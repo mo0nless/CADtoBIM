@@ -125,6 +125,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 	GraphicsProcessorEnhancer* graphicsProcessorEnhancer = graphicsProcessor.getGraphicsProcessorEnhancer();
+	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{		
@@ -143,8 +144,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 			T_SmartFeatureVector sFeatVec;
 
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
-			if (smartFeatureContainer != nullptr)
-			{
+			if (smartFeatureContainer != nullptr) {
 				smartFeatureContainerVector.push_back(smartFeatureContainer);
 			}
 		}
@@ -160,7 +160,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		outfile.close();
 	
 		
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+		//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
 		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);

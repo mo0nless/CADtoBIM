@@ -7,13 +7,13 @@
 class IfcOperationsEnhancer
 {
 public:
+	IfcOperationsEnhancer();
+
 	static Ifc4::IfcCartesianPoint* buildIfcCartesianFromCoordsPoint3D(DPoint3d newControlPoint);
 	static Ifc4::IfcVector* buildIfcVectorFromDirectionPoint3D(DPoint3d newVector);
 	static Ifc4::IfcDirection* buildIfcDirectionFromDirectionVec3D(DVec3d newDirection);
-	
+	static Ifc4::IfcAxis2Placement3D * buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX);
 private:
-	IfcOperationsEnhancer();
-
 	template<class Triplet>
 	static std::vector<double> buildDoubleVectorFromTriplet(Triplet newTriplet);
 };
