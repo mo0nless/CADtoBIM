@@ -10,6 +10,7 @@
 #include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../headers/IfcBundle.h"
+#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 
 
 class IfcPrimitivesEnhancer {
@@ -22,8 +23,4 @@ private:
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-
-	Ifc4::IfcAxis2Placement3D* buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcAxis2Placement3D* buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, DVec3d pointOfPlacement, DVec3d zAxis, DVec3d xAxis);
-
 };

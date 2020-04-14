@@ -1,5 +1,5 @@
 #include "../headers/EllipseShapesGraphicProperties.h"
 
-EllipseShapesGraphicProperties::EllipseShapesGraphicProperties() : IShapesGraphicProperties(CurvesShapeTypeEnum::ELLIPSE)
+EllipseShapesGraphicProperties::EllipseShapesGraphicProperties() : IShapesGraphicProperties(ShapesTypeEnum::ELLIPSE)
 {
 }

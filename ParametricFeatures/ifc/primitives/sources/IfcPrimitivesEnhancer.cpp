@@ -57,7 +57,11 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
-		Ifc4::IfcAxis2Placement3D* placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file);
+		Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			primitiveGraphicProperties.getCentroid(), 
+			primitiveGraphicProperties.getVectorAxisZ(), 
+			primitiveGraphicProperties.getVectorAxisX()
+		);
 
 		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
 
@@ -73,16 +77,16 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
 			CylinderGraphicProperties& cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties&>(primitiveGraphicProperties);
-			
-			// the cylinder point of placement is the base origin, not the centroid
-			DVec3d* cylinderPlacement = new DVec3d();
-			cylinderPlacement->x = cylinderGraphicProperties.getBaseOrigin().x;
-			cylinderPlacement->y = cylinderGraphicProperties.getBaseOrigin().y;
-			cylinderPlacement->z = cylinderGraphicProperties.getBaseOrigin().z;
 
+			// the cylinder point of placement is the base origin, not the centroid
+			DVec3d cylinderPlacement;
+			cylinderPlacement.Init(cylinderGraphicProperties.getBaseOrigin());
 			// overwrite the placement value
-			placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *cylinderPlacement,
-			cylinderGraphicProperties.getVectorAxisZ(), cylinderGraphicProperties.getVectorAxisX());
+			placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				cylinderPlacement,
+				cylinderGraphicProperties.getVectorAxisZ(),
+				cylinderGraphicProperties.getVectorAxisX()
+			);
 
 			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(placement, NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getHeight()),
 			NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getRadius()));
@@ -93,13 +97,15 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 			ConeGraphicProperties& coneGraphicProperties = dynamic_cast<ConeGraphicProperties&>(primitiveGraphicProperties);
 
 			// the cone point of placement is the base origin, not the centroid
-			DVec3d* conePlacement = new DVec3d();
-			conePlacement->x = coneGraphicProperties.getBaseOrigin().x;
-			conePlacement->y = coneGraphicProperties.getBaseOrigin().y;
-			conePlacement->z = coneGraphicProperties.getBaseOrigin().z;
-
+			DVec3d conePlacement;
+			conePlacement.Init(coneGraphicProperties.getBaseOrigin());
 			// overwrite the placement value
-			placement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *conePlacement, coneGraphicProperties.getVectorAxisZ(),coneGraphicProperties.getVectorAxisX());
+			placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				conePlacement,
+				coneGraphicProperties.getVectorAxisZ(),
+				coneGraphicProperties.getVectorAxisX()
+			);
+
 			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(placement, NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getHeight()),
 			NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
 		}
@@ -121,12 +127,10 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 		if (primitiveTypeEnum == PrimitiveTypeEnum::TORUS)
 		{
 			TorusGraphicProperties& torusGraphicProperties = dynamic_cast<TorusGraphicProperties&>(primitiveGraphicProperties);
-
+			
 			// torus placement is NOT the centroid, but the center of rotation
-			DVec3d* torusPointPlacement = new DVec3d();
-			torusPointPlacement->x = torusGraphicProperties.getCenterPointOfRotation().x;
-			torusPointPlacement->y = torusGraphicProperties.getCenterPointOfRotation().y;
-			torusPointPlacement->z = torusGraphicProperties.getCenterPointOfRotation().z;
+			DVec3d torusPointPlacement;
+			torusPointPlacement.Init(torusGraphicProperties.getCenterPointOfRotation());
 
 			Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
 				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMajorRadius())), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
@@ -135,9 +139,12 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMinorRadius()));
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
-			// !!! torus placement axes should be provided in the order of Z,Y
-			Ifc4::IfcAxis2Placement3D* torusPlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *torusPointPlacement,
-				torusGraphicProperties.getVectorAxisY(), torusGraphicProperties.getVectorAxisZ());
+			// !!! torus placement axes should be provided in the order of Y, Z
+			Ifc4::IfcAxis2Placement3D* torusPlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				torusPointPlacement,
+				torusGraphicProperties.getVectorAxisY(),
+				torusGraphicProperties.getVectorAxisZ()
+			);
 
 			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDefinition, torusPlacement, localAxis1Placement, torusGraphicProperties.getSweepRadians());
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::TRUNCATED_CONE) {
@@ -148,20 +155,23 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			double smallConeHeight = (similarityRatio*coneGraphicProperties.getHeight()) / (1 - similarityRatio);
 
 			// !!! overrite the place for cone, as the cone is positioned in the space not based on the centroid, but the base origin
-			DVec3d* bigConePlacementVector = new DVec3d();
-			bigConePlacementVector->x = coneGraphicProperties.getBaseOrigin().x;
-			bigConePlacementVector->y = coneGraphicProperties.getBaseOrigin().y;
-			bigConePlacementVector->z = coneGraphicProperties.getBaseOrigin().z;
+			DVec3d bigConePlacementVector;
+			bigConePlacementVector.Init(coneGraphicProperties.getBaseOrigin());
 
-			Ifc4::IfcAxis2Placement3D* bigConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *bigConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
-					coneGraphicProperties.getVectorAxisX());
+			Ifc4::IfcAxis2Placement3D* bigConePlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				bigConePlacementVector,
+				coneGraphicProperties.getVectorAxisZ(),
+				coneGraphicProperties.getVectorAxisX()
+			);
 
-			DVec3d* smallConePlacementVector = new DVec3d();
-			smallConePlacementVector->x = coneGraphicProperties.getTopOrigin().x;
-			smallConePlacementVector->y = coneGraphicProperties.getTopOrigin().y;
-			smallConePlacementVector->z = coneGraphicProperties.getTopOrigin().z;
-			Ifc4::IfcAxis2Placement3D* smallConePlacement = buildIfcAxis2Placement3D(primitiveGraphicProperties, file, *smallConePlacementVector, coneGraphicProperties.getVectorAxisZ(),
-				coneGraphicProperties.getVectorAxisX());
+			DVec3d smallConePlacementVector;
+			smallConePlacementVector.Init(coneGraphicProperties.getTopOrigin());
+
+			Ifc4::IfcAxis2Placement3D* smallConePlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				smallConePlacementVector,
+				coneGraphicProperties.getVectorAxisZ(),
+				coneGraphicProperties.getVectorAxisX()
+			);
 
 			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* bigCompleteCone = new Ifc4::IfcRightCircularCone(bigConePlacement,
 				NumberUtils::convertMicrometersToMetters((coneGraphicProperties.getHeight() + smallConeHeight)),
@@ -178,34 +188,3 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 	return ifcRepresentationItem;
 }
 
-// the default placement is the centroid and Z,X axis
-Ifc4::IfcAxis2Placement3D * IfcPrimitivesEnhancer::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
-{
-	return buildIfcAxis2Placement3D(primitiveGraphicProperties,file,primitiveGraphicProperties.getCentroid(),primitiveGraphicProperties.getVectorAxisZ(),primitiveGraphicProperties.getVectorAxisX());
-}
-
-// in particular cases, we have to specify other point of placement and axes
-Ifc4::IfcAxis2Placement3D * IfcPrimitivesEnhancer::buildIfcAxis2Placement3D(SolidPrimitiveProperty& primitiveGraphicProperties,IfcHierarchyHelper<Ifc4>& file,
-	DVec3d pointOfPlacement, DVec3d axe1, DVec3d axe2)
-{
-	double centroid_x = NumberUtils::convertMicrometersToMetters(pointOfPlacement.x);
-	double centroid_y = NumberUtils::convertMicrometersToMetters(pointOfPlacement.y);
-	double centroid_z = NumberUtils::convertMicrometersToMetters(pointOfPlacement.z);
-
-	double z_axis_x = axe1.x;
-	double z_axis_y = axe1.y;
-	double z_axis_z = axe1.z;
-
-	double x_axis_x = axe2.x;
-	double x_axis_y = axe2.y;
-	double x_axis_z = axe2.z;
-
-
-	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-		file.addTriplet<Ifc4::IfcCartesianPoint>(centroid_x, centroid_y, centroid_z),
-		file.addTriplet<Ifc4::IfcDirection>(z_axis_x, z_axis_y, z_axis_z),
-		file.addTriplet<Ifc4::IfcDirection>(x_axis_x, x_axis_y, x_axis_z)
-	);
-
-	return place;
-}

@@ -124,7 +124,7 @@ appObjects = \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureGeneralProperties$(oext) \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
-	$(o)CurvesTypeEnumUtils$(oext) \
+	$(o)ShapesTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
@@ -239,7 +239,7 @@ $(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnh
 
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
-$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/curves/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/curves/headers/IfcShapesEnhancer.h
+$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/shapes/headers/IfcShapesEnhancer.h
 
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
@@ -295,7 +295,7 @@ $(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_fe
 
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
-$(o)CurvesTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/CurvesTypeEnumUtils.cpp $(baseDir)common/utils/headers/CurvesTypeEnumUtils.h
+$(o)ShapesTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/ShapesTypeEnumUtils.cpp $(baseDir)common/utils/headers/ShapesTypeEnumUtils.h
 
 $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
 

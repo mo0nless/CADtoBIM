@@ -128,7 +128,7 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 	}
 }
 
-Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, CurvesShapeTypeEnum curvesShapesType)
+Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, ShapesTypeEnum curvesShapesType)
 {
 	Ifc4::IfcCurve* curveRepresentationItem = nullptr;
 
@@ -202,7 +202,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraph
 				);
 			}
 
-			if (curvesShapesType != CurvesShapeTypeEnum::CIRCLE && curvesShapesType != CurvesShapeTypeEnum::ELLIPSE)
+			if (curvesShapesType != ShapesTypeEnum::CIRCLE && curvesShapesType != ShapesTypeEnum::ELLIPSE)
 			{
 				IfcEntityList* t1EntityList = new IfcEntityList();
 				IfcEntityList* t2EntityList = new IfcEntityList();
@@ -312,7 +312,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 {
 	switch (curvesShape->getCurvesShapeTypeEnum())
 	{
-	case CurvesShapeTypeEnum::COMPLEX_CHAIN:
+	case ShapesTypeEnum::COMPLEX_CHAIN:
 	{
 		IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
 		tempEntityList = buildIfcCompositeCurveSegment(curvesShape, file);
@@ -340,7 +340,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 	}
 	break;
 
-	case CurvesShapeTypeEnum::SHAPE:
+	case ShapesTypeEnum::SHAPE:
 	{
 		if (curvesShape->getIsFilled())
 		{
@@ -374,7 +374,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 		
 	}
 	break;
-	case CurvesShapeTypeEnum::CIRCLE:
+	case ShapesTypeEnum::CIRCLE:
 	{
 		if (curvesShape->getIsFilled())
 		{
@@ -407,7 +407,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 		}
 	}
 	break;
-	case CurvesShapeTypeEnum::ELLIPSE:
+	case ShapesTypeEnum::ELLIPSE:
 	{
 		if (curvesShape->getIsFilled())
 		{
@@ -440,7 +440,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 		}
 	}
 	break;
-	case CurvesShapeTypeEnum::CURVE:
+	case ShapesTypeEnum::CURVE:
 	{
 		for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
 		{

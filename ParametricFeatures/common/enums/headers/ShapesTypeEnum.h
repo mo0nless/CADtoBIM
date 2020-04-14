@@ -1,7 +1,7 @@
 #pragma once
 
 //ORDER matters for mapping functions
-//The CurvesTypeEnum & CurvesBoundaryTypeEnum enumeration classes order represent the same as the one in Bentley OpenPlant Environment
+//The ShapesTypeEnum & CurvesBoundaryTypeEnum enumeration classes order represent the same as the one in Bentley OpenPlant Environment
 
 enum class CurvesPrimitivesTypeEnum
 {
@@ -29,7 +29,7 @@ enum class CurvesBoundaryTypeEnum
 	
 };
 
-enum class CurvesShapeTypeEnum
+enum class ShapesTypeEnum
 {
 	NONE_CONTAINER = 0,
 	COMPLEX_CHAIN = 1,

@@ -1,7 +1,7 @@
 #include "../headers/IShapesGraphicProperties.h"
 
 
-IShapesGraphicProperties::IShapesGraphicProperties(CurvesShapeTypeEnum newShapeType)
+IShapesGraphicProperties::IShapesGraphicProperties(ShapesTypeEnum newShapeType)
 {
 	this->mCurvesBoundaryType = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
 	this->mCurvesShapeTypeEnum = newShapeType;
@@ -23,7 +23,7 @@ std::vector<ICurveGraphicProperties*> IShapesGraphicProperties::getCurvesPrimiti
 
 void IShapesGraphicProperties::setBoundaryTypeCurvesContainer(int boundaryBentleyType)
 {
-	this->mCurvesBoundaryType = CurvesTypeEnumUtils::getCurvesBoundaryTypeEnumByInt(boundaryBentleyType);
+	this->mCurvesBoundaryType = ShapesTypeEnumUtils::getCurvesBoundaryTypeEnumByInt(boundaryBentleyType);
 }
 
 CurvesBoundaryTypeEnum IShapesGraphicProperties::getBoundaryTypeCurvesContainer()
@@ -31,7 +31,7 @@ CurvesBoundaryTypeEnum IShapesGraphicProperties::getBoundaryTypeCurvesContainer(
 	return this->mCurvesBoundaryType;
 }
 
-CurvesShapeTypeEnum IShapesGraphicProperties::getCurvesShapeTypeEnum()
+ShapesTypeEnum IShapesGraphicProperties::getCurvesShapeTypeEnum()
 {
 	return this->mCurvesShapeTypeEnum;
 }
@@ -64,4 +64,8 @@ DVec3d IShapesGraphicProperties::getNormal() const
 void IShapesGraphicProperties::setNormal(DVec3d normal)
 {
 	this->mNormal = normal;
+}
+
+IShapesGraphicProperties::~IShapesGraphicProperties()
+{
 }

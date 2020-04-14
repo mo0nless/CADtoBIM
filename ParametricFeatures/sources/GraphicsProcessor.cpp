@@ -65,35 +65,35 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 	if (!curves.empty()) 
 	{
 		//TODO [SB] Verify that it's the correct way to identify shapes
-		CurvesShapeTypeEnum curveShapesTypeEnum = CurvesTypeEnumUtils::getCurvesContainerTypeEnumByDescriptor(dictionaryProperties->getElementName());
+		ShapesTypeEnum curveShapesTypeEnum = ShapesTypeEnumUtils::getShapesTypeEnumByDescriptor(dictionaryProperties->getElementName());
 		
 		switch (curveShapesTypeEnum)
 		{
-			case CurvesShapeTypeEnum::CIRCLE:
+			case ShapesTypeEnum::CIRCLE:
 			{
 				CircleShapesGraphicProperties* shapesGraphicProperties = new CircleShapesGraphicProperties();
 				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
-			case CurvesShapeTypeEnum::SHAPE:
+			case ShapesTypeEnum::SHAPE:
 			{
 				GenericShapesGraphicProperties* shapesGraphicProperties = new GenericShapesGraphicProperties();
 				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
-			case CurvesShapeTypeEnum::COMPLEX_CHAIN:
+			case ShapesTypeEnum::COMPLEX_CHAIN:
 			{
 				ComplexChainShapesGraphicProperties* shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
 				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
-			case CurvesShapeTypeEnum::ELLIPSE:
+			case ShapesTypeEnum::ELLIPSE:
 			{
 				EllipseShapesGraphicProperties* shapesGraphicProperties = new EllipseShapesGraphicProperties();
 				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
-			case CurvesShapeTypeEnum::CURVE:
+			case ShapesTypeEnum::CURVE:
 			{
 				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
 				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);

@@ -1,7 +1,7 @@
 #include "../headers/CurvesShapesGraphicProperties.h"
 
 
-CurvesShapesGraphicProperties::CurvesShapesGraphicProperties(): IShapesGraphicProperties(CurvesShapeTypeEnum::CURVE)
+CurvesShapesGraphicProperties::CurvesShapesGraphicProperties(): IShapesGraphicProperties(ShapesTypeEnum::CURVE)
 {
 
 }

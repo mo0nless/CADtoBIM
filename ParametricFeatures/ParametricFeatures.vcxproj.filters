@@ -36,7 +36,6 @@
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
     <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
-    <ClCompile Include="common\utils\sources\CurvesTypeEnumUtils.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
@@ -63,7 +62,8 @@
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\EllipseShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\GenericShapesGraphicProperties.cpp" />
-    <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -88,7 +88,6 @@
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
-    <ClInclude Include="common\enums\headers\CurvesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="modeler\properties\boolean_operations\headers\BooleanOperationProperties.h" />
@@ -111,7 +110,6 @@
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
     <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
-    <ClInclude Include="common\utils\headers\CurvesTypeEnumUtils.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\InterpolationGraphicProperties.h" />
@@ -140,6 +138,8 @@
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
-    <ClInclude Include="ifc\curves\headers\IfcShapesEnhancer.h" />
+    <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
+    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
+    <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
   </ItemGroup>
 </Project>

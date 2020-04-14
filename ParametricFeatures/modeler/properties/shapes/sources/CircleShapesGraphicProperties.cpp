@@ -1,5 +1,5 @@
 #include "../headers/CircleShapesGraphicProperties.h"
 
-CircleShapesGraphicProperties::CircleShapesGraphicProperties(): IShapesGraphicProperties(CurvesShapeTypeEnum::CIRCLE)
+CircleShapesGraphicProperties::CircleShapesGraphicProperties(): IShapesGraphicProperties(ShapesTypeEnum::CIRCLE)
 {
 }

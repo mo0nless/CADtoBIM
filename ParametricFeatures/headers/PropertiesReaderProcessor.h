@@ -10,7 +10,7 @@
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../common/utils/headers/PrimitiveTypeEnumUtils.h"
-#include "../common/enums/headers/CurvesTypeEnum.h"
+#include "../common/enums/headers/ShapesTypeEnum.h"
 
 /// @addtogroup ElementProperties
 /// @beginGroup
