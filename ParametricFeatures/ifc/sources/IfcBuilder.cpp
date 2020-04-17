@@ -1,5 +1,128 @@
 #include "../headers/IfcBuilder.h"
 
+void IfcBuilder::buildIfcDistributionElem(IfcBundle*& ifcBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file)
+{	
+	typedef Ifc4::IfcGloballyUniqueId guid;
+
+	//Create the pipe as IfcDistributionElement
+	Ifc4::IfcDistributionElement* ifcDistributionElem = new Ifc4::IfcDistributionElement(
+		guid::IfcGloballyUniqueId(ifcBundle->getModelerElementName()),
+		file.getSingle<Ifc4::IfcOwnerHistory>(), 
+		ifcBundle->getModelerElementName(),
+		ifcBundle->getModelerElementName(), 
+		boost::none, 
+		file.addLocalPlacement(), 
+		elemShape, 
+		boost::none
+	);	
+
+	//Set the element to the IfcBundle
+	ifcBundle->setIfcElement(ifcDistributionElem);
+
+	//TODO [SB] find a better implementation especially for handling Source and Sink ports
+	
+	int portSequence = 0;
+
+	IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>* tempEntityList = new IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>();		
+
+	for (Ifc4::IfcPoint* point : ifcBundle->getIfcPortsPointsVector())
+	{
+		Ifc4::IfcRepresentationItem::list::ptr ifcPortsRepItemList(new Ifc4::IfcRepresentationItem::list());
+		Ifc4::IfcRepresentation::list::ptr ifcPortsRepList(new Ifc4::IfcRepresentation::list());
+
+		Ifc4::IfcGeometricRepresentationItem* pointGeom(point);
+		ifcPortsRepItemList->push(pointGeom);
+
+		Ifc4::IfcRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcRepresentation(
+			file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
+			std::string("Point Port"),
+			std::string("Point Port"),
+			ifcPortsRepItemList
+		);
+
+		ifcPortsRepList->push(ifcPortsRepresentation);
+
+		Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, ifcPortsRepList);
+
+		//TRY TO REMOVE THIS FOR THE REPRESENTATION
+		//file.addEntity(portShape);
+
+		//Need to be used the subtype because otherwise the flow , distribution type, distribution system you can specify it
+		Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
+			std::string("Port test"),
+			file.getSingle<Ifc4::IfcOwnerHistory>(),
+			ifcBundle->getModelerElementName(),
+			ifcBundle->getModelerElementName(),
+			std::string("Port test"),
+			file.getSingle<Ifc4::IfcObjectPlacement>(),
+			portShape,
+			Ifc4::IfcFlowDirectionEnum::Value(portSequence),
+			Ifc4::IfcDistributionPortTypeEnum::IfcDistributionPortType_PIPE,
+			Ifc4::IfcDistributionSystemEnum::IfcDistributionSystem_NOTDEFINED
+		);
+
+		//insert the object inside the object definition list list
+		tempEntityList->push(port);
+		//Add the IfcDistributionPort to the IfcBundleElement
+		ifcBundle->addIfcDistributionPorts(port);
+
+		file.addBuildingProduct(port);
+
+		portSequence++;
+	}
+
+	//create the shared_ptr with the object definition list
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinition(tempEntityList);
+
+	//Create the nested relationship between the element and ports
+	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
+		guid::IfcGloballyUniqueId(""),
+		file.getSingle<Ifc4::IfcOwnerHistory>(),
+		ifcBundle->getModelerElementName(),
+		ifcBundle->getModelerElementName(),
+		ifcDistributionElem,
+		objectDefinition
+	);
+
+	file.addEntity(relNests);
+	file.addBuildingProduct(ifcDistributionElem);
+	
+	
+}
+
+void IfcBuilder::buildIfcReletionshipConnectionPorts(std::vector<IfcBundle*>ifcRelBundleVector, IfcHierarchyHelper<Ifc4>& file)
+{
+	for (size_t i = 0; i < ifcRelBundleVector.size()-1; i++)
+	{
+		IfcBundle* source = ifcRelBundleVector[i];
+		IfcBundle* sink = ifcRelBundleVector[i + 1];
+		
+		/*Ifc4::IfcRelConnectsPorts* connectsPorts = new Ifc4::IfcRelConnectsPorts(
+			std::string("Connection"),
+			file.getSingle<Ifc4::IfcOwnerHistory>(),
+			boost::none,
+			boost::none,
+			portsVector[0],
+			portsVector[1],
+			source->addIfcPortsPoints()
+		);*/
+
+		Ifc4::IfcDistributionElement* distElem  = dynamic_cast<Ifc4::IfcDistributionElement*>(sink->getIfcElement());
+
+		Ifc4::IfcRelConnectsPortToElement* connectsElement = new Ifc4::IfcRelConnectsPortToElement(
+			std::string("Connection Pipes"),
+			file.getSingle<Ifc4::IfcOwnerHistory>(),
+			boost::none,
+			std::string("CONNECTION From: ") + source->getModelerElementName() + std::string("To: ") + sink->getModelerElementName(),
+			//boost::none,
+			source->getIfcDistributionPortsVector()[1],
+			distElem
+		);
+
+		file.addEntity(connectsElement);
+	}
+}
+
 void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 		std::string name = "PrimitiveTest";
@@ -123,7 +246,10 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		typedef Ifc4::IfcGloballyUniqueId guid;
 
-		for (auto const& ifcBundle : ifcBundleVector) {
+		//Create the vector for the distribution element 
+		std::vector<IfcBundle*>ifcDistributionBundleVector;
+		for (auto& ifcBundle : ifcBundleVector) //const& removed
+		{
 			Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
 
 			for (auto const& ifcGraphicPropertiesBundle : ifcBundle->getIfcGraphicPropertiesBundleVector()) {
@@ -141,46 +267,23 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 			file.addEntity(shape);
 
-			Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(guid::IfcGloballyUniqueId(ifcBundle->getModelerElementName()), file.getSingle<Ifc4::IfcOwnerHistory>(), ifcBundle->getModelerElementName(),
-				ifcBundle->getModelerElementName(), boost::none, file.addLocalPlacement(), shape, boost::none);
+			if (ifcBundle->getHasElementConnection())
+			{
+				ifcDistributionBundleVector.push_back(ifcBundle);
+				buildIfcDistributionElem(ifcBundle, shape, file);
+			}
+			else 
+			{
+				Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(guid::IfcGloballyUniqueId(ifcBundle->getModelerElementName()), file.getSingle<Ifc4::IfcOwnerHistory>(), ifcBundle->getModelerElementName(),
+					ifcBundle->getModelerElementName(), boost::none, file.addLocalPlacement(), shape, boost::none);
 
-
-			file.addBuildingProduct(ifcElement);
+				file.addBuildingProduct(ifcElement);
+			}
+			
 		}
 
-		//TODO [MP/SB] curves builder, find another implementatino
-
-		//	IfcShapesEnhancer* IfcShapesEnhancer = new IfcShapesEnhancer();
-		//	std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = IfcShapesEnhancer->buildIfcCurvesPrimitives(*dictionaryProperties.getGraphicProperties(), file);
-		//
-		//	if (!ifcCurvesItemsVector.empty()) {
-		//		for each (Ifc4::IfcCurve* curve in ifcCurvesItemsVector)
-		//		{
-		//			CurvesPrimitivesContainer* curveCotainer;
-		//			dictionaryProperties.getGraphicProperties()->tryGetCurvesPrimitivesContainer(curveCotainer);
-		//
-		//			/*if(curveCotainer->getIsFilled())
-		//			{
-		//			Ifc4::IfcPlane* plane = new Ifc4::IfcPlane();
-		//			representationItem = new Ifc4::IfcCurveBoundedPlane(plane,curve,boost::none);
-		//			}
-		//			else*/
-		//			representationItem = curve;
-		//
-		//			if (representationItem != nullptr) {
-		//				items->push(representationItem);
-		//			}
-		//		}
-		//	}
-		//}
-		//}
-		//
-		//Ifc4::IfcShapeRepresentation* rep = new Ifc4::IfcShapeRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(), std::string("Body"), std::string("Model"), items);
-		//
-		//reps->push(rep);
-		//file.addEntity(rep);
-		//
-		//ifcRepresentationList->push(ifc)
+		//if(!ifcDistributionBundleVector.empty())
+			//buildIfcReletionshipConnectionPorts(ifcDistributionBundleVector, file);
 
 		std::ofstream f;
 		f.open(filename);

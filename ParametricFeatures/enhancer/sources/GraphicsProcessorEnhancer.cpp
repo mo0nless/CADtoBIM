@@ -552,6 +552,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		return curveGraphicProperties;
 	}
 	break;
+	//TODO [SB] Check Line starting point and crf Line String
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
 	{
 		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
@@ -587,7 +588,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 			segment.FromOriginAndDirection(originStartPoint0, directionTangent);
 
-			outfile << "FromOriginAndDirection" << std::endl;
+			/*outfile << "FromOriginAndDirection" << std::endl;
 			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
 			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
 			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
@@ -596,15 +597,30 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			outfile << "Tangent [X]: " << directionTangent.x << std::endl;
 			outfile << "Tangent [Y]: " << directionTangent.y << std::endl;
 			outfile << "Tangent [Z]: " << directionTangent.z << std::endl;
-			outfile << std::endl;
+			outfile << std::endl;*/
 
 			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
 			outfile << std::endl;
 
 			curve->GetStartEnd(point0, point1);
-
+			
+			//TODO [SB] Check the start point
 			bvector<DPoint3d> polesControlP;
-			polesControlP.push_back(originStartPoint0);
+			polesControlP.push_back(point0);
+
+			if (curve->GetLineCP() != nullptr) {
+				int k = 0;
+				for each (DPoint3d p in *curve->GetLineStringCP())
+				{
+					outfile << "point " << k << " [X] = " << p.x << std::endl;
+					outfile << "point " << k << " [Y] = " << p.y << std::endl;
+					outfile << "point " << k << " [Z] = " << p.z << std::endl;
+					outfile << std::endl;
+
+					//polesControlP.push_back(p);
+					k++;
+				}
+			}
 
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setDirectionTanget(directionTangent);
@@ -651,7 +667,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 			segment.FromOriginAndDirection(originStartPoint0, directionTangent);
 
-			outfile << "FromOriginAndDirection" << std::endl;
+			/*outfile << "FromOriginAndDirection" << std::endl;
 			outfile << "Starting Point [X]: " << originStartPoint0.x << std::endl;
 			outfile << "Starting Point [Y]: " << originStartPoint0.y << std::endl;
 			outfile << "Starting Point [Z]: " << originStartPoint0.z << std::endl;
@@ -660,7 +676,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			outfile << "Tangent [X]: " << directionTangent.x << std::endl;
 			outfile << "Tangent [Y]: " << directionTangent.y << std::endl;
 			outfile << "Tangent [Z]: " << directionTangent.z << std::endl;
-			outfile << std::endl;
+			outfile << std::endl;*/
 
 			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
 			outfile << std::endl;
@@ -669,9 +685,16 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 			bvector<DPoint3d> polesControlP;
 			if (curve->GetLineStringCP() != nullptr) {
+				int k = 0;
 				for each (DPoint3d p in *curve->GetLineStringCP())
 				{
+					outfile << "point " << k << " [X] = " << p.x << std::endl;
+					outfile << "point " << k << " [Y] = " << p.y << std::endl;
+					outfile << "point " << k << " [Z] = " << p.z << std::endl;
+					outfile << std::endl;
+
 					polesControlP.push_back(p);
+					k++;
 				}
 			}
 
