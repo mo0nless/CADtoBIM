@@ -34,7 +34,7 @@ public:
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 
 	// use this method to set vector axis X,Y,Z
-	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign = 1);
+	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);

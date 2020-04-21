@@ -1,6 +1,6 @@
 #include "../headers/IfcMaterialEnhancer.h"
 
-void IfcMaterialEnhancer::enhanceMaterials(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcMaterialEnhancer::enhanceMaterials(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 
 	if (!dictionaryPropertiesVector.empty())
@@ -10,31 +10,31 @@ void IfcMaterialEnhancer::enhanceMaterials(std::vector<DictionaryProperties*>& d
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcBundle*& ifcBundle = ifcBundleVector.at(i);
+			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
-			ifcObjectDefinitionList->push(ifcBundle->getIfcElement());
+			ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
 			//IfcTemplatedEntityList<Ifc4::IfcElement>* templatedList2 = new IfcTemplatedEntityList<Ifc4::IfcElement>();
 
 			for (auto const& readerPropertyBundle : dictionaryProperties.getReaderPropertiesBundleVector()) {
-				processMaterials(*readerPropertyBundle,file, *ifcBundle);
+				processMaterials(*readerPropertyBundle,file, *ifcElementBundle);
 			}
 		}
 	}
 }
 
-void IfcMaterialEnhancer::processMaterials(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcBundle& ifcBundle)
+void IfcMaterialEnhancer::processMaterials(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle& ifcElementBundle)
 {
 	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) {
 		if (readerPropertyDefinition->getPropertyName().find("Color") != std::string::npos) {
-			processColour(*readerPropertyDefinition,file, ifcBundle);
+			processColour(*readerPropertyDefinition,file, ifcElementBundle);
 		} else 	if (readerPropertyDefinition->getPropertyName().find("Material") != std::string::npos) {
-			processMaterial(*readerPropertyDefinition,file, ifcBundle.getIfcElement());
+			processMaterial(*readerPropertyDefinition,file, ifcElementBundle.getIfcElement());
 		}
 	}
 }
 
-void IfcMaterialEnhancer::processColour(ReaderPropertyDefinition& readerPropertyDefinition, IfcHierarchyHelper<Ifc4>& file, IfcBundle& ifcBundle)
+void IfcMaterialEnhancer::processColour(ReaderPropertyDefinition& readerPropertyDefinition, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle& ifcElementBundle)
 {
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
@@ -64,13 +64,13 @@ void IfcMaterialEnhancer::processColour(ReaderPropertyDefinition& readerProperty
 	boost::shared_ptr<IfcEntityList> IfcPresentationStyleAssignmentList(entityIfcPresentationStyleAssignmentList);
 	Ifc4::IfcRepresentationItem::list::ptr styledItemList(new Ifc4::IfcRepresentationItem::list());
 
-	for (int i = 0; i < ifcBundle.getIfcGraphicPropertiesBundleVector().size(); ++i) {
-		Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcBundle.getIfcGraphicPropertiesBundleVector().at(i)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
+	for (int i = 0; i < ifcElementBundle.getIfcGraphicPropertiesBundleVector().size(); ++i) {
+		Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcElementBundle.getIfcGraphicPropertiesBundleVector().at(i)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
 		file.addEntity(ifcStyledItem);
 		styledItemList->push(ifcStyledItem);
 	}
 
-	Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcBundle.getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
+	Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcElementBundle.getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
 	file.addEntity(ifcStyledItem);
 	styledItemList->push(ifcStyledItem);
 	Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), boost::none,
@@ -88,7 +88,7 @@ void IfcMaterialEnhancer::processColour(ReaderPropertyDefinition& readerProperty
 	file.addEntity(ifcMaterialDefinitionRepresentation);
 
 	IfcEntityList* entityList8 = new IfcEntityList();
-	entityList8->push(ifcBundle.getIfcElement());
+	entityList8->push(ifcElementBundle.getIfcElement());
 	boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
 	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId("ceva"), file.getSingle<Ifc4::IfcOwnerHistory>(),
 		boost::none, boost::none, unitEntity8, ifcMaterial);

@@ -12,7 +12,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcBundle = ifcBundleVector.at(i);
+			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
@@ -23,7 +23,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file);
 					if (ifcRepresentationItem != nullptr)
 					{
-						ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
+						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
 				}
