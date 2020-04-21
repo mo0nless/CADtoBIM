@@ -271,6 +271,8 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperti
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
+	pDictionaryProperties->addGraphicProperties(sphereGraphicProperties);
+
 }
 
 void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
