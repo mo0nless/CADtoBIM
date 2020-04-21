@@ -57,16 +57,16 @@ void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& pri
 
 }
 
-void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign)
+void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& graphicProperties, Transform& localToWorld, const double parametrizationSign)
 {
 	DVec3d columnVectorX, columnVectorY, columnVectorZ;
 
 	localToWorld.GetMatrixColumn(columnVectorX, 0);
 	localToWorld.GetMatrixColumn(columnVectorY, 1);
 	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	columnVectorZ = parametrizationSign * columnVectorZ;
+	//columnVectorZ = parametrizationSign * columnVectorZ;
 
-	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+	graphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 }
 
 void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
@@ -305,8 +305,12 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 	primitive.TryGetDgnConeDetail(dgnConeDetail);
 	dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
+	DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
 	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
 	{
+
+
 		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
@@ -317,7 +321,13 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 		
 		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)cylinderGraphicProperties);
-		setGraphicPropertiesAxes((GraphicProperties*&)cylinderGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		columnVectorX = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector0;
+		columnVectorY = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector90;
+
+		columnVectorZ.CrossProduct(dgnConeDetail.m_vector0, dgnConeDetail.m_vector90);
+		columnVectorZ = dgnConeDetail.ParameterizationSign() * columnVectorZ;
+
+		cylinderGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 		setCylinderGraphicProperties(dgnConeDetail, cylinderGraphicProperties);
 
 	}
@@ -332,7 +342,13 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
 		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
-		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+		columnVectorX = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector0;
+		columnVectorY = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector90;
+
+		columnVectorZ.CrossProduct(dgnConeDetail.m_vector0, dgnConeDetail.m_vector90);
+		columnVectorZ = dgnConeDetail.ParameterizationSign() * columnVectorZ;
+
+		coneGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
 	}
 	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
@@ -346,7 +362,14 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
 		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
-		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld, dgnConeDetail.ParameterizationSign());
+
+		columnVectorX = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector0;
+		columnVectorY = dgnConeDetail.ParameterizationSign() * dgnConeDetail.m_vector90;
+		
+		columnVectorZ.CrossProduct(dgnConeDetail.m_vector0, dgnConeDetail.m_vector90);
+		columnVectorZ = dgnConeDetail.ParameterizationSign() * columnVectorZ;
+
+		coneGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
 	}
 

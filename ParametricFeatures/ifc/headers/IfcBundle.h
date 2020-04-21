@@ -13,7 +13,7 @@ private:
 	long modelerElementId;
 	std::string modelerElementName;
 
-	std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
+	//std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
 	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
 	Ifc4::IfcElement* ifcElement;
@@ -21,10 +21,10 @@ private:
 public:
 	IfcBundle(long newModelerElementId,std::string newModelerElementName);
 
-	void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+	//void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
-	std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
+	//std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
 	std::vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
 	Ifc4::IfcElement* getIfcElement();

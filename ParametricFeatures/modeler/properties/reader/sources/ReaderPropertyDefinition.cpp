@@ -1,10 +1,11 @@
 #include "../headers/ReaderPropertyDefinition.h"
 
-ReaderPropertyDefinition::ReaderPropertyDefinition(std::string newPropertyName, std::string newPropertyTypeName, ECValue newPropertyValue)
+ReaderPropertyDefinition::ReaderPropertyDefinition(std::string newPropertyName, std::string newPropertyTypeName, ECValue newPropertyValue, std::string newPropertyValueAsString)
 {
 	this->propertyName = newPropertyName;
 	this->propertyTypeName = newPropertyTypeName;
 	this->propertyValue = newPropertyValue;
+	this->propertyValueAsString = newPropertyValueAsString;
 }
 
 std::string ReaderPropertyDefinition::getPropertyName()
@@ -20,4 +21,9 @@ std::string ReaderPropertyDefinition::getPropertyTypeName()
 ECValue ReaderPropertyDefinition::getPropertyValue()
 {
 	return this->propertyValue;
+}
+
+std::string ReaderPropertyDefinition::getPropertyValueAsString()
+{
+	return this->propertyValueAsString;
 }

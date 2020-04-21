@@ -118,7 +118,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 		ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcBundleVector, file);
 
-		// TODO fix error which appears in ifc reader
+		//// TODO fix error which appears in ifc reader
 		//IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 		//ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcBundleVector, file);
 
@@ -151,6 +151,12 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 			ifcBundle->setIfcElement(ifcElement);
 			
 		}
+
+		IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
+		ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcBundleVector, file);
+
+		IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
+		ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcBundleVector, file);
 
 		//TODO [MP/SB] curves builder, find another implementatino
 

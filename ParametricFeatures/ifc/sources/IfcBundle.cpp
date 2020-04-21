@@ -6,10 +6,10 @@ IfcBundle::IfcBundle(long newModelerElementId, std::string newModelerElementName
 	this->modelerElementName = newModelerElementName;
 }
 
-void IfcBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
-{
-	this->ifcReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
-}
+//void IfcBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
+//{
+//	this->ifcReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
+//}
 
 void IfcBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle * newIfcGraphicPropertiesBundle)
 {
@@ -36,10 +36,10 @@ std::string IfcBundle::getModelerElementName()
 	return this->modelerElementName;
 }
 
-std::vector<IfcReaderPropertiesBundle*> IfcBundle::getIfcReaderPropertiesBundleVector()
-{
-	return this->ifcReaderPropertiesBundleVector;
-}
+//std::vector<IfcReaderPropertiesBundle*> IfcBundle::getIfcReaderPropertiesBundleVector()
+//{
+//	return this->ifcReaderPropertiesBundleVector;
+//}
 
 std::vector<IfcGraphicPropertiesBundle*> IfcBundle::getIfcGraphicPropertiesBundleVector()
 {

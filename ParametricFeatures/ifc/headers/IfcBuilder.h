@@ -4,6 +4,8 @@
 #include "../curves/headers/IfcShapesEnhancer.h"
 #include "../create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h"
 #include "../../enhancer/headers/IfcOperationsEnhancer.h"
+#include "../properties/headers/IfcPropertiesEnhancer.h"
+#include "../properties/headers/IfcMaterialEnhancer.h"
 
 class IfcBuilder {
 private:

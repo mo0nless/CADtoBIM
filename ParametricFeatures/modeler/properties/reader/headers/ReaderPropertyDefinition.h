@@ -16,12 +16,14 @@ private:
 	std::string propertyName;
 	std::string propertyTypeName;
 	ECValue propertyValue;
+	std::string propertyValueAsString;
 
 public:
-	ReaderPropertyDefinition(std::string newPropertyName,std::string newPropertyTypeName,ECValue newPropertyValue);
+	ReaderPropertyDefinition(std::string newPropertyName,std::string newPropertyTypeName,ECValue newPropertyValue, std::string newPropertyValueAsString);
 
 	std::string getPropertyName();
 	std::string getPropertyTypeName();
 	ECValue getPropertyValue();
+	std::string getPropertyValueAsString();
 
 };

@@ -27,12 +27,14 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		// Converts the ECValue to a display string.
 		typeAdapter.ConvertToString(wStr, ecVal, *typeContext);
 
+		
+
 		std::string valueAsString = StringUtils::getString(wStr);
 		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
 		if (!valueAsString.empty()) {
 			//mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties,smartFeatureTypeEnum);
-			readerPropertiesBundle->addProperty(new ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal));
+			readerPropertiesBundle->addProperty(new ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal, valueAsString));
 			//ReaderPropertyDefinition* readerPropertyDefinition =
 
 			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["

@@ -29,8 +29,9 @@
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
+    <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
-	 <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
+    <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
