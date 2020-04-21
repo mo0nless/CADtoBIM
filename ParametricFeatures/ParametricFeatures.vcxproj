@@ -28,8 +28,10 @@
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
-    <ClCompile Include="ifc\sources\IfcBundle.cpp" />
+    <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -88,8 +90,10 @@
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
-    <ClInclude Include="ifc\headers\IfcBundle.h" />
+    <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
+    <ClInclude Include="ifc\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcPortsBuilder.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />

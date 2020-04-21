@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -64,7 +64,7 @@ void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& Gra
 	localToWorld.GetMatrixColumn(columnVectorX, 0);
 	localToWorld.GetMatrixColumn(columnVectorY, 1);
 	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	columnVectorZ = parametrizationSign * columnVectorZ;
+	//columnVectorZ = parametrizationSign * columnVectorZ;
 
 	GraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 }
@@ -298,21 +298,40 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 
 void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
 {
+	std::ofstream outfile;
+
 	DgnConeDetail dgnConeDetail;
 	Transform localToWorld;
 	Transform worldToLocal;
 
 	primitive.TryGetDgnConeDetail(dgnConeDetail);
-	dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
+	//dgnConeDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+	double rA, rB;
+	bool centerOfTheConeInB;
+	
+	//Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!!
+	centerOfTheConeInB = dgnConeDetail.GetTransforms(localToWorld, worldToLocal, rA, rB);
+
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::endl;
+	outfile << std::endl;
+	outfile << "THIS IS A CONE: " << std::endl;
+	outfile << "Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!! " << std::endl;
+	outfile << "CenterB is in base plane: " << centerOfTheConeInB << std::endl;
+	outfile << std::endl;
+	outfile << std::endl;
+	outfile.close();
 
 	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
 	{
-		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
 		outfile << std::endl;
 		outfile << " Cylinder " << std::endl;
 		outfile << std::endl;
+		outfile.close();
+
 
 		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
 		
@@ -323,12 +342,13 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 	}
 	else if (dgnConeDetail.m_radiusB == 0)
 	{
-		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
 		outfile << std::endl;
 		outfile << " Cone " << std::endl;
 		outfile << std::endl;
+		outfile.close();
+
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
 		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
@@ -337,12 +357,12 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 	}
 	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
 	{
-		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
 		outfile << std::endl;
 		outfile << " Truncated cone " << std::endl;
 		outfile << std::endl;
+		outfile.close();
 
 		ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
 		PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)coneGraphicProperties);
@@ -821,7 +841,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	shapesGraphicProperties->setArea(area);
 	shapesGraphicProperties->setCentroid(centroID);
 	shapesGraphicProperties->setNormal(normal);
-	shapesGraphicProperties->setIsClosed(curves.IsPhysicallyClosedPath());
+	shapesGraphicProperties->setIsClosed(curves.IsClosedPath());
 
 	switch (curves.GetBoundaryType())
 	{

@@ -7,7 +7,7 @@
 #include "IfcReaderPropertiesBundle.h"
 
 
-class IfcBundle {
+class IfcElementBundle {
 
 private:
 	long modelerElementId;
@@ -24,7 +24,7 @@ private:
 	bool hasConnections;
 
 public:
-	IfcBundle(long newModelerElementId,std::string newModelerElementName);
+	IfcElementBundle(long newModelerElementId,std::string newModelerElementName);
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcPoint* newIfcPoint);

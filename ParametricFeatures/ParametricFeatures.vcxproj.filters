@@ -48,22 +48,27 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
-    <ClCompile Include="ifc\sources\IfcBundle.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\IShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CircleShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ComplexChainShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\EllipseShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\GenericShapesGraphicProperties.cpp" />
-    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
+    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
+    <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
+    <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -124,22 +129,28 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
-    <ClInclude Include="ifc\headers\IfcBundle.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\IShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
-    <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
-    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
+    <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
+    <ClInclude Include="ifc\headers\IfcElementBundle.h" />
+    <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
+    <ClInclude Include="ifc\headers\IfcPortsBuilder.h" />
   </ItemGroup>
 </Project>

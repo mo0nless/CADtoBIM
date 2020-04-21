@@ -1,7 +1,7 @@
 #include "../headers/IfcPrimitivesEnhancer.h"
 
 
-void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
@@ -12,7 +12,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcBundle*& ifcBundle = ifcBundleVector.at(i);
+			IfcElementBundle*& ifcBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
