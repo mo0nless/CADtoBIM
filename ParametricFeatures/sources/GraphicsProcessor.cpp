@@ -370,7 +370,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)boxGraphicProperties);
 
 			// set X,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)boxGraphicProperties, localToWorld, boxDetails.ParameterizationSign());
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+			columnVectorX = boxDetails.ParameterizationSign() * boxDetails.m_vectorX;
+			columnVectorY = boxDetails.ParameterizationSign() * boxDetails.m_vectorY;
+
+			columnVectorZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
+			columnVectorZ = boxDetails.ParameterizationSign() * columnVectorZ;
+
+			boxGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			mGraphicsProcessorEnhancer.setBoxGraphicProperties(boxDetails, boxGraphicProperties);
 		}
 
@@ -438,38 +446,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			// get local to world class to get the X,Y,Z axes 
 			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-
-			//SolidPrimitiveProperty* solidPrimitiveProperty = mGraphicsProcessorEnhancer.handleConeAndCylinder(coneDetails);
-
-			//// set centroid, area and volume
-			//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)solidPrimitiveProperty);
-
-			//// set Z,Y,Z axes
-			//mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)solidPrimitiveProperty, localToWorld, coneDetails.ParameterizationSign());
-
-			//if ( solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CYLINDER){
-			//	CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(solidPrimitiveProperty);
-			//	if (cylinderGraphicProperties != nullptr) {
-			//		mGraphicsProcessorEnhancer.setCylinderGraphicProperties(coneDetails, cylinderGraphicProperties);
-			//	}
-			//}
-			//else if ((solidPrimitiveProperty->getPrimitiveTypeEnum() == PrimitiveTypeEnum::CONE|| solidPrimitiveProperty->getPrimitiveTypeEnum()==PrimitiveTypeEnum::TRUNCATED_CONE)){
-
-			//	ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(solidPrimitiveProperty);
-			//	if (coneGraphicProperties != nullptr ) {
-			//		mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, coneGraphicProperties);
-
-			//	}
-			//}
-
 			mGraphicsProcessorEnhancer.processConeAndCylinder(primitive);
 		}
-
-		//PrimitiveCommonGraphicProperties* primitiveCommonGraphicProperties = mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
-
-		// set cone graphic properties
-
-		//mGraphicsProcessorEnhancer.setConeGraphicProperties(coneDetails, primitiveCommonGraphicProperties);
 
 	}
 	break;
@@ -843,7 +821,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)torusGraphicProperties);
 
 			// set X,Y,Z axes
-			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)torusGraphicProperties, localToWorld, torusDetails.ParameterizationSign());
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+			columnVectorX = torusDetails.ParameterizationSign() * torusDetails.m_vectorX;
+			columnVectorY = torusDetails.ParameterizationSign() * torusDetails.m_vectorY;
+
+			columnVectorZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+			columnVectorZ = torusDetails.ParameterizationSign() * columnVectorZ;
+
+			torusGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			mGraphicsProcessorEnhancer.setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, torusGraphicProperties);
 		}
 

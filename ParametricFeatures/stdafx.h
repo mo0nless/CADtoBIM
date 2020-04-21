@@ -11,7 +11,8 @@
 
 #define _USE_MATH_DEFINES
 
-
+#include <cctype>
+#include <algorithm>
 #include <string>
 #include <iostream>
 #include <fstream> 
@@ -20,6 +21,9 @@
 #include <vector>
 #include <map>
 #include <tuple>
+#include <regex>
+#include <sstream>
+
 
 #include <ifcparse\IfcSchema.h>
 #include <ifcparse\Ifc2x3.h>
@@ -29,6 +33,7 @@
 #include <ifcparse\IfcHierarchyHelper.h>
 
 #include <boost/any.hpp>
+
 
 #include <PSolid/PSolidCoreAPI.h>
 #include <Bentley/WString.h>

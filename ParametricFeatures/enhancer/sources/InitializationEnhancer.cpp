@@ -200,7 +200,32 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
+		//DgnECManagerR ecMgr = DgnECManager::GetManager();
+		//RelationshipEntryVector relationshipVec;
+		//ecMgr.FindRelationshipEntriesOnElement(elemRef, relationshipVec);
+		//
+		//for (auto something : relationshipVec) {
+		//	outfile.open(filePath, std::ios_base::app);
+		//	outfile << std::endl;
+		//	outfile << something.RelatedInstanceDirection<< std::endl;
+		//	outfile << something.RelatedInstanceStrength << std::endl;
+		//	outfile <<StringUtils::getString(something.RelationshipClassName) << std::endl;
+		//	outfile << std::endl;
+		//	outfile.close();
+		//}
+
+		//if (ecMgr.FindInstances(*scope, *ecQuery).empty())
+		//{
+		//	/*outfile.open(filePath, std::ios_base::app);
+		//	outfile << std::endl;
+		//	outfile << "= Properties Not Found =" << std::endl;
+		//	outfile.close();*/
+		//	this->mElemClassName = "SmartFeatureSolid";
+
+		//}
+
 		ElementHandle currentElem(elemRef);
+
 		WString elDescr;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);

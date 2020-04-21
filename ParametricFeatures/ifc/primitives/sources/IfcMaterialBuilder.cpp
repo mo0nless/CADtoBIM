@@ -1,15 +1,11 @@
 void buildMaterial() {
 	// TODO [MP] use when needed
-	/*std::string culoare = "RED";
-	Ifc4::IfcColourSpecification* cacat = new Ifc4::IfcColourSpecification(culoare);*/
-	//Ifc4::IfcPreDefinedColour* ceva = new Ifc4::IfcPreDefinedColour("RED");
 
-	/*file.addEntity(cacat);
-	std::string colourName = "myColour";*/
-	/*Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
-	file.addEntity(ifcColour);*/
+	std::string colourName = "myColour";
+	Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(colourName, 252, 98, 3);
+	file.addEntity(ifcColour);
 
-	/*Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(cacat, 1, new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
+	Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(cacat, 1, new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
 	file.addEntity(ifcSurfaceStyleRendering);
 
 	IfcEntityList* entityList3 = new IfcEntityList();
@@ -53,7 +49,7 @@ void buildMaterial() {
 	boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
 	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(),
 	boost::none,boost::none, unitEntity8, IfcMaterial);
-	file.addEntity(ifcRelAssociatesMaterial);*/
+	file.addEntity(ifcRelAssociatesMaterial);
 }
 
 void buildProperty() {

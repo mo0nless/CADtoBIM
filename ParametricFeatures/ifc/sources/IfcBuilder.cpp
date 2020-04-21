@@ -158,6 +158,13 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();
 		ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
 
+		
+		//IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
+		//ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcBundleVector, file);
+
+		//IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
+		//ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcBundleVector, file);
+
 		IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder;
 		ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
 				

@@ -6,6 +6,8 @@
 #include "../../enhancer/headers/IfcOperationsEnhancer.h"
 #include "IfcElementBuilder.h"
 #include "IfcPortsBuilder.h"
+#include "../properties/headers/IfcPropertiesEnhancer.h"
+#include "../properties/headers/IfcMaterialEnhancer.h"
 
 class IfcBuilder {
 private:

@@ -19,7 +19,7 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	bool includeReferenceAttachments = true;
 
 	// Create a scope which finds instances in the given element. 
-	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::Element, includeReferenceAttachments));
+	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));
 
 	// Analogous to a SQL query and is used with DgnECManager::FindElementInstances to find ECInstances that satisfy the query's 'where' clause.
 	// Specify ECQUERY_PROCESS_SearchAllClasses for the query to consider instances of all classes

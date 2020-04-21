@@ -134,6 +134,9 @@ appObjects = \
 	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
+	$(o)IfcMaterialEnhancer$(oext) \
+	$(o)IfcPropertiesEnhancer$(oext) \
+	$(o)PropertyTypeEnumUtils$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -314,6 +317,12 @@ $(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/source
 $(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/headers/ReaderPropertiesBundle.h
 
 $(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SolidPrimitiveProperty.h
+
+$(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
+
+$(o)IfcMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcMaterialEnhancer.h
+
+$(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
 
 
 %include $(MDLMKI)dlmlink.mki
