@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
@@ -88,10 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />

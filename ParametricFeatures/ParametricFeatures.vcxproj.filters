@@ -48,10 +48,10 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -67,11 +67,11 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
-    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
-    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
+    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -132,26 +132,30 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
     <ClInclude Include="ifc\headers\IfcBundle.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
-    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
-    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="modeler\properties\shapes\headers\IShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
-    <ClInclude Include="ifc\curves\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
+    <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
+    <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
+    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
+    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
   </ItemGroup>
 </Project>

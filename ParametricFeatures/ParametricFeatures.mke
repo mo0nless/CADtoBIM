@@ -134,6 +134,7 @@ appObjects = \
 	$(o)SolidPrimitiveProperty$(oext) \
 	$(o)IfcMaterialEnhancer$(oext) \
 	$(o)IfcPropertiesEnhancer$(oext) \
+	$(o)PropertyTypeEnumUtils$(oext) \
 
 
 #--------------------------------------------------------------------------------------

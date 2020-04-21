@@ -200,7 +200,13 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
+		//DgnECManagerR ecMgr = DgnECManager::GetManager();
+		//RelationshipEntryVector relationshipVec;
+		//ecMgr.FindRelationshipEntriesOnElement(elemRef, relationshipVec);
+
+
 		ElementHandle currentElem(elemRef);
+
 		WString elDescr;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
