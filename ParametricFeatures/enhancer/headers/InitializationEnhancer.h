@@ -13,7 +13,7 @@ public:
 
 private:	
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
-
+	void testFunction(PersistentElementRefP elemRef);
 	PersistentElementRefList* pGraElement;
 	std::string filePath;
 	DgnModelP mDgnModel;

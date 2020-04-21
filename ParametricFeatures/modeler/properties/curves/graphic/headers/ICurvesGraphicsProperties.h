@@ -2,7 +2,7 @@
 
 #include <DgnPlatform/ElementGeometry.h>
 #include <vector>
-#include "../../../../../common/utils/headers/CurvesTypeEnumUtils.h"
+#include "../../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
 class ICurveGraphicProperties 
 {

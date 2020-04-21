@@ -14,9 +14,9 @@
 class IShapesGraphicProperties: public GraphicProperties
 {
 public:
-	IShapesGraphicProperties(CurvesShapeTypeEnum newShapeType);
+	IShapesGraphicProperties(ShapesTypeEnum newShapeType);
 
-	CurvesShapeTypeEnum getCurvesShapeTypeEnum();
+	ShapesTypeEnum getCurvesShapeTypeEnum();
 
 	void setBoundaryTypeCurvesContainer(int boundaryBentleyType);
 	CurvesBoundaryTypeEnum getBoundaryTypeCurvesContainer();
@@ -33,13 +33,15 @@ public:
 	DVec3d getNormal() const;
 	void setNormal(DVec3d normal);
 
+	virtual ~IShapesGraphicProperties();
+
 private:
 	DVec3d mNormal;
 
 	bool mIsFilled;
 	bool mIsClosed;
 
-	CurvesShapeTypeEnum mCurvesShapeTypeEnum;
+	ShapesTypeEnum mCurvesShapeTypeEnum;
 	CurvesBoundaryTypeEnum mCurvesBoundaryType;
 	std::vector<ICurveGraphicProperties*> mCurvesPrimitivesContainer;
 };
