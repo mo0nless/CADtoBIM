@@ -14,6 +14,8 @@
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 
+#include <math.h>
+
 class GraphicsProcessorEnhancer
 {
 public:
@@ -24,7 +26,6 @@ public:
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
-	SolidPrimitiveProperty* handleConeAndCylinder(DgnConeDetail dgnConeDetail);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
 	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties);

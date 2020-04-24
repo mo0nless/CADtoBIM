@@ -11,7 +11,7 @@
 
 class IfcBuilder {
 private:
-	void buildIfcReletionshipConnectionPorts(std::vector<IfcElementBundle*>ifcRelBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	
 public:
 	IfcBuilder() {};
 

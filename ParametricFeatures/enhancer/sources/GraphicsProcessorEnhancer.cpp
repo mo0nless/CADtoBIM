@@ -19,6 +19,9 @@ DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
 
 void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
+	
+	
+
 	std::ofstream outfile;
 	double area, volume;
 	DVec3d centroid;
@@ -103,6 +106,9 @@ void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d
 
 void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
+	
+	
+
 	// TODO to be removed
 	// write to file the type of solide which was parsed
 	//std::ofstream outfile;
@@ -136,6 +142,9 @@ void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetai
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
 {
+	
+	
+
 	// calculate height of the cone
 	double height;
 	if (coneGraphicProperties->getVolume() > 0) {
@@ -187,6 +196,8 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 
 void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
 {
+	
+
 	// calculate height of the cylinder
 	double height;
 	if (cylinderGraphicProperties->getVolume() > 0)
@@ -210,44 +221,6 @@ void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnCo
 	// add property to the dictionary
 	this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
 
-}
-
-SolidPrimitiveProperty * GraphicsProcessorEnhancer::handleConeAndCylinder(DgnConeDetail dgnConeDetail)
-{
-	// open plant modeler treats the cylinder as cone. in order to distinguish between them, we compare the radius to determine which exact solid we're dealing with
-	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0) {
-		std::ofstream outfile;
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::fixed;
-		outfile << std::endl;
-		outfile << " Cylinder " << std::endl;
-		outfile << std::endl;
-
-		CylinderGraphicProperties* cylinderGraphicProperties = new CylinderGraphicProperties();
-		return cylinderGraphicProperties;
-	} else if (dgnConeDetail.m_radiusB == 0) {
-			std::ofstream outfile;
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << " Cone " << std::endl;
-			outfile << std::endl;
-
-			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
-			return coneGraphicProperties;
-	} else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB) {
-			std::ofstream outfile;
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::fixed;
-			outfile << std::endl;
-			outfile << " Truncated cone " << std::endl;
-			outfile << std::endl;
-
-			ConeGraphicProperties* coneGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
-			return coneGraphicProperties;
-	}
-
-	return nullptr;
 }
 
 void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
@@ -382,6 +355,12 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 {
 	std::ofstream outfile;
 	
+	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+	outfile << "----------------------------------------" << std::endl;
+	outfile << std::fixed;
+	outfile << std::endl;
+	outfile.close();
+
 	switch (curve->GetCurvePrimitiveType())
 	{
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
@@ -773,6 +752,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 			for (size_t k = 0; k < curve->GetPointStringCP()->size(); k++)
 			{
 				DPoint3d point = curve->GetPointStringCP()->at(k);
+
 				outfile << "point " << k << " [X] = " << point.x << std::endl;
 				outfile << "point " << k << " [Y] = " << point.y << std::endl;
 				outfile << "point " << k << " [Z] = " << point.z << std::endl;

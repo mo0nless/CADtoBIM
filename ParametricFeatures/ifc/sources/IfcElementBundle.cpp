@@ -12,7 +12,7 @@ void IfcElementBundle::addIfcDistributionPorts(Ifc4::IfcDistributionPort * newDi
 	this->ifcDistributionPortVector.push_back(newDistPort);
 }
 
-void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcPoint * newIfcPoint)
+void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcCartesianPoint * newIfcPoint)
 {
 	this->hasConnections = true;
 	this->ifcPointsPortsVector.push_back(newIfcPoint);
@@ -63,7 +63,7 @@ std::vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getIfcGraphicProperti
 	return this->ifcGraphicPropertiesBundleVector;
 }
 
-std::vector<Ifc4::IfcPoint*> IfcElementBundle::getIfcPortsPointsVector()
+std::vector<Ifc4::IfcCartesianPoint*> IfcElementBundle::getIfcPortsPointsVector()
 {
 	return this->ifcPointsPortsVector;
 }

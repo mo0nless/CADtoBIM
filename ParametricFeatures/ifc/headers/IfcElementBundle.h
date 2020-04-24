@@ -16,7 +16,7 @@ private:
 	//std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
 	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
-	std::vector<Ifc4::IfcPoint*> ifcPointsPortsVector;
+	std::vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
 	std::vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
 
 	Ifc4::IfcElement* ifcElement;
@@ -27,14 +27,14 @@ public:
 	IfcElementBundle(long newModelerElementId,std::string newModelerElementName);
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
-	void addIfcPortsPoints(Ifc4::IfcPoint* newIfcPoint);
-	void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
+	//void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
 	//std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
 	std::vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
-	std::vector<Ifc4::IfcPoint*> getIfcPortsPointsVector();
+	std::vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
 	std::vector<Ifc4::IfcDistributionPort*> getIfcDistributionPortsVector();
 
 	Ifc4::IfcElement* getIfcElement();

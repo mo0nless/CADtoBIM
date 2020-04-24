@@ -117,6 +117,7 @@ appObjects = \
 	$(o)IfcElementBundle$(oext) \
 	$(o)IfcElementBuilder$(oext) \
 	$(o)IfcPortsBuilder$(oext) \
+	$(o)IfcPortsRelationshipList$(oext) \
 	$(o)IfcGraphicPropertiesBundle$(oext) \
 	$(o)IfcReaderPropertiesBundle$(oext) \
 	$(o)BooleanOperationProperties$(oext) \
@@ -257,6 +258,8 @@ $(o)IfcElementBundle$(oext) : $(baseDir)ifc/sources/IfcElementBundle.cpp $(baseD
 $(o)IfcElementBuilder$(oext) : $(baseDir)ifc/sources/IfcElementBuilder.cpp $(baseDir)ifc/headers/IfcElementBuilder.h
 
 $(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/sources/IfcPortsBuilder.cpp $(baseDir)ifc/headers/IfcPortsBuilder.h
+
+$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/headers/IfcPortsRelationshipList.h
 
 $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/headers/IfcGraphicPropertiesBundle.h
 

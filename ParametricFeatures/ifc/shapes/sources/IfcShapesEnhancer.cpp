@@ -3,53 +3,24 @@
 //IFC SPECS [SB] More information on shape representation are given by the IfcShapeRepresentation 
 Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresentationShapes(IShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
-	Ifc4::IfcGeometricRepresentationItem* geomItem = nullptr;
-
 	//TODO [SB] Handle the boundary type for solids
 	switch (shapeGraphicProperties->getBoundaryTypeCurvesContainer())
 	{
 		case CurvesBoundaryTypeEnum::OPEN:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
-			/*if (shapeGraphicProperties->getIsFilled())
-			{
-				Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
-					Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
-					std::string("Open"),
-					(Ifc4::IfcBoundedCurve*)shape
-				);
-				Ifc4::IfcSweptAreaSolid* areaSolid = new Ifc4::IfcExtrudedAreaSolid(
-					profileDef,
-					IfcOperationsEnhancer::buildIfcAxis2Placement3D(
-						shapeGraphicProperties->getCentroid(),
-						shapeGraphicProperties->getVectorAxisZ(),
-						shapeGraphicProperties->getVectorAxisX()
-					),
-					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(
-						shapeGraphicProperties->getVectorAxisZ()
-					),
-					0.0
-				);
-
-				geomItem = areaSolid;
-			}
-			else
-			{
-				geomItem = shape;
-			}*/			
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);			
 		}
 		break;
 		case CurvesBoundaryTypeEnum::OUTER:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
 			/*if (shapeGraphicProperties->getIsFilled())
 			{
 				Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
 					Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
 					std::string("Open"),
-					(Ifc4::IfcBoundedCurve*)shape
+					(Ifc4::IfcBoundedCurve*)geomItem
 				);
-
 				Ifc4::IfcSweptAreaSolid* areaSolid = new Ifc4::IfcExtrudedAreaSolid(
 					profileDef,
 					IfcOperationsEnhancer::buildIfcAxis2Placement3D(
@@ -60,34 +31,30 @@ Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresent
 					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(
 						shapeGraphicProperties->getVectorAxisZ()
 					),
-					0.0
+					20.0
 				);
 
 				geomItem = areaSolid;
-			}
-			else
-			{
-				geomItem = shape;
 			}*/
 		}
 		break;
 		case CurvesBoundaryTypeEnum::INNER:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
 		}
 		break;
 		case CurvesBoundaryTypeEnum::PARITY_REGION:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
 		}
 		break;
 		case CurvesBoundaryTypeEnum::UNION_REGION:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
 		}
 		case CurvesBoundaryTypeEnum::NONE_BOUNDARY:
 		{
-			geomItem = buildIfcCurvesSubTypes(shapeGraphicProperties, file, ifcElementBundle);
+			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
 		}
 		break;
 		default:
@@ -128,7 +95,7 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 	}
 }
 
-Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, ShapesTypeEnum curvesShapesType, IfcElementBundle*& ifcElementBundle, bool isClosed)
+Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, ShapesTypeEnum curvesShapesType, IfcElementBundle*& ifcElementBundle, bool isClosed)
 {
 	Ifc4::IfcCurve* curveRepresentationItem = nullptr;
 
@@ -202,7 +169,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraph
 				);
 			}
 
-			if (!isClosed)//(curvesShapesType != ShapesTypeEnum::CIRCLE && curvesShapesType != ShapesTypeEnum::ELLIPSE)
+			if (!isClosed)
 			{
 				IfcEntityList* t1EntityList = new IfcEntityList();
 				IfcEntityList* t2EntityList = new IfcEntityList();
@@ -286,12 +253,10 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraph
 			PointStringGraphicProperties* curveP = dynamic_cast<PointStringGraphicProperties*>(curveProperties);
 
 			for each(DPoint3d p in curveP->getControlPoints()) {
-				Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(p);
-								
-				Ifc4::IfcPoint* point(cP);
-
+				Ifc4::IfcCartesianPoint* cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(p);
+				
 				//Add the point to the IfcElementBundle its own ports
-				ifcElementBundle->addIfcPortsPoints(point);
+				ifcElementBundle->addIfcPortsPoints(cP);
 			}
 			
 		}
@@ -304,6 +269,39 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesRepresentationItems(ICurveGraph
 	return curveRepresentationItem;
 }
 
+Ifc4::IfcCurve* IfcShapesEnhancer::ifcShapesCurvesParser(IShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
+{
+	Ifc4::IfcCurve* item = nullptr;
+	for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
+	{
+		item = buildIfcCurve(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
+
+		if (item == nullptr)
+			break;
+
+		return item;
+	}
+	return item;
+}
+
+Ifc4::IfcBoundaryCurve* IfcShapesEnhancer::buildIfcBoundaryCurve(IShapesGraphicProperties * curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
+{
+	IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+	tempEntityList = buildIfcCompositeCurveSegment(curvesShape, file, ifcElementBundle, curvesShape->getIsClosed());
+
+	if (tempEntityList == nullptr)
+		return nullptr;
+
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> curveShape(tempEntityList);
+
+	Ifc4::IfcBoundaryCurve* item = new Ifc4::IfcBoundaryCurve(
+		curveShape,
+		false
+	);
+
+	return item;
+}
+
 IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcShapesEnhancer::buildIfcCompositeCurveSegment(IShapesGraphicProperties * curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle, bool isClosed)
 {
 	IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = new IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>();
@@ -312,25 +310,24 @@ IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcShapesEnhancer::build
 	{
 
 		Ifc4::IfcCompositeCurveSegment* item = nullptr;
-		if(curveProperties)
 		item = new Ifc4::IfcCompositeCurveSegment(
 			Ifc4::IfcTransitionCode::IfcTransitionCode_CONTINUOUS,
 			true,
-			buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, isClosed)
+			buildIfcCurve(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, isClosed)
 		);
 
 		if (item == nullptr)
 			continue;
 
-		//file.addEntity(item);
 		tempEntityList->push(item);
 	}
 
 	return tempEntityList;
 }
 
-Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
+void IfcShapesEnhancer::defineIfcGeometricRepresentationItem(IShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
+	//TODO [SB] those are the Shapes that we are aware of
 	switch (curvesShape->getCurvesShapeTypeEnum())
 	{
 	case ShapesTypeEnum::COMPLEX_CHAIN:
@@ -343,188 +340,108 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvesSubTypes(IShapesGraphicProperti
 
 		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
 
-		/*if (curvesShape->getIsFilled() && curvesShape->getIsClosed())
+		if (curvesShape->getIsFilled() && curvesShape->getIsClosed())
 		{
 			Ifc4::IfcBoundaryCurve* item = new Ifc4::IfcBoundaryCurve(
 				complexChain,
 				false
 			);
 
-			Ifc4::IfcCurve* curveItem = item;
+			file.addEntity(item);
 
-			return curveItem;
+			this->geomItem = item;
 		}
 		else
 		{
 			Ifc4::IfcCurve* item = new Ifc4::IfcCompositeCurve(complexChain, false);
 
-			return item;
-		}*/
+			this->geomItem = item;
+		}
 
-		Ifc4::IfcCurve* item = new Ifc4::IfcCompositeCurve(complexChain, false);
-
-		return item;
+		
 	}
 	break;
 
-	case ShapesTypeEnum::SHAPE:
+	/*case ShapesTypeEnum::SHAPE:
 	{
-		/*if (curvesShape->getIsFilled())
+		if (curvesShape->getIsFilled())
 		{
-			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-			tempEntityList = buildIfcCompositeCurveSegment(curvesShape, file, ifcElementBundle);
+			Ifc4::IfcBoundaryCurve* item = buildIfcBoundaryCurve(curvesShape, file, ifcElementBundle);
 
-			if (tempEntityList == nullptr)
-				break;
+			file.addEntity(item);
 
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> curveShape(tempEntityList);
-
-			Ifc4::IfcBoundaryCurve* item = new Ifc4::IfcBoundaryCurve(
-				curveShape,
-				false
-			);
-
-			Ifc4::IfcCurve* curveItem = item;
-
-			return curveItem;
+			this->geomItem = item;
 		}
 		else 
 		{
-			for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-			{
-				Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle);
-
-				if (item == nullptr)
-					break;
-
-				return item;
-			}
-		}*/
-
-		for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-		{
-			Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
-
-			if (item == nullptr)
-				break;
-
-			return item;
-		}
-		
+			this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
+		}		
 	}
 	break;
 
 	case ShapesTypeEnum::CIRCLE:
 	{
-		/*if (curvesShape->getIsFilled())
+		if (curvesShape->getIsFilled())
 		{
-			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-			tempEntityList = buildIfcCompositeCurveSegment(curvesShape, file, ifcElementBundle);
+			Ifc4::IfcBoundaryCurve* item = buildIfcBoundaryCurve(curvesShape, file, ifcElementBundle);
 
-			if (tempEntityList == nullptr)
-				break;
+			file.addEntity(item);
 
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> curveShape(tempEntityList);
+			this->geomItem = item;
 
-			Ifc4::IfcBoundaryCurve* item = new Ifc4::IfcBoundaryCurve(
-				curveShape,
-				false
-			);
-
-			Ifc4::IfcCurve* curveItem = item;
-
-			return curveItem;
 		}
 		else
 		{
-			for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-			{
-				Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle);
-
-				if (item == nullptr)
-					break;
-
-				return item;
-			}
-		}*/
-
-		for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-		{
-			Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
-
-			if (item == nullptr)
-				break;
-
-			return item;
-		}
+			this->geomItem = this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
+		}	
+		
 	}
 	break;
 
 	case ShapesTypeEnum::ELLIPSE:
 	{
-		/*if (curvesShape->getIsFilled())
+		if (curvesShape->getIsFilled())
 		{
-			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-			tempEntityList = buildIfcCompositeCurveSegment(curvesShape, file, ifcElementBundle);
+			Ifc4::IfcBoundaryCurve* item = buildIfcBoundaryCurve(curvesShape, file, ifcElementBundle);
 
-			if (tempEntityList == nullptr)
-				break;
+			file.addEntity(item);
 
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> shape(tempEntityList);
+			this->geomItem = item;
 
-			Ifc4::IfcBoundaryCurve* item = new Ifc4::IfcBoundaryCurve(
-				shape,
-				false
-			);
-
-			Ifc4::IfcCurve* curveItem = item;
-
-			return curveItem;
 		}
 		else
 		{
-			for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-			{
-				Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle);
-
-				if (item == nullptr)
-					break;
-
-				return item;
-			}
-		}*/
-
-		for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-		{
-			Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
-
-			if (item == nullptr)
-				break;
-
-			return item;
+			this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
 		}
 	}
 	break;
 
 	case ShapesTypeEnum::CURVE:
 	{
-		for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
-		{
-			Ifc4::IfcCurve* item = buildIfcCurvesRepresentationItems(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
-
-			if (item == nullptr)
-				break;
-
-			return item;
-		}
+		this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
 	}
 	break;
+	*/
 
-	default:		
-		break;
+	default:
+	{
+		if (curvesShape->getIsFilled())
+		{
+			Ifc4::IfcBoundaryCurve* item = buildIfcBoundaryCurve(curvesShape, file, ifcElementBundle);
+
+			file.addEntity(item);
+
+			this->geomItem = item;
+
+		}
+		else
+		{
+			this->geomItem = this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
+		}
 	}
-
-	return nullptr;
+		
+	break;
+	}
 }
 
 
