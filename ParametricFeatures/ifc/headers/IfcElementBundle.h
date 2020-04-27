@@ -31,7 +31,7 @@ public:
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
-	//void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+	void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
 	std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();

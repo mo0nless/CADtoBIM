@@ -2,16 +2,16 @@
 
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../headers/IfcBundle.h"
+#include "../../headers/IfcElementBundle.h"
 #include "../../boolean_functions/headers/IfcBooleanOperatorHandler.h"
 
 class SmartFeatureHandler {
 
 public:
-	void handleSmartFeature(std::vector<IfcBundle*>& ifcBundleVector);
+	void handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector);
 
 private:
-	Ifc4::IfcRepresentationItem* eval(SmartFeatureTreeNode* root, std::vector<IfcBundle*>& ifcBundleVector, IfcBundle* currentElement);
-	IfcBundle* getIfcBundleByGlobalId(std::vector<IfcBundle*>& ifcBundleVector, int globalId);
-	IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcBundle& ifcBundle, int localId);
+	Ifc4::IfcRepresentationItem* eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement);
+	IfcElementBundle* getIfcBundleByGlobalId(std::vector<IfcElementBundle*>& ifcBundleVector, int globalId);
+	IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcElementBundle& ifcBundle, int localId);
 };

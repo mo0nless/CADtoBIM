@@ -18,7 +18,7 @@ void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcCartesianPoint * newIfcPoint)
 	this->ifcPointsPortsVector.push_back(newIfcPoint);
 }
 
-void IfcBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
+void IfcElementBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
 {
 	this->ifcReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
 }
@@ -53,23 +53,23 @@ std::string IfcElementBundle::getModelerElementName()
 	return this->modelerElementName;
 }
 
-bool IfcBundle::getIsSmartFeature()
+bool IfcElementBundle::getIsSmartFeature()
 {
 	return this->smartFeatureContainer->getRoot()!=nullptr;
 }
 
-void IfcBundle::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
+void IfcElementBundle::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
 {
 	this->smartFeatureContainer = newSmartFeatureContainer;
 }
 
-SmartFeatureContainer * IfcBundle::getSmartFeatureContainer()
+SmartFeatureContainer * IfcElementBundle::getSmartFeatureContainer()
 {
 	return this->smartFeatureContainer;
 }
 
 
-std::vector<IfcReaderPropertiesBundle*> IfcBundle::getIfcReaderPropertiesBundleVector()
+std::vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcReaderPropertiesBundleVector()
 {
 	return this->ifcReaderPropertiesBundleVector;
 }
