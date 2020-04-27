@@ -9,14 +9,14 @@
 #include "../../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
-#include "../../headers/IfcBundle.h"
+#include "../../headers/IfcElementBundle.h"
 #include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 
 
 class IfcPrimitivesEnhancer {
 
 public:
-	void enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
 	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties ,IfcHierarchyHelper<Ifc4>& file);

@@ -14,6 +14,8 @@
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 
+#include <math.h>
+
 class GraphicsProcessorEnhancer
 {
 public:
@@ -24,7 +26,6 @@ public:
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
-	SolidPrimitiveProperty* handleConeAndCylinder(DgnConeDetail dgnConeDetail);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
 	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties);
@@ -34,7 +35,7 @@ public:
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 
 	// use this method to set vector axis X,Y,Z
-	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld, const double parametrizationSign = 1);
+	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);

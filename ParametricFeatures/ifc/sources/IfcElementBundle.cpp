@@ -1,19 +1,18 @@
-#include "../headers/IfcBundle.h"
-#include "..\headers\IfcBundle.h"
+#include "../headers/IfcElementBundle.h"
 
-IfcBundle::IfcBundle(long newModelerElementId, std::string newModelerElementName)
+IfcElementBundle::IfcElementBundle(long newModelerElementId, std::string newModelerElementName)
 {
 	this->modelerElementId = newModelerElementId;
 	this->modelerElementName = newModelerElementName;
 	this->hasConnections = false;
 }
 
-void IfcBundle::addIfcDistributionPorts(Ifc4::IfcDistributionPort * newDistPort)
+void IfcElementBundle::addIfcDistributionPorts(Ifc4::IfcDistributionPort * newDistPort)
 {
 	this->ifcDistributionPortVector.push_back(newDistPort);
 }
 
-void IfcBundle::addIfcPortsPoints(Ifc4::IfcPoint * newIfcPoint)
+void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcCartesianPoint * newIfcPoint)
 {
 	this->hasConnections = true;
 	this->ifcPointsPortsVector.push_back(newIfcPoint);
@@ -24,32 +23,32 @@ void IfcBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcR
 	this->ifcReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
 }
 
-void IfcBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle * newIfcGraphicPropertiesBundle)
+void IfcElementBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle * newIfcGraphicPropertiesBundle)
 {
 	this->ifcGraphicPropertiesBundleVector.push_back(newIfcGraphicPropertiesBundle);
 }
 
-Ifc4::IfcElement * IfcBundle::getIfcElement()
+Ifc4::IfcElement * IfcElementBundle::getIfcElement()
 {
 	return this->ifcElement;
 }
 
-void IfcBundle::setIfcElement(Ifc4::IfcElement * newIfcElement)
+void IfcElementBundle::setIfcElement(Ifc4::IfcElement * newIfcElement)
 {
 	this->ifcElement = newIfcElement;
 }
 
-bool IfcBundle::getHasElementConnection()
+bool IfcElementBundle::getHasElementConnection()
 {
 	return this->hasConnections;
 }
 
-long IfcBundle::getModelerElementId()
+long IfcElementBundle::getModelerElementId()
 {
 	return this->modelerElementId;
 }
 
-std::string IfcBundle::getModelerElementName()
+std::string IfcElementBundle::getModelerElementName()
 {
 	return this->modelerElementName;
 }
@@ -75,17 +74,17 @@ std::vector<IfcReaderPropertiesBundle*> IfcBundle::getIfcReaderPropertiesBundleV
 	return this->ifcReaderPropertiesBundleVector;
 }
 
-std::vector<IfcGraphicPropertiesBundle*> IfcBundle::getIfcGraphicPropertiesBundleVector()
+std::vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getIfcGraphicPropertiesBundleVector()
 {
 	return this->ifcGraphicPropertiesBundleVector;
 }
 
-std::vector<Ifc4::IfcPoint*> IfcBundle::getIfcPortsPointsVector()
+std::vector<Ifc4::IfcCartesianPoint*> IfcElementBundle::getIfcPortsPointsVector()
 {
 	return this->ifcPointsPortsVector;
 }
 
-std::vector<Ifc4::IfcDistributionPort*> IfcBundle::getIfcDistributionPortsVector()
+std::vector<Ifc4::IfcDistributionPort*> IfcElementBundle::getIfcDistributionPortsVector()
 {
 	return this->ifcDistributionPortVector;
 }

@@ -115,7 +115,10 @@ appObjects = \
 	$(o)SmartFeatureHandler$(oext) \
 	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcBuilder$(oext) \
-	$(o)IfcBundle$(oext) \
+	$(o)IfcElementBundle$(oext) \
+	$(o)IfcElementBuilder$(oext) \
+	$(o)IfcPortsBuilder$(oext) \
+	$(o)IfcPortsRelationshipList$(oext) \
 	$(o)IfcGraphicPropertiesBundle$(oext) \
 	$(o)IfcReaderPropertiesBundle$(oext) \
 	$(o)BooleanOperationProperties$(oext) \
@@ -250,7 +253,13 @@ $(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitive
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
 
-$(o)IfcBundle$(oext) : $(baseDir)ifc/sources/IfcBundle.cpp $(baseDir)ifc/headers/IfcBundle.h
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/sources/IfcElementBundle.cpp $(baseDir)ifc/headers/IfcElementBundle.h
+
+$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/sources/IfcElementBuilder.cpp $(baseDir)ifc/headers/IfcElementBuilder.h
+
+$(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/sources/IfcPortsBuilder.cpp $(baseDir)ifc/headers/IfcPortsBuilder.h
+
+$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/headers/IfcPortsRelationshipList.h
 
 $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/headers/IfcGraphicPropertiesBundle.h
 
