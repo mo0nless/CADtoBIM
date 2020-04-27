@@ -2,10 +2,10 @@
 
 
 
-DictionaryProperties::DictionaryProperties(long newElementId, std::string newElementName)
+DictionaryProperties::DictionaryProperties(long newElementId, std::string newEmentDescriptor)
 {
 	this->elementId = newElementId;
-	this->elementName = newElementName;
+	this->elementDescriptor = newEmentDescriptor;
 
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 }
@@ -35,9 +35,9 @@ SmartFeatureContainer * DictionaryProperties::getSmartFeatureContainer()
 	return this->smartFeatureContainer;
 }
 
-std::string DictionaryProperties::getElementName()
+std::string DictionaryProperties::getElementDescriptor()
 {
-	return this->elementName;
+	return this->elementDescriptor;
 }
 
 long DictionaryProperties::getElementId()

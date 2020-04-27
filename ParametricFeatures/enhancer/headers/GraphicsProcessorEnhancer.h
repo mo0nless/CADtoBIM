@@ -38,6 +38,8 @@ public:
 	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);
 
+	bool isDoubleEqual(double x, double y);	
+
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
 	DictionaryProperties* getDictionaryProperties();
 		

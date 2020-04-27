@@ -71,48 +71,6 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 	return smartFeatureContainer;
 }
 
-std::vector<DictionaryProperties*> InitializationEnhancer::orderDictionaryPropertyAndSmartFeature(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
-{
-	return propsDictVec;
-	//std::vector<DictionaryProperties*> newPropsDictVec;
-
-	//if (smartFeatureContainerVector.empty()) {
-	//	return propsDictVec;
-	//}
-	//else
-	//{
-	//	for (int i = 0; i < propsDictVec.size(); ++i) {
-	//		DictionaryProperties* propertiesDictionary = propsDictVec.at(i);
-
-	//		for (int j = 0; j < smartFeatureContainerVector.size(); ++j) {
-	//			SmartFeatureContainer* smartFeatureContainer = smartFeatureContainerVector.at(j);
-
-	//			if (!propertiesDictionary->getAreReaderPropertiesFound()) {
-	//				SmartFeatureTreeNode* treeNode = smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId());
-	//				if (treeNode != nullptr) {
-	//					//treeNode->setGraphicProperties(propertiesDictionary->getGraphicProperties());
-	//				}
-	//			}
-	//			else if (smartFeatureContainer->searchByElementGlobalId(smartFeatureContainer->getRoot(), propertiesDictionary->getGeneralProperties()->getElementId()) != nullptr)
-	//			{
-	//				continue;
-	//			}
-	//			else if (propertiesDictionary->getGeneralProperties()->getIsSmartFeature())
-	//			{
-	//				continue;
-	//			}
-	//			else
-	//			{
-	//				newPropsDictVec.push_back(propertiesDictionary);
-	//			}
-	//		}
-
-	//	}
-	//	return newPropsDictVec;
-	//}
-}
-
-
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
@@ -225,7 +183,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		//}
 
 		ElementHandle currentElem(elemRef);
-
+		
 		WString elDescr;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);

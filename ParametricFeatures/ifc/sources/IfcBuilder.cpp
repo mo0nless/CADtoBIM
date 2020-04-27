@@ -33,7 +33,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(),dictionaryProperties.getElementName());
+				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(),dictionaryProperties.getElementDescriptor());
 				ifcElementBundleVector.push_back(ifcElementBundle);
 			}
 		}

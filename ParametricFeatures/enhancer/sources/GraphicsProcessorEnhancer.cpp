@@ -17,11 +17,16 @@ DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
+bool GraphicsProcessorEnhancer::isDoubleEqual(double x, double y)
+{
+	/* some small number such as 1e-5 */
+	const double epsilon = 1e-5;
+	return std::abs(x - y) <= epsilon * std::abs(x);
+	// see Knuth section 4.2.2 pages 217-218
+}
+
 void GraphicsProcessorEnhancer::PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
-	
-	
-
 	std::ofstream outfile;
 	double area, volume;
 	DVec3d centroid;
@@ -106,9 +111,6 @@ void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d
 
 void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
-	
-	
-
 	// TODO to be removed
 	// write to file the type of solide which was parsed
 	//std::ofstream outfile;
@@ -142,9 +144,6 @@ void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetai
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
 {
-	
-	
-
 	// calculate height of the cone
 	double height;
 	if (coneGraphicProperties->getVolume() > 0) {
@@ -297,7 +296,7 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 	outfile << std::endl;
 	outfile.close();
 
-	if (dgnConeDetail.m_radiusA == dgnConeDetail.m_radiusB && dgnConeDetail.m_radiusA > 0)
+	if (isDoubleEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB) && dgnConeDetail.m_radiusA > 0)
 	{
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
@@ -329,7 +328,7 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 		setGraphicPropertiesAxes((GraphicProperties*&)coneGraphicProperties, localToWorld);
 		setConeGraphicProperties(dgnConeDetail, coneGraphicProperties);
 	}
-	else if (dgnConeDetail.m_radiusB > 0 && dgnConeDetail.m_radiusA != dgnConeDetail.m_radiusB)
+	else if (dgnConeDetail.m_radiusB > 0 && !isDoubleEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB))
 	{
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::fixed;
@@ -371,7 +370,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -442,7 +441,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -516,7 +515,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -562,7 +561,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -574,7 +573,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 
 		if (curve->TryGetLine(segment))
 		{
-			outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+			outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 			outfile << std::endl;
 
 			outfile << "Start Point [X]: " << segment.point[0].x << std::endl;
@@ -641,7 +640,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -718,7 +717,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -739,7 +738,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
@@ -777,7 +776,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
 		outfile << std::endl;
 
-		outfile << "-------- " << pDictionaryProperties->getElementName() << " --------" << std::endl;
+		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 		outfile << std::endl;
 		outfile.close();
 
