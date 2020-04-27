@@ -12,7 +12,7 @@ class IfcElementBundle {
 
 private:
 	long modelerElementId;
-	std::string modelerElementName;
+	std::string modelerElementDescriptor;
 
 	std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
 	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
@@ -46,7 +46,7 @@ public:
 
 	bool getHasElementConnection();
 	long getModelerElementId();
-	std::string getModelerElementName();
+	std::string getModelerElementDescriptor();
 
 	bool getIsSmartFeature();
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);

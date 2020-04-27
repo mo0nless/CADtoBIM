@@ -20,8 +20,8 @@ void IfcPropertiesEnhancer::enhanceIfcProperties(std::vector<DictionaryPropertie
 			for (auto const& readerPropertyBundle : dictionaryProperties.getReaderPropertiesBundleVector()) {
 				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
-				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementName() + readerPropertyBundle->getCassName()),
-					file.getSingle<Ifc4::IfcOwnerHistory>(), ifcElementBundle->getModelerElementName() + readerPropertyBundle->getCassName(), boost::none, ifcObjectDefinitionList, ifcPropertySet);
+				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName()),
+					file.getSingle<Ifc4::IfcOwnerHistory>(), ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName(), boost::none, ifcObjectDefinitionList, ifcPropertySet);
 				file.addEntity(ifcRelDefinesByProperties);
 			}
 

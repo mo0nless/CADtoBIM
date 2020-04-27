@@ -1,9 +1,9 @@
 #include "../headers/IfcElementBundle.h"
 
-IfcElementBundle::IfcElementBundle(long newModelerElementId, std::string newModelerElementName)
+IfcElementBundle::IfcElementBundle(long newModelerElementId, std::string newModelerElementDescriptor)
 {
 	this->modelerElementId = newModelerElementId;
-	this->modelerElementName = newModelerElementName;
+	this->modelerElementDescriptor = newModelerElementDescriptor;
 	this->hasConnections = false;
 }
 
@@ -48,9 +48,9 @@ long IfcElementBundle::getModelerElementId()
 	return this->modelerElementId;
 }
 
-std::string IfcElementBundle::getModelerElementName()
+std::string IfcElementBundle::getModelerElementDescriptor()
 {
-	return this->modelerElementName;
+	return this->modelerElementDescriptor;
 }
 
 bool IfcElementBundle::getIsSmartFeature()

@@ -20,7 +20,7 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 		}
 
 		Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
-			ifcElementBundle->getModelerElementName(), ifcElementBundle->getModelerElementName(), ifcRepresentationItemList);
+			ifcElementBundle->getModelerElementDescriptor(), ifcElementBundle->getModelerElementDescriptor(), ifcRepresentationItemList);
 
 		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 		ifcRepresentationList->push(ifcRepresentation);
@@ -53,10 +53,10 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 Ifc4::IfcElement * IfcElementBuilder::buildIfcElement(IfcElementBundle *& ifcElementBundle, Ifc4::IfcProductDefinitionShape * elemShape, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(
-		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementName()),
+		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
 		file.getSingle<Ifc4::IfcOwnerHistory>(),
-		ifcElementBundle->getModelerElementName(),
-		ifcElementBundle->getModelerElementName(),
+		ifcElementBundle->getModelerElementDescriptor(),
+		ifcElementBundle->getModelerElementDescriptor(),
 		boost::none,
 		file.addLocalPlacement(),
 		elemShape, 
@@ -69,10 +69,10 @@ Ifc4::IfcDistributionElement * IfcElementBuilder::buildIfcDistributionElement(If
 {
 	//Create the pipe as IfcDistributionElement
 	Ifc4::IfcDistributionElement* ifcDistributionElem = new Ifc4::IfcDistributionElement(
-		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementName()),
+		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
 		file.getSingle<Ifc4::IfcOwnerHistory>(),
-		ifcElementBundle->getModelerElementName(),
-		ifcElementBundle->getModelerElementName(),
+		ifcElementBundle->getModelerElementDescriptor(),
+		ifcElementBundle->getModelerElementDescriptor(),
 		boost::none,
 		file.addLocalPlacement(),
 		elemShape,
