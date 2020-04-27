@@ -10,8 +10,9 @@ private:
 	Ifc4::IfcPropertySet* ifcPropertySet;
 
 public:
-	IfcReaderPropertiesBundle(ReaderPropertiesBundle* newReaderPropertiesBundle,Ifc4::IfcPropertySet* newIfcPropertySet);
+	IfcReaderPropertiesBundle(ReaderPropertiesBundle* newReaderPropertiesBundle);
 
+	void setIfcPropertySet(Ifc4::IfcPropertySet* ifcPropertySetValue);
 	ReaderPropertiesBundle* getReaderPropertiesBundle();
 	Ifc4::IfcPropertySet* getIfcPropertySet();
 };

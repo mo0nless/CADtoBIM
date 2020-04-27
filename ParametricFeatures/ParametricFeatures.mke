@@ -112,6 +112,7 @@ appObjects = \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
+	$(o)SmartFeatureHandler$(oext) \
 	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcBuilder$(oext) \
 	$(o)IfcElementBundle$(oext) \
@@ -125,7 +126,6 @@ appObjects = \
 	$(o)ExtrusionReaderProperties$(oext) \
 	$(o)RevolveReaderProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
-	$(o)SmartFeatureGeneralProperties$(oext) \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
 	$(o)ShapesTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
@@ -303,8 +303,6 @@ $(o)RevolveReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_
 
 $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
 
-$(o)SmartFeatureGeneralProperties$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureGeneralProperties.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureGeneralProperties.h
-
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
 $(o)ShapesTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/ShapesTypeEnumUtils.cpp $(baseDir)common/utils/headers/ShapesTypeEnumUtils.h
@@ -326,6 +324,8 @@ $(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertie
 $(o)IfcMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcMaterialEnhancer.h
 
 $(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
+
+$(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
 
 
 %include $(MDLMKI)dlmlink.mki

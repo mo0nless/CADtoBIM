@@ -30,6 +30,11 @@ void DictionaryProperties::addGraphicProperties(GraphicProperties * graphicPrope
 	this->graphicPropertiesVector.push_back(graphicProperties);
 }
 
+void DictionaryProperties::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
+{
+	this->smartFeatureContainer = newSmartFeatureContainer;
+}
+
 SmartFeatureContainer * DictionaryProperties::getSmartFeatureContainer()
 {
 	return this->smartFeatureContainer;

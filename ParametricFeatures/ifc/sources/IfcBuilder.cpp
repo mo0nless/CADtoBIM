@@ -5,8 +5,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 {
 		std::string name = "PrimitiveTest";
 		IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-		std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-		//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+		std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 		typedef Ifc4::IfcGloballyUniqueId guid;
 
 		Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -33,7 +33,19 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(),dictionaryProperties.getElementDescriptor());
+				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementName());
+				ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
+				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
+				for (auto const& readerProperty : dictionaryProperties.getReaderPropertiesBundleVector()) {
+					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
+					for (auto const& property1 : readerProperty->getProperties()) {
+						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
+							, property1->getPropertyValue(), property1->getPropertyValueAsString());
+						readerPropertiesBundle->addProperty(readerPropertyDefinition);
+
+					}
+					ifcElementBundle->addIfcReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+				}
 				ifcElementBundleVector.push_back(ifcElementBundle);
 			}
 		}
@@ -121,6 +133,9 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 		ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcElementBundleVector, file);
+
+		SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
+		smartFeatureHandler->handleSmartFeature(ifcElementBundleVector);
 
 
 		IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();

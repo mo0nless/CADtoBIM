@@ -1,9 +1,13 @@
 #include "../headers/IfcReaderPropertiesBundle.h"
 
-IfcReaderPropertiesBundle::IfcReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle, Ifc4::IfcPropertySet * newIfcPropertySet)
+IfcReaderPropertiesBundle::IfcReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle)
 {
-	this->readerPropertiesBundle;
-	this->ifcPropertySet = newIfcPropertySet;
+	this->readerPropertiesBundle = newReaderPropertiesBundle;
+}
+
+void IfcReaderPropertiesBundle::setIfcPropertySet(Ifc4::IfcPropertySet * ifcPropertySetValue)
+{
+	this->ifcPropertySet = ifcPropertySetValue;
 }
 
 ReaderPropertiesBundle * IfcReaderPropertiesBundle::getReaderPropertiesBundle()

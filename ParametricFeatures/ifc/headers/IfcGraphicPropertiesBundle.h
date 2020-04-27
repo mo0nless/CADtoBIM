@@ -17,6 +17,8 @@ public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcRepresentationItem* newIfcRepresentationItem);
 
 	GraphicProperties* getGraphicProperties();
+
+	void setIfcRepresentationItem(Ifc4::IfcRepresentationItem* ifcRepresentationItemValue);
 	Ifc4::IfcRepresentationItem* getIfcRepresentationItem();
 	
 	bool getShow();

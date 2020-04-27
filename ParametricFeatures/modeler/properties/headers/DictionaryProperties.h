@@ -29,11 +29,11 @@ public:
 	std::vector<GraphicProperties*> getGraphicPropertiesVector();
 	void addGraphicProperties(GraphicProperties* graphicProperties);
 
+	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();
 
 	std::string getElementDescriptor();
 
 	long getElementId();
-
 
 };

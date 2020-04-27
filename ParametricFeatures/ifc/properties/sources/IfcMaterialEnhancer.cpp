@@ -112,6 +112,7 @@ void IfcMaterialEnhancer::processMaterial(ReaderPropertyDefinition& readerProper
 
 Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colourValue)
 {
+	std::string colourName = "Colour";
 	std::string result;
 	try {
 		std::regex re("\\[\\d+\\,\\d+\\,\\d+\\]");
@@ -128,7 +129,7 @@ Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colour
 	}
 
 	if (result.empty()) {
-		return nullptr;
+		return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);;
 	}
 	result = result.substr(1, result.size() - 2);
 
@@ -145,7 +146,6 @@ Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colour
 		
 	}
 
-	std::string colourName = "Colour";
 	if (colors.size() == 3) {
 		return new Ifc4::IfcColourRgb(colourName,colors.at(0)/255, colors.at(1)/255, colors.at(2)/255);
 	}

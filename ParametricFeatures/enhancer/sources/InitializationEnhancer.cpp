@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -59,7 +59,9 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 		outfile << "finish==================" << std::endl;
 		outfile.close();
 
+		
 		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
+
 	}
 
 	outfile.open(filePath, std::ios_base::app);
@@ -199,7 +201,8 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 			if (smartFeatureContainer != nullptr) {
-				smartFeatureContainerVector.push_back(smartFeatureContainer);
+				//smartFeatureContainerVector.push_back(smartFeatureContainer);
+				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
 

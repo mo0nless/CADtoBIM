@@ -34,6 +34,7 @@
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
+	<ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
@@ -74,7 +75,6 @@
     <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
-    <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureGeneralProperties.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
@@ -105,6 +105,7 @@
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
+    <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
@@ -158,7 +159,6 @@
     <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureGeneralProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
