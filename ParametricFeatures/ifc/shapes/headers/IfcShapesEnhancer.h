@@ -7,8 +7,8 @@
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
 #include "../../headers/IfcBundle.h"
 
-class IfcShapesEnhancer
-{
+class IfcShapesEnhancer {
+
 public:
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationShapes(IShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcBundle*& ifcBundle);
 	void enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);

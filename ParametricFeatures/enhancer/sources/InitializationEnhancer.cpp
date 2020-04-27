@@ -59,7 +59,9 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 		outfile << "finish==================" << std::endl;
 		outfile.close();
 
+		
 		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
+
 	}
 
 	outfile.open(filePath, std::ios_base::app);
@@ -241,7 +243,8 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 			if (smartFeatureContainer != nullptr) {
-				smartFeatureContainerVector.push_back(smartFeatureContainer);
+				//smartFeatureContainerVector.push_back(smartFeatureContainer);
+				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
 

@@ -156,6 +156,17 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 			{
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 				IfcBundle* ifcBundle = new IfcBundle(dictionaryProperties.getElementId(),dictionaryProperties.getElementName());
+				ifcBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
+				for (auto const& readerProperty : dictionaryProperties.getReaderPropertiesBundleVector()) {
+					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
+					for (auto const& property1 : readerProperty->getProperties()) {
+						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
+							, property1->getPropertyValue(), property1->getPropertyValueAsString());
+						readerPropertiesBundle->addProperty(readerPropertyDefinition);
+
+					}
+					ifcBundle->addIfcReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+				}
 				ifcBundleVector.push_back(ifcBundle);
 			}
 		}
@@ -241,8 +252,11 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 		ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcBundleVector, file);
 
-		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-		ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcBundleVector, file);
+		//IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+		//ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcBundleVector, file);
+
+		SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
+		smartFeatureHandler->handleSmartFeature(ifcBundleVector);
 
 		typedef Ifc4::IfcGloballyUniqueId guid;
 

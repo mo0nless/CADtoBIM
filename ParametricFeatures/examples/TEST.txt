@@ -1,29 +1,66 @@
 
 ===================================================
 ===================================================
-Element Description: Sphere
-Element ID: 1445
+Element Description: Circle
+Element ID: 1473
 ===================================================
 ===================================================
 
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = SphereSolidElement, current element id = 1445, id = 0 ---------
-Capped[int] = Yes
-Center[point3d] = -143' 8.9761", 42' 10.0223", 0' 0.0000"
-Radius[double] = 69' 9.0681"
-Diameter[double] = 139' 6.1362"
+-------- BOUNDARY_TYPE_Outer --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1473
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1473
+finish==================
+Smart Feat Element Node ID: 2
+Number of Child: 1
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1475
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureContainer, current element id = 1475, id = 0 ---------
+NodeId[int] = 0
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Label[string] = Solid of Revolution #2
+DynamicLabel[string] = Parametric Solid
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Sphere
+Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
-Element ID[long] = 1445
+Element ID[long] = 1475
 Model[string] = Default
-Last Modified[dateTime] = 4/21/2020 12:28:38 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Solid
+Last Modified[dateTime] = 3/12/2020 2:48:48 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Type[string] = Parametric Solid/Surface
 Color[int] = 2
 Weight[int] = 0
 Line Style[int] = 0
@@ -31,75 +68,186 @@ Class[int] = Primary
 Transparency[double] = 0
 Template[long] = (None)
 Modified[boolean] = Not Modified
-New[boolean] = Not New
+New[boolean] = New
+Snappable[boolean] = Snappable
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = -213' 6.0442", -26' 11.0457", -69' 9.0681"
-Range High[point3d] = -73' 11.9080", 112' 7.0905", 69' 9.0681"
-Volume[double] = 1421763.0815 Cu.'
-Surface Area[double] = 61146.1259 Sq.'
-Rotation-X[double] = 90.0000°
-Rotation-Y[double] = 62.3996°
+Range Low[point3d] = -236' 9.6544", -725' 1.1276", 69' 0.8590"
+Range High[point3d] = 182' 6.8792", -409' 1.7637", 263' 9.8593"
+Volume[double] = 9777752.9816 Cu.'
+Surface Area[double] = 271527.6300 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
-Angle[double] = 242.3996°
-Orientation[int] = Back
--------- Sphere --------
-Range [XLength] = 42523059.049581
-Range [YLength] = 42523059.049581
-Range [ZLength] = 42523059.049581
+Angle[double] = 0.0000°
+Orientation[int] = Top
 
-Quaternion Rotation
-qRotation [X] = 1569.275567
-qRotation [Y] = 3001.700478
-qRotation [Z] = 3001.700478
-qRotation [W] = 1569.275567
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = Revolve, current element id = 1475, id = 2 ---------
+NodeId[int] = 2
+Label[string] = Solid of Revolution #2
+Deletable[boolean] = False
+IconName[string] = ParametricRevolve
+DepthId[int] = 0
+Name[string] = Solid of Revolution #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Angle[double] = 90.0000°
+Capped[boolean] = True
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+Minimum Radius[double] = 170' 11.5540"
+Maximum Radius[double] = 346' 0.7021"
+Centroidal Radius[double] = 258' 6.1280"
 
-Vector Rotation Axis Local to World
-vRotation [X] = 0.346738
-vRotation [Y] = 0.663239
-vRotation [Z] = 0.663239
-
-Origin [X] = -43814392.244863
-Origin [Y] = 13056167.687360
-Origin [Z] = 0.000000
-
-Range High = -22552862.720073
-Range Low = -65075921.769653
-Start Latitude LatitudeToVFraction = 0.000000
-latitudeSweep LatitudeToVFraction = 1.500000
-
-DiagonalDistanceXY = 60136686.821509
-DiagonalDistance = 73652098.767126
-Range Difference = -42523059.049581
-Origin is SPHERE Center. Columns x,y to Equator at 0 and 90 Degrees Latitude. Column z is to north pole.
-Latitude for Truncation Plane Parallel to the Equator.
-Start Latitude = -1.570796
-Latitude Difference from Start Truncation Plane to end Truncation Plane.
-Latitude Sweep = 3.141593
-
-True if the end cap is enabled = 1
-
-Centroid1 [X] = -43814392.244863
-Centroid1 [Y] = 13056167.687360
-Centroid1 [Z] = 0.000000
-Area1 = 5680660982958262.000000
-
-Centroid2 [X] = -43814392.244863
-Centroid2 [Y] = 13056167.687360
-Centroid2 [Z] = 0.000000
-Volume = 40259847069830750404608.000000
-Area2 = 5680660982958262.000000
-
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureProfile, current element id = 1475, id = 1 ---------
+NodeId[int] = 1
+Label[string] = Profile #1
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
 
 
 ===================================================
 ===================================================
-Element Description: Sphere
-Element: ID 1445
+Element Description: Parametric Solid/Surface
+Element: ID 1475
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1491
+===================================================
+===================================================
+
+
+-------- BOUNDARY_TYPE_Outer --------
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1491
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1491
+finish==================
+Smart Feat Element Node ID: 2
+Number of Child: 1
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1493
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureContainer, current element id = 1493, id = 0 ---------
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Label[string] = Thicken #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1493
+Model[string] = Default
+Last Modified[dateTime] = 3/17/2020 11:25:40 AM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 282' 5.2751", -55' 6.6023", 0' 0.0000"
+Range High[point3d] = 617' 1.9967", 279' 2.1193", 700' 5.1233"
+Volume[double] = 61635892.3858 Cu.'
+Surface Area[double] = 912546.8415 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = ThickenFeature, current element id = 1493, id = 2 ---------
+NodeId[int] = 2
+Label[string] = Thicken #2
+Deletable[boolean] = True
+IconName[string] = ParametricThicken
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Thickness[double] = 700' 5.1233"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureProfile, current element id = 1493, id = 1 ---------
+NodeId[int] = 1
+Label[string] = Profile #1
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1493
 ===================================================
 ===================================================
 

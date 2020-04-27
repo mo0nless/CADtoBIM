@@ -1,4 +1,5 @@
 #include "../headers/IfcGraphicPropertiesBundle.h"
+#include "..\headers\IfcGraphicPropertiesBundle.h"
 
 IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcRepresentationItem * newIfcRepresentationItem)
 {
@@ -10,6 +11,11 @@ IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGr
 GraphicProperties * IfcGraphicPropertiesBundle::getGraphicProperties()
 {
 	return this->graphicProperties;
+}
+
+void IfcGraphicPropertiesBundle::setIfcRepresentationItem(Ifc4::IfcRepresentationItem * ifcRepresentationItemValue)
+{
+	this->ifcRepresentationItem = ifcRepresentationItemValue;
 }
 
 Ifc4::IfcRepresentationItem * IfcGraphicPropertiesBundle::getIfcRepresentationItem()

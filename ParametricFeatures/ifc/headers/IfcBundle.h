@@ -5,6 +5,7 @@
 #include <string>
 #include "IfcGraphicPropertiesBundle.h"
 #include "IfcReaderPropertiesBundle.h"
+#include "../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 
 class IfcBundle {
@@ -13,7 +14,7 @@ private:
 	long modelerElementId;
 	std::string modelerElementName;
 
-	//std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
+	std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
 	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
 	std::vector<Ifc4::IfcPoint*> ifcPointsPortsVector;
@@ -22,6 +23,8 @@ private:
 	Ifc4::IfcElement* ifcElement;
 
 	bool hasConnections;
+	
+	SmartFeatureContainer* smartFeatureContainer;
 
 public:
 	IfcBundle(long newModelerElementId,std::string newModelerElementName);
@@ -31,7 +34,8 @@ public:
 	void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
-	//std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
+	std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
+
 	std::vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
 	std::vector<Ifc4::IfcPoint*> getIfcPortsPointsVector();
@@ -44,4 +48,7 @@ public:
 	long getModelerElementId();
 	std::string getModelerElementName();
 
+	bool getIsSmartFeature();
+	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
+	SmartFeatureContainer* getSmartFeatureContainer();
 };
