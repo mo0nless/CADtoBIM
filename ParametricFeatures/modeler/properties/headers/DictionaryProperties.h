@@ -12,7 +12,7 @@ class DictionaryProperties {
 
 private:
 	long elementId;
-	std::string elementName;
+	std::string elementDescriptor;
 
 	std::vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
 	std::vector<GraphicProperties*> graphicPropertiesVector;
@@ -21,7 +21,7 @@ private:
 
 
 public:
-	DictionaryProperties(long newElementId, std::string newElementName);
+	DictionaryProperties(long newElementId, std::string newEmentDescriptor);
 
 	std::vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
 	void addReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
@@ -32,7 +32,8 @@ public:
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();
 
-	std::string getElementName();
+	std::string getElementDescriptor();
+
 	long getElementId();
 
 };

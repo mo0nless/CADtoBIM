@@ -39,12 +39,12 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 
 				file.addEntity(portShape);
 
-				//Need to be used the subtype because otherwise the flow , distribution type, distribution system you can specify it
+				//Need to be used the subtype because otherwise the flow , distribution type, distribution system cqnnot be specified
 				Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
-					guid::IfcGloballyUniqueId("Port: " + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementName()),
+					guid::IfcGloballyUniqueId("Port: " + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor()),
 					file.getSingle<Ifc4::IfcOwnerHistory>(),
-					std::string("Port ") + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementName(),
-					ifcElementBundle->getModelerElementName(),
+					std::string("Port ") + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
+					ifcElementBundle->getModelerElementDescriptor(),
 					std::string("PORT"),
 					file.getSingle<Ifc4::IfcObjectPlacement>(),
 					portShape,
@@ -84,10 +84,10 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 {
 	//Create the nested relationship between the element and ports
 	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
-		guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementName() + " Ports"),
+		guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
 		file.getSingle<Ifc4::IfcOwnerHistory>(),
-		std::string("RelNests: ") + ifcElementBundle->getModelerElementName() + std::string(" Ports"),
-		std::string("RelNests: ") + ifcElementBundle->getModelerElementName() + std::string(" Ports"),
+		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
+		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
 		ifcElementBundle->getIfcElement(),
 		objectDefinition
 	);

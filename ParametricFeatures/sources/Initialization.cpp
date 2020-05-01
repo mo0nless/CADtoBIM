@@ -12,8 +12,6 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	std::vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
 	initializationEnhancer->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
-	
-	propsDictVec = initializationEnhancer->orderDictionaryPropertyAndSmartFeature(propsDictVec, smartFeatureContainerVector);
 
 	IfcBuilder* ifcBuilder = new IfcBuilder();
 	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
