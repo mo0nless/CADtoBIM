@@ -135,7 +135,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		ifcShapesEnhancer->enhanceIfcShapesPrimitives(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 		SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
-		smartFeatureHandler->handleSmartFeature(ifcElementBundleVector);
+		smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
 
 		IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();

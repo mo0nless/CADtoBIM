@@ -1,10 +1,10 @@
 #include "../headers/SmartFeatureHandler.h"
 
-void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector)
+void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	for (auto ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getIsSmartFeature()) {
-			Ifc4::IfcRepresentationItem* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle);
+			Ifc4::IfcRepresentationItem* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle,file);
 			// TODO [MP] keep the existing graphic properties and only add the ifc representation item
 			ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult));
 		}
@@ -12,7 +12,7 @@ void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifc
 }
 
 
-Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement)
+Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement, IfcHierarchyHelper<Ifc4>& file)
 {
 	if (!root)
 		return nullptr;
@@ -29,19 +29,23 @@ Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* roo
 	}
 	Ifc4::IfcRepresentationItem* left = nullptr, *rigth = nullptr;
 	if (root->getLeftNode() != nullptr) {
-		left = eval(root->getLeftNode(), ifcBundleVector, currentElement);
+		left = eval(root->getLeftNode(), ifcBundleVector, currentElement,file);
 	}
 	if (root->getRightNode() != nullptr) {
-		rigth = eval(root->getRightNode(), ifcBundleVector, currentElement);
+		rigth = eval(root->getRightNode(), ifcBundleVector, currentElement,file);
 	}
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*currentElement, root->getLocalNodeId());
 	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && left != nullptr && rigth != nullptr) {
-		Ifc4::IfcRepresentationItem* resultItem = IfcBooleanOperatorHandler::solveBooleanOperaiont(left, rigth,*ifcReaderPropertiesBundle);
-		return resultItem;
+		return IfcBooleanOperatorHandler::solveBooleanOperaiont(left, rigth,*ifcReaderPropertiesBundle);
 	}
-		
-
+	else if (ifcReaderPropertiesBundle != nullptr && 
+		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
+		(left != nullptr || rigth != nullptr)) {
+		Ifc4::IfcRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
+		return result;
+	}
+	
 	return nullptr;
 
 }
