@@ -11,18 +11,18 @@
 #include "../../headers/GraphicProperties.h"
 #include <vector>
 
-class IShapesGraphicProperties: public GraphicProperties
+class ShapesGraphicProperties: public GraphicProperties
 {
 public:
-	IShapesGraphicProperties(ShapesTypeEnum newShapeType);
+	ShapesGraphicProperties(ShapesTypeEnum newShapeType);
 
 	ShapesTypeEnum getCurvesShapeTypeEnum();
 
 	void setBoundaryTypeCurvesContainer(int boundaryBentleyType);
 	CurvesBoundaryTypeEnum getBoundaryTypeCurvesContainer();
 
-	void insertCurvesGraphicsProperties(ICurveGraphicProperties* newCurveGraphicProperties);
-	std::vector<ICurveGraphicProperties*> getCurvesPrimitivesContainerVector();
+	void insertCurvesGraphicsProperties(CurveGraphicProperties* newCurveGraphicProperties);
+	std::vector<CurveGraphicProperties*> getCurvesPrimitivesContainerVector();
 
 	void setIsFilled(bool value);
 	bool getIsFilled();
@@ -33,7 +33,7 @@ public:
 	DVec3d getNormal() const;
 	void setNormal(DVec3d normal);
 
-	virtual ~IShapesGraphicProperties();
+	virtual ~ShapesGraphicProperties();
 
 private:
 	DVec3d mNormal;
@@ -43,5 +43,5 @@ private:
 
 	ShapesTypeEnum mCurvesShapeTypeEnum;
 	CurvesBoundaryTypeEnum mCurvesBoundaryType;
-	std::vector<ICurveGraphicProperties*> mCurvesPrimitivesContainer;
+	std::vector<CurveGraphicProperties*> mCurvesPrimitivesContainer;
 };

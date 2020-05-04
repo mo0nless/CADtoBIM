@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "../headers/IShapesGraphicProperties.h"
+#include "../headers/ShapesGraphicProperties.h"
 
-class GenericShapesGraphicProperties : public IShapesGraphicProperties
+class GenericShapesGraphicProperties : public ShapesGraphicProperties
 {
 public:
 	GenericShapesGraphicProperties();

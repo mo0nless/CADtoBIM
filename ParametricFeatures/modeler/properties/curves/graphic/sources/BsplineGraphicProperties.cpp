@@ -1,6 +1,6 @@
 #include "../headers/BsplineGraphicProperties.h"
 
-BsplineGraphicProperties::BsplineGraphicProperties():ICurveGraphicProperties(CurvesPrimitivesTypeEnum::BSPLINE)
+BsplineGraphicProperties::BsplineGraphicProperties():CurveGraphicProperties(CurvesPrimitivesTypeEnum::BSPLINE)
 {
 	this->mDegree = 0;
 	this->mOrder = 0;

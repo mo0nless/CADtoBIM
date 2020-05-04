@@ -4,15 +4,15 @@
 #include <vector>
 #include "../../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
-class ICurveGraphicProperties 
+class CurveGraphicProperties 
 {
 public:
-	ICurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);
+	CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);
 	void setControlPoints(bvector<DPoint3d> newControlPoints);
 	bvector<DPoint3d> getControlPoints();
 	CurvesPrimitivesTypeEnum getCurvesTypeEnum();
 	int getNumberControlPoints();
-	virtual ~ICurveGraphicProperties() {}; //Needed for dynamic cast at least one virtual function
+	virtual ~CurveGraphicProperties() {}; //Needed for dynamic cast at least one virtual function
 
 private:
 	int mNumCPoints;

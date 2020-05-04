@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -350,7 +350,7 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve)
+CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve)
 {
 	std::ofstream outfile;
 	
@@ -427,6 +427,15 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
 		outfile << std::endl;
+		outfile << "Center out: x=" << centerOUT .x << ",y=" << centerOUT.y << ",z="<< centerOUT.z <<std::endl;
+		outfile << "DirectionX: x=" << directionX.x << ",y=" << directionX.y << ",z=" << directionX.z << std::endl;
+		outfile << "DirectionX: Y=" << directionY.x << ",y=" << directionY.y << ",z=" << directionY.z << std::endl;
+		outfile << "RX:" << rx << std::endl;
+		outfile << "RY:" << ry << std::endl;
+		outfile << "startAngle:" << startAngle << std::endl;
+		outfile << "sweepAngle:" << sweepAngle << std::endl;
+		outfile << "Start point: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
+		outfile << "End point: x=" << endPoint.x << ",y=" << endPoint.y << ",z=" << endPoint.z << std::endl;
 		outfile << "Is Circular: " << ellipse.IsCircular();
 		outfile.close();
 
@@ -487,7 +496,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 	{
-		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//CurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
@@ -711,7 +720,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
 	{
-		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//CurveGraphicProperties* curveGraphicProperties = nullptr;
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
@@ -769,7 +778,7 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 	break;
 	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 	{
-		//ICurveGraphicProperties* curveGraphicProperties = nullptr;
+		//CurveGraphicProperties* curveGraphicProperties = nullptr;
 		//curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral);
 
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
@@ -800,30 +809,69 @@ ICurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurv
 #pragma warning (pop)
 
 
-void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties)
+void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled , ShapesGraphicProperties*& shapesGraphicProperties)
 {
 	std::ofstream outfile;
 
 	DPoint3d center;
 	DRange3d range;
-	DVec3d normal, centroID;
+	DVec3d normal, centroid;
 	double area;
 	Transform localToWorld, worldToLocal;
+	//DMatrix4d matrix;
 
 	curves.CentroidNormalArea(center, normal, area);
-	centroID.Init(center);
+	//centroid.Init(center);
 
 	//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
 	curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+	curves.CentroidAreaXY(centroid, area);
+	DMatrix4d matrix;
+	curves.ComputeSecondMomentAreaProducts(matrix);
+	DPoint4d col1, col2, col3, col4;
+	matrix.GetColumn(col1, 0);
+	matrix.GetColumn(col2, 1);
+	matrix.GetColumn(col3, 2);
+	matrix.GetColumn(col4, 3);
+
+	DPoint3d startPoint;
+	curves.GetStartPoint(startPoint);
+
+	DPoint3d centroid2;
+	double c_length;
+	curves.WireCentroid(c_length,centroid2);
 
 	setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+	DVec3d columnVectorX, columnVectorY, columnVectorZ,col;
+
+	localToWorld.GetMatrixColumn(columnVectorX, 0);
+	localToWorld.GetMatrixColumn(columnVectorY, 1);
+	localToWorld.GetMatrixColumn(columnVectorZ, 2);
+	localToWorld.GetMatrixColumn(col, 3);
 
 	shapesGraphicProperties->setIsFilled(isFilled);
 	shapesGraphicProperties->setArea(area);
-	shapesGraphicProperties->setCentroid(centroID);
+	shapesGraphicProperties->setCentroid(centroid);
 	shapesGraphicProperties->setNormal(normal);
 	//TODO[SB] Check if the other bool closed path is relevant
 	shapesGraphicProperties->setIsClosed(curves.IsClosedPath()); 
+
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::endl;
+	outfile << "Centroid2: x=" << centroid2.x << ",y=" << centroid2.y << ",z=" << centroid2.z << std::endl;
+	outfile << "startPoint: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
+	outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << std::endl;
+	outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << std::endl;
+	outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << std::endl;
+	outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << std::endl;
+	outfile << "Centroid: x=" << centroid.x << ",y=" << centroid.y << ",z=" << centroid.z << std::endl;
+	outfile << "center: x=" << center.x << ",y=" << center.y << ",z=" << center.z << std::endl;
+	outfile << "columnVectorX: x=" << columnVectorX.x << ",y=" << columnVectorX.y << ",z=" << columnVectorX.z << std::endl;
+	outfile << "columnVectorY: x=" << columnVectorY.x << ",y=" << columnVectorY.y << ",z=" << columnVectorY.z << std::endl;
+	outfile << "columnVectorZ: x=" << columnVectorZ.x << ",y=" << columnVectorZ.y << ",z=" << columnVectorZ.z << std::endl;
+	outfile << "col: x=" << col.x << ",y=" << col.y << ",z=" << col.z << std::endl;
+	outfile.flush();
+	outfile.close();
 
 	switch (curves.GetBoundaryType())
 	{
@@ -832,7 +880,6 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::endl;
 		outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
-		
 		outfile.flush();
 		outfile.close();
 
@@ -840,7 +887,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}
@@ -859,7 +906,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}
@@ -878,7 +925,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}
@@ -897,7 +944,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}
@@ -916,7 +963,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}
@@ -935,7 +982,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		for each (ICurvePrimitivePtr curve in curves)
 		{
-			ICurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
 			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
 	}

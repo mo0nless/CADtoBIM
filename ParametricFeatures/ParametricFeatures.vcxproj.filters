@@ -44,7 +44,6 @@
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\SolidPrimitiveProperty.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\BoxGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
@@ -54,7 +53,6 @@
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\IShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CircleShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ComplexChainShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
@@ -74,7 +72,9 @@
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsRelationshipList.cpp" />
-	<ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
+    <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\CurvesGraphicsProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -131,7 +131,6 @@
     <ClInclude Include="enhancer\headers\IfcOperationsEnhancer.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\BoxGraphicProperties.h" />
@@ -145,7 +144,6 @@
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\IShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
@@ -160,7 +158,9 @@
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
-	<ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
+    <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\CurvesGraphicsProperties.h" />
   </ItemGroup>
 </Project>

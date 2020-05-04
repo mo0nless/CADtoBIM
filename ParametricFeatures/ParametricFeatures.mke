@@ -94,7 +94,7 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
-	$(o)ICurvesGraphicsProperties$(oext) \
+	$(o)CurvesGraphicsProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
@@ -103,7 +103,7 @@ appObjects = \
 	$(o)PointStringGraphicProperties$(oext) \
 	$(o)AkimaGraphicProperties$(oext) \
 	$(o)CurvesShapesGraphicProperties$(oext) \
-	$(o)IShapesGraphicProperties$(oext) \
+	$(o)ShapesGraphicProperties$(oext) \
 	$(o)CircleShapesGraphicProperties$(oext) \
 	$(o)ComplexChainShapesGraphicProperties$(oext) \
 	$(o)EllipseShapesGraphicProperties$(oext) \
@@ -279,11 +279,11 @@ $(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/gr
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)ICurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ICurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ICurvesGraphicsProperties.h
+$(o)CurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurvesGraphicsProperties.h
 
 $(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
 
-$(o)IShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/IShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/IShapesGraphicProperties.h
+$(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/ShapesGraphicProperties.h
 
 $(o)CircleShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CircleShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CircleShapesGraphicProperties.h
 

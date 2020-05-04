@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ICurvesGraphicsProperties.h"
+#include "CurvesGraphicsProperties.h"
 
-class InterpolationGraphicProperties : public ICurveGraphicProperties
+class InterpolationGraphicProperties : public CurveGraphicProperties
 {
 public:
 	InterpolationGraphicProperties();

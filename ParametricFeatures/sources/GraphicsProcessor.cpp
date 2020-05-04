@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -73,31 +73,31 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 			case ShapesTypeEnum::CIRCLE:
 			{
 				CircleShapesGraphicProperties* shapesGraphicProperties = new CircleShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
 			case ShapesTypeEnum::SHAPE:
 			{
 				GenericShapesGraphicProperties* shapesGraphicProperties = new GenericShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
 			case ShapesTypeEnum::COMPLEX_CHAIN:
 			{
 				ComplexChainShapesGraphicProperties* shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
 			case ShapesTypeEnum::ELLIPSE:
 			{
 				EllipseShapesGraphicProperties* shapesGraphicProperties = new EllipseShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
 			default:
 			{
 				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (IShapesGraphicProperties*&)shapesGraphicProperties);
+				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
 			}
 			break;
 		}

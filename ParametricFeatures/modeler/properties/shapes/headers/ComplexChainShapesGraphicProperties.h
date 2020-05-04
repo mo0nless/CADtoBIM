@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../headers/IShapesGraphicProperties.h"
+#include "../headers/ShapesGraphicProperties.h"
 
-class ComplexChainShapesGraphicProperties : public IShapesGraphicProperties
+class ComplexChainShapesGraphicProperties : public ShapesGraphicProperties
 {
 public:
 	ComplexChainShapesGraphicProperties();

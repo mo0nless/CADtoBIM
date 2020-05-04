@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../headers/IShapesGraphicProperties.h"
+#include "../headers/ShapesGraphicProperties.h"
 
-class CurvesShapesGraphicProperties: public IShapesGraphicProperties
+class CurvesShapesGraphicProperties: public ShapesGraphicProperties
 {
 public:
 	CurvesShapesGraphicProperties();

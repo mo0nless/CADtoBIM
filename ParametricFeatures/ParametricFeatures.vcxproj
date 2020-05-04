@@ -34,7 +34,7 @@
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
-	<ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
+    <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
@@ -50,7 +50,7 @@
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\ICurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\CurvesGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\AkimaGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
@@ -62,7 +62,7 @@
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\EllipseShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\GenericShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\IShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\CylinderGraphicProperties.cpp" />
@@ -106,7 +106,7 @@
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\CurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />
@@ -145,7 +145,7 @@
     </ClInclude>
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\IShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />

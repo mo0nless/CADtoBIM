@@ -71,15 +71,15 @@
 //	return item;
 //}
 
-Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(Ifc4::IfcRepresentationItem * leftIfcRepresentationItem, Ifc4::IfcRepresentationItem * rigthIfcRepresentationItem, 
+Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(IfcElementBundle* leftIfcRepresentationItem, IfcElementBundle* rigthIfcRepresentationItem,
 	IfcReaderPropertiesBundle& ifcReaderPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	Ifc4::IfcRepresentationItem* representationItem = nullptr;
+	IfcElementBundle* ifcElementBundle = nullptr;
 	if (leftIfcRepresentationItem != nullptr) {
-		representationItem = leftIfcRepresentationItem;
+		ifcElementBundle = leftIfcRepresentationItem;
 	}
 	else if (rigthIfcRepresentationItem != nullptr) {
-		representationItem = rigthIfcRepresentationItem;
+		ifcElementBundle = rigthIfcRepresentationItem;
 	}
 
 	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getCassName()))
@@ -94,9 +94,18 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 		}
 		//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 		//Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement, 1);
-		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("Revolve"), (Ifc4::IfcBoundedCurve*)representationItem);
+		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("Revolve"), (Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
 		Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
-		Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 0, 1));
+
+		DVec3d zAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisZ();
+		DVec3d xAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisX();
+		DVec3d centroid = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getCentroid();
+
+		Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
+			NumberUtils::convertMicrometersToMetters(centroid.y), NumberUtils::convertMicrometersToMetters(centroid.z)),
+			file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(zAxis.x), NumberUtils::convertMicrometersToMetters(zAxis.y),
+				NumberUtils::convertMicrometersToMetters(zAxis.z)), file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(xAxis.x),
+					NumberUtils::convertMicrometersToMetters(xAxis.y), NumberUtils::convertMicrometersToMetters(xAxis.z)));
 
 		Ifc4::IfcRepresentationItem* result = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, sweepRadians);
 		return result;
@@ -110,10 +119,43 @@ Ifc4::IfcRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSoli
 			if (modelerProperty->getPropertyName() == "Distance") {
 				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
 			}
-		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,std::string("Extrude"),(Ifc4::IfcBoundedCurve*)representationItem);
-		Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), file.addTriplet<Ifc4::IfcDirection>(0, 0, 1));
+		}
+		DVec3d zAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisZ();
+		DVec3d xAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisX();
+		DVec3d centroid = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getCentroid();
+		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,std::string("Extrude"),(Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
+		Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
+			NumberUtils::convertMicrometersToMetters(centroid.y), NumberUtils::convertMicrometersToMetters(centroid.z)),
+			file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(zAxis.x), NumberUtils::convertMicrometersToMetters(zAxis.y),
+				NumberUtils::convertMicrometersToMetters(zAxis.z)), file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(xAxis.x),
+					NumberUtils::convertMicrometersToMetters(xAxis.y), NumberUtils::convertMicrometersToMetters(xAxis.z)));
 		
-		Ifc4::IfcRepresentationItem* result =  new Ifc4::IfcExtrudedAreaSolid(profileDef, placement, file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), length);
+		Ifc4::IfcRepresentationItem* result =  new Ifc4::IfcExtrudedAreaSolid(profileDef, placement, file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y, zAxis.z), length);
+		return result;
+
+	}
+
+	case CreateSolidFunctionsEnum::THIKEN:
+	{
+		double length = 0;
+		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
+			if (modelerProperty->getPropertyName() == "Thickness") {
+				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
+			}
+		}
+		DVec3d zAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisZ();
+		DVec3d xAxis = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getVectorAxisX();
+		DVec3d centroid = ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getGraphicProperties()->getCentroid();
+
+		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("Thicken"), (Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
+		Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
+			NumberUtils::convertMicrometersToMetters(centroid.y), NumberUtils::convertMicrometersToMetters(centroid.z)),
+			file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(zAxis.x), NumberUtils::convertMicrometersToMetters(zAxis.y),
+				NumberUtils::convertMicrometersToMetters(zAxis.z)), file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(xAxis.x),
+				NumberUtils::convertMicrometersToMetters(xAxis.y), NumberUtils::convertMicrometersToMetters(xAxis.z)));
+
+		Ifc4::IfcRepresentationItem* result = new Ifc4::IfcExtrudedAreaSolid(profileDef, placement, file.addTriplet<Ifc4::IfcDirection>(NumberUtils::convertMicrometersToMetters(zAxis.x),
+			NumberUtils::convertMicrometersToMetters(zAxis.y), NumberUtils::convertMicrometersToMetters(zAxis.z)), length);
 		return result;
 
 	}

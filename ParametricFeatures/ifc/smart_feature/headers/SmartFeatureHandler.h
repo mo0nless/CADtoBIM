@@ -14,7 +14,7 @@ public:
 	void handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
-	Ifc4::IfcRepresentationItem* eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement,IfcHierarchyHelper<Ifc4>& file);
+	IfcElementBundle* eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement,IfcHierarchyHelper<Ifc4>& file);
 	IfcElementBundle* getIfcBundleByGlobalId(std::vector<IfcElementBundle*>& ifcBundleVector, int globalId);
 	IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcElementBundle& ifcBundle, int localId);
 };

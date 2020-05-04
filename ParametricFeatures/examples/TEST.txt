@@ -7,12 +7,35 @@ Element ID: 1385
 ===================================================
 
 
+Centroid2: x=-5.57801e+07,y=6.02723e+07,z=0
+startPoint: x=-4.64183e+07,y=5.45468e+07,z=0
+col1: x=1.18852e+30,y=-1.27193e+30,z=0
+col2: x=-1.27193e+30,y=1.38575e+30,z=0
+col3: x=0,y=0,z=0
+col4: x=-2.1103e+22,y=2.28025e+22,z=0
+Centroid: x=-5.57801e+07,y=6.02723e+07,z=0
+center: x=-5.57801e+07,y=6.02723e+07,z=0
+columnVectorX: x=1.14511e+07,y=1.87235e+07,z=0
+columnVectorY: x=-1.87235e+07,y=1.14511e+07,z=-0
+columnVectorZ: x=-0,y=0,z=2.19476e+07
+col: x=1.14511e+07,y=1.87235e+07,z=0
+
 -------- BOUNDARY_TYPE_Outer --------
 ----------------------------------------
 
 --------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
 
-Is Circular: 1
+Center out: x=-55780098.267649,y=60272341.783799,z=0.000000
+DirectionX: x=0.853101,y=-0.521746,z=0.000000
+DirectionX: Y=0.521746,y=0.853101,z=0.000000
+RX:10973815.940170
+RY:10973815.940170
+startAngle:0.000000
+sweepAngle:6.283185
+Start point: x=-46418326.318971,y=54546797.070004,z=0.000000
+End point: x=-46418326.318971,y=54546797.070004,z=0.000000
+Is Circular: 11385 -------- Circle  Color index RGB --------
+
 ===================================================
 ===================================================
 Element Description: Circle
@@ -58,7 +81,7 @@ Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
 Element ID[long] = 1390
 Model[string] = Default
-Last Modified[dateTime] = 4/29/2020 2:57:36 PM
+Last Modified[dateTime] = 5/3/2020 10:13:26 AM
 Size[int] = 76
 Linkages[int] = 2
 XAttributes[int] = 6
@@ -69,7 +92,7 @@ Line Style[int] = 0
 Class[int] = Primary
 Transparency[double] = 0
 Template[long] = (None)
-Modified[boolean] = Not Modified
+Modified[boolean] = Modified
 New[boolean] = New
 Snappable[boolean] = Snappable
 Filled[boolean] = Not Filled
@@ -78,10 +101,10 @@ Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = -219' 0.1069", 161' 8.8868", 0' 0.0000"
-Range High[point3d] = -79' 11.3524", 233' 8.9669", 139' 0.7545"
-Volume[double] = 659239.7288 Cu.'
-Surface Area[double] = 44765.5548 Sq.'
+Range Low[point3d] = -621' 3.7149", -176' 4.8183", 56' 6.0978"
+Range High[point3d] = -423' 0.0509", -104' 4.7383", 254' 9.7619"
+Volume[double] = 1038195.2458 Cu.'
+Surface Area[double] = 65816.6901 Sq.'
 Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
@@ -104,9 +127,9 @@ Angle[double] = 90.0000°
 Capped[boolean] = True
 Thickness Mode: [int] = None
 Thickness[double] = 0' 0.0000"
-Minimum Radius[double] = 67' 0.6745"
-Maximum Radius[double] = 139' 0.7545"
-Centroidal Radius[double] = 103' 0.7145"
+Minimum Radius[double] = 126' 3.5840"
+Maximum Radius[double] = 198' 3.6640"
+Centroidal Radius[double] = 162' 3.6240"
 
 ------------ Instance Schema full name: SmartFeaturesSchema.01.00
 --------- ClassName = SmartFeatureProfile, current element id = 1390, id = 1 ---------
@@ -138,12 +161,35 @@ Element ID: 1395
 ===================================================
 
 
+Centroid2: x=-1.13413e+07,y=-4.08872e+07,z=0
+startPoint: x=2.06731e+06,y=-4.08872e+07,z=0
+col1: x=9.80397e+28,y=2.61921e+29,z=0
+col2: x=2.61921e+29,y=9.69654e+29,z=0
+col3: x=0,y=0,z=0
+col4: x=-6.40593e+21,y=-2.30944e+22,z=0
+Centroid: x=-1.13413e+07,y=-4.08872e+07,z=0
+center: x=-1.13413e+07,y=-4.08872e+07,z=0
+columnVectorX: x=0,y=2.68173e+07,z=0
+columnVectorY: x=-2.68173e+07,y=0,z=0
+columnVectorZ: x=0,y=0,z=2.68173e+07
+col: x=0,y=2.68173e+07,z=0
+
 -------- BOUNDARY_TYPE_Outer --------
 ----------------------------------------
 
 --------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
 
-Is Circular: 1
+Center out: x=-11341319.720623,y=-40887246.718349,z=0.000000
+DirectionX: x=1.000000,y=0.000000,z=0.000000
+DirectionX: Y=0.000000,y=1.000000,z=0.000000
+RX:13408631.351896
+RY:13408631.351896
+startAngle:0.000000
+sweepAngle:6.283185
+Start point: x=2067311.631273,y=-40887246.718349,z=0.000000
+End point: x=2067311.631273,y=-40887246.718349,z=0.000000
+Is Circular: 11395 -------- Circle  Color index RGB --------
+
 ===================================================
 ===================================================
 Element Description: Circle
@@ -189,7 +235,7 @@ Element Description[string] = Parametric Solid/Surface
 Level[int] = Default
 Element ID[long] = 1397
 Model[string] = Default
-Last Modified[dateTime] = 5/1/2020 4:20:55 PM
+Last Modified[dateTime] = 5/1/2020 6:51:52 PM
 Size[int] = 76
 Linkages[int] = 2
 XAttributes[int] = 6
@@ -209,8 +255,8 @@ Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = -81' 2.4076", -178' 1.6330", 0' 0.0000"
-Range High[point3d] = 6' 9.3902", -90' 1.8352", 311' 6.0405"
+Range Low[point3d] = -900' 9.0012", -296' 2.2928", -23' 10.7969"
+Range High[point3d] = -812' 9.2034", -208' 2.4950", 287' 7.2436"
 Volume[double] = 1893876.2797 Cu.'
 Surface Area[double] = 98261.3641 Sq.'
 Rotation-X[double] = 0.0000°
@@ -258,6 +304,407 @@ Hidden[boolean] = True
 ===================================================
 Element Description: Parametric Solid/Surface
 Element: ID 1397
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1415
+===================================================
+===================================================
+
+
+Centroid2: x=4.82262e+07,y=-9.4859e+07,z=-4.66328e+07
+startPoint: x=5.39268e+07,y=-1.05437e+08,z=-5.15097e+07
+col1: x=1.24353e+30,y=-2.42426e+30,z=-1.18072e+30
+col2: x=-2.42426e+30,y=4.76866e+30,z=2.3444e+30
+col3: x=-1.18072e+30,y=2.3444e+30,z=1.16368e+30
+col4: x=2.54784e+22,y=-5.01149e+22,z=-2.46366e+22
+Centroid: x=4.82262e+07,y=-9.4859e+07,z=0
+center: x=4.82262e+07,y=-9.4859e+07,z=-4.66328e+07
+columnVectorX: x=1.78453e+07,y=951090,z=1.87964e+07
+columnVectorY: x=-1.14012e+07,y=2.11551e+07,z=9.75389e+06
+columnVectorZ: x=-1.4974e+07,y=-1.4974e+07,z=1.4974e+07
+col: x=1.78453e+07,y=951090,z=1.87964e+07
+
+-------- BOUNDARY_TYPE_Outer --------
+----------------------------------------
+
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Center out: x=48226187.995400,y=-94858983.264116,z=-46632795.267635
+DirectionX: x=0.439594,y=-0.815673,z=-0.376078
+DirectionX: Y=0.688058,y=0.036671,z=0.724729
+RX:12967894.006084
+RY:12967894.006084
+startAngle:0.000000
+sweepAngle:6.283185
+Start point: x=53926800.615573,y=-105436540.009678,z=-51509739.393025
+End point: x=53926800.615573,y=-105436540.009678,z=-51509739.393025
+Is Circular: 11415 -------- Circle  Color index RGB --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1415
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1415
+finish==================
+Smart Feat Element Node ID: 2
+Number of Child: 1
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1417
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureContainer, current element id = 1417, id = 0 ---------
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Label[string] = Thicken #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1417
+Model[string] = Default
+Last Modified[dateTime] = 5/1/2020 6:53:53 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = -449' 2.6434", -496' 5.3720", -262' 2.1460"
+Range High[point3d] = -233' 7.7263", -280' 10.4550", -46' 7.2290"
+Volume[double] = 1439027.2063 Cu.'
+Surface Area[double] = 79019.7338 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = ThickenFeature, current element id = 1417, id = 2 ---------
+NodeId[int] = 2
+Label[string] = Thicken #2
+Deletable[boolean] = True
+IconName[string] = ParametricThicken
+DepthId[int] = 0
+Name[string] = Thicken #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Thickness[double] = 253' 0.6267"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureProfile, current element id = 1417, id = 1 ---------
+NodeId[int] = 1
+Label[string] = Profile #1
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1417
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1418
+===================================================
+===================================================
+
+
+Centroid2: x=5.46779e+07,y=-6.36886e+07,z=-9.01065e+06
+startPoint: x=6.07069e+07,y=-6.97175e+07,z=-9.01065e+06
+col1: x=6.85557e+29,y=-7.96694e+29,z=-1.11137e+29
+col2: x=-7.96694e+29,y=9.29141e+29,z=1.32447e+29
+col3: x=-1.11137e+29,y=1.32447e+29,z=2.13099e+28
+col4: x=1.24875e+22,y=-1.45454e+22,z=-2.05788e+21
+Centroid: x=5.46779e+07,y=-6.36886e+07,z=1.86265e-09
+center: x=5.46779e+07,y=-6.36886e+07,z=-9.01065e+06
+columnVectorX: x=6.96163e+06,y=6.96163e+06,z=1.39233e+07
+columnVectorY: x=-1.20579e+07,y=1.20579e+07,z=-1.18325e-08
+columnVectorZ: x=-9.84524e+06,y=-9.84524e+06,z=9.84524e+06
+col: x=6.96163e+06,y=6.96163e+06,z=1.39233e+07
+
+-------- BOUNDARY_TYPE_Outer --------
+----------------------------------------
+
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Center out: x=54677907.378608,y=-63688562.251459,z=-9010654.871771
+DirectionX: x=0.707107,y=-0.707107,z=0.000000
+DirectionX: Y=0.408248,y=0.408248,z=0.816497
+RX:8526225.143566
+RY:8526225.143566
+startAngle:0.000000
+sweepAngle:6.283185
+Start point: x=60706858.995547,y=-69717513.868398,z=-9010654.871771
+End point: x=60706858.995547,y=-69717513.868398,z=-9010654.871771
+Is Circular: 11418 -------- Circle  Color index RGB --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1418
+===================================================
+===================================================
+
+start==================
+Node ID: 2
+finish==================
+start==================
+Parent Ref Count: 2
+Parent ID: 2
+Node ID: 1
+Leaf ID:  1418
+finish==================
+Smart Feat Element Node ID: 2
+Number of Child: 1
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1420
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureContainer, current element id = 1420, id = 0 ---------
+NodeId[int] = 0
+Deletable[boolean] = False
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Solid of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Label[string] = Solid of Extrusion #2
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1420
+Model[string] = Default
+Last Modified[dateTime] = 5/1/2020 5:31:17 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 6
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 156' 6.3488", -56' 10.6287", -340' 2.4525"
+Range High[point3d] = 337' 0.4650", 123' 7.4875", -159' 8.3363"
+Volume[double] = 574089.5475 Cu.'
+Surface Area[double] = 45962.2976 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = Extrude, current element id = 1420, id = 2 ---------
+NodeId[int] = 2
+Label[string] = Solid of Extrusion #2
+Deletable[boolean] = False
+IconName[string] = ParametricExtrude
+DepthId[int] = 0
+Name[string] = Solid of Extrusion #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = True
+IsTop[boolean] = True
+Distance[double] = 233' 6.3821"
+X Scale[double] = 1.0000
+Y Scale[double] = 1.0000
+Spin Angle[double] = 0.0000°
+Both Ways[boolean] = False
+Thickness Mode: [int] = None
+Thickness[double] = 0' 0.0000"
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- ClassName = SmartFeatureProfile, current element id = 1420, id = 1 ---------
+NodeId[int] = 1
+Label[string] = Profile #1
+Deletable[boolean] = False
+IconName[string] = Circle
+DepthId[int] = 1
+Name[string] = Profile #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element: ID 1420
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Circle
+Element ID: 1428
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = EllipseElement, current element id = 1428, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Circle
+Level[int] = Default
+Element ID[long] = 1428
+Model[string] = Default
+Last Modified[dateTime] = 5/1/2020 6:30:12 PM
+Size[int] = 88
+Linkages[int] = 0
+XAttributes[int] = 0
+Type[string] = Ellipse
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = Not New
+Solid[boolean] = Solid
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Thickness[double] = 0' 0.0000"
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of 0 groups
+Attached Material[string] = (None)
+Range Low[point3d] = -693' 8.9509", 0' 0.0000", -387' 5.6698"
+Range High[point3d] = -574' 0.4179", 0' 0.0000", -267' 9.1368"
+Rotation-X[double] = 90.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 180.0000°
+Orientation[int] = Back
+Area[double] = 11255.3395 Sq.'
+Perimeter[double] = 376' 1.0015"
+Fill[binary] = No Fill
+Front Clip Depth[double] = 0' 0.0000"
+Back Clip Depth[double] = 0' 0.0000"
+Front Clip[boolean] = False
+Back Clip[boolean] = False
+Pattern Definition[int] = (None)
+Pattern Name[string] = <null>
+Primary Axis[double] = 59' 10.2665"
+Center[point3d] = -633' 10.6844", 0' 0.0000", -327' 7.4033"
+Primary Vector[point3d] = 59' 10.2665", 0' 0.0000", 0' 0.0000"
+Secondary Vector[point3d] = 0' 0.0000", 0' 0.0000", 59' 10.2665"
+Axis Ratio[double] = 1.00000
+DWG Radius[double] = 59' 10.2665"
+Start Point[point3d] = -574' 0.4179", 0' 0.0000", -327' 7.4033"
+End Point[point3d] = -574' 0.4179", 0' 0.0000", -327' 7.4033"
+
+Centroid2: x=-1.9321e+08,y=0,z=-9.98576e+07
+startPoint: x=-1.74966e+08,y=0,z=-9.98576e+07
+col1: x=3.91213e+31,y=0,z=2.01743e+31
+col2: x=0,y=0,z=0
+col3: x=2.01743e+31,y=0,z=1.05138e+31
+col4: x=-2.02031e+23,y=0,z=-1.04417e+23
+Centroid: x=-1.74966e+08,y=0,z=-9.98576e+07
+center: x=-1.9321e+08,y=0,z=-9.98576e+07
+columnVectorX: x=0,y=0,z=3.64879e+07
+columnVectorY: x=-3.64879e+07,y=0,z=0
+columnVectorZ: x=0,y=-3.64879e+07,z=0
+col: x=0,y=0,z=3.64879e+07
+
+-------- BOUNDARY_TYPE_Outer --------
+----------------------------------------
+
+--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------
+
+Center out: x=-193209783.108006,y=0.000000,z=-99857644.050975
+DirectionX: x=1.000000,y=0.000000,z=0.000000
+DirectionX: Y=0.000000,y=0.000000,z=1.000000
+RX:18243969.000533
+RY:18243969.000533
+startAngle:0.000000
+sweepAngle:6.283185
+Start point: x=-174965814.107473,y=0.000000,z=-99857644.050975
+End point: x=-174965814.107473,y=0.000000,z=-99857644.050975
+Is Circular: 11428 -------- Circle  Color index RGB --------
+
+===================================================
+===================================================
+Element Description: Circle
+Element: ID 1428
 ===================================================
 ===================================================
 

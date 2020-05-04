@@ -19,6 +19,10 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			}
 		}
 
+		if (ifcRepresentationItemList->size() < 1) {
+			continue;
+		}
+
 		Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
 			ifcElementBundle->getModelerElementDescriptor(), ifcElementBundle->getModelerElementDescriptor(), ifcRepresentationItemList);
 

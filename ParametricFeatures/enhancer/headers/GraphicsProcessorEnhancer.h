@@ -28,8 +28,8 @@ public:
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
-	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties);
-	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , ShapesGraphicProperties*& shapesGraphicProperties);
+	CurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
 
 	// use this method to set centroid, area and volume
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);

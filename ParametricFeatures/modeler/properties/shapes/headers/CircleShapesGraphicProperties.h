@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../headers/IShapesGraphicProperties.h"
+#include "../headers/ShapesGraphicProperties.h"
 
-class CircleShapesGraphicProperties: public IShapesGraphicProperties
+class CircleShapesGraphicProperties: public ShapesGraphicProperties
 {
 public:
 	CircleShapesGraphicProperties();
