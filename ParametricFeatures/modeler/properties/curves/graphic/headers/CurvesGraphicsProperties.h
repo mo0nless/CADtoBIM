@@ -8,15 +8,15 @@ class CurveGraphicProperties
 {
 public:
 	CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);
-	void setControlPoints(bvector<DPoint3d> newControlPoints);
-	bvector<DPoint3d> getControlPoints();
+	void addControlPoint(DPoint3d newControlPoint);
+	std::vector<DPoint3d> getControlPoints();
 	CurvesPrimitivesTypeEnum getCurvesTypeEnum();
 	int getNumberControlPoints();
 	virtual ~CurveGraphicProperties() {}; //Needed for dynamic cast at least one virtual function
 
 private:
 	int mNumCPoints;
-	bvector<DPoint3d> mControlPoints;
+	std::vector<DPoint3d> controlPoints;
 	CurvesPrimitivesTypeEnum mCurvesTypeEnum;
 };
 

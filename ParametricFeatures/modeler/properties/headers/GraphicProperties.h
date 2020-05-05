@@ -18,7 +18,7 @@ private:
 	DVec3d vectorAxisZ;
 
 public:
-	GraphicProperties() {};
+	GraphicProperties();
 	virtual ~GraphicProperties() {}
 
 	double getArea();

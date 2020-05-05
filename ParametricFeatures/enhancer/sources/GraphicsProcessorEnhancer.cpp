@@ -380,6 +380,9 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			for (size_t k = 0; k < curve->GetAkimaCurveCP()->size(); k++)
 			{
+				// add control point
+				curveGraphicProperties->addControlPoint(curve->GetAkimaCurveCP()->at(k));
+
 				outfile << "point " << k << " [X] = " << curve->GetAkimaCurveCP()->at(k).x << std::endl;
 				outfile << "point " << k << " [Y] = " << curve->GetAkimaCurveCP()->at(k).y << std::endl;
 				outfile << "point " << k << " [Z] = " << curve->GetAkimaCurveCP()->at(k).z << std::endl;
@@ -388,7 +391,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			outfile.close();
 
-			curveGraphicProperties->setControlPoints(*curve->GetAkimaCurveCP());
+			//curveGraphicProperties->setControlPoints(*curve->GetAkimaCurveCP());
 		}
 
 		return curveGraphicProperties;
@@ -410,13 +413,17 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 		ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
 
 		ellipse.EvaluateEndPoints(startPoint, endPoint);
-		bvector<DPoint3d> polesControlP;
-		polesControlP.push_back(startPoint);
-		polesControlP.push_back(endPoint);
+
+		//bvector<DPoint3d> polesControlP;
+		//polesControlP.push_back(startPoint);
+		//polesControlP.push_back(endPoint);
+
+		curveGraphicProperties->addControlPoint(startPoint);
+		curveGraphicProperties->addControlPoint(endPoint);
 
 		curveGraphicProperties->setLength(ellipse.ArcLength());
 		curveGraphicProperties->setIsCircular(ellipse.IsCircular());
-		curveGraphicProperties->setControlPoints(polesControlP);
+		//curveGraphicProperties->setControlPoints(polesControlP);
 		curveGraphicProperties->setDirectionXY(directionX, directionY);
 		curveGraphicProperties->setStartAngle(startAngle);
 		curveGraphicProperties->setSweepAngle(sweepAngle);
@@ -458,6 +465,17 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 		DPoint3d startP, endP;
 		bvector<DPoint3d> polesControlP;
 
+		for (size_t k = 0; k < polesControlP.size(); k++)
+		{
+			// add control point
+			curveGraphicProperties->addControlPoint(polesControlP.at(k));
+
+			outfile << "point " << k << " [X] = " << polesControlP.at(k).x << std::endl;
+			outfile << "point " << k << " [Y] = " << polesControlP.at(k).y << std::endl;
+			outfile << "point " << k << " [Z] = " << polesControlP.at(k).z << std::endl;
+			outfile << std::endl;
+		}
+
 
 		if (bSpline != nullptr)
 		{
@@ -485,7 +503,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 			}
 			curveGraphicProperties->setIsClosed(bSpline->IsClosed());
 			curveGraphicProperties->setIsSelfIntersect(false);
-			curveGraphicProperties->setControlPoints(polesControlP);
+			//curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setOrder(bSpline->GetOrder());
 
 			return curveGraphicProperties;
@@ -543,6 +561,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			for (size_t k = 0; k < intParams.numPoints; k++)
 			{
+				curveGraphicProperties->addControlPoint(curve->GetInterpolationCurveCP()->fitPoints[k]);
 				outfile << "point " << k << " [X] = " << curve->GetInterpolationCurveCP()->fitPoints[k].x << std::endl;
 				outfile << "point " << k << " [Y] = " << curve->GetInterpolationCurveCP()->fitPoints[k].y << std::endl;
 				outfile << "point " << k << " [Z] = " << curve->GetInterpolationCurveCP()->fitPoints[k].z << std::endl;
@@ -550,7 +569,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			}
 
-			curveGraphicProperties->setControlPoints(polesControlP);
+			//curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setOrder(intCurve->GetOrder());
 			curveGraphicProperties->setIsPeriodic(intParams.isPeriodic);
 
@@ -621,6 +640,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 				int k = 0;
 				for each (DPoint3d p in *curve->GetLineStringCP())
 				{
+					curveGraphicProperties->addControlPoint(p);
 					outfile << "point " << k << " [X] = " << p.x << std::endl;
 					outfile << "point " << k << " [Y] = " << p.y << std::endl;
 					outfile << "point " << k << " [Z] = " << p.z << std::endl;
@@ -631,7 +651,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 				}
 			}
 
-			curveGraphicProperties->setControlPoints(polesControlP);
+			//curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setDirectionTanget(directionTangent);
 			
 		}
@@ -697,6 +717,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 				int k = 0;
 				for each (DPoint3d p in *curve->GetLineStringCP())
 				{
+					curveGraphicProperties->addControlPoint(p);
 					outfile << "point " << k << " [X] = " << p.x << std::endl;
 					outfile << "point " << k << " [Y] = " << p.y << std::endl;
 					outfile << "point " << k << " [Z] = " << p.z << std::endl;
@@ -707,7 +728,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 				}
 			}
 
-			curveGraphicProperties->setControlPoints(polesControlP);
+			//curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setDirectionTanget(directionTangent);
 
 		}	
@@ -761,6 +782,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 			{
 				DPoint3d point = curve->GetPointStringCP()->at(k);
 
+				curveGraphicProperties->addControlPoint(point);
 				outfile << "point " << k << " [X] = " << point.x << std::endl;
 				outfile << "point " << k << " [Y] = " << point.y << std::endl;
 				outfile << "point " << k << " [Z] = " << point.z << std::endl;
@@ -771,7 +793,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			outfile.close();
 
-			curveGraphicProperties->setControlPoints(polesControlP);
+			//curveGraphicProperties->setControlPoints(polesControlP);
 		}
 		return curveGraphicProperties;
 	}
@@ -834,6 +856,22 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	matrix.GetColumn(col3, 2);
 	matrix.GetColumn(col4, 3);
 
+	DVec3d columnVectorX2, columnVectorY2, columnVectorZ2;
+	columnVectorX2.x = col1.x;
+	columnVectorX2.x = col1.y;
+	columnVectorX2.x = col1.z;
+
+	columnVectorY2.x = col2.x;
+	columnVectorY2.x = col2.y;
+	columnVectorY2.x = col2.z;
+
+	columnVectorZ2.x = col3.x;
+	columnVectorZ2.x = col3.y;
+	columnVectorZ2.x = col3.z;
+
+	//shapesGraphicProperties->setVectorAxis(columnVectorX2, columnVectorY2, columnVectorZ2);
+
+
 	DPoint3d startPoint;
 	curves.GetStartPoint(startPoint);
 
@@ -842,6 +880,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	curves.WireCentroid(c_length,centroid2);
 
 	setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+	
 	DVec3d columnVectorX, columnVectorY, columnVectorZ,col;
 
 	localToWorld.GetMatrixColumn(columnVectorX, 0);
@@ -860,10 +899,10 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	outfile << std::endl;
 	outfile << "Centroid2: x=" << centroid2.x << ",y=" << centroid2.y << ",z=" << centroid2.z << std::endl;
 	outfile << "startPoint: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
-	outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << std::endl;
-	outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << std::endl;
-	outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << std::endl;
-	outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << std::endl;
+	outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << ",w=" << col1.w << std::endl;
+	outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << ",w=" << col2.w << std::endl;
+	outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << ",w=" << col3.w << std::endl;
+	outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << ",w=" << col4.w << std::endl;
 	outfile << "Centroid: x=" << centroid.x << ",y=" << centroid.y << ",z=" << centroid.z << std::endl;
 	outfile << "center: x=" << center.x << ",y=" << center.y << ",z=" << center.z << std::endl;
 	outfile << "columnVectorX: x=" << columnVectorX.x << ",y=" << columnVectorX.y << ",z=" << columnVectorX.z << std::endl;

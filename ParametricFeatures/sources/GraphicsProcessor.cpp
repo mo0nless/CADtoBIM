@@ -274,6 +274,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();	
 	std::ofstream outfile;
 
+
 	switch (primitive.GetSolidPrimitiveType())
 	{
 	case SolidPrimitiveType::SolidPrimitiveType_DgnBox:
@@ -387,6 +388,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			boxGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			mGraphicsProcessorEnhancer.setBoxGraphicProperties(boxDetails, boxGraphicProperties);
+
+
 		}
 
 	}
