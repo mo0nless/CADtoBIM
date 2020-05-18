@@ -109,6 +109,7 @@ appObjects = \
 	$(o)EllipseShapesGraphicProperties$(oext) \
 	$(o)GenericShapesGraphicProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
+	$(o)RotationalSweepGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
@@ -232,6 +233,8 @@ $(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/gra
 $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h
 
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
+
+$(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h
 
 $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 

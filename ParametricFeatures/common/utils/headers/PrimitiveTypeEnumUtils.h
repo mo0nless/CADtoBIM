@@ -6,18 +6,13 @@
 #include "../../enums/headers/PrimitiveTypeEnum.h"
 
 
+
+//TODO [MP] to be deleted
 /**
 *  Class used to contain the immutable map between ReaderPropertiesEnum and the string value from the modeler
 */
 class PrimitiveTypeEnumUtils {
-public:
 
-	/**
-	*  static method to retrieve enum value based on the string(label) value received from the modeler
-	*  @param stringValue[in]
-	*  @return PrimitiveTypeEnum
-	*/
-	static PrimitiveTypeEnum getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription);
 
 private:
 	/**

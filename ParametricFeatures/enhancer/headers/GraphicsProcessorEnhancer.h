@@ -13,6 +13,7 @@
 #include "../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
 
 #include <math.h>
 
@@ -26,6 +27,7 @@ public:
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
+	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
 	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , ShapesGraphicProperties*& shapesGraphicProperties);

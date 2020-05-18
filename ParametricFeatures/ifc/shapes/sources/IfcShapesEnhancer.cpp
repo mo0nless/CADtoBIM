@@ -362,7 +362,7 @@ void IfcShapesEnhancer::defineIfcGeometricRepresentationItem(ShapesGraphicProper
 	}
 	break;
 
-	/*case ShapesTypeEnum::SHAPE:
+	case ShapesTypeEnum::SHAPE:
 	{
 		if (curvesShape->getIsFilled())
 		{
@@ -421,7 +421,7 @@ void IfcShapesEnhancer::defineIfcGeometricRepresentationItem(ShapesGraphicProper
 		this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
 	}
 	break;
-	*/
+	
 
 	default:
 	{

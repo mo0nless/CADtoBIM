@@ -204,7 +204,7 @@ Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
 columnVectorX: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=1.19371e-311,z=3.45885e-312
+columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
 col: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
@@ -229,7 +229,7 @@ Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
 columnVectorX: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=1.19371e-311,z=3.45885e-312
+columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
 col: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
@@ -1156,10 +1156,10 @@ col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=1.19371e-311,z=3.45885e-312
-col: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
+col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------
@@ -2088,10 +2088,10 @@ col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=1.19371e-311,z=3.45885e-312
-col: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
+col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------
@@ -2127,8 +2127,8 @@ IsGraphicalElement[boolean] = True
 Element Description[string] = Riser Clamp
 Element ID[long] = 11410
 Model[string] = Default
-Last Modified[dateTime] = 7/18/2014 11:06:35 AM
-Size[int] = 224
+Last Modified[dateTime] = 5/6/2020 10:41:02 AM
+Size[int] = 230
 Linkages[int] = 5
 XAttributes[int] = 4
 Type[string] = Support
@@ -2142,8 +2142,8 @@ Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = 17' 4.6746", 12' 0.5000", 8' 2.0618"
-Range High[point3d] = 17' 9.6747", 14' 7.5000", 8' 11.6868"
+Range Low[point3d] = 16' 11.8921", 12' 0.5000", 8' 2.0618"
+Range High[point3d] = 17' 4.8922", 14' 7.5000", 8' 11.6868"
 Pattern Name[string] = <null>
 Number of elements[int] = 2
 Scale X[double] = 1.00000
@@ -2154,7 +2154,7 @@ Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
 Orientation[int] = Front
-Origin[point3d] = 17' 7.1747", 13' 4.0000", 8' 6.8743"
+Origin[point3d] = 17' 2.3921", 13' 4.0000", 8' 6.8743"
 Cell Type[boolean] = Graphic
 Is Annotation[boolean] = False
 Annotation Purpose[boolean] = False
@@ -2162,6 +2162,8 @@ Annotation Purpose[boolean] = False
 ------------ Instance Schema full name: OpenPlant_3D.01.08
 --------- ClassName = RISER_CLAMP, current element id = 11410, id = 1 ---------
 Guid[string] = 5b95b4be-14b6-40d2-b622-1ce698ec49d7
+Modification Time[dateTime] = 5/6/2020 10:41:02 AM
+Modified By[string] = FX6021
 Name[string] = SP-1
 Description[string] = RISERCLAMP
 Active Item[boolean] = False
@@ -2177,9 +2179,9 @@ Component State[string] = Design
 Read_From_Spec[boolean] = True
 Nominal Diameter[double] = 8.0000
 Update Graphics[boolean] = True
-SUPPORT_POINT_Z[double] = 107.1868
+SUPPORT_POINT_Z[double] = 102.8743
 SUPPORT_POINT_Y[double] = 160.0000
-SUPPORT_POINT_X[double] = 211.1747
+SUPPORT_POINT_X[double] = 206.3921
 Support Load[double] = 0.0000
 Static Load[double] = 0.0000
 Specification[string] = Supports
@@ -2206,16 +2208,16 @@ vRotation [X] = 0.707107
 vRotation [Y] = 0.000000
 vRotation [Z] = 0.707107
 
-Origin [X] = 5300336.387763
+Origin [X] = 5178860.447904
 Origin [Y] = 4064000.000000
 Origin [Z] = 2613006.960349
 
-Range High = 5434702.935157
-Range Low = 5292969.840370
+Range High = 5313226.995298
+Range Low = 5171493.900511
 DiagonalDistanceXY = 295426.990238
 DiagonalDistance = 393021.555343
 Range Difference = 141733.094787
-Center Point Rotation [X] = 5300336.387763
+Center Point Rotation [X] = 5178860.447904
 Center Point Rotation [Y] = 4064000.000000
 Center Point Rotation [Z] = 2613006.960349
 
@@ -2227,15 +2229,15 @@ Axes of Rotation Direction (Ray3D) [X] = 1.000000
 Axes of Rotation Direction (Ray3D) [Y] = 0.000000
 Axes of Rotation Direction (Ray3D) [Z] = -0.000000
 
-Axes of Rotation Origin (Ray3D) [X] = 5300336.387763
+Axes of Rotation Origin (Ray3D) [X] = 5178860.447904
 Axes of Rotation Origin (Ray3D) [Y] = 4064000.000000
 Axes of Rotation Origin (Ray3D) [Z] = 2613006.960349
 
-Curve Start Point of Swept [X] = 5300336.387763
+Curve Start Point of Swept [X] = 5178860.447904
 Curve Start Point of Swept [Y] = 4064000.000000
 Curve Start Point of Swept [Z] = 2735244.460349
 
-Curve End Point of Swept [X] = 5300336.387763
+Curve End Point of Swept [X] = 5178860.447904
 Curve End Point of Swept [Y] = 4064000.000000
 Curve End Point of Swept [Z] = 2735244.460349
 
@@ -2245,16 +2247,64 @@ Number of 'v' Rules (Radial Around) to Display in Wireframe = 1
 
 Is it a closed volume = 1
 True if the end cap is enabled = 1
+----------------------------------------
+
+--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+
+-------- Riser Clamp --------
+
+Start Point [X]: 5178860.447904
+Start Point [Y]: 4064000.000000
+Start Point [Z]: 2735244.460349
+
+End Point [X]: 5178860.447904
+End Point [Y]: 4064000.000000
+End Point [Z]: 2722544.460349
+
+Curve Line String Length: 12700.000000
+
+point 0 [X] = 5178860.447904
+point 0 [Y] = 4064000.000000
+point 0 [Z] = 2735244.460349
+
+point 1 [X] = 5178860.447904
+point 1 [Y] = 4064000.000000
+point 1 [Z] = 2722544.460349
+
+point 2 [X] = 5305860.447904
+point 2 [Y] = 4064000.000000
+point 2 [Z] = 2722544.460349
+
+point 3 [X] = 5305860.447904
+point 3 [Y] = 4064000.000000
+point 3 [Z] = 2735244.460349
+
+point 4 [X] = 5178860.447904
+point 4 [Y] = 4064000.000000
+point 4 [Z] = 2735244.460349
 
 
-Centroid2: x=5.36384e+06,y=4.4577e+06,z=2.61301e+06
-startPoint: x=5.42734e+06,y=4.4577e+06,z=2.61936e+06
-col1: x=4.64065e+22,y=3.8565e+22,z=2.2606e+22,w=8.65133e+15
-col2: x=3.8565e+22,y=3.20501e+22,z=1.87871e+22,w=7.18982e+15
-col3: x=2.2606e+22,y=1.87871e+22,z=1.10126e+22,w=4.21452e+15
-col4: x=8.65133e+15,y=7.18982e+15,z=4.21452e+15,w=1.6129e+09
-Centroid: x=5.36384e+06,y=4.4577e+06,z=2.61301e+06
-center: x=5.36384e+06,y=4.4577e+06,z=2.61301e+06
+Centroid1 [X] = 5242360.447904
+Centroid1 [Y] = 4064000.000000
+Centroid1 [Z] = 2613006.960349
+Area1 = 203443052857.645325
+
+Centroid2 [X] = 5242360.447904
+Centroid2 [Y] = 4064000.000000
+Centroid2 [Z] = 2613006.960349
+Volume = 1174421259678222.750000
+Area2 = 203443052857.645325
+
+
+
+Centroid2: x=5.24236e+06,y=4.4577e+06,z=2.61301e+06
+startPoint: x=5.30586e+06,y=4.4577e+06,z=2.61936e+06
+col1: x=4.43284e+22,y=3.76917e+22,z=2.2094e+22,w=8.4554e+15
+col2: x=3.76917e+22,y=3.20501e+22,z=1.87871e+22,w=7.18982e+15
+col3: x=2.2094e+22,y=1.87871e+22,z=1.10126e+22,w=4.21452e+15
+col4: x=8.4554e+15,y=7.18982e+15,z=4.21452e+15,w=1.6129e+09
+Centroid: x=5.24236e+06,y=4.4577e+06,z=2.61301e+06
+center: x=5.24236e+06,y=4.4577e+06,z=2.61301e+06
 columnVectorX: x=-127000,y=0,z=0
 columnVectorY: x=-0,y=0,z=-12700
 columnVectorZ: x=-0,y=-40160.9,z=0
@@ -2267,46 +2317,46 @@ col: x=-127000,y=0,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 4457700.000000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 4457700.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 127000.000000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 4457700.000000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 4457700.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 4457700.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 4457700.000000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 4457700.000000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=4.18624e+06,z=2.61301e+06
-startPoint: x=5.42734e+06,y=4.18624e+06,z=2.61936e+06
-col1: x=4.64065e+22,y=3.62165e+22,z=2.2606e+22,w=8.65133e+15
-col2: x=3.62165e+22,y=2.82654e+22,z=1.7643e+22,w=6.75198e+15
-col3: x=2.2606e+22,y=1.7643e+22,z=1.10126e+22,w=4.21452e+15
-col4: x=8.65133e+15,y=6.75198e+15,z=4.21452e+15,w=1.6129e+09
-Centroid: x=5.36384e+06,y=4.18624e+06,z=2.61301e+06
-center: x=5.36384e+06,y=4.18624e+06,z=2.61301e+06
+Centroid2: x=5.24236e+06,y=4.18624e+06,z=2.61301e+06
+startPoint: x=5.30586e+06,y=4.18624e+06,z=2.61936e+06
+col1: x=4.43284e+22,y=3.53963e+22,z=2.2094e+22,w=8.4554e+15
+col2: x=3.53963e+22,y=2.82654e+22,z=1.7643e+22,w=6.75198e+15
+col3: x=2.2094e+22,y=1.7643e+22,z=1.10126e+22,w=4.21452e+15
+col4: x=8.4554e+15,y=6.75198e+15,z=4.21452e+15,w=1.6129e+09
+Centroid: x=5.24236e+06,y=4.18624e+06,z=2.61301e+06
+center: x=5.24236e+06,y=4.18624e+06,z=2.61301e+06
 columnVectorX: x=-127000,y=0,z=0
 columnVectorY: x=-0,y=0,z=-12700
 columnVectorZ: x=-0,y=-40160.9,z=0
@@ -2319,46 +2369,46 @@ col: x=-127000,y=0,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 4186237.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 4186237.500000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 127000.000000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 4186237.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 4186237.500000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 4186237.500000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 4186237.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 4186237.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.42734e+06,y=4.32197e+06,z=2.61301e+06
-startPoint: x=5.42734e+06,y=4.18624e+06,z=2.61936e+06
-col1: x=1.01552e+23,y=8.0869e+22,z=4.88923e+22,w=1.87111e+16
-col2: x=8.0869e+22,y=6.44198e+22,z=3.89346e+22,w=1.49003e+16
-col3: x=4.88923e+22,y=3.89346e+22,z=2.35394e+22,w=9.00853e+15
-col4: x=1.87111e+16,y=1.49003e+16,z=9.00853e+15,w=3.44757e+09
-Centroid: x=5.42734e+06,y=4.32197e+06,z=2.61301e+06
-center: x=5.42734e+06,y=4.32197e+06,z=2.61301e+06
+Centroid2: x=5.30586e+06,y=4.32197e+06,z=2.61301e+06
+startPoint: x=5.30586e+06,y=4.18624e+06,z=2.61936e+06
+col1: x=9.70566e+22,y=7.90589e+22,z=4.7798e+22,w=1.82923e+16
+col2: x=7.90589e+22,y=6.44198e+22,z=3.89346e+22,w=1.49003e+16
+col3: x=4.7798e+22,y=3.89346e+22,z=2.35394e+22,w=9.00853e+15
+col4: x=1.82923e+16,y=1.49003e+16,z=9.00853e+15,w=3.44757e+09
+Centroid: x=5.30586e+06,y=4.32197e+06,z=2.61301e+06
+center: x=5.30586e+06,y=4.32197e+06,z=2.61301e+06
 columnVectorX: x=0,y=271463,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=-58716,y=0,z=0
@@ -2371,46 +2421,46 @@ col: x=0,y=271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 4186237.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 4457700.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 4186237.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 4457700.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 4457700.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 4186237.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 4186237.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.30034e+06,y=4.32197e+06,z=2.61301e+06
-startPoint: x=5.30034e+06,y=4.18624e+06,z=2.61936e+06
-col1: x=9.68546e+22,y=7.89766e+22,z=4.77483e+22,w=1.82733e+16
-col2: x=7.89766e+22,y=6.44198e+22,z=3.89346e+22,w=1.49003e+16
-col3: x=4.77483e+22,y=3.89346e+22,z=2.35394e+22,w=9.00853e+15
-col4: x=1.82733e+16,y=1.49003e+16,z=9.00853e+15,w=3.44757e+09
-Centroid: x=5.30034e+06,y=4.32197e+06,z=2.61301e+06
-center: x=5.30034e+06,y=4.32197e+06,z=2.61301e+06
+Centroid2: x=5.17886e+06,y=4.32197e+06,z=2.61301e+06
+startPoint: x=5.17886e+06,y=4.18624e+06,z=2.61936e+06
+col1: x=9.2466e+22,y=7.71666e+22,z=4.66539e+22,w=1.78545e+16
+col2: x=7.71666e+22,y=6.44198e+22,z=3.89346e+22,w=1.49003e+16
+col3: x=4.66539e+22,y=3.89346e+22,z=2.35394e+22,w=9.00853e+15
+col4: x=1.78545e+16,y=1.49003e+16,z=9.00853e+15,w=3.44757e+09
+Centroid: x=5.17886e+06,y=4.32197e+06,z=2.61301e+06
+center: x=5.17886e+06,y=4.32197e+06,z=2.61301e+06
 columnVectorX: x=0,y=271463,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=-58716,y=0,z=0
@@ -2423,46 +2473,46 @@ col: x=0,y=271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 4186237.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 4457700.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 4186237.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 4457700.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 4457700.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 4186237.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 4186237.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=4.32197e+06,z=2.60666e+06
-startPoint: x=5.42734e+06,y=4.18624e+06,z=2.60666e+06
-col1: x=9.91939e+23,y=7.99228e+23,z=4.82029e+23,w=1.84922e+17
-col2: x=7.99228e+23,y=6.44198e+23,z=3.884e+23,w=1.49003e+17
-col3: x=4.82029e+23,y=3.884e+23,z=2.34251e+23,w=8.98664e+16
-col4: x=1.84922e+17,y=1.49003e+17,z=8.98664e+16,w=3.44757e+10
-Centroid: x=5.36384e+06,y=4.32197e+06,z=2.60666e+06
-center: x=5.36384e+06,y=4.32197e+06,z=2.60666e+06
+Centroid2: x=5.24236e+06,y=4.32197e+06,z=2.60666e+06
+startPoint: x=5.30586e+06,y=4.18624e+06,z=2.60666e+06
+col1: x=9.4752e+23,y=7.81128e+23,z=4.71112e+23,w=1.80734e+17
+col2: x=7.81128e+23,y=6.44198e+23,z=3.884e+23,w=1.49003e+17
+col3: x=4.71112e+23,y=3.884e+23,z=2.34251e+23,w=8.98664e+16
+col4: x=1.80734e+17,y=1.49003e+17,z=8.98664e+16,w=3.44757e+10
+Centroid: x=5.24236e+06,y=4.32197e+06,z=2.60666e+06
+center: x=5.24236e+06,y=4.32197e+06,z=2.60666e+06
 columnVectorX: x=0,y=271463,z=0
 columnVectorY: x=-127000,y=0,z=0
 columnVectorZ: x=0,y=-0,z=185676
@@ -2475,46 +2525,46 @@ col: x=0,y=271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 4186237.500000
 Start Point [Z]: 2606656.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 4457700.000000
 End Point [Z]: 2606656.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 4186237.500000
 point 0 [Z] = 2606656.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 4457700.000000
 point 1 [Z] = 2606656.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 4457700.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 4186237.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 4186237.500000
 point 4 [Z] = 2606656.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=4.32197e+06,z=2.61936e+06
-startPoint: x=5.42734e+06,y=4.18624e+06,z=2.61936e+06
-col1: x=9.91939e+23,y=7.99228e+23,z=4.84377e+23,w=1.84922e+17
-col2: x=7.99228e+23,y=6.44198e+23,z=3.90292e+23,w=1.49003e+17
-col3: x=4.84377e+23,y=3.90292e+23,z=2.36539e+23,w=9.03043e+16
-col4: x=1.84922e+17,y=1.49003e+17,z=9.03043e+16,w=3.44757e+10
-Centroid: x=5.36384e+06,y=4.32197e+06,z=2.61936e+06
-center: x=5.36384e+06,y=4.32197e+06,z=2.61936e+06
+Centroid2: x=5.24236e+06,y=4.32197e+06,z=2.61936e+06
+startPoint: x=5.30586e+06,y=4.18624e+06,z=2.61936e+06
+col1: x=9.4752e+23,y=7.81128e+23,z=4.73407e+23,w=1.80734e+17
+col2: x=7.81128e+23,y=6.44198e+23,z=3.90292e+23,w=1.49003e+17
+col3: x=4.73407e+23,y=3.90292e+23,z=2.36539e+23,w=9.03043e+16
+col4: x=1.80734e+17,y=1.49003e+17,z=9.03043e+16,w=3.44757e+10
+Centroid: x=5.24236e+06,y=4.32197e+06,z=2.61936e+06
+center: x=5.24236e+06,y=4.32197e+06,z=2.61936e+06
 columnVectorX: x=0,y=271463,z=0
 columnVectorY: x=-127000,y=0,z=0
 columnVectorZ: x=0,y=-0,z=185676
@@ -2527,46 +2577,46 @@ col: x=0,y=271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 4186237.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 4457700.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 4186237.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 4457700.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 4457700.000000
 point 2 [Z] = 2619356.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 4186237.500000
 point 3 [Z] = 2619356.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 4186237.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=3.6703e+06,z=2.61301e+06
-startPoint: x=5.30034e+06,y=3.6703e+06,z=2.61936e+06
-col1: x=4.64065e+22,y=3.1753e+22,z=2.2606e+22,w=8.65133e+15
-col2: x=3.1753e+22,y=2.17275e+22,z=1.54685e+22,w=5.91983e+15
-col3: x=2.2606e+22,y=1.54685e+22,z=1.10126e+22,w=4.21452e+15
-col4: x=8.65133e+15,y=5.91983e+15,z=4.21452e+15,w=1.6129e+09
-Centroid: x=5.36384e+06,y=3.6703e+06,z=2.61301e+06
-center: x=5.36384e+06,y=3.6703e+06,z=2.61301e+06
+Centroid2: x=5.24236e+06,y=3.6703e+06,z=2.61301e+06
+startPoint: x=5.17886e+06,y=3.6703e+06,z=2.61936e+06
+col1: x=4.43284e+22,y=3.10339e+22,z=2.2094e+22,w=8.4554e+15
+col2: x=3.10339e+22,y=2.17275e+22,z=1.54685e+22,w=5.91983e+15
+col3: x=2.2094e+22,y=1.54685e+22,z=1.10126e+22,w=4.21452e+15
+col4: x=8.4554e+15,y=5.91983e+15,z=4.21452e+15,w=1.6129e+09
+Centroid: x=5.24236e+06,y=3.6703e+06,z=2.61301e+06
+center: x=5.24236e+06,y=3.6703e+06,z=2.61301e+06
 columnVectorX: x=127000,y=0,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=-0,y=40160.9,z=0
@@ -2579,46 +2629,46 @@ col: x=127000,y=0,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 3670300.000000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 3670300.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 127000.000000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 3670300.000000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 3670300.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 3670300.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 3670300.000000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 3670300.000000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=3.94176e+06,z=2.61301e+06
-startPoint: x=5.30034e+06,y=3.94176e+06,z=2.61936e+06
-col1: x=4.64065e+22,y=3.41015e+22,z=2.2606e+22,w=8.65133e+15
-col2: x=3.41015e+22,y=2.50604e+22,z=1.66126e+22,w=6.35767e+15
-col3: x=2.2606e+22,y=1.66126e+22,z=1.10126e+22,w=4.21452e+15
-col4: x=8.65133e+15,y=6.35767e+15,z=4.21452e+15,w=1.6129e+09
-Centroid: x=5.36384e+06,y=3.94176e+06,z=2.61301e+06
-center: x=5.36384e+06,y=3.94176e+06,z=2.61301e+06
+Centroid2: x=5.24236e+06,y=3.94176e+06,z=2.61301e+06
+startPoint: x=5.17886e+06,y=3.94176e+06,z=2.61936e+06
+col1: x=4.43284e+22,y=3.33292e+22,z=2.2094e+22,w=8.4554e+15
+col2: x=3.33292e+22,y=2.50604e+22,z=1.66126e+22,w=6.35767e+15
+col3: x=2.2094e+22,y=1.66126e+22,z=1.10126e+22,w=4.21452e+15
+col4: x=8.4554e+15,y=6.35767e+15,z=4.21452e+15,w=1.6129e+09
+Centroid: x=5.24236e+06,y=3.94176e+06,z=2.61301e+06
+center: x=5.24236e+06,y=3.94176e+06,z=2.61301e+06
 columnVectorX: x=127000,y=0,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=-0,y=40160.9,z=0
@@ -2631,46 +2681,46 @@ col: x=127000,y=0,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 3941762.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 3941762.500000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 127000.000000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 3941762.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 3941762.500000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 3941762.500000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 3941762.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 3941762.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.30034e+06,y=3.80603e+06,z=2.61301e+06
-startPoint: x=5.30034e+06,y=3.94176e+06,z=2.61936e+06
-col1: x=9.68546e+22,y=6.95488e+22,z=4.77483e+22,w=1.82733e+16
-col2: x=6.95488e+22,y=4.99623e+22,z=3.42868e+22,w=1.31216e+16
-col3: x=4.77483e+22,y=3.42868e+22,z=2.35394e+22,w=9.00853e+15
-col4: x=1.82733e+16,y=1.31216e+16,z=9.00853e+15,w=3.44757e+09
-Centroid: x=5.30034e+06,y=3.80603e+06,z=2.61301e+06
-center: x=5.30034e+06,y=3.80603e+06,z=2.61301e+06
+Centroid2: x=5.17886e+06,y=3.80603e+06,z=2.61301e+06
+startPoint: x=5.17886e+06,y=3.94176e+06,z=2.61936e+06
+col1: x=9.2466e+22,y=6.79548e+22,z=4.66539e+22,w=1.78545e+16
+col2: x=6.79548e+22,y=4.99623e+22,z=3.42868e+22,w=1.31216e+16
+col3: x=4.66539e+22,y=3.42868e+22,z=2.35394e+22,w=9.00853e+15
+col4: x=1.78545e+16,y=1.31216e+16,z=9.00853e+15,w=3.44757e+09
+Centroid: x=5.17886e+06,y=3.80603e+06,z=2.61301e+06
+center: x=5.17886e+06,y=3.80603e+06,z=2.61301e+06
 columnVectorX: x=0,y=-271463,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=58716,y=0,z=0
@@ -2683,46 +2733,46 @@ col: x=0,y=-271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 3941762.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 3670300.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 3941762.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 3670300.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5300336.387763
+point 2 [X] = 5178860.447904
 point 2 [Y] = 3670300.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5300336.387763
+point 3 [X] = 5178860.447904
 point 3 [Y] = 3941762.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 3941762.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.42734e+06,y=3.80603e+06,z=2.61301e+06
-startPoint: x=5.42734e+06,y=3.94176e+06,z=2.61936e+06
-col1: x=1.01552e+23,y=7.12152e+22,z=4.88923e+22,w=1.87111e+16
-col2: x=7.12152e+22,y=4.99623e+22,z=3.42868e+22,w=1.31216e+16
-col3: x=4.88923e+22,y=3.42868e+22,z=2.35394e+22,w=9.00853e+15
-col4: x=1.87111e+16,y=1.31216e+16,z=9.00853e+15,w=3.44757e+09
-Centroid: x=5.42734e+06,y=3.80603e+06,z=2.61301e+06
-center: x=5.42734e+06,y=3.80603e+06,z=2.61301e+06
+Centroid2: x=5.30586e+06,y=3.80603e+06,z=2.61301e+06
+startPoint: x=5.30586e+06,y=3.94176e+06,z=2.61936e+06
+col1: x=9.70566e+22,y=6.96212e+22,z=4.7798e+22,w=1.82923e+16
+col2: x=6.96212e+22,y=4.99623e+22,z=3.42868e+22,w=1.31216e+16
+col3: x=4.7798e+22,y=3.42868e+22,z=2.35394e+22,w=9.00853e+15
+col4: x=1.82923e+16,y=1.31216e+16,z=9.00853e+15,w=3.44757e+09
+Centroid: x=5.30586e+06,y=3.80603e+06,z=2.61301e+06
+center: x=5.30586e+06,y=3.80603e+06,z=2.61301e+06
 columnVectorX: x=0,y=-271463,z=0
 columnVectorY: x=0,y=0,z=-12700
 columnVectorZ: x=58716,y=0,z=0
@@ -2735,46 +2785,46 @@ col: x=0,y=-271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5427336.387763
+Start Point [X]: 5305860.447904
 Start Point [Y]: 3941762.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5427336.387763
+End Point [X]: 5305860.447904
 End Point [Y]: 3670300.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5427336.387763
+point 0 [X] = 5305860.447904
 point 0 [Y] = 3941762.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5427336.387763
+point 1 [X] = 5305860.447904
 point 1 [Y] = 3670300.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 3670300.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 3941762.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5427336.387763
+point 4 [X] = 5305860.447904
 point 4 [Y] = 3941762.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=3.80603e+06,z=2.60666e+06
-startPoint: x=5.30034e+06,y=3.94176e+06,z=2.60666e+06
-col1: x=9.91939e+23,y=7.0382e+23,z=4.82029e+23,w=1.84922e+17
-col2: x=7.0382e+23,y=4.99623e+23,z=3.42034e+23,w=1.31216e+17
-col3: x=4.82029e+23,y=3.42034e+23,z=2.34251e+23,w=8.98664e+16
-col4: x=1.84922e+17,y=1.31216e+17,z=8.98664e+16,w=3.44757e+10
-Centroid: x=5.36384e+06,y=3.80603e+06,z=2.60666e+06
-center: x=5.36384e+06,y=3.80603e+06,z=2.60666e+06
+Centroid2: x=5.24236e+06,y=3.80603e+06,z=2.60666e+06
+startPoint: x=5.17886e+06,y=3.94176e+06,z=2.60666e+06
+col1: x=9.4752e+23,y=6.8788e+23,z=4.71112e+23,w=1.80734e+17
+col2: x=6.8788e+23,y=4.99623e+23,z=3.42034e+23,w=1.31216e+17
+col3: x=4.71112e+23,y=3.42034e+23,z=2.34251e+23,w=8.98664e+16
+col4: x=1.80734e+17,y=1.31216e+17,z=8.98664e+16,w=3.44757e+10
+Centroid: x=5.24236e+06,y=3.80603e+06,z=2.60666e+06
+center: x=5.24236e+06,y=3.80603e+06,z=2.60666e+06
 columnVectorX: x=0,y=-271463,z=0
 columnVectorY: x=127000,y=0,z=-0
 columnVectorZ: x=0,y=0,z=185676
@@ -2787,46 +2837,46 @@ col: x=0,y=-271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 3941762.500000
 Start Point [Z]: 2606656.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 3670300.000000
 End Point [Z]: 2606656.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 3941762.500000
 point 0 [Z] = 2606656.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 3670300.000000
 point 1 [Z] = 2606656.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 3670300.000000
 point 2 [Z] = 2606656.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 3941762.500000
 point 3 [Z] = 2606656.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 3941762.500000
 point 4 [Z] = 2606656.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
-Centroid2: x=5.36384e+06,y=3.80603e+06,z=2.61936e+06
-startPoint: x=5.30034e+06,y=3.94176e+06,z=2.61936e+06
-col1: x=9.91939e+23,y=7.0382e+23,z=4.84377e+23,w=1.84922e+17
-col2: x=7.0382e+23,y=4.99623e+23,z=3.43701e+23,w=1.31216e+17
-col3: x=4.84377e+23,y=3.43701e+23,z=2.36539e+23,w=9.03043e+16
-col4: x=1.84922e+17,y=1.31216e+17,z=9.03043e+16,w=3.44757e+10
-Centroid: x=5.36384e+06,y=3.80603e+06,z=2.61936e+06
-center: x=5.36384e+06,y=3.80603e+06,z=2.61936e+06
+Centroid2: x=5.24236e+06,y=3.80603e+06,z=2.61936e+06
+startPoint: x=5.17886e+06,y=3.94176e+06,z=2.61936e+06
+col1: x=9.4752e+23,y=6.8788e+23,z=4.73407e+23,w=1.80734e+17
+col2: x=6.8788e+23,y=4.99623e+23,z=3.43701e+23,w=1.31216e+17
+col3: x=4.73407e+23,y=3.43701e+23,z=2.36539e+23,w=9.03043e+16
+col4: x=1.80734e+17,y=1.31216e+17,z=9.03043e+16,w=3.44757e+10
+Centroid: x=5.24236e+06,y=3.80603e+06,z=2.61936e+06
+center: x=5.24236e+06,y=3.80603e+06,z=2.61936e+06
 columnVectorX: x=0,y=-271463,z=0
 columnVectorY: x=127000,y=0,z=-0
 columnVectorZ: x=0,y=0,z=185676
@@ -2839,50 +2889,50 @@ col: x=0,y=-271463,z=0
 
 -------- Riser Clamp --------
 
-Start Point [X]: 5300336.387763
+Start Point [X]: 5178860.447904
 Start Point [Y]: 3941762.500000
 Start Point [Z]: 2619356.960349
 
-End Point [X]: 5300336.387763
+End Point [X]: 5178860.447904
 End Point [Y]: 3670300.000000
 End Point [Z]: 2619356.960349
 
 Curve Line String Length: 271462.500000
 
-point 0 [X] = 5300336.387763
+point 0 [X] = 5178860.447904
 point 0 [Y] = 3941762.500000
 point 0 [Z] = 2619356.960349
 
-point 1 [X] = 5300336.387763
+point 1 [X] = 5178860.447904
 point 1 [Y] = 3670300.000000
 point 1 [Z] = 2619356.960349
 
-point 2 [X] = 5427336.387763
+point 2 [X] = 5305860.447904
 point 2 [Y] = 3670300.000000
 point 2 [Z] = 2619356.960349
 
-point 3 [X] = 5427336.387763
+point 3 [X] = 5305860.447904
 point 3 [Y] = 3941762.500000
 point 3 [Z] = 2619356.960349
 
-point 4 [X] = 5300336.387763
+point 4 [X] = 5178860.447904
 point 4 [Y] = 3941762.500000
 point 4 [Z] = 2619356.960349
 
 11410 -------- Riser Clamp  Color index RGB --------
 
 Centroid2: x=0,y=0,z=0
-startPoint: x=5.36384e+06,y=4.064e+06,z=2.61301e+06
+startPoint: x=5.24236e+06,y=4.064e+06,z=2.61301e+06
 col1: x=0,y=0,z=0,w=0
 col2: x=0,y=0,z=0,w=0
 col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=1.19371e-311,z=3.45885e-312
-col: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
+col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------
@@ -2891,7 +2941,7 @@ col: x=1.19256e-311,y=9.48606e-322,z=5.92879e-323
 
 -------- Riser Clamp --------
 
-point 0 [X] = 5363836.387763
+point 0 [X] = 5242360.447904
 point 0 [Y] = 4064000.000000
 point 0 [Z] = 2613006.960349
 

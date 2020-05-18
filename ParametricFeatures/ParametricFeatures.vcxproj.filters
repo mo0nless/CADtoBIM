@@ -75,6 +75,7 @@
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\CurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -162,5 +163,6 @@
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\CurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\RotationalSweepGraphicProperties.h" />
   </ItemGroup>
 </Project>

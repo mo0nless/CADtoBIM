@@ -269,6 +269,19 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 
 }
 
+void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties *& rotationalSweepGraphicProperties)
+{
+	double radius = 0;
+	dgnRotationalSweepDetail.GetRadius(radius, DgnRotationalSweepDetail::RadiusType::Centroidal);
+	rotationalSweepGraphicProperties->setRadius(radius);
+
+	rotationalSweepGraphicProperties->setSweepRadians(dgnRotationalSweepDetail.m_sweepAngle);
+	rotationalSweepGraphicProperties->setCenterRotation(centerOfRotation);
+
+
+	pDictionaryProperties->addGraphicProperties(rotationalSweepGraphicProperties);
+}
+
 void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
 {
 	std::ofstream outfile;
@@ -850,6 +863,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	curves.CentroidAreaXY(centroid, area);
 	DMatrix4d matrix;
 	curves.ComputeSecondMomentAreaProducts(matrix);
+
 	DPoint4d col1, col2, col3, col4;
 	matrix.GetColumn(col1, 0);
 	matrix.GetColumn(col2, 1);

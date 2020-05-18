@@ -608,6 +608,23 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the end cap is enabled = " << rotSweepDetails.m_capped << std::endl;
 
 			outfile.close();
+
+			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
+			CurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(rotSweepDetails.m_baseCurve->at(0));
+			rotationalSweepGraphicProperties->setCurveGraphicProperties(curveGraphicProperties);
+
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
+			// set X,Y,Z axes
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+			columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
+			rotSweepDetails.m_axisOfRotation.direction.FromRotate90Towards(columnVectorX,columnVectorY);
+			columnVectorZ.FromCCWPerpendicularXY(columnVectorX);
+
+			//columnVectorZ.CrossProduct(columnVectorX, columnVectorX);
+
+			rotationalSweepGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, centerRotation, rotationalSweepGraphicProperties);
 		}
 
 		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);

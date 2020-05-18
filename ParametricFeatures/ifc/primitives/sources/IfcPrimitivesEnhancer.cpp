@@ -43,7 +43,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	{
 		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
-	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE)
+	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file);
 	}
@@ -182,6 +182,38 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 			ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
 
+		} else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) {
+			RotationalSweepGraphicProperties& rotationalSweepGraphicProperties = dynamic_cast<RotationalSweepGraphicProperties&>(primitiveGraphicProperties);
+
+			ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(rotationalSweepGraphicProperties.getCurveGraphicProperties());
+
+			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
+			Ifc4::IfcGeometricRepresentationItem* result = ifcShapesEnhancer->buildGeometricRepresentationShapes(shapeGraphicProperties,file, ifcElementBundle);
+
+			// torus placement is NOT the centroid, but the center of rotation
+			DVec3d rotationalSweepPlacement;
+			rotationalSweepPlacement.Init(rotationalSweepGraphicProperties.getCenterRotation());
+
+			//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
+			//	NumberUtils::convertMicrometersToMetters(10000000)), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+
+			//Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
+			//	NumberUtils::convertMicrometersToMetters(1000000));
+
+			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("RotationalSweep"),
+				(Ifc4::IfcBoundedCurve*)result);
+
+			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+
+			// !!! torus placement axes should be provided in the order of Y, Z
+			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				rotationalSweepPlacement,
+				rotationalSweepGraphicProperties.getVectorAxisZ(),
+				rotationalSweepGraphicProperties.getVectorAxisX()
+			);
+
+			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
 		}
 
 
