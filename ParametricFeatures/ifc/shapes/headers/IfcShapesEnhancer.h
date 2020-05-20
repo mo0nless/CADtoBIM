@@ -2,7 +2,7 @@
 
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../../modeler/properties/shapes/headers/IShapesGraphicProperties.h" //curveshape..
+#include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h" //curveshape..
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
 //#include "../../headers/IfcElementBundle.h"
 #include "../../brep_solids/headers/IfcBRepRelationship.h"

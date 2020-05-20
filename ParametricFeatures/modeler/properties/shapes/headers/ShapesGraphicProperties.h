@@ -43,7 +43,10 @@ public:
 	void setNodeId(int id);
 	int getNodeId();
 
-	virtual ~IShapesGraphicProperties();
+	void setCentroid(DPoint3d newCenter);
+	DPoint3d getCentroid();
+
+	virtual ~ShapesGraphicProperties();
 
 private:
 	std::vector<int> mFaceBoundIdentifier;
@@ -54,6 +57,7 @@ private:
 
 	DPoint3d mStartPoint;
 	DPoint3d mEndPoint;
+	DPoint3d mCentroid;
 
 	bool mIsFilled;
 	bool mIsClosed;

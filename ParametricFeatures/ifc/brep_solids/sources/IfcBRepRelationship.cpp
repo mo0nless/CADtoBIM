@@ -6,7 +6,7 @@ IfcBRepRelationship::IfcBRepRelationship()
 
 }
 
-void IfcBRepRelationship::processBRepEntityEdge(IShapesGraphicProperties * shapeGraphicProperties, Ifc4::IfcCurve * curveRepresentationItem)
+void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, Ifc4::IfcCurve * curveRepresentationItem)
 {
 
 	Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
@@ -193,7 +193,6 @@ bool IfcBRepRelationship::processContinuosEdges(ContinuosEdge*& head, ContinuosE
 		}
 		
 	}
-	//else hadConnection = false;
 
 	return hadConnection;
 }

@@ -5,14 +5,15 @@ CurveGraphicProperties::CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurve
 	this->mCurvesTypeEnum = newCurveType;
 }
 
-void CurveGraphicProperties::addControlPoint(DPoint3d newControlPoint) 
+void CurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints)
 {
-	this->controlPoints.push_back(newControlPoint);
+	for (auto p: newControlPoints)
+		this->mControlPoints.push_back(p);
 };
 
 std::vector<DPoint3d> CurveGraphicProperties::getControlPoints() 
 { 
-	return this->controlPoints; 
+	return this->mControlPoints;
 };
 
 CurvesPrimitivesTypeEnum CurveGraphicProperties::getCurvesTypeEnum() 
@@ -23,18 +24,18 @@ int CurveGraphicProperties::getNumberControlPoints()
 {
 	return this->mNumCPoints;
 }
-void ICurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
+void CurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
 {
 	this->mStartPoint = sPoint;
 	this->mEndPoint = ePoint;
 }
 
-DPoint3d ICurveGraphicProperties::getStartPoint()
+DPoint3d CurveGraphicProperties::getStartPoint()
 {
 	return this->mStartPoint;
 }
 
-DPoint3d ICurveGraphicProperties::getEndPoint()
+DPoint3d CurveGraphicProperties::getEndPoint()
 {
 	return this->mEndPoint;
 }

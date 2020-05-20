@@ -346,7 +346,7 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 
 }
 
-ICurveGraphicProperties* GraphicsProcessorEnhancer::processBsplineCurve(MSBsplineCurveR bSpline)
+CurveGraphicProperties* GraphicsProcessorEnhancer::processBsplineCurve(MSBsplineCurveR bSpline)
 {
 	std::ofstream outfile;
 
@@ -575,7 +575,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			outfile.close();
 
-			//curveGraphicProperties->setControlPoints(*curve->GetAkimaCurveCP());
+			curveGraphicProperties->setControlPoints(*curve->GetAkimaCurveCP());
 		}
 
 		return curveGraphicProperties;
@@ -603,7 +603,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 		curveGraphicProperties->setLength(ellipse.ArcLength());
 		curveGraphicProperties->setIsCircular(ellipse.IsCircular());
-		//curveGraphicProperties->setControlPoints(polesControlP);
+		curveGraphicProperties->setControlPoints(polesControlP);
 		curveGraphicProperties->setDirectionXY(directionX, directionY);
 		curveGraphicProperties->setStartAngle(startAngle);
 		curveGraphicProperties->setSweepAngle(sweepAngle);
@@ -634,8 +634,8 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 		outfile << "RY:" << ry << std::endl;
 		outfile << "startAngle:" << startAngle << std::endl;
 		outfile << "sweepAngle:" << sweepAngle << std::endl;
-		outfile << "Start point: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
-		outfile << "End point: x=" << endPoint.x << ",y=" << endPoint.y << ",z=" << endPoint.z << std::endl;
+		outfile << "Start point: x=" << startP.x << ",y=" << startP.y << ",z=" << startP.z << std::endl;
+		outfile << "End point: x=" << endP.x << ",y=" << endP.y << ",z=" << endP.z << std::endl;
 		outfile << "Is Circular: " << ellipse.IsCircular();
 		outfile.close();
 
@@ -741,10 +741,12 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 
 			for (size_t k = 0; k < intParams.numPoints; k++)
 			{
-				curveGraphicProperties->addControlPoint(curve->GetInterpolationCurveCP()->fitPoints[k]);
-				outfile << "point " << k << " [X] = " << curve->GetInterpolationCurveCP()->fitPoints[k].x << std::endl;
-				outfile << "point " << k << " [Y] = " << curve->GetInterpolationCurveCP()->fitPoints[k].y << std::endl;
-				outfile << "point " << k << " [Z] = " << curve->GetInterpolationCurveCP()->fitPoints[k].z << std::endl;
+				DPoint3d point = curve->GetInterpolationCurveCP()->fitPoints[k];
+				polesControlP.push_back(point);
+
+				outfile << "point " << k << " [X] = " << point.x << std::endl;
+				outfile << "point " << k << " [Y] = " << point.y << std::endl;
+				outfile << "point " << k << " [Z] = " << point.z << std::endl;
 				outfile << std::endl;
 
 			}
@@ -963,7 +965,7 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 #pragma warning (pop)
 
 
-void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled, IShapesGraphicProperties* shapesGraphicProperties)
+void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
 {
 	//IShapesGraphicProperties* shapesGraphicProperties = nullptr;
 
@@ -1015,7 +1017,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		outfile << std::endl;
 		outfile.close();
 
-		DPoint3d center, start, end;
+		DPoint3d center, centroid, start, end;
 		DRange3d range;
 		DVec3d normal, centroID;
 		double area;
@@ -1027,205 +1029,206 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		curves.CentroidNormalArea(center, normal, area);
 		centroID.Init(center);
 
-	//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
-	curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-	curves.CentroidAreaXY(centroid, area);
-	DMatrix4d matrix;
-	curves.ComputeSecondMomentAreaProducts(matrix);
-	DPoint4d col1, col2, col3, col4;
-	matrix.GetColumn(col1, 0);
-	matrix.GetColumn(col2, 1);
-	matrix.GetColumn(col3, 2);
-	matrix.GetColumn(col4, 3);
+		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
+		curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+		curves.CentroidAreaXY(centroid, area);
+		DMatrix4d matrix;
+		curves.ComputeSecondMomentAreaProducts(matrix);
+		DPoint4d col1, col2, col3, col4;
+		matrix.GetColumn(col1, 0);
+		matrix.GetColumn(col2, 1);
+		matrix.GetColumn(col3, 2);
+		matrix.GetColumn(col4, 3);
 
-	DVec3d columnVectorX2, columnVectorY2, columnVectorZ2;
-	columnVectorX2.x = col1.x;
-	columnVectorX2.x = col1.y;
-	columnVectorX2.x = col1.z;
+		DVec3d columnVectorX2, columnVectorY2, columnVectorZ2;
+		columnVectorX2.x = col1.x;
+		columnVectorX2.x = col1.y;
+		columnVectorX2.x = col1.z;
 
-	columnVectorY2.x = col2.x;
-	columnVectorY2.x = col2.y;
-	columnVectorY2.x = col2.z;
+		columnVectorY2.x = col2.x;
+		columnVectorY2.x = col2.y;
+		columnVectorY2.x = col2.z;
 
-	columnVectorZ2.x = col3.x;
-	columnVectorZ2.x = col3.y;
-	columnVectorZ2.x = col3.z;
+		columnVectorZ2.x = col3.x;
+		columnVectorZ2.x = col3.y;
+		columnVectorZ2.x = col3.z;
 
-	//shapesGraphicProperties->setVectorAxis(columnVectorX2, columnVectorY2, columnVectorZ2);
+		//shapesGraphicProperties->setVectorAxis(columnVectorX2, columnVectorY2, columnVectorZ2);
 
 
-	DPoint3d startPoint;
-	curves.GetStartPoint(startPoint);
+		DPoint3d startPoint;
+		curves.GetStartPoint(startPoint);
 
-	DPoint3d centroid2;
-	double c_length;
-	curves.WireCentroid(c_length,centroid2);
+		DPoint3d centroid2;
+		double c_length;
+		curves.WireCentroid(c_length,centroid2);
 
-	setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
 	
-	DVec3d columnVectorX, columnVectorY, columnVectorZ,col;
+		DVec3d columnVectorX, columnVectorY, columnVectorZ,col;
 
-	localToWorld.GetMatrixColumn(columnVectorX, 0);
-	localToWorld.GetMatrixColumn(columnVectorY, 1);
-	localToWorld.GetMatrixColumn(columnVectorZ, 2);
-	localToWorld.GetMatrixColumn(col, 3);
+		localToWorld.GetMatrixColumn(columnVectorX, 0);
+		localToWorld.GetMatrixColumn(columnVectorY, 1);
+		localToWorld.GetMatrixColumn(columnVectorZ, 2);
+		localToWorld.GetMatrixColumn(col, 3);
 
-	shapesGraphicProperties->setIsFilled(isFilled);
-	shapesGraphicProperties->setArea(area);
-	shapesGraphicProperties->setCentroid(centroid);
-	shapesGraphicProperties->setNormal(normal);
-	//TODO[SB] Check if the other bool closed path is relevant
-	if (curves.IsClosedPath())
-		isClosed = curves.IsClosedPath();
-	else if (curves.IsPhysicallyClosedPath())
-		isClosed = curves.IsPhysicallyClosedPath();
+		shapesGraphicProperties->setIsFilled(isFilled);
+		shapesGraphicProperties->setArea(area);
+		shapesGraphicProperties->setCentroid(centroid);
+		shapesGraphicProperties->setNormal(normal);
 
-	shapesGraphicProperties->setIsClosed(isClosed);
+		// Chek if the shape is closed 
+		if (curves.IsClosedPath())
+			isClosed = curves.IsClosedPath();
+		else if (curves.IsPhysicallyClosedPath())
+			isClosed = curves.IsPhysicallyClosedPath();
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "Centroid2: x=" << centroid2.x << ",y=" << centroid2.y << ",z=" << centroid2.z << std::endl;
-	outfile << "startPoint: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
-	outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << ",w=" << col1.w << std::endl;
-	outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << ",w=" << col2.w << std::endl;
-	outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << ",w=" << col3.w << std::endl;
-	outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << ",w=" << col4.w << std::endl;
-	outfile << "Centroid: x=" << centroid.x << ",y=" << centroid.y << ",z=" << centroid.z << std::endl;
-	outfile << "center: x=" << center.x << ",y=" << center.y << ",z=" << center.z << std::endl;
-	outfile << "columnVectorX: x=" << columnVectorX.x << ",y=" << columnVectorX.y << ",z=" << columnVectorX.z << std::endl;
-	outfile << "columnVectorY: x=" << columnVectorY.x << ",y=" << columnVectorY.y << ",z=" << columnVectorY.z << std::endl;
-	outfile << "columnVectorZ: x=" << columnVectorZ.x << ",y=" << columnVectorZ.y << ",z=" << columnVectorZ.z << std::endl;
-	outfile << "col: x=" << col.x << ",y=" << col.y << ",z=" << col.z << std::endl;
-	outfile.flush();
-	outfile.close();
+		shapesGraphicProperties->setIsClosed(isClosed);
 
-	switch (curves.GetBoundaryType())
-	{
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
-	{
 		outfile.open(filePath, std::ios_base::app);
 		outfile << std::endl;
-		outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+		outfile << "Centroid2: x=" << centroid2.x << ",y=" << centroid2.y << ",z=" << centroid2.z << std::endl;
+		outfile << "startPoint: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
+		outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << ",w=" << col1.w << std::endl;
+		outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << ",w=" << col2.w << std::endl;
+		outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << ",w=" << col3.w << std::endl;
+		outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << ",w=" << col4.w << std::endl;
+		outfile << "Centroid: x=" << centroid.x << ",y=" << centroid.y << ",z=" << centroid.z << std::endl;
+		outfile << "center: x=" << center.x << ",y=" << center.y << ",z=" << center.z << std::endl;
+		outfile << "columnVectorX: x=" << columnVectorX.x << ",y=" << columnVectorX.y << ",z=" << columnVectorX.z << std::endl;
+		outfile << "columnVectorY: x=" << columnVectorY.x << ",y=" << columnVectorY.y << ",z=" << columnVectorY.z << std::endl;
+		outfile << "columnVectorZ: x=" << columnVectorZ.x << ",y=" << columnVectorZ.y << ",z=" << columnVectorZ.z << std::endl;
+		outfile << "col: x=" << col.x << ",y=" << col.y << ",z=" << col.z << std::endl;
 		outfile.flush();
 		outfile.close();
 
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
-
-		for each (ICurvePrimitivePtr curve in curves)
+		switch (curves.GetBoundaryType())
 		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-		}
-	}
-	break;
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
-	{
-
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
+		{
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
-		
+			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
 			outfile.flush();
 			outfile.close();
 
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
+				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
 
-		for each (ICurvePrimitivePtr curve in curves)
-		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
 		}
-	}
-	break;
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
-	{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
-		
-			outfile << "Start Point [X]: " << start.x << std::endl;
-			outfile << "Start Point [Y]: " << start.y << std::endl;
-			outfile << "Start Point [Z]: " << start.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "End Point [X]: " << end.x << std::endl;
-			outfile << "End Point [Y]: " << end.y << std::endl;
-			outfile << "End Point [Z]: " << end.z << std::endl;
-			outfile << std::endl;
-
-			outfile.flush();
-			outfile.close();
-
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
-
-		for each (ICurvePrimitivePtr curve in curves)
-		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-		}
-	}
-	break;
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
-	{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
-		
-			outfile.flush();
-			outfile.close();
-
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
-
-		for each (ICurvePrimitivePtr curve in curves)
-		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-		}
-	}
-	break;
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
-	{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
-
-			outfile.flush();
-			outfile.close();
-
-		shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
-
-		for each (ICurvePrimitivePtr curve in curves)
-		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-		}
-	}
-	break;
-	case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
-	{
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
-		
-			outfile.flush();
-			outfile.close();
-
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
-
-		for each (ICurvePrimitivePtr curve in curves)
-		{
-			CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-			shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-		}
-	}
-	break;
-	default:
 		break;
-	}
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+		{
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
+		
+				outfile.flush();
+				outfile.close();
+
+				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
+
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+		}
+		break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
+		{
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
+		
+				outfile << "Start Point [X]: " << start.x << std::endl;
+				outfile << "Start Point [Y]: " << start.y << std::endl;
+				outfile << "Start Point [Z]: " << start.z << std::endl;
+				outfile << std::endl;
+
+				outfile << "End Point [X]: " << end.x << std::endl;
+				outfile << "End Point [Y]: " << end.y << std::endl;
+				outfile << "End Point [Z]: " << end.z << std::endl;
+				outfile << std::endl;
+
+				outfile.flush();
+				outfile.close();
+
+				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
+
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+		}
+		break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
+		{
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
+		
+				outfile.flush();
+				outfile.close();
+
+				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
+
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+		}
+		break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
+		{
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+
+				outfile.flush();
+				outfile.close();
+
+			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
+
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+		}
+		break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
+		{
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+		
+				outfile.flush();
+				outfile.close();
+
+				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
+
+			for each (ICurvePrimitivePtr curve in curves)
+			{
+				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+		}
+		break;
+		default:
+			break;
+		}
 
 		//Add the shape to the Dictionary
 		pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);

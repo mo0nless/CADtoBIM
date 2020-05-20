@@ -4,7 +4,7 @@
 #include "../../../stdafx.h"
 #include "../../headers/IfcElementBundle.h"
 //#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
-#include "../../../modeler/properties/shapes/headers/IShapesGraphicProperties.h"
+#include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h"
 //#include <vector>
 
 class IfcBRepRelationship
@@ -12,7 +12,7 @@ class IfcBRepRelationship
 public:
 	IfcBRepRelationship();
 
-	void processBRepEntityEdge(IShapesGraphicProperties* shapeGraphicProperties, Ifc4::IfcCurve* curveRepresentationItem);
+	void processBRepEntityEdge(ShapesGraphicProperties* shapeGraphicProperties, Ifc4::IfcCurve* curveRepresentationItem);
 	void connectContinuosEdges();
 
 	std::vector<SolidEdge*> getSmartSolidEdgesCollection();

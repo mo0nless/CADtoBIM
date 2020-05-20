@@ -287,7 +287,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGraphicProperties
 {
 	Ifc4::IfcCurve* curveRepresentationItem = nullptr;	
 
-	for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
+	for each (CurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
 	{
 		curveRepresentationItem = buildIfcCurve(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
 

@@ -104,6 +104,16 @@ int ShapesGraphicProperties::getNodeId()
 	return this->mNodeId;
 }
 
+void ShapesGraphicProperties::setCentroid(DPoint3d newCenter)
+{
+	this->mCentroid = newCenter;
+}
+
+DPoint3d ShapesGraphicProperties::getCentroid()
+{
+	return this->mCentroid;
+}
+
 ShapesGraphicProperties::~ShapesGraphicProperties()
 {
 }

@@ -31,9 +31,9 @@ public:
 
 	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 
-	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled, IShapesGraphicProperties* shapesGraphicProperties = nullptr);
-	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
-	ICurveGraphicProperties* processBsplineCurve(MSBsplineCurveR bSpline);
+	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr);
+	CurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	CurveGraphicProperties* processBsplineCurve(MSBsplineCurveR bSpline);
 	// use this method to set centroid, area and volume
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 
