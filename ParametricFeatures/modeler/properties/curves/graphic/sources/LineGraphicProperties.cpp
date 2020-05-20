@@ -1,6 +1,6 @@
 #include"../headers/LineGraphicProperties.h"
 
-LineGraphicProperties::LineGraphicProperties():ICurveGraphicProperties(CurvesPrimitivesTypeEnum::LINE)
+LineGraphicProperties::LineGraphicProperties():CurveGraphicProperties(CurvesPrimitivesTypeEnum::LINE)
 {
 }
 

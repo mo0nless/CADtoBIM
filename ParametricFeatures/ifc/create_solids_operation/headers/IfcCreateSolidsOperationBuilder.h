@@ -10,8 +10,7 @@
 class IfcCreateSolidsOperationBuilder {
 
 public:
-	Ifc4::IfcRepresentationItem* buildIfcCreateSolidsOperation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file);
-
-private:
-
+	//Ifc4::IfcRepresentationItem* buildIfcCreateSolidsOperation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file);
+	static Ifc4::IfcRepresentationItem* buildIfcCreateSolidsOperation(IfcElementBundle* leftIfcRepresentationItem, IfcElementBundle* rigthIfcRepresentationItem,
+		IfcReaderPropertiesBundle& ifcReaderPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 };

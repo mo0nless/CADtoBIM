@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ICurvesGraphicsProperties.h"
+#include "CurvesGraphicsProperties.h"
 
-class AkimaGraphicProperties: public ICurveGraphicProperties
+class AkimaGraphicProperties: public CurveGraphicProperties
 {
 public:
 	AkimaGraphicProperties();

@@ -1,5 +1,5 @@
 #include "../headers/ComplexChainShapesGraphicProperties.h"
 
-ComplexChainShapesGraphicProperties::ComplexChainShapesGraphicProperties() : IShapesGraphicProperties(ShapesTypeEnum::COMPLEX_CHAIN)
+ComplexChainShapesGraphicProperties::ComplexChainShapesGraphicProperties() : ShapesGraphicProperties(ShapesTypeEnum::COMPLEX_CHAIN)
 {
 }

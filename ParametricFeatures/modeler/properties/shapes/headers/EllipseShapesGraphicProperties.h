@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../headers/IShapesGraphicProperties.h"
+#include "../headers/ShapesGraphicProperties.h"
 
-class EllipseShapesGraphicProperties : public IShapesGraphicProperties
+class EllipseShapesGraphicProperties : public ShapesGraphicProperties
 {
 public:
 	EllipseShapesGraphicProperties();

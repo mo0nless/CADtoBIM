@@ -4,7 +4,7 @@
 #include <vector>
 #include "../../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
-class ICurveGraphicProperties 
+class CurveGraphicProperties 
 {
 public:
 	ICurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);
