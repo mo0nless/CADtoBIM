@@ -5,3 +5,13 @@ PointStringGraphicProperties::PointStringGraphicProperties():ICurveGraphicProper
 
 }
 
+bool PointStringGraphicProperties::getIsPort()
+{
+	return this->mIsPort;
+}
+
+void PointStringGraphicProperties::setIsPort(bool value)
+{
+	this->mIsPort = value;
+}
+

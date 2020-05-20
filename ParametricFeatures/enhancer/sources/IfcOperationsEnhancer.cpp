@@ -44,3 +44,29 @@ Ifc4::IfcAxis2Placement3D * IfcOperationsEnhancer::buildIfcAxis2Placement3D(DVec
 	return place;
 }
 
+bool IfcOperationsEnhancer::isDoubleEqual(double x, double y)
+{
+	/* some small number such as 1e-5 */
+	const double epsilon = 1e-5;
+	return std::abs(x - y) <= epsilon * std::abs(x);
+	// see Knuth section 4.2.2 pages 217-218
+}
+
+bool IfcOperationsEnhancer::isVectorDoubleEqual(std::vector<double> v1, std::vector<double> v2)
+{
+	if (v1.size() == v2.size())
+	{
+		for (size_t i = 0; i < v1.size(); i++)
+		{
+			if (isDoubleEqual(v1[i], v2[i]))
+				continue;
+			else
+				return false;
+		}
+		return true;
+	}
+
+	return false;
+}
+
+

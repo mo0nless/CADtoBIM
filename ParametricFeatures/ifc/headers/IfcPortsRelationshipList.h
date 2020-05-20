@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../enhancer/headers/IfcOperationsEnhancer.h"
+//#include "../../enhancer/headers/IfcOperationsEnhancer.h"
 #include "../headers/IfcElementBundle.h"
 
 #include <vector>

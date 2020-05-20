@@ -13,6 +13,7 @@
 #include "../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
+#include "../../modeler/properties/brep_solids/headers/BRepSolidsKernelEntity.h"
 
 #include <math.h>
 
@@ -28,9 +29,11 @@ public:
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
-	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , IShapesGraphicProperties*& shapesGraphicProperties);
-	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 
+	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled, IShapesGraphicProperties* shapesGraphicProperties = nullptr);
+	ICurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	ICurveGraphicProperties* processBsplineCurve(MSBsplineCurveR bSpline);
 	// use this method to set centroid, area and volume
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 

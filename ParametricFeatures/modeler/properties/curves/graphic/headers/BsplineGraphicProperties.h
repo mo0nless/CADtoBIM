@@ -27,7 +27,9 @@ public:
 
 	void setKnotsMultiplicity(bvector<size_t> newMultiplicity);
 	std::vector<int> getKnotsMultiplicity();
+
 private:
+
 	std::vector<double> mKnots;
 	std::vector<int> mKnotsMultiplicity;
 	int mNumberKnots;

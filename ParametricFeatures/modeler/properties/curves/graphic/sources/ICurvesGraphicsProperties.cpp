@@ -24,4 +24,18 @@ int ICurveGraphicProperties::getNumberControlPoints()
 {
 	return this->mNumCPoints;
 }
-;
+void ICurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
+{
+	this->mStartPoint = sPoint;
+	this->mEndPoint = ePoint;
+}
+
+DPoint3d ICurveGraphicProperties::getStartPoint()
+{
+	return this->mStartPoint;
+}
+
+DPoint3d ICurveGraphicProperties::getEndPoint()
+{
+	return this->mEndPoint;
+}

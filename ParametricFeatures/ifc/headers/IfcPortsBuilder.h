@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../enhancer/headers/IfcOperationsEnhancer.h"
-#include "../headers/IfcElementBundle.h"
+//#include "../../enhancer/headers/IfcOperationsEnhancer.h"
+//#include "../headers/IfcElementBundle.h"
 #include "IfcPortsRelationshipList.h"
 
 class IfcPortsBuilder
 {
 public:
-	IfcPortsBuilder();
+	IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext);
 
 	void processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 private:
@@ -16,6 +16,7 @@ private:
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	IfcPortsRelationshipList* ifcPortsRelationshipList;
+	Ifc4::IfcGeometricRepresentationContext* geometricRepresentationContext;
 };
 
 

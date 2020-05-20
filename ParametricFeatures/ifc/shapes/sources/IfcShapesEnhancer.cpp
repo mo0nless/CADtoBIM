@@ -14,28 +14,6 @@ Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresent
 		case CurvesBoundaryTypeEnum::OUTER:
 		{
 			defineIfcGeometricRepresentationItem(shapeGraphicProperties, file, ifcElementBundle);
-			/*if (shapeGraphicProperties->getIsFilled())
-			{
-				Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
-					Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
-					std::string("Open"),
-					(Ifc4::IfcBoundedCurve*)geomItem
-				);
-				Ifc4::IfcSweptAreaSolid* areaSolid = new Ifc4::IfcExtrudedAreaSolid(
-					profileDef,
-					IfcOperationsEnhancer::buildIfcAxis2Placement3D(
-						shapeGraphicProperties->getCentroid(),
-						shapeGraphicProperties->getVectorAxisZ(),
-						shapeGraphicProperties->getVectorAxisX()
-					),
-					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(
-						shapeGraphicProperties->getVectorAxisZ()
-					),
-					20.0
-				);
-
-				geomItem = areaSolid;
-			}*/
 		}
 		break;
 		case CurvesBoundaryTypeEnum::INNER:
@@ -64,6 +42,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresent
 	return geomItem;
 }
 
+
 void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
@@ -77,20 +56,42 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
+			bool isElementSmartSolid = ifcElementBundle->getIsSmartSolid();
+			IfcBRepRelationship* bRepRelationship = new IfcBRepRelationship();
+
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
 			{
 				IShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<IShapesGraphicProperties*>(graphicProperties);
 				if (shapeGraphicProperties != nullptr)
-				{
+				{				
 					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle);
 					if (ifcRepresentationItem != nullptr)
-					{
-						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
-						//ifcTemplatedEntityList->push(ifcRepresentationItem);
+					{						
+						//check if they belongs to a smart solid
+						if (isElementSmartSolid && (!shapeGraphicProperties->getFacesBoundIDs().empty()))
+						{
+							Ifc4::IfcCurve* curveRepresentationItem = (Ifc4::IfcCurve*)ifcRepresentationItem;
+							bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveRepresentationItem);
+						}
+						else
+						{
+							ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
+							//ifcTemplatedEntityList->push(ifcRepresentationItem);
+						}
 					}
+
 				}
 			}
+			
+			//check if they belongs to a smart solid
+			if (isElementSmartSolid)
+			{
+				bRepRelationship->connectContinuosEdges();
+				ifcElementBundle->addSolidEdgesCollection(
+					bRepRelationship->getSmartSolidEdgesCollection()
+				);
+			}				
 		}
 	}
 }
@@ -151,6 +152,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curve
 				curveP->getDirectionX()
 			);
 
+
 			Ifc4::IfcCurve* curve = nullptr;
 
 			if (curveP->getIsCircular())
@@ -160,7 +162,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curve
 					NumberUtils::convertMicrometersToMetters(curveP->getRadiusX())
 				);
 			}
-			else if (curveP->getIsFullEllipse())
+			else //if (curveP->getIsFullEllipse())
 			{
 				curve = new Ifc4::IfcEllipse(
 					place,
@@ -177,6 +179,12 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curve
 				Ifc4::IfcParameterValue* pV0 = new Ifc4::IfcParameterValue(curveP->getStartAngle());
 				Ifc4::IfcParameterValue* pV1 = new Ifc4::IfcParameterValue(curveP->getSweepAngle());
 
+				/*Ifc4::IfcCartesianPoint* cP0 = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curveP->getStartPoint());
+				Ifc4::IfcCartesianPoint* cP1 = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curveP->getEndPoint());				
+				
+				t1EntityList->push(cP0);
+				t2EntityList->push(cP1);*/
+
 				t1EntityList->push(pV0);
 				t2EntityList->push(pV1);
 
@@ -184,7 +192,13 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curve
 				boost::shared_ptr<IfcEntityList> trimTwo(t2EntityList);
 
 				// Sense Agreement to TRUE (e.g. from 0° degree to 180°)
-				curveRepresentationItem = new Ifc4::IfcTrimmedCurve(curve, trimOne, trimTwo, true, Ifc4::IfcTrimmingPreference::IfcTrimmingPreference_PARAMETER);
+				// Except the case of a closed BasisCurve where both parameter 1 and parameter 2 exist, 
+				// they shall be consistent with the sense flag, i.e., (sense = parameter 1 < parameter 2). 
+				// Or, for every open curve where both parameter 1 and parameter 2 exist, they shall be consistent with the SenseAgreement, 
+				// i.e., SenseAgreement = (parameter 1 < parameter 2).
+				bool senseOfAgreement = (curveP->getStartAngle() < curveP->getSweepAngle());
+				curveRepresentationItem = new Ifc4::IfcTrimmedCurve(curve, trimOne, trimTwo, senseOfAgreement, Ifc4::IfcTrimmingPreference::IfcTrimmingPreference_PARAMETER);
+				//curveRepresentationItem = new Ifc4::IfcTrimmedCurve(curve, trimOne, trimTwo, senseOfAgreement, Ifc4::IfcTrimmingPreference::IfcTrimmingPreference_CARTESIAN);
 			}
 			else
 				curveRepresentationItem = curve;
@@ -264,24 +278,26 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurve(ICurveGraphicProperties * curve
 
 		default:
 			break;
-	}
+	}	
 
 	return curveRepresentationItem;
 }
 
 Ifc4::IfcCurve* IfcShapesEnhancer::ifcShapesCurvesParser(IShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
-	Ifc4::IfcCurve* item = nullptr;
+	Ifc4::IfcCurve* curveRepresentationItem = nullptr;	
+
 	for each (ICurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
 	{
-		item = buildIfcCurve(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
+		curveRepresentationItem = buildIfcCurve(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
 
-		if (item == nullptr)
+		if (curveRepresentationItem == nullptr)
 			break;
 
-		return item;
+		return curveRepresentationItem;
+
 	}
-	return item;
+	return curveRepresentationItem;
 }
 
 Ifc4::IfcBoundaryCurve* IfcShapesEnhancer::buildIfcBoundaryCurve(IShapesGraphicProperties * curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
@@ -436,7 +452,7 @@ void IfcShapesEnhancer::defineIfcGeometricRepresentationItem(IShapesGraphicPrope
 		}
 		else
 		{
-			this->geomItem = this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
+			this->geomItem = ifcShapesCurvesParser(curvesShape, file, ifcElementBundle);
 		}
 	}
 		

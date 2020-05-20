@@ -10,7 +10,7 @@
 #include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../headers/IfcElementBundle.h"
-#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
+//#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 
 
 class IfcPrimitivesEnhancer {

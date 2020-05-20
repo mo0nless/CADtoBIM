@@ -32,7 +32,7 @@
 #include <ifcparse\utils.h>
 #include <ifcparse\IfcHierarchyHelper.h>
 
-#include <boost/any.hpp>
+//#include <boost/any.hpp>
 
 
 #include <PSolid/PSolidCoreAPI.h>

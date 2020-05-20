@@ -4,7 +4,8 @@ void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifc
 {
 	for (auto ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getIsSmartFeature()) {
-			Ifc4::IfcRepresentationItem* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle);
+			//Ifc4::IfcRepresentationItem* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle);
+			Ifc4::IfcGeometricRepresentationItem* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle);
 			// TODO [MP] keep the existing graphic properties and only add the ifc representation item
 			ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult));
 		}
@@ -12,7 +13,7 @@ void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifc
 }
 
 
-Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement)
+Ifc4::IfcGeometricRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement)
 {
 	if (!root)
 		return nullptr;
@@ -27,7 +28,7 @@ Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* roo
 		}
 
 	}
-	Ifc4::IfcRepresentationItem* left = nullptr, *rigth = nullptr;
+	Ifc4::IfcGeometricRepresentationItem* left = nullptr, *rigth = nullptr;
 	if (root->getLeftNode() != nullptr) {
 		left = eval(root->getLeftNode(), ifcBundleVector, currentElement);
 	}
@@ -37,7 +38,7 @@ Ifc4::IfcRepresentationItem* SmartFeatureHandler::eval(SmartFeatureTreeNode* roo
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*currentElement, root->getLocalNodeId());
 	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && left != nullptr && rigth != nullptr) {
-		Ifc4::IfcRepresentationItem* resultItem = IfcBooleanOperatorHandler::solveBooleanOperaiont(left, rigth,*ifcReaderPropertiesBundle);
+		Ifc4::IfcGeometricRepresentationItem* resultItem = IfcBooleanOperatorHandler::solveBooleanOperation(left, rigth,*ifcReaderPropertiesBundle);
 		return resultItem;
 	}
 		

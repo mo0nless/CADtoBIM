@@ -148,8 +148,6 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 {
 	std::ofstream outfile;
 
-	ElementHandle firstElement = ElementHandle();
-
 	outfile.open(filePath);
 	outfile << "" << std::endl;
 	outfile.close();
@@ -157,7 +155,9 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 	GraphicsProcessorEnhancer* graphicsProcessorEnhancer = graphicsProcessor.getGraphicsProcessorEnhancer();
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-	
+
+	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
 		//DgnECManagerR ecMgr = DgnECManager::GetManager();
@@ -205,6 +205,26 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
+
+		/*const bool simplify = false;
+		ISolidPrimitivePtr solid = ISolidPrimitiveQuery::ElementToSolidPrimitive(currentElem, simplify);
+		bool valid = solid.IsValid();
+
+	
+		if (!valid)
+		{			
+			ISolidKernelEntityPtr smartSolid;
+			bool validSolid = (SUCCESS == SolidUtil::Convert::ElementToBody(smartSolid, currentElem) && smartSolid.IsValid());
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "===================================================" << std::endl;
+			outfile << "====================SMART SOLID====================" << std::endl;
+			outfile << "===================================================" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+		}*/
+					
 
 		outfile.open(filePath, std::ios_base::app);
 		outfile << "===================================================" << std::endl;
