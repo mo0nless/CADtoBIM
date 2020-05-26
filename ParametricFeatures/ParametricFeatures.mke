@@ -96,7 +96,7 @@ appObjects = \
 	$(o)CylinderGraphicProperties$(oext) \
 	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
 	$(o)BRepSolidsKernelEntity$(oext) \
-	$(o)CurvesGraphicsProperties$(oext) \
+	$(o)CurveGraphicsProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
@@ -287,7 +287,7 @@ $(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/gr
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)CurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurvesGraphicsProperties.h
+$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicsProperties.h
 
 $(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
 

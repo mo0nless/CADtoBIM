@@ -33,6 +33,10 @@ public:
 	bool getIsClosed() const;
 	void setIsClosed(bool isClosed);
 
+	bool hasShapesGraphicsContainer() const;
+
+	std::vector<ShapesGraphicProperties*> getShapesGraphicsContainer();
+
 	DVec3d getNormal() const;
 	void setNormal(DVec3d normal);
 
@@ -45,6 +49,11 @@ public:
 
 	void setCentroid(DPoint3d newCenter);
 	DPoint3d getCentroid();
+
+	bool getHasSingleCurve();
+	void setHasSingleCurve(bool value);
+
+	void insertShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
 
 	virtual ~ShapesGraphicProperties();
 
@@ -61,8 +70,11 @@ private:
 
 	bool mIsFilled;
 	bool mIsClosed;
+	bool mHasShapesGraphicsContainer;
+	bool mIsSingleCurve;
 
 	ShapesTypeEnum mCurvesShapeTypeEnum;
 	CurvesBoundaryTypeEnum mCurvesBoundaryType;
 	std::vector<CurveGraphicProperties*> mCurvesPrimitivesContainer;
+	std::vector<ShapesGraphicProperties*> mShapesGraphicsContainer;
 };

@@ -55,10 +55,10 @@ struct SolidEdge {
 	Ifc4::IfcCurve* ifcCurve;
 	std::vector<int> faceID;
 	Ifc4::IfcOrientedEdge* edge = nullptr;
-
-
+	
+	int type;
 	int nodeID;
-	bool isClosed;	
+	bool isClosed = false;	
 };
 
 struct ContinuosEdge : public SolidEdge

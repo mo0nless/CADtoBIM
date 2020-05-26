@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -108,7 +108,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			outfile.close();
 		}
 		break;
-		case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
+		case ISolidKernelEntity::KernelEntityType::EntityType_Sheet: // Is different from a solid IfcShellBasedSurfaceModel
 		{
 			bvector<ISubEntityPtr> subEntitiesFaces;
 			bvector<ISubEntityPtr> subEntitiesEdges;
@@ -281,7 +281,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 #endif
 
 //Faces start dependences 
-#if false
+#if true
 			for (auto face : subEntitiesFaces)
 			{
 				if (face == NULL)
@@ -325,34 +325,34 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						break;
 					}
 
-					SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
-					for (auto vertex : subEntitiesVertices)
-					{
-						ISubEntityCR vertexRef = *vertex;
-						VertexId vertexID;
-						SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
-						
-						DPoint3d vertexPoint;
-						if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
-						{
-							outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-							outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
-							outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
-							outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
-							outfile << std::endl;
-							outfile.close();
-						}
-					}
+					//SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
+					//for (auto vertex : subEntitiesVertices)
+					//{
+					//	ISubEntityCR vertexRef = *vertex;
+					//	VertexId vertexID;
+					//	SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
+					//	
+					//	DPoint3d vertexPoint;
+					//	if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
+					//	{
+					//		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					//		outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
+					//		outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
+					//		outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
+					//		outfile << std::endl;
+					//		outfile.close();
+					//	}
+					//}
 
-					//Clear the previous vertices
-					subEntitiesVertices.clear();
-					
+					////Clear the previous vertices
+					//subEntitiesVertices.clear();
+					//
 				}
 			}
 #endif
 
 //Edges start dependences 
-#if true
+#if false
 			//Clear the faces store previously
 			subEntitiesFaces.clear();
 			subEntitiesVertices.clear();

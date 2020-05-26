@@ -346,66 +346,6 @@ void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primit
 
 }
 
-CurveGraphicProperties* GraphicsProcessorEnhancer::processBsplineCurve(MSBsplineCurveR bSpline)
-{
-	std::ofstream outfile;
-
-	BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
-
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
-	outfile << std::endl;
-	outfile.close();
-	
-	DPoint3d startP, endP;
-	bvector<DPoint3d> polesControlP;
-
-
-	bSpline.ExtractEndPoints(startP, endP);
-
-	/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "Is Closed = " << bSpline.IsClosed() << std::endl;
-	outfile << std::endl;
-	outfile.close();*/
-
-	bSpline.GetPoles(polesControlP);
-
-	int k = 0;
-	for each (DPoint3d p in polesControlP)
-	{
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << std::fixed;
-		outfile << "point " << k << " [X] = " << p.x << std::endl;
-		outfile << "point " << k << " [Y] = " << p.y << std::endl;
-		outfile << "point " << k << " [Z] = " << p.z << std::endl;		
-		outfile << std::endl;
-		outfile.close();
-
-		k++;
-	}
-
-	if (bSpline.AreKnotsValid()) {
-
-		bvector<double> inKnots, outKnots;
-		bvector<size_t> multiplicityKnots;
-		size_t highIndex, lowIndex;
-		bSpline.GetKnots(inKnots);
-
-		bSpline.CompressKnots(inKnots, int(bSpline.GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
-
-		curveGraphicProperties->setAreKnotsValid(bSpline.AreKnotsValid());
-		curveGraphicProperties->setKnots(inKnots);
-		curveGraphicProperties->setKnotsMultiplicity(multiplicityKnots);
-	}
-	curveGraphicProperties->setIsClosed(bSpline.IsClosed());
-	curveGraphicProperties->setIsSelfIntersect(false);
-	curveGraphicProperties->setControlPoints(polesControlP);
-	curveGraphicProperties->setOrder(bSpline.GetOrder());
-	curveGraphicProperties->setStartEndPoints(startP, endP);
-
-	return curveGraphicProperties;
-
-}
 
 void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)
 {
@@ -430,6 +370,7 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	uOrder = msBsplineSurface.GetIntUOrder();
 	vOrder = msBsplineSurface.GetIntVOrder();
 		
+	//Get the UV Poles control points of the surface
 	int count = 0;
 	for (size_t i = 0; i < msBsplineSurface.GetIntNumUPoles(); i++)
 	{
@@ -449,19 +390,10 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	msBsplineSurface.GetVKnots(vKnots);
 	msBsplineSurface.GetUKnots(uKnots);
 
-	msBsplineSurface.GetIntNumUPoles();
-	msBsplineSurface.GetIntNumVPoles();
-
+	//Extract the multiplicity compressing the UV Knots
 	MSBsplineCurve::CompressKnots(vKnots, vOrder, vKnotsCompressed, vKmultiplicity, lowAindex, highAindex);
 	MSBsplineCurve::CompressKnots(uKnots, uOrder, uKnotsCompressed, uKmultiplicity, lowAindex, highAindex);
 	
-	msBsplineSurfaceGraphicProperties->setUVIsClosed(msBsplineSurface.GetIsUClosed(), msBsplineSurface.GetIsVClosed());
-	msBsplineSurfaceGraphicProperties->setUVKnots(uKnots, vKnots);
-	msBsplineSurfaceGraphicProperties->setUVKnotsMultiplicity(uKmultiplicity, vKmultiplicity);
-	msBsplineSurfaceGraphicProperties->setUVOrder(uOrder, vOrder);
-	msBsplineSurfaceGraphicProperties->setWeights(weights);
-	msBsplineSurfaceGraphicProperties->setControlPoints(controlPointsUV, msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles());
-
 	outfile.open(filePath, std::ios_base::app);
 	outfile << "Number of Bounds: " << numOfBounds << std::endl;
 	outfile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << std::endl;
@@ -471,24 +403,71 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	outfile << std::endl;
 	outfile.close();
 
-#if false
+#if true
+	//This function returns a parity regions
+	CurveVectorPtr curveVecBound = msBsplineSurface.GetUVBoundaryCurves(true, true);
+
 	// Curve Shape for Boundaries
 	CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
-
-	//Save the faceID to the Curve edge
-	//shapesGraphicProperties->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
-	//shapesGraphicProperties->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
-
-	auto curveVecBound = msBsplineSurface.GetUVBoundaryCurves(true, false);
-
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "Curve Vector Number of Bounds : " << curveVecBound->size() << std::endl;
-	outfile << std::endl;
-	outfile.close();
-
 	processShapesCurvesVector(*curveVecBound, false, &*shapesGraphicProperties);
+
+	//Save the faceID to Parity Region
+	shapesGraphicProperties->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
+	shapesGraphicProperties->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
+
+	//Parity Region Container
+	if (shapesGraphicProperties->hasShapesGraphicsContainer())
+	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- PARITY REGION Boundaries --------" << std::endl;
+		outfile.close();
+
+		// Outer, Inner Boundaries NB: the path is supposed to be always closed
+		for (auto boundary : shapesGraphicProperties->getShapesGraphicsContainer())
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Bound -------- " << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			//Save the faceID to the Outer/Inner boundary
+			boundary->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
+			boundary->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
+
+			// Primitives curves that compose the boundary (UV coordinates as control points)
+			for (auto bSpline : boundary->getCurvesPrimitivesContainerVector())
+			{
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "Curve -------- " << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				// Evaluation of the Control Points using the surface
+				bvector<DPoint3d> controlPointsBound;
+				for (auto uv : bSpline->getControlPoints())
+				{
+					DPoint3d evalP;
+					msBsplineSurface.EvaluatePoint(evalP, uv.x, uv.y);
+					controlPointsBound.push_back(evalP);
+
+					outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					outfile << "point " << " [X] = " << evalP.x << std::endl;
+					outfile << "point " << " [Y] = " << evalP.y << std::endl;
+					outfile << "point " << " [Z] = " << evalP.z << std::endl;
+					outfile << std::endl;
+					outfile.close();
+				}
+				outfile.close();
+
+				//Reset the evaluated Control Points
+				bSpline->setControlPoints(controlPointsBound);
+			}
+		}
+	}
+
 #endif
 
+//DPoint3d PolyLoop Evaluation MDL
 #if false
 	std::vector<std::vector<DPoint3d>> UVBoundsP;
 	for (int i = 0; i<msBsplineSurface.numBounds; i++)
@@ -511,10 +490,12 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	std::vector<std::vector<DPoint3d>> boundsVectorPoints;
 	msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, true);
 
+	//Points Loop of the boundaries
 	for (auto b : boundaryUVLoops)
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "-------- Boundary --------" << std::endl;
+		/*outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- Points UV Boundary --------" << std::endl;
+		outfile.close();*/
 
 		std::vector<DPoint3d> bound;
 		for (auto uv : b)
@@ -522,319 +503,105 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 			DPoint3d evalP;
 			msBsplineSurface.EvaluatePoint(evalP, uv.x, uv.y);
 			bound.push_back(evalP);
-
-			/*outfile << "point [X] = " << evalP.x << std::endl;
-			outfile << "point [Y] = " << evalP.y << std::endl;
-			outfile << "point [Z] = " << evalP.z << std::endl;
-			outfile << std::endl;*/
 		}
-		outfile.close();
 
 		boundsVectorPoints.push_back(bound);
 	}
 
+	msBsplineSurfaceGraphicProperties->setUVIsClosed(msBsplineSurface.GetIsUClosed(), msBsplineSurface.GetIsVClosed());
+	msBsplineSurfaceGraphicProperties->setUVKnots(uKnots, vKnots);
+	msBsplineSurfaceGraphicProperties->setUVKnotsMultiplicity(uKmultiplicity, vKmultiplicity);
+	msBsplineSurfaceGraphicProperties->setUVOrder(uOrder, vOrder);
+	msBsplineSurfaceGraphicProperties->setWeights(weights);
+	msBsplineSurfaceGraphicProperties->setControlPoints(controlPointsUV, msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles());
+	msBsplineSurfaceGraphicProperties->setBoundsVectorPoints(boundsVectorPoints);
 }
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurvePrimitivePtr curve)
+void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties)
 {
 	std::ofstream outfile;
 	
 	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "----------------------------------------" << std::endl;
+	outfile << "                              " << std::endl;
 	outfile << std::fixed;
-	outfile << std::endl;
 	outfile.close();
 
-	switch (curve->GetCurvePrimitiveType())
-	{
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
-	{
-		AkimaGraphicProperties* curveGraphicProperties = new AkimaGraphicProperties();
 
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		if (curve->GetAkimaCurveCP() != nullptr)
+	for each (ICurvePrimitivePtr curvePrimitive in curvesVector)
+	{
+		switch (curvePrimitive->GetCurvePrimitiveType())
 		{
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+		{
+			AkimaGraphicProperties* curveGraphicProperties = new AkimaGraphicProperties();
 
-			for (size_t k = 0; k < curve->GetAkimaCurveCP()->size(); k++)
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			if (curvePrimitive->GetAkimaCurveCP() != nullptr)
 			{
-				outfile << "point " << k << " [X] = " << curve->GetAkimaCurveCP()->at(k).x << std::endl;
-				outfile << "point " << k << " [Y] = " << curve->GetAkimaCurveCP()->at(k).y << std::endl;
-				outfile << "point " << k << " [Z] = " << curve->GetAkimaCurveCP()->at(k).z << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+
+				for (size_t k = 0; k < curvePrimitive->GetAkimaCurveCP()->size(); k++)
+				{
+					outfile << "point " << k << " [X] = " << curvePrimitive->GetAkimaCurveCP()->at(k).x << std::endl;
+					outfile << "point " << k << " [Y] = " << curvePrimitive->GetAkimaCurveCP()->at(k).y << std::endl;
+					outfile << "point " << k << " [Z] = " << curvePrimitive->GetAkimaCurveCP()->at(k).z << std::endl;
+					outfile << std::endl;
+				}
+
+				outfile.close();
+
+				curveGraphicProperties->setControlPoints(*curvePrimitive->GetAkimaCurveCP());
 			}
 
-			outfile.close();
-
-			curveGraphicProperties->setControlPoints(*curve->GetAkimaCurveCP());
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
-
-		return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
-	{
-		ArcGraphicProperties* curveGraphicProperties = new ArcGraphicProperties();
-
-		DEllipse3d ellipse;
-		DPoint3d centerOUT, startP, endP;
-		DVec3d directionX, directionY;
-		double* pQuatXYZW = nullptr;
-		double rx, ry, startAngle, sweepAngle, length;
-		
-		if (!curve->TryGetArc(ellipse))
-			break;
-
-		ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
-
-		ellipse.EvaluateEndPoints(startP, endP);
-		bvector<DPoint3d> polesControlP;
-		polesControlP.push_back(startP);
-		polesControlP.push_back(endP);
-
-		curveGraphicProperties->setLength(ellipse.ArcLength());
-		curveGraphicProperties->setIsCircular(ellipse.IsCircular());
-		curveGraphicProperties->setControlPoints(polesControlP);
-		curveGraphicProperties->setDirectionXY(directionX, directionY);
-		curveGraphicProperties->setStartAngle(startAngle);
-		curveGraphicProperties->setSweepAngle(sweepAngle);
-		curveGraphicProperties->setCenterOut(centerOUT);
-		curveGraphicProperties->setRadiusXY(rx, ry);
-		curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
-		curveGraphicProperties->setStartEndPoints(startP, endP);
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
-		outfile << "Is Circular: " << ellipse.IsCircular() << std::endl;
-		outfile << "Is Ellipse: " << ellipse.IsFullEllipse() << std::endl;
-		outfile << std::endl;
-
-		outfile << "Start Point [X]: " << startP.x << std::endl;
-		outfile << "Start Point [Y]: " << startP.y << std::endl;
-		outfile << "Start Point [Z]: " << startP.z << std::endl;
-		outfile << std::endl;
-
-		outfile << "End Point [X]: " << endP.x << std::endl;
-		outfile << "End Point [Y]: " << endP.y << std::endl;
-		outfile << "End Point [Z]: " << endP.z << std::endl;
-		outfile << std::endl;
-		outfile << "Center out: x=" << centerOUT .x << ",y=" << centerOUT.y << ",z="<< centerOUT.z <<std::endl;
-		outfile << "DirectionX: x=" << directionX.x << ",y=" << directionX.y << ",z=" << directionX.z << std::endl;
-		outfile << "DirectionX: Y=" << directionY.x << ",y=" << directionY.y << ",z=" << directionY.z << std::endl;
-		outfile << "RX:" << rx << std::endl;
-		outfile << "RY:" << ry << std::endl;
-		outfile << "startAngle:" << startAngle << std::endl;
-		outfile << "sweepAngle:" << sweepAngle << std::endl;
-		outfile << "Start point: x=" << startP.x << ",y=" << startP.y << ",z=" << startP.z << std::endl;
-		outfile << "End point: x=" << endP.x << ",y=" << endP.y << ",z=" << endP.z << std::endl;
-		outfile << "Is Circular: " << ellipse.IsCircular();
-		outfile.close();
-
-		return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
-	{
-		BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		MSBsplineCurvePtr bSpline = curve->GetBsplineCurvePtr();
-		DPoint3d startP, endP;
-		bvector<DPoint3d> polesControlP;
-
-
-		if (bSpline != nullptr)
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
 		{
-			bSpline->ExtractEndPoints(startP, endP);
+			ArcGraphicProperties* curveGraphicProperties = new ArcGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-			outfile << std::endl;
-			outfile.close();
+			DEllipse3d ellipse;
+			DPoint3d centerOUT, startP, endP;
+			DVec3d directionX, directionY;
+			double* pQuatXYZW = nullptr;
+			double rx, ry, startAngle, sweepAngle, length;
 
-			bSpline->GetPoles(polesControlP);
-			
-			if (bSpline->AreKnotsValid()) {
+			if (!curvePrimitive->TryGetArc(ellipse))
+				break;
 
-				bvector<double> inKnots, outKnots;
-				bvector<size_t> multiplicityKnots;
-				size_t highIndex, lowIndex;
-				bSpline->GetKnots(inKnots);
+			ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
 
-				bSpline->CompressKnots(inKnots, int(bSpline->GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
-
-				curveGraphicProperties->setAreKnotsValid(bSpline->AreKnotsValid());
-				curveGraphicProperties->setKnots(inKnots);
-				curveGraphicProperties->setKnotsMultiplicity(multiplicityKnots);
-			}
-			curveGraphicProperties->setIsClosed(bSpline->IsClosed());
-			curveGraphicProperties->setIsSelfIntersect(false);
-			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setOrder(bSpline->GetOrder());
-			curveGraphicProperties->setStartEndPoints(startP, endP);
-
-			return curveGraphicProperties;
-
-		}		
-		else { break; }
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
-	{
-		//CurveGraphicProperties* curveGraphicProperties = nullptr;
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		if (curve->GetChildCurveVectorCP() != nullptr)
-		{
-			CurveVectorCP cPvector = curve->GetChildCurveVectorCP();
-			for each (ICurvePrimitivePtr c in *cPvector)
-			{
-				//TODO [SB] NEEDS TO BE CHECKED Curve Vector
-				return processCurvePrimitives(c); 
-			}
-		}
-
-		//return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
-	{
-		InterpolationGraphicProperties* curveGraphicProperties = new InterpolationGraphicProperties();
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		bvector<DPoint3d> polesControlP;
-		DPoint3d startP, endP;
-		curve->GetStartEnd(startP, endP);
-
-		if (curve->GetInterpolationCurveCP() != nullptr)
-		{
-			MSInterpolationCurveCP intCurve = curve->GetInterpolationCurveCP();
-			interpolationParam intParams = curve->GetInterpolationCurveCP()->params;
-
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "Interpolation Is Periodic: " << intParams.isPeriodic << std::endl;
-			outfile << "Interpolation Curve Order: " << intParams.order << std::endl;
-			outfile << std::endl;
-
-			for (size_t k = 0; k < intParams.numPoints; k++)
-			{
-				DPoint3d point = curve->GetInterpolationCurveCP()->fitPoints[k];
-				polesControlP.push_back(point);
-
-				outfile << "point " << k << " [X] = " << point.x << std::endl;
-				outfile << "point " << k << " [Y] = " << point.y << std::endl;
-				outfile << "point " << k << " [Z] = " << point.z << std::endl;
-				outfile << std::endl;
-
-			}
-
-			outfile.close();
-
-			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setOrder(intCurve->GetOrder());
-			curveGraphicProperties->setIsPeriodic(intParams.isPeriodic);
-			curveGraphicProperties->setStartEndPoints(startP, endP);
-
-		}
-
-		return curveGraphicProperties;
-	}
-	break;
-
-	//TODO [SB] Check Line starting point and crf Line String
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
-	{
-		LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		DSegment3d segment;
-		DPoint3d directionTangent, originStartPoint0;
-		DPoint3d startP, endP;
-		double lineLength;
-
-
-		if (curve->TryGetLine(segment))
-		{
-			curve->GetStartEnd(startP, endP);
-
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "Start Point [X]: " << startP.x << std::endl;
-			outfile << "Start Point [Y]: " << startP.y << std::endl;
-			outfile << "Start Point [Z]: " << startP.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "End Point [X]: " << endP.x << std::endl;
-			outfile << "End Point [Y]: " << endP.y << std::endl;
-			outfile << "End Point [Z]: " << endP.z << std::endl;
-			outfile << std::endl;
-
-			segment.FromOriginAndDirection(originStartPoint0, directionTangent);
-
-			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-			outfile << std::endl;
-
-			outfile.close();
-			
+			ellipse.EvaluateEndPoints(startP, endP);
 			bvector<DPoint3d> polesControlP;
 			polesControlP.push_back(startP);
+			polesControlP.push_back(endP);
 
+			curveGraphicProperties->setLength(ellipse.ArcLength());
+			curveGraphicProperties->setIsCircular(ellipse.IsCircular());
 			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setDirectionTanget(directionTangent);
+			curveGraphicProperties->setDirectionXY(directionX, directionY);
+			curveGraphicProperties->setStartAngle(startAngle);
+			curveGraphicProperties->setSweepAngle(sweepAngle);
+			curveGraphicProperties->setCenterOut(centerOUT);
+			curveGraphicProperties->setRadiusXY(rx, ry);
+			curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
 			curveGraphicProperties->setStartEndPoints(startP, endP);
-		}
-
-		return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
-	{
-		LineStringGraphicProperties* curveGraphicProperties = new LineStringGraphicProperties();
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		DSegment3d segment;
-		size_t startPointIndex = 0;
-		DPoint3d directionTangent, originStartPoint0, startP, endP;
-		double lineLength;
-				
-
-		if (curve->TryGetSegmentInLineString(segment, startPointIndex))
-		{
-			curve->GetStartEnd(startP, endP);
 
 			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
+			outfile << "Is Circular: " << ellipse.IsCircular() << std::endl;
+			outfile << "Is Ellipse: " << ellipse.IsFullEllipse() << std::endl;
+			outfile << std::endl;
+
 			outfile << "Start Point [X]: " << startP.x << std::endl;
 			outfile << "Start Point [Y]: " << startP.y << std::endl;
 			outfile << "Start Point [Z]: " << startP.z << std::endl;
@@ -844,140 +611,346 @@ CurveGraphicProperties* GraphicsProcessorEnhancer::processCurvePrimitives(ICurve
 			outfile << "End Point [Y]: " << endP.y << std::endl;
 			outfile << "End Point [Z]: " << endP.z << std::endl;
 			outfile << std::endl;
-
-			segment.FromOriginAndDirection(originStartPoint0, directionTangent);
-
-			outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-			outfile << std::endl;
-
-			bvector<DPoint3d> polesControlP;
-			if (curve->GetLineStringCP() != nullptr) {
-				int k = 0;
-				for each (DPoint3d p in *curve->GetLineStringCP())
-				{
-					outfile << "point " << k << " [X] = " << p.x << std::endl;
-					outfile << "point " << k << " [Y] = " << p.y << std::endl;
-					outfile << "point " << k << " [Z] = " << p.z << std::endl;
-					outfile << std::endl;
-
-					polesControlP.push_back(p);
-					k++;
-				}
-			}
-
 			outfile.close();
 
-			curveGraphicProperties->setControlPoints(polesControlP);
-			curveGraphicProperties->setDirectionTanget(directionTangent);
-			curveGraphicProperties->setStartEndPoints(startP, endP);
-		}	
-	
-
-		return curveGraphicProperties;
-	}
-
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
-	{
-		//CurveGraphicProperties* curveGraphicProperties = nullptr;
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		if (curve->GetPartialCurveDetailCP() != nullptr)
-		{
-			//TODO [SB] NEEDS TO BE CHECKED the partial curve composition
-			return processCurvePrimitives(curve->GetPartialCurveDetailCP()->parentCurve);
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
 		}
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+		{
+			BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
 
-		//return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
-	{
-		PointStringGraphicProperties* curveGraphicProperties = new PointStringGraphicProperties();
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
 
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
+			MSBsplineCurvePtr bSpline = curvePrimitive->GetBsplineCurvePtr();
+			DPoint3d startP, endP;
+			bvector<DPoint3d> polesControlP;
 
-		bvector<DPoint3d> polesControlP;
 
-		if (curve->GetPointStringCP() != nullptr)
+			if (bSpline != nullptr)
+			{
+				bSpline->ExtractEndPoints(startP, endP);
+
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+
+				bSpline->GetPoles(polesControlP);
+
+				outfile << "Control Points: " << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				for (auto point : polesControlP)
+				{
+					outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					outfile << "point " << " [X] = " << point.x << std::endl;
+					outfile << "point " << " [Y] = " << point.y << std::endl;
+					outfile << "point " << " [Z] = " << point.z << std::endl;
+					outfile << std::endl;
+					outfile.close();
+				}
+
+
+				if (bSpline->AreKnotsValid()) {
+
+					bvector<double> inKnots, outKnots;
+					bvector<size_t> multiplicityKnots;
+					size_t highIndex, lowIndex;
+					bSpline->GetKnots(inKnots);
+
+					bSpline->CompressKnots(inKnots, int(bSpline->GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
+
+					curveGraphicProperties->setAreKnotsValid(bSpline->AreKnotsValid());
+					curveGraphicProperties->setKnots(inKnots);
+					curveGraphicProperties->setKnotsMultiplicity(multiplicityKnots);
+				}
+
+				curveGraphicProperties->setIsClosed(bSpline->IsClosed());
+				curveGraphicProperties->setIsSelfIntersect(false);
+				curveGraphicProperties->setControlPoints(polesControlP);
+				curveGraphicProperties->setOrder(bSpline->GetOrder());
+				curveGraphicProperties->setStartEndPoints(startP, endP);
+
+				if (curveGraphicProperties != nullptr)
+					shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+
+			}
+			else { break; }
+		}
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 		{
 			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-
-			for (size_t k = 0; k < curve->GetPointStringCP()->size(); k++)
-			{
-				DPoint3d point = curve->GetPointStringCP()->at(k);
-
-				outfile << "point " << k << " [X] = " << point.x << std::endl;
-				outfile << "point " << k << " [Y] = " << point.y << std::endl;
-				outfile << "point " << k << " [Z] = " << point.z << std::endl;
-				outfile << std::endl;
-
-				polesControlP.push_back(point);
-			}
-
+			outfile << "CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
+			outfile << std::endl;
 			outfile.close();
 
-			curveGraphicProperties->setControlPoints(polesControlP);
+
+			if (curvePrimitive->GetChildCurveVectorCP() != nullptr)
+			{
+				CurveVectorCP cPvector = curvePrimitive->GetChildCurveVectorCP();
+				CurvesShapesGraphicProperties* newShapesGraphicProperties = new CurvesShapesGraphicProperties();
+				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties);
+				shapesGraphicProperties->insertShapesGraphicProperties(newShapesGraphicProperties);
+
+			}
 
 		}
-		return curveGraphicProperties;
-	}
-	break;
-	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
-	{
-		//CurveGraphicProperties* curveGraphicProperties = nullptr;
-		//curveGraphicProperties->setCurvesTypeEnum(ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral);
-
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "--------CurveParser: CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
-		outfile << std::endl;
-
-		outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-		outfile << std::endl;
-		outfile.close();
-
-		//TODO [SB] Needs to be checked how to handle Spiral 
-		if (curve->GetSpiralPlacementCP() != nullptr)
-		{
-			//DSpiral2dPlacementCP spiralPlace = curve->GetSpiralPlacementCP();
-		}
-		//return curveGraphicProperties;
-	}
-	break;
-	default:
 		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+		{
+			InterpolationGraphicProperties* curveGraphicProperties = new InterpolationGraphicProperties();
+
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			bvector<DPoint3d> polesControlP;
+			DPoint3d startP, endP;
+			curvePrimitive->GetStartEnd(startP, endP);
+
+			if (curvePrimitive->GetInterpolationCurveCP() != nullptr)
+			{
+				MSInterpolationCurveCP intCurve = curvePrimitive->GetInterpolationCurveCP();
+				interpolationParam intParams = curvePrimitive->GetInterpolationCurveCP()->params;
+
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile << "Interpolation Is Periodic: " << intParams.isPeriodic << std::endl;
+				outfile << "Interpolation Curve Order: " << intParams.order << std::endl;
+				outfile << std::endl;
+
+				for (size_t k = 0; k < intParams.numPoints; k++)
+				{
+					DPoint3d point = curvePrimitive->GetInterpolationCurveCP()->fitPoints[k];
+					polesControlP.push_back(point);
+
+					outfile << "point " << k << " [X] = " << point.x << std::endl;
+					outfile << "point " << k << " [Y] = " << point.y << std::endl;
+					outfile << "point " << k << " [Z] = " << point.z << std::endl;
+					outfile << std::endl;
+
+				}
+
+				outfile.close();
+
+				curveGraphicProperties->setControlPoints(polesControlP);
+				curveGraphicProperties->setOrder(intCurve->GetOrder());
+				curveGraphicProperties->setIsPeriodic(intParams.isPeriodic);
+				curveGraphicProperties->setStartEndPoints(startP, endP);
+
+			}
+
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+		break;
+
+		//TODO [SB] Check Line starting point and crf Line String
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+		{
+			LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
+
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			DSegment3d segment;
+			DPoint3d directionTangent, originStartPoint0;
+			DPoint3d startP, endP;
+			double lineLength;
+
+
+			if (curvePrimitive->TryGetLine(segment))
+			{
+				curvePrimitive->GetStartEnd(startP, endP);
+
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile << "Start Point [X]: " << startP.x << std::endl;
+				outfile << "Start Point [Y]: " << startP.y << std::endl;
+				outfile << "Start Point [Z]: " << startP.z << std::endl;
+				outfile << std::endl;
+
+				outfile << "End Point [X]: " << endP.x << std::endl;
+				outfile << "End Point [Y]: " << endP.y << std::endl;
+				outfile << "End Point [Z]: " << endP.z << std::endl;
+				outfile << std::endl;
+
+				segment.FromOriginAndDirection(originStartPoint0, directionTangent);
+
+				outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+				outfile << std::endl;
+
+				outfile.close();
+
+				bvector<DPoint3d> polesControlP;
+				polesControlP.push_back(startP);
+
+				curveGraphicProperties->setControlPoints(polesControlP);
+				curveGraphicProperties->setDirectionTanget(directionTangent);
+				curveGraphicProperties->setStartEndPoints(startP, endP);
+			}
+
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
+		{
+			LineStringGraphicProperties* curveGraphicProperties = new LineStringGraphicProperties();
+
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			DSegment3d segment;
+			size_t startPointIndex = 0;
+			DPoint3d directionTangent, originStartPoint0, startP, endP;
+			double lineLength;
+
+
+			if (curvePrimitive->TryGetSegmentInLineString(segment, startPointIndex))
+			{
+				curvePrimitive->GetStartEnd(startP, endP);
+
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile << "Start Point [X]: " << startP.x << std::endl;
+				outfile << "Start Point [Y]: " << startP.y << std::endl;
+				outfile << "Start Point [Z]: " << startP.z << std::endl;
+				outfile << std::endl;
+
+				outfile << "End Point [X]: " << endP.x << std::endl;
+				outfile << "End Point [Y]: " << endP.y << std::endl;
+				outfile << "End Point [Z]: " << endP.z << std::endl;
+				outfile << std::endl;
+
+				segment.FromOriginAndDirection(originStartPoint0, directionTangent);
+
+				outfile << "Curve Line String Length: " << segment.Length() << std::endl;
+				outfile << std::endl;
+
+				bvector<DPoint3d> polesControlP;
+				if (curvePrimitive->GetLineStringCP() != nullptr) {
+					int k = 0;
+					for each (DPoint3d p in *curvePrimitive->GetLineStringCP())
+					{
+						outfile << "point " << k << " [X] = " << p.x << std::endl;
+						outfile << "point " << k << " [Y] = " << p.y << std::endl;
+						outfile << "point " << k << " [Z] = " << p.z << std::endl;
+						outfile << std::endl;
+
+						polesControlP.push_back(p);
+						k++;
+					}
+				}
+
+				outfile.close();
+
+				curveGraphicProperties->setControlPoints(polesControlP);
+				curveGraphicProperties->setDirectionTanget(directionTangent);
+				curveGraphicProperties->setStartEndPoints(startP, endP);
+			}
+
+
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+		{
+			//CurveGraphicProperties* curveGraphicProperties = nullptr;
+
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			if (curvePrimitive->GetPartialCurveDetailCP() != nullptr)
+			{
+				//TODO [SB] NEEDS TO BE CHECKED the partial curve composition
+				//return processCurvePrimitives(curve->GetPartialCurveDetailCP()->parentCurve);
+			}
+
+		}
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+		{
+			PointStringGraphicProperties* curveGraphicProperties = new PointStringGraphicProperties();
+
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			bvector<DPoint3d> polesControlP;
+
+			if (curvePrimitive->GetPointStringCP() != nullptr)
+			{
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+
+				for (size_t k = 0; k < curvePrimitive->GetPointStringCP()->size(); k++)
+				{
+					DPoint3d point = curvePrimitive->GetPointStringCP()->at(k);
+
+					outfile << "point " << k << " [X] = " << point.x << std::endl;
+					outfile << "point " << k << " [Y] = " << point.y << std::endl;
+					outfile << "point " << k << " [Z] = " << point.z << std::endl;
+					outfile << std::endl;
+
+					polesControlP.push_back(point);
+				}
+
+				outfile.close();
+
+				curveGraphicProperties->setControlPoints(polesControlP);
+
+			}
+			if (curveGraphicProperties != nullptr)
+				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+		}
+		break;
+		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+		{
+			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			//TODO [SB] Needs to be checked how to handle Spiral 
+			if (curvePrimitive->GetSpiralPlacementCP() != nullptr)
+			{
+				//DSpiral2dPlacementCP spiralPlace = curve->GetSpiralPlacementCP();
+			}
+		}
+		break;
+		default:
+			break;
+		}
+
+		outfile.flush();
 	}
-
-	outfile.flush();
-
-	//TODO [SB] Handle the output for null pointer
-	return nullptr;
 }
 #pragma warning (pop)
 
 
-void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
+void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
 {
-	//IShapesGraphicProperties* shapesGraphicProperties = nullptr;
-
-	if (!curves.empty())
+	if (!curvesVector.empty())
 	{
 		if (shapesGraphicProperties == nullptr)
 		{
 			//TODO [SB] Verify that it's the correct way to identify shapes
 			//NB: the object STD_BOLT has no name and it produce an empty container
-			ShapesTypeEnum curveShapesTypeEnum = ShapesTypeEnumUtils::getShapesTypeEnumByDescriptor(pDictionaryProperties->getElementDescriptor());
+			//ShapesTypeEnum curveShapesTypeEnum = ShapesTypeEnumUtils::getShapesTypeEnumByDescriptor(pDictionaryProperties->getElementDescriptor());
 
-			switch (curveShapesTypeEnum)
+			/*switch (curveShapesTypeEnum)
 			{
 			case ShapesTypeEnum::CIRCLE:
 			{
@@ -1004,7 +977,8 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 				shapesGraphicProperties = new CurvesShapesGraphicProperties();
 			}
 			break;
-			}
+			}*/
+			shapesGraphicProperties = new CurvesShapesGraphicProperties();
 		}
 		
 		
@@ -1012,225 +986,128 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 		outfile << "-------------------CURVE VECTOR---------------------" << std::endl;
-		outfile << "Has Single Curve: " << curves.HasSingleCurvePrimitive() << std::endl;
+		outfile << "Size: " << curvesVector.size() << std::endl;
 		outfile << std::fixed;
 		outfile << std::endl;
 		outfile.close();
 
-		DPoint3d center, centroid, start, end;
+		DPoint3d center, start, end;
 		DRange3d range;
-		DVec3d normal, centroID;
+		DVec3d normal, centroid;
 		double area;
 		Transform localToWorld, worldToLocal;
 		bool isClosed = false;
 
-		curves.GetStartEnd(start, end);
-		
-		curves.CentroidNormalArea(center, normal, area);
-		centroID.Init(center);
+		curvesVector.GetStartEnd(start, end);		
+		curvesVector.CentroidNormalArea(center, normal, area);
+		centroid.Init(center);
 
 		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
-		curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-		curves.CentroidAreaXY(centroid, area);
-		DMatrix4d matrix;
-		curves.ComputeSecondMomentAreaProducts(matrix);
-		DPoint4d col1, col2, col3, col4;
-		matrix.GetColumn(col1, 0);
-		matrix.GetColumn(col2, 1);
-		matrix.GetColumn(col3, 2);
-		matrix.GetColumn(col4, 3);
-
-		DVec3d columnVectorX2, columnVectorY2, columnVectorZ2;
-		columnVectorX2.x = col1.x;
-		columnVectorX2.x = col1.y;
-		columnVectorX2.x = col1.z;
-
-		columnVectorY2.x = col2.x;
-		columnVectorY2.x = col2.y;
-		columnVectorY2.x = col2.z;
-
-		columnVectorZ2.x = col3.x;
-		columnVectorZ2.x = col3.y;
-		columnVectorZ2.x = col3.z;
-
-		//shapesGraphicProperties->setVectorAxis(columnVectorX2, columnVectorY2, columnVectorZ2);
-
-
-		DPoint3d startPoint;
-		curves.GetStartPoint(startPoint);
-
-		DPoint3d centroid2;
-		double c_length;
-		curves.WireCentroid(c_length,centroid2);
-
+		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+		
 		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
 	
-		DVec3d columnVectorX, columnVectorY, columnVectorZ,col;
-
-		localToWorld.GetMatrixColumn(columnVectorX, 0);
-		localToWorld.GetMatrixColumn(columnVectorY, 1);
-		localToWorld.GetMatrixColumn(columnVectorZ, 2);
-		localToWorld.GetMatrixColumn(col, 3);
-
+		//Process the primitives inside the Curve Vector
+		processCurvesPrimitives(curvesVector, shapesGraphicProperties);
 		shapesGraphicProperties->setIsFilled(isFilled);
 		shapesGraphicProperties->setArea(area);
 		shapesGraphicProperties->setCentroid(centroid);
 		shapesGraphicProperties->setNormal(normal);
 
 		// Chek if the shape is closed 
-		if (curves.IsClosedPath())
-			isClosed = curves.IsClosedPath();
-		else if (curves.IsPhysicallyClosedPath())
-			isClosed = curves.IsPhysicallyClosedPath();
+		if (curvesVector.IsClosedPath())
+			isClosed = curvesVector.IsClosedPath();
+		else if (curvesVector.IsPhysicallyClosedPath())
+			isClosed = curvesVector.IsPhysicallyClosedPath();
 
 		shapesGraphicProperties->setIsClosed(isClosed);
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::endl;
-		outfile << "Centroid2: x=" << centroid2.x << ",y=" << centroid2.y << ",z=" << centroid2.z << std::endl;
-		outfile << "startPoint: x=" << startPoint.x << ",y=" << startPoint.y << ",z=" << startPoint.z << std::endl;
-		outfile << "col1: x=" << col1.x << ",y=" << col1.y << ",z=" << col1.z << ",w=" << col1.w << std::endl;
-		outfile << "col2: x=" << col2.x << ",y=" << col2.y << ",z=" << col2.z << ",w=" << col2.w << std::endl;
-		outfile << "col3: x=" << col3.x << ",y=" << col3.y << ",z=" << col3.z << ",w=" << col3.w << std::endl;
-		outfile << "col4: x=" << col4.x << ",y=" << col4.y << ",z=" << col4.z << ",w=" << col4.w << std::endl;
-		outfile << "Centroid: x=" << centroid.x << ",y=" << centroid.y << ",z=" << centroid.z << std::endl;
-		outfile << "center: x=" << center.x << ",y=" << center.y << ",z=" << center.z << std::endl;
-		outfile << "columnVectorX: x=" << columnVectorX.x << ",y=" << columnVectorX.y << ",z=" << columnVectorX.z << std::endl;
-		outfile << "columnVectorY: x=" << columnVectorY.x << ",y=" << columnVectorY.y << ",z=" << columnVectorY.z << std::endl;
-		outfile << "columnVectorZ: x=" << columnVectorZ.x << ",y=" << columnVectorZ.y << ",z=" << columnVectorZ.z << std::endl;
-		outfile << "col: x=" << col.x << ",y=" << col.y << ",z=" << col.z << std::endl;
-		outfile.flush();
-		outfile.close();
+		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
+		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
+		
 
-		switch (curves.GetBoundaryType())
+		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty())
+			//Add the shape to the Dictionary
+			pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+
+		switch (curvesVector.GetBoundaryType())
 		{
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
 		{
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "-------- BOUNDARY_TYPE_Inner --------" << std::endl;
+			outfile << "BOUNDARY_TYPE_Inner --------" << std::endl;
 			outfile.flush();
-			outfile.close();
-
-				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Inner);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			outfile.close();			
 		}
-		break;
-		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
-		{
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "-------- BOUNDARY_TYPE_None --------" << std::endl;
-		
-				outfile.flush();
-				outfile.close();
-
-				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_None);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
-		}
+		break;		
 		break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
 		{
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "-------- BOUNDARY_TYPE_Open --------" << std::endl;
-		
-				outfile << "Start Point [X]: " << start.x << std::endl;
-				outfile << "Start Point [Y]: " << start.y << std::endl;
-				outfile << "Start Point [Z]: " << start.z << std::endl;
-				outfile << std::endl;
-
-				outfile << "End Point [X]: " << end.x << std::endl;
-				outfile << "End Point [Y]: " << end.y << std::endl;
-				outfile << "End Point [Z]: " << end.z << std::endl;
-				outfile << std::endl;
-
-				outfile.flush();
-				outfile.close();
-
-				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Open);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "BOUNDARY_TYPE_Open --------" << std::endl;
+			outfile.flush();
+			outfile.close();
 		}
 		break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
 		{
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "-------- BOUNDARY_TYPE_Outer --------" << std::endl;
-		
-				outfile.flush();
-				outfile.close();
-
-				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_Outer);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "BOUNDARY_TYPE_Outer --------" << std::endl;		
+			outfile.flush();
+			outfile.close();
 		}
 		break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
 		{
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "-------- BOUNDARY_TYPE_ParityRegion --------" << std::endl;
-
-				outfile.flush();
-				outfile.close();
-
-			shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+			outfile.flush();
+			outfile.close();
 		}
 		break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
 		{
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << std::endl;
-				outfile << "-------- BOUNDARY_TYPE_UnionRegion --------" << std::endl;
-		
-				outfile.flush();
-				outfile.close();
-
-				shapesGraphicProperties->setBoundaryTypeCurvesContainer(CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion);
-
-			for each (ICurvePrimitivePtr curve in curves)
-			{
-				CurveGraphicProperties* curveGraphicProperties = processCurvePrimitives(curve);
-				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-			}
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "BOUNDARY_TYPE_UnionRegion --------" << std::endl;		
+			outfile.flush();
+			outfile.close();
 		}
 		break;
+		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+		{
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "BOUNDARY_TYPE_None --------" << std::endl;
+			outfile.flush();
+			outfile.close();
+		}
 		default:
 			break;
 		}
 
-		//Add the shape to the Dictionary
-		pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Start Point [X]: " << start.x << std::endl;
+		outfile << "Start Point [Y]: " << start.y << std::endl;
+		outfile << "Start Point [Z]: " << start.z << std::endl;
+		outfile << std::endl;
+
+		outfile << "End Point [X]: " << end.x << std::endl;
+		outfile << "End Point [Y]: " << end.y << std::endl;
+		outfile << "End Point [Z]: " << end.z << std::endl;
+		outfile << std::endl;
+
+		outfile.flush();
+		outfile.close();
 	}
 }

@@ -6,83 +6,97 @@ IfcBRepRelationship::IfcBRepRelationship()
 
 }
 
-void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, Ifc4::IfcCurve * curveRepresentationItem)
+void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, std::vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType)
 {
-
-	Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-		IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getStartPoint())
-	);
-	Ifc4::IfcVertexPoint* p1 = new Ifc4::IfcVertexPoint(
-		IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getEndPoint())
-	);
-
-	Ifc4::IfcVertex* start(p0);
-	Ifc4::IfcVertex* end(p1);
-
-	//Check if the Edge is Closed or Continuos
-	if (shapeGraphicProperties->getIsClosed())
+	int index = 0;
+	for (auto curve : shapeGraphicProperties->getCurvesPrimitivesContainerVector())
 	{
-		//Ifc4::IfcIntersectionCurve()
+		bool closed = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(curve->getStartPoint(), curve->getEndPoint());
 
-		/*	IfcEdgeCurve RULES
+		//Check if the Edge is Closed or Continuos
+		if (closed)
+		{
+			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
+				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getStartPoint())
+			);
 
-		1	EdgeStart	IfcVertex	Start point (vertex) of the edge.
-		2	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
-		*/
+			Ifc4::IfcVertex* start(p0);
 
-		//Set start and end to the same vertex
-		Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
-			start,
-			start,
-			curveRepresentationItem,
-			true
-		);
+			/*	IfcEdgeCurve RULES
 
-		// SameSense: 
-		// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
-		// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
-		Ifc4::IfcOrientedEdge* orientedEdge = new Ifc4::IfcOrientedEdge(edgeCurve, true);
+			1	EdgeStart	IfcVertex	Start point (vertex) of the edge.
+			2	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
+			*/
 
-		//Create a new SolidEdge
-		SolidEdge* solidEdge = new SolidEdge();
-		solidEdge->edge = orientedEdge;
-		solidEdge->faceID = shapeGraphicProperties->getFacesBoundIDs();
-		solidEdge->nodeID = shapeGraphicProperties->getNodeId();
-		solidEdge->isClosed = shapeGraphicProperties->getIsClosed();
-		solidEdge->ifcCurve = curveRepresentationItem;
+			//Set start and end to the same vertex
+			Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
+				start,
+				start,
+				curveRepresentationVec[index],
+				true
+			);
 
-		//Push it in the collection
-		mSmartSolidEdgesCollection.push_back(solidEdge);
-	}
+			// SameSense: 
+			// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
+			// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
+			Ifc4::IfcOrientedEdge* orientedEdge = new Ifc4::IfcOrientedEdge(edgeCurve, true);
 
-	//It's a continuos edge
-	else
-	{
-		ContinuosEdge* newContinuosEdge = new ContinuosEdge();
-		newContinuosEdge->ifcCurve = curveRepresentationItem;
-		newContinuosEdge->startDPoint3d = shapeGraphicProperties->getStartPoint();
-		newContinuosEdge->endDPoint3d = shapeGraphicProperties->getEndPoint();
-		newContinuosEdge->faceID = shapeGraphicProperties->getFacesBoundIDs();
-		newContinuosEdge->nodeID = shapeGraphicProperties->getNodeId();
+			//Create a new SolidEdge
+			SolidEdge* solidEdge = new SolidEdge();
+			solidEdge->edge = orientedEdge;
+			solidEdge->faceID = shapeGraphicProperties->getFacesBoundIDs();
+			solidEdge->nodeID = shapeGraphicProperties->getNodeId();
+			solidEdge->isClosed = true;//shapeGraphicProperties->getIsClosed();
+			solidEdge->ifcCurve = curveRepresentationVec[0];
+			solidEdge->type = boundType;
 
-		newContinuosEdge->startVertex = start;
-		newContinuosEdge->endVertex = end;
-		newContinuosEdge->next = NULL;
+			//Push it in the collection
+			mSmartSolidEdgesCollection.push_back(solidEdge);
+		}
 
-		//Push it in the collection
-		mContinuosEdgeList.push_back(newContinuosEdge);
+		//It's a continuos edge
+		else
+		{		
+			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
+				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getStartPoint())
+			);
+			Ifc4::IfcVertexPoint* p1 = new Ifc4::IfcVertexPoint(
+				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getEndPoint())
+			);
+
+			Ifc4::IfcVertex* start(p0);
+			Ifc4::IfcVertex* end(p1);
+			
+			ContinuosEdge* newContinuosEdge = new ContinuosEdge();
+			newContinuosEdge->ifcCurve = curveRepresentationVec[index];
+			newContinuosEdge->startDPoint3d = curve->getStartPoint();
+			newContinuosEdge->endDPoint3d = curve->getEndPoint();
+			newContinuosEdge->faceID = shapeGraphicProperties->getFacesBoundIDs();
+			newContinuosEdge->nodeID = shapeGraphicProperties->getNodeId();
+
+			newContinuosEdge->startVertex = start;
+			newContinuosEdge->endVertex = end;
+			newContinuosEdge->next = NULL;
+			newContinuosEdge->type = boundType;
+
+			//Push it in the collection
+			mContinuosEdgeList.push_back(newContinuosEdge);			
+		}
+
+		index++;
 	}
 }
 
 
 void IfcBRepRelationship::connectContinuosEdges()
 {
+#if false
+
 	std::vector<ContinuosEdge*> connectedContinuosEdges = std::vector<ContinuosEdge*>();
 	std::vector<ContinuosEdge*> newSetContinuosEdges = std::vector<ContinuosEdge*>();
 
 	ContinuosEdge* headEdgeC = NULL;
 
-	//for (auto it = mContinuosEdgeList.begin(); it != mContinuosEdgeList.end(); ++it)
 	for (ContinuosEdge* edgeC: mContinuosEdgeList)
 	{
 		//ContinuosEdge* edgeC = *it;
@@ -91,19 +105,19 @@ void IfcBRepRelationship::connectContinuosEdges()
 			if (headEdgeC == NULL)
 			{
 				headEdgeC = edgeC;
-				//mContinuosEdgeList.erase(it);
 			}
 			else if (processContinuosEdges(headEdgeC, edgeC))
 				continue;
-			//mContinuosEdgeList.erase(it);
 			else
 				newSetContinuosEdges.push_back(edgeC);
 		}
 		else break;
 	}
 	
-	//Push the connected Edge to the list
-	connectedContinuosEdges.push_back(headEdgeC);
+
+	if (headEdgeC != NULL)
+		//Push the connected Edge to the list
+		connectedContinuosEdges.push_back(headEdgeC);
 
 	//[??] Double check for connection for 4 edges
 	for (auto continuosEdge : connectedContinuosEdges)
@@ -144,7 +158,54 @@ void IfcBRepRelationship::connectContinuosEdges()
 	//If we didn't connect all the Edges they belong to another ContinuosEdgesCollection
 	if (!mContinuosEdgeList.empty())
 		connectContinuosEdges();
+#endif
 
+	for (ContinuosEdge* newEdge : mContinuosEdgeList)
+	{
+		bool startConnected, endConnected = false;
+		for (ContinuosEdge* currentEdge : mContinuosEdgeList)
+		{
+			//Check the equality of the Vertex Points of the EDGES
+			startConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->startDPoint3d, currentEdge->endDPoint3d);
+			endConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->endDPoint3d, currentEdge->startDPoint3d);
+
+			if (startConnected) {
+				//Connect the START Vertex of the new edge to the END Vertex of the current edge
+				newEdge->startVertex = &*currentEdge->endVertex;
+			}
+			if (endConnected) {
+				//Connect the END Vertex of the new edge to the START Vertex of the current edge
+				newEdge->endVertex = &*currentEdge->startVertex;
+			}
+		}
+	}
+
+	for (auto currentEdge : mContinuosEdgeList)
+	{
+		/*	IfcEdgeCurve RULES
+
+		1	EdgeStart	IfcVertex	Start point (vertex) of the edge.
+		2	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
+		*/
+
+		//Set start and end vertex
+		Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
+			currentEdge->startVertex,
+			currentEdge->endVertex,
+			currentEdge->ifcCurve,
+			true
+		);
+
+		// SameSense: 
+		// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
+		// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
+		Ifc4::IfcOrientedEdge* orientedEdge = new Ifc4::IfcOrientedEdge(edgeCurve, true);
+
+		currentEdge->edge = orientedEdge;
+		
+		//Push it in the collection
+		mSmartSolidEdgesCollection.push_back(currentEdge);
+	}
 }
 
 bool IfcBRepRelationship::processContinuosEdges(ContinuosEdge*& head, ContinuosEdge *& newEdge)

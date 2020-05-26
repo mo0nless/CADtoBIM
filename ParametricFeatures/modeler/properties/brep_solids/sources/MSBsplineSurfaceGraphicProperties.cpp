@@ -179,3 +179,13 @@ int MSBsplineSurfaceGraphicProperties::getNumberOfBounds()
 {
 	return this->mNumberOfBounds;
 }
+
+void MSBsplineSurfaceGraphicProperties::setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds)
+{
+	this->mBoundsVectorPoints = bounds;
+}
+
+std::vector<std::vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getBoundsVectorPoints()
+{
+	return this->mBoundsVectorPoints;
+}

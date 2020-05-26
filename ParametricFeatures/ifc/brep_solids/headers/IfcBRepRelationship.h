@@ -12,7 +12,7 @@ class IfcBRepRelationship
 public:
 	IfcBRepRelationship();
 
-	void processBRepEntityEdge(ShapesGraphicProperties* shapeGraphicProperties, Ifc4::IfcCurve* curveRepresentationItem);
+	void processBRepEntityEdge(ShapesGraphicProperties* shapeGraphicProperties, std::vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType);
 	void connectContinuosEdges();
 
 	std::vector<SolidEdge*> getSmartSolidEdgesCollection();

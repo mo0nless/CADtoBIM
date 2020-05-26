@@ -1,12 +1,16 @@
-#include "../headers/CurvesGraphicsProperties.h"
+#include "../headers/CurveGraphicsProperties.h"
 
 CurveGraphicProperties::CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType)
 {
 	this->mCurvesTypeEnum = newCurveType;
+	this->mControlPoints = std::vector<DPoint3d>();
+	this->mStartPoint = DPoint3d();
+	this->mEndPoint = DPoint3d();
 }
 
 void CurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints)
 {
+	this->mControlPoints.clear();
 	for (auto p: newControlPoints)
 		this->mControlPoints.push_back(p);
 };
@@ -20,10 +24,7 @@ CurvesPrimitivesTypeEnum CurveGraphicProperties::getCurvesTypeEnum()
 { 
 	return mCurvesTypeEnum; 
 }
-int CurveGraphicProperties::getNumberControlPoints()
-{
-	return this->mNumCPoints;
-}
+
 void CurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
 {
 	this->mStartPoint = sPoint;

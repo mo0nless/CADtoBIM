@@ -48,8 +48,12 @@ public:
 	void setNumberOfBounds(int num);
 	int getNumberOfBounds();
 
+	void setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds);
+	std::vector<std::vector<DPoint3d>> getBoundsVectorPoints();
+
 private:
 	std::vector<std::vector<DPoint3d>> mControlPoints;
+	std::vector<std::vector<DPoint3d>> mBoundsVectorPoints;
 
 	int mNumberOfBounds;
 	int mFaceId;

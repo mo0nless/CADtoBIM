@@ -54,7 +54,7 @@
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\CurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\AkimaGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
@@ -114,7 +114,7 @@
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\CurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\BRepSolidsKernelEntity.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
