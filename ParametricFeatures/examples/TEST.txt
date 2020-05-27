@@ -203,8 +203,8 @@ col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
 columnVectorX: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
-columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
+columnVectorY: x=9.09081e-322,y=0,z=6.95201e-310
+columnVectorZ: x=0,y=1.05893e-311,z=3.75593e-312
 col: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
@@ -228,8 +228,8 @@ col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
 columnVectorX: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
-columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
+columnVectorY: x=9.09081e-322,y=0,z=6.95201e-310
+columnVectorZ: x=0,y=1.05893e-311,z=3.75593e-312
 col: x=2.37152e-322,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
@@ -1156,10 +1156,10 @@ col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
-columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
-col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorY: x=9.09081e-322,y=0,z=6.95201e-310
+columnVectorZ: x=0,y=1.05893e-311,z=3.75593e-312
+col: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------
@@ -2088,10 +2088,10 @@ col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
-columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
-col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorY: x=9.09081e-322,y=0,z=6.95201e-310
+columnVectorZ: x=0,y=1.05893e-311,z=3.75593e-312
+col: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------
@@ -2247,42 +2247,21 @@ Number of 'v' Rules (Radial Around) to Display in Wireframe = 1
 
 Is it a closed volume = 1
 True if the end cap is enabled = 1
-----------------------------------------
 
---------CurveParser: CURVE_PRIMITIVE_TYPE_LineString --------
+Centroid2: x=5.24236e+06,y=4.064e+06,z=2.72889e+06
+startPoint: x=5.17886e+06,y=4.064e+06,z=2.73524e+06
+col1: x=4.43284e+22,y=3.43628e+22,z=2.30739e+22,w=8.4554e+15
+col2: x=3.43628e+22,y=2.66388e+22,z=1.78874e+22,w=6.55483e+15
+col3: x=2.30739e+22,y=1.78874e+22,z=1.20111e+22,w=4.40143e+15
+col4: x=8.4554e+15,y=6.55483e+15,z=4.40143e+15,w=1.6129e+09
+Centroid: x=5.24236e+06,y=4.064e+06,z=2.72889e+06
+center: x=5.24236e+06,y=4.064e+06,z=2.72889e+06
+columnVectorX: x=0,y=0,z=-12700
+columnVectorY: x=127000,y=0,z=0
+columnVectorZ: x=0,y=-40160.9,z=0
+col: x=0,y=0,z=-12700
 
--------- Riser Clamp --------
-
-Start Point [X]: 5178860.447904
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2735244.460349
-
-End Point [X]: 5178860.447904
-End Point [Y]: 4064000.000000
-End Point [Z]: 2722544.460349
-
-Curve Line String Length: 12700.000000
-
-point 0 [X] = 5178860.447904
-point 0 [Y] = 4064000.000000
-point 0 [Z] = 2735244.460349
-
-point 1 [X] = 5178860.447904
-point 1 [Y] = 4064000.000000
-point 1 [Z] = 2722544.460349
-
-point 2 [X] = 5305860.447904
-point 2 [Y] = 4064000.000000
-point 2 [Z] = 2722544.460349
-
-point 3 [X] = 5305860.447904
-point 3 [Y] = 4064000.000000
-point 3 [Z] = 2735244.460349
-
-point 4 [X] = 5178860.447904
-point 4 [Y] = 4064000.000000
-point 4 [Z] = 2735244.460349
-
+-------- BOUNDARY_TYPE_Outer --------
 
 Centroid1 [X] = 5242360.447904
 Centroid1 [Y] = 4064000.000000
@@ -2294,6 +2273,14 @@ Centroid2 [Y] = 4064000.000000
 Centroid2 [Z] = 2613006.960349
 Volume = 1174421259678222.750000
 Area2 = 203443052857.645325
+
+Axes of Rotation Direction columnVectorY [X] = -0.999999
+Axes of Rotation Direction columnVectorY [Y] = 0.001593
+Axes of Rotation Direction columnVectorY [Z] = -0.000000
+
+Axes of Rotation Direction columnVectorZ [X] = 0.000000
+Axes of Rotation Direction columnVectorZ [Y] = 0.000000
+Axes of Rotation Direction columnVectorZ [Z] = 0.001593
 
 
 
@@ -2929,10 +2916,10 @@ col3: x=0,y=0,z=0,w=0
 col4: x=0,y=0,z=0,w=0
 Centroid: x=0,y=0,z=0
 center: x=0,y=0,z=0
-columnVectorX: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
-columnVectorY: x=9.09081e-322,y=0,z=6.95333e-310
-columnVectorZ: x=0,y=7.54845e-312,z=1.74004e-312
-col: x=7.53309e-312,y=9.48606e-322,z=5.92879e-323
+columnVectorX: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
+columnVectorY: x=9.09081e-322,y=0,z=6.95201e-310
+columnVectorZ: x=0,y=1.05893e-311,z=3.75593e-312
+col: x=1.05888e-311,y=9.48606e-322,z=5.92879e-323
 
 -------- BOUNDARY_TYPE_None --------
 ----------------------------------------

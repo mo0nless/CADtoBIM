@@ -36,6 +36,26 @@ Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresent
 
 				geomItem = areaSolid;
 			}*/
+
+			//if (shapeGraphicProperties->getIsFilled())
+			//{
+			//	Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
+			//	Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
+			//	std::string("Open"),
+			//	(Ifc4::IfcBoundedCurve*)geomItem
+			//	);
+
+			//Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+
+
+			//Ifc4::IfcSweptAreaSolid* areaSolid = new Ifc4::IfcRevolvedAreaSolid(profileDef, IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			//	shapeGraphicProperties->getCentroid(),
+			//	shapeGraphicProperties->getVectorAxisZ(),
+			//	shapeGraphicProperties->getVectorAxisX()
+			//), localAxis1Placement, 3.14);
+
+			//geomItem = areaSolid;
+			//}
 		}
 		break;
 		case CurvesBoundaryTypeEnum::INNER:

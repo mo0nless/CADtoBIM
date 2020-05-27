@@ -856,11 +856,11 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	//DMatrix4d matrix;
 
 	curves.CentroidNormalArea(center, normal, area);
-	//centroid.Init(center);
+	centroid.Init(center);
 
 	//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
 	curves.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-	curves.CentroidAreaXY(centroid, area);
+	//curves.CentroidAreaXY(centroid, area);
 	DMatrix4d matrix;
 	curves.ComputeSecondMomentAreaProducts(matrix);
 

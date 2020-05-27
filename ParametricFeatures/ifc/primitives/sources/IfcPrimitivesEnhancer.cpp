@@ -185,38 +185,53 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) {
 			RotationalSweepGraphicProperties& rotationalSweepGraphicProperties = dynamic_cast<RotationalSweepGraphicProperties&>(primitiveGraphicProperties);
 
-			ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(rotationalSweepGraphicProperties.getCurveGraphicProperties());
-
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
-			Ifc4::IfcGeometricRepresentationItem* result = ifcShapesEnhancer->buildGeometricRepresentationShapes(shapeGraphicProperties,file, ifcElementBundle);
+			Ifc4::IfcGeometricRepresentationItem* result = ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(),file, ifcElementBundle);
+			
+			//IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* tempEntityList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
+
+			//for each(DPoint3d p in rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->getControlPoints()) {
+			//	Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(p);
+			//	tempEntityList->push(cP);
+			//}
+			//Ifc4::IfcCurve* curveRepresentationItem = new Ifc4::IfcPolyline(tempEntityList);
+
+			//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> controlPoints(tempEntityList);
+			//IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityListCurve = nullptr;
+			////tempEntityList->push(new Ifc4::IfcCompositeCurveSegment(Ifc4::IfcTransitionCode::IfcTransitionCode_CONTINUOUS,true,)
+			//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityListCurve);
+
+			//Ifc4::IfcBoundaryCurve* curve = new Ifc4::IfcBoundaryCurve(complexChain, true);
 
 			// torus placement is NOT the centroid, but the center of rotation
 			DVec3d rotationalSweepPlacement;
 			rotationalSweepPlacement.Init(rotationalSweepGraphicProperties.getCenterRotation());
 
-			//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
-			//	NumberUtils::convertMicrometersToMetters(10000000)), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+			//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0, NumberUtils::convertMicrometersToMetters(rotationalSweepGraphicProperties.getRadius())),
+			//	file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 			//Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
-			//	NumberUtils::convertMicrometersToMetters(1000000));
+			//	NumberUtils::convertMicrometersToMetters(10000));
+
+			//Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcRectangleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("RotationalSweep"), localPlacement, 10, 15);
 
 			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("RotationalSweep"),
-				(Ifc4::IfcBoundedCurve*)result);
+				(Ifc4::IfcBoundedCurve*) result);
 
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 			// !!! torus placement axes should be provided in the order of Y, Z
-			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
-				rotationalSweepPlacement,
-				rotationalSweepGraphicProperties.getVectorAxisZ(),
-				rotationalSweepGraphicProperties.getVectorAxisX()
-			);
+			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(rotationalSweepPlacement, rotationalSweepGraphicProperties.getVectorAxisZ(),
+				rotationalSweepGraphicProperties.getVectorAxisX());
 
-			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
+			Ifc4::IfcSweptAreaSolid* something = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
+			file.addEntity(something);
+			ifcRepresentationItem = something;
 		}
 
 
 	return ifcRepresentationItem;
 }
+
 

@@ -607,27 +607,49 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Is it a closed volume = " << rotSweepDetails.IsClosedVolume() << std::endl;
 			outfile << "True if the end cap is enabled = " << rotSweepDetails.m_capped << std::endl;
 
-			outfile.close();
+
 
 			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
-			CurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(rotSweepDetails.m_baseCurve->at(0));
-			rotationalSweepGraphicProperties->setCurveGraphicProperties(curveGraphicProperties);
+			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties);
+			if (shapesGraphicProperties != nullptr) {
+				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
+			}
+			
+
+			//for (int i = 0; i < rotSweepDetails.m_baseCurve->size(); ++i) {
+			//	CurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(rotSweepDetails.m_baseCurve->at(i));
+			//	rotationalSweepGraphicProperties->setCurveGraphicProperties(curveGraphicProperties);
+			//}
 
 			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
 			// set X,Y,Z axes
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+			
 
 			columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
-			rotSweepDetails.m_axisOfRotation.direction.FromRotate90Towards(columnVectorX,columnVectorY);
-			columnVectorZ.FromCCWPerpendicularXY(columnVectorX);
+			columnVectorY = columnVectorX;
 
-			//columnVectorZ.CrossProduct(columnVectorX, columnVectorX);
+			columnVectorY.RotateXY(3.14);
+			columnVectorZ.CrossProduct(columnVectorX, columnVectorY);
+
+			outfile << "Axes of Rotation Direction columnVectorY [X] = " << columnVectorY.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorY [Y] = " << columnVectorY.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorY [Z] = " << columnVectorY.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Axes of Rotation Direction columnVectorZ [X] = " << columnVectorZ.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorZ [Y] = " << columnVectorZ.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorZ [Z] = " << columnVectorZ.z << std::endl;
+			outfile << std::endl;
+
+			outfile.close();
+
 
 			rotationalSweepGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, centerRotation, rotationalSweepGraphicProperties);
 		}
 
-		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 

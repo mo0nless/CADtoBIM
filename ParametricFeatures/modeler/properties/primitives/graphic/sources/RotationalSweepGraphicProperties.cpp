@@ -5,7 +5,7 @@ RotationalSweepGraphicProperties::RotationalSweepGraphicProperties() :SolidPrimi
 	this->radius=0;
 	this->sweepRadians=0;
 
-	this->curveGraphicProperties = nullptr;
+	this->shapesGraphicProperties = nullptr;
 
 	this->centerRotation = DPoint3d();
 	this->centerRotation.x = 0;
@@ -34,14 +34,14 @@ void RotationalSweepGraphicProperties::setSweepRadians(double newSweepRadians)
 	this->sweepRadians = newSweepRadians;
 }
 
-CurveGraphicProperties * RotationalSweepGraphicProperties::getCurveGraphicProperties()
+ShapesGraphicProperties * RotationalSweepGraphicProperties::getShapesGraphicProperties()
 {
-	return this->curveGraphicProperties;
+	return this->shapesGraphicProperties;
 }
 
-void RotationalSweepGraphicProperties::setCurveGraphicProperties(CurveGraphicProperties * newCurveGraphicProperties)
+void RotationalSweepGraphicProperties::setShapesGraphicProperties(ShapesGraphicProperties * newShapesGraphicProperties)
 {
-	this->curveGraphicProperties = newCurveGraphicProperties;
+	this->shapesGraphicProperties = newShapesGraphicProperties;
 }
 
 DPoint3d RotationalSweepGraphicProperties::getCenterRotation()

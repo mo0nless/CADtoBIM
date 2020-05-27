@@ -6,6 +6,7 @@ std::map<ShapesTypeEnum, std::string> ShapesTypeEnumUtils::mappedValuesDescripto
 	{ ShapesTypeEnum::CIRCLE,"Circle" },
 	{ ShapesTypeEnum::ELLIPSE,"Ellipse" },
 	{ ShapesTypeEnum::SHAPE,"Shape" },
+	{ ShapesTypeEnum::CURVE,"Curve" },
 	{ ShapesTypeEnum::NONE_CONTAINER,"" },
 };
 

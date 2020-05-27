@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SolidPrimitiveProperty.h"
-#include "../../../curves/graphic/headers/CurvesGraphicsProperties.h"
+#include "../../../shapes/headers/ShapesGraphicProperties.h"
 
 class RotationalSweepGraphicProperties : public SolidPrimitiveProperty {
 
@@ -9,7 +9,7 @@ private:
 	double radius;
 	double sweepRadians;
 	DPoint3d centerRotation;
-	CurveGraphicProperties* curveGraphicProperties;
+	ShapesGraphicProperties* shapesGraphicProperties;
 
 public:
 	RotationalSweepGraphicProperties();
@@ -21,8 +21,8 @@ public:
 	double getSweepRadians();
 	void setSweepRadians(double newSweepRadians);
 
-	CurveGraphicProperties* getCurveGraphicProperties();
-	void setCurveGraphicProperties(CurveGraphicProperties* newCurveGraphicProperties);
+	ShapesGraphicProperties* getShapesGraphicProperties();
+	void setShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
 
 	DPoint3d getCenterRotation();
 	void setCenterRotation(DPoint3d newCenterRotation);

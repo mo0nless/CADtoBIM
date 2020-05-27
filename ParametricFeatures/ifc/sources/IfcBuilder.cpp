@@ -12,6 +12,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
 		Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
 
+
 		// TODO [MP] review unit assigment
 		IfcEntityList* entityList = new IfcEntityList();
 		entityList->push(ifcUnitLength);
@@ -20,9 +21,53 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 		Ifc4::IfcUnitAssignment* unitAssigment = new Ifc4::IfcUnitAssignment(unitEntity);
 
+		//NOTE The inherited attribute ContextType shall have one of the following recognized values: 'Sketch', 'Outline', 'Design', 'Detail', 'Model', 'Plan', 'NotDefined'.
+		std::string representationIdentifier = "*";
+		std::string representationContextType = "Model"; //This is related to the specification of the context
 
-		Ifc4::IfcProject* project = new Ifc4::IfcProject(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), boost::none, boost::none,
-			boost::none, boost::none, boost::none, boost::none, unitAssigment);
+		Ifc4::IfcDirection* trueNorthDirection = new Ifc4::IfcDirection(std::vector<double>{ 0.0, 1.0}); //This describe a plane and is 2D
+
+
+		Ifc4::IfcAxis2Placement3D* originAndAxisPlacement = new Ifc4::IfcAxis2Placement3D(
+			file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
+			file.addTriplet<Ifc4::IfcDirection>(1, 0, 0),
+			file.addTriplet<Ifc4::IfcDirection>(0, 0, 1) // Z direction
+		);
+
+
+		//http://standards.buildingsmart.org/MVD/RELEASE/IFC4/ADD2_TC1/RV1_2/HTML/schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm
+		Ifc4::IfcGeometricRepresentationContext* geometricContext = new Ifc4::IfcGeometricRepresentationContext(
+			representationIdentifier,
+			representationContextType,
+			3,
+			1.0E-05,
+			originAndAxisPlacement,
+			trueNorthDirection
+		);
+
+
+		IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>* listContext = new IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>();
+		listContext->push(geometricContext);
+		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>> representationContextList(listContext);
+
+		//TODO[SB] Set up owner History
+		//Ifc4::IfcOwnerHistory()
+
+
+		Ifc4::IfcProject* project = new Ifc4::IfcProject(
+			guid::IfcGloballyUniqueId(name),
+			file.getSingle<Ifc4::IfcOwnerHistory>(),
+			std::string("OpenPlant IFC Exporter"),
+			boost::none,
+			boost::none,
+			boost::none,
+			boost::none,
+			representationContextList,
+			unitAssigment
+		);
+
+		//Ifc4::IfcProject* project = new Ifc4::IfcProject(guid::IfcGloballyUniqueId(name), file.getSingle<Ifc4::IfcOwnerHistory>(), boost::none, boost::none,
+		//	boost::none, boost::none, boost::none, boost::none, unitAssigment);
 
 		file.addEntity(project);
 
