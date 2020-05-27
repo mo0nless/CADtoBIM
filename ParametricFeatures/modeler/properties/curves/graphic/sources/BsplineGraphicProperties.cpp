@@ -91,3 +91,4 @@ std::vector<int> BsplineGraphicProperties::getKnotsMultiplicity()
 	return this->mKnotsMultiplicity;
 }
 
+

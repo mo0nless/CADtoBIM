@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -59,50 +59,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 #pragma warning( disable : 4189)
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
-	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
-	
-	std::ofstream outfile;
-	if (!curves.empty()) 
-	{
-		//TODO [SB] Verify that it's the correct way to identify shapes
-		//NB: the object STD_BOLT has no name and it produce an empty container
-		ShapesTypeEnum curveShapesTypeEnum = ShapesTypeEnumUtils::getShapesTypeEnumByDescriptor(dictionaryProperties->getElementDescriptor());
+	mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled);
 		
-		switch (curveShapesTypeEnum)
-		{
-			case ShapesTypeEnum::CIRCLE:
-			{
-				CircleShapesGraphicProperties* shapesGraphicProperties = new CircleShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
-			}
-			break;
-			case ShapesTypeEnum::SHAPE:
-			{
-				GenericShapesGraphicProperties* shapesGraphicProperties = new GenericShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
-			}
-			break;
-			case ShapesTypeEnum::COMPLEX_CHAIN:
-			{
-				ComplexChainShapesGraphicProperties* shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
-			}
-			break;
-			case ShapesTypeEnum::ELLIPSE:
-			{
-				EllipseShapesGraphicProperties* shapesGraphicProperties = new EllipseShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
-			}
-			break;
-			default:
-			{
-				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
-				mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled, (ShapesGraphicProperties*&)shapesGraphicProperties);
-			}
-			break;
-		}
-	}
-	
 	return ERROR;
 }
 #pragma warning( pop ) 
@@ -112,11 +70,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @param[in] surface The bspline surface data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
-{
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "-------- _ProcessSurface(MSBsplineSurfaceCR surface) --------" << std::endl;
-	outfile.close();
+{	
 	return ERROR;
 }
 
@@ -129,111 +83,435 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( push )
 #pragma warning( disable : 4267)
 #pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 	outfile << std::fixed;
 	outfile.close();
+	
+	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
+	dictionaryProperties->setIsSmartSolid(true);
 
-	//DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
-
-	switch (entity.GetEntityType())
+	if (!dictionaryProperties->getIsPrimitiveSolid())
 	{
-	case ISolidKernelEntity::KernelEntityType::EntityType_Solid:
-	{
-		bvector<ISolidKernelEntityPtr> outSKpointer;
-		bvector<ISubEntityPtr> subEntitiesFaces;
-		bvector<ISubEntityPtr> subEntitiesEdges;
-		bvector<ISubEntityPtr> subEntitiesVertices;
+		switch (entity.GetEntityType())
+		{
 
-		CurveVectorPtr curveFacesEval;
-		CurveVectorPtr curveEdgesEval;
-		CurveVectorPtr curveVerticesEval;
+		case ISolidKernelEntity::KernelEntityType::EntityType_Solid:
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << std::endl;
+			outfile << std::endl;
+			outfile.close();
+		}
+		break;
+		case ISolidKernelEntity::KernelEntityType::EntityType_Sheet: // Is different from a solid IfcShellBasedSurfaceModel
+		{
+			bvector<ISubEntityPtr> subEntitiesFaces;
+			bvector<ISubEntityPtr> subEntitiesEdges;
+			bvector<ISubEntityPtr> subEntitiesVertices;
 
-		outfile.open(filePath, std::ios_base::app);
-		//outfile << dictionaryProperties->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << std::endl;
+			IGeometryPtr geomFacesEval;
+			CurveVectorPtr curveEdgesEval;
+			CurveVectorPtr curveVerticesEval;
 
-		outfile << std::endl;
-		outfile.close();
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
+			outfile << std::endl;
+			outfile.close();
 
-		/*DPoint3d point;*/
-		/*DVec3d normal, uDir, vDir;*/
-		
-		//size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+			DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
 
-		//mdlSolid_closestPointToSurface
-		//DPoint3d mdlSolid_clstPt;
-		//DPoint3d mdlSolid_normal;
-		//DPoint2d mdlSolid_param;
-		//DPoint3d mdlSolid_point;
-						
+			size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+			size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
+			size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
 
-		//if ( nFaces != 0 ) 
-		//{
-		//	for ( size_t i = 0; i < nFaces; i++ )
-		//	{
-		//		SolidUtil::Debug::DumpSubEntity(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), L" ");
-		//		
-		//		if ( subEntitiesFaces.at(i).IsValid() ) 
-		//		{
-		//			DPoint2d uvP = this->solidDetails.GetUV();
-		//			SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, uvP);
 
-		//			SolidUtil::GetFaceEdges(subEntitiesEdges, dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)));
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Entity------------ " << std::endl;
+			outfile << "Edges Entity: " << nEdges << std::endl;
+			outfile << "Faces Entity: " << nFaces << std::endl;
+			outfile << "Vertices Entity: " << nVertices << std::endl;
+			outfile << std::endl;
+			outfile.close();
 
-		//			outfile << "Faces Point " << i << " X : " << point.x << std::endl;
-		//			outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
-		//			outfile << "Faces Point " << i << " Z : " << point.z << std::endl;
+			SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 
-					/*outfile << "Faces Point " << i << " X : " << point.x << std::endl;
-					outfile << "Faces Point " << i << " Y : " << point.y << std::endl;
-					outfile << "Faces Point " << i << " Z : " << point.z << std::endl;*/
+			BRepSolidsKernelEntity* brepEntity = new BRepSolidsKernelEntity();
 
-		//					outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
-		//					outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
-		//					outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
 
-							/*outfile << "Vertex Point " << k << " X : " << point.x << std::endl;
-							outfile << "Vertex Point " << k << " Y : " << point.y << std::endl;
-							outfile << "Vertex Point " << k << " Z : " << point.z << std::endl;*/
+//Vertices start dependences 
+#if false 
+			//The edges that result closed no needs to be considered
+			for (auto edge : subEntitiesEdges)
+			{
+				ISubEntityCR edgeRef = *edge;
+				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
+				{
+					//If it's a closed remove it from the edges
+					if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
+					{
+						nEdges--;
+					}
+				}
+			}
 
-		//					SolidUtil::EvaluateFace(dynamic_cast<ISubEntityCR>(*subEntitiesFaces.at(i)), point, normal, uDir, vDir, mdlSolid_param);
-		//				}
-		//			}
-		//		}
-		//	}			
-		//}
+			int faceCreated = 0;
+			int edgeCreated = 0;
 
+			for (auto vertex : subEntitiesVertices)
+			{					
+				ISubEntityCR vertexRef = *vertex;
+				VertexId vertexID;
+				SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
+				SolidUtil::Debug::DumpSubEntity(vertexRef, L"DumpSubEntity Vertex");
+								
+				/*for (auto f : vertexID.faces)
+				{
+					outfile.open(filePath, std::ios_base::app);
+					outfile << "--------- Vertex -------- Entity: " << f.nodeId << " ID: " << f.entityId << std::endl;
+					outfile << std::endl;
+					outfile.close();
+				}*/
+
+				//Clear the Edges and Faces store previously
+				subEntitiesFaces.clear();
+				subEntitiesEdges.clear();
+
+				//Get the Edges from the Vertex
+				SolidUtil::GetVertexEdges(subEntitiesEdges, vertexRef);
+				for (auto edge : subEntitiesEdges)
+				{	
+					//Check if they were already created
+					if (edgeCreated < nEdges)
+					{
+						ISubEntityCR edgeRef = *edge;
+						EdgeId edgeID;
+						SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
+
+						for (auto f : edgeID.faces)
+						{
+							outfile.open(filePath, std::ios_base::app);
+							outfile << "--------- Vertex's EDGE -------- Entity: " << f.nodeId << " ID: " << f.entityId << std::endl;
+							outfile << std::endl;
+							outfile.close();
+						}
+
+					
+						CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+
+						if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
+						{
+							mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties);
+						}
+
+						//Get the faces of the current edge
+						SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+						for (auto face : subEntitiesFaces)
+						{
+							ISubEntityCR faceRef = *face;
+							FaceId faceID;
+							SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+							outfile.open(filePath, std::ios_base::app);
+							outfile << "--------- Edge's FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+							
+							bvector<ISubEntityPtr> subEdges;
+							SolidUtil::GetFaceEdges(subEdges, faceRef);
+							outfile << "Number of Edges from the face: " << subEdges.size() << std::endl;
+
+							outfile << std::endl;
+							outfile.close();
+
+							//Save the faceID to the Curve 
+							shapesGraphicProperties->setFaceBoundID(faceID.entityId);
+							shapesGraphicProperties->setNodeId(faceID.nodeId);
+
+							if (faceCreated < nFaces)
+							{
+								if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+								{
+									switch (geomFacesEval->GetGeometryType())
+									{
+									case IGeometry::GeometryType::BsplineSurface:
+									{
+										MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+
+										MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+										msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+										msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+
+										mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+										//Add the face to the BrepEntity
+										brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+									}
+									break;
+									case IGeometry::GeometryType::SolidPrimitive:
+									{
+										ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+										_ProcessSolidPrimitive(prim);
+									}
+									break;
+									default:
+										break;
+									}
+								}
+
+								faceCreated++;
+							}
+						}
+
+						//Clear the faces store previously
+						subEntitiesFaces.clear();
+
+						edgeCreated++;
+					}
+				}					
+			}
+
+#endif
+
+//Faces start dependences 
+#if true
+			for (auto face : subEntitiesFaces)
+			{
+				if (face == NULL)
+					continue;
+
+				ISubEntityCR faceRef = *face;
+				FaceId faceID;
+				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+				{					
+					switch (geomFacesEval->GetGeometryType())
+					{
+					case IGeometry::GeometryType::BsplineSurface:
+					{
+						MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+
+						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+						msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+						msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+
+						mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+						//Add the face to the BrepEntity
+						brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+					}
+					break;
+					case IGeometry::GeometryType::SolidPrimitive:
+					{
+						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+						_ProcessSolidPrimitive(prim);
+					}
+					break;
+					default:
+						break;
+					}
+
+					//SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
+					//for (auto vertex : subEntitiesVertices)
+					//{
+					//	ISubEntityCR vertexRef = *vertex;
+					//	VertexId vertexID;
+					//	SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
+					//	
+					//	DPoint3d vertexPoint;
+					//	if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
+					//	{
+					//		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					//		outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
+					//		outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
+					//		outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
+					//		outfile << std::endl;
+					//		outfile.close();
+					//	}
+					//}
+
+					////Clear the previous vertices
+					//subEntitiesVertices.clear();
+					//
+				}
+			}
+#endif
+
+//Edges start dependences 
+#if false
+			//Clear the faces store previously
+			subEntitiesFaces.clear();
+			subEntitiesVertices.clear();
+
+			int facesCreated = 0;
+			int vertexCreated = 0;
+			for (auto edge : subEntitiesEdges)
+			{
+
+				ISubEntityCR edgeRef = *edge;
+				EdgeId edgeID;
+				SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
+				SolidUtil::Debug::DumpSubEntity(edgeRef, L"DumpSubEntity Edge");
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "EDGE Sub Entity: " << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+
+				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
+				{
+					mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties);
+				}
+
+				//Get te faces of the current edge
+				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+				for (auto face : subEntitiesFaces)
+				{
+					if (face == NULL)
+						continue;
+
+					ISubEntityCR faceRef = *face;
+					FaceId faceID;
+					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+					outfile.open(filePath, std::ios_base::app);
+					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+					outfile << std::endl;
+					outfile.close();
+
+					//Save the faceID to the Curve edge
+					shapesGraphicProperties->setFaceBoundID(faceID.entityId);
+					shapesGraphicProperties->setNodeId(faceID.nodeId);
+
+					if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+					{
+						if (facesCreated < nFaces)
+						{
+							switch (geomFacesEval->GetGeometryType())
+							{
+							case IGeometry::GeometryType::BsplineSurface:
+							{
+								MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+
+								MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+								msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+								msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+
+								mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+								//Add the face to the BrepEntity
+								brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+							}
+							break;
+							case IGeometry::GeometryType::SolidPrimitive:
+							{
+								ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+								_ProcessSolidPrimitive(prim);
+							}
+							break;
+							default:
+								break;
+							}
+
+							facesCreated++;
+
+							SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
+							for (auto vertex : subEntitiesVertices)
+							{
+								ISubEntityCR vertexRef = *vertex;
+								VertexId vertexID;
+								SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
+
+								/*for (auto f : vertexID.faces)
+								{
+									outfile.open(filePath, std::ios_base::app);
+									outfile << "--------- Vertex FACE -------- Entity: " << f.nodeId << " ID: " << f.entityId << std::endl;
+									outfile << std::endl;
+									outfile.close();
+								}*/
+
+								DPoint3d vertexPoint;
+								if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
+								{
+									outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+									outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
+									outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
+									outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
+									outfile << std::endl;
+									outfile.close();
+
+									if (vertexCreated < nVertices)
+									{
+										vertexCreated++;
+									}
+								}
+
+							}
+
+							//Clear the previous vertices
+							subEntitiesVertices.clear();
+						}
+					}					
+				}
+				//Clear the previous stored faces
+				subEntitiesFaces.clear();
+				
+			}
+#endif
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------------------------------- End BREP Entiy --------------------------------" << std::endl;
+			outfile << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			subEntitiesEdges.clear();
+			subEntitiesFaces.clear();
+
+			dictionaryProperties->addGraphicProperties(brepEntity);
+
+		}
+		break;
+
+		default:
+		{
+
+		}
+
+		break;
+		case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+			outfile << std::endl;
+			outfile.close();
+			break;
+		case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
+
+			outfile << std::endl;
+			outfile.close();
+			break;
+		}
 	}
-	break;
-
-	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet:
-		outfile.open(filePath, std::ios_base::app);
-		//outfile << dictionaryProperties->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
-
-		outfile << std::endl;
-		outfile.close();
-		break;
-	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
-		outfile.open(filePath, std::ios_base::app);
-		//outfile << dictionaryProperties->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
-
-		outfile << std::endl;
-		outfile.close();
-		break;
-	case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
-		outfile.open(filePath, std::ios_base::app);
-		//outfile << dictionaryProperties->getGeneralProperties()->getElementClassName() << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
-
-		outfile << std::endl;
-		outfile.close();
-		break;
-
-	default:
-		break;
-	}
-
 
 	return ERROR; 
 }
@@ -245,7 +523,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
-	std::ofstream outfile;
+	/*std::ofstream outfile;
 
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 
@@ -260,7 +538,8 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 	outfile.close();
 	
 
-	return ERROR; 
+	 */
+	return ERROR;
 }
 
 //! Collect output as a solid primitive.
@@ -274,6 +553,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();	
 	std::ofstream outfile;
 
+	dictionaryProperties->setIsPrimitiveSolid(true);
 
 	switch (primitive.GetSolidPrimitiveType())
 	{
@@ -555,11 +835,12 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
-			
+						
+
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
 			mGraphicsProcessorEnhancer.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
-
+			
 			outfile.open(filePath, std::ios_base::app);
 
 			outfile << std::fixed;

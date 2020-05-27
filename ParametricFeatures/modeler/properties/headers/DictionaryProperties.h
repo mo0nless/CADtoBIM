@@ -14,11 +14,13 @@ private:
 	long elementId;
 	std::string elementDescriptor;
 
+	bool isSmartSolid;
+	bool isPrimitiveSolid;
+
 	std::vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
 	std::vector<GraphicProperties*> graphicPropertiesVector;
 
 	SmartFeatureContainer * smartFeatureContainer;
-
 
 public:
 	DictionaryProperties(long newElementId, std::string newEmentDescriptor);
@@ -36,4 +38,9 @@ public:
 
 	long getElementId();
 
+	void setIsSmartSolid(bool value);
+	bool getIsSmartSolid();
+
+	void setIsPrimitiveSolid(bool value);
+	bool getIsPrimitiveSolid();
 };

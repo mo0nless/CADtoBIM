@@ -19,12 +19,23 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			}
 		}
 
-		if (ifcRepresentationItemList->size() < 1) {
-			continue;
-		}
-
-		Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcRepresentation(file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
-			ifcElementBundle->getModelerElementDescriptor(), ifcElementBundle->getModelerElementDescriptor(), ifcRepresentationItemList);
+		/*Ifc4::IfcGeometricRepresentationContext* geometricContext = file.getSingle<Ifc4::IfcGeometricRepresentationContext>();
+		geometricContext->setContextType("Model");
+		geometricContext->setPrecision(1.0E-05);
+		geometricContext->setCoordinateSpaceDimension(3);*/				
+		
+		//TODO: Needs to be set up correctly the 3rd input parameter following:
+		//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
+		std::string representationType = "SolidModel";
+		std::string representationIdentifier = "Body";
+				
+		Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
+			//geometricContext,
+			file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
+			representationIdentifier,
+			representationType,
+			ifcRepresentationItemList
+		);
 
 		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 		ifcRepresentationList->push(ifcRepresentation);
@@ -53,6 +64,7 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 
 	}
 }
+
 
 Ifc4::IfcElement * IfcElementBuilder::buildIfcElement(IfcElementBundle *& ifcElementBundle, Ifc4::IfcProductDefinitionShape * elemShape, IfcHierarchyHelper<Ifc4>& file)
 {

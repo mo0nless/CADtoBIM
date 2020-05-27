@@ -27,6 +27,8 @@
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
+    <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
+    <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
@@ -47,10 +49,12 @@
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\properties\boolean_operations\sources\BooleanOperationProperties.cpp" />
+    <ClCompile Include="modeler\properties\brep_solids\sources\BRepSolidsKernelEntity.cpp" />
+    <ClCompile Include="modeler\properties\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\CreateSolidsOperationProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\ExtrusionReaderProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\CurvesGraphicsProperties.cpp" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicsProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\AkimaGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\InterpolationGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\ArcGraphicProperties.cpp" />
@@ -80,6 +84,7 @@
     <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
+    <ClCompile Include="sources\GraphicElementTool.cpp" />
     <ClCompile Include="sources\GraphicsProcessor.cpp" />
     <ClCompile Include="sources\Initialization.cpp" />
     <ClCompile Include="sources\ParametricFeatures.cpp" />
@@ -98,6 +103,9 @@
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
+    <ClInclude Include="headers\GraphicElementTool.h" />
+    <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
+    <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
@@ -107,7 +115,10 @@
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\CurvesGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\brep_solids\headers\BRepSolidsKernelEntity.h" />
+    <ClInclude Include="modeler\properties\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\NumberUtils.h" />

@@ -6,8 +6,10 @@ DictionaryProperties::DictionaryProperties(long newElementId, std::string newEme
 {
 	this->elementId = newElementId;
 	this->elementDescriptor = newEmentDescriptor;
-
+	this->isSmartSolid = false;
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
+	this->isPrimitiveSolid = false;
+	this->isSmartSolid = false;
 }
 
 std::vector<ReaderPropertiesBundle*> DictionaryProperties::getReaderPropertiesBundleVector()
@@ -48,4 +50,24 @@ std::string DictionaryProperties::getElementDescriptor()
 long DictionaryProperties::getElementId()
 {
 	return this->elementId;
+}
+
+void DictionaryProperties::setIsSmartSolid(bool value)
+{
+	this->isSmartSolid = value;
+}
+
+bool DictionaryProperties::getIsSmartSolid()
+{
+	return this->isSmartSolid;
+}
+
+void DictionaryProperties::setIsPrimitiveSolid(bool value)
+{
+	this->isPrimitiveSolid = value;
+}
+
+bool DictionaryProperties::getIsPrimitiveSolid()
+{
+	return this->isPrimitiveSolid;
 }

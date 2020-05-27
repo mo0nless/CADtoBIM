@@ -48,7 +48,8 @@ bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElemen
 	{
 		//check if the temp element is connected to the current one
 		pointCurrent = temp->cartesianPointPort->Coordinates();
-		connected = isEqual(pointCurrent, pointNew);
+		//Check the equality of the ports
+		connected = IfcOperationsEnhancer::isVectorDoubleEqual(pointCurrent, pointNew);
 
 		if (connected) {
 			temp->isElementConnected = connected;
@@ -127,8 +128,8 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 void IfcPortsRelationshipList::display()
 {
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.text";
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.text";
 
 
 	PortElement *temp = new PortElement;

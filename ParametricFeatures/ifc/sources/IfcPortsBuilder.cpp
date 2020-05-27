@@ -1,8 +1,9 @@
 #include "../headers/IfcPortsBuilder.h"
 
 
-IfcPortsBuilder::IfcPortsBuilder()
+IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext)
 {
+	this->geometricRepresentationContext = geomContext;
 }
 
 void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
@@ -25,14 +26,27 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 				Ifc4::IfcGeometricRepresentationItem* pointGeom(point);
 				ifcPortsRepItemList->push(pointGeom);
 
+				//TODO: Needs to be set up correctly the 3rd input parameter following:
+				//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
+				std::string representationType = "Point";
+				std::string representationIdentifier = "Reference";
 
-				Ifc4::IfcRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcRepresentation(
-					file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
-					std::string("Point"),
-					std::string("Point"),
+				//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
+				Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
+					representationIdentifier,
+					geometricRepresentationContext->ContextType(),
+					geometricRepresentationContext,
+					boost::none,
+					Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
+					boost::none
+				);
+				
+				Ifc4::IfcShapeRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
+					geometricSubContext,
+					representationIdentifier,
+					representationType,
 					ifcPortsRepItemList
 				);
-
 				ifcPortsRepList->push(ifcPortsRepresentation);
 
 				Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, ifcPortsRepList);

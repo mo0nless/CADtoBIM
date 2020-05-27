@@ -7,6 +7,16 @@ IfcElementBundle::IfcElementBundle(long newModelerElementId, std::string newMode
 	this->hasConnections = false;
 }
 
+std::string IfcElementBundle::getRepresentationType()
+{
+	return this->representationType;
+}
+
+void IfcElementBundle::setRepresentationType(std::string type)
+{
+	this->representationType = type;
+}
+
 void IfcElementBundle::addIfcDistributionPorts(Ifc4::IfcDistributionPort * newDistPort)
 {
 	this->ifcDistributionPortVector.push_back(newDistPort);
@@ -27,6 +37,12 @@ void IfcElementBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle 
 {
 	this->ifcGraphicPropertiesBundleVector.push_back(newIfcGraphicPropertiesBundle);
 }
+
+void IfcElementBundle::addSolidEdgesCollection(std::vector<SolidEdge*> solidEdges)
+{
+	this->smartSolidEdgesCollection = solidEdges;
+}
+
 
 Ifc4::IfcElement * IfcElementBundle::getIfcElement()
 {
@@ -68,6 +84,16 @@ SmartFeatureContainer * IfcElementBundle::getSmartFeatureContainer()
 	return this->smartFeatureContainer;
 }
 
+void IfcElementBundle::setIsSmartSolid(bool value)
+{
+	this->isSmartSolid = value;
+}
+
+bool IfcElementBundle::getIsSmartSolid()
+{
+	return this->isSmartSolid;
+}
+
 
 std::vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcReaderPropertiesBundleVector()
 {
@@ -88,3 +114,10 @@ std::vector<Ifc4::IfcDistributionPort*> IfcElementBundle::getIfcDistributionPort
 {
 	return this->ifcDistributionPortVector;
 }
+
+std::vector<SolidEdge*> IfcElementBundle::getSolidEdgesCollection()
+{
+	return this->smartSolidEdgesCollection;
+}
+
+

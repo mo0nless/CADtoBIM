@@ -14,6 +14,7 @@
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
+#include "../../modeler/properties/brep_solids/headers/BRepSolidsKernelEntity.h"
 
 #include <math.h>
 
@@ -30,9 +31,11 @@ public:
 	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
 
-	void processShapesCurvesVector(CurveVectorCR& curves, bool isFilled , ShapesGraphicProperties*& shapesGraphicProperties);
-	CurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 
+	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr);
+	//CurveGraphicProperties* processCurvePrimitives(ICurvePrimitivePtr curve);
+	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
 	// use this method to set centroid, area and volume
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);
 

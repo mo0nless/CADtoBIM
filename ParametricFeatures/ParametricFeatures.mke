@@ -94,7 +94,9 @@ appObjects = \
 	$(o)ConeGraphicProperties$(oext) \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
-	$(o)CurvesGraphicsProperties$(oext) \
+	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
+	$(o)BRepSolidsKernelEntity$(oext) \
+	$(o)CurveGraphicsProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
@@ -115,6 +117,8 @@ appObjects = \
 	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)SmartFeatureHandler$(oext) \
 	$(o)IfcPrimitivesEnhancer$(oext) \
+	$(o)IfcBRepSolidsEnhancer$(oext) \
+	$(o)IfcBRepRelationship$(oext) \
 	$(o)IfcBuilder$(oext) \
 	$(o)IfcElementBundle$(oext) \
 	$(o)IfcElementBuilder$(oext) \
@@ -240,11 +244,11 @@ $(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDi
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
 
-$(o)IfcOperationsEnhancer$(oext) : $(baseDir)enhancer/sources/IfcOperationsEnhancer.cpp $(baseDir)enhancer/headers/IfcOperationsEnhancer.h 
-
 $(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
 
 $(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnhancer.cpp $(baseDir)enhancer/headers/InitializationEnhancer.h
+
+$(o)IfcOperationsEnhancer$(oext) : $(baseDir)enhancer/sources/IfcOperationsEnhancer.cpp $(baseDir)enhancer/headers/IfcOperationsEnhancer.h 
 
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
@@ -253,6 +257,10 @@ $(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cp
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
 $(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesEnhancer.h
+
+$(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h
+
+$(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepRelationship.h
 
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
 
@@ -282,7 +290,7 @@ $(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/gr
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)CurvesGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurvesGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurvesGraphicsProperties.h
+$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicsProperties.h
 
 $(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
 
@@ -305,6 +313,10 @@ $(o)ExtrusionReaderProperties$(oext) : $(baseDir)modeler/properties/create_solid
 $(o)RevolveReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/RevolveReaderProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/RevolveReaderProperties.h
 
 $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
+
+$(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h
+
+$(o)BRepSolidsKernelEntity$(oext) : $(baseDir)modeler/properties/brep_solids/sources/BRepSolidsKernelEntity.cpp $(baseDir)modeler/properties/brep_solids/headers/BRepSolidsKernelEntity.h
 
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 

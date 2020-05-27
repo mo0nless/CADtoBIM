@@ -11,8 +11,7 @@
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
 #include "../../headers/IfcElementBundle.h"
-#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
-#include "../../shapes/headers/IfcShapesEnhancer.h"
+//#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 
 
 class IfcPrimitivesEnhancer {
