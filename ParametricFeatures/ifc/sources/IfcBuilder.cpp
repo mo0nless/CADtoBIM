@@ -5,8 +5,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 {	
 	std::string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
@@ -188,11 +188,11 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 	//Ifc4::IfcEdge()
 	//Ifc4::IfcVertex()
-	//IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
-	//ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcBundleVector, file);
+	IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
+	ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
-	//IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
-	//ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcBundleVector, file);
+	IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
+	ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext);
 	ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);

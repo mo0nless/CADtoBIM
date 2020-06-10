@@ -13,7 +13,16 @@ void CurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints
 	this->mControlPoints.clear();
 	for (auto p: newControlPoints)
 		this->mControlPoints.push_back(p);
-};
+}
+void CurveGraphicProperties::setControlPoints(std::vector<DPoint3d> newControlPoints)
+{
+	this->mControlPoints.clear();
+	for (auto p : newControlPoints) {
+		this->mControlPoints.push_back(p);
+	}
+		
+}
+
 
 std::vector<DPoint3d> CurveGraphicProperties::getControlPoints() 
 { 

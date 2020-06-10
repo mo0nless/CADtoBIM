@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -835,7 +835,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
-						
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
@@ -888,10 +887,24 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Is it a closed volume = " << rotSweepDetails.IsClosedVolume() << std::endl;
 			outfile << "True if the end cap is enabled = " << rotSweepDetails.m_capped << std::endl;
 
+			double radius;
+			rotSweepDetails.GetRadius(radius, DgnRotationalSweepDetail::RadiusType::Centroidal);
 
+			double radius_Max;
+			rotSweepDetails.GetRadius(radius_Max, DgnRotationalSweepDetail::RadiusType::Maximum);
+
+			double radius_C;
+			rotSweepDetails.GetRadius(radius_C, DgnRotationalSweepDetail::RadiusType::Centroidal);
+
+			outfile << "Radius min= " << radius << std::endl;
+			outfile << "Radius max= " << radius_Max << std::endl;
+			outfile << "Radius cen= " << radius_C << std::endl;
 
 			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
+			rotationalSweepGraphicProperties->setRadius(radius);
+			rotationalSweepGraphicProperties->rotation.Init(rotation);
 			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+			//mGraphicsProcessorEnhancer.processCurvesPrimitives(*rotSweepDetails.m_baseCurve.GetR(), shapesGraphicProperties);
 			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties);
 			if (shapesGraphicProperties != nullptr) {
 				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
@@ -908,11 +921,21 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
 			
 
-			columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
-			columnVectorY = columnVectorX;
+			//columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
+			//columnVectorY = columnVectorX;
 
-			columnVectorY.RotateXY(3.14);
-			columnVectorZ.CrossProduct(columnVectorX, columnVectorY);
+			//columnVectorY.RotateXY(3.14);
+			//columnVectorZ.CrossProduct(columnVectorX, columnVectorY);
+
+			localToWorld.GetMatrixColumn(columnVectorX, 0);
+			localToWorld.GetMatrixColumn(columnVectorY, 1);
+			localToWorld.GetMatrixColumn(columnVectorZ, 2);
+			
+
+			outfile << "Axes of Rotation Direction columnVectorX [X] = " << columnVectorX.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorX [Y] = " << columnVectorX.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorX [Z] = " << columnVectorX.z << std::endl;
+			outfile << std::endl;
 
 			outfile << "Axes of Rotation Direction columnVectorY [X] = " << columnVectorY.x << std::endl;
 			outfile << "Axes of Rotation Direction columnVectorY [Y] = " << columnVectorY.y << std::endl;
@@ -1185,5 +1208,9 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	}
 
 	return ERROR;
+}
+
+void GraphicsProcessor::_AnnounceTransform(TransformCP transformCP)
+{
 }
 

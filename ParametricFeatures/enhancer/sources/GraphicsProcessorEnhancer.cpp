@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -267,6 +267,19 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 	// add torus property to the dictionary
 	pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
 
+}
+
+void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties *& rotationalSweepGraphicProperties)
+{
+	// set rotationalSweepGraphic properties
+	rotationalSweepGraphicProperties->setCenterRotation(centerOfRotation);
+	double radius;
+	dgnRotationalSweepDetail.GetRadius(radius, DgnRotationalSweepDetail::RadiusType::Centroidal);
+	rotationalSweepGraphicProperties->setRadius(radius);
+	rotationalSweepGraphicProperties->setSweepRadians(dgnRotationalSweepDetail.m_sweepAngle);
+
+	// add rotationalSweepGraphic property to the dictionary
+	pDictionaryProperties->addGraphicProperties(rotationalSweepGraphicProperties);
 }
 
 void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)

@@ -1,7 +1,7 @@
 #include "../headers/IfcShapesEnhancer.h"
 
 //IFC SPECS [SB] More information on shape representation are given by the IfcShapeRepresentation 
-void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
+Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* geometricRepItem = nullptr;
 
@@ -105,7 +105,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			{
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
+					geometricRepItem = buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			{
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
+					geometricRepItem = buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
 				}
 			}
 		}
@@ -130,17 +130,31 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 			geometricRepItem = curveVector[0];
+			//DVec3d vec;
+			//vec.Init(shapeGraphicProperties->getCentroid());
+
+			//Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
+			//	file.addTriplet<Ifc4::IfcDirection>(shapeGraphicProperties->getVectorAxisZ().x, shapeGraphicProperties->getVectorAxisZ().y, shapeGraphicProperties->getVectorAxisZ().z));
+
+
+			//Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
+			//	Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
+			//	std::string("Open"),
+			//	(Ifc4::IfcBoundedCurve*)geometricRepItem);
+
+			//Ifc4::IfcSweptAreaSolid* areaSolid = new Ifc4::IfcRevolvedAreaSolid(profileDef,
+			//	IfcOperationsEnhancer::buildIfcAxis2Placement3D(vec,shapeGraphicProperties->getVectorAxisZ(),shapeGraphicProperties->getVectorAxisX()), localAxis1Placement,6.28);
+
+			//geometricRepItem = areaSolid;
+			
 		}
 		break;
 		default:
 		break;
 	}	
 
-	
-	if (geometricRepItem != nullptr)
-	{	
-		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, geometricRepItem));		
-	}
+	return geometricRepItem;
+
 }
 
 
@@ -166,7 +180,11 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(graphicProperties);
 				if (shapeGraphicProperties != nullptr)
 				{		
-					buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle);
+					Ifc4::IfcGeometricRepresentationItem* geometricRepItem = buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle);
+					if (geometricRepItem != nullptr)
+					{
+						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, geometricRepItem));
+					}
 				}
 			}
 			
@@ -320,6 +338,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 			file.addEntities(tempEntityList->generalize());
 
 			curveRepresentationItem = new Ifc4::IfcPolyline(controlPoints);
+			
 		}
 		break;
 

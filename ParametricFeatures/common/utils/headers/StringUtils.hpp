@@ -22,6 +22,8 @@ public:
 	*  @return std:string
 	*/
 	inline static std::string getNormalizedString(std::string stringValue);
+
+	inline static std::string getNormalizedString(WString wStringValue);
 private:
 
 	/**
@@ -44,4 +46,9 @@ std::string StringUtils::getNormalizedString(std::string stringValue){
 		stringValue.end(), [](char x) {return !isalnum(x) && !isspace(x) && static_cast<unsigned char>(x) > 127; }) - stringValue.begin());
 
 	return stringValue;
+}
+
+std::string StringUtils::getNormalizedString(WString wStringValue) {
+
+	return getNormalizedString(getString(wStringValue));
 }

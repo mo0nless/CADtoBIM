@@ -11,8 +11,10 @@ private:
 	DPoint3d centerRotation;
 	ShapesGraphicProperties* shapesGraphicProperties;
 
+
 public:
 	RotationalSweepGraphicProperties();
+	DVec3d rotation;
 
 
 	double getRadius();
