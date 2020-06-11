@@ -1,7 +1,7 @@
 #include "../headers/IfcShapesEnhancer.h"
 
 //IFC SPECS [SB] More information on shape representation are given by the IfcShapeRepresentation 
-void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
+Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* geometricRepItem = nullptr;
 
@@ -159,6 +159,8 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 	{	
 		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, geometricRepItem));		
 	}
+
+	return geometricRepItem;
 }
 
 
