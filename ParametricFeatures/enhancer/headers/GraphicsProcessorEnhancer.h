@@ -10,6 +10,7 @@
 #include "../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
 #include "../../modeler/properties/brep_solids/headers/SolidEntityGraphicProperties.h"
 
 #include "PolyfaceConvertTool.h"
@@ -25,8 +26,9 @@ public:
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
-	
+	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
 	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
+
 	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr, bool addToDictionary = true);
 	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);

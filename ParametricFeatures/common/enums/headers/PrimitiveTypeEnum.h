@@ -13,5 +13,6 @@
 		CYLINDER = 5,
 		PYRAMID = 6,
 		TRUNCATED_CONE = 7,
+		ROTATIONAL_SWEEP = 8,
 
 	};

@@ -155,6 +155,7 @@
     <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\RotationalSweepGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />

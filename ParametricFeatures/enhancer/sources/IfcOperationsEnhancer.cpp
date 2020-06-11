@@ -26,9 +26,12 @@ Ifc4::IfcVector * IfcOperationsEnhancer::buildIfcVectorFromDirectionPoint3D(DPoi
 
 Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(DVec3d newDirection)
 {
-	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(
-		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<DPoint3d>(newDirection)
-	);
+	std::vector<double> points;
+	points.push_back(newDirection.x);
+	points.push_back(newDirection.y);
+	points.push_back(newDirection.z);
+
+	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
 
 	return dir;
 }

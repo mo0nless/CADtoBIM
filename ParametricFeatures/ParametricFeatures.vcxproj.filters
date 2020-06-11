@@ -68,7 +68,9 @@
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
-    <ClCompile Include="modeler\properties\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
+    <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="sources\GraphicElementTool.cpp" />
@@ -159,11 +161,12 @@
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
-    <ClInclude Include="modeler\properties\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
-    <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
-    <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
-    <ClInclude Include="headers\GraphicElementTool.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\RotationalSweepGraphicProperties.h" />
+    <ClInclude Include="headers\GraphicElementTool.h" />
+    <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
+    <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
+    <ClInclude Include="modeler\properties\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicProperties.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\BRepGraphicProperties.h" />

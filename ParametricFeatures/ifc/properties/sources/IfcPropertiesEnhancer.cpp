@@ -37,25 +37,25 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
 
 	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) {
-		//PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
+		PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
 
-		//// TODO [MP] to be reviews if possible to extract and add unit/context
-		//if (propertyTypeEnum == PropertyTypeEnum::BINARY || propertyTypeEnum == PropertyTypeEnum::BOOLEAN || propertyTypeEnum == PropertyTypeEnum::DATETIME ||
-		//	propertyTypeEnum == PropertyTypeEnum::DOUBLE || propertyTypeEnum == PropertyTypeEnum::INTEGER || propertyTypeEnum == PropertyTypeEnum::LONG ||
-		//	propertyTypeEnum == PropertyTypeEnum::STRING) {
+		// TODO [MP] to be reviews if possible to extract and add unit/context
+		if (propertyTypeEnum == PropertyTypeEnum::BINARY || propertyTypeEnum == PropertyTypeEnum::BOOLEAN || propertyTypeEnum == PropertyTypeEnum::DATETIME ||
+			propertyTypeEnum == PropertyTypeEnum::DOUBLE || propertyTypeEnum == PropertyTypeEnum::INTEGER || propertyTypeEnum == PropertyTypeEnum::LONG ||
+			propertyTypeEnum == PropertyTypeEnum::STRING) {
 
-		//	ifcPropertyList->push(createIfcBasicProperty(*readerPropertyDefinition));
-		//}
-		//else if (propertyTypeEnum == PropertyTypeEnum::POINT2D || propertyTypeEnum == PropertyTypeEnum::POINT3D) {
+			ifcPropertyList->push(createIfcBasicProperty(*readerPropertyDefinition));
+		}
+		else if (propertyTypeEnum == PropertyTypeEnum::POINT2D || propertyTypeEnum == PropertyTypeEnum::POINT3D) {
 
-		//	ifcPropertyList->push(createIfcComplexProperty(*readerPropertyDefinition));
-		//}
-		//else {
-		//	// log unmapped property type
-		//}
+			ifcPropertyList->push(createIfcComplexProperty(*readerPropertyDefinition));
+		}
+		else {
+			// log unmapped property type
+		}
 
-		std::string normalized_value = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValueAsString());
-		ifcPropertyList->push(new Ifc4::IfcProperty(readerPropertyDefinition->getPropertyName(), normalized_value));		
+/*		std::string normalized_value = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValueAsString());
+		ifcPropertyList->push(new Ifc4::IfcProperty(readerPropertyDefinition->getPropertyName(), normalized_value));*/		
 	}
 
 	Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(guid::IfcGloballyUniqueId(readerPropertiesBundle.getCassName()), file.getSingle<Ifc4::IfcOwnerHistory>(),
@@ -79,10 +79,10 @@ Ifc4::IfcProperty* IfcPropertiesEnhancer::createIfcBasicProperty(ReaderPropertyD
 	} else if (propertyTypeEnum == PropertyTypeEnum::BOOLEAN) {
 		ifcValue = new Ifc4::IfcBoolean(readerPropertyDefinition.getPropertyValue().GetBoolean());
 	} else if (propertyTypeEnum == PropertyTypeEnum::STRING) {
-		ifcValue = new Ifc4::IfcText(StringUtils::getString(readerPropertyDefinition.getPropertyValue().GetString()));
+		ifcValue = new Ifc4::IfcText(StringUtils::getNormalizedString(readerPropertyDefinition.getPropertyValue().GetString()));
 	}
 	else {
-		ifcValue = new Ifc4::IfcText(StringUtils::getString(readerPropertyDefinition.getPropertyValue().GetString()));
+		ifcValue = new Ifc4::IfcText(StringUtils::getNormalizedString(readerPropertyDefinition.getPropertyValue().GetString()));
 	}
 
 	return new Ifc4::IfcPropertySingleValue(readerPropertyDefinition.getPropertyName(), readerPropertyDefinition.getPropertyName(),

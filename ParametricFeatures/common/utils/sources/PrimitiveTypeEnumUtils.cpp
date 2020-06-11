@@ -8,16 +8,7 @@ std::map<PrimitiveTypeEnum, std::string> PrimitiveTypeEnumUtils::mappedValues = 
 	{ PrimitiveTypeEnum::SPHERE, "Sphere" },
 	{ PrimitiveTypeEnum::TORUS, "Torus" },
 	{ PrimitiveTypeEnum::TRUNCATED_CONE, "Truncated Cone" },
+	{ PrimitiveTypeEnum::ROTATIONAL_SWEEP, "Rotational Sweep" },
 	{ PrimitiveTypeEnum::NONE,"" },
 };
 
-PrimitiveTypeEnum PrimitiveTypeEnumUtils::getPrimitiveTypeEnumByElementDescription(std::string primitiveElementDescription)
-{
-	for (auto const& element : mappedValues) {
-		if (element.second == primitiveElementDescription) {
-			return element.first;
-		}
-	}
-	// TODO add warning log value not found
-	return PrimitiveTypeEnum::NONE;
-}

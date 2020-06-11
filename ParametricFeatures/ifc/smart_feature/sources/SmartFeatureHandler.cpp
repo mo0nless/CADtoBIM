@@ -40,10 +40,10 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vec
 	else if (ifcReaderPropertiesBundle != nullptr && 
 		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
 		(left != nullptr || rigth != nullptr)) {
-		Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
-		IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
-		temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
-		return temp;
+			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
+			IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
+			temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
+			return temp;
 	}
 	
 	return nullptr;
