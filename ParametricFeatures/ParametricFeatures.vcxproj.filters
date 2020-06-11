@@ -53,11 +53,7 @@
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\CircleShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\ComplexChainShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\EllipseShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\shapes\sources\GenericShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
@@ -74,12 +70,14 @@
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="modeler\properties\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\brep_solids\sources\BRepSolidsKernelEntity.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="sources\GraphicElementTool.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicsProperties.cpp" />
+    <ClCompile Include="enhancer\headers\PolyfaceConvertTool.h" />
+    <ClCompile Include="modeler\properties\curves\graphic\sources\CurveGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\brep_solids\sources\BRepGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -149,11 +147,7 @@
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\CircleShapesGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\ComplexChainShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\EllipseShapesGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\shapes\headers\GenericShapesGraphicProperties.h" />
     <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
@@ -167,11 +161,14 @@
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
-    <ClInclude Include="modeler\properties\brep_solids\headers\BRepSolidsKernelEntity.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="headers\GraphicElementTool.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
-    <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicsProperties.h" />
+    <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\brep_solids\headers\BRepGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\brep_solids\headers\SolidEntityGraphicProperties.h" />
+    <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
   </ItemGroup>
 </Project>

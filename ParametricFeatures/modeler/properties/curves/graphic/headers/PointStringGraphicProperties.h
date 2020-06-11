@@ -1,5 +1,5 @@
 #pragma once
-#include "CurveGraphicsProperties.h"
+#include "CurveGraphicProperties.h"
 
 class PointStringGraphicProperties: public CurveGraphicProperties
 {

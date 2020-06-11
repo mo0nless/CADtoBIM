@@ -70,9 +70,13 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+
 			IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
 
 			ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
+
+			if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid())
+				ifcElementBundle->solidModel = true;
 
 			ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
 			// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
@@ -185,14 +189,12 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();
 	ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
+		
+	IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
+	ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
-	//Ifc4::IfcEdge()
-	//Ifc4::IfcVertex()
-	//IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
-	//ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcBundleVector, file);
-
-	//IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
-	//ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcBundleVector, file);
+	IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
+	ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext);
 	ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);

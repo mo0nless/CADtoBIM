@@ -19,15 +19,20 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			}
 		}
 
-		/*Ifc4::IfcGeometricRepresentationContext* geometricContext = file.getSingle<Ifc4::IfcGeometricRepresentationContext>();
-		geometricContext->setContextType("Model");
-		geometricContext->setPrecision(1.0E-05);
-		geometricContext->setCoordinateSpaceDimension(3);*/				
-		
+		std::string representationType = "";
+		std::string representationIdentifier = "";
 		//TODO: Needs to be set up correctly the 3rd input parameter following:
 		//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
-		std::string representationType = "SolidModel";
-		std::string representationIdentifier = "Body";
+		if (ifcElementBundle->solidModel)
+		{
+			representationType = "SolidModel";
+			representationIdentifier = "Body";
+		}
+		else
+		{
+			representationType = "Axis";
+			representationIdentifier = "Curve";
+		}
 				
 		Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
 			//geometricContext,

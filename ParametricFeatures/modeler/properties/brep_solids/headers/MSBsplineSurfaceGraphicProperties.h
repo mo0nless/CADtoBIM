@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../shapes/headers/CurvesShapesGraphicProperties.h"
 #include <DgnPlatform/ElementGeometry.h>
 #include <vector>
 
@@ -51,6 +52,11 @@ public:
 	void setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds);
 	std::vector<std::vector<DPoint3d>> getBoundsVectorPoints();
 
+	void addCurvesShapesGraphicProperties(CurvesShapesGraphicProperties* bound);
+	std::vector<CurvesShapesGraphicProperties*> getCurvesShapesGraphicProperties();
+
+	bvector<DPoint3d> mFullArrayControlPoint;
+
 private:
 	std::vector<std::vector<DPoint3d>> mControlPoints;
 	std::vector<std::vector<DPoint3d>> mBoundsVectorPoints;
@@ -64,7 +70,9 @@ private:
 	std::vector<double> mVKnots;
 
 	std::vector<int> mUKnotsMultiplicity;
-	std::vector<int> mVKnotsMultiplicity;	
+	std::vector<int> mVKnotsMultiplicity;
+
+	std::vector<CurvesShapesGraphicProperties*> mCurveBoundaries;
 
 	int mNumUPoles;
 	int mNumVPoles;

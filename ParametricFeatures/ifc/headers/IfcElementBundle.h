@@ -66,4 +66,6 @@ public:
 
 	void setIsSmartSolid(bool value);
 	bool getIsSmartSolid();
+
+	bool solidModel = false;
 };

@@ -6,7 +6,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 	Ifc4::IfcGeometricRepresentationItem* geometricRepItem = nullptr;
 
 	bool isElementSmartSolid = ifcElementBundle->getIsSmartSolid();
-
+	
 	//TODO [SB] Handle the boundary type for solids
 	switch (shapeGraphicProperties->getBoundaryTypeCurvesContainer())
 	{
@@ -16,9 +16,14 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
-			if (shapeGraphicProperties->getHasSingleCurve())
+			//check if they belongs to a smart solid
+			if (isElementSmartSolid && (!shapeGraphicProperties->getFacesBoundIDs().empty()))
 			{
-				geometricRepItem = curveVector[0];
+				bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
+			}
+			else if (shapeGraphicProperties->getHasSingleCurve())
+			{
+				geometricRepItem = curveVector.front();
 			}
 			else //Complex Chain 
 			{
@@ -45,24 +50,31 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 
 			//check if they belongs to a smart solid
 			if (isElementSmartSolid && !shapeGraphicProperties->getFacesBoundIDs().empty())
-			{
-				/*IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-				tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+			{				
+				if (shapeGraphicProperties->getHasSingleCurve())
+					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::OUTER);
+				else
+				{
+					IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+					tempEntityList = buildIfcCompositeCurveSegment(curveVector);
 
-				if (tempEntityList == nullptr)
-					break;
+					if (tempEntityList == nullptr)
+						break;
 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
+					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
 
-				Ifc4::IfcOuterBoundaryCurve* outerBoundaryCurve = new Ifc4::IfcOuterBoundaryCurve(complexChain,false);*/
+					Ifc4::IfcOuterBoundaryCurve* outerBoundaryCurve = new Ifc4::IfcOuterBoundaryCurve(complexChain, false);
 
-				//bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, outerBoundaryCurve, (int)CurvesBoundaryTypeEnum::OUTER);
-				bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::OUTER);
+					curveVector.clear();
+					curveVector.push_back(outerBoundaryCurve);
+
+					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::OUTER);
+				}
 				
 			}
 			else 
 			{
-				geometricRepItem = curveVector[0];
+				geometricRepItem = curveVector.front();
 			}
 		}
 		break;
@@ -76,23 +88,29 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			//check if they belongs to a smart solid
 			if (isElementSmartSolid && (!shapeGraphicProperties->getFacesBoundIDs().empty()))
 			{
-				/*IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-				tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+				if (shapeGraphicProperties->getHasSingleCurve())
+					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
+				else
+				{
+					IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+					tempEntityList = buildIfcCompositeCurveSegment(curveVector);
 
-				if (tempEntityList == nullptr)
-					break;
+					if (tempEntityList == nullptr)
+						break;
 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
+					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
 
-				Ifc4::IfcBoundaryCurve* innerBoundaryCurve = new Ifc4::IfcBoundaryCurve(complexChain, false);*/
-				
-				//bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, innerBoundaryCurve, (int)CurvesBoundaryTypeEnum::INNER);
-				bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
-				
+					Ifc4::IfcBoundaryCurve* innerBoundaryCurve = new Ifc4::IfcBoundaryCurve(complexChain, false);
+
+					curveVector.clear();
+					curveVector.push_back(innerBoundaryCurve);
+
+					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
+				}
 			}
 			else
 			{
-				geometricRepItem = curveVector[0];
+				geometricRepItem = curveVector.front();
 			}
 		}
 		break;
@@ -129,7 +147,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		case CurvesBoundaryTypeEnum::NONE_BOUNDARY:
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
-			geometricRepItem = curveVector[0];
+			geometricRepItem = curveVector.front();
 		}
 		break;
 		default:
@@ -173,7 +191,7 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 			//check if they belongs to a smart solid
 			if (isElementSmartSolid)
 			{
-				//bRepRelationship->connectContinuosEdges();
+				bRepRelationship->connectContinuosEdges();
 				ifcElementBundle->addSolidEdgesCollection(
 					bRepRelationship->getSmartSolidEdgesCollection()
 				);
@@ -312,6 +330,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 			for each(DPoint3d p in curveP->getControlPoints()) {
 				Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(p);
+				//Ifc4::IfcCartesianPoint * cP = new Ifc4::IfcCartesianPoint(std::vector<double>{p.x, p.y, p.z}); //UV Coordinates do not need conversion
 				tempEntityList->push(cP);
 			}
 

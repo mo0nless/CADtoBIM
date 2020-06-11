@@ -29,10 +29,21 @@ private:
 	virtual BentleyStatus _ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) override;
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
+	
+	//! Supply the current context that is processing the geometry.
+	//! @param[in] context The current view context.
+	//virtual void _AnnounceContext(ViewContextR context)  override;
 
-	GraphicsProcessorEnhancer mGraphicsProcessorEnhancer;
+	//! Supply the current transform that subsequent geometry is displayed through.
+	//! @param[in] trans The transform to apply to subsequent process calls.
+	virtual void _AnnounceTransform(TransformCP trans)  override;
+
+
 	
 	std::string filePath;
+
+	GraphicsProcessorEnhancer mGraphicsProcessorEnhancer;
+	Transform m_currentTransform;
 
 	SolidLocationDetail mSolidDetails;
 };

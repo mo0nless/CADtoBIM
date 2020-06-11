@@ -351,7 +351,7 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 {
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
-	outfile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << std::endl;
+	outfile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << "Type: " << msBsplineSurface.type << std::endl;
 	outfile.close();
 
 	int numOfBounds;
@@ -360,36 +360,75 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	bvector<double> vKnots, uKnots, vKnotsCompressed, uKnotsCompressed;
 	bvector<size_t> vKmultiplicity, uKmultiplicity;
 	bvector<bvector<DPoint2d>> boundaryUVLoops;
-
-	std::vector<std::vector<DPoint3d>> controlPointsUV;
-	std::vector<std::vector<double>> weights;
-
+	
 	msBsplineSurface.GetIntervalCounts(uIntervals, vIntervals);
 	numOfBounds = msBsplineSurface.GetIntNumBounds();
-
+	
 	uOrder = msBsplineSurface.GetIntUOrder();
 	vOrder = msBsplineSurface.GetIntVOrder();
-		
+
+	//TODO[SB] Check the surface poles
+	bvector<DPoint2d> uvParams;
+	bvector<DPoint3d> polesGrid;
+	bvector<DPoint3d> poles;
+	bvector<DPoint4d> poles4D;
+	double uMin, uMax, vMin, vMax;
+	T_DoubleVector uKnotsSupport, vKnotsSupport;
+	msBsplineSurface.GetPoles(poles);
+	msBsplineSurfaceGraphicProperties->mFullArrayControlPoint = poles;
+	msBsplineSurface.EvaluateUniformGrid(msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles(), uvParams, polesGrid);
+	msBsplineSurface.GetParameterRegion(uMin, uMax, vMin, vMax);
+	//msBsplineSurface.GetSupport(poles4D, uKnotsSupport, vKnotsSupport, msBsplineSurface.GetIntNumUPoles() - 1, msBsplineSurface.GetIntNumVPoles() - 1);
+	//BSurfPatch patch;
+	//msBsplineSurface.GetPatch(*patch, msBsplineSurface.GetIntNumUPoles() - 1, msBsplineSurface.GetIntNumVPoles() - 1);
+	
+	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+	outfile << "POINT Following the m/n parameters" << std::endl;
+	int mParam = ((msBsplineSurface.GetIntNumUKnots()) - (uOrder - 1) - 1);	
+	int nParam = msBsplineSurface.GetIntNumPoles();
+	int nParamCalc = ((msBsplineSurface.GetIntNumVKnots()) - (uOrder - 1) - 1); ;
+	outfile << "mParam: " << mParam << std::endl;
+	outfile << "nParam: " << nParam << std::endl;
+	outfile << "nParamCalc: " << nParamCalc << std::endl;
+	outfile.close();
+
+	//msBsplineSurface.GetIntervalCounts();
+	//msBsplineSurface.();
+
 	//Get the UV Poles control points of the surface
+	std::vector<std::vector<DPoint3d>> controlPointsUV;
+	std::vector<std::vector<double>> weights;
 	int count = 0;
+	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+	outfile << "POINT Controls: " << std::endl;
+	//outfile << "Inverted VU" << std::endl;
+	outfile << std::endl;
 	for (size_t i = 0; i < msBsplineSurface.GetIntNumUPoles(); i++)
 	{
 		std::vector<DPoint3d> tempCP;
 		std::vector<double> tempW;
 		for (size_t j = 0; j < msBsplineSurface.GetIntNumVPoles(); j++)
 		{
+			auto point = msBsplineSurface.GetPole(i, j);
 			tempW.push_back(msBsplineSurface.GetWeight(i, j));
-			tempCP.push_back(msBsplineSurface.GetPole(i, j));
+			tempCP.push_back(point);
 			count++;
+
+			outfile << "point " << " [X] = " << point.x << std::endl;
+			outfile << "point " << " [Y] = " << point.y << std::endl;
+			outfile << "point " << " [Z] = " << point.z << std::endl;
+			outfile << std::endl;
 		}
 		controlPointsUV.push_back(tempCP);
 		weights.push_back(tempW);
 	}
+	outfile.close();
 
 	//msBsplineSurface.EvaluatePointAndUnitNormal();
 	msBsplineSurface.GetVKnots(vKnots);
 	msBsplineSurface.GetUKnots(uKnots);
 
+	
 	//Extract the multiplicity compressing the UV Knots
 	MSBsplineCurve::CompressKnots(vKnots, vOrder, vKnotsCompressed, vKmultiplicity, lowAindex, highAindex);
 	MSBsplineCurve::CompressKnots(uKnots, uOrder, uKnotsCompressed, uKmultiplicity, lowAindex, highAindex);
@@ -400,16 +439,24 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	outfile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << std::endl;
 	outfile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << std::endl;
 	outfile << "Stored number of UV Poles: " << count << std::endl;
+	outfile << "Number of UV Poles Get Poles: " << poles.size() << std::endl;
+	outfile << "Grid Poles Number: " << polesGrid.size() << std::endl;
+	outfile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << std::endl;
+	outfile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << std::endl;
 	outfile << std::endl;
 	outfile.close();
 
+
+//Curve Internal bounds
 #if true
 	//This function returns a parity regions
-	CurveVectorPtr curveVecBound = msBsplineSurface.GetUVBoundaryCurves(true, true);
+	//Outer/Inner Line String Boundaries
+	CurveVectorPtr curveVecBound = msBsplineSurface.GetUVBoundaryCurves(false, false); //true,true before
 
 	// Curve Shape for Boundaries
 	CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
-	processShapesCurvesVector(*curveVecBound, false, &*shapesGraphicProperties);
+	bool addToDictionary = true;
+	processShapesCurvesVector(*curveVecBound, false, &*shapesGraphicProperties, addToDictionary); 
 
 	//Save the faceID to Parity Region
 	shapesGraphicProperties->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
@@ -450,21 +497,25 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 					msBsplineSurface.EvaluatePoint(evalP, uv.x, uv.y);
 					controlPointsBound.push_back(evalP);
 
-					outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 					outfile << "point " << " [X] = " << evalP.x << std::endl;
 					outfile << "point " << " [Y] = " << evalP.y << std::endl;
 					outfile << "point " << " [Z] = " << evalP.z << std::endl;
 					outfile << std::endl;
-					outfile.close();
+					outfile.close();*/
 				}
-				outfile.close();
 
 				//Reset the evaluated Control Points
 				bSpline->setControlPoints(controlPointsBound);
+				//Reset the Start and End Point
+				bSpline->setStartEndPoints(*controlPointsBound.begin(), *controlPointsBound.end());
 			}
 		}
 	}
 
+	//Add to the Bspline the Bound
+	msBsplineSurfaceGraphicProperties->addCurvesShapesGraphicProperties(shapesGraphicProperties);
+	
 #endif
 
 //DPoint3d PolyLoop Evaluation MDL
@@ -488,7 +539,8 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 
 
 	std::vector<std::vector<DPoint3d>> boundsVectorPoints;
-	msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, true);
+	//msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, true);
+	msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, false);
 
 	//Points Loop of the boundaries
 	for (auto b : boundaryUVLoops)
@@ -509,7 +561,8 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	}
 
 	msBsplineSurfaceGraphicProperties->setUVIsClosed(msBsplineSurface.GetIsUClosed(), msBsplineSurface.GetIsVClosed());
-	msBsplineSurfaceGraphicProperties->setUVKnots(uKnots, vKnots);
+	msBsplineSurfaceGraphicProperties->setUVKnots(uKnotsCompressed, vKnotsCompressed);
+	//msBsplineSurfaceGraphicProperties->setUVKnots(uKnots, vKnots);
 	msBsplineSurfaceGraphicProperties->setUVKnotsMultiplicity(uKmultiplicity, vKmultiplicity);
 	msBsplineSurfaceGraphicProperties->setUVOrder(uOrder, vOrder);
 	msBsplineSurfaceGraphicProperties->setWeights(weights);
@@ -578,8 +631,11 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 			if (!curvePrimitive->TryGetArc(ellipse))
 				break;
 
-			ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
+			/*ellipse.QuadricBezierPoles()
+			ellipse.Evaluate()*/
 
+			ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
+			
 			ellipse.EvaluateEndPoints(startP, endP);
 			bvector<DPoint3d> polesControlP;
 			polesControlP.push_back(startP);
@@ -840,11 +896,11 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 					int k = 0;
 					for each (DPoint3d p in *curvePrimitive->GetLineStringCP())
 					{
-						outfile << "point " << k << " [X] = " << p.x << std::endl;
+						/*outfile << "point " << k << " [X] = " << p.x << std::endl;
 						outfile << "point " << k << " [Y] = " << p.y << std::endl;
 						outfile << "point " << k << " [Z] = " << p.z << std::endl;
 						outfile << std::endl;
-
+*/
 						polesControlP.push_back(p);
 						k++;
 					}
@@ -940,48 +996,15 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 #pragma warning (pop)
 
 
-void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
+void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties, bool addToDictionary)
 {
 	if (!curvesVector.empty())
 	{
 		if (shapesGraphicProperties == nullptr)
 		{
-			//TODO [SB] Verify that it's the correct way to identify shapes
-			//NB: the object STD_BOLT has no name and it produce an empty container
-			//ShapesTypeEnum curveShapesTypeEnum = ShapesTypeEnumUtils::getShapesTypeEnumByDescriptor(pDictionaryProperties->getElementDescriptor());
-
-			/*switch (curveShapesTypeEnum)
-			{
-			case ShapesTypeEnum::CIRCLE:
-			{
-				shapesGraphicProperties = new CircleShapesGraphicProperties();
-			}
-			break;
-			case ShapesTypeEnum::SHAPE:
-			{
-				shapesGraphicProperties = new GenericShapesGraphicProperties();
-			}
-			break;
-			case ShapesTypeEnum::COMPLEX_CHAIN:
-			{
-				shapesGraphicProperties = new ComplexChainShapesGraphicProperties();
-			}
-			break;
-			case ShapesTypeEnum::ELLIPSE:
-			{
-				shapesGraphicProperties = new EllipseShapesGraphicProperties();
-			}
-			break;
-			default:
-			{
-				shapesGraphicProperties = new CurvesShapesGraphicProperties();
-			}
-			break;
-			}*/
 			shapesGraphicProperties = new CurvesShapesGraphicProperties();
 		}
-		
-		
+			
 
 		std::ofstream outfile;
 		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
@@ -1002,35 +1025,6 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		curvesVector.CentroidNormalArea(center, normal, area);
 		centroid.Init(center);
 
-		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
-		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-		
-		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
-	
-		//Process the primitives inside the Curve Vector
-		processCurvesPrimitives(curvesVector, shapesGraphicProperties);
-		shapesGraphicProperties->setIsFilled(isFilled);
-		shapesGraphicProperties->setArea(area);
-		shapesGraphicProperties->setCentroid(centroid);
-		shapesGraphicProperties->setNormal(normal);
-
-		// Chek if the shape is closed 
-		if (curvesVector.IsClosedPath())
-			isClosed = curvesVector.IsClosedPath();
-		else if (curvesVector.IsPhysicallyClosedPath())
-			isClosed = curvesVector.IsPhysicallyClosedPath();
-
-		shapesGraphicProperties->setIsClosed(isClosed);
-
-		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
-		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
-		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
-		
-
-		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty())
-			//Add the shape to the Dictionary
-			pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
-
 		switch (curvesVector.GetBoundaryType())
 		{
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
@@ -1039,9 +1033,9 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 			outfile << std::endl;
 			outfile << "BOUNDARY_TYPE_Inner --------" << std::endl;
 			outfile.flush();
-			outfile.close();			
+			outfile.close();
 		}
-		break;		
+		break;
 		break;
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
 		{
@@ -1058,7 +1052,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_Outer --------" << std::endl;		
+			outfile << "BOUNDARY_TYPE_Outer --------" << std::endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1078,7 +1072,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_UnionRegion --------" << std::endl;		
+			outfile << "BOUNDARY_TYPE_UnionRegion --------" << std::endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1109,5 +1103,308 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		outfile.flush();
 		outfile.close();
+
+		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
+		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+		
+		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+	
+		//Process the primitives inside the Curve Vector
+		processCurvesPrimitives(curvesVector, shapesGraphicProperties);
+		shapesGraphicProperties->setIsFilled(isFilled);
+		shapesGraphicProperties->setArea(area);
+		shapesGraphicProperties->setCentroid(centroid);
+		shapesGraphicProperties->setNormal(normal);
+
+		// Chek if the shape is closed 
+		if (curvesVector.IsClosedPath())
+			isClosed = curvesVector.IsClosedPath();
+		else if (curvesVector.IsPhysicallyClosedPath())
+			isClosed = curvesVector.IsPhysicallyClosedPath();
+
+		shapesGraphicProperties->setIsClosed(isClosed);
+
+		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
+		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
+		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
+		
+
+		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() && addToDictionary)
+			//Add the shape to the Dictionary
+			pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+
 	}
+}
+
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+//ONLY FACETED BREP SUPPORTED
+bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR entity)
+{
+	std::ofstream outfile;
+	auto entityType = entity.GetEntityType();
+
+	//New instance of the BRep Element
+	if (mBRepGraphicProperties == nullptr)
+	{
+		mBRepGraphicProperties = new BRepGraphicProperties();
+		mBRepGraphicProperties->setBRepTypeEnum((int)entityType);
+		processElementAsMesh();
+		
+		if (entityType == ISolidKernelEntity::KernelEntityType::EntityType_Solid || entityType == ISolidKernelEntity::KernelEntityType::EntityType_Sheet)
+		{
+			bvector<ISubEntityPtr> subEntitiesFaces;
+			bvector<ISubEntityPtr> subEntitiesEdges;
+			bvector<ISubEntityPtr> subEntitiesVertices;
+
+			IGeometryPtr geomFacesEval;
+			CurveVectorPtr curveEdgesEval;
+			CurveVectorPtr curveVerticesEval;
+
+			DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+
+			size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+			size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
+			size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Entity------------ " << std::endl;
+			outfile << "Edges Entity: " << nEdges << std::endl;
+			outfile << "Faces Entity: " << nFaces << std::endl;
+			outfile << "Vertices Entity: " << nVertices << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
+			
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << std::endl;
+			outfile << std::endl;
+			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			int boundID = 0;
+			int vertexCreated = 0;
+
+			//Clear previous faces
+			subEntitiesFaces.clear();
+			//Clear the previous vertices
+			subEntitiesVertices.clear();
+
+			std::map<int, bool> mapFacesID;
+
+			for (auto edge : subEntitiesEdges)
+			{
+				ISubEntityCR edgeRef = *edge;
+				EdgeId edgeID;
+				SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "EDGE Sub Entity: " << std::endl;
+				outfile << std::endl;
+				outfile.close();
+							
+
+				//Get the faces of the current edge
+				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+
+				BoundPoints* bound = new BoundPoints();
+				bound->boundID = boundID;
+				bound->isShared = subEntitiesFaces.size() > 1;
+
+				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
+				{
+					bound->boundType = curveEdgesEval->GetBoundaryType();
+					// Chek if the shape is closed 
+					bound->isClosed = false;
+					if (curveEdgesEval->IsClosedPath())
+						bound->isClosed = true;
+					else if (curveEdgesEval->IsPhysicallyClosedPath())
+						bound->isClosed = true;
+
+					//Read more:
+					//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/193380/c-connect-point-at-distance-along-element/572437#572437
+					//15 Sampling Fraction 
+					for (double i = 0; i <= 15; i++)
+					{						
+						double f = i / 15;//fraction 
+						CurveLocationDetail cDetail;
+
+						//Fraction Evaluation of the point on the curve
+						if (curveEdgesEval->front()->FractionToPoint(f, cDetail))
+						{
+							auto vertexPoint = cDetail.point;
+							bound->pointsVector.push_back(vertexPoint);
+						}
+					}
+				}
+				
+				for (auto face : subEntitiesFaces)
+				{
+					if (face == NULL)
+						continue;
+
+					ISubEntityCR faceRef = *face;
+					FaceId faceID;
+					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+					//Set the faceID
+					bound->nodeID = faceID.nodeId;
+					bound->faceID.push_back((int)faceID.entityId);
+
+					outfile.open(filePath, std::ios_base::app);
+					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+					outfile << std::endl;
+					outfile.close();
+
+					if (searchOnMap(mapFacesID, (int)faceID.entityId) == NULL)
+					{
+						mapFacesID.insert({ (int)faceID.entityId ,true });
+						mBRepGraphicProperties->addFaceID((int)faceID.entityId);
+					}
+
+					SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
+					for (auto vertex : subEntitiesVertices)
+					{
+						ISubEntityCR vertexRef = *vertex;
+						VertexId vertexID;
+						SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
+
+						DPoint3d vertexPoint;
+						if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
+						{
+							if (vertexCreated < nVertices)
+							{
+								outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+								outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
+								outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
+								outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
+								outfile << std::endl;
+								outfile.close();
+
+								mBRepGraphicProperties->addVertexLoop(vertexPoint);
+								vertexCreated++;
+							}
+						}
+
+					}
+
+					//Clear the previous vertices
+					subEntitiesVertices.clear();
+				}
+
+				boundID++;
+
+				//Add bound Points
+				mBRepGraphicProperties->addBoundsPoints(bound);
+
+				//Clear previous faces
+				subEntitiesFaces.clear();
+			}
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "-------------------------------- End BREP Entiy --------------------------------" << std::endl;
+			outfile << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			subEntitiesEdges.clear();
+			subEntitiesFaces.clear();
+		}
+	}
+
+	return true;
+}
+#pragma warning(pop)
+
+bool GraphicsProcessorEnhancer::processElementAsMesh()
+{
+	std::ofstream outfile;
+
+	IFacetOptionsPtr facetOptions = IFacetOptions::New();
+
+	//Set different parameters for facet.
+	facetOptions->SetIgnoreFaceMaterialAttachments(true); // Don't separate multi-symbology BReps by face symbology...
+	facetOptions->SetChordTolerance(0.0);                 //many different parameters to control the final result mesh
+	facetOptions->SetAngleTolerance(0.0);
+	facetOptions->SetMaxEdgeLength(0.0);
+	facetOptions->SetMaxFacetWidth(0.0);
+	facetOptions->SetNormalsRequired(false);
+	facetOptions->SetParamsRequired(false);
+	facetOptions->SetMaxPerFace(4);
+	facetOptions->SetCurvedSurfaceMaxPerFace(4);
+	facetOptions->SetEdgeHiding(true);
+	facetOptions->SetSmoothTriangleFlowRequired(true);
+
+	bvector<PolyfaceHeaderPtr> meshes;
+
+	if (true == ElementToApproximateFacets(mCurrentElementHandle, meshes, facetOptions.get()))
+	{
+		for (size_t i = 0; i < meshes.size(); i++)
+		{
+			SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
+			//size_t numOpen, numClosed;
+			size_t numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges;
+			PolyfaceHeaderPtr pMesh = meshes.at(i);
+			PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
+
+			std::vector<std::vector<DPoint3d>> facetTriangulated;
+			
+			pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Mesh Number: " << i << std::endl;
+			outfile << "numVertex: " << numVertex << std::endl;
+			outfile << "numFacet: " << numFacet << std::endl;
+			outfile << "numQuad: " << numQuad << std::endl;
+			outfile << "numTriangle: " << numTriangle << std::endl;
+			outfile << "numImplicitTriangle: " << numImplicitTriangle << std::endl;
+			outfile << "numVisEdges: " << numVisEdges << std::endl;
+			outfile << "numInvEdges: " << numInvEdges << std::endl;
+			outfile << std::endl;
+			outfile.close();
+						
+			int nFace = 1;
+
+			while (pv->AdvanceToNextFace())
+			{
+				BlockedVectorDPoint3dR pts = pv->Point();
+
+				std::vector<DPoint3d> face;
+				for (DPoint3d pt : pts)
+				{
+					//Store the point for the triangle face
+					face.push_back(pt);
+				}
+
+				//Push the face in the container
+				solidKernelEntity->addFacetTriangulated(face);
+
+				nFace++;
+				outfile.close();
+			}
+			
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Num Of Facet: " << nFace << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			//Add to the BRep Entity
+			mBRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
+		}
+	}	
+
+	return true;
+}
+
+bool GraphicsProcessorEnhancer::ElementToApproximateFacets(ElementHandleCR source,bvector<PolyfaceHeaderPtr> &output,IFacetOptionsP options)
+{
+	output.clear();
+	MeshProcessor dest(output, options);
+	ElementGraphicsOutput::Process(source, dest);
+	return output.size() > 0 ? true : false;
 }

@@ -1,24 +1,24 @@
 
 ===================================================
 ===================================================
-Element Description: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
-Element ID: 8173
+Element Description: Support
+Element ID: 12147
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 8173, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 12147, id = 0 ---------
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
-Element ID[long] = 8173
+Element Description[string] = Support
+Element ID[long] = 12147
 Model[string] = Default
-Last Modified[dateTime] = 4/27/2020 4:23:04 PM
-Size[int] = 266
+Last Modified[dateTime] = 6/9/2020 10:09:59 AM
+Size[int] = 224
 Linkages[int] = 5
-XAttributes[int] = 5
-Type[string] = tee
+XAttributes[int] = 2
+Type[string] = Support
 Class[int] = Primary
 Template[long] = (None)
 Modified[boolean] = Modified
@@ -29,919 +29,110 @@ Display Style[int] = (From View Display)
 Locked[boolean] = Locked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = 18' 5.9122", 14' 10.6250", 11' 3.5013"
-Range High[point3d] = 20' 1.9122", 15' 11.3750", 12' 7.8763"
+Range Low[point3d] = 20' 0.4372", 38' 9.5973", -1' 8.8338"
+Range High[point3d] = 21' 2.1245", 39' 11.2846", 8' 6.3750"
 Pattern Name[string] = <null>
 Number of elements[int] = 2
 Scale X[double] = 1.00000
 Scale Y[double] = 1.00000
 Scale Z[double] = 1.00000
-Rotation-X[double] = 180.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = -180.0000°
+Rotation-X[double] = -0.0000°
+Rotation-Y[double] = -0.0000°
+Rotation-Z[double] = 180.0000°
 Angle[double] = 180.0000°
-Orientation[int] = Bottom
-Origin[point3d] = 20' 1.9122", 15' 5.0000", 12' 1.5013"
+Orientation[int] = Top
+Origin[point3d] = 20' 7.2809", 39' 4.4409", 8' 6.3750"
 Cell Type[boolean] = Graphic
 Is Annotation[boolean] = False
 Annotation Purpose[boolean] = False
+In SolidKernel Entity is: Solid 0
 
------------- Instance Schema full name: OpenPlant_3D.01.08
---------- ClassName = EQUAL_PIPE_TEE, current element id = 8173, id = 1 ---------
-Guid[string] = 7bc0b447-cd00-402b-9a99-7621ebebcb17
-Modification Time[dateTime] = 4/27/2020 4:23:04 PM
-Modified By[string] = LX5990
-Name[string] = Equal Pipe Tee 12 EX-OPM U-S-1-EX-OPM
-Description[string] = B16.9 12 BW Equal Pipe Tee
-Active Item[boolean] = False
-Designer[string] = Administrator
-Material[string] = STL
-Elevation[double] = 0 ft
-Created Timestamp[dateTime] = 9/10/2013 2:34:35 PM
-Total Weight[double] = 0 lb
-Dry Weight[double] = 136 lb
-Manufacturer[string] = MFACT
-Plant Area[string] = ?
-Service[string] = S
-System[string] = S
-Unit[string] = U
-Nominal Diameter[double] = 12 in
-Schedule[string] = 40
-Short Description[string] = Equal Pipe Tee
-Specification[string] = EX-OPM
-Spec ID[string] = 748c39e4e6f4474394d96e1d02051eb0
-Standard[string] = ASME - B16.9
-EC Class Name[string] = EQUAL_PIPE_TEE
-Unit Of Measure[string] = IN
-Line Number[string] = U-S-1-EX-OPM
-Insulation Thickness[double] = 0 in
-Insulation Material[string] = ARNOSITE_ASBESTOS
-Length[double] = 20 in
-Inside Diameter[double] = 0 in
-Normal Operating Pressure[double] = 0 lbf/in² (Gauge)
-Outside Diameter[double] = 0 in
-Hub Depth[double] = 0 in
-Hub Width[double] = 0 in
-Component Name[string] = Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
-Component State[string] = Design
-Length Effective[double] = 20.0000
-Design Length Center To Branch End Effective[double] = 10.0000
-Design Length Center To Outlet End Effective[double] = 10.0000
-Design Length Center To Run End Effective[double] = 10.0000
-Wall Thickness[double] = 0.3750
-Update Graphics[boolean] = True
-Nominal Diameter Run End[double] = 12.0000
-Element Geometry[binary] = <null>
-Nominal Diameter Branch End[double] = 12 in
-Nominal Diameter Reducing End[double] = 0 in
-Design Length Center To Branch End[double] = 10 in
-Design Length Center To Outlet End[double] = 10 in
-Design Length Center To Run End[double] = 10 in
-Outside Diameter Branch End[double] = 0.0000
-Outside Diameter Run End[double] = 0.0000
-Branch Angle[double] = 0.0000
-In SolidKernel Entity is: Sheet 1
+Mesh Number: 0
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 1
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 2
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
 
 Entity------------ 
-Edges Entity: 5
-Faces Entity: 2
-Vertices Entity: 2
+Edges Entity: 2
+Faces Entity: 3
+Vertices Entity: 0
 
 -------------------------------- Processing BREP Entiy --------------------------------
 
+Faceted BREP / ShellBased with Mesh Polyface
+
+EDGE Sub Entity: 
+
+--------- FACE -------- Entity: 1 ID: 2
+
+--------- FACE -------- Entity: 1 ID: 3
+
+EDGE Sub Entity: 
+
+--------- FACE -------- Entity: 1 ID: 3
+
 --------- FACE -------- Entity: 1 ID: 4
-
--------- MSBsplineSurfaceCR msBsplineSurface --------
-Number of Bounds: 2
-Total number of Poles: 14
-U number of Poles: 7
-V number of Poles: 2
-Stored number of UV Poles: 14
-
--------------------CURVE VECTOR---------------------
-Size: 2
-
-                              
-CURVE_PRIMITIVE_TYPE_CurveVector --------
-
--------------------CURVE VECTOR---------------------
-Size: 6
-
-                              
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.250000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.000000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.000000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.250000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.250000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-point  [X] = 1.000000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 1.000000
-point  [Y] = 0.000000
-point  [Z] = 0.000000
-
-point  [X] = 1.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 1.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.250000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-
-BOUNDARY_TYPE_Outer --------
-Start Point [X]: 0.250000
-Start Point [Y]: 1.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.250000
-End Point [Y]: 1.000000
-End Point [Z]: 0.000000
-
-CURVE_PRIMITIVE_TYPE_CurveVector --------
-
--------------------CURVE VECTOR---------------------
-Size: 2
-
-                              
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.750000
-point  [Y] = 0.500000
-point  [Z] = 0.000000
-
-point  [X] = 0.675497
-point  [Y] = 0.310017
-point  [Z] = 0.000000
-
-point  [X] = 0.629606
-point  [Y] = 0.250791
-point  [Z] = 0.000000
-
-point  [X] = 0.553839
-point  [Y] = 0.153006
-point  [Z] = 0.000000
-
-point  [X] = 0.449368
-point  [Y] = 0.189242
-point  [Z] = 0.000000
-
-point  [X] = 0.388700
-point  [Y] = 0.210284
-point  [Z] = 0.000000
-
-point  [X] = 0.337479
-point  [Y] = 0.301263
-point  [Z] = 0.000000
-
-point  [X] = 0.306032
-point  [Y] = 0.357118
-point  [Z] = 0.000000
-
-point  [X] = 0.250000
-point  [Y] = 0.500000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.250000
-point  [Y] = 0.500000
-point  [Z] = 0.000000
-
-point  [X] = 0.324503
-point  [Y] = 0.689983
-point  [Z] = 0.000000
-
-point  [X] = 0.370394
-point  [Y] = 0.749209
-point  [Z] = 0.000000
-
-point  [X] = 0.446161
-point  [Y] = 0.846994
-point  [Z] = 0.000000
-
-point  [X] = 0.550632
-point  [Y] = 0.810758
-point  [Z] = 0.000000
-
-point  [X] = 0.611300
-point  [Y] = 0.789716
-point  [Z] = 0.000000
-
-point  [X] = 0.662521
-point  [Y] = 0.698737
-point  [Z] = 0.000000
-
-point  [X] = 0.693968
-point  [Y] = 0.642882
-point  [Z] = 0.000000
-
-point  [X] = 0.750000
-point  [Y] = 0.500000
-point  [Z] = 0.000000
-
-
-BOUNDARY_TYPE_Outer --------
-Start Point [X]: 0.750000
-Start Point [Y]: 0.500000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.750000
-End Point [Y]: 0.500000
-End Point [Z]: 0.000000
-
-
-BOUNDARY_TYPE_ParityRegion --------
-Start Point [X]: 0.250000
-Start Point [Y]: 1.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.750000
-End Point [Y]: 0.500000
-End Point [Z]: 0.000000
-
--------- PARITY REGION Boundaries --------
-Bound -------- 
-
-Curve -------- 
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-Curve -------- 
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-Curve -------- 
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-Curve -------- 
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-Curve -------- 
-
-point  [X] = 6.14457e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-Curve -------- 
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.85766e+06
-
-point  [X] = 5.63657e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-Bound -------- 
-
-Curve -------- 
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.53707e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 5.98708e+06
-point  [Y] = 4.56349e+06
-point  [Z] = 3.60709e+06
-
-point  [X] = 6.01717e+06
-point  [Y] = 4.59804e+06
-point  [Z] = 3.56913e+06
-
-point  [X] = 6.06684e+06
-point  [Y] = 4.66048e+06
-point  [Z] = 3.53846e+06
-
-point  [X] = 6.04844e+06
-point  [Y] = 4.73503e+06
-point  [Z] = 3.53787e+06
-
-point  [X] = 6.03775e+06
-point  [Y] = 4.7847e+06
-point  [Z] = 3.55835e+06
-
-point  [X] = 5.99153e+06
-point  [Y] = 4.8256e+06
-point  [Z] = 3.59477e+06
-
-point  [X] = 5.96315e+06
-point  [Y] = 4.84543e+06
-point  [Z] = 3.62662e+06
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-Curve -------- 
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 5.79406e+06
-point  [Y] = 4.83451e+06
-point  [Z] = 3.60709e+06
-
-point  [X] = 5.76397e+06
-point  [Y] = 4.79996e+06
-point  [Z] = 3.56913e+06
-
-point  [X] = 5.7143e+06
-point  [Y] = 4.73752e+06
-point  [Z] = 3.53846e+06
-
-point  [X] = 5.7327e+06
-point  [Y] = 4.66297e+06
-point  [Z] = 3.53787e+06
-
-point  [X] = 5.74339e+06
-point  [Y] = 4.6133e+06
-point  [Z] = 3.55835e+06
-
-point  [X] = 5.78961e+06
-point  [Y] = 4.5724e+06
-point  [Z] = 3.59477e+06
-
-point  [X] = 5.81799e+06
-point  [Y] = 4.55257e+06
-point  [Z] = 3.62662e+06
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.53707e+06
-point  [Z] = 3.69573e+06
-
---------- FACE -------- Entity: 1 ID: 5
-
--------- MSBsplineSurfaceCR msBsplineSurface --------
-Number of Bounds: 1
-Total number of Poles: 14
-U number of Poles: 7
-V number of Poles: 2
-Stored number of UV Poles: 14
-
--------------------CURVE VECTOR---------------------
-Size: 1
-
-                              
-CURVE_PRIMITIVE_TYPE_CurveVector --------
-
--------------------CURVE VECTOR---------------------
-Size: 7
-
-                              
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.250000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.000000
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.000000
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-point  [X] = 0.085786
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-point  [X] = 0.146447
-point  [Y] = 0.454056
-point  [Z] = 0.000000
-
-point  [X] = 0.184699
-point  [Y] = 0.337013
-point  [Z] = 0.000000
-
-point  [X] = 0.250000
-point  [Y] = 0.005964
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.250000
-point  [Y] = 0.005964
-point  [Z] = 0.000000
-
-point  [X] = 0.324503
-point  [Y] = 0.383663
-point  [Z] = 0.000000
-
-point  [X] = 0.370394
-point  [Y] = 0.501409
-point  [Z] = 0.000000
-
-point  [X] = 0.446161
-point  [Y] = 0.695812
-point  [Z] = 0.000000
-
-point  [X] = 0.550632
-point  [Y] = 0.623774
-point  [Z] = 0.000000
-
-point  [X] = 0.611300
-point  [Y] = 0.581939
-point  [Z] = 0.000000
-
-point  [X] = 0.662521
-point  [Y] = 0.401068
-point  [Z] = 0.000000
-
-point  [X] = 0.693968
-point  [Y] = 0.290025
-point  [Z] = 0.000000
-
-point  [X] = 0.750000
-point  [Y] = 0.005964
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 0.750000
-point  [Y] = 0.005964
-point  [Z] = 0.000000
-
-point  [X] = 0.815301
-point  [Y] = 0.337013
-point  [Z] = 0.000000
-
-point  [X] = 0.853553
-point  [Y] = 0.454056
-point  [Z] = 0.000000
-
-point  [X] = 0.914214
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-point  [X] = 1.000000
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 1.000000
-point  [Y] = 0.639662
-point  [Z] = 0.000000
-
-point  [X] = 1.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-CURVE_PRIMITIVE_TYPE_BsplineCurve --------
-
-Is Closed = 0
-Control Points: 
-
-point  [X] = 1.000000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-point  [X] = 0.250000
-point  [Y] = 1.000000
-point  [Z] = 0.000000
-
-
-BOUNDARY_TYPE_Outer --------
-Start Point [X]: 0.250000
-Start Point [Y]: 1.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.250000
-End Point [Y]: 1.000000
-End Point [Z]: 0.000000
-
-
-BOUNDARY_TYPE_ParityRegion --------
-Start Point [X]: 0.250000
-Start Point [Y]: 1.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.250000
-End Point [Y]: 1.000000
-End Point [Z]: 0.000000
-
--------- PARITY REGION Boundaries --------
-Bound -------- 
-
-Curve -------- 
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.44173e+06
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.44173e+06
-
-Curve -------- 
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.44173e+06
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.53381e+06
-
-Curve -------- 
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.53381e+06
-
-point  [X] = 5.74196e+06
-point  [Y] = 4.76331e+06
-point  [Z] = 3.53381e+06
-
-point  [X] = 5.77607e+06
-point  [Y] = 4.8135e+06
-point  [Z] = 3.58123e+06
-
-point  [X] = 5.81138e+06
-point  [Y] = 4.84024e+06
-point  [Z] = 3.61114e+06
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-Curve -------- 
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 5.97921e+06
-point  [Y] = 4.83451e+06
-point  [Z] = 3.59922e+06
-
-point  [X] = 6.01717e+06
-point  [Y] = 4.79996e+06
-point  [Z] = 3.56913e+06
-
-point  [X] = 6.04785e+06
-point  [Y] = 4.73752e+06
-point  [Z] = 3.51946e+06
-
-point  [X] = 6.04844e+06
-point  [Y] = 4.66297e+06
-point  [Z] = 3.53787e+06
-
-point  [X] = 6.02795e+06
-point  [Y] = 4.6133e+06
-point  [Z] = 3.54856e+06
-
-point  [X] = 5.99153e+06
-point  [Y] = 4.5724e+06
-point  [Z] = 3.59477e+06
-
-point  [X] = 5.95968e+06
-point  [Y] = 4.55257e+06
-point  [Z] = 3.62315e+06
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.53707e+06
-point  [Z] = 3.69573e+06
-
-Curve -------- 
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.53707e+06
-point  [Z] = 3.69573e+06
-
-point  [X] = 5.81138e+06
-point  [Y] = 4.55776e+06
-point  [Z] = 3.61114e+06
-
-point  [X] = 5.77607e+06
-point  [Y] = 4.5845e+06
-point  [Z] = 3.58123e+06
-
-point  [X] = 5.74196e+06
-point  [Y] = 4.63469e+06
-point  [Z] = 3.53381e+06
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.53381e+06
-
-Curve -------- 
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.53381e+06
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.44173e+06
-
-Curve -------- 
-
-point  [X] = 5.72864e+06
-point  [Y] = 4.699e+06
-point  [Z] = 3.44173e+06
-
-point  [X] = 5.89057e+06
-point  [Y] = 4.86092e+06
-point  [Z] = 3.44173e+06
 
 -------------------------------- End BREP Entiy --------------------------------
 
 
--------------------CURVE VECTOR---------------------
-Size: 1
+In SolidKernel Entity is: Solid 0
 
-                              
-CURVE_PRIMITIVE_TYPE_LineString --------
-
-Start Point [X]: 6144569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5890569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
-
-Curve Line String Length: 254000.000000
-
-point 0 [X] = 6144569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3695732.747377
-
-point 1 [X] = 5890569.934554
-point 1 [Y] = 4699000.000000
-point 1 [Z] = 3695732.747377
-
-
-BOUNDARY_TYPE_Open --------
-Start Point [X]: 6144569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5890569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
+In SolidKernel Entity is: Solid 0
 
 -------------------CURVE VECTOR---------------------
 Size: 1
 
-                              
-CURVE_PRIMITIVE_TYPE_LineString --------
 
-Start Point [X]: 5890569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
+BOUNDARY_TYPE_None --------
+Start Point [X]: 6280933.640428
+Start Point [Y]: 12000000.000000
+Start Point [Z]: 2600325.000000
 
-End Point [X]: 5636569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
-
-Curve Line String Length: 254000.000000
-
-point 0 [X] = 5890569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3695732.747377
-
-point 1 [X] = 5636569.934554
-point 1 [Y] = 4699000.000000
-point 1 [Z] = 3695732.747377
-
-
-BOUNDARY_TYPE_Open --------
-Start Point [X]: 5890569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5636569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
-
--------------------CURVE VECTOR---------------------
-Size: 1
-
-                              
-CURVE_PRIMITIVE_TYPE_LineString --------
-
-Start Point [X]: 5890569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5890569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3441732.747377
-
-Curve Line String Length: 254000.000000
-
-point 0 [X] = 5890569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3695732.747377
-
-point 1 [X] = 5890569.934554
-point 1 [Y] = 4699000.000000
-point 1 [Z] = 3441732.747377
-
-
-BOUNDARY_TYPE_Open --------
-Start Point [X]: 5890569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5890569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3441732.747377
-
--------------------CURVE VECTOR---------------------
-Size: 1
+End Point [X]: 6280933.640428
+End Point [Y]: 12000000.000000
+End Point [Z]: 2600325.000000
 
                               
 CURVE_PRIMITIVE_TYPE_PointString --------
 
-point 0 [X] = 6144569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3695732.747377
-
-
-BOUNDARY_TYPE_None --------
-Start Point [X]: 6144569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 6144569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
-
--------------------CURVE VECTOR---------------------
-Size: 1
-
-                              
-CURVE_PRIMITIVE_TYPE_PointString --------
-
-point 0 [X] = 5636569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3695732.747377
-
-
-BOUNDARY_TYPE_None --------
-Start Point [X]: 5636569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3695732.747377
-
-End Point [X]: 5636569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3695732.747377
-
--------------------CURVE VECTOR---------------------
-Size: 1
-
-                              
-CURVE_PRIMITIVE_TYPE_PointString --------
-
-point 0 [X] = 5890569.934554
-point 0 [Y] = 4699000.000000
-point 0 [Z] = 3441732.747377
-
-
-BOUNDARY_TYPE_None --------
-Start Point [X]: 5890569.934554
-Start Point [Y]: 4699000.000000
-Start Point [Z]: 3441732.747377
-
-End Point [X]: 5890569.934554
-End Point [Y]: 4699000.000000
-End Point [Z]: 3441732.747377
+point 0 [X] = 6280933.640428
+point 0 [Y] = 12000000.000000
+point 0 [Z] = 2600325.000000
 
 
 ===================================================
 ===================================================
-Element Description: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
-Element: ID 8173
+Element Description: Support
+Element: ID 12147
 ===================================================
 ===================================================
 

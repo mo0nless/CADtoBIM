@@ -209,21 +209,8 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		/*const bool simplify = false;
 		ISolidPrimitivePtr solid = ISolidPrimitiveQuery::ElementToSolidPrimitive(currentElem, simplify);
 		bool valid = solid.IsValid();
-
-	
-		if (!valid)
-		{			
-			ISolidKernelEntityPtr smartSolid;
-			bool validSolid = (SUCCESS == SolidUtil::Convert::ElementToBody(smartSolid, currentElem) && smartSolid.IsValid());
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "===================================================" << std::endl;
-			outfile << "====================SMART SOLID====================" << std::endl;
-			outfile << "===================================================" << std::endl;
-			outfile << std::endl;
-			outfile.close();
-
-		}*/
+		ISolidKernelEntityPtr smartSolid;
+		bool validSolid = (SUCCESS == SolidUtil::Convert::ElementToBody(smartSolid, currentElem) && smartSolid.IsValid());*/
 					
 
 		outfile.open(filePath, std::ios_base::app);
@@ -240,8 +227,17 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
 
 		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);
+
+		graphicsProcessorEnhancer->mCurrentElementHandle = currentElem; //store the element in graphic processor enhancer
 		
 		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
+
+		//Add as BRep after finishing processing
+		if (graphicsProcessorEnhancer->mBRepGraphicProperties != nullptr)
+		{
+			propertiesDictionary->addGraphicProperties(graphicsProcessorEnhancer->mBRepGraphicProperties);
+			graphicsProcessorEnhancer->mBRepGraphicProperties = nullptr;
+		}
 
 		propsDictVec.push_back(propertiesDictionary);
 

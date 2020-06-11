@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CurveGraphicsProperties.h"
+#include "CurveGraphicProperties.h"
 
 class InterpolationGraphicProperties : public CurveGraphicProperties
 {

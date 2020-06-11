@@ -95,8 +95,9 @@ appObjects = \
 	$(o)SphereGraphicProperties$(oext) \
 	$(o)CylinderGraphicProperties$(oext) \
 	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
-	$(o)BRepSolidsKernelEntity$(oext) \
-	$(o)CurveGraphicsProperties$(oext) \
+	$(o)SolidEntityGraphicProperties$(oext) \
+	$(o)BRepGraphicProperties$(oext) \
+	$(o)CurveGraphicProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
@@ -106,10 +107,6 @@ appObjects = \
 	$(o)AkimaGraphicProperties$(oext) \
 	$(o)CurvesShapesGraphicProperties$(oext) \
 	$(o)ShapesGraphicProperties$(oext) \
-	$(o)CircleShapesGraphicProperties$(oext) \
-	$(o)ComplexChainShapesGraphicProperties$(oext) \
-	$(o)EllipseShapesGraphicProperties$(oext) \
-	$(o)GenericShapesGraphicProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
@@ -287,19 +284,11 @@ $(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/gr
 
 $(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
 
-$(o)CurveGraphicsProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicsProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicsProperties.h
+$(o)CurveGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicProperties.h
 
 $(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
 
 $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/ShapesGraphicProperties.h
-
-$(o)CircleShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CircleShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CircleShapesGraphicProperties.h
-
-$(o)ComplexChainShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/ComplexChainShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/ComplexChainShapesGraphicProperties.h
-
-$(o)EllipseShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/EllipseShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/EllipseShapesGraphicProperties.h
-
-$(o)GenericShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/GenericShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/GenericShapesGraphicProperties.h
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 
@@ -313,7 +302,9 @@ $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/
 
 $(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h
 
-$(o)BRepSolidsKernelEntity$(oext) : $(baseDir)modeler/properties/brep_solids/sources/BRepSolidsKernelEntity.cpp $(baseDir)modeler/properties/brep_solids/headers/BRepSolidsKernelEntity.h
+$(o)SolidEntityGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/SolidEntityGraphicProperties.h
+
+$(o)BRepGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/BRepGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/BRepGraphicProperties.h
 
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 

@@ -189,3 +189,13 @@ std::vector<std::vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getBoundsV
 {
 	return this->mBoundsVectorPoints;
 }
+
+void MSBsplineSurfaceGraphicProperties::addCurvesShapesGraphicProperties(CurvesShapesGraphicProperties * bound)
+{
+	this->mCurveBoundaries.push_back(bound);
+}
+
+std::vector<CurvesShapesGraphicProperties*> MSBsplineSurfaceGraphicProperties::getCurvesShapesGraphicProperties()
+{
+	return this->mCurveBoundaries;
+}
