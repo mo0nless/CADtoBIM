@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -235,8 +235,11 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		//Add as BRep after finishing processing
 		if (graphicsProcessorEnhancer->mBRepGraphicProperties != nullptr)
 		{
-			propertiesDictionary->addGraphicProperties(graphicsProcessorEnhancer->mBRepGraphicProperties);
+			if (graphicsProcessorEnhancer->mBRepGraphicProperties->getSolidEntityVector().size() > 0)
+				propertiesDictionary->addGraphicProperties(graphicsProcessorEnhancer->mBRepGraphicProperties);
+
 			graphicsProcessorEnhancer->mBRepGraphicProperties = nullptr;
+			graphicsProcessorEnhancer->mNumberSolidEntity = 0;
 		}
 
 		propsDictVec.push_back(propertiesDictionary);

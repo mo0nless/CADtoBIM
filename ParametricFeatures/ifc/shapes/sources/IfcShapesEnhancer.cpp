@@ -1,168 +1,168 @@
 #include "../headers/IfcShapesEnhancer.h"
 
-//IFC SPECS [SB] More information on shape representation are given by the IfcShapeRepresentation 
-Ifc4::IfcGeometricRepresentationItem* IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
-{
-	Ifc4::IfcGeometricRepresentationItem* geometricRepItem = nullptr;
 
-	bool isElementSmartSolid = ifcElementBundle->getIsSmartSolid();
-	
-	//TODO [SB] Handle the boundary type for solids
+bool IfcShapesEnhancer::hasSingleShapeItem()
+{
+	return this->mHasSingleShape;
+}
+
+Ifc4::IfcGeometricRepresentationItem * IfcShapesEnhancer::getSingleShapeRepresentation()
+{
+	return this->mSingleShapeRepresentation;
+}
+
+std::vector<BoundTypeCurvesVector> IfcShapesEnhancer::getCurvesShapeRepresentationVector()
+{
+	return this->mShapeBoundTypeCurvesVector;
+}
+
+void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle, bool addToIfcElementBundle)
+{
+	//Handler for boundaries 
 	switch (shapeGraphicProperties->getBoundaryTypeCurvesContainer())
 	{
 		//All curves drawed as single are open (Line string inside pipes)
 		//Curves should join head to tail in a single path. The path is not expected to be closed. 
-		case CurvesBoundaryTypeEnum::OPEN:
+	case CurvesBoundaryTypeEnum::OPEN:
+	{
+		std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
+
+		BoundTypeCurvesVector boundCurveVec = { CurvesBoundaryTypeEnum::OPEN, curveVector };
+		this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
+
+		if (shapeGraphicProperties->getHasSingleCurve())
+			mSingleShapeRepresentation = curveVector.front();
+		else //Complex Chain 
 		{
-			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
+			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+			tempEntityList = buildIfcCompositeCurveSegment(curveVector);
 
-			//check if they belongs to a smart solid
-			if (isElementSmartSolid && (!shapeGraphicProperties->getFacesBoundIDs().empty()))
-			{
-				bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
-			}
-			else if (shapeGraphicProperties->getHasSingleCurve())
-			{
-				geometricRepItem = curveVector.front();
-			}
-			else //Complex Chain 
-			{
-				IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-				tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+			if (tempEntityList == nullptr)
+				break;
 
-				if (tempEntityList == nullptr)
-					break;
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
+			Ifc4::IfcCompositeCurve* item = new Ifc4::IfcCompositeCurve(complexChain, false);
 
-				Ifc4::IfcCompositeCurve* item = new Ifc4::IfcCompositeCurve(complexChain, false);
-				
-				geometricRepItem = item;
-			}
+			mSingleShapeRepresentation = item;
 		}
-		break;
+	}
+	break;
 
-		//This defines the OUTER boundaries of an entity (Solid/Surface) eg Smart Solid shape
-		//Curves should join head to tail in a single closed path; this area expected to be an outer (or only) loop
-		case CurvesBoundaryTypeEnum::OUTER:
+	//This defines the OUTER boundaries of an entity (Solid/Surface) eg Smart Solid shape
+	//Curves should join head to tail in a single closed path; this area expected to be an outer (or only) loop
+	case CurvesBoundaryTypeEnum::OUTER:
+	{
+		std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
+
+		BoundTypeCurvesVector boundCurveVec = { CurvesBoundaryTypeEnum::OUTER, curveVector };
+		this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
+
+		if (shapeGraphicProperties->getHasSingleCurve())
+			mSingleShapeRepresentation = curveVector.front();
+		else
 		{
-			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
+			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+			tempEntityList = buildIfcCompositeCurveSegment(curveVector);
 
-			//check if they belongs to a smart solid
-			if (isElementSmartSolid && !shapeGraphicProperties->getFacesBoundIDs().empty())
-			{				
-				if (shapeGraphicProperties->getHasSingleCurve())
-					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::OUTER);
-				else
-				{
-					IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-					tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+			if (tempEntityList == nullptr)
+				break;
 
-					if (tempEntityList == nullptr)
-						break;
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
 
-					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
+			Ifc4::IfcOuterBoundaryCurve* outerBoundaryCurve = new Ifc4::IfcOuterBoundaryCurve(complexChain, false);
 
-					Ifc4::IfcOuterBoundaryCurve* outerBoundaryCurve = new Ifc4::IfcOuterBoundaryCurve(complexChain, false);
+			curveVector.clear();
+			curveVector.push_back(outerBoundaryCurve);
 
-					curveVector.clear();
-					curveVector.push_back(outerBoundaryCurve);
-
-					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::OUTER);
-				}
-				
-			}
-			else 
-			{
-				geometricRepItem = curveVector.front();
-			}
+			mSingleShapeRepresentation = curveVector.front();
 		}
-		break;
+	}
+	break;
 
-		//This defines the INNER boundaries of an entity (Solid/Surface) eg Hole
-		//Curves should join head to tail in a single closed path; this area is expected to be an inner loop.
-		case CurvesBoundaryTypeEnum::INNER:
-		{			
-			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
+	//This defines the INNER boundaries of an entity (Solid/Surface) eg Hole
+	//Curves should join head to tail in a single closed path; this area is expected to be an inner loop.
+	case CurvesBoundaryTypeEnum::INNER:
+	{
+		std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
-			//check if they belongs to a smart solid
-			if (isElementSmartSolid && (!shapeGraphicProperties->getFacesBoundIDs().empty()))
-			{
-				if (shapeGraphicProperties->getHasSingleCurve())
-					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
-				else
-				{
-					IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
-					tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+		BoundTypeCurvesVector boundCurveVec = { CurvesBoundaryTypeEnum::INNER, curveVector };
+		this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
 
-					if (tempEntityList == nullptr)
-						break;
-
-					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
-
-					Ifc4::IfcBoundaryCurve* innerBoundaryCurve = new Ifc4::IfcBoundaryCurve(complexChain, false);
-
-					curveVector.clear();
-					curveVector.push_back(innerBoundaryCurve);
-
-					bRepRelationship->processBRepEntityEdge(shapeGraphicProperties, curveVector, (int)CurvesBoundaryTypeEnum::INNER);
-				}
-			}
-			else
-			{
-				geometricRepItem = curveVector.front();
-			}
-		}
-		break;
-
-		//Set of Bounday Data which could include (OUTER, INNER boundaries)
-		//Expected to contain (only) multiple CurveVectors, all of which are either BOUNDARY_TYPE_Open or BOUNDARY_TYPE_inner.
-		case CurvesBoundaryTypeEnum::PARITY_REGION:
-		{			
-			if (shapeGraphicProperties->hasShapesGraphicsContainer())
-			{
-				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
-				{
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
-				}
-			}
-		}
-		break;
-
-		//Expected to contain (only) multiple CurveVectors, all of which have area. 
-		//(No individual curves or open paths).These are to be analyzed by union rules.
-		case CurvesBoundaryTypeEnum::UNION_REGION:
+		if (shapeGraphicProperties->getHasSingleCurve())
+			mSingleShapeRepresentation = curveVector.front();
+		else
 		{
-			if (shapeGraphicProperties->hasShapesGraphicsContainer())
+			IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = nullptr;
+			tempEntityList = buildIfcCompositeCurveSegment(curveVector);
+
+			if (tempEntityList == nullptr)
+				break;
+
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>> complexChain(tempEntityList);
+
+			Ifc4::IfcBoundaryCurve* innerBoundaryCurve = new Ifc4::IfcBoundaryCurve(complexChain, false);
+
+			curveVector.clear();
+			curveVector.push_back(innerBoundaryCurve);
+
+			mSingleShapeRepresentation = curveVector.front();
+		}
+	}
+	break;
+
+	//Set of Bounday Data which could include (OUTER, INNER boundaries)
+	//Expected to contain (only) multiple CurveVectors, all of which are either BOUNDARY_TYPE_Open or BOUNDARY_TYPE_inner.
+	case CurvesBoundaryTypeEnum::PARITY_REGION:
+	{
+		if (shapeGraphicProperties->hasShapesGraphicsContainer())
+		{
+			for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 			{
-				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
-				{
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
-				}
+				buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
 			}
 		}
+	}
+	break;
 
-		//Point and ports have no Boundary
-		//no specific properties expected for contained curves or points. 
-		case CurvesBoundaryTypeEnum::NONE_BOUNDARY:
+	//Expected to contain (only) multiple CurveVectors, all of which have area. 
+	//(No individual curves or open paths).These are to be analyzed by union rules.
+	case CurvesBoundaryTypeEnum::UNION_REGION:
+	{
+		if (shapeGraphicProperties->hasShapesGraphicsContainer())
 		{
-			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
-			geometricRepItem = curveVector.front();
+			for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
+			{
+				buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
+			}
 		}
-		break;
-		default:
-		break;
-	}	
-
-	
-	if (geometricRepItem != nullptr)
-	{	
-		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, geometricRepItem));		
 	}
 
-	return geometricRepItem;
-}
+	//Point and ports have no Boundary
+	//no specific properties expected for contained curves or points. 
+	case CurvesBoundaryTypeEnum::NONE_BOUNDARY:
+	{
+		std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
+		BoundTypeCurvesVector boundCurveVec = { CurvesBoundaryTypeEnum::NONE_BOUNDARY, curveVector };
+		this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
+
+		mSingleShapeRepresentation = curveVector.front();
+	}
+	break;
+	default:
+		break;
+	}
+
+
+	if (mSingleShapeRepresentation != nullptr)
+	{
+		mHasSingleShape = true;
+
+		if (addToIfcElementBundle)
+			ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));
+	}
+}
 
 void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
@@ -177,9 +177,6 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
-			bool isElementSmartSolid = ifcElementBundle->getIsSmartSolid();
-			this->bRepRelationship = new IfcBRepRelationship();
-
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
 			{
@@ -188,21 +185,12 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 				{		
 					buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle);
 				}
-			}
-			
-			//check if they belongs to a smart solid
-			if (isElementSmartSolid)
-			{
-				bRepRelationship->connectContinuosEdges();
-				ifcElementBundle->addSolidEdgesCollection(
-					bRepRelationship->getSmartSolidEdgesCollection()
-				);
-			}				
+			}							
 		}
 	}
 }
 
-Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, ShapesTypeEnum curvesShapesType, IfcElementBundle*& ifcElementBundle, bool isClosed)
+Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle, bool isClosed)
 {
 	Ifc4::IfcCurve* curveRepresentationItem = nullptr;
 
@@ -395,7 +383,7 @@ std::vector<Ifc4::IfcCurve*> IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGrap
 	std::vector<Ifc4::IfcCurve*> curveVector;
 	for each (CurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
 	{
-		Ifc4::IfcCurve* curveRepresentationItem = buildIfcCurvePrimitives(curveProperties, file, curvesShape->getCurvesShapeTypeEnum(), ifcElementBundle, curvesShape->getIsClosed());
+		Ifc4::IfcCurve* curveRepresentationItem = buildIfcCurvePrimitives(curveProperties, file, ifcElementBundle, curvesShape->getIsClosed());
 
 		curveVector.push_back(curveRepresentationItem);
 	}

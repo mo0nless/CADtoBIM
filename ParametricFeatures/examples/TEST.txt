@@ -1,24 +1,378 @@
 
 ===================================================
 ===================================================
-Element Description: Support
-Element ID: 12147
+Element Description: Cell
+Element ID: 6262
 ===================================================
 ===================================================
 
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 12147, id = 0 ---------
+--------- ClassName = NormalCellElement, current element id = 6262, id = 0 ---------
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Support
-Element ID[long] = 12147
+Element Description[string] = Cell
+Element ID[long] = 6262
 Model[string] = Default
-Last Modified[dateTime] = 6/9/2020 10:09:59 AM
-Size[int] = 224
-Linkages[int] = 5
-XAttributes[int] = 2
-Type[string] = Support
+Last Modified[dateTime] = 6/12/2020 2:13:00 PM
+Size[int] = 128
+Linkages[int] = 0
+XAttributes[int] = 0
+Type[string] = Cell
+Class[int] = Primary
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Locked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 6.5288m, -0.5776m, 26.8322m
+Range High[point3d] = 8.9714m, 5.4827m, 29.4167m
+Pattern Name[string] = <null>
+Number of elements[int] = 5
+Scale X[double] = 1.00000
+Scale Y[double] = 1.00000
+Scale Z[double] = 1.00000
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+Origin[point3d] = 7.7501m, 2.4526m, 28.1244m
+Cell Type[boolean] = Graphic
+Is Annotation[boolean] = False
+Annotation Purpose[boolean] = False
+-------- Cell --------
+Range [XLength] = 24425.050633
+Range [YLength] = 60602.526157
+Range [ZLength] = 268.946122
+
+Quaternion Rotation
+qRotation [X] = 0.500000
+qRotation [Y] = 0.500000
+qRotation [Z] = 0.500000
+qRotation [W] = 0.500000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.577350
+vRotation [Y] = 0.577350
+vRotation [Z] = 0.577350
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 293897.604471
+
+Range High = 89713.883474
+Range Low = 65288.832840
+DiagonalDistanceXY = 65339.492461
+DiagonalDistance = 65340.045968
+Range Difference = 24425.050633
+Vector of Extrusion [X] = 24425.050633
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 0.000000
+
+Curve Start Point of Extrusion [X] = 65288.832840
+Curve Start Point of Extrusion [Y] = -5775.759706
+Curve Start Point of Extrusion [Z] = 293897.604471
+
+Curve End Point of Extrusion [X] = 65288.832840
+Curve End Point of Extrusion [Y] = 54826.766451
+Curve End Point of Extrusion [Z] = 293897.604471
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 0
+
+-------- Cell --------
+Range [XLength] = 268.946122
+Range [YLength] = 60602.526157
+Range [ZLength] = 25575.564458
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.707107
+qRotation [W] = 0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+Range High = 89713.883474
+Range Low = 89444.937352
+DiagonalDistanceXY = 60603.122928
+DiagonalDistance = 65778.780819
+Range Difference = 268.946122
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 25575.564458
+
+Curve Start Point of Extrusion [X] = 89713.883474
+Curve Start Point of Extrusion [Y] = -5775.759706
+Curve Start Point of Extrusion [Z] = 268322.040013
+
+Curve End Point of Extrusion [X] = 89713.883474
+Curve End Point of Extrusion [Y] = 54826.766451
+Curve End Point of Extrusion [Z] = 268322.040013
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 0
+
+-------- Cell --------
+Range [XLength] = 268.946122
+Range [YLength] = 60602.526157
+Range [ZLength] = 25575.564458
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.707107
+qRotation [W] = 0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+Range High = 65557.778962
+Range Low = 65288.832840
+DiagonalDistanceXY = 60603.122928
+DiagonalDistance = 65778.780819
+Range Difference = 268.946122
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 25575.564458
+
+Curve Start Point of Extrusion [X] = 65288.832840
+Curve Start Point of Extrusion [Y] = -5775.759706
+Curve Start Point of Extrusion [Z] = 268322.040013
+
+Curve End Point of Extrusion [X] = 65288.832840
+Curve End Point of Extrusion [Y] = 54826.766451
+Curve End Point of Extrusion [Z] = 268322.040013
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 0
+
+-------- Cell --------
+Range [XLength] = 24425.050633
+Range [YLength] = 268.946122
+Range [ZLength] = 25575.564458
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+Range High = 89713.883474
+Range Low = 65288.832840
+DiagonalDistanceXY = 24426.531282
+DiagonalDistance = 35366.155118
+Range Difference = 24425.050633
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 25575.564458
+
+Curve Start Point of Extrusion [X] = 89713.883474
+Curve Start Point of Extrusion [Y] = -5775.759706
+Curve Start Point of Extrusion [Z] = 268322.040013
+
+Curve End Point of Extrusion [X] = 65288.832840
+Curve End Point of Extrusion [Y] = -5775.759706
+Curve End Point of Extrusion [Z] = 268322.040013
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 0
+
+-------- Cell --------
+Range [XLength] = 24425.050633
+Range [YLength] = 268.946122
+Range [ZLength] = 25575.564458
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1.000000
+qRotation [W] = 0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 89713.883474
+Origin [Y] = 54826.766451
+Origin [Z] = 268322.040013
+
+Range High = 89713.883474
+Range Low = 65288.832840
+DiagonalDistanceXY = 24426.531282
+DiagonalDistance = 35366.155118
+Range Difference = 24425.050633
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 25575.564458
+
+Curve Start Point of Extrusion [X] = 89713.883474
+Curve Start Point of Extrusion [Y] = 54826.766451
+Curve Start Point of Extrusion [Z] = 268322.040013
+
+Curve End Point of Extrusion [X] = 65288.832840
+Curve End Point of Extrusion [Y] = 54826.766451
+Curve End Point of Extrusion [Z] = 268322.040013
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 0
+
+
+===================================================
+===================================================
+Element Description: Cell
+Element: ID 6262
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Extrusion Solid
+Element ID: 16299
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = ExtrusionSolidElement, current element id = 16299, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Extrusion Solid
+Level[int] = EQP
+Element ID[long] = 16299
+Model[string] = Default
+Last Modified[dateTime] = 6/12/2020 2:13:06 PM
+Size[int] = 60
+Linkages[int] = 0
+XAttributes[int] = 0
+Type[string] = Solid
+Color[int] = 0
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Locked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = 13.3993m, -2.5015m, 23.2230m
+Range High[point3d] = 14.2745m, -1.0276m, 24.2976m
+Volume[double] = 1.3857 Cu.m
+Surface Area[double] = 7.6085 Sq.m
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+Capped[int] = Yes
+Distance[double] = 1.0746m
+-------- Extrusion Solid --------
+Range [XLength] = 8751.089429
+Range [YLength] = 14738.560646
+Range [ZLength] = 10745.904793
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 0.707107
+qRotation [W] = 0.707107
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 133993.455980
+Origin [Y] = -10378.427589
+Origin [Z] = 232230.000000
+
+Range High = 142744.545409
+Range Low = 133993.455980
+DiagonalDistanceXY = 17140.791584
+DiagonalDistance = 20230.699591
+Range Difference = 8751.089429
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 10745.904793
+
+Curve Start Point of Extrusion [X] = 133993.455980
+Curve Start Point of Extrusion [Y] = -10378.427589
+Curve Start Point of Extrusion [Z] = 232230.000000
+
+Curve End Point of Extrusion [X] = 133993.455980
+Curve End Point of Extrusion [Y] = -10378.427589
+Curve End Point of Extrusion [Z] = 232230.000000
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 1
+
+
+===================================================
+===================================================
+Element Description: Extrusion Solid
+Element: ID 16299
+===================================================
+===================================================
+
+===================================================
+===================================================
+Element Description: Cell
+Element ID: 24911
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: DgnElementSchema.01.00
+--------- ClassName = NormalCellElement, current element id = 24911, id = 0 ---------
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Cell
+Element ID[long] = 24911
+Model[string] = Default
+Last Modified[dateTime] = 6/12/2020 2:12:53 PM
+Size[int] = 128
+Linkages[int] = 0
+XAttributes[int] = 0
+Type[string] = Cell
 Class[int] = Primary
 Template[long] = (None)
 Modified[boolean] = Modified
@@ -26,113 +380,521 @@ New[boolean] = Not New
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Display Style[int] = (From View Display)
-Locked[boolean] = Locked
+Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = 20' 0.4372", 38' 9.5973", -1' 8.8338"
-Range High[point3d] = 21' 2.1245", 39' 11.2846", 8' 6.3750"
+Range Low[point3d] = 7.0009m, -21.3624m, -1.4989m
+Range High[point3d] = 31.0033m, -0.5752m, 9.7824m
 Pattern Name[string] = <null>
-Number of elements[int] = 2
+Number of elements[int] = 17
 Scale X[double] = 1.00000
 Scale Y[double] = 1.00000
 Scale Z[double] = 1.00000
-Rotation-X[double] = -0.0000°
-Rotation-Y[double] = -0.0000°
-Rotation-Z[double] = 180.0000°
-Angle[double] = 180.0000°
-Orientation[int] = Top
-Origin[point3d] = 20' 7.2809", 39' 4.4409", 8' 6.3750"
+Rotation-X[double] = -180.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Origin[point3d] = 19.0021m, -10.9688m, 4.1417m
 Cell Type[boolean] = Graphic
 Is Annotation[boolean] = False
 Annotation Purpose[boolean] = False
-In SolidKernel Entity is: Solid 0
-
-Mesh Number: 0
-numVertex: 38
-numFacet: 36
-numQuad: 36
-numTriangle: 0
-numImplicitTriangle: 72
-numVisEdges: 72
-numInvEdges: 72
-
-Num Of Facet: 37
-
-Mesh Number: 1
-numVertex: 38
-numFacet: 36
-numQuad: 36
-numTriangle: 0
-numImplicitTriangle: 72
-numVisEdges: 72
-numInvEdges: 72
-
-Num Of Facet: 37
-
-Mesh Number: 2
-numVertex: 38
-numFacet: 36
-numQuad: 36
-numTriangle: 0
-numImplicitTriangle: 72
-numVisEdges: 72
-numInvEdges: 72
-
-Num Of Facet: 37
-
-Entity------------ 
-Edges Entity: 2
-Faces Entity: 3
-Vertices Entity: 0
-
--------------------------------- Processing BREP Entiy --------------------------------
-
-Faceted BREP / ShellBased with Mesh Polyface
-
-EDGE Sub Entity: 
-
---------- FACE -------- Entity: 1 ID: 2
-
---------- FACE -------- Entity: 1 ID: 3
-
-EDGE Sub Entity: 
-
---------- FACE -------- Entity: 1 ID: 3
-
---------- FACE -------- Entity: 1 ID: 4
-
--------------------------------- End BREP Entiy --------------------------------
+-------------------CURVE VECTOR---------------------
+Size: 1
 
 
-In SolidKernel Entity is: Solid 0
+BOUNDARY_TYPE_Open --------
+Start Point [X]: 249446.455511
+Start Point [Y]: -210621.790805
+Start Point [Z]: -14888.118469
 
-In SolidKernel Entity is: Solid 0
+End Point [X]: 247715.222015
+End Point [Y]: -211623.208692
+End Point [Z]: -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 249446.455511
+Start Point [Y]: -210621.790805
+Start Point [Z]: -14888.118469
+
+End Point [X]: 247715.222015
+End Point [Y]: -211623.208692
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
 
 -------------------CURVE VECTOR---------------------
 Size: 1
 
 
-BOUNDARY_TYPE_None --------
-Start Point [X]: 6280933.640428
-Start Point [Y]: 12000000.000000
-Start Point [Z]: 2600325.000000
+BOUNDARY_TYPE_Open --------
+Start Point [X]: 211537.727467
+Start Point [Y]: -144882.528693
+Start Point [Z]: -14888.118469
 
-End Point [X]: 6280933.640428
-End Point [Y]: 12000000.000000
-End Point [Z]: 2600325.000000
+End Point [X]: 209806.792366
+End Point [Y]: -145884.464039
+End Point [Z]: -14888.118469
 
                               
-CURVE_PRIMITIVE_TYPE_PointString --------
+CURVE_PRIMITIVE_TYPE_LineString --------
 
-point 0 [X] = 6280933.640428
-point 0 [Y] = 12000000.000000
-point 0 [Z] = 2600325.000000
+Start Point [X]: 211537.727467
+Start Point [Y]: -144882.528693
+Start Point [Z]: -14888.118469
+
+End Point [X]: 209806.792366
+End Point [Y]: -145884.464039
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 2000.002690
+
+-------- Cell --------
+Range [XLength] = 240023.007658
+Range [YLength] = 207871.161476
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.866036
+qRotation [W] = -0.499981
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 310032.314594
+Origin [Y] = -109693.500000
+Origin [Z] = -14888.118469
+
+Range High = 310032.314594
+Range Low = 70009.306936
+DiagonalDistanceXY = 317523.958118
+DiagonalDistance = 317530.256792
+Range Difference = 240023.007658
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 310032.314594
+Curve Start Point of Extrusion [Y] = -109693.500000
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 307722.913520
+Curve End Point of Extrusion [Y] = -109693.401103
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 196148.243606
+Range [YLength] = 169859.417384
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = -0.499896
+qRotation [W] = 0.866085
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 91944.249790
+Origin [Y] = -109676.433445
+Origin [Z] = -14888.118469
+
+Range High = 288092.493396
+Range Low = 91944.249790
+DiagonalDistanceXY = 259473.226256
+DiagonalDistance = 259480.934066
+Range Difference = 196148.243606
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 91944.249790
+Curve Start Point of Extrusion [Y] = -109676.433445
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 94253.837580
+Curve End Point of Extrusion [Y] = -109676.203232
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 149957.817084
+Range [YLength] = 129859.417384
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = -0.499896
+qRotation [W] = 0.866085
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 115040.127683
+Origin [Y] = -109674.131308
+Origin [Z] = -14888.118469
+
+Range High = 264997.944767
+Range Low = 115040.127683
+DiagonalDistanceXY = 198370.398971
+DiagonalDistance = 198380.480864
+Range Difference = 149957.817084
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 115040.127683
+Curve Start Point of Extrusion [Y] = -109674.131308
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 117349.715472
+Curve End Point of Extrusion [Y] = -109673.901094
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 0
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 39639.663144
+Range [YLength] = 66740.679999
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.865784
+qRotation [W] = -0.500418
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 249446.455511
+Origin [Y] = -210621.790805
+Origin [Z] = -14888.118469
+
+Range High = 249446.455511
+Range Low = 209806.792366
+DiagonalDistanceXY = 77624.875272
+DiagonalDistance = 77650.635934
+Range Difference = 39639.663144
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 249446.455511
+Curve Start Point of Extrusion [Y] = -210621.790805
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 249446.455511
+Curve End Point of Extrusion [Y] = -210621.790805
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 39710.377071
+Range [YLength] = 66698.733534
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 1.000000
+qRotation [W] = -0.000482
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 132322.718531
+Origin [Y] = -211619.193713
+Origin [Z] = -14888.118469
+
+Range High = 170300.225525
+Range Low = 130589.848454
+DiagonalDistanceXY = 77624.964426
+DiagonalDistance = 77650.725059
+Range Difference = 39710.377071
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 132322.718531
+Curve Start Point of Extrusion [Y] = -211619.193713
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 132322.718531
+Curve End Point of Extrusion [Y] = -211619.193713
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 76465.047594
+Range [YLength] = 2039.710676
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.866266
+qRotation [W] = 0.499582
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 72897.073786
+Origin [Y] = -110685.763556
+Origin [Z] = -14888.118469
+
+Range High = 148783.308823
+Range Low = 72318.261228
+DiagonalDistanceXY = 76492.247471
+DiagonalDistance = 76518.389445
+Range Difference = 76465.047594
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 72897.073786
+Curve Start Point of Extrusion [Y] = -110685.763556
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 72897.073786
+Curve End Point of Extrusion [Y] = -110685.763556
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 39639.663144
+Range [YLength] = 66740.679999
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 0.500418
+qRotation [W] = 0.865784
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 130595.166020
+Origin [Y] = -8754.930493
+Origin [Z] = -14888.118469
+
+Range High = 170234.829164
+Range Low = 130595.166020
+DiagonalDistanceXY = 77624.875272
+DiagonalDistance = 77650.635934
+Range Difference = 39639.663144
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 130595.166020
+Curve Start Point of Extrusion [Y] = -8754.930493
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 130595.166020
+Curve End Point of Extrusion [Y] = -8754.930493
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 39710.377071
+Range [YLength] = 66698.733534
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = -0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = 0.000482
+qRotation [W] = 1.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = 247718.902999
+Origin [Y] = -7757.527585
+Origin [Z] = -14888.118469
+
+Range High = 249451.773076
+Range Low = 209741.396005
+DiagonalDistanceXY = 77624.964426
+DiagonalDistance = 77650.725059
+Range Difference = 39710.377071
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 247718.902999
+Curve Start Point of Extrusion [Y] = -7757.527585
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 247718.902999
+Curve End Point of Extrusion [Y] = -7757.527585
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------- Cell --------
+Range [XLength] = 76465.047594
+Range [YLength] = 2039.710676
+Range [ZLength] = 2000.000000
+
+Quaternion Rotation
+qRotation [X] = 0.000000
+qRotation [Y] = -0.000000
+qRotation [Z] = -0.499582
+qRotation [W] = 0.866266
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = -0.000000
+vRotation [Z] = -1.000000
+
+Origin [X] = 307144.547744
+Origin [Y] = -108690.957741
+Origin [Z] = -14888.118469
+
+Range High = 307723.360302
+Range Low = 231258.312708
+DiagonalDistanceXY = 76492.247471
+DiagonalDistance = 76518.389445
+Range Difference = 76465.047594
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = 2000.000000
+
+Curve Start Point of Extrusion [X] = 307144.547744
+Curve Start Point of Extrusion [Y] = -108690.957741
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 307144.547744
+Curve End Point of Extrusion [Y] = -108690.957741
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Open --------
+Start Point [X]: 142169.826171
+Start Point [Y]: -192623.208692
+Start Point [Z]: -12888.118469
+
+End Point [X]: 141015.445200
+End Point [Y]: -194623.208692
+End Point [Z]: -12888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 142169.826171
+Start Point [Y]: -192623.208692
+Start Point [Z]: -12888.118469
+
+End Point [X]: 141015.445200
+End Point [Y]: -194623.208692
+End Point [Z]: -12888.118469
+
+Curve Line String Length: 2309.241310
+
+
+
+
+
+-------- Cell --------
+Range [XLength] = 240023.007658
+Range [YLength] = 207871.161476
+Range [ZLength] = 100.000000
+
+Quaternion Rotation
+qRotation [X] = -0.499981
+qRotation [Y] = 0.866036
+qRotation [Z] = 0.000000
+qRotation [W] = -0.000000
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.499981
+vRotation [Y] = 0.866036
+vRotation [Z] = 0.000000
+
+Origin [X] = 310032.314594
+Origin [Y] = -109693.500000
+Origin [Z] = -14888.118469
+
+Range High = 310032.314594
+Range Low = 70009.306936
+DiagonalDistanceXY = 317523.958118
+DiagonalDistance = 317523.973864
+Range Difference = 240023.007658
+Vector of Extrusion [X] = 0.000000
+Vector of Extrusion [Y] = 0.000000
+Vector of Extrusion [Z] = -100.000000
+
+Curve Start Point of Extrusion [X] = 310032.314594
+Curve Start Point of Extrusion [Y] = -109693.500000
+Curve Start Point of Extrusion [Z] = -14888.118469
+
+Curve End Point of Extrusion [X] = 310032.314594
+Curve End Point of Extrusion [Y] = -109693.500000
+Curve End Point of Extrusion [Z] = -14888.118469
+
+True if the curve element has a single element and it's a primitive = 2
+
+True if the end cap is enabled = 1
 
 
 ===================================================
 ===================================================
-Element Description: Support
-Element: ID 12147
+Element Description: Cell
+Element: ID 24911
 ===================================================
 ===================================================
 

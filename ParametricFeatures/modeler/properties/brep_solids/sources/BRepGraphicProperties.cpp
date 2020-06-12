@@ -6,7 +6,7 @@ BRepGraphicProperties::BRepGraphicProperties()
 	this->mSolidEntityVector = std::vector<SolidEntityGraphicProperties*>();
 	this->mVertexLoopVector = std::vector<DPoint3d>();
 	//this->mFacetTriangulatedVector = std::vector<std::vector<DPoint3d>>();
-	this->mFaceIDVector = std::vector<int>();
+	this->mFaceIDVector = std::vector<std::tuple<int, int>>();
 }
 
 void BRepGraphicProperties::addSolidEntityGraphicProperties(SolidEntityGraphicProperties * solidGraphic)
@@ -29,22 +29,13 @@ std::vector<DPoint3d> BRepGraphicProperties::getVertexLoopVector()
 	return this->mVertexLoopVector;
 }
 
-//void BRepGraphicProperties::addFacetTriangulated(std::vector<DPoint3d> face)
-//{
-//	this->mFacetTriangulatedVector.push_back(face);
-//}
-//
-//std::vector<std::vector<DPoint3d>> BRepGraphicProperties::getFacetTriangulated()
-//{
-//	return this->mFacetTriangulatedVector;
-//}
-
-void BRepGraphicProperties::addFaceID(int id)
+void BRepGraphicProperties::addNodeIDFaceID(int idN, int idF)
 {
-	this->mFaceIDVector.push_back(id);
+	std::tuple<int, int> idNodeFace = { idN, idF };
+	this->mFaceIDVector.push_back(idNodeFace);
 }
 
-std::vector<int> BRepGraphicProperties::getFaceIDVector()
+std::vector<std::tuple<int, int>> BRepGraphicProperties::getNodeIDFaceIDVector()
 {
 	return this->mFaceIDVector;
 }

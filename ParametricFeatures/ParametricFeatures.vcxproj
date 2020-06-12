@@ -16,13 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\ShapesTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
-    <ClCompile Include="common\utils\sources\PrimitiveTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\NumberUtils.cpp" />
     <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="enhancer\sources\IfcOperationsEnhancer.cpp" />
@@ -102,6 +99,7 @@
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="headers\GraphicElementTool.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
@@ -125,7 +123,6 @@
     <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
     <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
     <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
-    <ClInclude Include="common\utils\headers\PrimitiveTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />

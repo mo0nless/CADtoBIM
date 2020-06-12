@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include<tuple> // for tuple 
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/brep_solids/headers/BRepGraphicProperties.h"

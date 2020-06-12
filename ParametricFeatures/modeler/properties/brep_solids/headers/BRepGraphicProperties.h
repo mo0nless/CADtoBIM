@@ -15,8 +15,8 @@ public:
 	void addVertexLoop(DPoint3d loop);
 	std::vector<DPoint3d> getVertexLoopVector();
 
-	void addFaceID(int id);
-	std::vector<int> getFaceIDVector();
+	void addNodeIDFaceID(int idN, int idF);
+	std::vector<std::tuple<int, int>> getNodeIDFaceIDVector();
 
 	void setBRepTypeEnum(int solidBentleyType);
 	BRepTypeEnum getBRepTypeEnum();
@@ -27,7 +27,7 @@ public:
 private:
 	std::vector<SolidEntityGraphicProperties*> mSolidEntityVector;
 	std::vector<DPoint3d> mVertexLoopVector;
-	std::vector<int> mFaceIDVector;
+	std::vector<std::tuple<int,int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;
 	std::vector<BoundPoints*> mBoundsPoint;
 };

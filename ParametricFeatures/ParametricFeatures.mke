@@ -79,7 +79,6 @@ appObjects = \
 	$(o)IfcOperationsEnhancer$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
-	$(o)NumberUtils$(oext) \
 	$(o)InitializationEnhancer$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
@@ -129,8 +128,6 @@ appObjects = \
 	$(o)RevolveReaderProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
-	$(o)ShapesTypeEnumUtils$(oext) \
-	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
@@ -140,6 +137,7 @@ appObjects = \
 	$(o)IfcMaterialEnhancer$(oext) \
 	$(o)IfcPropertiesEnhancer$(oext) \
 	$(o)PropertyTypeEnumUtils$(oext) \
+	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -223,8 +221,6 @@ $(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/enums/sources/BooleanFunction
 
 $(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
 
-$(o)PrimitiveTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PrimitiveTypeEnumUtils.cpp $(baseDir)common/utils/headers/PrimitiveTypeEnumUtils.h
-
 $(o)BoxGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/BoxGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h
 
 $(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h
@@ -236,8 +232,6 @@ $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/g
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
 
 $(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h
-
-$(o)NumberUtils$(oext) : $(baseDir)common/utils/sources/NumberUtils.cpp $(baseDir)common/utils/headers/NumberUtils.h
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
 
@@ -311,10 +305,6 @@ $(o)BRepGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sour
 
 $(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
 
-$(o)ShapesTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/ShapesTypeEnumUtils.cpp $(baseDir)common/utils/headers/ShapesTypeEnumUtils.h
-
-$(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
-
 $(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
 
 $(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
@@ -330,6 +320,8 @@ $(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertie
 $(o)IfcMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcMaterialEnhancer.h
 
 $(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
+
+$(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
 
 $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
 
