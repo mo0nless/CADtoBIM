@@ -1,10 +1,9 @@
 #pragma once
 
-class NumberUtils {
-	
-private:
-	NumberUtils(){}
-
-public:
-	static double convertMicrometersToMetters(double valueInMicroMeters);
+struct NumberUtils
+{
+	static double NumberUtils::convertMicrometersToMetters(double valueInMicroMeters)
+	{
+		return valueInMicroMeters / 1000000;
+	}
 };

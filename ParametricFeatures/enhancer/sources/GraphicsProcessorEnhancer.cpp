@@ -3,8 +3,8 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -1119,15 +1119,6 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
 		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-		
-		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
-	
-		//Process the primitives inside the Curve Vector
-		processCurvesPrimitives(curvesVector, shapesGraphicProperties);
-		shapesGraphicProperties->setIsFilled(isFilled);
-		shapesGraphicProperties->setArea(area);
-		shapesGraphicProperties->setCentroid(centroid);
-		shapesGraphicProperties->setNormal(normal);
 
 		// Chek if the shape is closed 
 		if (curvesVector.IsClosedPath())
@@ -1135,13 +1126,20 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		else if (curvesVector.IsPhysicallyClosedPath())
 			isClosed = curvesVector.IsPhysicallyClosedPath();
 
-		shapesGraphicProperties->setIsClosed(isClosed);
+		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
+	
+		//Process the primitives inside the Curve Vector
+		processCurvesPrimitives(curvesVector, shapesGraphicProperties);
 
+		shapesGraphicProperties->setIsFilled(isFilled);
+		shapesGraphicProperties->setArea(area);
+		shapesGraphicProperties->setCentroid(centroid);
+		shapesGraphicProperties->setNormal(normal);
+		shapesGraphicProperties->setIsClosed(isClosed);
 		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
 		
-
 		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() && addToDictionary)
 			//Add the shape to the Dictionary
 			pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
@@ -1160,6 +1158,7 @@ bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR 
 	std::ofstream outfile;
 	auto entityType = entity.GetEntityType();
 
+#if false
 	//New instance of the BRep Element
 	if (mBRepGraphicProperties == nullptr)
 	{
@@ -1208,7 +1207,7 @@ bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR 
 			//Clear the previous vertices
 			subEntitiesVertices.clear();
 
-			std::map<int, bool> mapFacesID;
+			std::map<std::vector<int>, bool> mapFacesID;
 
 			for (auto edge : subEntitiesEdges)
 			{
@@ -1266,7 +1265,7 @@ bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR 
 					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
 
 					//Set the faceID
-					bound->nodeID = faceID.nodeId;
+					bound->nodeID = (int)faceID.nodeId;
 					bound->faceID.push_back((int)faceID.entityId);
 
 					outfile.open(filePath, std::ios_base::app);
@@ -1274,10 +1273,11 @@ bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR 
 					outfile << std::endl;
 					outfile.close();
 
-					if (searchOnMap(mapFacesID, (int)faceID.entityId) == NULL)
+					std::vector<int> key = { (int)faceID.nodeId, (int)faceID.entityId };
+					if (searchOnMap(mapFacesID, key) == NULL)
 					{
-						mapFacesID.insert({ (int)faceID.entityId ,true });
-						mBRepGraphicProperties->addFaceID((int)faceID.entityId);
+						mapFacesID.insert({ key , true });
+						mBRepGraphicProperties->addNodeIDFaceID((int)faceID.nodeId,(int)faceID.entityId);
 					}
 
 					SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
@@ -1329,8 +1329,36 @@ bool GraphicsProcessorEnhancer::processEntityAsFacetedBRep(ISolidKernelEntityCR 
 			subEntitiesFaces.clear();
 		}
 	}
+#endif
 
-	return true;
+	bool elementProcessed = false;
+
+	SolidUtil::Debug::DumpEntity(entity, L"Dump-Entity: ");
+	//New instance of the BRep Element
+	if (mBRepGraphicProperties == nullptr)
+	{
+		mBRepGraphicProperties = new BRepGraphicProperties();
+		mBRepGraphicProperties->setBRepTypeEnum((int)entityType);
+		elementProcessed = processElementAsMesh();
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Number of Meshes: " << mBRepGraphicProperties->getSolidEntityVector().size() << std::endl;
+		outfile.close();
+	}
+
+	if (mBRepGraphicProperties != nullptr && (mBRepGraphicProperties->getSolidEntityVector().size() > 0))
+	{
+		auto solidEntity = mBRepGraphicProperties->getSolidEntityVector().at(mNumberSolidEntity);
+		solidEntity->setBRepTypeEnum((int)entityType);
+		elementProcessed = true;
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Solid Number: " << mNumberSolidEntity << std::endl;
+		outfile.close();
+		mNumberSolidEntity++;
+	}
+
+	return elementProcessed;
 }
 #pragma warning(pop)
 
@@ -1366,7 +1394,7 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 			PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
 
 			std::vector<std::vector<DPoint3d>> facetTriangulated;
-			
+
 			pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
 
 			outfile.open(filePath, std::ios_base::app);
@@ -1380,7 +1408,7 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 			outfile << "numInvEdges: " << numInvEdges << std::endl;
 			outfile << std::endl;
 			outfile.close();
-						
+
 			int nFace = 1;
 
 			while (pv->AdvanceToNextFace())
@@ -1400,7 +1428,7 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 				nFace++;
 				outfile.close();
 			}
-			
+
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "Num Of Facet: " << nFace << std::endl;
 			outfile << std::endl;
@@ -1409,7 +1437,9 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 			//Add to the BRep Entity
 			mBRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
 		}
-	}	
+	}
+	else
+		return false;
 
 	return true;
 }

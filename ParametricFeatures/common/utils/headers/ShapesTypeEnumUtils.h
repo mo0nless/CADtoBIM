@@ -4,13 +4,13 @@
 #include <string>
 #include "../../enums/headers/ShapesTypeEnum.h"
 
-class ShapesTypeEnumUtils
+struct ShapesTypeEnumUtils
 {
-public:	
-	static CurvesBoundaryTypeEnum getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt);
-
-private:
-	ShapesTypeEnumUtils() {};
-
+	static CurvesBoundaryTypeEnum getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt)
+	{
+		return CurvesBoundaryTypeEnum(boundaryBentleyInt);
+	};
 };
+
+
 

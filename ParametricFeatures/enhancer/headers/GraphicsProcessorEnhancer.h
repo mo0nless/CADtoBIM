@@ -49,16 +49,17 @@ public:
 
 	ElementHandle mCurrentElementHandle;
 	BRepGraphicProperties* mBRepGraphicProperties = nullptr;
+	int mNumberSolidEntity = 0;
 private:
 	std::string filePath;
 	DictionaryProperties* pDictionaryProperties;
 	
-	template<class T>
-	T searchOnMap(std::map<int, T>, int key);
+	template <class T, class U>
+	T searchOnMap(std::map<U, T>, U key);
 };
 
-template<class T>
-inline T GraphicsProcessorEnhancer::searchOnMap(std::map<int, T> mappedValues, int key)
+template <class T, class U>
+inline T GraphicsProcessorEnhancer::searchOnMap(std::map<U, T> mappedValues, U key)
 {
 	for (auto const& element : mappedValues)
 	{

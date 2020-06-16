@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -89,6 +89,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 {
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
+	outfile <<""<< std::endl;
 	outfile << std::fixed;
 	outfile.close();
 		
@@ -134,7 +135,13 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				break;
 		}
 
-		mGraphicsProcessorEnhancer.processEntityAsFacetedBRep(entity);
+		if (mGraphicsProcessorEnhancer.processEntityAsFacetedBRep(entity))
+		{
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Element or Entity Processed Correctly" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+		}
 
 #if false
 		if (entityType == ISolidKernelEntity::KernelEntityType::EntityType_Solid || entityType == ISolidKernelEntity::KernelEntityType::EntityType_Sheet)
@@ -1153,7 +1160,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			rotationalSweepGraphicProperties->rotation.Init(rotation);
 			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 			//mGraphicsProcessorEnhancer.processCurvesPrimitives(*rotSweepDetails.m_baseCurve.GetR(), shapesGraphicProperties);
-			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties);
+			bool addToDictionary = false;
+			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties, addToDictionary);
 			if (shapesGraphicProperties != nullptr) {
 				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
 			}

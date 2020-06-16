@@ -235,7 +235,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			}
 
 			rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->setControlPoints(temp);
-			Ifc4::IfcGeometricRepresentationItem* result = ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(),file, ifcElementBundle);
+			Ifc4::IfcGeometricRepresentationItem* result = nullptr;
+			bool addToIfcElementBundle = false;
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(), file, ifcElementBundle, addToIfcElementBundle);
+			if (ifcShapesEnhancer->hasSingleShapeItem())
+				result = ifcShapesEnhancer->getSingleShapeRepresentation();
 
 			//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0, NumberUtils::convertMicrometersToMetters(rotationalSweepGraphicProperties.getRadius())),
 			//	file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
