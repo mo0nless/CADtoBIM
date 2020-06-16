@@ -12,6 +12,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 			double rotationX, rotationY, rotationZ;
+			int orientation;
 
 			for each (auto readerBundle in dictionaryProperties.getReaderPropertiesBundleVector())
 			{
@@ -25,6 +26,9 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 					else if (readerProperty->getPropertyName() == "Rotation-Z") {
 						rotationZ = readerProperty->getPropertyValue().GetDouble();
 					}
+					else if (readerProperty->getPropertyName() == "Orientation") {
+						orientation = readerProperty->getPropertyValue().GetInteger();
+					}
 				}
 			}
 
@@ -37,7 +41,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 			{
 				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(graphicProperties);
 				if (solidPrimitiveProperty != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file, rotationX, rotationY, rotationZ);
+					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file, rotationX, rotationY, rotationZ,orientation);
 					if (ifcRepresentationItem != nullptr)
 					{
 						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
@@ -51,7 +55,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	double rotationX, double rotationY, double rotationZ)
+	double rotationX, double rotationY, double rotationZ, int orientation)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -63,7 +67,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	}
 	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP)
 	{
-		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file,  rotationX,  rotationY,  rotationZ);
+		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file,  rotationX,  rotationY,  rotationZ, orientation);
 	}
 
 	return ifcRepresentationItem;
@@ -137,7 +141,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	double rotationX, double rotationY, double rotationZ)
+	double rotationX, double rotationY, double rotationZ, int orientation)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -248,7 +252,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				file.addTriplet<Ifc4::IfcDirection>(rotationalSweepGraphicProperties.getVectorAxisZ().x, rotationalSweepGraphicProperties.getVectorAxisZ().y,
 					rotationalSweepGraphicProperties.getVectorAxisZ().z));
 
-			//DVec3d  vec3,vec4;
+			DVec3d  vec3,vec4;
 
 			//vec3.x = rotationX;
 			//vec3.y = 0;
@@ -257,9 +261,20 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//vec4.x = 0;
 			//vec4.y = rotationY;
 			//vec4.z = 0;
+			vec3 = vec3.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint());
 
-			/*vec3 = vec3.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint());
-			vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getCenterRotation());*/
+
+			if (orientation == 1) {
+				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getCenterRotation());
+			}
+			else if (orientation == 2) {
+				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint(), rotationalSweepGraphicProperties.getCenterRotation());
+			}
+			else {
+				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getCenterRotation());
+			}
+
+			
 
 			//vec1 = vec1.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint());
 
@@ -270,11 +285,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p,rotationalSweepGraphicProperties.getVectorAxisX(),
 			//	rotationalSweepGraphicProperties.getVectorAxisY());
 
-			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p, rotationalSweepGraphicProperties.getVectorAxisX(), rotationalSweepGraphicProperties.getVectorAxisY());
+			/*Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p, rotationalSweepGraphicProperties.getVectorAxisX(), rotationalSweepGraphicProperties.getVectorAxisY());*/
+			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p, vec4, vec3);
 
-			Ifc4::IfcSweptAreaSolid* something = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
-			file.addEntity(something);
-			ifcRepresentationItem = something;
+			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
+
 		}
 
 
