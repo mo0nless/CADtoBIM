@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -1085,7 +1085,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 
 			rotSweepDetails.GetRange(range);
-			rotSweepDetails.GetTransforms(localToWorld, worldToLocal);
+			rotSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 			rotSweepDetails.TryGetRotationAxis(centerRotation, rotationAxes, sweepRadians);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
@@ -1159,7 +1159,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			rotationalSweepGraphicProperties->setRadius(radius);
 			rotationalSweepGraphicProperties->rotation.Init(rotation);
 			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-			//mGraphicsProcessorEnhancer.processCurvesPrimitives(*rotSweepDetails.m_baseCurve.GetR(), shapesGraphicProperties);
 			bool addToDictionary = false;
 			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties, addToDictionary);
 			if (shapesGraphicProperties != nullptr) {
@@ -1167,21 +1166,10 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			}
 			
 
-			//for (int i = 0; i < rotSweepDetails.m_baseCurve->size(); ++i) {
-			//	CurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(rotSweepDetails.m_baseCurve->at(i));
-			//	rotationalSweepGraphicProperties->setCurveGraphicProperties(curveGraphicProperties);
-			//}
-
 			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
 			// set X,Y,Z axes
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
-			
-
-			//columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
-			//columnVectorY = columnVectorX;
-
-			//columnVectorY.RotateXY(3.14);
-			//columnVectorZ.CrossProduct(columnVectorX, columnVectorY);
+		
 
 			localToWorld.GetMatrixColumn(columnVectorX, 0);
 			localToWorld.GetMatrixColumn(columnVectorY, 1);

@@ -219,18 +219,16 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			rotationalSweepPlacement.y = 0;
 			rotationalSweepPlacement.z = 0;
 
-			DVec3d p;
-			p.Init(rotationalSweepGraphicProperties.getCenterRotation());
+			DVec3d sweepCenterOfRotation;
+			sweepCenterOfRotation.Init(rotationalSweepGraphicProperties.getCenterRotation());
 
+			// adjust global points of the shape/curve related to the global placement of the revolve
 			std::vector<DPoint3d> temp;
 			std::vector<DPoint3d> points = rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->getControlPoints();
 			for (auto const c : points) {
 				DPoint3d newPoint;
-				//newPoint.x = c.x+ p.x;//+ rotationalSweepGraphicProperties.getVectorAxisX().x * rotationalSweepGraphicProperties.getRadius() / 2;
-				//newPoint.y = c.y + p.y;// +NumberUtils::convertMicrometersToMetters(rotationalSweepGraphicProperties.getRadius());// +rotationalSweepGraphicProperties.getVectorAxisX().y * rotationalSweepGraphicProperties.getRadius() / 2;
-				//newPoint.z = c.z+  p.z;// +rotationalSweepGraphicProperties.getVectorAxisX().z * rotationalSweepGraphicProperties.getRadius() / 2;
 
-				newPoint.Subtract(c, p);
+				newPoint.Subtract(c, sweepCenterOfRotation);
 				temp.push_back(newPoint);
 			}
 
@@ -241,14 +239,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
 
-			//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0, NumberUtils::convertMicrometersToMetters(rotationalSweepGraphicProperties.getRadius())),
-			//	file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
-
-			//Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
-			//	NumberUtils::convertMicrometersToMetters(10000));
-
-			//Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcRectangleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("RotationalSweep"), localPlacement, 10, 15);
-
 			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("RotationalSweep"),
 				(Ifc4::IfcCurve*) result);
 
@@ -256,41 +246,12 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				file.addTriplet<Ifc4::IfcDirection>(rotationalSweepGraphicProperties.getVectorAxisZ().x, rotationalSweepGraphicProperties.getVectorAxisZ().y,
 					rotationalSweepGraphicProperties.getVectorAxisZ().z));
 
-			DVec3d  vec3,vec4;
-
-			//vec3.x = rotationX;
-			//vec3.y = 0;
-			//vec3.z = 0;
-
-			//vec4.x = 0;
-			//vec4.y = rotationY;
-			//vec4.z = 0;
-			vec3 = vec3.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint());
-
-
-			if (orientation == 1) {
-				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getCenterRotation());
-			}
-			else if (orientation == 2) {
-				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint(), rotationalSweepGraphicProperties.getCenterRotation());
-			}
-			else {
-				vec4 = vec4.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getCenterRotation());
-			}
-
-			
-
-			//vec1 = vec1.FromStartEndNormalize(rotationalSweepGraphicProperties.getShapesGraphicProperties()->getStartPoint(), rotationalSweepGraphicProperties.getShapesGraphicProperties()->getEndPoint());
-
-			//vec1.CrossProduct(rotationalSweepGraphicProperties.getVectorAxisX(), vec3);
-			//vec2.CrossProduct(rotationalSweepGraphicProperties.getVectorAxisY(), vec4);
-
-			// !!! torus placement axes should be provided in the order of Y, Z
-			//Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p,rotationalSweepGraphicProperties.getVectorAxisX(),
-			//	rotationalSweepGraphicProperties.getVectorAxisY());
-
-			/*Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p, rotationalSweepGraphicProperties.getVectorAxisX(), rotationalSweepGraphicProperties.getVectorAxisY());*/
-			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(p, vec4, vec3);
+			// leave the directions empty
+			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
+				file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.x),
+					NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.y),
+					NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.z )),
+				new Ifc4::IfcDirection(std::vector<double>()), new Ifc4::IfcDirection(std::vector<double>()));
 
 			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
 
