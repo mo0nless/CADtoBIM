@@ -14,7 +14,7 @@ private:
 
 public:
 	RotationalSweepGraphicProperties();
-	DVec3d rotationAxes;
+	DVec3d rotationAxes, rotation;
 	DRay3d axisOfRotation;
 	Transform ltoW, wtoL;
 

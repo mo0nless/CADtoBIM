@@ -1299,7 +1299,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			outfile << "Radius min= " << radius_Min << std::endl;
 			outfile << "Radius max= " << radius_Max << std::endl;
-			outfile << "Radius cen= " << radius_C << std::endl;
+			outfile << "Radius cen= " << radius << std::endl;
 
 			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
 			rotationalSweepGraphicProperties->setRadius(radius);
@@ -1312,7 +1312,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			}
 			
 
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
 			// set X,Y,Z axes
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
 		
