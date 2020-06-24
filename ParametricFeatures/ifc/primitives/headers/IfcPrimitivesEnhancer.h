@@ -10,9 +10,10 @@
 #include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/ExtrusionGraphicProperties.h"
+#include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../headers/IfcElementBundle.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
-//#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 
 
 class IfcPrimitivesEnhancer {

@@ -45,10 +45,7 @@ public:
 
 	void setNodeId(int id);
 	int getNodeId();
-
-	void setCentroid(DPoint3d newCenter);
-	DPoint3d getCentroid();
-
+	
 	bool getHasSingleCurve();
 	void setHasSingleCurve(bool value);
 

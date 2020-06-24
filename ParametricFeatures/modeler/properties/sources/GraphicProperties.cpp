@@ -52,6 +52,16 @@ void GraphicProperties::setCentroid(DVec3d newCentroid)
 	this->centroid = newCentroid;
 }
 
+DPoint3d GraphicProperties::getOrigin()
+{
+	return this->origin;
+}
+
+void GraphicProperties::setOrigin(DPoint3d newOrigin)
+{
+	this->origin = newOrigin;
+}
+
 void GraphicProperties::setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ)
 {
 	this->vectorAxisX = newVectorAxisX;

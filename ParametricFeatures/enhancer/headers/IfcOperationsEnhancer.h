@@ -9,20 +9,44 @@ class IfcOperationsEnhancer
 public:
 	IfcOperationsEnhancer();
 
-	static Ifc4::IfcCartesianPoint* buildIfcCartesianFromCoordsPoint3D(DPoint3d newControlPoint);
-	static Ifc4::IfcVector* buildIfcVectorFromDirectionPoint3D(DPoint3d newVector);
-	static Ifc4::IfcDirection* buildIfcDirectionFromDirectionVec3D(DVec3d newDirection);
+	
+	static Ifc4::IfcCartesianPoint* buildIfcCartesian3DfromCoordsPoint3D(DPoint3d newControlPoint);
+	static Ifc4::IfcCartesianPoint* buildIfcCartesian2DfromCoordsPoint3D(DPoint3d newControlPoint);
+	
+	static Ifc4::IfcDirection* buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection);
+	static Ifc4::IfcDirection* buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection);
+	
 	static Ifc4::IfcAxis2Placement3D * buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX);
+	static Ifc4::IfcAxis2Placement2D * buildIfcAxis2Placement2D(DVec3d pointOfPlacement, DVec3d dirVectorX);
+
 	static bool isDoubleEqual(double x, double y);
 	static bool isVectorDoubleEqual(std::vector<double> v1, std::vector<double>  v2);
 
 	template<class Triplet3D>
 	static bool areTripletsDoubleEqual(Triplet3D firstTriplet, Triplet3D secondTriplet);
 
+	template<class Triplet3D>
+	static Ifc4::IfcVector* buildIfcVectorFromDirectionPoint3D(Triplet3D newVector);
+	
 private:
 	template<class Triplet3D>
 	static std::vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
+	template<class Tuple2D>
+	static std::vector<double> buildDoubleVectorFromTuple(Tuple2D newTuple);
 };
+
+//Dpoint3d, Dvec3d
+template<class Triplet3D>
+Ifc4::IfcVector * IfcOperationsEnhancer::buildIfcVectorFromDirectionPoint3D(Triplet3D newVector)
+{
+	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(
+		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<Triplet3D>(newVector)
+	);
+
+	Ifc4::IfcVector* vC = new Ifc4::IfcVector(dir, newVector.Magnitude());
+
+	return vC;
+}
 
 //Dpoint3d, Dvec3d
 template<class Triplet3D>
@@ -50,6 +74,19 @@ inline std::vector<double> IfcOperationsEnhancer::buildDoubleVectorFromTriplet(T
 
 	return points;
 }
+
+template<class Tuple2D>
+inline std::vector<double> IfcOperationsEnhancer::buildDoubleVectorFromTuple(Tuple2D newTuple)
+{
+	std::vector<double> points;
+	points.push_back(NumberUtils::convertMicrometersToMetters(newTuple.x));
+	points.push_back(NumberUtils::convertMicrometersToMetters(newTuple.y));
+
+	return points;
+}
+
+
+
 
 struct SolidEdge {
 	Ifc4::IfcCurve* ifcCurve;

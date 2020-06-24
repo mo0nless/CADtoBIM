@@ -24,7 +24,7 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 		if (closed)
 		{
 			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getStartPoint())
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
 			);
 
 			Ifc4::IfcVertex* start(p0);
@@ -65,10 +65,10 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 		else
 		{		
 			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getStartPoint())
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
 			);
 			Ifc4::IfcVertexPoint* p1 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curve->getEndPoint())
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getEndPoint())
 			);
 
 			Ifc4::IfcVertex* start(p0);

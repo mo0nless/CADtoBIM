@@ -4,6 +4,7 @@
 #include "../../../stdafx.h"
 #include "../../headers/IfcElementBundle.h"
 //#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
+#include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h"
 //#include <vector>
 

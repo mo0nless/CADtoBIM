@@ -2,9 +2,10 @@
 
 #include "../../shapes/headers/CurvesShapesGraphicProperties.h"
 #include <DgnPlatform/ElementGeometry.h>
+#include "../../headers/GraphicProperties.h"
 #include <vector>
 
-class MSBsplineSurfaceGraphicProperties 
+class MSBsplineSurfaceGraphicProperties //: public GraphicProperties
 {
 public:
 	MSBsplineSurfaceGraphicProperties();
@@ -40,6 +41,9 @@ public:
 	void setWeights(std::vector<std::vector<double>> newWeights);
 	std::vector<std::vector<double>> getWeights();
 
+	void setFaceId(FaceId id);
+	FaceId getBFaceId();
+
 	void setFaceId(int id);
 	int getFaceId();
 
@@ -52,8 +56,8 @@ public:
 	void setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds);
 	std::vector<std::vector<DPoint3d>> getBoundsVectorPoints();
 
-	void addCurvesShapesGraphicProperties(CurvesShapesGraphicProperties* bound);
-	std::vector<CurvesShapesGraphicProperties*> getCurvesShapesGraphicProperties();
+	void addSurfaceBoundaryShape(ShapesGraphicProperties* bound);
+	ShapesGraphicProperties* getSurfaceBoundaryShape();
 
 	bvector<DPoint3d> mFullArrayControlPoint;
 
@@ -64,6 +68,7 @@ private:
 	int mNumberOfBounds;
 	int mFaceId;
 	int mNodeId;
+	FaceId mBentleyFaceId;
 
 	std::vector<std::vector<double>> mWeigths;
 	std::vector<double> mUKnots;
@@ -72,7 +77,7 @@ private:
 	std::vector<int> mUKnotsMultiplicity;
 	std::vector<int> mVKnotsMultiplicity;
 
-	std::vector<CurvesShapesGraphicProperties*> mCurveBoundaries;
+	ShapesGraphicProperties* mSurfaceBoundary;
 
 	int mNumUPoles;
 	int mNumVPoles;

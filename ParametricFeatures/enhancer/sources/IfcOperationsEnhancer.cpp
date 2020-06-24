@@ -4,7 +4,8 @@ IfcOperationsEnhancer::IfcOperationsEnhancer()
 {
 }
 
-Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(DPoint3d newControlPoints)
+//3 Dimension
+Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(DPoint3d newControlPoints)
 {
 	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
 		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<DPoint3d>(newControlPoints)
@@ -13,35 +14,59 @@ Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoin
 	return cP;
 }
 
-Ifc4::IfcVector * IfcOperationsEnhancer::buildIfcVectorFromDirectionPoint3D(DPoint3d newVector)
+//2 Dimension
+Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(DPoint3d newControlPoint)
 {
-	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(
-		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<DPoint3d>(newVector)
+	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
+		IfcOperationsEnhancer::buildDoubleVectorFromTuple<DPoint3d>(newControlPoint)
 	);
 
-	Ifc4::IfcVector* vC = new Ifc4::IfcVector(dir, newVector.Magnitude());
-
-	return vC;
+	return cP;
 }
 
-Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(DVec3d newDirection)
+//3 Dimension
+Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection)
 {
 	std::vector<double> points;
-	points.push_back(newDirection.x);
-	points.push_back(newDirection.y);
-	points.push_back(newDirection.z);
+	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.x));
+	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.y));
+	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.z));
 
 	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
 
 	return dir;
 }
 
+//2 Dimension
+Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection)
+{
+	std::vector<double> points;
+	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.x));
+	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.y));
+
+	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
+
+	return dir;
+}
+
+//3 Dimension
 Ifc4::IfcAxis2Placement3D * IfcOperationsEnhancer::buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX)
 {
 	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-		IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(pointOfPlacement),
-		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorZ),
-		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorX)
+		IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(pointOfPlacement),
+		IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(dirVectorZ),
+		IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(dirVectorX)
+	);
+
+	return place;
+}
+
+//2 Dimension
+Ifc4::IfcAxis2Placement2D * IfcOperationsEnhancer::buildIfcAxis2Placement2D(DVec3d pointOfPlacement, DVec3d dirVectorX)
+{
+	Ifc4::IfcAxis2Placement2D* place = new Ifc4::IfcAxis2Placement2D(
+		IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(pointOfPlacement),
+		IfcOperationsEnhancer::buildIfcDirection2DfromDirectionVec3D(dirVectorX)
 	);
 
 	return place;

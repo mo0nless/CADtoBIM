@@ -28,8 +28,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 	Ifc4::IfcAxis2Placement3D* originAndAxisPlacement = new Ifc4::IfcAxis2Placement3D(
 		file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
-		file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), 
-		file.addTriplet<Ifc4::IfcDirection>(0, 0, 1) // Z direction
+		file.addTriplet<Ifc4::IfcDirection>(0, 0, 1), // Z direction
+		file.addTriplet<Ifc4::IfcDirection>(1, 0, 0) 
 	);
 
 	//http://standards.buildingsmart.org/MVD/RELEASE/IFC4/ADD2_TC1/RV1_2/HTML/schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm
@@ -38,6 +38,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		representationContextType,
 		3,
 		1.0E-05,
+		//file.addTriplet<Ifc4::IfcAxis2Placement3D>(4,4,4),
 		originAndAxisPlacement,
 		trueNorthDirection
 	);
@@ -94,84 +95,6 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		}
 	}
 
-	// TODO [MP/SB] find another implementation for smart feature
-	//if (!smartFeatureContainerVector.empty()) {
-	//	for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
-	//	{
-	//		SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
-	//
-	//		if (smartFeatureContainer.getRoot() != nullptr)
-	//		{
-	//			if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
-	//				IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-	//				representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-	//			}
-	//		}
-	//
-	//		if (representationItem != nullptr) 
-	//		{
-	//			items->push(representationItem);
-	//		}
-	//	}
-	//}
-	//
-	//Ifc4::IfcBuildingElementProxy* ifcBuildingElementProxy = nullptr;
-	//
-	//// create simple primitives, which are not a smartfeature
-	//if (!dictionaryPropertiesVector.empty())
-	//{
-	//	for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
-	//	{
-	//		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-	//		//if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) 
-	//		//{
-	//		//	continue;
-	//		//}
-	//		for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) 
-	//		{
-	//			IfcPrimitivesEnhancer* IfcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
-	//			ifcBuildingElementProxy = IfcPrimitivesEnhancer->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertiesBundleVector() ,file);
-	//
-	//
-	//			if (ifcBuildingElementProxy != nullptr) {
-	//				/*file.addBuildingProduct(ifcBuildingElementProxy);*/
-	//				//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
-	//
-	//
-	//			}
-	//		}
-	//	}
-	//}
-	//TODO [MP] create solids builder
-//		if (smartFeatureContainer.getRoot() != nullptr)
-//		{
-//			switch (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum())
-//			{
-//			case SmartFeatureTypeEnum::BOOLEAN_FEATURE:
-//			{
-//				IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-//				representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-//			}
-//			break;
-//			case SmartFeatureTypeEnum::CREATE_SOLIDS:
-//			{
-//				IfcCreateSolidsOperationBuilder* ifcCreateSolidsOperationBuilder = new IfcCreateSolidsOperationBuilder();
-//				representationItem = ifcCreateSolidsOperationBuilder->buildIfcCreateSolidsOperation(*smartFeatureContainer.getRoot(), file);
-//			}
-//			default:
-//				break;
-//			}
-//
-//
-//		}
-//
-//		if (representationItem != nullptr)
-//		{
-//			items->push(representationItem);
-//		}
-//}
-//		}
-
 	IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 	ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcElementBundleVector, file);
 
@@ -183,8 +106,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 	IfcBRepSolidsEnhancer* ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
 	ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
-
-
+	
 
 
 	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();

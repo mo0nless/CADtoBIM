@@ -45,7 +45,10 @@ Origin[point3d] = 7.7501m, 2.4526m, 28.1244m
 Cell Type[boolean] = Graphic
 Is Annotation[boolean] = False
 Annotation Purpose[boolean] = False
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 24425.050633
 Range [YLength] = 60602.526157
 Range [ZLength] = 268.946122
@@ -85,22 +88,1569 @@ Curve End Point of Extrusion [Z] = 293897.604471
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 0
+-------------------CURVE VECTOR---------------------
+Size: 125
 
+
+BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -5775.759706
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 293897.604471
+
+
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 293897.604471
+
+                              
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -5775.759706
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: -934.729510
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 4841.030196
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -934.729510
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: -755.432095
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -755.432095
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 141.054978
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 141.054978
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 320.352393
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 320.352393
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 723.771576
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 723.771576
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 903.068990
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 903.068990
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 1799.556064
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 1799.556064
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 1978.853478
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 1978.853478
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 2382.272661
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 2382.272661
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 2561.570076
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 2561.570076
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 3458.057149
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 3458.057149
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 3637.354564
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 3637.354564
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 4040.773747
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 4040.773747
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 4220.071162
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 4220.071162
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 5116.558235
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5116.558235
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 5295.855650
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5295.855650
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 5699.274833
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5699.274833
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 5878.572247
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5878.572247
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 6775.059321
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 6775.059321
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 6954.356735
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 6954.356735
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 7357.775918
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 7357.775918
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 7537.073333
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 7537.073333
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 8433.560406
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 8433.560406
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 8612.857821
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 8612.857821
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 9016.277004
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 9016.277004
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 9195.574419
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 9195.574419
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 10092.061492
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10092.061492
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 10271.358907
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10271.358907
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 10674.778090
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10674.778090
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 10854.075504
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10854.075504
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 11750.562578
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 11750.562578
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 11929.859992
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 11929.859992
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 12333.279175
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 12333.279175
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 12512.576590
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 12512.576590
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 13409.063663
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 13409.063663
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 13588.361078
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 13588.361078
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 13991.780261
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 13991.780261
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 14171.077676
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 14171.077676
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 15067.564749
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15067.564749
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 15246.862164
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15246.862164
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 15650.281347
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15650.281347
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 15829.578761
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15829.578761
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 16726.065835
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 16726.065835
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 16905.363249
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 16905.363249
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 17308.782432
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 17308.782432
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 17488.079847
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 17488.079847
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 18384.566920
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 18384.566920
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 18563.864335
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 18563.864335
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 18967.283518
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 18967.283518
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 19146.580933
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 19146.580933
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 20043.068006
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20043.068006
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 20222.365421
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20222.365421
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 20625.784604
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20625.784604
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 20805.082018
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20805.082018
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 21701.569092
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 21701.569092
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 21880.866506
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 21880.866506
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 22284.285689
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 22284.285689
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 22463.583104
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 22463.583104
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 23360.070177
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 23360.070177
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 23539.367592
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 23539.367592
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 23942.786775
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 23942.786775
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 24122.084190
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 24122.084190
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 25018.571263
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25018.571263
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 25197.868678
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25197.868678
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 25601.287861
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25601.287861
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 25780.585275
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25780.585275
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 26677.072349
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 26677.072349
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 26856.369763
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 26856.369763
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 27259.788946
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 27259.788946
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 27439.086361
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 27439.086361
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 28335.573434
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 28335.573434
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 28514.870849
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 28514.870849
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 28918.290032
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 28918.290032
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 29097.587447
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 29097.587447
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 29994.074520
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 29994.074520
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 30173.371935
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 30173.371935
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 30576.791118
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 30576.791118
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 30756.088532
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 30756.088532
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 31652.575606
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 31652.575606
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 31831.873020
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 31831.873020
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 32235.292203
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 32235.292203
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 32414.589618
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 32414.589618
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 33311.076691
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 33311.076691
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 33490.374106
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 33490.374106
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 33893.793289
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 33893.793289
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 34073.090704
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 34073.090704
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 34969.577777
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 34969.577777
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 35148.875192
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 35148.875192
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 35552.294375
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 35552.294375
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 35731.591789
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 35731.591789
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 36628.078863
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 36628.078863
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 36807.376277
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 36807.376277
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 37210.795460
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 37210.795460
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 37390.092875
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 37390.092875
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 38286.579948
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 38286.579948
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 38465.877363
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 38465.877363
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 38869.296546
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 38869.296546
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 39048.593961
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 39048.593961
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 39945.081034
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 39945.081034
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 40124.378449
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 40124.378449
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 40527.797632
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 40527.797632
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 40707.095046
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 40707.095046
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 41603.582120
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 41603.582120
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 41782.879534
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 41782.879534
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 42186.298717
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 42186.298717
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 42365.596132
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 42365.596132
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 43262.083205
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 43262.083205
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 43441.380620
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 43441.380620
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 43844.799803
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 43844.799803
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 44024.097218
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 44024.097218
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 44920.584291
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 44920.584291
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 45099.881706
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 45099.881706
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 45503.300889
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 45503.300889
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 45682.598303
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 45682.598303
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 46579.085377
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 46579.085377
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 46758.382791
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 46758.382791
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 47161.801974
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 47161.801974
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 47341.099389
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 47341.099389
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 48237.586462
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48237.586462
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 48416.883877
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48416.883877
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 48820.303060
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48820.303060
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 48999.600475
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48999.600475
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 49896.087548
+End Point [Z]: 294166.550593
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 49896.087548
+Start Point [Z]: 294166.550593
+
+End Point [X]: 65288.832840
+End Point [Y]: 50075.384963
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 50075.384963
+Start Point [Z]: 293897.604471
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 293897.604471
+
+Curve Line String Length: 4751.381489
+
+
+Centroid from Area [X] = 77501.358157
+Centroid from Area [Y] = 24531.256757
+Centroid from Area [Z] = 294043.868179
+Area1 = 1698189092.165311
+
+Centroid from Volume [X] = 0.000000
+Centroid from Volume [Y] = 0.000000
+Centroid from Volume [Z] = 0.000000
+Volume = 0.000000
+Area2 = 1698189092.165311
+
+
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 293897.604471
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 268.946122
 Range [YLength] = 60602.526157
 Range [ZLength] = 25575.564458
 
 Quaternion Rotation
-qRotation [X] = 0.000000
+qRotation [X] = -0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.707107
-qRotation [W] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
+vRotation [X] = -1.000000
 vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
+vRotation [Z] = 0.000000
 
 Origin [X] = 89713.883474
 Origin [Y] = -5775.759706
@@ -126,22 +1676,1569 @@ Curve End Point of Extrusion [Z] = 268322.040013
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 0
+-------------------CURVE VECTOR---------------------
+Size: 125
 
+
+BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
+Start Point [X]: 89713.883474
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+                              
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: -934.729510
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 4841.030196
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: -934.729510
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: -755.432095
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: -755.432095
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 141.054978
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 141.054978
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 320.352393
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 320.352393
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 723.771576
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 723.771576
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 903.068990
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 903.068990
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 1799.556064
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 1799.556064
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 1978.853478
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 1978.853478
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 2382.272661
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 2382.272661
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 2561.570076
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 2561.570076
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 3458.057149
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 3458.057149
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 3637.354564
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 3637.354564
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 4040.773747
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 4040.773747
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 4220.071162
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 4220.071162
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 5116.558235
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 5116.558235
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 5295.855650
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 5295.855650
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 5699.274833
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 5699.274833
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 5878.572247
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 5878.572247
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 6775.059321
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 6775.059321
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 6954.356735
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 6954.356735
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 7357.775918
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 7357.775918
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 7537.073333
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 7537.073333
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 8433.560406
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 8433.560406
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 8612.857821
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 8612.857821
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 9016.277004
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 9016.277004
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 9195.574419
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 9195.574419
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 10092.061492
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 10092.061492
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 10271.358907
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 10271.358907
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 10674.778090
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 10674.778090
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 10854.075504
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 10854.075504
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 11750.562578
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 11750.562578
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 11929.859992
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 11929.859992
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 12333.279175
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 12333.279175
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 12512.576590
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 12512.576590
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 13409.063663
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 13409.063663
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 13588.361078
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 13588.361078
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 13991.780261
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 13991.780261
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 14171.077676
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 14171.077676
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 15067.564749
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 15067.564749
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 15246.862164
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 15246.862164
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 15650.281347
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 15650.281347
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 15829.578761
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 15829.578761
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 16726.065835
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 16726.065835
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 16905.363249
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 16905.363249
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 17308.782432
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 17308.782432
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 17488.079847
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 17488.079847
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 18384.566920
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 18384.566920
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 18563.864335
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 18563.864335
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 18967.283518
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 18967.283518
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 19146.580933
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 19146.580933
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 20043.068006
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 20043.068006
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 20222.365421
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 20222.365421
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 20625.784604
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 20625.784604
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 20805.082018
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 20805.082018
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 21701.569092
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 21701.569092
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 21880.866506
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 21880.866506
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 22284.285689
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 22284.285689
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 22463.583104
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 22463.583104
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 23360.070177
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 23360.070177
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 23539.367592
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 23539.367592
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 23942.786775
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 23942.786775
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 24122.084190
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 24122.084190
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 25018.571263
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 25018.571263
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 25197.868678
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 25197.868678
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 25601.287861
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 25601.287861
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 25780.585275
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 25780.585275
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 26677.072349
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 26677.072349
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 26856.369763
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 26856.369763
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 27259.788946
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 27259.788946
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 27439.086361
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 27439.086361
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 28335.573434
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 28335.573434
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 28514.870849
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 28514.870849
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 28918.290032
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 28918.290032
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 29097.587447
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 29097.587447
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 29994.074520
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 29994.074520
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 30173.371935
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 30173.371935
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 30576.791118
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 30576.791118
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 30756.088532
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 30756.088532
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 31652.575606
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 31652.575606
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 31831.873020
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 31831.873020
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 32235.292203
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 32235.292203
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 32414.589618
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 32414.589618
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 33311.076691
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 33311.076691
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 33490.374106
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 33490.374106
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 33893.793289
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 33893.793289
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 34073.090704
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 34073.090704
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 34969.577777
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 34969.577777
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 35148.875192
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 35148.875192
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 35552.294375
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 35552.294375
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 35731.591789
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 35731.591789
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 36628.078863
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 36628.078863
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 36807.376277
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 36807.376277
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 37210.795460
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 37210.795460
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 37390.092875
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 37390.092875
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 38286.579948
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 38286.579948
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 38465.877363
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 38465.877363
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 38869.296546
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 38869.296546
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 39048.593961
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 39048.593961
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 39945.081034
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 39945.081034
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 40124.378449
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 40124.378449
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 40527.797632
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 40527.797632
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 40707.095046
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 40707.095046
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 41603.582120
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 41603.582120
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 41782.879534
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 41782.879534
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 42186.298717
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 42186.298717
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 42365.596132
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 42365.596132
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 43262.083205
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 43262.083205
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 43441.380620
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 43441.380620
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 43844.799803
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 43844.799803
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 44024.097218
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 44024.097218
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 44920.584291
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 44920.584291
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 45099.881706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 45099.881706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 45503.300889
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 45503.300889
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 45682.598303
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 45682.598303
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 46579.085377
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 46579.085377
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 46758.382791
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 46758.382791
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 47161.801974
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 47161.801974
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 47341.099389
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 47341.099389
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 48237.586462
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 48237.586462
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 48416.883877
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 48416.883877
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 48820.303060
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 48820.303060
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 48999.600475
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 48999.600475
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89444.937352
+End Point [Y]: 49896.087548
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89444.937352
+Start Point [Y]: 49896.087548
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 50075.384963
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 50075.384963
+Start Point [Z]: 268322.040013
+
+End Point [X]: 89713.883474
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 4751.381489
+
+
+Centroid from Area [X] = 89567.619765
+Centroid from Area [Y] = 24531.256757
+Centroid from Area [Z] = 281109.822242
+Area1 = 1778180329.717472
+
+Centroid from Volume [X] = 0.000000
+Centroid from Volume [Y] = 0.000000
+Centroid from Volume [Z] = 0.000000
+Volume = 0.000000
+Area2 = 1778180329.717472
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 268.946122
 Range [YLength] = 60602.526157
 Range [ZLength] = 25575.564458
 
 Quaternion Rotation
-qRotation [X] = 0.000000
+qRotation [X] = -0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.707107
-qRotation [W] = 0.707107
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = 0.000000
+vRotation [X] = -1.000000
 vRotation [Y] = 0.000000
-vRotation [Z] = 1.000000
+vRotation [Z] = 0.000000
 
 Origin [X] = 65288.832840
 Origin [Y] = -5775.759706
@@ -167,8 +3264,1555 @@ Curve End Point of Extrusion [Z] = 268322.040013
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 0
+-------------------CURVE VECTOR---------------------
+Size: 125
 
+
+BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+                              
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: -934.729510
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 4841.030196
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: -934.729510
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: -755.432095
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: -755.432095
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 141.054978
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 141.054978
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 320.352393
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 320.352393
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 723.771576
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 723.771576
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 903.068990
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 903.068990
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 1799.556064
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 1799.556064
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 1978.853478
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 1978.853478
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 2382.272661
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 2382.272661
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 2561.570076
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 2561.570076
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 3458.057149
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 3458.057149
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 3637.354564
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 3637.354564
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 4040.773747
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 4040.773747
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 4220.071162
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 4220.071162
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 5116.558235
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 5116.558235
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 5295.855650
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5295.855650
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 5699.274833
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 5699.274833
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 5878.572247
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 5878.572247
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 6775.059321
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 6775.059321
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 6954.356735
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 6954.356735
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 7357.775918
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 7357.775918
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 7537.073333
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 7537.073333
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 8433.560406
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 8433.560406
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 8612.857821
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 8612.857821
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 9016.277004
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 9016.277004
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 9195.574419
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 9195.574419
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 10092.061492
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 10092.061492
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 10271.358907
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10271.358907
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 10674.778090
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 10674.778090
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 10854.075504
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 10854.075504
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 11750.562578
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 11750.562578
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 11929.859992
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 11929.859992
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 12333.279175
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 12333.279175
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 12512.576590
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 12512.576590
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 13409.063663
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 13409.063663
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 13588.361078
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 13588.361078
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 13991.780261
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 13991.780261
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 14171.077676
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 14171.077676
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 15067.564749
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 15067.564749
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 15246.862164
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15246.862164
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 15650.281347
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 15650.281347
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 15829.578761
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 15829.578761
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 16726.065835
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 16726.065835
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 16905.363249
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 16905.363249
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 17308.782432
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 17308.782432
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 17488.079847
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 17488.079847
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 18384.566920
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 18384.566920
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 18563.864335
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 18563.864335
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 18967.283518
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 18967.283518
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 19146.580933
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 19146.580933
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 20043.068006
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 20043.068006
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 20222.365421
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20222.365421
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 20625.784604
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 20625.784604
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 20805.082018
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 20805.082018
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 21701.569092
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 21701.569092
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 21880.866506
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 21880.866506
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 22284.285689
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 22284.285689
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 22463.583104
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 22463.583104
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 23360.070177
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 23360.070177
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 23539.367592
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 23539.367592
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 23942.786775
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 23942.786775
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 24122.084190
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 24122.084190
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 25018.571263
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 25018.571263
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 25197.868678
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25197.868678
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 25601.287861
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 25601.287861
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 25780.585275
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 25780.585275
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 26677.072349
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 26677.072349
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 26856.369763
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 26856.369763
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 27259.788946
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 27259.788946
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 27439.086361
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 27439.086361
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 28335.573434
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 28335.573434
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 28514.870849
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 28514.870849
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 28918.290032
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 28918.290032
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 29097.587447
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 29097.587447
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 29994.074520
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 29994.074520
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 30173.371935
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 30173.371935
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 30576.791118
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 30576.791118
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 30756.088532
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 30756.088532
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 31652.575606
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 31652.575606
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 31831.873020
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 31831.873020
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 32235.292203
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 32235.292203
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 32414.589618
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 32414.589618
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 33311.076691
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 33311.076691
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 33490.374106
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 33490.374106
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 33893.793289
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 33893.793289
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 34073.090704
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 34073.090704
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 34969.577777
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 34969.577777
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 35148.875192
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 35148.875192
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 35552.294375
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 35552.294375
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 35731.591789
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 35731.591789
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 36628.078863
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 36628.078863
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 36807.376277
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 36807.376277
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 37210.795460
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 37210.795460
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 37390.092875
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 37390.092875
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 38286.579948
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 38286.579948
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 38465.877363
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 38465.877363
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 38869.296546
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 38869.296546
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 39048.593961
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 39048.593961
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 39945.081034
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 39945.081034
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 40124.378449
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 40124.378449
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 40527.797632
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 40527.797632
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 40707.095046
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 40707.095046
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 41603.582120
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 41603.582120
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 41782.879534
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 41782.879534
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 42186.298717
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 42186.298717
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 42365.596132
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 42365.596132
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 43262.083205
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 43262.083205
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 43441.380620
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 43441.380620
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 43844.799803
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 43844.799803
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 44024.097218
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 44024.097218
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 44920.584291
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 44920.584291
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 45099.881706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 45099.881706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 45503.300889
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 45503.300889
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 45682.598303
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 45682.598303
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 46579.085377
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 46579.085377
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 46758.382791
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 46758.382791
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 47161.801974
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 47161.801974
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 47341.099389
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 47341.099389
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 48237.586462
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 48237.586462
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 48416.883877
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48416.883877
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 48820.303060
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 403.419183
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 48820.303060
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 48999.600475
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 48999.600475
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65557.778962
+End Point [Y]: 49896.087548
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 896.487073
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65557.778962
+Start Point [Y]: 49896.087548
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 50075.384963
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 323.233011
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 65288.832840
+Start Point [Y]: 50075.384963
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 4751.381489
+
+
+Centroid from Area [X] = 65435.096549
+Centroid from Area [Y] = 24531.256757
+Centroid from Area [Z] = 281109.822242
+Area1 = 1778180329.717484
+
+Centroid from Volume [X] = 0.000000
+Centroid from Volume [Y] = 0.000000
+Centroid from Volume [Z] = 0.000000
+Volume = 0.000000
+Area2 = 1778180329.717484
+
+
+
+Origin [X] = 65288.832840
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 24425.050633
 Range [YLength] = 268.946122
 Range [ZLength] = 25575.564458
@@ -176,8 +4820,8 @@ Range [ZLength] = 25575.564458
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.000000
@@ -208,8 +4852,643 @@ Curve End Point of Extrusion [Z] = 268322.040013
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 0
+-------------------CURVE VECTOR---------------------
+Size: 49
 
+
+BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
+Start Point [X]: 89713.883474
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+                              
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 86980.069498
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 2733.813976
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 86980.069498
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 86805.336242
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 86805.336242
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85931.669962
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85931.669962
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85756.936706
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85756.936706
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85363.786880
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85363.786880
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85189.053624
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85189.053624
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 84315.387344
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 84315.387344
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 84140.654088
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 84140.654088
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 83747.504262
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 83747.504262
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 83572.771006
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 83572.771006
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82699.104727
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82699.104727
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82524.371471
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82524.371471
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82131.221645
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82131.221645
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 81956.488389
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 81956.488389
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 81082.822109
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 81082.822109
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80908.088853
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80908.088853
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80514.939027
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80514.939027
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80340.205771
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80340.205771
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 79466.539492
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 79466.539492
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 79291.806236
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 79291.806236
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 78898.656410
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 78898.656410
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 78723.923154
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 78723.923154
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77850.256874
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77850.256874
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77675.523618
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77675.523618
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77282.373792
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77282.373792
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77107.640536
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77107.640536
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 76233.974256
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 76233.974256
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 76059.241000
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 76059.241000
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 75666.091174
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 75666.091174
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 75491.357919
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 75491.357919
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74617.691639
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74617.691639
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74442.958383
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74442.958383
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74049.808557
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74049.808557
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 73875.075301
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 73875.075301
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 73001.409021
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 73001.409021
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72826.675765
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72826.675765
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72433.525939
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72433.525939
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72258.792683
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72258.792683
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 71385.126404
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 71385.126404
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 71210.393148
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 71210.393148
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 70817.243322
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 70817.243322
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 70642.510066
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 70642.510066
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69768.843786
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69768.843786
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69594.110530
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69594.110530
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69200.960704
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69200.960704
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69026.227448
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69026.227448
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 68152.561168
+End Point [Y]: -5506.813584
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 68152.561168
+Start Point [Y]: -5506.813584
+Start Point [Z]: 268322.040013
+
+End Point [X]: 67977.827912
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 67977.827912
+Start Point [Y]: -5775.759706
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: -5775.759706
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 2688.995072
+
+
+Centroid from Area [X] = 77498.546810
+Centroid from Area [Y] = -5637.740325
+Centroid from Area [Z] = 281109.822242
+Area1 = 714295403.151596
+
+Centroid from Volume [X] = 0.000000
+Centroid from Volume [Y] = 0.000000
+Centroid from Volume [Z] = 0.000000
+Volume = 0.000000
+Area2 = 714295403.151596
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = -5775.759706
+Origin [Z] = 268322.040013
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 24425.050633
 Range [YLength] = 268.946122
 Range [ZLength] = 25575.564458
@@ -217,8 +5496,8 @@ Range [ZLength] = 25575.564458
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.000000
@@ -249,6 +5528,638 @@ Curve End Point of Extrusion [Z] = 268322.040013
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 0
+-------------------CURVE VECTOR---------------------
+Size: 49
+
+
+BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = 54826.766451
+Origin [Z] = 268322.040013
+
+                              
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 89713.883474
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 86980.069498
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 2733.813976
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 86980.069498
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 86805.336242
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 86805.336242
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85931.669962
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85931.669962
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85756.936706
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85756.936706
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85363.786880
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85363.786880
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 85189.053624
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 85189.053624
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 84315.387344
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 84315.387344
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 84140.654088
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 84140.654088
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 83747.504262
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 83747.504262
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 83572.771006
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 83572.771006
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82699.104727
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82699.104727
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82524.371471
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82524.371471
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 82131.221645
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 82131.221645
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 81956.488389
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 81956.488389
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 81082.822109
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 81082.822109
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80908.088853
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80908.088853
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80514.939027
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80514.939027
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 80340.205771
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 80340.205771
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 79466.539492
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 79466.539492
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 79291.806236
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 79291.806236
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 78898.656410
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 78898.656410
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 78723.923154
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 78723.923154
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77850.256874
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77850.256874
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77675.523618
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77675.523618
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77282.373792
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77282.373792
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 77107.640536
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 77107.640536
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 76233.974256
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 76233.974256
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 76059.241000
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 76059.241000
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 75666.091174
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 75666.091174
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 75491.357919
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 75491.357919
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74617.691639
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74617.691639
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74442.958383
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74442.958383
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 74049.808557
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 74049.808557
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 73875.075301
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 73875.075301
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 73001.409021
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 73001.409021
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72826.675765
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72826.675765
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72433.525939
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72433.525939
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 72258.792683
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 72258.792683
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 71385.126404
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 71385.126404
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 71210.393148
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 71210.393148
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 70817.243322
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 70817.243322
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 70642.510066
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 70642.510066
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69768.843786
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69768.843786
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69594.110530
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69594.110530
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69200.960704
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 393.149826
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69200.960704
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 69026.227448
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 69026.227448
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 68152.561168
+End Point [Y]: 54557.820329
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 873.666280
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 68152.561168
+Start Point [Y]: 54557.820329
+Start Point [Z]: 268322.040013
+
+End Point [X]: 67977.827912
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 320.723755
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 67977.827912
+Start Point [Y]: 54826.766451
+Start Point [Z]: 268322.040013
+
+End Point [X]: 65288.832840
+End Point [Y]: 54826.766451
+End Point [Z]: 268322.040013
+
+Curve Line String Length: 2688.995072
+
+
+Centroid from Area [X] = 77498.546810
+Centroid from Area [Y] = 54688.747070
+Centroid from Area [Z] = 281109.822242
+Area1 = 714295403.151596
+
+Centroid from Volume [X] = 0.000000
+Centroid from Volume [Y] = 0.000000
+Centroid from Volume [Z] = 0.000000
+Volume = 0.000000
+Area2 = 714295403.151596
+
+
+
+Origin [X] = 89713.883474
+Origin [Y] = 54826.766451
+Origin [Z] = 268322.040013
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
 
 
 ===================================================
@@ -304,20 +6215,23 @@ Angle[double] = 0.0000°
 Orientation[int] = Top
 Capped[int] = Yes
 Distance[double] = 1.0746m
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Extrusion Solid --------
+
 Range [XLength] = 8751.089429
 Range [YLength] = 14738.560646
 Range [ZLength] = 10745.904793
 
 Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 0.707107
-qRotation [W] = 0.707107
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
 vRotation [Z] = 1.000000
 
 Origin [X] = 133993.455980
@@ -344,6 +6258,146 @@ Curve End Point of Extrusion [Z] = 232230.000000
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 8
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 138369.000695
+Centroid point [Y] = -17645.564932
+Centroid point [Z] = 232230.000000
+
+Start Point [X]: 133993.455980
+Start Point [Y]: -10378.427589
+Start Point [Z]: 232230.000000
+
+End Point [X]: 133993.455980
+End Point [Y]: -10378.427589
+End Point [Z]: 232230.000000
+
+
+
+Origin [X] = 133993.455980
+Origin [Y] = -25014.845255
+Origin [Z] = 232230.000000
+
+                              
+CURVE_PRIMITIVE_TYPE_Arc --------
+Is Circular: 1
+Is Ellipse: 0
+
+Start Point [X]: 133993.455980
+Start Point [Y]: -10378.427589
+Start Point [Z]: 232230.000000
+
+End Point [X]: 134093.468431
+End Point [Y]: -10278.415139
+End Point [Z]: 232230.000000
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 134093.468431
+Start Point [Y]: -10278.415139
+Start Point [Z]: 232230.000000
+
+End Point [X]: 142644.532959
+End Point [Y]: -10276.284609
+End Point [Z]: 232230.000000
+
+Curve Line String Length: 8551.064793
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+Is Circular: 1
+Is Ellipse: 0
+
+Start Point [X]: 142644.532959
+Start Point [Y]: -10276.284609
+Start Point [Z]: 232230.000000
+
+End Point [X]: 142744.545409
+End Point [Y]: -10376.297059
+End Point [Z]: 232230.000000
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 142744.545409
+Start Point [Y]: -10376.297059
+Start Point [Z]: 232230.000000
+
+End Point [X]: 142744.545409
+End Point [Y]: -24912.702274
+End Point [Z]: 232230.000000
+
+Curve Line String Length: 14536.405215
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+Is Circular: 1
+Is Ellipse: 0
+
+Start Point [X]: 142744.545409
+Start Point [Y]: -24912.702274
+Start Point [Z]: 232230.000000
+
+End Point [X]: 142644.532959
+End Point [Y]: -25012.714725
+End Point [Z]: 232230.000000
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 142644.532959
+Start Point [Y]: -25012.714725
+Start Point [Z]: 232230.000000
+
+End Point [X]: 134093.468431
+End Point [Y]: -25014.845255
+End Point [Z]: 232230.000000
+
+Curve Line String Length: 8551.064793
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+Is Circular: 1
+Is Ellipse: 0
+
+Start Point [X]: 134093.468431
+Start Point [Y]: -25014.845255
+Start Point [Z]: 232230.000000
+
+End Point [X]: 133993.455980
+End Point [Y]: -24914.832804
+End Point [Z]: 232230.000000
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: 133993.455980
+Start Point [Y]: -24914.832804
+Start Point [Z]: 232230.000000
+
+End Point [X]: 133993.455980
+End Point [Y]: -10378.427589
+End Point [Z]: 232230.000000
+
+Curve Line String Length: 14536.405215
+
+
+Centroid from Area [X] = 138369.000695
+Centroid from Area [Y] = -17645.564932
+Centroid from Area [Z] = 237602.952396
+Area1 = 760846664.174222
+
+Centroid from Volume [X] = 138369.000695
+Centroid from Volume [Y] = -17645.564932
+Centroid from Volume [Z] = 237602.952396
+Volume = 1385697657653.902832
+Area2 = 760846664.174222
+
+
+
+Origin [X] = 133993.455980
+Origin [Y] = -10378.427589
+Origin [Z] = 232230.000000
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
 
 
 ===================================================
@@ -403,6 +6457,10 @@ Size: 1
 
 
 BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
 Start Point [X]: 249446.455511
 Start Point [Y]: -210621.790805
 Start Point [Z]: -14888.118469
@@ -410,6 +6468,12 @@ Start Point [Z]: -14888.118469
 End Point [X]: 247715.222015
 End Point [Y]: -211623.208692
 End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 249446.455511
+Origin [Y] = -210621.790805
+Origin [Z] = -14888.118469
 
                               
 CURVE_PRIMITIVE_TYPE_LineString --------
@@ -429,6 +6493,10 @@ Size: 1
 
 
 BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
 Start Point [X]: 211537.727467
 Start Point [Y]: -144882.528693
 Start Point [Z]: -14888.118469
@@ -436,6 +6504,12 @@ Start Point [Z]: -14888.118469
 End Point [X]: 209806.792366
 End Point [Y]: -145884.464039
 End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 211537.727467
+Origin [Y] = -144882.528693
+Origin [Z] = -14888.118469
 
                               
 CURVE_PRIMITIVE_TYPE_LineString --------
@@ -450,7 +6524,10 @@ End Point [Z]: -14888.118469
 
 Curve Line String Length: 2000.002690
 
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 240023.007658
 Range [YLength] = 207871.161476
 Range [ZLength] = 2000.000000
@@ -458,13 +6535,13 @@ Range [ZLength] = 2000.000000
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.866036
-qRotation [W] = -0.499981
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 310032.314594
 Origin [Y] = -109693.500000
@@ -490,22 +6567,145 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 2
 
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 190020.810765
+Centroid point [Y] = -109688.360649
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 310032.314594
+Start Point [Y]: -109693.500000
+Start Point [Z]: -14888.118469
+
+End Point [X]: 307722.913520
+End Point [Y]: -109693.401103
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 340037.415956
+Origin [Y] = -57728.279307
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 190020.810765
+Centroid point [Y] = -109688.360649
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 310032.314594
+Start Point [Y]: -109693.500000
+Start Point [Z]: -14888.118469
+
+End Point [X]: 310032.314594
+End Point [Y]: -109693.500000
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 340037.415956
+Origin [Y] = -57728.279307
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 310032.314594
+Start Point [Y]: -109693.500000
+Start Point [Z]: -14888.118469
+
+End Point [X]: 310032.314594
+End Point [Y]: -109693.500000
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 120011.503939
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Inner --------
+Centroid point [X] = 190020.810765
+Centroid point [Y] = -109688.360649
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 307722.913520
+Start Point [Y]: -109693.401103
+Start Point [Z]: -14888.118469
+
+End Point [X]: 307722.913520
+End Point [Y]: -109693.401103
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 337150.621789
+Origin [Y] = -58728.155684
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 307722.913520
+Start Point [Y]: -109693.401103
+Start Point [Z]: -14888.118469
+
+End Point [X]: 307722.913520
+End Point [Y]: -109693.401103
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 117702.102862
+
+
+Centroid from Area [X] = 190020.810765
+Centroid from Area [Y] = -109688.360649
+Centroid from Area [Z] = -13888.118469
+Area1 = 5705126563.235638
+
+Centroid from Volume [X] = 190020.810765
+Centroid from Volume [Y] = -109688.360649
+Centroid from Volume [Z] = -13888.118469
+Volume = 2852563281617.843750
+Area2 = 5705126563.235638
+
+
+
+Origin [X] = 310032.314594
+Origin [Y] = -109693.500000
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 196148.243606
 Range [YLength] = 169859.417384
 Range [ZLength] = 2000.000000
 
 Quaternion Rotation
-qRotation [X] = -0.000000
+qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = -0.499896
-qRotation [W] = 0.866085
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
+vRotation [X] = 0.000000
 vRotation [Y] = 0.000000
-vRotation [Z] = -1.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 91944.249790
 Origin [Y] = -109676.433445
@@ -531,22 +6731,145 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 2
 
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 190020.729239
+Centroid point [Y] = -109688.220227
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 91944.249790
+Start Point [Y]: -109676.433445
+Start Point [Z]: -14888.118469
+
+End Point [X]: 94253.837580
+End Point [Y]: -109676.203232
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 67433.229715
+Origin [Y] = -67245.591971
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 190020.881196
+Centroid point [Y] = -109688.482079
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 91944.249790
+Start Point [Y]: -109676.433445
+Start Point [Z]: -14888.118469
+
+End Point [X]: 91944.249790
+End Point [Y]: -109676.433445
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 67433.229715
+Origin [Y] = -67245.591971
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 91944.249790
+Start Point [Y]: -109676.433445
+Start Point [Z]: -14888.118469
+
+End Point [X]: 91944.249790
+End Point [Y]: -109676.433445
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 98101.665856
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Inner --------
+Centroid point [X] = 190020.888614
+Centroid point [Y] = -109688.494861
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 94253.837580
+Start Point [Y]: -109676.203232
+Start Point [Z]: -14888.118469
+
+End Point [X]: 94253.837580
+End Point [Y]: -109676.203232
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 70320.207180
+Origin [Y] = -68244.876658
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 94253.837580
+Start Point [Y]: -109676.203232
+Start Point [Z]: -14888.118469
+
+End Point [X]: 94253.837580
+End Point [Y]: -109676.203232
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 95792.210944
+
+
+Centroid from Area [X] = 190020.729217
+Centroid from Area [Y] = -109688.220189
+Centroid from Area [Z] = -13888.118469
+Area1 = 4651876963.135967
+
+Centroid from Volume [X] = 190020.729239
+Centroid from Volume [Y] = -109688.220227
+Centroid from Volume [Z] = -13888.118469
+Volume = 2325938481567.924316
+Area2 = 4651876963.135967
+
+
+
+Origin [X] = 91944.249790
+Origin [Y] = -109676.433445
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 149957.817084
 Range [YLength] = 129859.417384
 Range [ZLength] = 2000.000000
 
 Quaternion Rotation
-qRotation [X] = -0.000000
+qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = -0.499896
-qRotation [W] = 0.866085
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
+vRotation [X] = 0.000000
 vRotation [Y] = 0.000000
-vRotation [Z] = -1.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 115040.127683
 Origin [Y] = -109674.131308
@@ -572,8 +6895,131 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 0
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 2
 
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 190020.840333
+Centroid point [Y] = -109688.411942
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 115040.127683
+Start Point [Y]: -109674.131308
+Start Point [Z]: -14888.118469
+
+End Point [X]: 117349.715472
+End Point [Y]: -109673.901094
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 96303.004367
+Origin [Y] = -77238.438845
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 190020.955429
+Centroid point [Y] = -109688.609905
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 115040.127683
+Start Point [Y]: -109674.131308
+Start Point [Z]: -14888.118469
+
+End Point [X]: 115040.127683
+End Point [Y]: -109674.131308
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 96303.004367
+Origin [Y] = -77238.438845
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 115040.127683
+Start Point [Y]: -109674.131308
+Start Point [Z]: -14888.118469
+
+End Point [X]: 115040.127683
+End Point [Y]: -109674.131308
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 75007.116735
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Inner --------
+Centroid point [X] = 190020.962861
+Centroid point [Y] = -109688.622688
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 117349.715472
+Start Point [Y]: -109673.901094
+Start Point [Z]: -14888.118469
+
+End Point [X]: 117349.715472
+End Point [Y]: -109673.901094
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 99189.981832
+Origin [Y] = -78237.723532
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 117349.715472
+Start Point [Y]: -109673.901094
+Start Point [Z]: -14888.118469
+
+End Point [X]: 117349.715472
+End Point [Y]: -109673.901094
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 72697.661823
+
+
+Centroid from Area [X] = 190020.840304
+Centroid from Area [Y] = -109688.411892
+Centroid from Area [Z] = -13888.118469
+Area1 = 3543364437.222920
+
+Centroid from Volume [X] = 190020.840333
+Centroid from Volume [Y] = -109688.411942
+Centroid from Volume [Z] = -13888.118469
+Volume = 1771682218611.454102
+Area2 = 3543364437.222920
+
+
+
+Origin [X] = 115040.127683
+Origin [Y] = -109674.131308
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 39639.663144
 Range [YLength] = 66740.679999
 Range [ZLength] = 2000.000000
@@ -581,13 +7027,13 @@ Range [ZLength] = 2000.000000
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.865784
-qRotation [W] = -0.500418
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 249446.455511
 Origin [Y] = -210621.790805
@@ -613,8 +7059,67 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
 
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 229698.825557
+Centroid point [Y] = -178378.332940
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 249446.455511
+Start Point [Y]: -210621.790805
+Start Point [Z]: -14888.118469
+
+End Point [X]: 249446.455511
+End Point [Y]: -210621.790805
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 268435.100081
+Origin [Y] = -177659.099430
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 249446.455511
+Start Point [Y]: -210621.790805
+Start Point [Z]: -14888.118469
+
+End Point [X]: 249446.455511
+End Point [Y]: -210621.790805
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 229682.388354
+Centroid from Area [Y] = -178349.821524
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344972
+
+Centroid from Volume [X] = 229698.825557
+Centroid from Volume [Y] = -178378.332940
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.153442
+Area2 = 616863661.344972
+
+
+
+Origin [X] = 249446.455511
+Origin [Y] = -210621.790805
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 39710.377071
 Range [YLength] = 66698.733534
 Range [ZLength] = 2000.000000
@@ -622,13 +7127,13 @@ Range [ZLength] = 2000.000000
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 1.000000
-qRotation [W] = -0.000482
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 132322.718531
 Origin [Y] = -211619.193713
@@ -654,8 +7159,67 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
 
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 150372.557171
+Centroid point [Y] = -178395.515576
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 132322.718531
+Start Point [Y]: -211619.193713
+Start Point [Z]: -14888.118469
+
+End Point [X]: 132322.718531
+End Point [Y]: -211619.193713
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 170363.568924
+Origin [Y] = -211582.496607
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 132322.718531
+Start Point [Y]: -211619.193713
+Start Point [Z]: -14888.118469
+
+End Point [X]: 132322.718531
+End Point [Y]: -211619.193713
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 150389.030181
+Centroid from Area [Y] = -178367.024832
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344959
+
+Centroid from Volume [X] = 150372.557171
+Centroid from Volume [Y] = -178395.515576
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.141113
+Area2 = 616863661.344959
+
+
+
+Origin [X] = 132322.718531
+Origin [Y] = -211619.193713
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 76465.047594
 Range [YLength] = 2039.710676
 Range [ZLength] = 2000.000000
@@ -663,8 +7227,8 @@ Range [ZLength] = 2000.000000
 Quaternion Rotation
 qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.866266
-qRotation [W] = 0.499582
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.000000
@@ -695,21 +7259,80 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
 
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 110694.542380
+Centroid point [Y] = -109705.543284
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 72897.073786
+Start Point [Y]: -110685.763556
+Start Point [Z]: -14888.118469
+
+End Point [X]: 72897.073786
+End Point [Y]: -110685.763556
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 91949.279609
+Origin [Y] = -143611.757825
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 72897.073786
+Start Point [Y]: -110685.763556
+Start Point [Z]: -14888.118469
+
+End Point [X]: 72897.073786
+End Point [Y]: -110685.763556
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 110727.452592
+Centroid from Area [Y] = -109705.563957
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344968
+
+Centroid from Volume [X] = 110694.542380
+Centroid from Volume [Y] = -109705.543284
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.150757
+Area2 = 616863661.344968
+
+
+
+Origin [X] = 72897.073786
+Origin [Y] = -110685.763556
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 39639.663144
 Range [YLength] = 66740.679999
 Range [ZLength] = 2000.000000
 
 Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 0.500418
-qRotation [W] = 0.865784
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
 vRotation [Z] = 1.000000
 
 Origin [X] = 130595.166020
@@ -736,21 +7359,80 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
 
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 150342.795973
+Centroid point [Y] = -40998.388357
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 130595.166020
+Start Point [Y]: -8754.930493
+Start Point [Z]: -14888.118469
+
+End Point [X]: 130595.166020
+End Point [Y]: -8754.930493
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 111606.521450
+Origin [Y] = -41717.621867
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 130595.166020
+Start Point [Y]: -8754.930493
+Start Point [Z]: -14888.118469
+
+End Point [X]: 130595.166020
+End Point [Y]: -8754.930493
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 150359.233176
+Centroid from Area [Y] = -41026.899774
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344958
+
+Centroid from Volume [X] = 150342.795973
+Centroid from Volume [Y] = -40998.388357
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.140503
+Area2 = 616863661.344958
+
+
+
+Origin [X] = 130595.166020
+Origin [Y] = -8754.930493
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 39710.377071
 Range [YLength] = 66698.733534
 Range [ZLength] = 2000.000000
 
 Quaternion Rotation
-qRotation [X] = -0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = 0.000482
+qRotation [X] = 0.000000
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
 qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.000000
-vRotation [Y] = -0.000000
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
 vRotation [Z] = 1.000000
 
 Origin [X] = 247718.902999
@@ -777,22 +7459,81 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
 
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 229669.064359
+Centroid point [Y] = -40981.205722
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 247718.902999
+Start Point [Y]: -7757.527585
+Start Point [Z]: -14888.118469
+
+End Point [X]: 247718.902999
+End Point [Y]: -7757.527585
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 209678.052606
+Origin [Y] = -7794.224691
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 247718.902999
+Start Point [Y]: -7757.527585
+Start Point [Z]: -14888.118469
+
+End Point [X]: 247718.902999
+End Point [Y]: -7757.527585
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 229652.591349
+Centroid from Area [Y] = -41009.696465
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344982
+
+Centroid from Volume [X] = 229669.064359
+Centroid from Volume [Y] = -40981.205722
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.164490
+Area2 = 616863661.344982
+
+
+
+Origin [X] = 247718.902999
+Origin [Y] = -7757.527585
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 76465.047594
 Range [YLength] = 2039.710676
 Range [ZLength] = 2000.000000
 
 Quaternion Rotation
 qRotation [X] = 0.000000
-qRotation [Y] = -0.000000
-qRotation [Z] = -0.499582
-qRotation [W] = 0.866266
+qRotation [Y] = 0.000000
+qRotation [Z] = 0.000000
+qRotation [W] = 1.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.000000
-vRotation [Y] = -0.000000
-vRotation [Z] = -1.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
 
 Origin [X] = 307144.547744
 Origin [Y] = -108690.957741
@@ -818,12 +7559,72 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 269347.079151
+Centroid point [Y] = -109671.178013
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 307144.547744
+Start Point [Y]: -108690.957741
+Start Point [Z]: -14888.118469
+
+End Point [X]: 307144.547744
+End Point [Y]: -108690.957741
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 288092.341922
+Origin [Y] = -75764.963473
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 307144.547744
+Start Point [Y]: -108690.957741
+Start Point [Z]: -14888.118469
+
+End Point [X]: 307144.547744
+End Point [Y]: -108690.957741
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 1155.694640
+
+
+Centroid from Area [X] = 269314.168938
+Centroid from Area [Y] = -109671.157340
+Centroid from Area [Z] = -13888.118469
+Area1 = 616863661.344983
+
+Centroid from Volume [X] = 269347.079151
+Centroid from Volume [Y] = -109671.178013
+Centroid from Volume [Z] = -13888.118469
+Volume = 304699775737.165344
+Area2 = 616863661.344983
+
+
+
+Origin [X] = 307144.547744
+Origin [Y] = -108690.957741
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
 
 -------------------CURVE VECTOR---------------------
 Size: 1
 
 
 BOUNDARY_TYPE_Open --------
+Centroid point [X] = 0.000000
+Centroid point [Y] = 0.000000
+Centroid point [Z] = 0.000000
+
 Start Point [X]: 142169.826171
 Start Point [Y]: -192623.208692
 Start Point [Z]: -12888.118469
@@ -831,6 +7632,12 @@ Start Point [Z]: -12888.118469
 End Point [X]: 141015.445200
 End Point [Y]: -194623.208692
 End Point [Z]: -12888.118469
+
+
+
+Origin [X] = 142169.826171
+Origin [Y] = -192623.208692
+Origin [Z] = -12888.118469
 
                               
 CURVE_PRIMITIVE_TYPE_LineString --------
@@ -846,23 +7653,201 @@ End Point [Z]: -12888.118469
 Curve Line String Length: 2309.241310
 
 
+In SolidKernel Entity is: Solid 0
+
+Mesh Number: 0
+numVertex: 24
+numFacet: 36
+numQuad: 12
+numTriangle: 24
+numImplicitTriangle: 48
+numVisEdges: 72
+numInvEdges: 48
+
+Num Of Facet: 37
+
+Mesh Number: 1
+numVertex: 24
+numFacet: 36
+numQuad: 12
+numTriangle: 24
+numImplicitTriangle: 48
+numVisEdges: 72
+numInvEdges: 48
+
+Num Of Facet: 37
+
+Mesh Number: 2
+numVertex: 24
+numFacet: 36
+numQuad: 12
+numTriangle: 24
+numImplicitTriangle: 48
+numVisEdges: 72
+numInvEdges: 48
+
+Num Of Facet: 37
+
+Mesh Number: 3
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 4
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 5
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 6
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 7
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 8
+numVertex: 10
+numFacet: 11
+numQuad: 5
+numTriangle: 6
+numImplicitTriangle: 16
+numVisEdges: 30
+numInvEdges: 8
+
+Num Of Facet: 12
+
+Mesh Number: 9
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 10
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 11
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 12
+numVertex: 38
+numFacet: 36
+numQuad: 36
+numTriangle: 0
+numImplicitTriangle: 72
+numVisEdges: 72
+numInvEdges: 72
+
+Num Of Facet: 37
+
+Mesh Number: 13
+numVertex: 12
+numFacet: 14
+numQuad: 6
+numTriangle: 8
+numImplicitTriangle: 20
+numVisEdges: 36
+numInvEdges: 12
+
+Num Of Facet: 15
+
+Number of Meshes: 14
+Solid Number: 0
+Element or Entity Processed Correctly
 
 
+In SolidKernel Entity is: Solid 0
 
+Solid Number: 1
+Element or Entity Processed Correctly
+
+
+In SolidKernel Entity is: Solid 0
+
+Solid Number: 2
+Element or Entity Processed Correctly
+
+
+In SolidKernel Entity is: Solid 0
+
+Solid Number: 3
+Element or Entity Processed Correctly
+
+
+---------------------------EXTRUSION COMPONENTS----------------------------
 -------- Cell --------
+
 Range [XLength] = 240023.007658
 Range [YLength] = 207871.161476
 Range [ZLength] = 100.000000
 
 Quaternion Rotation
-qRotation [X] = -0.499981
-qRotation [Y] = 0.866036
+qRotation [X] = 0.000000
+qRotation [Y] = 1.000000
 qRotation [Z] = 0.000000
-qRotation [W] = -0.000000
+qRotation [W] = 0.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = -0.499981
-vRotation [Y] = 0.866036
+vRotation [X] = 0.000000
+vRotation [Y] = 1.000000
 vRotation [Z] = 0.000000
 
 Origin [X] = 310032.314594
@@ -889,6 +7874,62 @@ Curve End Point of Extrusion [Z] = -14888.118469
 True if the curve element has a single element and it's a primitive = 2
 
 True if the end cap is enabled = 1
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 190020.810765
+Centroid point [Y] = -109688.360649
+Centroid point [Z] = -14888.118469
+
+Start Point [X]: 310032.314594
+Start Point [Y]: -109693.500000
+Start Point [Z]: -14888.118469
+
+End Point [X]: 310032.314594
+End Point [Y]: -109693.500000
+End Point [Z]: -14888.118469
+
+
+
+Origin [X] = 340037.415956
+Origin [Y] = -57728.279307
+Origin [Z] = -14888.118469
+
+                              
+CURVE_PRIMITIVE_TYPE_LineString --------
+
+Start Point [X]: 310032.314594
+Start Point [Y]: -109693.500000
+Start Point [Z]: -14888.118469
+
+End Point [X]: 310032.314594
+End Point [Y]: -109693.500000
+End Point [Z]: -14888.118469
+
+Curve Line String Length: 120011.503939
+
+
+Centroid from Area [X] = 190020.810765
+Centroid from Area [Y] = -109688.360649
+Centroid from Area [Z] = -14938.118469
+Area1 = 74910948770.072754
+
+Centroid from Volume [X] = 190020.810765
+Centroid from Volume [Y] = -109688.360649
+Centroid from Volume [Z] = -14938.118469
+Volume = 3741947093385.464355
+Area2 = 74910948770.072754
+
+
+
+Origin [X] = 310032.314594
+Origin [Y] = -109693.500000
+Origin [Z] = -14888.118469
+
+
+---------------------------END OF EXTRUSION COMPONENTS----------------------------
 
 
 ===================================================

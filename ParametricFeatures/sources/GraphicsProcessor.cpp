@@ -61,7 +61,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 {
 	mGraphicsProcessorEnhancer.processShapesCurvesVector(curves, isFilled);
 		
-	return ERROR;
+	//return ERROR;
+	return SUCCESS;
 }
 #pragma warning( pop ) 
 
@@ -71,6 +72,13 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
+	std::ofstream outfile;
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "-------------------------------- MSBsplineSurfaceCR surface --------------------------------" << std::endl;
+	outfile << std::endl;
+	outfile << std::endl;
+	outfile.close();
+
 	return ERROR;
 }
 
@@ -96,8 +104,6 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 	dictionaryProperties->setIsSmartSolid(true);
 
-	if (!dictionaryProperties->getIsPrimitiveSolid())
-	{
 		auto entityType = entity.GetEntityType();
 		switch (entityType)
 		{
@@ -134,7 +140,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			default:
 				break;
 		}
-
+// Element is getting parsed as BRep Faceted
+#if true 
 		if (mGraphicsProcessorEnhancer.processEntityAsFacetedBRep(entity))
 		{
 			outfile.open(filePath, std::ios_base::app);
@@ -142,6 +149,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			outfile << std::endl;
 			outfile.close();
 		}
+#endif
 
 #if false
 		if (entityType == ISolidKernelEntity::KernelEntityType::EntityType_Solid || entityType == ISolidKernelEntity::KernelEntityType::EntityType_Sheet)
@@ -180,8 +188,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			outfile.close();
 
 			//Mesh Polyface converter WORKING REPRESENTATION
-#if true
-			mGraphicsProcessorEnhancer.ProcessAsMeshElement(brepEntity);
+#if false
+			//mGraphicsProcessorEnhancer.ProcessAsMeshElement(brepEntity);
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << std::endl;
@@ -264,7 +272,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				boundID++;
 
 				//Add bound Points
-				brepEntity->addBoundsPoints(bound);
+				//brepEntity->addBoundsPoints(bound);
 				subEntitiesFaces.clear();
 			}
 #endif
@@ -422,6 +430,11 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				outfile << std::endl;
 				outfile.close();
 
+				bvector<double> uParams, vParams;
+				bvector<DPoint2d> uvParams;
+				bvector<DPoint3d> gridPoints;
+
+				
 				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
 				{
 					switch (geomFacesEval->GetGeometryType())
@@ -429,13 +442,23 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					case IGeometry::GeometryType::BsplineSurface:
 					{
 						MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
-
+						msBspline.EvaluateUniformGrid(msBspline.GetNumUPoles(), msBspline.GetNumVPoles(), uvParams, gridPoints);
+						gridPoints.clear();
+						msBspline.EvaluateUniformGrid(msBspline.GetNumUPoles(), msBspline.GetNumVPoles(), uParams, vParams, gridPoints);
 						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
 
 						msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
 						msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
 
 						mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+						outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+						outfile << "uParams: " << uParams.size() << std::endl;
+						outfile << "vParams: " << vParams.size() << std::endl;
+						outfile << "uvParams: " << uvParams.size() << std::endl;
+						outfile << "gridPoints: " << gridPoints.size() << std::endl;
+						outfile << std::endl;
+						outfile.close();
 
 						//Add the face to the BrepEntity
 						brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
@@ -449,6 +472,27 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					break;
 					default:
 						break;
+					}
+								
+				/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					outfile << "Grid Points SolidUtil Evaluation: "<< std::endl;
+					outfile.close();
+					
+					for (auto uv: uvParams)
+					{
+						DPoint3d gPoint;
+						DVec3d normal, uDir, vDir;
+						SolidUtil::EvaluateFace(faceRef, gPoint, normal, uDir, vDir, uv);
+
+						outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+						outfile << "U: " << uv.x << std::endl;
+						outfile << "V: " << uv.y << std::endl;
+						outfile << "Grid Point [X]: " << gPoint.x << std::endl;
+						outfile << "Grid Point [Y]: " << gPoint.y << std::endl;
+						outfile << "Grid Point [Z]: " << gPoint.z << std::endl;
+						outfile << std::endl;
+						outfile.close();
+
 					}
 
 					SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
@@ -478,13 +522,13 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					}
 
 					//Clear the previous vertices
-					subEntitiesVertices.clear();
+					subEntitiesVertices.clear();*/
 				}
 			}
 #endif
 
 			//Edges start dependences BSpline Surface
-#if false
+#if true
 			//Clear the faces store previously
 			subEntitiesFaces.clear();
 			subEntitiesVertices.clear();
@@ -494,28 +538,38 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 			for (auto edge : subEntitiesEdges)
 			{
-
 				ISubEntityCR edgeRef = *edge;
 				EdgeId edgeID;
 				SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
 				SolidUtil::Debug::DumpSubEntity(edgeRef, L"DumpSubEntity Edge");
 
+				//Get te faces of the current edge
+				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+
 				outfile.open(filePath, std::ios_base::app);
 				outfile << "EDGE Sub Entity: " << std::endl;
 				outfile << std::endl;
 				outfile.close();
+				
+				FaceEdge* faceEdge = new FaceEdge;
+				faceEdge->isShared = subEntitiesFaces.size() > 1;
 
-				CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+				ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 
 				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
 				{
-					bool addToDictionary = true;
+					bool addToDictionary = false;
 					mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties, addToDictionary); //Stored in the dictionary
+
+					faceEdge->shape = shapesGraphicProperties;
+
+					// Chek if the shape is closed 
+					if (curveEdgesEval->IsClosedPath())
+						faceEdge->isClosed = true;
+					else if (curveEdgesEval->IsPhysicallyClosedPath())
+						faceEdge->isClosed = true;
 				}
-
-
-				//Get te faces of the current edge
-				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+				
 				for (auto face : subEntitiesFaces)
 				{
 					if (face == NULL)
@@ -543,16 +597,13 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							case IGeometry::GeometryType::BsplineSurface:
 							{
 								MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
-
 								MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
 
+								msBsplineSurfaceGraphicProperties->setFaceId(faceID);
 								msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
 								msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
 
 								mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
-
-								//Add to the Bspline the Bound
-								msBsplineSurfaceGraphicProperties->addCurvesShapesGraphicProperties(shapesGraphicProperties);
 
 								//Add the face to the BrepEntity
 								brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
@@ -570,7 +621,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 							facesCreated++;
 
-							SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
+							/*SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
 							for (auto vertex : subEntitiesVertices)
 							{
 								ISubEntityCR vertexRef = *vertex;
@@ -597,7 +648,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							}
 
 							//Clear the previous vertices
-							subEntitiesVertices.clear();
+							subEntitiesVertices.clear();*/
 						}
 					}
 				}
@@ -775,9 +826,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		}
 #endif
 
-	}
-
-	return ERROR; 
+	return SUCCESS;
 }
 
 //! Collect output for surfaces and solids as facets.
@@ -794,7 +843,72 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 	outfile << std::endl;
 	outfile.close();
 
-	return ERROR;
+	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
+
+	bvector<PolyfaceHeaderPtr> meshes;
+	PolyfaceHeaderPtr header = PolyfaceHeader::CreateVariableSizeIndexed();
+	header->CopyFrom(meshData);
+	header->Transform(m_currentTransform);
+	meshes.push_back(header);
+
+	BRepGraphicProperties* bRepGraphicProperties = new BRepGraphicProperties();
+
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
+		//size_t numOpen, numClosed;
+		size_t numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges;
+		PolyfaceHeaderPtr pMesh = meshes.at(i);
+		PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
+
+		std::vector<std::vector<DPoint3d>> facetTriangulated;
+
+		pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Mesh Number: " << i << std::endl;
+		outfile << "numVertex: " << numVertex << std::endl;
+		outfile << "numFacet: " << numFacet << std::endl;
+		outfile << "numQuad: " << numQuad << std::endl;
+		outfile << "numTriangle: " << numTriangle << std::endl;
+		outfile << "numImplicitTriangle: " << numImplicitTriangle << std::endl;
+		outfile << "numVisEdges: " << numVisEdges << std::endl;
+		outfile << "numInvEdges: " << numInvEdges << std::endl;
+		outfile << std::endl;
+		outfile.close();
+
+		int nFace = 1;
+
+		while (pv->AdvanceToNextFace())
+		{
+			BlockedVectorDPoint3dR pts = pv->Point();
+
+			std::vector<DPoint3d> face;
+			for (DPoint3d pt : pts)
+			{
+				//Store the point for the triangle face
+				face.push_back(pt);
+			}
+
+			//Push the face in the container
+			solidKernelEntity->addFacetTriangulated(face);
+
+			nFace++;
+			outfile.close();
+		}
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Num Of Facet: " << nFace << std::endl;
+		outfile << std::endl;
+		outfile.close();
+
+		//Add to the BRep Entity
+		bRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
+	}
+	
+	dictionaryProperties->addGraphicProperties(bRepGraphicProperties);
+
+	return SUCCESS;
 }
 
 //! Collect output as a solid primitive.
@@ -910,7 +1024,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			BoxGraphicProperties* boxGraphicProperties = new BoxGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)boxGraphicProperties);
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)boxGraphicProperties);
 
 			// set X,Y,Z axes
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
@@ -990,7 +1104,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile.close();
 
 			// get local to world class to get the X,Y,Z axes 
-			coneDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 			mGraphicsProcessorEnhancer.processConeAndCylinder(primitive);
 		}
 
@@ -1009,18 +1122,25 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		DVec3d curveStart;
 		DVec3d curveEnd;
 
+		return ERROR;
+
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "---------------------------EXTRUSION COMPONENTS----------------------------" << std::endl;			
 			outfile << "-------- " << dictionaryProperties->getElementDescriptor() << " --------" << std::endl;
+			outfile << std::endl;
 			outfile.close();
-
+			
 			extrusionDetails.GetRange(range);
-			extrusionDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			//extrusionDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			//extrusionDetails.TryGetZExtrusionFrame(localToWorld, worldToLocal);
+			extrusionDetails.TryGetExtrusionFrame(localToWorld, worldToLocal);
 			extrusionDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
-
+			
 
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
 
@@ -1053,9 +1173,33 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "True if the curve element has a single element and it's a primitive = " << extrusionDetails.m_baseCurve->HasSingleCurvePrimitive() << std::endl;
 			outfile << std::endl;
 			outfile << "True if the end cap is enabled = " << extrusionDetails.m_capped << std::endl;
-
 			outfile.close();
+			
+
+			ExtrusionGraphicProperties* extrusionGraphicProperties = new ExtrusionGraphicProperties();
+			extrusionGraphicProperties->directionExtrusion = extrusionDetails.m_extrusionVector;
+			extrusionGraphicProperties->isSolid = extrusionDetails.m_capped;
+			extrusionGraphicProperties->worldToLocal = worldToLocal;
+			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+			//CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+			bool addToDictionary = false;
+			mGraphicsProcessorEnhancer.processShapesCurvesVector(*extrusionDetails.m_baseCurve, false, shapesGraphicProperties, addToDictionary);
+			if (shapesGraphicProperties != nullptr) {
+				extrusionGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
+			}
+
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)extrusionGraphicProperties);
+			mGraphicsProcessorEnhancer.setGraphicPropertiesAxes((GraphicProperties*&)extrusionGraphicProperties, localToWorld);
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "---------------------------END OF EXTRUSION COMPONENTS----------------------------" << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			dictionaryProperties->addGraphicProperties(extrusionGraphicProperties);
 		}
+
 
 		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
@@ -1082,17 +1226,19 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		{
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------- " << dictionaryProperties->getElementDescriptor() << " --------" << std::endl;
-			outfile.close();
+			outfile.close();			
 
 			rotSweepDetails.GetRange(range);
-			rotSweepDetails.GetTransforms(localToWorld, worldToLocal);
+			//rotSweepDetails.GetTransforms(localToWorld, worldToLocal);
+			rotSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			
 			rotSweepDetails.TryGetRotationAxis(centerRotation, rotationAxes, sweepRadians);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
 			rotSweepDetails.m_baseCurve->GetStartEnd(curveStart, curveEnd);
-
+			
 			primitive.ClosestPoint(localToWorld.Origin(), this->mSolidDetails);
-
+			
 			mGraphicsProcessorEnhancer.PrintPrincipalProperties(range, rotation, qRotation, localToWorld);
 			
 			outfile.open(filePath, std::ios_base::app);
@@ -1108,7 +1254,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			outfile << "Center Point Rotation [Y] = " << centerRotation.y << std::endl;
 			outfile << "Center Point Rotation [Z] = " << centerRotation.z << std::endl;
 			outfile << std::endl;
-
+			
 			outfile << "Axes Rotation [X] = " << rotationAxes.x << std::endl;
 			outfile << "Axes Rotation [Y] = " << rotationAxes.y << std::endl;
 			outfile << "Axes Rotation [Z] = " << rotationAxes.z << std::endl;
@@ -1148,66 +1294,18 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			double radius_Max;
 			rotSweepDetails.GetRadius(radius_Max, DgnRotationalSweepDetail::RadiusType::Maximum);
 
-			double radius_C;
-			rotSweepDetails.GetRadius(radius_C, DgnRotationalSweepDetail::RadiusType::Centroidal);
+			double radius_Min;
+			rotSweepDetails.GetRadius(radius_Min, DgnRotationalSweepDetail::RadiusType::Minimum);
 
-			outfile << "Radius min= " << radius << std::endl;
+			outfile << "Radius min= " << radius_Min << std::endl;
 			outfile << "Radius max= " << radius_Max << std::endl;
-			outfile << "Radius cen= " << radius_C << std::endl;
-
-			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
-			rotationalSweepGraphicProperties->setRadius(radius);
-			rotationalSweepGraphicProperties->rotation.Init(rotation);
-			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-			//mGraphicsProcessorEnhancer.processCurvesPrimitives(*rotSweepDetails.m_baseCurve.GetR(), shapesGraphicProperties);
-			bool addToDictionary = false;
-			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties, addToDictionary);
-			if (shapesGraphicProperties != nullptr) {
-				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
-			}
-			
-
-			//for (int i = 0; i < rotSweepDetails.m_baseCurve->size(); ++i) {
-			//	CurveGraphicProperties* curveGraphicProperties = mGraphicsProcessorEnhancer.processCurvePrimitives(rotSweepDetails.m_baseCurve->at(i));
-			//	rotationalSweepGraphicProperties->setCurveGraphicProperties(curveGraphicProperties);
-			//}
-
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
-			// set X,Y,Z axes
-			DVec3d columnVectorX, columnVectorY, columnVectorZ;
-			
-
-			//columnVectorX = rotSweepDetails.m_axisOfRotation.direction;
-			//columnVectorY = columnVectorX;
-
-			//columnVectorY.RotateXY(3.14);
-			//columnVectorZ.CrossProduct(columnVectorX, columnVectorY);
-
-			localToWorld.GetMatrixColumn(columnVectorX, 0);
-			localToWorld.GetMatrixColumn(columnVectorY, 1);
-			localToWorld.GetMatrixColumn(columnVectorZ, 2);
-			
-
-			outfile << "Axes of Rotation Direction columnVectorX [X] = " << columnVectorX.x << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorX [Y] = " << columnVectorX.y << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorX [Z] = " << columnVectorX.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Axes of Rotation Direction columnVectorY [X] = " << columnVectorY.x << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorY [Y] = " << columnVectorY.y << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorY [Z] = " << columnVectorY.z << std::endl;
-			outfile << std::endl;
-
-			outfile << "Axes of Rotation Direction columnVectorZ [X] = " << columnVectorZ.x << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorZ [Y] = " << columnVectorZ.y << std::endl;
-			outfile << "Axes of Rotation Direction columnVectorZ [Z] = " << columnVectorZ.z << std::endl;
-			outfile << std::endl;
+			outfile << "Radius cen= " << radius << std::endl;
 
 			outfile.close();
-
-
-			rotationalSweepGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
-			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, centerRotation, rotationalSweepGraphicProperties);
+			
+			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
+			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, rotationalSweepGraphicProperties);
 		}
 
 	}
@@ -1326,7 +1424,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			SphereGraphicProperties* sphereGraphicProperties = new SphereGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)sphereGraphicProperties);
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)sphereGraphicProperties);
 			
 			// set spehere properties
 			mGraphicsProcessorEnhancer.setSphereGraphicProperties(sphereGraphicProperties);
@@ -1427,7 +1525,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			TorusGraphicProperties* torusGraphicProperties = new TorusGraphicProperties();
 
 			// set centroid, area and volume
-			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)torusGraphicProperties);
+			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)torusGraphicProperties);
 
 			// set X,Y,Z axes
 			DVec3d columnVectorX, columnVectorY, columnVectorZ;
@@ -1463,7 +1561,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		break;
 	}
 
-	return ERROR;
+	return SUCCESS;
 }
 
 void GraphicsProcessor::_AnnounceTransform(TransformCP trans)

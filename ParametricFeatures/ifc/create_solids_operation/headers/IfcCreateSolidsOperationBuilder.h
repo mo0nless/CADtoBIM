@@ -4,6 +4,7 @@
 #include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
+#include "../../headers/IfcElementBundle.h"
 //#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
 //#include "../../../modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
 

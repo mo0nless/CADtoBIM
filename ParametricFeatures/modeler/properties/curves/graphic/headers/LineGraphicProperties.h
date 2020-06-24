@@ -7,9 +7,9 @@ class LineGraphicProperties: public CurveGraphicProperties
 public:
 	LineGraphicProperties();
 
-	void setDirectionTanget(DPoint3d newDirTanget);
-	DPoint3d getDirectionTangent();
+	void setDirectionTanget(DVec3d newDirTanget);
+	DVec3d getDirectionTangent();
 
 private:
-	DPoint3d mDirectionTangent;
+	DVec3d mDirectionTangent;
 };

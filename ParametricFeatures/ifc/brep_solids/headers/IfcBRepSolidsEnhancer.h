@@ -2,10 +2,12 @@
 
 #include<tuple> // for tuple 
 #include "../../../stdafx.h"
+#include "../../headers/IfcElementBundle.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/brep_solids/headers/BRepGraphicProperties.h"
-#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
-#include "IfcBRepRelationship.h"
+#include "../../../common/enums/headers/ShapesTypeEnum.h"
+#include "../../shapes/headers/IfcShapesEnhancer.h"
+//#include "IfcBRepRelationship.h"
 
 class IfcBRepSolidsEnhancer
 {
@@ -16,6 +18,7 @@ public:
 	
 private:
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	//Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	template<class T>

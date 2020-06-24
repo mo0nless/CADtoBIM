@@ -61,7 +61,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	{
 		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
-	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP)
+	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || 
+		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file,  rotationX,  rotationY,  rotationZ);
 	}
@@ -136,6 +137,11 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	return nullptr;
 }
 
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 	double rotationX, double rotationY, double rotationZ)
 {
@@ -203,7 +209,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
 
 		}
-		 else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) {
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) {
 			RotationalSweepGraphicProperties& rotationalSweepGraphicProperties = dynamic_cast<RotationalSweepGraphicProperties&>(primitiveGraphicProperties);
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
@@ -248,7 +254,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("RotationalSweep"),
 				(Ifc4::IfcCurve*) result);
 
-			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0,0,0),
+			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
 				file.addTriplet<Ifc4::IfcDirection>(rotationalSweepGraphicProperties.getVectorAxisZ().x, rotationalSweepGraphicProperties.getVectorAxisZ().y,
 					rotationalSweepGraphicProperties.getVectorAxisZ().z));
 
@@ -279,10 +285,115 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			Ifc4::IfcSweptAreaSolid* something = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
 			file.addEntity(something);
 			ifcRepresentationItem = something;
+
+		}
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::EXTRUSION)
+		{
+			ExtrusionGraphicProperties& extrusionGraphicProperties = dynamic_cast<ExtrusionGraphicProperties&>(primitiveGraphicProperties);
+			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
+
+			Ifc4::IfcGeometricRepresentationItem* item = nullptr;
+			ShapesGraphicProperties* curveShape = extrusionGraphicProperties.getShapesGraphicProperties();
+			CurvesBoundaryTypeEnum curveBoundary = curveShape->getBoundaryTypeCurvesContainer();
+			
+			bool addToIfcElementBundle = false;
+			Ifc4::IfcProfileDef* profileDef = nullptr;
+
+			Ifc4::IfcProfileTypeEnum::Value pEnum;
+			if (extrusionGraphicProperties.isSolid)
+				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA;
+			else
+				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE;
+
+			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+			//Change dimension
+			ifcShapesEnhancer->dimension = 2;
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, ifcElementBundle, addToIfcElementBundle);
+			
+			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
+			{
+				item = ifcShapesEnhancer->getSingleShapeRepresentation();
+				
+				if (curveShape->getIsClosed())
+				{
+					Ifc4::IfcCurve* curveToExtrude = (Ifc4::IfcCurve*)item;
+					profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
+						pEnum,
+						std::string("Closed Profile"),
+						curveToExtrude
+					);
+				}
+				else 
+				{
+					Ifc4::IfcBoundedCurve* curveToExtrude = (Ifc4::IfcBoundedCurve*)item;
+					profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
+						pEnum,
+						std::string("Open Profile"),
+						curveToExtrude
+					);
+				}
+			}
+			else
+			{
+				IfcTemplatedEntityList<Ifc4::IfcCurve>* profiles = new IfcTemplatedEntityList<Ifc4::IfcCurve>();
+				Ifc4::IfcCurve* outer = nullptr;
+				for (auto boundTypeCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
+				{
+					Ifc4::IfcCurve* curve = boundTypeCurve->ifcCurve;
+					CurvesBoundaryTypeEnum bound = boundTypeCurve->boundary;
+
+					if (CurvesBoundaryTypeEnum::INNER == bound)				
+						profiles->push(curve);
+					else if (CurvesBoundaryTypeEnum::OUTER == bound)
+						outer = curve;
+				}
+
+				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurve>> tempProfiles(profiles);
+
+				profileDef = new Ifc4::IfcArbitraryProfileDefWithVoids(
+					pEnum,
+					std::string("Outer and Inner"),
+					outer,
+					tempProfiles
+				);
+
+			}
+			
+			Ifc4::IfcAxis2Placement3D* place = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				extrusionGraphicProperties.getCentroid(),
+				extrusionGraphicProperties.getVectorAxisZ(),
+				extrusionGraphicProperties.getVectorAxisX()
+			);
+
+
+			if (extrusionGraphicProperties.isSolid)
+			{
+				Ifc4::IfcExtrudedAreaSolid* extrusionitem = new Ifc4::IfcExtrudedAreaSolid(
+					profileDef,
+					file.addPlacement3d(),
+					//place,
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.directionExtrusion),
+					NumberUtils::convertMicrometersToMetters(extrusionGraphicProperties.directionExtrusion.Magnitude())
+				);
+
+				ifcRepresentationItem = extrusionitem;
+			}
+			else
+			{
+				Ifc4::IfcSurfaceOfLinearExtrusion* surfaceExtrusion = new Ifc4::IfcSurfaceOfLinearExtrusion(
+					profileDef,
+					file.addPlacement3d(),
+					//place,
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.directionExtrusion),
+					NumberUtils::convertMicrometersToMetters(extrusionGraphicProperties.directionExtrusion.Magnitude())
+				);
+
+				ifcRepresentationItem = surfaceExtrusion;
+			}
 		}
 
 
 	return ifcRepresentationItem;
 }
-
+#pragma warning( pop )
 
