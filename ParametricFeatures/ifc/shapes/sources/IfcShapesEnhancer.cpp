@@ -193,6 +193,19 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			break;
 	}
 
+	// TODO add implementation to fill the shape
+	//if (shapeGraphicProperties->getIsFilled()) {
+
+	//	Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
+	//	ifcTemplatedEntityList->push(mSingleShapeRepresentation);
+
+	//	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationItem>> polyCP(ifcTemplatedEntityList);
+
+	//	Ifc4::IfcShapeModel* ifcShapeModel = new Ifc4::IfcShapeModel(file.getSingle<Ifc4::IfcRepresentationContext>(), std::string("cacat"),
+	//		std::string("cacat2"), polyCP);
+
+	//	file.addEntity(ifcShapeModel);
+	//}
 
 	if (this->mSingleShapeRepresentation != nullptr)
 	{

@@ -1299,7 +1299,43 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			outfile << "Radius min= " << radius_Min << std::endl;
 			outfile << "Radius max= " << radius_Max << std::endl;
-			outfile << "Radius cen= " << radius << std::endl;
+			outfile << "Radius cen= " << radius_C << std::endl;
+
+			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
+			rotationalSweepGraphicProperties->setRadius(radius);
+			rotationalSweepGraphicProperties->rotation.Init(rotation);
+			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+			bool addToDictionary = false;
+			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties, addToDictionary);
+			if (shapesGraphicProperties != nullptr) {
+				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
+			}
+			
+
+			mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
+			// set X,Y,Z axes
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+		
+
+			localToWorld.GetMatrixColumn(columnVectorX, 0);
+			localToWorld.GetMatrixColumn(columnVectorY, 1);
+			localToWorld.GetMatrixColumn(columnVectorZ, 2);
+			
+
+			outfile << "Axes of Rotation Direction columnVectorX [X] = " << columnVectorX.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorX [Y] = " << columnVectorX.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorX [Z] = " << columnVectorX.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Axes of Rotation Direction columnVectorY [X] = " << columnVectorY.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorY [Y] = " << columnVectorY.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorY [Z] = " << columnVectorY.z << std::endl;
+			outfile << std::endl;
+
+			outfile << "Axes of Rotation Direction columnVectorZ [X] = " << columnVectorZ.x << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorZ [Y] = " << columnVectorZ.y << std::endl;
+			outfile << "Axes of Rotation Direction columnVectorZ [Z] = " << columnVectorZ.z << std::endl;
+			outfile << std::endl;
 
 			outfile.close();
 			
