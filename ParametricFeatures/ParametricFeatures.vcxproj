@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />

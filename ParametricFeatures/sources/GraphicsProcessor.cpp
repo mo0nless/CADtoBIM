@@ -1180,7 +1180,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 			extrusionGraphicProperties->isSolid = extrusionDetails.m_capped;
 			extrusionGraphicProperties->worldToLocal = worldToLocal;
 			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-			//CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
+
 			bool addToDictionary = false;
 			mGraphicsProcessorEnhancer.processShapesCurvesVector(*extrusionDetails.m_baseCurve, false, shapesGraphicProperties, addToDictionary);
 			if (shapesGraphicProperties != nullptr) {
@@ -1198,9 +1198,6 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			dictionaryProperties->addGraphicProperties(extrusionGraphicProperties);
 		}
-
-
-		//mGraphicsProcessorEnhancer.PrintPrincipalAreaMoments(primitive);
 	}
 	break;
 
@@ -1302,15 +1299,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 			RotationalSweepGraphicProperties* rotationalSweepGraphicProperties = new RotationalSweepGraphicProperties();
 			mGraphicsProcessorEnhancer.setSolidPrimCentroidAreaVolume(primitive, (GraphicProperties*&)rotationalSweepGraphicProperties);
-			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, rotationalSweepGraphicProperties);
-
-			ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-			bool addToDictionary = false;
-
-			mGraphicsProcessorEnhancer.processShapesCurvesVector(*rotSweepDetails.m_baseCurve.GetR(),false, shapesGraphicProperties, addToDictionary);
-			if (shapesGraphicProperties != nullptr) {
-				rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
-			}		
+			mGraphicsProcessorEnhancer.setRotationalSweepGraphicProperties(rotSweepDetails, rotationalSweepGraphicProperties);			
 
 			outfile.close();
 			
@@ -1319,7 +1308,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 	}
 	break;
 
-	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
+	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep: //Still Missing
 	{
 		DgnRuledSweepDetail ruledSweepDetails;
 		DRange3d range;

@@ -5,12 +5,13 @@
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h" //curveshape..
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
+//#include "../../../common/enums/headers/IfcDimensionEnum.h"
 //#include "../../brep_solids/headers/IfcBRepRelationship.h"
 #include <vector>
 
 struct BoundTypeIfcCurve 
 {
-	BoundTypeIfcCurve() {};
+	//BoundTypeIfcCurve() {};
 	CurvesBoundaryTypeEnum boundary;
 	Ifc4::IfcCurve* ifcCurve;
 	
@@ -28,7 +29,7 @@ public:
 	Ifc4::IfcGeometricRepresentationItem* getSingleShapeRepresentation();
 	std::vector<BoundTypeIfcCurve*> getCurvesShapeRepresentationVector();
 
-	int dimension = 3;
+	IfcDimensionEnum dimension = IfcDimensionEnum::dim_3D;
 
 private:
 	Ifc4::IfcCurve* buildIfcCurvePrimitives(CurveGraphicProperties* curveProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle);

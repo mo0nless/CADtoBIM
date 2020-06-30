@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "../../common/utils/headers/NumberUtils.h"
+#include "../../common/enums/headers/IfcDimensionEnum.h"
 #include "../../stdafx.h"
 
 class IfcOperationsEnhancer
@@ -68,9 +69,9 @@ template<class Triplet3D>
 inline std::vector<double> IfcOperationsEnhancer::buildDoubleVectorFromTriplet(Triplet3D newTriplet)
 {
 	std::vector<double> points;
-	points.push_back(NumberUtils::convertMicrometersToMetters(newTriplet.x));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newTriplet.y));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newTriplet.z));
+	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.x));
+	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.y));
+	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.z));
 
 	return points;
 }
@@ -79,8 +80,8 @@ template<class Tuple2D>
 inline std::vector<double> IfcOperationsEnhancer::buildDoubleVectorFromTuple(Tuple2D newTuple)
 {
 	std::vector<double> points;
-	points.push_back(NumberUtils::convertMicrometersToMetters(newTuple.x));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newTuple.y));
+	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTuple.x));
+	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTuple.y));
 
 	return points;
 }

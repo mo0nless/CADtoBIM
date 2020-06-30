@@ -24,8 +24,8 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 	centroid.y = 0;
 	centroid.z = 0;
 
-	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
-		NumberUtils::convertMicrometersToMetters(centroid.y), NumberUtils::convertMicrometersToMetters(centroid.z)),
+	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertCurrentUnitToMeters(centroid.x),
+		NumberUtils::convertCurrentUnitToMeters(centroid.y), NumberUtils::convertCurrentUnitToMeters(centroid.z)),
 		file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y,zAxis.z), file.addTriplet<Ifc4::IfcDirection>(xAxis.x, xAxis.y, xAxis.z));
 
 	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getCassName()))
@@ -56,7 +56,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		double length = 0;
 		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 			if (modelerProperty->getPropertyName() == "Distance") {
-				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
+				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
 		}
 		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE,std::string("Extrude"),(Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
@@ -73,7 +73,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 
 		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 			if (modelerProperty->getPropertyName() == "Thickness") {
-				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
+				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
 			if (modelerProperty->getPropertyName() == "Range Low") {
 				rangeLow.x = modelerProperty->getPropertyValue().GetPoint3D().x;

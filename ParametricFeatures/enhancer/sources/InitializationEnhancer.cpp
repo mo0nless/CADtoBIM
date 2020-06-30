@@ -144,12 +144,12 @@ void InitializationEnhancer::testFunction(PersistentElementRefP elemRef)
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
+#pragma warning( disable : 4238)
 void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
-	std::ofstream outfile;
-
+	std::ofstream outfile;	
 	outfile.open(filePath);
-	outfile << "" << std::endl;
+	outfile << "------------------------" << std::endl;
 	outfile.close();
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
@@ -157,7 +157,61 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+	ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
+	UnitDefinitionCR masterUnit = modelInfo->GetMasterUnit();
+	UnitDefinitionCR subUnit = modelInfo->GetSubUnit();
 
+	UnitDefinitionCR storageUnit = modelInfo->GetStorageUnit();
+	double uorPerUnit = modelInfo->GetUorPerStorage();
+	
+
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "------------------------" << std::endl;
+	outfile << "DgnModelRefP Unit System" << std::endl;
+	outfile << std::fixed;
+	outfile << std::endl;
+
+	outfile << "UnitSystem::English 1" << std::endl;
+	outfile << "UnitSystem::Metric 2" << std::endl;
+	outfile << "UnitSystem::USSurvey 3" << std::endl;
+	outfile << std::endl;
+	
+	outfile << "UnitBase::Meter 1" << std::endl;
+	outfile << "UnitBase::Degree 2" << std::endl;
+	outfile << std::endl;
+	
+	outfile << "Master unit: " << StringUtils::getNormalizedString(masterUnit.GetLabel()) << std::endl;
+	outfile << "masterUnit System" << (int)masterUnit.GetSystem() << std::endl;
+	outfile << "masterUnit Base" << (int)masterUnit.GetBase() << std::endl;
+	outfile << "masterUnit Numerator" << masterUnit.GetNumerator() << std::endl;
+	outfile << "masterUnit Denominator" << masterUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (masterUnit.GetNumerator() / masterUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "Sub unit: " << StringUtils::getNormalizedString(subUnit.GetLabel()) << std::endl;
+	outfile << "subUnit System" << (int)subUnit.GetSystem() << std::endl;
+	outfile << "subUnit Base" << (int)subUnit.GetBase() << std::endl;
+	outfile << "subUnit Numerator" << subUnit.GetNumerator() << std::endl;
+	outfile << "subUnit Denominator" << subUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (subUnit.GetNumerator() / subUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "Storage unit: " << StringUtils::getNormalizedString(storageUnit.GetLabel()) << std::endl;
+	outfile << "storageUnit System" << (int)storageUnit.GetSystem() << std::endl;
+	outfile << "storageUnit Base" << (int)storageUnit.GetBase() << std::endl;
+	outfile << "storageUnit Numerator" << storageUnit.GetNumerator() << std::endl;
+	outfile << "storageUnit Denominator" << storageUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (storageUnit.GetNumerator() / storageUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "UOR per storage" << uorPerUnit << std::endl;
+	outfile << "AnnotationScaleFactor" << modelInfo->GetAnnotationScaleFactor() << std::endl;
+	
+	outfile << "------------------------" << std::endl;
+	outfile.close();
+
+
+	
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
 		//DgnECManagerR ecMgr = DgnECManager::GetManager();

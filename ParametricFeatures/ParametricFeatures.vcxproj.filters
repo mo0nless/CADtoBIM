@@ -172,5 +172,6 @@
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
+    <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
   </ItemGroup>
 </Project>

@@ -1209,6 +1209,11 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		outfile << "Centroid point [Y] = " << center.y << std::endl;
 		outfile << "Centroid point [Z] = " << center.z << std::endl;
 		outfile << std::endl;
+
+		outfile << "Normal [X] = " << normal.x << std::endl;
+		outfile << "Normal [Y] = " << normal.y << std::endl;
+		outfile << "Normal [Z] = " << normal.z << std::endl;
+		outfile << std::endl;
 		
 		outfile << "Start Point [X]: " << start.x << std::endl;
 		outfile << "Start Point [Y]: " << start.y << std::endl;
@@ -1225,6 +1230,8 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
 		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
+		
+		curvesVector.IsPlanarWithDefaultNormal(localToWorld, worldToLocal, range, &normal);
 
 		// Chek if the shape is closed 
 		if (curvesVector.IsClosedPath())

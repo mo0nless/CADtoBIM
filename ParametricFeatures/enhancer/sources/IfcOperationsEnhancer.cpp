@@ -28,9 +28,9 @@ Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPo
 Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection)
 {
 	std::vector<double> points;
-	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.x));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.y));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.z));
+	points.push_back(newDirection.x);
+	points.push_back(newDirection.y);
+	points.push_back(newDirection.z);
 
 	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
 
@@ -41,8 +41,8 @@ Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3
 Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection)
 {
 	std::vector<double> points;
-	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.x));
-	points.push_back(NumberUtils::convertMicrometersToMetters(newDirection.y));
+	points.push_back(newDirection.x);
+	points.push_back(newDirection.y);
 
 	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
 
