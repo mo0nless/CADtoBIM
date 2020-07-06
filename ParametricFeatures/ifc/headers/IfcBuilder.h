@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ctime>
 #include "../smart_feature/headers/SmartFeatureHandler.h"
 #include "../shapes/headers/IfcShapesEnhancer.h"
 //#include "../create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h"

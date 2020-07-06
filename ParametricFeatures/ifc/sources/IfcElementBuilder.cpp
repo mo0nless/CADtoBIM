@@ -1,7 +1,10 @@
 #include "../headers/IfcElementBuilder.h"
 
-IfcElementBuilder::IfcElementBuilder()
+IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory, Ifc4::IfcObjectPlacement* objectPlacement)
 {
+	this->geometricRepresentationContext = geomContext;
+	this->ownerHistory = ownerHistory;
+	this->objectPlacement = objectPlacement;
 }
 
 void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
@@ -33,10 +36,21 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			representationType = "Axis";
 			representationIdentifier = "Curve";
 		}
+
+		//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
+		Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
+			representationIdentifier,
+			geometricRepresentationContext->ContextType(),
+			geometricRepresentationContext,
+			boost::none,
+			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
+			std::string("$")
+		);
+
 				
 		Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
-			//geometricContext,
-			file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
+			geometricSubContext,
+			//file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
 			representationIdentifier,
 			representationType,
 			ifcRepresentationItemList
@@ -45,7 +59,11 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 		ifcRepresentationList->push(ifcRepresentation);
 
-		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, ifcRepresentationList);
+		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(
+			std::string("$"),
+			std::string("$"),
+			ifcRepresentationList
+		);
 
 		file.addEntity(shape);
 
@@ -75,13 +93,17 @@ Ifc4::IfcElement * IfcElementBuilder::buildIfcElement(IfcElementBundle *& ifcEle
 {
 	Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(
 		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
-		file.getSingle<Ifc4::IfcOwnerHistory>(),
+		//file.getSingle<Ifc4::IfcOwnerHistory>(),
+		ownerHistory,
 		ifcElementBundle->getModelerElementDescriptor(),
 		ifcElementBundle->getModelerElementDescriptor(),
-		boost::none,
+		//boost::none,
+		std::string("$"),
 		file.addLocalPlacement(),
 		elemShape, 
-		boost::none);
+		//boost::none
+		std::string("$")
+	);
 
 	return ifcElement;
 }
@@ -91,13 +113,16 @@ Ifc4::IfcDistributionElement * IfcElementBuilder::buildIfcDistributionElement(If
 	//Create the pipe as IfcDistributionElement
 	Ifc4::IfcDistributionElement* ifcDistributionElem = new Ifc4::IfcDistributionElement(
 		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
-		file.getSingle<Ifc4::IfcOwnerHistory>(),
+		//file.getSingle<Ifc4::IfcOwnerHistory>(),
+		ownerHistory,
 		ifcElementBundle->getModelerElementDescriptor(),
 		ifcElementBundle->getModelerElementDescriptor(),
-		boost::none,
+		//boost::none,
+		std::string("$"),
 		file.addLocalPlacement(),
 		elemShape,
-		boost::none
+		//boost::none
+		std::string("$")
 	);	
 
 	return ifcDistributionElem;

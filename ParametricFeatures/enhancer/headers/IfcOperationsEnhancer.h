@@ -4,6 +4,7 @@
 #include "../../common/utils/headers/NumberUtils.h"
 #include "../../common/enums/headers/IfcDimensionEnum.h"
 #include "../../stdafx.h"
+#include "../../modeler/properties/shapes/headers/ShapesGraphicProperties.h"
 
 class IfcOperationsEnhancer
 {
@@ -28,8 +29,11 @@ public:
 
 	template<class Triplet3D>
 	static Ifc4::IfcVector* buildIfcVectorFromDirectionPoint3D(Triplet3D newVector);
+
+	static void adjustShapeGlobalPlacement(ShapesGraphicProperties* shape, DVec3d position);
 	
 private:
+	static DPoint3d rotateAlongAxis(std::string axis, DPoint3d oldPoint);
 	template<class Triplet3D>
 	static std::vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
 	template<class Tuple2D>

@@ -5,13 +5,11 @@
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h" //curveshape..
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
-//#include "../../../common/enums/headers/IfcDimensionEnum.h"
 //#include "../../brep_solids/headers/IfcBRepRelationship.h"
 #include <vector>
 
 struct BoundTypeIfcCurve 
 {
-	//BoundTypeIfcCurve() {};
 	CurvesBoundaryTypeEnum boundary;
 	Ifc4::IfcCurve* ifcCurve;
 	

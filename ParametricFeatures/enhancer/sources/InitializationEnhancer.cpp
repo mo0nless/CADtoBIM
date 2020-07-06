@@ -158,6 +158,9 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
 	ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
+	
+	DPoint3d globalOrigin = modelInfo->GetGlobalOrigin();
+
 	UnitDefinitionCR masterUnit = modelInfo->GetMasterUnit();
 	UnitDefinitionCR subUnit = modelInfo->GetSubUnit();
 
@@ -206,6 +209,7 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 	outfile << "UOR per storage" << uorPerUnit << std::endl;
 	outfile << "AnnotationScaleFactor" << modelInfo->GetAnnotationScaleFactor() << std::endl;
+	outfile << "Global Origin [x,y,z]= " << globalOrigin.x << ", " << globalOrigin.y << ", " << globalOrigin.z << std::endl;
 	
 	outfile << "------------------------" << std::endl;
 	outfile.close();

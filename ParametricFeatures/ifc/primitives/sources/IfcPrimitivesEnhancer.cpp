@@ -235,32 +235,43 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			if (shape->getVectorAxisX().x == 0) // it's not in the XY plane vector X should be [1,0,0]
 				invertedAxis = true;
 
-			// adjust global points of the shape/curve related to the global placement of the revolve			
-			for (auto curve : shape->getCurvesPrimitivesContainerVector())
+			//Single Bound
+			if (shape->getShapesGraphicsContainer().empty())
 			{
-				std::vector<DPoint3d> temp;
-				for (auto point : curve->getControlPoints()) 
+				// adjust global points of the shape/curve related to the global placement of the revolve			
+				/*for (auto curve : shape->getCurvesPrimitivesContainerVector())
 				{
-					DPoint3d oldPoint;
-					DPoint3d newPoint;
-
-					if (invertedAxis)
+					std::vector<DPoint3d> temp;
+					for (auto point : curve->getControlPoints())
 					{
-						oldPoint.Subtract(point, sweepCenterOfRotation);
+						DPoint3d oldPoint;
+						DPoint3d newPoint;
 
-						newPoint.x = oldPoint.x;
-						newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
-						newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
+						if (invertedAxis)
+						{
+							oldPoint.Subtract(point, sweepCenterOfRotation);
+
+							newPoint.x = oldPoint.x;
+							newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
+							newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
+						}
+						else
+						{
+							oldPoint = point;
+							newPoint.Subtract(oldPoint, sweepCenterOfRotation);
+						}
+
+						temp.push_back(newPoint);
 					}
-					else
-					{
-						oldPoint = point;
-						newPoint.Subtract(oldPoint, sweepCenterOfRotation);
-					}
-				
-					temp.push_back(newPoint);
-				}
-				curve->setControlPoints(temp);
+					curve->setControlPoints(temp);
+				}*/
+				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation);
+			}
+			//Parity Region, set of bounds 
+			else
+			{
+				for (auto bound: shape->getShapesGraphicsContainer())
+					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation);
 			}
 
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
@@ -336,40 +347,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 			//Change dimension
 			//ifcShapesEnhancer->dimension = 2;
-
-			//TODO[SB] find better impleentation
-			bool invertedAxis = false;
-			if (shape->getVectorAxisX().x == 0) // it's not in the XY plane vector X should be [1,0,0]
-				invertedAxis = true;
-
-			
-			// adjust global points of the shape/curve related to the global placement of the revolve			
-			for (auto curve : shape->getCurvesPrimitivesContainerVector())
-			{
-				std::vector<DPoint3d> temp;
-				for (auto point : curve->getControlPoints())
-				{
-					DPoint3d oldPoint;
-					DPoint3d newPoint;
-
-					if (invertedAxis)
-					{
-						
-
-						newPoint.x = oldPoint.x;
-						newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
-						newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
-					}
-					else
-					{
-						//oldPoint = point;
-						newPoint = point;
-					}
-
-					temp.push_back(newPoint);
-				}
-				curve->setControlPoints(temp);
-			}
 
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
 			

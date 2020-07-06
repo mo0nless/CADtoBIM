@@ -97,4 +97,66 @@ bool IfcOperationsEnhancer::isVectorDoubleEqual(std::vector<double> v1, std::vec
 	return false;
 }
 
+void IfcOperationsEnhancer::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position)
+{
+	bool invertedAxis = false;
+	std::string axis = "";
+
+	if (std::abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+	{
+		invertedAxis = true;
+		axis = "X";
+	}
+	else if (std::abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
+	{
+		invertedAxis = true;
+		axis = "Y";
+	}
+
+	// adjust global points of the shape/curve related to the global placement of the revolve			
+	for (auto curve : shape->getCurvesPrimitivesContainerVector())
+	{
+		std::vector<DPoint3d> temp;
+		for (auto point : curve->getControlPoints())
+		{
+			DPoint3d oldPoint;
+			DPoint3d newPoint;
+
+			if (invertedAxis)
+			{
+				oldPoint.Subtract(point, position);
+				newPoint = rotateAlongAxis(axis, oldPoint);
+			}
+			else
+			{
+				oldPoint = point;
+				newPoint.Subtract(oldPoint, position);
+			}
+
+			temp.push_back(newPoint);
+		}
+		curve->setControlPoints(temp);
+	}
+}
+
+DPoint3d IfcOperationsEnhancer::rotateAlongAxis(std::string axis, DPoint3d oldPoint)
+{
+	DPoint3d newPoint;
+
+	if (axis == "X")
+	{
+		newPoint.x = oldPoint.x;
+		newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
+		newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
+	}
+	else if (axis == "Y")
+	{
+		newPoint.x = oldPoint.z*sin(90) + oldPoint.x*cos(90);
+		newPoint.y = oldPoint.y;
+		newPoint.z = oldPoint.y*cos(90) - oldPoint.x*sin(90);
+	}
+
+	return newPoint;
+}
+
 
