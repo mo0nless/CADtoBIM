@@ -138,6 +138,7 @@ appObjects = \
 	$(o)IfcPropertiesEnhancer$(oext) \
 	$(o)PropertyTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
+	$(o)GraphicElementTool$(oext) \
 
 
 #--------------------------------------------------------------------------------------
@@ -324,6 +325,8 @@ $(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEn
 $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
 
 $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
+
+$(o)GraphicElementTool$(oext) : $(baseDir)/sources/GraphicElementTool.cpp $(baseDir)/headers/GraphicElementTool.h
 
 
 %include $(MDLMKI)dlmlink.mki

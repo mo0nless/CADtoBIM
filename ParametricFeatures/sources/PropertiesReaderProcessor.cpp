@@ -18,13 +18,17 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	// Flag for searching the attachments in the scope as well
 	bool includeReferenceAttachments = true;
 
+	//auto some1 = ISessionMgr::GetActiveDgnModelRefP();
+
 	// Create a scope which finds instances in the given element. 
 	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));
-
+	/*FindInstancesScopePtr scope = FindInstancesScope::CreateScope(*currentElem.GetDgnModelP(), FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));*/
+	//FindInstancesScopePtr scope = FindInstancesScope::CreateScope(some1,
 
 	// Analogous to a SQL query and is used with DgnECManager::FindElementInstances to find ECInstances that satisfy the query's 'where' clause.
 	// Specify ECQUERY_PROCESS_SearchAllClasses for the query to consider instances of all classes
 	ECQueryPtr ecQuery = ECQuery::CreateQuery(ECQUERY_PROCESS_SearchAllClasses);
+	//Queryptr
 	
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
@@ -32,6 +36,8 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	//dictionaryProperties.getGeneralProperties()->setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
+	//ecMgr.
 	
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
@@ -44,9 +50,24 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 	}
 	else
 	{
+		//ElementECClassInfo  info;
+		//ecMgr.FindECClassesOnElement(currentElem.GetElementRef(), info);
+
+		//outfile.open(filePath, std::ios_base::app);
+		//outfile << std::endl;
+		//outfile << "extra" << std::endl;		
+		//outfile << info.count << std::endl;
+		//outfile << info.empty() << std::endl;
+		////outfile << info.leaf_nodes.size() << std::endl;
+		////outfile << info.nodes.size() << std::endl;
+		//outfile.close();
+
 
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
+
+			//instance->GetAsElementInstance()->get
+
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
 			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element

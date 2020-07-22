@@ -4,7 +4,7 @@
 std::map<CreateSolidFunctionsEnum, std::string> CreateSolidFunctionsEnumUtils::mappedValues = {
 	{ CreateSolidFunctionsEnum::REVOLVE, "Revolve" },
 	{ CreateSolidFunctionsEnum::EXTRUDE, "Extrude" },
-	{ CreateSolidFunctionsEnum::THIKEN, "ThickenFeature" },
+	{ CreateSolidFunctionsEnum::THICKEN, "ThickenFeature" },
 	{ CreateSolidFunctionsEnum::EXTRUDE_ALONG, "ExtrudeAlong" },
 	{ CreateSolidFunctionsEnum::UNDEFINED, "" },
 };

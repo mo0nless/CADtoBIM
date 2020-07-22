@@ -181,8 +181,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
-	IfcBRepSolidsEnhancer* ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
-	ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
+	//IfcBRepSolidsEnhancer* ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
+	//ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 
 
@@ -194,8 +194,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 	//DGN mmmens01 CRASH HERE
-	//IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
-	//ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcElementBundleVector, file);
+	IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
+	ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext);
 	ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);

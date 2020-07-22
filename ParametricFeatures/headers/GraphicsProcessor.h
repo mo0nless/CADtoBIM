@@ -19,7 +19,7 @@ public:
 	GraphicsProcessor();
 	GraphicsProcessorEnhancer* getGraphicsProcessorEnhancer();
 private:
-	
+
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;
 	virtual BentleyStatus _ProcessCurveVector(CurveVectorCR curves, bool isFilled) override;

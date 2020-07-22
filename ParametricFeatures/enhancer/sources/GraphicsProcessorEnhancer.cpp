@@ -1443,6 +1443,67 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 
 	return true;
 }
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+std::vector<double> GraphicsProcessorEnhancer::getColor() {
+	std::ofstream outfile;
+
+	IFacetOptionsPtr facetOptions = IFacetOptions::New();
+
+	////Set different parameters for facet.
+	//facetOptions->SetIgnoreFaceMaterialAttachments(true); // Don't separate multi-symbology BReps by face symbology...
+	//facetOptions->SetChordTolerance(0.0);                 //many different parameters to control the final result mesh
+	//facetOptions->SetAngleTolerance(0.0);
+	//facetOptions->SetMaxEdgeLength(0.0);
+	//facetOptions->SetMaxFacetWidth(0.0);
+	//facetOptions->SetNormalsRequired(false);
+	//facetOptions->SetParamsRequired(false);
+	//facetOptions->SetMaxPerFace(4);
+	//facetOptions->SetCurvedSurfaceMaxPerFace(4);
+	//facetOptions->SetEdgeHiding(true);
+	//facetOptions->SetSmoothTriangleFlowRequired(true);
+	facetOptions->SetVertexColorsRequired(true);
+
+	bvector<PolyfaceHeaderPtr> meshes;
+	std::vector<double> colourVector;
+
+	if (true == ElementToApproximateFacets(mCurrentElementHandle, meshes, facetOptions.get()) && meshes.size()>0) {
+		auto colour1 = meshes.at(0)->GetFloatColorCP();
+		FloatRgb* colour = const_cast<FloatRgb*>(colour1);
+		auto color2 = meshes.at(0)->ColorIndex();
+		auto color3 = meshes.at(0)->ColorTable();
+		auto color4 = meshes.at(0)->DoubleColor();
+		if (colour != nullptr) {
+			colourVector.push_back(static_cast<double>(colour->red));
+			colourVector.push_back(static_cast<double>(colour->green));
+			colourVector.push_back(static_cast<double>(colour->blue));
+		}
+
+		if (!color2.empty()) {
+			auto ceva = color2.at(0);
+			colourVector.push_back(static_cast<double>(ceva));
+		}
+
+		if (!color3.empty()) {
+			auto ceva2 = color3.at(0);
+			colourVector.push_back(static_cast<double>(ceva2));
+		}
+
+		if (!color4.empty()) {
+			auto ceva3 = color4.at(0);
+			colourVector.push_back(static_cast<double>(ceva3.red));
+			colourVector.push_back(static_cast<double>(ceva3.green));
+			colourVector.push_back(static_cast<double>(ceva3.blue));
+		}
+
+
+	}
+	return colourVector;
+
+}
+#pragma warning(pop)
 
 bool GraphicsProcessorEnhancer::ElementToApproximateFacets(ElementHandleCR source,bvector<PolyfaceHeaderPtr> &output,IFacetOptionsP options)
 {

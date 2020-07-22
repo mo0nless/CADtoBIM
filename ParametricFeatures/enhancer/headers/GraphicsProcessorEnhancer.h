@@ -38,6 +38,8 @@ public:
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);	
 	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);// use this method to set centroid, area and volume
 
+	std::vector<double> getColor();
+
 	bool isDoubleEqual(double x, double y);	
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);

@@ -71,6 +71,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
+
 	return ERROR;
 }
 
@@ -87,11 +88,16 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {
+
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
-	outfile <<""<< std::endl;
+	outfile <<"_ProcessBody"<< std::endl;
 	outfile << std::fixed;
 	outfile.close();
+
+	SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
+	//SolidUtil::Debug::DumpSubEntity(entity, L"DumpSubEntity");
+
 		
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();
 	dictionaryProperties->setIsSmartSolid(true);
@@ -142,6 +148,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			outfile << std::endl;
 			outfile.close();
 		}
+
 
 #if false
 		if (entityType == ISolidKernelEntity::KernelEntityType::EntityType_Solid || entityType == ISolidKernelEntity::KernelEntityType::EntityType_Sheet)
@@ -790,6 +797,36 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 	outfile << "-------------------------------- PolyfaceQueryCR - meshData --------------------------------" << std::endl;
+
+	//std::vector<double> colourVector;
+
+	////FloatRgb* colour = const_cast<FloatRgb*>(colour1);
+	//auto color2 = meshData.GetColorIndexCP();
+	//auto color3 = meshData.GetDoubleColorCP();
+	//auto color4 = meshData.GetFloatColorCP();
+	////if (colour2 != nullptr) {
+	////	colourVector.push_back(static_cast<double>(colour->red));
+	////	colourVector.push_back(static_cast<double>(colour->green));
+	////	colourVector.push_back(static_cast<double>(colour->blue));
+	////}
+
+	//if (color3!=nullptr) {
+	//	colourVector.push_back(static_cast<double>(color3->red));
+	//	colourVector.push_back(static_cast<double>(color3->green));
+	//	colourVector.push_back(static_cast<double>(color3->blue));
+	//}
+
+	//if (color4!=nullptr) {
+	//	colourVector.push_back(static_cast<double>(color4->red));
+	//	colourVector.push_back(static_cast<double>(color4->green));
+	//	colourVector.push_back(static_cast<double>(color4->blue));
+	//}
+	//if (!colourVector.empty()) {
+	//	outfile << "color0 " << colourVector.at(0) << std::endl;
+	//}
+	//outfile << "color1 " << color2 << std::endl;
+
+
 	outfile << std::endl;
 	outfile << std::endl;
 	outfile.close();
@@ -805,8 +842,31 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 #pragma warning( disable : 4700)
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
+
+	//SolidUtil::Debug::DumpSubEntity()
+	
+	//SolidHandler::ElementToSolidPrimitive
+	
+	
+	
+	//SolidUtil::Debug::DumpSubEntity()
+	/*UInt32 colour;
+	mdlElement_getSymbology(&colour, 0, 0, this->mGraphicsProcessorEnhancer.mCurrentElementHand);*/
+
+	//auto val = this->mSolidDetails.GetParentId();
+
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorEnhancer.getDictionaryProperties();	
 	std::ofstream outfile;
+
+	//outfile.open(filePath, std::ios_base::app);
+	//outfile << std::fixed;
+	//outfile << "val = " << val << std::endl;
+
+	//if (this->_ProcessAsFacets(true)) {
+	//	outfile << "processed " << val << std::endl;
+	//}
+
+	//outfile.close();
 
 	dictionaryProperties->setIsPrimitiveSolid(true);
 
@@ -825,6 +885,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		double ay;
 		double bx;
 		double by;
+
+		//ElementHandle ccc = ElementHandle(boxDetails.)
 
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
@@ -939,11 +1001,27 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 		Transform localToWorld;
 		Transform worldToLocal;
+	
 		double radiusA;
 		double radiusB;
 
 		if (primitive.TryGetDgnConeDetail(coneDetails))
 		{
+			//EditElementHandle eh;
+			//ConeHandler::CreateConeElement(eh, NULL, coneDetails.m_radiusB, coneDetails.m_radiusA,
+			//	coneDetails.m_centerB, coneDetails.m_centerA, worldToLocal.Matrix(), false, *ISessionMgr::GetActiveDgnModelP());
+
+			//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+			//DictionaryProperties* dp = new DictionaryProperties(-1,"");
+			//SmartFeatureContainer* sfc = new SmartFeatureContainer(-1);
+			//propertiesReaderProcessor->processElementReaderProperties(eh, *dp, *sfc);
+
+			//SurfaceOrSolidHandler::
+
+			//ConeHandler::
+
+
+
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------- " << dictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 			outfile.close();
@@ -1450,6 +1528,17 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		//dictionaryProperties->getGraphicProperties()->setPrimitiveGraphicProperties(nullptr);
 		break;
 	}
+
+	outfile.open(filePath, std::ios_base::app);
+
+	outfile << std::fixed;
+	outfile << "shit knows tf is this id" << std::endl;
+	outfile << this->mSolidDetails.GetParentId() << std::endl;
+
+	outfile.close();
+
+	
+
 
 	return ERROR;
 }

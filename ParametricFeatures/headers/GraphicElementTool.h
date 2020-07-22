@@ -7,7 +7,10 @@ class GraphicElementTool: public ElementGraphicsTool
 public:
 	GraphicElementTool();
 
-private:
+	virtual void _OnRestartTool() override;
+
+	virtual StatusInt _OnElementModify(EditElementHandleR eeh) override;
+
 	//! Whether to collect open curves.
 	virtual bool _CollectCurves() override;
 
@@ -26,7 +29,7 @@ private:
 	//! Allow tools to override the default draw purpose supplied to the geometry collector...
 	virtual DrawPurpose _GetCollectDrawPurpose() override;
 
-	//! Collect element graphics for this element. Allows sub-classes to override the default processor implementation.
+	////! Collect element graphics for this element. Allows sub-classes to override the default processor implementation.
 	virtual void _DoCollectElementGraphics(ElementHandleCR eh) override;
 
 	//! Geometry collector callback for brep entities. Return SUCCESS to ignore this geometry.

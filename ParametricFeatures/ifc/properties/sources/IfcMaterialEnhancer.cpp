@@ -112,6 +112,8 @@ void IfcMaterialEnhancer::processMaterial(ReaderPropertyDefinition& readerProper
 
 Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colourValue)
 {
+	//return new Ifc4::IfcColourRgb(std::string("Colour"), 0.6, 0.6, 0.6);
+
 	std::string colourName = "Colour";
 	std::string result;
 	try {
@@ -129,19 +131,26 @@ Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colour
 	}
 
 	if (result.empty()) {
-		return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);;
+		int intValue = std::stoi(colourValue);
+		if (intValue > 0) {
+			return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);
+		}
+		else {
+			return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);
+		}
+		
 	}
 	result = result.substr(1, result.size() - 2);
 
-	std::vector<int> colors;
+	std::vector<double> colors;
 
 	std::stringstream s_stream(result); 
 	while (s_stream.good()) {
 		std::string substr;
 		std::getline(s_stream, substr, ',');
-		int intValue = std::stoi(substr);
-		if (intValue >= 0 && intValue <= 255) {
-			colors.push_back(intValue);
+		double doubleValue = std::stod(substr);
+		if (doubleValue >= 0.0 && doubleValue <= 255.0) {
+			colors.push_back(doubleValue);
 		}
 		
 	}

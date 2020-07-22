@@ -55,15 +55,33 @@
 #include <DgnPlatform/DgnECManager.h>
 #include <DgnPlatform/DgnPlatformLib.h>
 #include <DgnPlatform/ExportMacros.h>
+#include <DgnPlatform/CellHeaderHandler.h>
 
 #include <DgnView/DgnElementSetTool.h>
 #include <DgnView/LocateSubEntityTool.h>   
+#include <DgnPlatform/DgnPlatformApi.h>
+#include <DgnPlatform\ViewContext.h>
+
+#include <DgnPlatform\DetailingSymbol\DetailingSymbolCore.r.h>
+#include <DgnPlatform\DetailingSymbol\Detailingsymbol.h>
+#include <DgnPlatform\NamedView.h>
+
+#include <Mstn/isessionmgr.h>
+#include <Mstn/ElementPropertyUtils.h>
+#include <Mstn\Constraint3dElement\Constraint3dElementApi.h>
+
 
 //#include <ECObjects/ECSchema.h>
 #include <ECObjects/ECObjects.h>
 #include <ECObjects/ECObjectsAPI.h>
 //#include <ECObjects/ECValue.h>
 #include <Geom/SolidPrimitive.h>
+
+#include    <Mstn\MdlApi\MdlApi.h>
+#include    <Mstn\MdlApi\modelindex.fdf>
+#include    <Mstn\MdlApi\mscell.fdf>
+#include    <Mstn\cmdlist.r.h>
+
 
 USING_NAMESPACE_BENTLEY_ECOBJECT;
 USING_NAMESPACE_BENTLEY_DGNPLATFORM;

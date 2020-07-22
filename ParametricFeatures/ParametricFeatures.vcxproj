@@ -85,6 +85,7 @@
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
     <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
+    <ClCompile Include="sources\TestSubEntityTool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -101,6 +102,7 @@
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="headers\GraphicElementTool.h" />
+    <ClInclude Include="headers\TestSubEntityTool.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
