@@ -46,7 +46,7 @@ void MSBsplineSurfaceGraphicProperties::setUVOrder(size_t newUOrder, size_t newV
 	this->mUOrder = int(newUOrder);
 	this->mUDegree = mUOrder - 1; // A spline function of order N is a piecewise polynomial function of degree N-1 
 
-	this->mVOrder = int(newUOrder);
+	this->mVOrder = int(newVOrder);
 	this->mVDegree = mVOrder - 1; // A spline function of order N is a piecewise polynomial function of degree N-1 
 }
 

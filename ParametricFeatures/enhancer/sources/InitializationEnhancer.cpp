@@ -166,7 +166,9 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 	UnitDefinitionCR storageUnit = modelInfo->GetStorageUnit();
 	double uorPerUnit = modelInfo->GetUorPerStorage();
-	
+	//mdlColorPal_getElemColorDescrByModelRef()
+
+	//mdlElement_getFillColor
 
 	outfile.open(filePath, std::ios_base::app);
 	outfile << "------------------------" << std::endl;

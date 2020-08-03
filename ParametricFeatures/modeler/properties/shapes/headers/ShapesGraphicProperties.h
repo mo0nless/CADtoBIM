@@ -17,7 +17,7 @@ public:
 
 	ShapesTypeEnum getCurvesShapeTypeEnum();
 
-	void setFaceBoundID(int newFaceidentifier);
+	void addFaceBoundID(int newFaceidentifier);
 	std::vector<int> getFacesBoundIDs();
 
 	void setBoundaryTypeCurvesContainer(int boundaryBentleyType);
@@ -43,6 +43,11 @@ public:
 	DPoint3d getStartPoint();
 	DPoint3d getEndPoint();
 
+	void setUVstartEndPoints(DPoint3d sPoint, DPoint3d ePoint);
+
+	DPoint3d getUVstartPoint();
+	DPoint3d getUVendPoint();
+
 	void setNodeId(int id);
 	int getNodeId();
 	
@@ -52,6 +57,10 @@ public:
 	void insertShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
 
 	virtual ~ShapesGraphicProperties();
+
+	//TEMP
+	std::string type = "";
+	bool isPartOfLoop = false;
 
 private:
 	std::vector<int> mFaceBoundIdentifier;
@@ -63,6 +72,9 @@ private:
 	DPoint3d mStartPoint;
 	DPoint3d mEndPoint;
 	DPoint3d mCentroid;
+	
+	DPoint3d mUVstartPoint;
+	DPoint3d mUVendPoint;
 
 	bool mIsFilled;
 	bool mIsClosed;

@@ -34,6 +34,9 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);		
 
+			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecIfcCurves = curveVector;
+
 			if (shapeGraphicProperties->getHasSingleCurve())
 				mSingleShapeRepresentation = curveVector.front();
 			else //Complex Chain 
@@ -54,11 +57,12 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 				mSingleShapeRepresentation = compositeCurve;
 			}
 
-			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
 			boundCurveVec->boundary = CurvesBoundaryTypeEnum::OPEN;
 			boundCurveVec->ifcCurve = curveVector.front();
 			boundCurveVec->start = shapeGraphicProperties->getStartPoint();
 			boundCurveVec->end = shapeGraphicProperties->getEndPoint();
+			boundCurveVec->isClosed = shapeGraphicProperties->getIsClosed();
 			this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
 
 			this->mHasSingleShape = true;
@@ -70,6 +74,9 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		case CurvesBoundaryTypeEnum::OUTER:
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);		
+
+			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecIfcCurves = curveVector;
 
 			if (shapeGraphicProperties->getHasSingleCurve())
 				mSingleShapeRepresentation = curveVector.front();
@@ -92,11 +99,12 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 				mSingleShapeRepresentation = curveVector.front();
 			}
 
-			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
 			boundCurveVec->boundary = CurvesBoundaryTypeEnum::OUTER;
 			boundCurveVec->ifcCurve = curveVector.front();
 			boundCurveVec->start = shapeGraphicProperties->getStartPoint();
 			boundCurveVec->end = shapeGraphicProperties->getEndPoint();
+			boundCurveVec->isClosed = shapeGraphicProperties->getIsClosed();
 			this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
 
 			this->mHasSingleShape = true;
@@ -109,6 +117,8 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
+			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecIfcCurves = curveVector;
 
 			if (shapeGraphicProperties->getHasSingleCurve())
 				mSingleShapeRepresentation = curveVector.front();
@@ -131,11 +141,12 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 				mSingleShapeRepresentation = curveVector.front();
 			}
 
-			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
 			boundCurveVec->boundary = CurvesBoundaryTypeEnum::INNER;
 			boundCurveVec->ifcCurve = curveVector.front();
 			boundCurveVec->start = shapeGraphicProperties->getStartPoint();
 			boundCurveVec->end = shapeGraphicProperties->getEndPoint();
+			boundCurveVec->isClosed = shapeGraphicProperties->getIsClosed();
 			this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
 
 			this->mHasSingleShape = true;
@@ -150,6 +161,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			{
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
+					addToIfcElementBundle = false;
 					buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
 				}
 			}
@@ -166,6 +178,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			{
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
+					addToIfcElementBundle = false;
 					buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
 				}
 			}
@@ -180,6 +193,9 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			std::vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
 			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+			boundCurveVec->vecIfcCurves = curveVector;
+			boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
+
 			boundCurveVec->boundary = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
 			boundCurveVec->ifcCurve = curveVector.front();
 			this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
@@ -193,24 +209,24 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			break;
 	}
 
-	if (this->mSingleShapeRepresentation != nullptr)
+	if (this->mSingleShapeRepresentation != nullptr && addToIfcElementBundle)
 	{
-		if (addToIfcElementBundle)
+		if (shapeGraphicProperties->getIsFilled()) //If It's a Shape included in an Element, build an IfcCurveBoundedPlane
 		{
-			if (shapeGraphicProperties->getIsFilled()) //If It's a Shape included in an Element, build an IfcCurveBoundedPlane
-			{
-				Ifc4::IfcCurve* curve = (Ifc4::IfcCurve*)mSingleShapeRepresentation;
+			Ifc4::IfcCurve* curve = (Ifc4::IfcCurve*)mSingleShapeRepresentation;
 
-				Ifc4::IfcPlane* plane = new Ifc4::IfcPlane(file.addPlacement3d());
+			Ifc4::IfcPlane* plane = new Ifc4::IfcPlane(file.addPlacement3d());
 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurve>> temp(new IfcTemplatedEntityList<Ifc4::IfcCurve>());
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurve>> temp(new IfcTemplatedEntityList<Ifc4::IfcCurve>());
 
-				Ifc4::IfcCurveBoundedPlane* shape = new Ifc4::IfcCurveBoundedPlane(plane, curve, temp);
+			Ifc4::IfcCurveBoundedPlane* shape = new Ifc4::IfcCurveBoundedPlane(plane, curve, temp);
 
-				mSingleShapeRepresentation = shape;
-			}
-			ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));
+			this->mSingleShapeRepresentation = shape;
 		}
+
+		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));		
+
+		this->mSingleShapeRepresentation = nullptr;
 	}
 }
 
@@ -405,13 +421,19 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 			for each(DPoint3d p in curveP->getControlPoints()) {
 				Ifc4::IfcCartesianPoint * cP = nullptr;
-
-				//Check dimension 2D/3D
-				if (dimension == IfcDimensionEnum::dim_3D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
-				else if (dimension == IfcDimensionEnum::dim_2D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
-
+				
+				if(uvCoordsParse)
+				{ 
+					cP = new Ifc4::IfcCartesianPoint(std::vector<double>{p.x, p.y});
+				}
+				else
+				{
+					//Check dimension 2D/3D
+					if (dimension == IfcDimensionEnum::dim_3D)
+						cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					else if (dimension == IfcDimensionEnum::dim_2D)
+						cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+				}
 				tempEntityList->push(cP);
 			}
 

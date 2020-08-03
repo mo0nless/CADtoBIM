@@ -61,11 +61,13 @@ public:
 
 	bvector<DPoint3d> mFullArrayControlPoint;
 
+	int mNumberOfBounds;
+
 private:
 	std::vector<std::vector<DPoint3d>> mControlPoints;
 	std::vector<std::vector<DPoint3d>> mBoundsVectorPoints;
 
-	int mNumberOfBounds;
+	
 	int mFaceId;
 	int mNodeId;
 	FaceId mBentleyFaceId;

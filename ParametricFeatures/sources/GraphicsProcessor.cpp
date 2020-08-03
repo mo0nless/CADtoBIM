@@ -140,7 +140,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				break;
 		}
 // Element is getting parsed as BRep Faceted
-#if true 
+#if false 
 		if (mGraphicsProcessorEnhancer.processEntityAsFacetedBRep(entity))
 		{
 			outfile.open(filePath, std::ios_base::app);
@@ -150,12 +150,13 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		}
 #endif
 
-#if false
+#if true
 		if (entityType == ISolidKernelEntity::KernelEntityType::EntityType_Solid || entityType == ISolidKernelEntity::KernelEntityType::EntityType_Sheet)
 		{
 			bvector<ISubEntityPtr> subEntitiesFaces;
 			bvector<ISubEntityPtr> subEntitiesEdges;
 			bvector<ISubEntityPtr> subEntitiesVertices;
+			bvector<ISubEntityPtr> edgeLoopSubEntities;
 
 			IGeometryPtr geomFacesEval;
 			CurveVectorPtr curveEdgesEval;
@@ -178,8 +179,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 			SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 
-			SolidEntityGraphicProperties* brepEntity = new SolidEntityGraphicProperties();
-			brepEntity->setBRepTypeEnum((int)entityType);
+			SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
+			solidKernelEntity->setBRepTypeEnum((int)entityType);
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << std::endl;
@@ -188,7 +189,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 			//Mesh Polyface converter WORKING REPRESENTATION
 #if false
-			//mGraphicsProcessorEnhancer.ProcessAsMeshElement(brepEntity);
+			//mGraphicsProcessorEnhancer.ProcessAsMeshElement(solidKernelEntity);
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << std::endl;
@@ -263,7 +264,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 					if (faceParsed < nFaces)
 					{
-						brepEntity->faceID.push_back((int)faceID.entityId);
+						solidKernelEntity->faceID.push_back((int)faceID.entityId);
 						faceParsed++;
 					}
 				}
@@ -271,29 +272,14 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				boundID++;
 
 				//Add bound Points
-				//brepEntity->addBoundsPoints(bound);
+				//solidKernelEntity->addBoundsPoints(bound);
 				subEntitiesFaces.clear();
 			}
 #endif
 
 			//Vertices start dependences BSpline Surface
 #if false 
-			//The edges that result closed no needs to be considered
-			for (auto edge : subEntitiesEdges)
-			{
-				ISubEntityCR edgeRef = *edge;
-				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
-				{
-					//If it's a closed remove it from the edges
-					if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
-					{
-						nEdges--;
-					}
-				}
-			}
-
-			int faceCreated = 0;
-			int edgeCreated = 0;
+			std::vector<std::vector<ShapesGraphicProperties*>> subShapesLoopVec = std::vector<std::vector<ShapesGraphicProperties*>>();
 
 			for (auto vertex : subEntitiesVertices)
 			{
@@ -301,16 +287,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				VertexId vertexID;
 				SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
 				SolidUtil::Debug::DumpSubEntity(vertexRef, L"DumpSubEntity Vertex");
-
-				/*for (auto f : vertexID.faces)
-				{
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "--------- Vertex -------- Entity: " << f.nodeId << " ID: " << f.entityId << std::endl;
-				outfile << std::endl;
-				outfile.close();
-				}*/
-
-				//Clear the Edges and Faces store previously
+				
+				//Clear the faces store previously
 				subEntitiesFaces.clear();
 				subEntitiesEdges.clear();
 
@@ -318,103 +296,247 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				SolidUtil::GetVertexEdges(subEntitiesEdges, vertexRef);
 				for (auto edge : subEntitiesEdges)
 				{
-					//Check if they were already created
-					if (edgeCreated < nEdges)
+					bool parseEdgeLoop = false;
+
+					ISubEntityCR edgeRef = *edge;
+					EdgeId edgeID;
+					SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
+					SolidUtil::Debug::DumpSubEntity(edgeRef, L"DumpSubEntity Edge");
+
+					ShapesGraphicProperties* shapesGraphicProperties = nullptr;
+
+					if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
 					{
-						ISubEntityCR edgeRef = *edge;
-						EdgeId edgeID;
-						SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
-
-						for (auto f : edgeID.faces)
+						if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
 						{
-							outfile.open(filePath, std::ios_base::app);
-							outfile << "--------- Vertex's EDGE -------- Entity: " << f.nodeId << " ID: " << f.entityId << std::endl;
-							outfile << std::endl;
-							outfile.close();
-						}
-
-
-						CurvesShapesGraphicProperties* shapesGraphicProperties = new CurvesShapesGraphicProperties();
-
-						if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
-						{
-							mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties, false);
-						}
-
-						//Get the faces of the current edge
-						SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
-						for (auto face : subEntitiesFaces)
-						{
-							ISubEntityCR faceRef = *face;
-							FaceId faceID;
-							SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+							shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 
 							outfile.open(filePath, std::ios_base::app);
-							outfile << "--------- Edge's FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-
-							bvector<ISubEntityPtr> subEdges;
-							SolidUtil::GetFaceEdges(subEdges, faceRef);
-							outfile << "Number of Edges from the face: " << subEdges.size() << std::endl;
-
+							outfile << "-------- EDGE Sub Entity: " << std::endl;
 							outfile << std::endl;
 							outfile.close();
 
-							//Save the faceID to the Curve 
-							shapesGraphicProperties->setFaceBoundID(faceID.entityId);
-							shapesGraphicProperties->setNodeId(faceID.nodeId);
+							bool addToDictionary = false;
+							mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties, addToDictionary);
 
-							if (faceCreated < nFaces)
+							curveEdgesEval->AreStartEndAlmostEqual();
+
+							DVec3d cDX, cDY, cDZ;
+
+							cDX = shapesGraphicProperties->getVectorAxisX();
+							cDY = shapesGraphicProperties->getVectorAxisY();
+							cDZ = shapesGraphicProperties->getVectorAxisZ();
+
+							outfile.open(filePath, std::ios_base::app);
+							outfile << std::endl;
+							outfile << "Curve XY Plane: " << std::endl;
+							outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+							outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+							outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+							outfile.close();
+						}
+						else
+							parseEdgeLoop = true;
+					}
+
+					//Clear the previous stored faces
+					subEntitiesFaces.clear();
+
+					//Get te faces of the current edge
+					SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
+
+					std::vector<ShapesGraphicProperties*> loopVector;
+
+					for (auto face : subEntitiesFaces)
+					{
+						if (face == NULL)
+							continue;
+
+						ISubEntityCR faceRef = *face;
+						FaceId faceID;
+						SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+						//clear the previous entities loop
+						edgeLoopSubEntities.clear();
+
+						//Loop Need to be parsed
+						//if (parseEdgeLoop)
+						if (shapesGraphicProperties == nullptr)
+						{
+							bool loopAleadyParsed = false;
+							SolidUtil::GetLoopEdgesFromEdge(edgeLoopSubEntities, edgeRef, faceRef);
+
+							//Check if the Loop is already stored and parsed
+							CurveVectorPtr loopCheck;
+							if (SolidUtil::Convert::SubEntityToCurveVector(loopCheck, (ISubEntityCR)*edgeLoopSubEntities.front()) == SUCCESS)
 							{
-								if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+								DPoint3d startP, endP;
+								loopCheck->GetStartEnd(startP, endP);
+
+								for (auto shapeVec : subShapesLoopVec)
 								{
-									switch (geomFacesEval->GetGeometryType())
+									if (!loopAleadyParsed)
 									{
-									case IGeometry::GeometryType::BsplineSurface:
-									{
-										MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
-
-										MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
-
-										msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
-										msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
-
-										mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
-
-										//Add to the Bspline the Bound
-										msBsplineSurfaceGraphicProperties->addCurvesShapesGraphicProperties(shapesGraphicProperties);
-
-										//Add the face to the BrepEntity
-										brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+										for (auto s : shapeVec)
+										{
+											if ((s->getStartPoint() == startP) && (s->getEndPoint() == endP))
+											{
+												loopAleadyParsed = true;
+												outfile.open(filePath, std::ios_base::app);
+												outfile << "loopAleadyParsed = true" << std::endl;
+												outfile << std::endl;
+												outfile.close();
+												break;
+											}
+										}
 									}
-									break;
-									case IGeometry::GeometryType::SolidPrimitive:
-									{
-										ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
-										_ProcessSolidPrimitive(prim);
-									}
-									break;
-									default:
+									else
 										break;
+								}
+							}
+
+							//If the loop it was not parsed yet do it
+							if (!loopAleadyParsed)
+							{
+								outfile.open(filePath, std::ios_base::app);
+								outfile << "-------- EDGE LOOP Sub Entities: " << std::endl;
+								outfile << std::endl;
+								outfile.close();
+
+								for (auto edgeLoop : edgeLoopSubEntities)
+								{
+									ISubEntityCR edgeRefLoop = *edgeLoop;
+									CurveVectorPtr loopEval;
+
+									outfile.open(filePath, std::ios_base::app);
+									outfile << std::endl;
+									outfile << "Curve of the loop: " << std::endl;
+									outfile << std::endl;
+									outfile.close();
+
+									shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+
+									if (SolidUtil::Convert::SubEntityToCurveVector(loopEval, edgeRefLoop) == SUCCESS)
+									{
+										bool addToDictionary = false;
+										mGraphicsProcessorEnhancer.processShapesCurvesVector(*loopEval, false, &*shapesGraphicProperties, addToDictionary);
+
+										DVec3d cDX, cDY, cDZ;
+
+										cDX = shapesGraphicProperties->getVectorAxisX();
+										cDY = shapesGraphicProperties->getVectorAxisY();
+										cDZ = shapesGraphicProperties->getVectorAxisZ();
+
+										outfile.open(filePath, std::ios_base::app);
+										outfile << std::endl;
+										outfile << "Curve XY Plane: " << std::endl;
+										outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+										outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+										outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+										outfile.close();
+
+										loopVector.push_back(shapesGraphicProperties);
 									}
 								}
 
-								faceCreated++;
+								subShapesLoopVec.push_back(loopVector);
+							}
+
+						}
+						//If it's not a loop store the closed shape with face ID and entity ID
+						else if (loopVector.empty())
+						{
+							//Save the faceID to the Curve edge
+							shapesGraphicProperties->addFaceBoundID(faceID.entityId);
+							shapesGraphicProperties->setNodeId(faceID.nodeId);
+
+							//Add the edge to the Solid Entity
+							solidKernelEntity->addFaceBoundaryShape(shapesGraphicProperties);
+						}
+
+						//If it's a loop store set to the shapes face ID and entity ID
+						if (!loopVector.empty())
+						{
+							for (auto s : loopVector)
+							{
+								//Save the faceID to the Curve edge
+								s->addFaceBoundID(faceID.entityId);
+								s->setNodeId(faceID.nodeId);
 							}
 						}
 
-						//Clear the faces store previously
-						subEntitiesFaces.clear();
+						outfile.open(filePath, std::ios_base::app);
+						outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+						outfile << std::endl;
+						outfile.close();
+					}
 
-						edgeCreated++;
+					//If it's a loop store it in the Solid Entity
+					if (!loopVector.empty())
+					{
+						//Add the Loop to the Solid Entity
+						solidKernelEntity->loopShapesBounds.push_back(loopVector);
+					}
+				}				
+			}
+
+			//Clear the previous stored faces
+			subEntitiesFaces.clear();
+			SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+
+			for (auto face : subEntitiesFaces)
+			{
+				if (face == NULL)
+					continue;
+
+				ISubEntityCR faceRef = *face;
+				FaceId faceID;
+				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+				{
+					switch (geomFacesEval->GetGeometryType())
+					{
+					case IGeometry::GeometryType::BsplineSurface:
+					{
+						MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+						//msBsplineSurfaceGraphicProperties->setFaceId(faceID);
+						msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+						msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+
+						mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+						//Add the face to the solidKernelEntity
+						solidKernelEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+					}
+					break;
+					case IGeometry::GeometryType::SolidPrimitive:
+					{
+						outfile.open(filePath, std::ios_base::app);
+						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << std::endl;
+						outfile << std::endl;
+						outfile.close();
+						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+						_ProcessSolidPrimitive(prim);
+					}
+					break;
+					default:
+						break;
 					}
 				}
 			}
 
 #endif
 
-			//Faces start dependences BSpline Surface
-#if false
-			int vertexCreated = 0;
+			//Faces start dependences BSpline Surface WORKS
+#if true
 			for (auto face : subEntitiesFaces)
 			{
 				if (face == NULL)
@@ -459,8 +581,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						outfile << std::endl;
 						outfile.close();
 
-						//Add the face to the BrepEntity
-						brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+						//Add the face to the solidKernelEntity
+						solidKernelEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
 					}
 					break;
 					case IGeometry::GeometryType::SolidPrimitive:
@@ -472,103 +594,73 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					default:
 						break;
 					}
-								
-				/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-					outfile << "Grid Points SolidUtil Evaluation: "<< std::endl;
-					outfile.close();
-					
-					for (auto uv: uvParams)
-					{
-						DPoint3d gPoint;
-						DVec3d normal, uDir, vDir;
-						SolidUtil::EvaluateFace(faceRef, gPoint, normal, uDir, vDir, uv);
-
-						outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-						outfile << "U: " << uv.x << std::endl;
-						outfile << "V: " << uv.y << std::endl;
-						outfile << "Grid Point [X]: " << gPoint.x << std::endl;
-						outfile << "Grid Point [Y]: " << gPoint.y << std::endl;
-						outfile << "Grid Point [Z]: " << gPoint.z << std::endl;
-						outfile << std::endl;
-						outfile.close();
-
-					}
-
-					SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
-					for (auto vertex : subEntitiesVertices)
-					{
-						ISubEntityCR vertexRef = *vertex;
-						VertexId vertexID;
-						SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
-
-						DPoint3d vertexPoint;
-						if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
-						{
-							outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-							outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
-							outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
-							outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
-							outfile << std::endl;
-							outfile.close();
-
-							if (vertexCreated < nVertices)
-							{
-								brepEntity->mVertexLoop.push_back(vertexPoint);
-								vertexCreated++;
-							}
-						}
-
-					}
-
-					//Clear the previous vertices
-					subEntitiesVertices.clear();*/
 				}
 			}
 #endif
 
-			//Edges start dependences BSpline Surface
-#if true
+			//Edges start dependences BSpline Surface 
+#if false
 			//Clear the faces store previously
 			subEntitiesFaces.clear();
 			subEntitiesVertices.clear();
 
-			int facesCreated = 0;
-			int vertexCreated = 0;
-
+			std::vector<std::vector<ShapesGraphicProperties*>> subShapesLoopVec = std::vector<std::vector<ShapesGraphicProperties*>>();
 			for (auto edge : subEntitiesEdges)
 			{
+				bool parseEdgeLoop = false;
+
 				ISubEntityCR edgeRef = *edge;
 				EdgeId edgeID;
 				SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
 				SolidUtil::Debug::DumpSubEntity(edgeRef, L"DumpSubEntity Edge");
+				
+				ShapesGraphicProperties* shapesGraphicProperties = nullptr;
+
+				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
+				{
+					if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
+					{
+						shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+
+						outfile.open(filePath, std::ios_base::app);
+						outfile << "-------- EDGE Sub Entity: " << std::endl;
+						outfile << std::endl;
+						outfile.close();
+
+						bool addToDictionary = false;
+						mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties, addToDictionary);
+
+						//ADD ???
+						//curveEdgesEval->FixupXYOuterInner(true);
+
+						curveEdgesEval->AreStartEndAlmostEqual();
+
+						DVec3d cDX, cDY, cDZ;
+
+						cDX = shapesGraphicProperties->getVectorAxisX();
+						cDY = shapesGraphicProperties->getVectorAxisY();
+						cDZ = shapesGraphicProperties->getVectorAxisZ();
+
+						outfile.open(filePath, std::ios_base::app);
+						outfile << std::endl;
+						outfile << "Curve XY Plane: " << std::endl;
+						outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+						outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+						outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+						outfile.close();
+					}
+					else
+						parseEdgeLoop = true;
+				}	
+				
+				//Clear the previous stored faces
+				subEntitiesFaces.clear();
 
 				//Get te faces of the current edge
 				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "EDGE Sub Entity: " << std::endl;
-				outfile << std::endl;
-				outfile.close();
-				
-				FaceEdge* faceEdge = new FaceEdge;
-				faceEdge->isShared = subEntitiesFaces.size() > 1;
+				std::vector<ShapesGraphicProperties*> loopVector;
 
-				ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-
-				if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
-				{
-					bool addToDictionary = false;
-					mGraphicsProcessorEnhancer.processShapesCurvesVector(*curveEdgesEval, false, &*shapesGraphicProperties, addToDictionary); //Stored in the dictionary
-
-					faceEdge->shape = shapesGraphicProperties;
-
-					// Chek if the shape is closed 
-					if (curveEdgesEval->IsClosedPath())
-						faceEdge->isClosed = true;
-					else if (curveEdgesEval->IsPhysicallyClosedPath())
-						faceEdge->isClosed = true;
-				}
-				
 				for (auto face : subEntitiesFaces)
 				{
 					if (face == NULL)
@@ -576,84 +668,191 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 					ISubEntityCR faceRef = *face;
 					FaceId faceID;
-					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);									
+					
+					//clear the previous entities loop
+					edgeLoopSubEntities.clear();
 
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-					outfile << std::endl;
-					outfile.close();
-
-					//Save the faceID to the Curve edge
-					shapesGraphicProperties->setFaceBoundID(faceID.entityId);
-					shapesGraphicProperties->setNodeId(faceID.nodeId);
-
-					if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+					//Loop Need to be parsed
+					//if (parseEdgeLoop)
+					if (shapesGraphicProperties == nullptr)
 					{
-						if (facesCreated < nFaces)
+						bool loopAleadyParsed = false;
+						SolidUtil::GetLoopEdgesFromEdge(edgeLoopSubEntities, edgeRef, faceRef);	
+
+						//Check if the Loop is already stored and parsed
+						CurveVectorPtr loopCheck;
+						if (SolidUtil::Convert::SubEntityToCurveVector(loopCheck, (ISubEntityCR)*edgeLoopSubEntities.front()) == SUCCESS)
 						{
-							switch (geomFacesEval->GetGeometryType())
+							DPoint3d startP, endP;
+							loopCheck->GetStartEnd(startP, endP);
+
+							for (auto shapeVec : subShapesLoopVec)
 							{
-							case IGeometry::GeometryType::BsplineSurface:
-							{
-								MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
-								MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
-
-								msBsplineSurfaceGraphicProperties->setFaceId(faceID);
-								msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
-								msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
-
-								mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
-
-								//Add the face to the BrepEntity
-								brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
-							}
-							break;
-							case IGeometry::GeometryType::SolidPrimitive:
-							{
-								ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
-								_ProcessSolidPrimitive(prim);
-							}
-							break;
-							default:
-								break;
-							}
-
-							facesCreated++;
-
-							/*SolidUtil::GetFaceVertices(subEntitiesVertices, faceRef);
-							for (auto vertex : subEntitiesVertices)
-							{
-								ISubEntityCR vertexRef = *vertex;
-								VertexId vertexID;
-								SolidUtil::TopologyID::IdFromVertex(vertexID, vertexRef, true);
-
-								DPoint3d vertexPoint;
-								if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
+								if (!loopAleadyParsed)
 								{
-									outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-									outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
-									outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
-									outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
-									outfile << std::endl;
-									outfile.close();
-
-									if (vertexCreated < nVertices)
+									for (auto s : shapeVec)
 									{
-										brepEntity->mVertexLoop.push_back(vertexPoint);
-										vertexCreated++;
+										if ((s->getStartPoint() == startP) && (s->getEndPoint() == endP))
+										{
+											loopAleadyParsed = true;
+											outfile.open(filePath, std::ios_base::app);
+											outfile << "loopAleadyParsed = true" << std::endl;
+											outfile << std::endl;
+											outfile.close();
+											break;
+										}
 									}
 								}
+								else
+									break;
+							}
+						}
 
+						//If the loop it was not parsed yet do it
+						if (!loopAleadyParsed)
+						{
+							outfile.open(filePath, std::ios_base::app);
+							outfile << "-------- EDGE LOOP Sub Entities: " << std::endl;
+							outfile << std::endl;
+							outfile.close();
+
+							for (auto edgeLoop : edgeLoopSubEntities)
+							{
+								ISubEntityCR edgeRefLoop = *edgeLoop;
+								CurveVectorPtr loopEval;
+
+								outfile.open(filePath, std::ios_base::app);
+								outfile << std::endl;
+								outfile << "Curve of the loop: " << std::endl;
+								outfile << std::endl;
+								outfile.close();
+
+								shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+
+								if (SolidUtil::Convert::SubEntityToCurveVector(loopEval, edgeRefLoop) == SUCCESS)
+								{
+									//ADD ???
+									//loopEval->FixupXYOuterInner(true);
+
+									bool addToDictionary = false;
+									mGraphicsProcessorEnhancer.processShapesCurvesVector(*loopEval, false, &*shapesGraphicProperties, addToDictionary);
+
+									DVec3d cDX, cDY, cDZ;
+
+									cDX = shapesGraphicProperties->getVectorAxisX();
+									cDY = shapesGraphicProperties->getVectorAxisY();
+									cDZ = shapesGraphicProperties->getVectorAxisZ();
+
+									outfile.open(filePath, std::ios_base::app);
+									outfile << std::endl;
+									outfile << "Curve XY Plane: " << std::endl;
+									outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+									outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+									outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+									outfile.close();
+
+									loopVector.push_back(shapesGraphicProperties);
+								}
 							}
 
-							//Clear the previous vertices
-							subEntitiesVertices.clear();*/
+							subShapesLoopVec.push_back(loopVector);
+							/*if (!loopVector.empty())
+							{
+								subShapesLoopVec.push_back(loopVector);
+							}*/
 						}
+											
 					}
+					//If it's not a loop store the closed shape with face ID and entity ID
+					else if (loopVector.empty())
+					{
+						//Save the faceID to the Curve edge
+						shapesGraphicProperties->addFaceBoundID(faceID.entityId);
+						shapesGraphicProperties->setNodeId(faceID.nodeId);
+
+						//Add the edge to the Solid Entity
+						solidKernelEntity->addFaceBoundaryShape(shapesGraphicProperties);
+					}
+
+					//If it's a loop store set to the shapes face ID and entity ID
+					if (!loopVector.empty())
+					{
+						for (auto s : loopVector)
+						{
+							//Save the faceID to the Curve edge
+							s->addFaceBoundID(faceID.entityId);
+							s->setNodeId(faceID.nodeId);
+						}						
+					}
+
+					outfile.open(filePath, std::ios_base::app);
+					outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+					outfile << std::endl;
+					outfile.close();
+				}				
+
+				//If it's a loop store it in the Solid Entity
+				if (!loopVector.empty())
+				{
+					//Add the Loop to the Solid Entity
+					solidKernelEntity->loopShapesBounds.push_back(loopVector);
 				}
-				//Clear the previous stored faces
-				subEntitiesFaces.clear();
+			}		
+
+			//Clear the previous stored faces
+			subEntitiesFaces.clear();
+			SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+
+			for (auto face : subEntitiesFaces)
+			{
+				if (face == NULL)
+					continue;
+
+				ISubEntityCR faceRef = *face;
+				FaceId faceID;
+				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+				{
+					switch (geomFacesEval->GetGeometryType())
+					{
+					case IGeometry::GeometryType::BsplineSurface:
+					{
+						MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+						//msBsplineSurfaceGraphicProperties->setFaceId(faceID);
+						msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+						msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+
+						mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
+
+						//Add the face to the solidKernelEntity
+						solidKernelEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+					}
+					break;
+					case IGeometry::GeometryType::SolidPrimitive:
+					{
+						outfile.open(filePath, std::ios_base::app);
+						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << std::endl;
+						outfile << std::endl;
+						outfile.close();
+						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+						_ProcessSolidPrimitive(prim);
+					}
+					break;
+					default:
+						break;
+					}
+				}				
 			}
+				
 #endif
 
 			//Edges BOUNDS start dependences 
@@ -755,8 +954,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 								mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, msBsplineSurfaceGraphicProperties);
 
-								//Add the face to the BrepEntity
-								brepEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+								//Add the face to the solidKernelEntity
+								solidKernelEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
 							}
 							break;
 							case IGeometry::GeometryType::SolidPrimitive:
@@ -790,7 +989,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 									if (vertexCreated < nVertices)
 									{
-										brepEntity->mVertexLoop.push_back(vertexPoint);
+										solidKernelEntity->mVertexLoop.push_back(vertexPoint);
 										vertexCreated++;
 									}
 								}
@@ -809,7 +1008,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				//[SHARED]
 				if (bound->isShared)
 					//Add bound Points
-					brepEntity->addBoundsPoints(bound);
+					solidKernelEntity->addBoundsPoints(bound);
 			}
 #endif
 			outfile.open(filePath, std::ios_base::app);
@@ -821,7 +1020,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			subEntitiesEdges.clear();
 			subEntitiesFaces.clear();
 
-			dictionaryProperties->addGraphicProperties(brepEntity);
+			dictionaryProperties->addGraphicProperties(solidKernelEntity);
 		}
 #endif
 

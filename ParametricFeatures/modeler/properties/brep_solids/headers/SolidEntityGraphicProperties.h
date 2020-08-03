@@ -20,16 +20,6 @@ struct BoundPoints
 	std::vector<int> connectedBoundIDs;
 };
 
-struct FaceEdge
-{
-	int boundID, nodeID = -1;
-	bool isClosed, isShared = false;	
-
-	ShapesGraphicProperties* shape = nullptr;
-	std::vector<ShapesGraphicProperties*> continuosEdge = std::vector<ShapesGraphicProperties*>();
-	EdgeId edgeID;
-};
-
 class SolidEntityGraphicProperties: public GraphicProperties
 {
 public:
@@ -48,6 +38,7 @@ public:
 	BRepTypeEnum getBRepTypeEnum();
 		
 	std::vector<int> faceID;
+	std::vector<std::vector<ShapesGraphicProperties*>> loopShapesBounds;
 
 private:
 	std::vector<ShapesGraphicProperties*> mFaceBoundaries;

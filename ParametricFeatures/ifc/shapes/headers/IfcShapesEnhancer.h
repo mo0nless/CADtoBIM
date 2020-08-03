@@ -4,7 +4,8 @@
 #include "../../headers/IfcElementBundle.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h" //curveshape..
-#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
+//#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
+#include "../../../common/enums/headers/ShapesTypeEnum.h"
 //#include "../../brep_solids/headers/IfcBRepRelationship.h"
 #include <vector>
 
@@ -12,7 +13,9 @@ struct BoundTypeIfcCurve
 {
 	CurvesBoundaryTypeEnum boundary;
 	Ifc4::IfcCurve* ifcCurve;
-	
+	std::vector<Ifc4::IfcCurve*> vecIfcCurves;
+	std::vector<CurveGraphicProperties*> vecPrimitivesCurves;
+	bool isClosed = false; 
 	DPoint3d start, end;
 };
 
@@ -28,6 +31,7 @@ public:
 	std::vector<BoundTypeIfcCurve*> getCurvesShapeRepresentationVector();
 
 	IfcDimensionEnum dimension = IfcDimensionEnum::dim_3D;
+	bool uvCoordsParse = false;
 
 private:
 	Ifc4::IfcCurve* buildIfcCurvePrimitives(CurveGraphicProperties* curveProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle);

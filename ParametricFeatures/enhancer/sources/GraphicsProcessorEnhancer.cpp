@@ -421,212 +421,116 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	bvector<size_t> vKmultiplicity, uKmultiplicity;
 	bvector<bvector<DPoint2d>> boundaryUVLoops;
 	
-	msBsplineSurface.GetIntervalCounts(uIntervals, vIntervals);
+	
 	numOfBounds = msBsplineSurface.GetIntNumBounds();
 	
-	uOrder = msBsplineSurface.GetIntUOrder();
-	vOrder = msBsplineSurface.GetIntVOrder();
 
 	//TODO[SB] Check the surface poles
 	bvector<DPoint2d> uvParams;
 	bvector<DPoint3d> polesGrid, gridPoints;
-	bvector<DPoint3d> poles;
+	bvector<DPoint3d> weightPoles, unWeightPoles;
+	bvector<double> weights;
 	bvector<DPoint4d> poles4D;
 	double uMin, uMax, vMin, vMax;
 	T_DoubleVector uKnotsSupport, vKnotsSupport, uParams, vParams;
-	msBsplineSurface.GetPoles(poles);
-	msBsplineSurfaceGraphicProperties->mFullArrayControlPoint = poles;
+
+	msBsplineSurface.GetIntervalCounts(uIntervals, vIntervals);
+	msBsplineSurface.GetPoles(weightPoles);
+	msBsplineSurface.GetWeights(weights);
+	msBsplineSurfaceGraphicProperties->mFullArrayControlPoint = weightPoles;
 	msBsplineSurface.EvaluateUniformGrid(msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles(), uvParams, polesGrid);
 	msBsplineSurface.EvaluateUniformGrid(msBsplineSurface.GetNumUPoles(), msBsplineSurface.GetNumVPoles(), uParams, vParams, gridPoints);
 	msBsplineSurface.GetParameterRegion(uMin, uMax, vMin, vMax);
 
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "POINT Following the m/n parameters" << std::endl;
-	int mParam = ((msBsplineSurface.GetIntNumUKnots()) - (uOrder - 1) - 1);	
-	int nParam = msBsplineSurface.GetIntNumPoles();
-	int nParamCalc = ((msBsplineSurface.GetIntNumVKnots()) - (uOrder - 1) - 1); ;
-	outfile << "mParam: " << mParam << std::endl;
-	outfile << "nParam: " << nParam << std::endl;
-	outfile << "nParamCalc: " << nParamCalc << std::endl;
-	outfile.close();
-
-#if false
-	std::vector<std::vector<DPoint3d>> controlPointsUV;
-	std::vector<std::vector<double>> weights;
-	int count = 0;
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "EVALUATION POINT Controls: " << std::endl;
-	outfile << std::fixed;
-	outfile << std::endl;
-	for (auto u: uParams)
-	{
-		std::vector<DPoint3d> tempCP;
-		for (auto v: vParams)
-		{
-			DPoint3d point;
-			msBsplineSurface.EvaluatePoint(point, u, v);
-			outfile << "point " << " [X] = " << point.x << std::endl;
-			outfile << "point " << " [Y] = " << point.y << std::endl;
-			outfile << "point " << " [Z] = " << point.z << std::endl;
-			outfile << std::endl;
-
-			tempCP.push_back(point);
-		}
-		//controlPointsUV.push_back(tempCP);
-	}
-	outfile.close();
-#endif
+	//msBsplineSurface.type
+	//mdlSolid_facetBody
+	
 
 #if true
+	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+	outfile << "POINT Controls with GET POLES STORED : " << std::endl;
+	outfile << "unweight: " << std::endl;
+	outfile << std::fixed;
+	outfile << std::endl;
+
+	const int nU = msBsplineSurface.GetIntNumUPoles();
+	const int nV = msBsplineSurface.GetIntNumVPoles();
+
+	msBsplineSurface.GetUnWeightedPoles(unWeightPoles);
 	//Get the UV Poles control points of the surface
 	std::vector<std::vector<DPoint3d>> controlPointsUV;
-	std::vector<std::vector<double>> weights;
-	int count = 0;
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "POINT Controls: " << std::endl;
-	outfile << std::fixed;
-	outfile << std::endl;
-	for (size_t i = 0; i < msBsplineSurface.GetIntNumUPoles(); i++)
-	{
+	std::vector<std::vector<double>> weightsVec;
+
+	for (size_t i = 0; i < nU; i++) 
+	{		
 		std::vector<DPoint3d> tempCP;
 		std::vector<double> tempW;
-		for (size_t j = 0; j < msBsplineSurface.GetIntNumVPoles(); j++)
+
+		for (size_t j = 0; j < nV; j++) //NV to NU
 		{
-			auto point = msBsplineSurface.GetPole(i, j);
-			tempW.push_back(msBsplineSurface.GetWeight(i, j));
+			DPoint3d point = unWeightPoles.at(i); //Switch to unweightpoles
+			double w = weights.at(i);
+
 			tempCP.push_back(point);
-			count++;
+			tempW.push_back(w);
+
+			outfile << "Point " << i << ": " << " = [" << point.x << ", " << point.y << ", " << point.z << "] ---" << " Weight: " << w << std::endl;
 			
-			/*outfile << "point " << " [X] = " << point.x << std::endl;
-			outfile << "point " << " [Y] = " << point.y << std::endl;
-			outfile << "point " << " [Z] = " << point.z << std::endl;
-			outfile << std::endl;*/
+			i += nU;
 		}
+
+		for (size_t j = 0; j < nV; j++) 
+		{
+			i -= nU;
+		}
+
+		outfile << std::endl;
 
 		controlPointsUV.push_back(tempCP);
-		weights.push_back(tempW);
+		weightsVec.push_back(tempW);
+	}
+
+	outfile << "POINT Controls with GET POLES : " << std::endl;
+	outfile << "unweight: " << std::endl;
+	outfile << std::fixed;
+	outfile << std::endl;
+
+
+	for (auto point : unWeightPoles) //Switch to unweightpoles
+	{
+		outfile << "Point: " << " = [" << point.x << ", " << point.y << ", " << point.z << "]" << std::endl;
+		outfile << std::endl;
 	}
 	outfile.close();
+
 #endif
 
-	//msBsplineSurface.EvaluatePointAndUnitNormal();
-	msBsplineSurface.GetVKnots(vKnots);
-	msBsplineSurface.GetUKnots(uKnots);
-
+	//This function returns a parity regions
+	//Outer/Inner BSpline Surface Boundaries
+	//msBsplineSurface.GetUVBoundaryLoops
+	CurveVectorPtr surfaceVecBound = msBsplineSurface.GetUVBoundaryCurves(true, true);
+	ShapesGraphicProperties* surfaceShapesGP = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	surfaceShapesGP->type = "BS";
 	
-	//Extract the multiplicity compressing the UV Knots
-	MSBsplineCurve::CompressKnots(vKnots, vOrder, vKnotsCompressed, vKmultiplicity, lowAindex, highAindex);
-	MSBsplineCurve::CompressKnots(uKnots, uOrder, uKnotsCompressed, uKmultiplicity, lowAindex, highAindex);
-	
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "Number of Bounds: " << numOfBounds << std::endl;
-	outfile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << std::endl;
-	outfile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << std::endl;
-	outfile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << std::endl;
-	outfile << "Stored number of UV Poles: " << count << std::endl;
-	outfile << "Number of UV Poles Get Poles: " << poles.size() << std::endl;
-	outfile << "Grid Poles Number: " << polesGrid.size() << std::endl;
-	outfile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << std::endl;
-	outfile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << std::endl;
-	outfile << std::endl;
-	outfile.close();
-
-
-//Curve Internal bounds
-#if true
 	//This function returns a parity regions
 	//Outer/Inner Line String Boundaries
-	CurveVectorPtr curveVecBound = msBsplineSurface.GetUVBoundaryCurves(false, false); //true,true before
+	CurveVectorPtr linesVecBound = msBsplineSurface.GetUVBoundaryCurves(true, false);
+	ShapesGraphicProperties* pCurveShapesGP = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	pCurveShapesGP->type = "LS";
 
-	// Curve Shape for Boundaries
-	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	//Process the primitives
 	bool addToDictionary = false;
-	processShapesCurvesVector(*curveVecBound, false, &*shapesGraphicProperties, addToDictionary); 	
+	//processShapesCurvesVector(*surfaceVecBound, false, &*surfaceShapesGP, addToDictionary);
+	processShapesCurvesVector(*linesVecBound, false, &*pCurveShapesGP, addToDictionary);
 
-	//Parity Region Container
-	if (shapesGraphicProperties->hasShapesGraphicsContainer())
-	{
-		DVec3d newCentroid;
-		DPoint3d shapeCentroid, shapeStartPoint, shapeEndpoint;
+	//Points evaluation in 3D Space
+	//evaluateUVShapesCurvesVector(msBsplineSurface, surfaceShapesGP, msBsplineSurfaceGraphicProperties);
+	evaluateUVShapesCurvesVector(msBsplineSurface, pCurveShapesGP, msBsplineSurfaceGraphicProperties);
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "-------- PARITY REGION Boundaries --------" << std::endl;
-		outfile.close();
+	//Add the Bounds
+	//msBsplineSurfaceGraphicProperties->addSurfaceBoundaryShape(surfaceShapesGP);
+	msBsplineSurfaceGraphicProperties->addSurfaceBoundaryShape(pCurveShapesGP);
 
-		//Save the faceID to Parity Region
-		shapesGraphicProperties->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
-		shapesGraphicProperties->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
-
-		msBsplineSurface.EvaluatePoint(shapeCentroid, shapesGraphicProperties->getCentroid().x, shapesGraphicProperties->getCentroid().y);
-		msBsplineSurface.EvaluatePoint(shapeStartPoint, shapesGraphicProperties->getStartPoint().x, shapesGraphicProperties->getStartPoint().y);
-		msBsplineSurface.EvaluatePoint(shapeEndpoint, shapesGraphicProperties->getEndPoint().x, shapesGraphicProperties->getEndPoint().y);
-
-		newCentroid.Init(shapeCentroid);
-		shapesGraphicProperties->setCentroid(newCentroid);
-		shapesGraphicProperties->setStartEndPoints(shapeStartPoint, shapeEndpoint);
-
-		// Outer, Inner Boundaries NB: the path is supposed to be always closed
-		for (auto boundary : shapesGraphicProperties->getShapesGraphicsContainer())
-		{
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Bound -------- " << std::endl;
-			outfile << std::endl;
-			outfile.close();
-
-			//Save the faceID to the Outer/Inner boundary
-			boundary->setFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
-			boundary->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
-
-			msBsplineSurface.EvaluatePoint(shapeCentroid, boundary->getCentroid().x, boundary->getCentroid().y);
-			msBsplineSurface.EvaluatePoint(shapeStartPoint, boundary->getStartPoint().x, boundary->getStartPoint().y);
-			msBsplineSurface.EvaluatePoint(shapeEndpoint, boundary->getEndPoint().x, boundary->getEndPoint().y);
-
-			newCentroid.Init(shapeCentroid);
-			boundary->setCentroid(newCentroid);
-			boundary->setStartEndPoints(shapeStartPoint, shapeEndpoint);
-
-			// Primitives curves that compose the boundary (UV coordinates as control points)
-			for (auto curvePrimitive : boundary->getCurvesPrimitivesContainerVector())
-			{
-				DPoint3d cvStartPoint, cvEndpoint;
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "Curve -------- " << std::endl;
-				outfile << std::endl;
-				outfile.close();
-
-				// Evaluation of the Control Points using the surface
-				std::vector<DPoint3d> controlPointsBound;
-				for (auto uv : curvePrimitive->getControlPoints())
-				{
-					DPoint3d evalP;
-					msBsplineSurface.EvaluatePoint(evalP, uv.x, uv.y);
-					controlPointsBound.push_back(evalP);
-
-					/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-					outfile << "point " << " [X] = " << uv.x << std::endl;
-					outfile << "point " << " [Y] = " << uv.y << std::endl;
-					outfile << "point " << " [Z] = " << uv.z << std::endl;
-					outfile << std::endl;
-					outfile.close();*/
-				}
-
-				//Reset the evaluated Control Points
-				curvePrimitive->setControlPoints(controlPointsBound);
-
-				msBsplineSurface.EvaluatePoint(cvStartPoint, curvePrimitive->getStartPoint().x, curvePrimitive->getStartPoint().y);
-				msBsplineSurface.EvaluatePoint(cvEndpoint, curvePrimitive->getEndPoint().x, curvePrimitive->getEndPoint().y);
-
-				//Reset the Start and End Point
-				curvePrimitive->setStartEndPoints(cvStartPoint, cvEndpoint);
-			}
-		}
-	}
-
-	//Add to the Bspline the Bound
-	msBsplineSurfaceGraphicProperties->addSurfaceBoundaryShape(shapesGraphicProperties);
-	
-#endif
 
 //DPoint3d PolyLoop Evaluation MDL
 #if false
@@ -647,7 +551,8 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	}
 #endif
 
-
+//Bounds as points
+#if false
 	std::vector<std::vector<DPoint3d>> boundsVectorPoints;
 	//msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, true);
 	msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, false);
@@ -669,15 +574,55 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 
 		boundsVectorPoints.push_back(bound);
 	}
+#endif
+
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "Number of Bounds: " << numOfBounds << std::endl;
+	outfile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << std::endl;
+	outfile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << std::endl;
+	outfile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << std::endl;
+	outfile << "U is Closed: " << msBsplineSurface.GetIsUClosed() << std::endl;
+	outfile << "V is Closed: " << msBsplineSurface.GetIsVClosed() << std::endl;
+	//outfile << "Stored number of UV Poles: " << count << std::endl;
+	outfile << "Number of UV Poles Get Poles: " << weightPoles.size() << std::endl;
+	outfile << "Grid Poles Number: " << polesGrid.size() << std::endl;
+	outfile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << std::endl;
+	outfile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << std::endl;
+	outfile << std::endl;
+	outfile.close();
+
+	msBsplineSurface.GetVKnots(vKnots);
+	msBsplineSurface.GetUKnots(uKnots);
+
+	uOrder = msBsplineSurface.GetIntUOrder();
+	vOrder = msBsplineSurface.GetIntVOrder();
+
+	//Extract the multiplicity compressing the UV Knots
+	MSBsplineCurve::CompressKnots(uKnots, uOrder, uKnotsCompressed, uKmultiplicity, lowAindex, highAindex);
+	MSBsplineCurve::CompressKnots(vKnots, vOrder, vKnotsCompressed, vKmultiplicity, lowAindex, highAindex);
+		
+	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+	outfile << "POINT Following the m/n parameters" << std::endl;
+	int mParam = ((msBsplineSurface.GetIntNumUKnots()) - (uOrder - 1) - 1);
+	int nParam = msBsplineSurface.GetIntNumPoles();
+	int nParamCalc = ((msBsplineSurface.GetIntNumVKnots()) - (vOrder - 1) - 1); ;
+	outfile << "mParam: " << mParam << std::endl;
+	outfile << "nParam: " << nParam << std::endl;
+	outfile << "nParamCalc: " << nParamCalc << std::endl;
+	outfile << "V_Degree: " << vOrder - 1 << std::endl;
+	outfile << "U_Degree: " << uOrder - 1 << std::endl;
+	outfile << "V_Order: " << vOrder << std::endl;
+	outfile << "U_Order: " << uOrder << std::endl;
+	outfile.close();
 
 	msBsplineSurfaceGraphicProperties->setUVIsClosed(msBsplineSurface.GetIsUClosed(), msBsplineSurface.GetIsVClosed());
 	msBsplineSurfaceGraphicProperties->setUVKnots(uKnotsCompressed, vKnotsCompressed);
 	//msBsplineSurfaceGraphicProperties->setUVKnots(uKnots, vKnots);
 	msBsplineSurfaceGraphicProperties->setUVKnotsMultiplicity(uKmultiplicity, vKmultiplicity);
 	msBsplineSurfaceGraphicProperties->setUVOrder(uOrder, vOrder);
-	msBsplineSurfaceGraphicProperties->setWeights(weights);
+	msBsplineSurfaceGraphicProperties->setWeights(weightsVec);
 	msBsplineSurfaceGraphicProperties->setControlPoints(controlPointsUV, msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles());
-	msBsplineSurfaceGraphicProperties->setBoundsVectorPoints(boundsVectorPoints);
+	//msBsplineSurfaceGraphicProperties->setBoundsVectorPoints(boundsVectorPoints);
 }
 
 #pragma warning( push )
@@ -696,6 +641,13 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 
 	for each (ICurvePrimitivePtr curvePrimitive in curvesVector)
 	{
+		/*CurveTopologyId topologyID = curvePrimitive->GetId()->GetCurveTopologyId();
+		
+		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+		outfile << "CURVE_PRIMITIVE_ID: " << topologyID.GetType() << std::endl;
+		outfile << std::endl;
+		outfile.close();*/
+
 		switch (curvePrimitive->GetCurvePrimitiveType())
 		{
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
@@ -796,13 +748,18 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 			DPoint3d startP, endP;
 			bvector<DPoint3d> polesControlP;
 
+			Transform lToW, wToL;
+			double vertexF, squaredC;
+			DPoint3d localStart, localEnd;
+
 
 			if (bSpline != nullptr)
 			{
 				bSpline->ExtractEndPoints(startP, endP);
-
+				bool isParabola = bSpline->IsParabola(lToW, wToL, vertexF, localStart, localEnd, squaredC);
 				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 				outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
+				outfile << "Is Parabola = " << isParabola << std::endl;
 
 				bSpline->GetPoles(polesControlP);
 
@@ -831,7 +788,7 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 					bSpline->CompressKnots(inKnots, int(bSpline->GetOrder()), outKnots, multiplicityKnots, lowIndex, highIndex);
 
 					curveGraphicProperties->setAreKnotsValid(bSpline->AreKnotsValid());
-					curveGraphicProperties->setKnots(inKnots);
+					curveGraphicProperties->setKnots(outKnots);
 					curveGraphicProperties->setKnotsMultiplicity(multiplicityKnots);
 				}
 
@@ -860,7 +817,8 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 			{
 				CurveVectorCP cPvector = curvePrimitive->GetChildCurveVectorCP();
 				ShapesGraphicProperties* newShapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties);
+				bool addToDictionary = false;
+				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties, addToDictionary);
 				shapesGraphicProperties->insertShapesGraphicProperties(newShapesGraphicProperties);
 
 			}
@@ -982,15 +940,27 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 
 			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
 			outfile << "CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
+			outfile << "NUMBER OF COMPONENT: " << curvePrimitive->NumComponent() << std::endl;
 			outfile << std::endl;
-			outfile.close();
+			outfile.close(); 
 
 			DSegment3d segment;
 			size_t startPointIndex = 0;
 			DPoint3d directionTangent, originStartPoint0, startP, endP;
 			double lineLength;
 
+			size_t breakFractionIndex;
+			double fraction;
 
+			if (curvePrimitive->GetBreakFraction(breakFractionIndex, fraction))
+			{
+				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile << "breakFractionIndex: " << breakFractionIndex << std::endl;
+				outfile << "fraction: " << fraction << std::endl;
+				outfile << std::endl;
+				outfile.close();
+			}
+			
 			if (curvePrimitive->TryGetSegmentInLineString(segment, startPointIndex))
 			{
 				curvePrimitive->GetStartEnd(startP, endP);
@@ -1008,14 +978,20 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 
 				outfile << "Curve Line String Length: " << segment.Length() << std::endl;
 				outfile << std::endl;
-
+				outfile << "Control Points: " << segment.Length() << std::endl;
+				outfile << std::endl;
 				bvector<DPoint3d> polesControlP;
 				if (curvePrimitive->GetLineStringCP() != nullptr) {
-					int k = 0;
-					for each (DPoint3d p in *curvePrimitive->GetLineStringCP())
+					for each (DPoint3d point in *curvePrimitive->GetLineStringCP())
 					{
-						polesControlP.push_back(p);
-						k++;
+						/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+						outfile << "point " << " [X] = " << point.x << std::endl;
+						outfile << "point " << " [Y] = " << point.y << std::endl;
+						outfile << "point " << " [Z] = " << point.z << std::endl;
+						outfile << std::endl;
+						outfile.close();*/
+
+						polesControlP.push_back(point);
 					}
 				}
 
@@ -1106,6 +1082,127 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 		outfile.flush();
 	}
 }
+
+void GraphicsProcessorEnhancer::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)
+{
+	std::ofstream outfile;	
+
+	//Parity Region Container
+	if (shapesGraphicProperties->hasShapesGraphicsContainer())
+	{
+		size_t primCurvesCount = 0;
+
+		DVec3d newCentroid;
+		DPoint3d shapeCentroid, shapeStartPoint, shapeEndpoint;
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "-------- PARITY REGION Boundaries -------- Type: " << shapesGraphicProperties->type << std::endl;
+		outfile.close();
+
+		//Save the faceID to Parity Region
+		shapesGraphicProperties->addFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
+		shapesGraphicProperties->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
+
+		msBsplineSurface.EvaluatePoint(shapeCentroid, shapesGraphicProperties->getCentroid().x, shapesGraphicProperties->getCentroid().y);
+		msBsplineSurface.EvaluatePoint(shapeStartPoint, shapesGraphicProperties->getStartPoint().x, shapesGraphicProperties->getStartPoint().y);
+		msBsplineSurface.EvaluatePoint(shapeEndpoint, shapesGraphicProperties->getEndPoint().x, shapesGraphicProperties->getEndPoint().y);
+
+		//Keep The UV
+		shapesGraphicProperties->setUVstartEndPoints(shapesGraphicProperties->getStartPoint(), shapesGraphicProperties->getEndPoint());
+
+		newCentroid.Init(shapeCentroid);
+		shapesGraphicProperties->setCentroid(newCentroid);
+		shapesGraphicProperties->setStartEndPoints(shapeStartPoint, shapeEndpoint);
+
+		// Outer, Inner Boundaries NB: the path is supposed to be always closed
+		for (auto boundary : shapesGraphicProperties->getShapesGraphicsContainer())
+		{
+			primCurvesCount += boundary->getCurvesPrimitivesContainerVector().size();
+			size_t primCurvesPointsCount = 0;
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Bound -------- " << std::endl;
+			outfile << std::endl;
+			outfile.close();
+
+			//Save the faceID to the Outer/Inner boundary
+			boundary->addFaceBoundID(msBsplineSurfaceGraphicProperties->getFaceId());
+			boundary->setNodeId(msBsplineSurfaceGraphicProperties->getNodeId());
+
+			msBsplineSurface.EvaluatePoint(shapeCentroid, boundary->getCentroid().x, boundary->getCentroid().y);
+			msBsplineSurface.EvaluatePoint(shapeStartPoint, boundary->getStartPoint().x, boundary->getStartPoint().y);
+			msBsplineSurface.EvaluatePoint(shapeEndpoint, boundary->getEndPoint().x, boundary->getEndPoint().y);
+
+			//Keep The UV
+			boundary->setUVstartEndPoints(boundary->getStartPoint(), boundary->getEndPoint());
+
+			newCentroid.Init(shapeCentroid);
+			boundary->setCentroid(newCentroid);
+			boundary->setStartEndPoints(shapeStartPoint, shapeEndpoint);
+
+			// Primitives curves that compose the boundary (UV coordinates as control points)
+			for (auto curvePrimitive : boundary->getCurvesPrimitivesContainerVector())
+			{
+				DPoint3d cvStartPoint, cvEndpoint;
+
+				outfile.open(filePath, std::ios_base::app);
+				outfile << "Curve -------- " << std::endl;
+				outfile << std::endl;
+				outfile.close();
+
+				primCurvesPointsCount += curvePrimitive->getControlPoints().size();
+
+				// Evaluation of the Control Points using the surface
+				std::vector<DPoint3d> controlPointsBound;
+				//Keep the UV
+				std::vector<DPoint3d> curveControlPointsUV;
+				for (auto uv : curvePrimitive->getControlPoints())
+				{
+
+					DPoint3d evalP;
+					msBsplineSurface.EvaluatePoint(evalP, uv.x, uv.y);
+					controlPointsBound.push_back(evalP);
+
+					//Keep the UV
+					curveControlPointsUV.push_back(uv);
+
+					/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+					outfile << "point " << " [X] = " << uv.x << std::endl;
+					outfile << "point " << " [Y] = " << uv.y << std::endl;
+					outfile << "point " << " [Z] = " << uv.z << std::endl;
+					outfile << std::endl;
+					outfile.close();*/
+				}
+
+				//Reset the evaluated Control Points
+				curvePrimitive->setControlPoints(controlPointsBound);
+
+				//Keep the UV
+				curvePrimitive->setUVcontrolPoints(curveControlPointsUV);
+
+				msBsplineSurface.EvaluatePoint(cvStartPoint, curvePrimitive->getStartPoint().x, curvePrimitive->getStartPoint().y);
+				msBsplineSurface.EvaluatePoint(cvEndpoint, curvePrimitive->getEndPoint().x, curvePrimitive->getEndPoint().y);
+
+				//Reset the Start and End Point
+				curvePrimitive->setStartEndPoints(cvStartPoint, cvEndpoint);
+
+				//Keep the UV
+				curvePrimitive->setUVstartEndPoints(curvePrimitive->getStartPoint(), curvePrimitive->getEndPoint());
+			}
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "Curves Points Count:  " << primCurvesPointsCount << std::endl;
+			outfile << std::endl;
+			outfile.close();
+		}
+
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Curves Count:  " << primCurvesCount << std::endl;
+		outfile << std::endl;
+		outfile.close();
+	}
+
+}
 #pragma warning (pop)
 
 
@@ -1115,7 +1212,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 	{
 		if (shapesGraphicProperties == nullptr)
 		{
-			shapesGraphicProperties = new CurvesShapesGraphicProperties();
+			shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 		}
 			
 
@@ -1128,10 +1225,10 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		outfile.close();
 
 		DPoint3d center, start, end;
-		DRange3d range;
+		DRange3d range, planarRange;
 		DVec3d normal, centroid;
 		double area;
-		Transform localToWorld, worldToLocal;
+		Transform localToWorld, worldToLocal, planaLocalToWorld, planarWorldToLocal;
 		bool isClosed = false;
 
 		curvesVector.GetStartEnd(start, end);		
@@ -1230,7 +1327,9 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 
 		//TODO [SB] Check the correct enumeration type (first 2 enum suggested by Thibaut)
 		curvesVector.CloneInLocalCoordinates(LocalCoordinateSelect::LOCAL_COORDINATE_SCALE_01RangeBothAxes, localToWorld, worldToLocal, range);
-		
+
+		curvesVector.IsPlanar(planaLocalToWorld, planarWorldToLocal, planarRange);
+
 		curvesVector.IsPlanarWithDefaultNormal(localToWorld, worldToLocal, range, &normal);
 
 		// Chek if the shape is closed 
@@ -1249,6 +1348,7 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		shapesGraphicProperties->setCentroid(centroid);
 		shapesGraphicProperties->setNormal(normal);
 		shapesGraphicProperties->setIsClosed(isClosed);
+		shapesGraphicProperties->setStartEndPoints(start,end);
 		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());

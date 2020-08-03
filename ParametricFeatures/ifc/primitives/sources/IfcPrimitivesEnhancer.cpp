@@ -230,11 +230,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//ifcShapesEnhancer->dimension = 2;
 			ShapesGraphicProperties* shape = rotationalSweepGraphicProperties.getShapesGraphicProperties();
 			
-			//TODO[SB] find better impleentation
-			bool invertedAxis = false;
-			if (shape->getVectorAxisX().x == 0) // it's not in the XY plane vector X should be [1,0,0]
-				invertedAxis = true;
-
 			//Single Bound
 			if (shape->getShapesGraphicsContainer().empty())
 			{
