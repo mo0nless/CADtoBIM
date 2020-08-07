@@ -232,41 +232,14 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			
 			//Single Bound
 			if (shape->getShapesGraphicsContainer().empty())
-			{
-				// adjust global points of the shape/curve related to the global placement of the revolve			
-				/*for (auto curve : shape->getCurvesPrimitivesContainerVector())
-				{
-					std::vector<DPoint3d> temp;
-					for (auto point : curve->getControlPoints())
-					{
-						DPoint3d oldPoint;
-						DPoint3d newPoint;
-
-						if (invertedAxis)
-						{
-							oldPoint.Subtract(point, sweepCenterOfRotation);
-
-							newPoint.x = oldPoint.x;
-							newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
-							newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
-						}
-						else
-						{
-							oldPoint = point;
-							newPoint.Subtract(oldPoint, sweepCenterOfRotation);
-						}
-
-						temp.push_back(newPoint);
-					}
-					curve->setControlPoints(temp);
-				}*/
-				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation);
+			{				
+				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation, true);
 			}
 			//Parity Region, set of bounds 
 			else
 			{
 				for (auto bound: shape->getShapesGraphicsContainer())
-					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation);
+					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
 			}
 
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
@@ -326,7 +299,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			ExtrusionGraphicProperties& extrusionGraphicProperties = dynamic_cast<ExtrusionGraphicProperties&>(primitiveGraphicProperties);
 			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
 
-			Ifc4::IfcGeometricRepresentationItem* item = nullptr;
+			Ifc4::IfcCurve* ifcCurve = nullptr;
 			ShapesGraphicProperties* shape = extrusionGraphicProperties.getShapesGraphicProperties();
 			CurvesBoundaryTypeEnum curveBoundary = shape->getBoundaryTypeCurvesContainer();
 			
@@ -334,7 +307,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			Ifc4::IfcProfileDef* profileDef = nullptr;
 
 			Ifc4::IfcProfileTypeEnum::Value pEnum;
-			if (extrusionGraphicProperties.isSolid)
+			if (extrusionGraphicProperties.getIsSolid())
 				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA;
 			else
 				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE;
@@ -343,15 +316,29 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//Change dimension
 			//ifcShapesEnhancer->dimension = 2;
 
+			//Single Bound
+			if (shape->getShapesGraphicsContainer().empty())
+			{
+				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, extrusionGraphicProperties.getCentroid(), false);
+			}
+			//Parity Region, set of bounds 
+			else
+			{
+				for (auto bound : shape->getShapesGraphicsContainer())
+					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
+			}
+
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
 			
 			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
 			{
-				item = ifcShapesEnhancer->getSingleShapeRepresentation();
+				BoundTypeIfcCurve* curveBound = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
+
+				ifcCurve = curveBound->ifcCurve;
 				
-				if (shape->getIsClosed())
+				if (curveBound->isClosed)
 				{
-					Ifc4::IfcCurve* curveToExtrude = (Ifc4::IfcCurve*)item;
+					Ifc4::IfcCurve* curveToExtrude = ifcCurve;
 					profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
 						pEnum,
 						std::string("Closed Profile"),
@@ -360,7 +347,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				}
 				else 
 				{
-					Ifc4::IfcBoundedCurve* curveToExtrude = (Ifc4::IfcBoundedCurve*)item;
+					Ifc4::IfcBoundedCurve* curveToExtrude = (Ifc4::IfcBoundedCurve*)ifcCurve;
 					profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
 						pEnum,
 						std::string("Open Profile"),
@@ -394,27 +381,20 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 			}
 			
-			/*Ifc4::IfcAxis2Placement3D* place = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
-				extrusionGraphicProperties.getCentroid(),
-				extrusionGraphicProperties.getVectorAxisZ(),
-				extrusionGraphicProperties.getVectorAxisX()
-			);*/
-
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
-				new Ifc4::IfcCartesianPoint(std::vector<double>{0, 0, 0}),
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(extrusionGraphicProperties.getCentroid()),
 				new Ifc4::IfcDirection(std::vector<double>()),
 				new Ifc4::IfcDirection(std::vector<double>())
 			);
 
 
-			if (extrusionGraphicProperties.isSolid)
+			if (extrusionGraphicProperties.getIsSolid())
 			{
 				Ifc4::IfcExtrudedAreaSolid* extrusionitem = new Ifc4::IfcExtrudedAreaSolid(
 					profileDef,
-					//file.addPlacement3d(),
 					placement,
-					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.directionExtrusion),
-					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.directionExtrusion.Magnitude())
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
 				);
 
 				ifcRepresentationItem = extrusionitem;
@@ -423,10 +403,9 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			{
 				Ifc4::IfcSurfaceOfLinearExtrusion* surfaceExtrusion = new Ifc4::IfcSurfaceOfLinearExtrusion(
 					profileDef,
-					//file.addPlacement3d(),
 					placement,
-					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.directionExtrusion),
-					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.directionExtrusion.Magnitude())
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
 				);
 
 				ifcRepresentationItem = surfaceExtrusion;
@@ -441,10 +420,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			cDY = shape->getVectorAxisY();
 			cDZ = shape->getVectorAxisZ();
 
-			dirExt = extrusionGraphicProperties.directionExtrusion;
+			dirExt = extrusionGraphicProperties.getDirectionOfExtrusion();
 
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
+			outfile << std::fixed;
 			outfile << "IFC Extrusion --------" << std::endl;
 			outfile << "Extrusion solid: " << std::endl;
 			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;

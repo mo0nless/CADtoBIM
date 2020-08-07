@@ -6,16 +6,21 @@
 class ExtrusionGraphicProperties : public SolidPrimitiveProperty {
 
 private:
-	double radius;
-	double sweepRadians;
-	DPoint3d centerRotation;
+	DVec3d mDirectionExtrusion;
 	ShapesGraphicProperties* mShapesGraphicProperties;
 
+	bool mIsSolid;
 
 public:
 	ExtrusionGraphicProperties();
-	DVec3d directionExtrusion;
-	bool isSolid = false;
+
+	void setDirectionOfExtrusion(DVec3d newDirection);
+	DVec3d getDirectionOfExtrusion();
+	
+	void setIsSolid(bool value);
+	bool getIsSolid();	
+
+	double getLegnthOfExtrusion();
 
 	ShapesGraphicProperties* getShapesGraphicProperties();
 	void setShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);

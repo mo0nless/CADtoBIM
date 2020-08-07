@@ -44,7 +44,5 @@ private:
 
 	GraphicsProcessorEnhancer mGraphicsProcessorEnhancer;
 	Transform m_currentTransform;
-
-	SolidLocationDetail mSolidDetails;
 };
 /// @endGroup

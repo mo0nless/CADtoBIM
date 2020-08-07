@@ -216,8 +216,12 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	outfile << "------------------------" << std::endl;
 	outfile.close();
 
-
+	//Helpful for nested dgn attacchments
+	//auto dgnRefActive = ISessionMgr::GetActiveDgnModelRefP();
+	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
 	
+	//dgnRefActive->GetReachableElements()
+
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
 		//DgnECManagerR ecMgr = DgnECManager::GetManager();

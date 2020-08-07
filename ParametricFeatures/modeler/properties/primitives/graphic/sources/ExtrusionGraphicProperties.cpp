@@ -2,15 +2,34 @@
 
 ExtrusionGraphicProperties::ExtrusionGraphicProperties(): SolidPrimitiveProperty(PrimitiveTypeEnum::EXTRUSION)
 {
-	this->radius = 0;
-	this->sweepRadians = 0;
-
 	this->mShapesGraphicProperties = nullptr;
+	this->mIsSolid = false;
+	this->mDirectionExtrusion = DVec3d();
+}
 
-	this->centerRotation = DPoint3d();
-	this->centerRotation.x = 0;
-	this->centerRotation.y = 0;
-	this->centerRotation.z = 0;
+void ExtrusionGraphicProperties::setDirectionOfExtrusion(DVec3d newDirection)
+{
+	this->mDirectionExtrusion = newDirection;
+}
+
+DVec3d ExtrusionGraphicProperties::getDirectionOfExtrusion()
+{
+	return this->mDirectionExtrusion;
+}
+
+void ExtrusionGraphicProperties::setIsSolid(bool value)
+{
+	this->mIsSolid = value;
+}
+
+bool ExtrusionGraphicProperties::getIsSolid()
+{
+	return this->mIsSolid;
+}
+
+double ExtrusionGraphicProperties::getLegnthOfExtrusion()
+{
+	return this->mDirectionExtrusion.Magnitude();
 }
 
 ShapesGraphicProperties * ExtrusionGraphicProperties::getShapesGraphicProperties()

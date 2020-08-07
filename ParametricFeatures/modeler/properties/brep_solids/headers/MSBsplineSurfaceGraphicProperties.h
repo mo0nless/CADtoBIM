@@ -5,7 +5,7 @@
 #include "../../headers/GraphicProperties.h"
 #include <vector>
 
-class MSBsplineSurfaceGraphicProperties //: public GraphicProperties
+class MSBsplineSurfaceGraphicProperties: public GraphicProperties
 {
 public:
 	MSBsplineSurfaceGraphicProperties();
@@ -59,15 +59,14 @@ public:
 	void addSurfaceBoundaryShape(ShapesGraphicProperties* bound);
 	ShapesGraphicProperties* getSurfaceBoundaryShape();
 
-	bvector<DPoint3d> mFullArrayControlPoint;
-
-	int mNumberOfBounds;
+	bool hasValidWeights;
+	bool hasValidKnots;
 
 private:
 	std::vector<std::vector<DPoint3d>> mControlPoints;
 	std::vector<std::vector<DPoint3d>> mBoundsVectorPoints;
 
-	
+	int mNumberOfBounds;
 	int mFaceId;
 	int mNodeId;
 	FaceId mBentleyFaceId;

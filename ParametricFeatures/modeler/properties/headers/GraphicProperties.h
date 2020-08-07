@@ -22,8 +22,6 @@ public:
 	GraphicProperties();
 	virtual ~GraphicProperties() {}
 
-	Transform worldToLocal;
-
 	double getArea();
 	void setArea(double newArea);
 

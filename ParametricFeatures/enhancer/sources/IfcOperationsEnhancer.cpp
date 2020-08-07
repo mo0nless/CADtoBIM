@@ -97,20 +97,23 @@ bool IfcOperationsEnhancer::isVectorDoubleEqual(std::vector<double> v1, std::vec
 	return false;
 }
 
-void IfcOperationsEnhancer::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position)
+void IfcOperationsEnhancer::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position, bool rotatePoint)
 {
 	bool invertedAxis = false;
 	std::string axis = "";
 
-	if (std::abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+	if (rotatePoint)
 	{
-		invertedAxis = true;
-		axis = "X";
-	}
-	else if (std::abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
-	{
-		invertedAxis = true;
-		axis = "Y";
+		if (std::abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+		{
+			invertedAxis = true;
+			axis = "X";
+		}
+		else if (std::abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
+		{
+			invertedAxis = true;
+			axis = "Y";
+		}
 	}
 
 	// adjust global points of the shape/curve related to the global placement of the revolve			
