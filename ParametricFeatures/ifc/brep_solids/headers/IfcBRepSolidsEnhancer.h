@@ -30,13 +30,16 @@ class IfcBRepSolidsEnhancer
 public:
 	IfcBRepSolidsEnhancer();
 
-	void enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector,
+		IfcHierarchyHelper<Ifc4>& file);
 	
 private:
-	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity,
+		IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
 	//Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
-	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity,
+		IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	template<class T>
 	T searchOnMap(std::map<int, T>, int key);

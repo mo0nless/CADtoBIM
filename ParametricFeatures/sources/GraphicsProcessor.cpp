@@ -2,8 +2,8 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -1042,7 +1042,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			subEntitiesEdges.clear();
 			subEntitiesFaces.clear();
 
-			dictionaryProperties->addGraphicProperties(solidKernelEntity);
+			//dictionaryProperties->addGraphicProperties(solidKernelEntity);
+			this->mGraphicsProcessorEnhancer.getElementBundle()->setGraphicProperties(*solidKernelEntity);
 		}
 #endif
 
@@ -1156,7 +1157,8 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 		bRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
 	}
 	
-	dictionaryProperties->addGraphicProperties(bRepGraphicProperties);
+	//dictionaryProperties->addGraphicProperties(bRepGraphicProperties);
+	this->mGraphicsProcessorEnhancer.getElementBundle()->setGraphicProperties(*bRepGraphicProperties);
 
 	return SUCCESS;
 }
@@ -1184,7 +1186,7 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	this->mGraphicsProcessorEnhancer.getElementBundle()->setColor(displayParams.GetLineColorTBGR());
 	this->mGraphicsProcessorEnhancer.getElementBundle()->setTransparency(displayParams.GetTransparency());
 
-	//std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 

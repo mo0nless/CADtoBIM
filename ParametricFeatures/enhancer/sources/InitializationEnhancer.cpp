@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -171,6 +171,7 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 
 		graphicsProcessorEnhancer->mCurrentElementHandle = eh;
 		graphicsProcessorEnhancer->setElementBundle(*elementBundle);
+		graphicsProcessorEnhancer->setDictionaryProperties(*dictionaryProperties);
 		ElementGraphicsOutput::Process(eh, graphicsProcessor);
 
 		dictionaryProperties->addElementBundle(elementBundle);

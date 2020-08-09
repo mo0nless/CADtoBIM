@@ -683,8 +683,11 @@ void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsp
 	msBsplineSurfaceGraphicProperties->hasValidKnots = msBsplineSurface.HasValidKnotAllocation();
 	//msBsplineSurfaceGraphicProperties->setBoundsVectorPoints(boundsVectorPoints);
 
-	if (addToDictionary)
-		pDictionaryProperties->addGraphicProperties(msBsplineSurfaceGraphicProperties);
+	if (addToDictionary) {
+		//pDictionaryProperties->addGraphicProperties(msBsplineSurfaceGraphicProperties);
+		this->elementBundle->setGraphicProperties(*msBsplineSurfaceGraphicProperties);
+
+	}
 }
 
 #pragma warning( push )
@@ -1754,8 +1757,11 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 		break;
 	}
 
-	if (addToDictionary && primitiveGraphicProperties != nullptr)
-		pDictionaryProperties->addGraphicProperties(primitiveGraphicProperties);
+	if (addToDictionary && primitiveGraphicProperties != nullptr) {
+		//pDictionaryProperties->addGraphicProperties(primitiveGraphicProperties);
+		this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
+	}
+		
 }
 
 void GraphicsProcessorEnhancer::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)

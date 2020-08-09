@@ -129,12 +129,12 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	double rotationX, double rotationY, double rotationZ, int orientation)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, 
+	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 
@@ -225,7 +225,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
 			}
 
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
 
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
@@ -311,7 +311,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
 			}
 
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
 			
 			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
 			{

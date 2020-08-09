@@ -4,7 +4,8 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
 
-void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector,
+	IfcHierarchyHelper<Ifc4>& file)
 {
 	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
@@ -21,8 +22,8 @@ void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryP
 			for (auto element : dictionaryProperties.getElementBundle())
 			{
 				Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
-				BRepGraphicProperties* brepSolidsKernelEntity = dynamic_cast<BRepGraphicProperties*>(graphicProperties);
-				SolidEntityGraphicProperties* solidsKernelEntity = dynamic_cast<SolidEntityGraphicProperties*>(graphicProperties);
+				BRepGraphicProperties* brepSolidsKernelEntity = dynamic_cast<BRepGraphicProperties*>(element->getGraphicProperties());
+				SolidEntityGraphicProperties* solidsKernelEntity = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
 
 				if (brepSolidsKernelEntity != nullptr)
 				{
@@ -30,12 +31,13 @@ void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryP
 				}
 				else if (solidsKernelEntity != nullptr)
 				{
-					ifcRepresentationItem = buildGeometricRepresentationBsplineSurface(solidsKernelEntity, ifcElementBundle, file);
+					ifcRepresentationItem = buildGeometricRepresentationBsplineSurface(solidsKernelEntity, ifcElementBundle, element, file);
 				}
 
 				if (ifcRepresentationItem != nullptr)
 				{
-					ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
+					ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(element->getGraphicProperties(), ifcRepresentationItem,
+						element->getElementHandle(), element->getElemDisplayParamsCP()));
 				}
 				
 			}
@@ -426,10 +428,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, 
+	IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+
 
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
 
@@ -515,7 +520,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 			bool addToIfcElementBundle = false;
 			auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, addToIfcElementBundle);
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, elementBundle, addToIfcElementBundle);
 
 			for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
 			{
@@ -728,7 +733,9 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+
 
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
 
@@ -1100,10 +1107,12 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 	return geomItem;
 }
 
-void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+
 
 	bool addToIfcElementBundle = false;
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
@@ -1129,7 +1138,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 
 		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 		//ifcShapesEnhancer->dimension = IfcDimensionEnum::dim_2D;
-		ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, addToIfcElementBundle);
+		ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, elementBundle, addToIfcElementBundle);
 
 		//Pick the first and only one
 		BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
@@ -1260,7 +1269,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 				isShared = true;			
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, addToIfcElementBundle);
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, elementBundle, addToIfcElementBundle);
 
 			//Pick the first and only one
 			BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();

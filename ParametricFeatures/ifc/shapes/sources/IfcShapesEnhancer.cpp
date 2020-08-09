@@ -163,7 +163,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
 					addToIfcElementBundle = false;
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+					buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
 				}
 			}
 
@@ -180,7 +180,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
 					addToIfcElementBundle = false;
-					buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+					buildGeometricRepresentationShapes(shape, file, ifcElementBundle, elementBundle,  addToIfcElementBundle);
 				}
 			}
 
@@ -225,7 +225,8 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 			this->mSingleShapeRepresentation = shape;
 		}
 
-		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));		
+		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
+			elementBundle->getElementHandle(),elementBundle->getElemDisplayParamsCP()));		
 
 		this->mSingleShapeRepresentation = nullptr;
 	}

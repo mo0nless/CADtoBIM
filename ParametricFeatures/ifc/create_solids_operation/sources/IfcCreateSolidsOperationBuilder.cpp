@@ -38,12 +38,12 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 	//	file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y,zAxis.z),
 	//	file.addTriplet<Ifc4::IfcDirection>(xAxis.x, xAxis.y, xAxis.z));
 
-	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
-		file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
-		NumberUtils::convertMicrometersToMetters(centroid.y),
-		NumberUtils::convertMicrometersToMetters(centroid.z)),
-		new Ifc4::IfcDirection(std::vector<double>()),
-		new Ifc4::IfcDirection(std::vector<double>()));
+	//Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
+	//	file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
+	//	NumberUtils::convertMicrometersToMetters(centroid.y),
+	//	NumberUtils::convertMicrometersToMetters(centroid.z)),
+	//	new Ifc4::IfcDirection(std::vector<double>()),
+	//	new Ifc4::IfcDirection(std::vector<double>()));
 
 
 	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertCurrentUnitToMeters(centroid.x),
