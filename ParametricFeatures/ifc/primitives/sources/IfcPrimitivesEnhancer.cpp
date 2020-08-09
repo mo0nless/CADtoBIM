@@ -48,7 +48,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	{
 		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
-	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP)
+	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || 
+		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
 	}
@@ -71,14 +72,14 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
 
 			SphereGraphicProperties& sphereGraphicProperties = dynamic_cast<SphereGraphicProperties&>(primitiveGraphicProperties);
-			ifcRepresentationItem = new Ifc4::IfcSphere(placement, NumberUtils::convertMicrometersToMetters(sphereGraphicProperties.getRadius()));
+			ifcRepresentationItem = new Ifc4::IfcSphere(placement, NumberUtils::convertCurrentUnitToMeters(sphereGraphicProperties.getRadius()));
 
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX) {
 
 			BoxGraphicProperties& boxGraphicProperties = dynamic_cast<BoxGraphicProperties&>(primitiveGraphicProperties);
 
-			ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getLength()),
-			NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getWidth()), NumberUtils::convertMicrometersToMetters(boxGraphicProperties.getHeight()));
+			ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
+			NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()));
 
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
 			CylinderGraphicProperties& cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties&>(primitiveGraphicProperties);
@@ -93,8 +94,8 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 				cylinderGraphicProperties.getVectorAxisX()
 			);
 
-			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(placement, NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getHeight()),
-			NumberUtils::convertMicrometersToMetters(cylinderGraphicProperties.getRadius()));
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(placement, NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getHeight()),
+			NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getRadius()));
 
 		}
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::CONE)
@@ -111,8 +112,8 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 				coneGraphicProperties.getVectorAxisX()
 			);
 
-			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(placement, NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getHeight()),
-			NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(placement, NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getHeight()),
+			NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getBaseRadius()));
 		}
 	
 	if (ifcRepresentationItem != nullptr) {
@@ -123,10 +124,17 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	return nullptr;
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, 
-	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+	double rotationX, double rotationY, double rotationZ, int orientation)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
+	std::ofstream outfile;
+	std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 
@@ -139,10 +147,10 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			torusPointPlacement.Init(torusGraphicProperties.getCenterPointOfRotation());
 
 			Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
-				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMajorRadius())), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
+				NumberUtils::convertCurrentUnitToMeters(torusGraphicProperties.getMajorRadius())), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 			Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement,
-				NumberUtils::convertMicrometersToMetters(torusGraphicProperties.getMinorRadius()));
+				NumberUtils::convertCurrentUnitToMeters(torusGraphicProperties.getMinorRadius()));
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 			// !!! torus placement axes should be provided in the order of Y, Z
@@ -181,68 +189,243 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			);
 
 			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* bigCompleteCone = new Ifc4::IfcRightCircularCone(bigConePlacement,
-				NumberUtils::convertMicrometersToMetters((coneGraphicProperties.getHeight() + smallConeHeight)),
-				NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getBaseRadius()));
+				NumberUtils::convertCurrentUnitToMeters((coneGraphicProperties.getHeight() + smallConeHeight)),
+				NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getBaseRadius()));
 
 			Ifc4::IfcCsgPrimitive3D::IfcGeometricRepresentationItem* smallCompleteCone = new Ifc4::IfcRightCircularCone(smallConePlacement,
-				NumberUtils::convertMicrometersToMetters(smallConeHeight), NumberUtils::convertMicrometersToMetters(coneGraphicProperties.getTopRadius()));
+				NumberUtils::convertCurrentUnitToMeters(smallConeHeight), NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getTopRadius()));
 
 			ifcRepresentationItem = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE, bigCompleteCone, smallCompleteCone);
 
 		}
-		 else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) {
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::ROTATIONAL_SWEEP) 
+		{
 			RotationalSweepGraphicProperties& rotationalSweepGraphicProperties = dynamic_cast<RotationalSweepGraphicProperties&>(primitiveGraphicProperties);
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
 
-			// torus placement is NOT the centroid, but the center of rotation
-			DVec3d rotationalSweepPlacement;
-			rotationalSweepPlacement.x = 0;
-			rotationalSweepPlacement.y = 0;
-			rotationalSweepPlacement.z = 0;
-
 			DVec3d sweepCenterOfRotation;
 			sweepCenterOfRotation.Init(rotationalSweepGraphicProperties.getCenterRotation());
 
-			// adjust global points of the shape/curve related to the global placement of the revolve
-			std::vector<DPoint3d> temp;
-			std::vector<DPoint3d> points = rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->getControlPoints();
-			for (auto const c : points) {
-				DPoint3d newPoint;
-
-				newPoint.Subtract(c, sweepCenterOfRotation);
-				temp.push_back(newPoint);
-			}
-
-			rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->setControlPoints(temp);
 			Ifc4::IfcGeometricRepresentationItem* result = nullptr;
 			bool addToIfcElementBundle = false;
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(), file, ifcElementBundle, 
-				elementBundle,addToIfcElementBundle);
+			//ifcShapesEnhancer->dimension = 2;
+			ShapesGraphicProperties* shape = rotationalSweepGraphicProperties.getShapesGraphicProperties();
+			
+			//Single Bound
+			if (shape->getShapesGraphicsContainer().empty())
+			{				
+				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation, true);
+			}
+			//Parity Region, set of bounds 
+			else
+			{
+				for (auto bound: shape->getShapesGraphicsContainer())
+					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
+			}
+
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
 
-			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("RotationalSweep"),
-				(Ifc4::IfcCurve*) result);
+			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
+				Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, 
+				std::string("RotationalSweep"),
+				(Ifc4::IfcCurve*) result
+			);
+			
+			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(
+					file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(rotationalSweepGraphicProperties.getVectorAxisZ())
+				);
 
-			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0,0,0),
-				file.addTriplet<Ifc4::IfcDirection>(rotationalSweepGraphicProperties.getVectorAxisZ().x, rotationalSweepGraphicProperties.getVectorAxisZ().y,
-					rotationalSweepGraphicProperties.getVectorAxisZ().z));
-
-			// leave the directions empty
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
-				file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.x),
-					NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.y),
-					NumberUtils::convertMicrometersToMetters(sweepCenterOfRotation.z )),
-				new Ifc4::IfcDirection(std::vector<double>()), new Ifc4::IfcDirection(std::vector<double>()));
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(rotationalSweepGraphicProperties.getCenterRotation()),
+				new Ifc4::IfcDirection(std::vector<double>()), 
+				new Ifc4::IfcDirection(std::vector<double>())
+			);
+			
+			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(
+				profileDef, 
+				placement,
+				localAxis1Placement, 
+				rotationalSweepGraphicProperties.getSweepRadians()
+			);
 
-			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(profileDef, placement, localAxis1Placement, rotationalSweepGraphicProperties.getSweepRadians());
+			DVec3d rDX, rDY, rDZ, cDX, cDY, cDZ;
+			rDX = rotationalSweepGraphicProperties.getVectorAxisX();
+			rDY = rotationalSweepGraphicProperties.getVectorAxisY();
+			rDZ = rotationalSweepGraphicProperties.getVectorAxisZ();
 
+			cDX = shape->getVectorAxisX();
+			cDY = shape->getVectorAxisY();
+			cDZ = shape->getVectorAxisZ();
+			
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "IFC Revolve --------" << std::endl;
+			outfile << "Revolved solid: " << std::endl;
+			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;
+			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << std::endl;
+			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << std::endl;
+			outfile << std::endl;
+			outfile << "Curve Profile: " << std::endl;
+			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+			outfile.close();
+		}
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::EXTRUSION)
+		{
+			ExtrusionGraphicProperties& extrusionGraphicProperties = dynamic_cast<ExtrusionGraphicProperties&>(primitiveGraphicProperties);
+			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
+
+			Ifc4::IfcCurve* ifcCurve = nullptr;
+			ShapesGraphicProperties* shape = extrusionGraphicProperties.getShapesGraphicProperties();
+			CurvesBoundaryTypeEnum curveBoundary = shape->getBoundaryTypeCurvesContainer();
+			
+			bool addToIfcElementBundle = false;
+			Ifc4::IfcProfileDef* profileDef = nullptr;
+
+			Ifc4::IfcProfileTypeEnum::Value pEnum;
+			if (extrusionGraphicProperties.getIsSolid())
+				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA;
+			else
+				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE;
+
+			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+			//Change dimension
+			//ifcShapesEnhancer->dimension = 2;
+
+			//Single Bound
+			if (shape->getShapesGraphicsContainer().empty())
+			{
+				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, extrusionGraphicProperties.getCentroid(), false);
+			}
+			//Parity Region, set of bounds 
+			else
+			{
+				for (auto bound : shape->getShapesGraphicsContainer())
+					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
+			}
+
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle, addToIfcElementBundle);
+			
+			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
+			{
+				BoundTypeIfcCurve* curveBound = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
+
+				ifcCurve = curveBound->ifcCurve;
+				
+				if (curveBound->isClosed)
+				{
+					Ifc4::IfcCurve* curveToExtrude = ifcCurve;
+					profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
+						pEnum,
+						std::string("Closed Profile"),
+						curveToExtrude
+					);
+				}
+				else 
+				{
+					Ifc4::IfcBoundedCurve* curveToExtrude = (Ifc4::IfcBoundedCurve*)ifcCurve;
+					profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
+						pEnum,
+						std::string("Open Profile"),
+						curveToExtrude
+					);
+				}
+			}
+			else
+			{
+				IfcTemplatedEntityList<Ifc4::IfcCurve>* profiles = new IfcTemplatedEntityList<Ifc4::IfcCurve>();
+				Ifc4::IfcCurve* outer = nullptr;
+				for (auto boundTypeCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
+				{
+					Ifc4::IfcCurve* curve = boundTypeCurve->ifcCurve;
+					CurvesBoundaryTypeEnum bound = boundTypeCurve->boundary;
+
+					if (CurvesBoundaryTypeEnum::INNER == bound)				
+						profiles->push(curve);
+					else if (CurvesBoundaryTypeEnum::OUTER == bound)
+						outer = curve;
+				}
+
+				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurve>> tempProfiles(profiles);
+
+				profileDef = new Ifc4::IfcArbitraryProfileDefWithVoids(
+					pEnum,
+					std::string("Outer and Inner"),
+					outer,
+					tempProfiles
+				);
+
+			}
+			
+			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
+				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(extrusionGraphicProperties.getCentroid()),
+				new Ifc4::IfcDirection(std::vector<double>()),
+				new Ifc4::IfcDirection(std::vector<double>())
+			);
+
+
+			if (extrusionGraphicProperties.getIsSolid())
+			{
+				Ifc4::IfcExtrudedAreaSolid* extrusionitem = new Ifc4::IfcExtrudedAreaSolid(
+					profileDef,
+					placement,
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
+				);
+
+				ifcRepresentationItem = extrusionitem;
+			}
+			else
+			{
+				Ifc4::IfcSurfaceOfLinearExtrusion* surfaceExtrusion = new Ifc4::IfcSurfaceOfLinearExtrusion(
+					profileDef,
+					placement,
+					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
+				);
+
+				ifcRepresentationItem = surfaceExtrusion;
+			}
+
+			DVec3d rDX, rDY, rDZ, cDX, cDY, cDZ, dirExt;
+			rDX = extrusionGraphicProperties.getVectorAxisX();
+			rDY = extrusionGraphicProperties.getVectorAxisY();
+			rDZ = extrusionGraphicProperties.getVectorAxisZ();
+
+			cDX = shape->getVectorAxisX();
+			cDY = shape->getVectorAxisY();
+			cDZ = shape->getVectorAxisZ();
+
+			dirExt = extrusionGraphicProperties.getDirectionOfExtrusion();
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << std::fixed;
+			outfile << "IFC Extrusion --------" << std::endl;
+			outfile << "Extrusion solid: " << std::endl;
+			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;
+			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << std::endl;
+			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << std::endl;
+			outfile << std::endl;
+			outfile << "Curve Profile: " << std::endl;
+			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
+			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
+			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+			outfile << std::endl;
+			outfile << "Direction of Extrusion: " << std::endl;
+			outfile << "Direction [X] = " << dirExt.x << ", " << dirExt.y << ", " << dirExt.z << std::endl;
+			outfile.close();
 		}
 
 
 	return ifcRepresentationItem;
 }
-
+#pragma warning( pop )
 

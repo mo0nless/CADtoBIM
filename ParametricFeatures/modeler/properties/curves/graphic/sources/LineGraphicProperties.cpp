@@ -4,12 +4,12 @@ LineGraphicProperties::LineGraphicProperties():CurveGraphicProperties(CurvesPrim
 {
 }
 
-void LineGraphicProperties::setDirectionTanget(DPoint3d newDirTanget)
+void LineGraphicProperties::setDirectionTanget(DVec3d newDirTanget)
 {
 	this->mDirectionTangent = newDirTanget;
 }
 
-DPoint3d LineGraphicProperties::getDirectionTangent()
+DVec3d LineGraphicProperties::getDirectionTangent()
 {
 	return this->mDirectionTangent;
 }

@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -194,10 +194,9 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 #pragma warning (disable:4311 4302 4312)
 void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
-	std::ofstream outfile;
-
+	std::ofstream outfile;	
 	outfile.open(filePath);
-	outfile << "" << std::endl;
+	outfile << "------------------------" << std::endl;
 	outfile.close();
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
@@ -205,6 +204,70 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+	ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
+	
+	DPoint3d globalOrigin = modelInfo->GetGlobalOrigin();
+
+	UnitDefinitionCR masterUnit = modelInfo->GetMasterUnit();
+	UnitDefinitionCR subUnit = modelInfo->GetSubUnit();
+
+	UnitDefinitionCR storageUnit = modelInfo->GetStorageUnit();
+	double uorPerUnit = modelInfo->GetUorPerStorage();
+	//mdlColorPal_getElemColorDescrByModelRef()
+
+	//mdlElement_getFillColor
+
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "------------------------" << std::endl;
+	outfile << "DgnModelRefP Unit System" << std::endl;
+	outfile << std::fixed;
+	outfile << std::endl;
+
+	outfile << "UnitSystem::English 1" << std::endl;
+	outfile << "UnitSystem::Metric 2" << std::endl;
+	outfile << "UnitSystem::USSurvey 3" << std::endl;
+	outfile << std::endl;
+	
+	outfile << "UnitBase::Meter 1" << std::endl;
+	outfile << "UnitBase::Degree 2" << std::endl;
+	outfile << std::endl;
+	
+	outfile << "Master unit: " << StringUtils::getNormalizedString(masterUnit.GetLabel()) << std::endl;
+	outfile << "masterUnit System" << (int)masterUnit.GetSystem() << std::endl;
+	outfile << "masterUnit Base" << (int)masterUnit.GetBase() << std::endl;
+	outfile << "masterUnit Numerator" << masterUnit.GetNumerator() << std::endl;
+	outfile << "masterUnit Denominator" << masterUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (masterUnit.GetNumerator() / masterUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "Sub unit: " << StringUtils::getNormalizedString(subUnit.GetLabel()) << std::endl;
+	outfile << "subUnit System" << (int)subUnit.GetSystem() << std::endl;
+	outfile << "subUnit Base" << (int)subUnit.GetBase() << std::endl;
+	outfile << "subUnit Numerator" << subUnit.GetNumerator() << std::endl;
+	outfile << "subUnit Denominator" << subUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (subUnit.GetNumerator() / subUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "Storage unit: " << StringUtils::getNormalizedString(storageUnit.GetLabel()) << std::endl;
+	outfile << "storageUnit System" << (int)storageUnit.GetSystem() << std::endl;
+	outfile << "storageUnit Base" << (int)storageUnit.GetBase() << std::endl;
+	outfile << "storageUnit Numerator" << storageUnit.GetNumerator() << std::endl;
+	outfile << "storageUnit Denominator" << storageUnit.GetDenominator() << std::endl;
+	outfile << "Division Ratio" << (storageUnit.GetNumerator() / storageUnit.GetDenominator()) << std::endl;
+	outfile << std::endl;
+
+	outfile << "UOR per storage" << uorPerUnit << std::endl;
+	outfile << "AnnotationScaleFactor" << modelInfo->GetAnnotationScaleFactor() << std::endl;
+	outfile << "Global Origin [x,y,z]= " << globalOrigin.x << ", " << globalOrigin.y << ", " << globalOrigin.z << std::endl;
+	
+	outfile << "------------------------" << std::endl;
+	outfile.close();
+
+	//Helpful for nested dgn attacchments
+	//auto dgnRefActive = ISessionMgr::GetActiveDgnModelRefP();
+	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
+	
+	//dgnRefActive->GetReachableElements()
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	

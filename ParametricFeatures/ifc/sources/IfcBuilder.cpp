@@ -3,11 +3,32 @@
 
 void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {	
+	typedef Ifc4::IfcGloballyUniqueId guid;
+	// Current date/time based on current system
+	time_t currentTimeNow = time(0);	
+	
 	std::string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	typedef Ifc4::IfcGloballyUniqueId guid;
+	std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
+	
+	//DEV CREDIT
+	Ifc4::IfcActorRole* appActorRole1 = new Ifc4::IfcActorRole(
+		Ifc4::IfcRoleEnum::IfcRole_ENGINEER,
+		std::string("Software Developer"),
+		std::string("Stefano Beccaletto")
+	);
+
+	Ifc4::IfcActorRole* appActorRole2 = new Ifc4::IfcActorRole(
+		Ifc4::IfcRoleEnum::IfcRole_ENGINEER,
+		std::string("Software Developer"),
+		std::string("Mario Pirau")
+	);
+
+	IfcTemplatedEntityList<Ifc4::IfcActorRole>* appListOfActor = new IfcTemplatedEntityList<Ifc4::IfcActorRole>();
+	appListOfActor->push(appActorRole1);
+	appListOfActor->push(appActorRole2);
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcActorRole>> appActorList(appListOfActor);
 
 	Ifc4::IfcSIUnit* ifcUnitLength = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_LENGTHUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_METRE);
 	Ifc4::IfcSIUnit* ifcUnitAngle = new Ifc4::IfcSIUnit(Ifc4::IfcUnitEnum::IfcUnit_PLANEANGLEUNIT, boost::none, Ifc4::IfcSIUnitName::IfcSIUnitName_RADIAN);
@@ -28,8 +49,8 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 	Ifc4::IfcAxis2Placement3D* originAndAxisPlacement = new Ifc4::IfcAxis2Placement3D(
 		file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
-		file.addTriplet<Ifc4::IfcDirection>(1, 0, 0), 
-		file.addTriplet<Ifc4::IfcDirection>(0, 0, 1) // Z direction
+		file.addTriplet<Ifc4::IfcDirection>(0, 0, 1), // Z direction
+		file.addTriplet<Ifc4::IfcDirection>(1, 0, 0) 
 	);
 
 	//http://standards.buildingsmart.org/MVD/RELEASE/IFC4/ADD2_TC1/RV1_2/HTML/schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm
@@ -38,6 +59,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		representationContextType,
 		3,
 		1.0E-05,
+		//file.addTriplet<Ifc4::IfcAxis2Placement3D>(4,4,4),
 		originAndAxisPlacement,
 		trueNorthDirection
 	);
@@ -47,19 +69,85 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>> representationContextList(listContext);
 	
 	//TODO[SB] Set up owner History
-	//Ifc4::IfcOwnerHistory()
+	Ifc4::IfcAddress* address = new Ifc4::IfcAddress(
+		Ifc4::IfcAddressTypeEnum::IfcAddressType_OFFICE,
+		std::string("$"),
+		std::string("$")
+	);
+
+	IfcTemplatedEntityList<Ifc4::IfcAddress>* listOfAddresses = new IfcTemplatedEntityList<Ifc4::IfcAddress>();
+	listOfAddresses->push(address);
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcAddress>> addressList(listOfAddresses);
+
+	Ifc4::IfcPerson* person = new Ifc4::IfcPerson(
+		std::string("Software Developer"),
+		std::string("Soft"),
+		std::string("Deve"),
+		std::vector<std::string>{"Loper"},
+		std::vector<std::string>{"$"},
+		std::vector<std::string>{"$"},
+		appActorList,
+		addressList
+	);
+
+	Ifc4::IfcOrganization* organization = new Ifc4::IfcOrganization(
+		std::string("Tractebel Belgium"),
+		std::string("Tractebel Belgium - ENGIE group"),
+		std::string("$"),
+		appActorList,
+		addressList
+	);
+
+	Ifc4::IfcPersonAndOrganization* personAndOrganization = new Ifc4::IfcPersonAndOrganization(
+		person,
+		organization,
+		appActorList
+	);
+	
+	Ifc4::IfcApplication* application = new Ifc4::IfcApplication(
+		organization,
+		std::string("Beta 1.0"),
+		std::string("Bentley IFC Exporter"),
+		std::string("Bentley-IFC-Exp")
+	);
+
+	Ifc4::IfcOwnerHistory* ownerHistory = new Ifc4::IfcOwnerHistory(
+		personAndOrganization,
+		application,
+		Ifc4::IfcStateEnum::IfcState_READWRITE,
+		Ifc4::IfcChangeActionEnum::IfcChangeAction_NOCHANGE,
+		currentTimeNow, //last mod
+		personAndOrganization,
+		application,
+		currentTimeNow //creation date
+	);
 
 	Ifc4::IfcProject* project = new Ifc4::IfcProject(
 		guid::IfcGloballyUniqueId(name), 
-		file.getSingle<Ifc4::IfcOwnerHistory>(), 
+		ownerHistory,
+		//file.getSingle<Ifc4::IfcOwnerHistory>(), 
 		std::string("OpenPlant IFC Exporter"), 
-		boost::none,
-		boost::none, 
-		boost::none, 
-		boost::none, 
+		std::string("$"),
+		std::string("$"),
+		std::string("$"),
+		std::string("$"),
 		representationContextList,
 		unitAssigment
 	);
+
+	Ifc4::IfcObjectPlacement* objectPlacement = file.addLocalPlacement();
+
+	/*Ifc4::IfcBuildingStorey* buildingStorey = new Ifc4::IfcBuildingStorey(
+		guid::IfcGloballyUniqueId("Test Building Storey"),
+		ownerHistory,
+		std::string(name),
+		std::string("$"),
+		std::string("$"),
+		objectPlacement,
+
+	);*/
+
+	//Ifc4::IfcBuilding* building = new Ifc4::IfcBuilding()
 
 	file.addEntity(project);
 
@@ -97,84 +185,6 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		}
 	}
 
-	// TODO [MP/SB] find another implementation for smart feature
-	//if (!smartFeatureContainerVector.empty()) {
-	//	for (int i = 0; i < smartFeatureContainerVector.size(); ++i) 
-	//	{
-	//		SmartFeatureContainer smartFeatureContainer = *smartFeatureContainerVector.at(i);
-	//
-	//		if (smartFeatureContainer.getRoot() != nullptr)
-	//		{
-	//			if (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::BOOLEAN_FEATURE) {
-	//				IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-	//				representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-	//			}
-	//		}
-	//
-	//		if (representationItem != nullptr) 
-	//		{
-	//			items->push(representationItem);
-	//		}
-	//	}
-	//}
-	//
-	//Ifc4::IfcBuildingElementProxy* ifcBuildingElementProxy = nullptr;
-	//
-	//// create simple primitives, which are not a smartfeature
-	//if (!dictionaryPropertiesVector.empty())
-	//{
-	//	for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
-	//	{
-	//		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-	//		//if (dictionaryProperties.getGeneralProperties()->getIsSmartFeature()) 
-	//		//{
-	//		//	continue;
-	//		//}
-	//		for (auto const& primitivePropertiesValue : dictionaryProperties.getGraphicProperties()->getPrimitiveGraphicPropertiesVector()) 
-	//		{
-	//			IfcPrimitivesEnhancer* IfcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
-	//			ifcBuildingElementProxy = IfcPrimitivesEnhancer->buildIfcPrimitive(*primitivePropertiesValue, dictionaryProperties.getReaderProperties()->getReaderPropertiesBundleVector() ,file);
-	//
-	//
-	//			if (ifcBuildingElementProxy != nullptr) {
-	//				/*file.addBuildingProduct(ifcBuildingElementProxy);*/
-	//				//Ifc4::IfcRepresentationItem* ceva  = new Ifc4::IfcBooleanResult(Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION, ifcBuildingElementProxy, pipe);
-	//
-	//
-	//			}
-	//		}
-	//	}
-	//}
-	//TODO [MP] create solids builder
-//		if (smartFeatureContainer.getRoot() != nullptr)
-//		{
-//			switch (smartFeatureContainer.getRoot()->getReaderProperties()->getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum())
-//			{
-//			case SmartFeatureTypeEnum::BOOLEAN_FEATURE:
-//			{
-//				IfcBooleanOperatorHandler* ifcBooleanOperatorHandler = new IfcBooleanOperatorHandler();
-//				representationItem = ifcBooleanOperatorHandler->buildBooleanRepresentation(*smartFeatureContainer.getRoot(), file);
-//			}
-//			break;
-//			case SmartFeatureTypeEnum::CREATE_SOLIDS:
-//			{
-//				IfcCreateSolidsOperationBuilder* ifcCreateSolidsOperationBuilder = new IfcCreateSolidsOperationBuilder();
-//				representationItem = ifcCreateSolidsOperationBuilder->buildIfcCreateSolidsOperation(*smartFeatureContainer.getRoot(), file);
-//			}
-//			default:
-//				break;
-//			}
-//
-//
-//		}
-//
-//		if (representationItem != nullptr)
-//		{
-//			items->push(representationItem);
-//		}
-//}
-//		}
-	
 	IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 	ifcPrimitivesEnhancer->enhanceIfcPrimitives(dictionaryPropertiesVector,ifcElementBundleVector, file);
 
@@ -184,13 +194,12 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
-	//IfcBRepSolidsEnhancer* ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
-	//ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
+	IfcBRepSolidsEnhancer* ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
+	ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
+	
 
 
-
-
-	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder();
+	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 	ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
 		
 	IfcPropertiesEnhancer* ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
@@ -203,7 +212,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	IfcColorEnhancer* ifcColorEnhancer = new IfcColorEnhancer();
 	ifcColorEnhancer->enhanceColors(ifcElementBundleVector, file);
 
-	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext);
+	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
 				
 	std::ofstream f;

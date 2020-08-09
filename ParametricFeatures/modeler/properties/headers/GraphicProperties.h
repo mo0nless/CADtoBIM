@@ -11,6 +11,7 @@ private:
 	double volume;
 	double area;
 
+	DPoint3d origin;
 	DVec3d centroid; 
 
 	DVec3d vectorAxisX;
@@ -29,6 +30,9 @@ public:
 	
 	DVec3d getCentroid();
 	void setCentroid(DVec3d newCentroid);
+
+	DPoint3d getOrigin();
+	void setOrigin(DPoint3d newOrigin);
 	
 	void setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ);
 	DVec3d getVectorAxisX();

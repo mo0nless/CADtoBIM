@@ -79,6 +79,8 @@
     <ClCompile Include="modeler\properties\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorEnhancer.cpp" />
     <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\ExtrusionGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -108,7 +110,6 @@
     <ClInclude Include="modeler\properties\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\CreateSolidsOperationProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\reader\headers\PrimitiveReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\SphereGraphicProperties.h" />
@@ -174,5 +175,7 @@
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
+    <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
   </ItemGroup>
 </Project>

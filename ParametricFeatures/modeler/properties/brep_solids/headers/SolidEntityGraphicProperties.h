@@ -9,7 +9,7 @@
 struct BoundPoints
 {
 	int boundID;
-	bool isClosed;
+	bool isClosed = false;
 	bool isCreated = false;
 	bool isShared;
 	std::vector<int> faceID;
@@ -25,9 +25,11 @@ class SolidEntityGraphicProperties: public GraphicProperties
 public:
 	SolidEntityGraphicProperties();
 
-	//TODO[SB] Reset to a single one
 	void addBSplineSurfaceFace(MSBsplineSurfaceGraphicProperties*& newFace);
 	std::vector<MSBsplineSurfaceGraphicProperties*> getBSplineSurfaceFacesVector();
+
+	void addFaceBoundaryShape(ShapesGraphicProperties* bound);
+	std::vector<ShapesGraphicProperties*> getSurfaceBoundaryShapes();
 	
 	void addFacetTriangulated(std::vector<DPoint3d> face);
 	std::vector<std::vector<DPoint3d>> getFacetTriangulated();
@@ -36,9 +38,13 @@ public:
 	BRepTypeEnum getBRepTypeEnum();
 		
 	std::vector<int> faceID;
+	std::vector<std::vector<ShapesGraphicProperties*>> loopShapesBounds;
+
 private:
+	std::vector<ShapesGraphicProperties*> mFaceBoundaries;
 	std::vector<MSBsplineSurfaceGraphicProperties*> mBrepFaces;
 	std::vector<std::vector<DPoint3d>> mFacetTriangulatedVector;
+	std::vector<std::tuple<int, int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;
 };
 

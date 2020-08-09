@@ -11,6 +11,7 @@
 #include "../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
 #include "../../modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h"
+#include "../../modeler/properties/primitives/graphic/headers/ExtrusionGraphicProperties.h"
 #include "../../modeler/properties/brep_solids/headers/SolidEntityGraphicProperties.h"
 
 #include "PolyfaceConvertTool.h"
@@ -26,17 +27,20 @@ public:
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
 	void setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties);
 	void setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties);
-	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, DPoint3d centerOfRotation, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
-	void processConeAndCylinder(ISolidPrimitiveCR& primitive);
-
-	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
+	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
+	void setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties*& extrusionGraphicProperties);
+	
+	GraphicProperties* processConeAndCylinder(ISolidPrimitiveCR& primitive);
+	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = nullptr, bool addToDictionary = true);
 	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr, bool addToDictionary = true);
 	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
+	void processSolidPrimitives(ISolidPrimitiveCR& primitive, bool addToDictionary = true);
 	
+	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 	
 	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);// use this method to set vector axis X,Y,Z
 	void PrintPrincipalProperties(DRange3d& range, DVec3d& rotation, DPoint4d& qRotation, Transform& localToWorld);	
-	void PrintPrincipalAreaMoments(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);// use this method to set centroid, area and volume
+	void setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);// use this method to set centroid, area and volume
 
 	bool isDoubleEqual(double x, double y);	
 

@@ -124,9 +124,7 @@ appObjects = \
 	$(o)IfcGraphicPropertiesBundle$(oext) \
 	$(o)IfcReaderPropertiesBundle$(oext) \
 	$(o)BooleanOperationProperties$(oext) \
-	$(o)CreateSolidsOperationProperties$(oext) \
-	$(o)ExtrusionReaderProperties$(oext) \
-	$(o)RevolveReaderProperties$(oext) \
+	$(o)ExtrusionGraphicProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
 	$(o)ReaderPropertiesEnumUtils$(oext) \
@@ -294,11 +292,7 @@ $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources
 
 $(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
 
-$(o)CreateSolidsOperationProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/CreateSolidsOperationProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h
-
-$(o)ExtrusionReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/ExtrusionReaderProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/ExtrusionReaderProperties.h
-
-$(o)RevolveReaderProperties$(oext) : $(baseDir)modeler/properties/create_solids_operations/reader/sources/RevolveReaderProperties.cpp $(baseDir)modeler/properties/create_solids_operations/reader/headers/RevolveReaderProperties.h
+$(o)ExtrusionGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ExtrusionGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ExtrusionGraphicProperties.h
 
 $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
 

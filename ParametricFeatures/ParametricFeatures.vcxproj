@@ -60,6 +60,8 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\BsplineGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\ExtrusionGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
@@ -95,6 +97,7 @@
   <ItemGroup>
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
     <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
@@ -155,6 +158,7 @@
     <ClInclude Include="modeler\properties\curves\graphic\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\RotationalSweepGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
@@ -166,7 +170,6 @@
     <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
     <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveGraphicProperties.h" />
-    <ClInclude Include="modeler\properties\primitives\reader\headers\PrimitiveReaderProperties.h" />
     <ClInclude Include="modeler\properties\headers\ReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ConeGraphicProperties.h" />

@@ -18,6 +18,7 @@ MSBsplineSurfaceGraphicProperties::MSBsplineSurfaceGraphicProperties()
 	this->mNumVPoles = 0;
 	this->mNodeId = -1;
 	this->mFaceId = -1;
+	this->mSurfaceBoundary = nullptr;
 }
 
 void MSBsplineSurfaceGraphicProperties::setControlPoints(std::vector<std::vector<DPoint3d>> newControlPoints, int numU, int numV)
@@ -45,7 +46,7 @@ void MSBsplineSurfaceGraphicProperties::setUVOrder(size_t newUOrder, size_t newV
 	this->mUOrder = int(newUOrder);
 	this->mUDegree = mUOrder - 1; // A spline function of order N is a piecewise polynomial function of degree N-1 
 
-	this->mVOrder = int(newUOrder);
+	this->mVOrder = int(newVOrder);
 	this->mVDegree = mVOrder - 1; // A spline function of order N is a piecewise polynomial function of degree N-1 
 }
 
@@ -150,6 +151,16 @@ std::vector<std::vector<double>> MSBsplineSurfaceGraphicProperties::getWeights()
 	return this->mWeigths;
 }
 
+void MSBsplineSurfaceGraphicProperties::setFaceId(FaceId id)
+{
+	this->mBentleyFaceId = id;
+}
+
+FaceId MSBsplineSurfaceGraphicProperties::getBFaceId()
+{
+	return this->mBentleyFaceId;
+}
+
 void MSBsplineSurfaceGraphicProperties::setFaceId(int id)
 {
 	this->mFaceId = id;
@@ -190,12 +201,13 @@ std::vector<std::vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getBoundsV
 	return this->mBoundsVectorPoints;
 }
 
-void MSBsplineSurfaceGraphicProperties::addCurvesShapesGraphicProperties(CurvesShapesGraphicProperties * bound)
+void MSBsplineSurfaceGraphicProperties::addSurfaceBoundaryShape(ShapesGraphicProperties * bound)
 {
-	this->mCurveBoundaries.push_back(bound);
+	this->mSurfaceBoundary = bound;
 }
 
-std::vector<CurvesShapesGraphicProperties*> MSBsplineSurfaceGraphicProperties::getCurvesShapesGraphicProperties()
+ShapesGraphicProperties* MSBsplineSurfaceGraphicProperties::getSurfaceBoundaryShape()
 {
-	return this->mCurveBoundaries;
+	return this->mSurfaceBoundary;
 }
+

@@ -1,9 +1,18 @@
 #pragma once
 
+#include "../../../stdafx.h"
+#include <math.h>
+
 struct NumberUtils
 {
-	static double NumberUtils::convertMicrometersToMetters(double valueInMicroMeters)
+
+	static double NumberUtils::convertCurrentUnitToMeters(double valueInMicroMeters)
 	{
-		return valueInMicroMeters / 1000000;
+		DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+		ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
+
+		double uorPerStorage = modelInfo->GetUorPerStorage();
+
+		return valueInMicroMeters / uorPerStorage;
 	}
 };

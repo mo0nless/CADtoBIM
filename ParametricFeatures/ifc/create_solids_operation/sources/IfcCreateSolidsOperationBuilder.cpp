@@ -1,76 +1,5 @@
 #include "../headers/IfcCreateSolidsOperationBuilder.h"
 
-//Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(SmartFeatureTreeNode& smartFeatureTreeNode, IfcHierarchyHelper<Ifc4>& file)
-//{
-//	Ifc4::IfcGeometricRepresentationItem* item = nullptr;
-//
-//	//TODO[MP / SB] find another implementation
-//	//CreateSolidsOperationProperties createSolidsOperationProperties;
-//	//
-//	//smartFeatureTreeNode.getReaderProperties()->tryGetCreateSolidsOperationProperties(createSolidsOperationProperties);
-//	//
-//	//switch (createSolidsOperationProperties.getCreateSolidTypeEnum())
-//	//{
-//	//	case CreateSolidFunctionsEnum::EXTRUDE:
-//	//	{
-//	//		ExtrusionReaderProperties* extrusionReaderProperties;
-//	//		createSolidsOperationProperties.tryGetExtrusionReaderProperties(extrusionReaderProperties);
-//	//
-//	//		GraphicProperties* graphicProperties = nullptr;
-//	//
-//	//		CurvesPrimitivesContainer* curvesPrimitivesContainer;
-//	//		TODO [MP/SB] find another implementation
-//	//		/*if (smartFeatureTreeNode.getLeftNode()->getGraphicProperties()->tryGetCurvesPrimitivesContainer(curvesPrimitivesContainer))
-//	//		{
-//	//			graphicProperties = smartFeatureTreeNode.getLeftNode()->getGraphicProperties();
-//	//		}
-//	//		else if (smartFeatureTreeNode.getRightNode()->getGraphicProperties()->tryGetCurvesPrimitivesContainer(curvesPrimitivesContainer))
-//	//		{
-//	//			graphicProperties = smartFeatureTreeNode.getRightNode()->getGraphicProperties();
-//	//		}
-//	//		else
-//	//		{
-//	//			break;
-//	//		}*/
-//	//
-//	//			if(curvesPrimitivesContainer->getBoundaryTypeCurvesContainer() == CurvesBoundaryTypeEnum::OUTER)
-//	//			{
-//	//				IfcShapesEnhancer* IfcShapesEnhancer = new IfcShapesEnhancer();
-//	//				std::vector<Ifc4::IfcCurve*> ifcCurvesItemsVector = IfcShapesEnhancer->buildIfcCurvesPrimitives(
-//	//					*graphicProperties,
-//	//					file
-//	//				);
-//	//
-//	//				Ifc4::IfcArbitraryClosedProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
-//	//					Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
-//	//					boost::none,
-//	//					ifcCurvesItemsVector[0]
-//	//				);
-//	//
-//	//				Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-//	//					IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curvesPrimitivesContainer->getCentroIDxy()),
-//	//					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionZ()), //Need to be Checked
-//	//					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getDirectionX()) //Need to be Checked
-//	//				);
-//	//
-//	//				item  = new Ifc4::IfcExtrudedAreaSolid(
-//	//					profileDef,
-//	//					place,
-//	//					IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(curvesPrimitivesContainer->getNormal()), //Need to be Checked
-//	//					NumberUtils::convertMicrometersToMetters(extrusionReaderProperties->getDistance())
-//	//				);
-//	//			}
-//	//		}
-//	//	}
-//	//	break;
-//	//	default:
-//	//		break;
-//	//}
-//	
-//
-//	return item;
-//}
-
 Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(IfcElementBundle* leftIfcRepresentationItem, IfcElementBundle* rigthIfcRepresentationItem,
 	IfcReaderPropertiesBundle& ifcReaderPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
@@ -117,8 +46,9 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		new Ifc4::IfcDirection(std::vector<double>()));
 
 
-	//Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(0,0,0),
-	//	file.addTriplet<Ifc4::IfcDirection>(0,0,1), file.addTriplet<Ifc4::IfcDirection>(1,0,0));
+	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertCurrentUnitToMeters(centroid.x),
+		NumberUtils::convertCurrentUnitToMeters(centroid.y), NumberUtils::convertCurrentUnitToMeters(centroid.z)),
+		file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y,zAxis.z), file.addTriplet<Ifc4::IfcDirection>(xAxis.x, xAxis.y, xAxis.z));
 
 	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getCassName()))
 	{
@@ -156,7 +86,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		double length = 0;
 		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 			if (modelerProperty->getPropertyName() == "Distance") {
-				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
+				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
 			if (modelerProperty->getPropertyName() == "Range Low") {
 				rangeLow.x = modelerProperty->getPropertyValue().GetPoint3D().x;
@@ -196,7 +126,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 
 		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 			if (modelerProperty->getPropertyName() == "Thickness") {
-				length = NumberUtils::convertMicrometersToMetters(modelerProperty->getPropertyValue().GetDouble());
+				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
 			if (modelerProperty->getPropertyName() == "Range Low") {
 				rangeLow.x = modelerProperty->getPropertyValue().GetPoint3D().x;

@@ -1,9 +1,10 @@
 #include "../headers/IfcPortsBuilder.h"
 
 
-IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext)
+IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	this->geometricRepresentationContext = geomContext;
+	this->ownerHistory = ownerHistory;
 }
 
 void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
@@ -38,7 +39,7 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 					geometricRepresentationContext,
 					boost::none,
 					Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-					boost::none
+					std::string("$")
 				);
 				
 				Ifc4::IfcShapeRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
@@ -49,18 +50,24 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 				);
 				ifcPortsRepList->push(ifcPortsRepresentation);
 
-				Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, ifcPortsRepList);
+				Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(
+					std::string("$"),
+					std::string("$"), 
+					ifcPortsRepList
+				);
 
 				file.addEntity(portShape);
 
 				//Need to be used the subtype because otherwise the flow , distribution type, distribution system cqnnot be specified
 				Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
 					guid::IfcGloballyUniqueId("Port: " + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor()),
-					file.getSingle<Ifc4::IfcOwnerHistory>(),
+					//file.getSingle<Ifc4::IfcOwnerHistory>(),
+					ownerHistory,
 					std::string("Port ") + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
 					ifcElementBundle->getModelerElementDescriptor(),
 					std::string("PORT"),
-					file.getSingle<Ifc4::IfcObjectPlacement>(),
+					ifcElementBundle->getIfcElement()->ObjectPlacement(),
+					//file.getSingle<Ifc4::IfcObjectPlacement>(),
 					portShape,
 					Ifc4::IfcFlowDirectionEnum::Value(portSequence), //TODO [SB] Handle in case of multiple ports on element
 					Ifc4::IfcDistributionPortTypeEnum::IfcDistributionPortType_PIPE,
@@ -99,7 +106,8 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 	//Create the nested relationship between the element and ports
 	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
 		guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
-		file.getSingle<Ifc4::IfcOwnerHistory>(),
+		//file.getSingle<Ifc4::IfcOwnerHistory>(),
+		ownerHistory,
 		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
 		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
 		ifcElementBundle->getIfcElement(),
@@ -119,7 +127,8 @@ void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc
 		{
 			Ifc4::IfcRelConnectsPorts* connectsPorts = new Ifc4::IfcRelConnectsPorts(
 				guid::IfcGloballyUniqueId("Element: " + temp->ifcDistributionElement->Name() + " Connection Port: " + std::to_string(temp->distributionPort->FlowDirection())),
-				file.getSingle<Ifc4::IfcOwnerHistory>(),				
+				//file.getSingle<Ifc4::IfcOwnerHistory>(),
+				ownerHistory,
 				std::string("Connection: ") + temp->ifcDistributionElement->Name() + std::string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
 				std::string("Connection: ") + temp->ifcDistributionElement->Name() + std::string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
 				temp->distributionPort,

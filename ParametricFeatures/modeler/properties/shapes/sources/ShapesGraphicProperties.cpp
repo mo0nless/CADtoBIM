@@ -41,7 +41,7 @@ ShapesTypeEnum ShapesGraphicProperties::getCurvesShapeTypeEnum()
 	return this->mCurvesShapeTypeEnum;
 }
 
-void ShapesGraphicProperties::setFaceBoundID(int newFaceidentifier)
+void ShapesGraphicProperties::addFaceBoundID(int newFaceidentifier)
 {
 	this-> mFaceBoundIdentifier.push_back(newFaceidentifier);
 }
@@ -107,6 +107,22 @@ DPoint3d ShapesGraphicProperties::getEndPoint()
 	return this->mEndPoint;
 }
 
+void ShapesGraphicProperties::setUVstartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
+{
+	this->mUVstartPoint = sPoint;
+	this->mUVendPoint = ePoint;
+}
+
+DPoint3d ShapesGraphicProperties::getUVstartPoint()
+{
+	return this->mUVstartPoint;
+}
+
+DPoint3d ShapesGraphicProperties::getUVendPoint()
+{
+	return this->mUVendPoint;
+}
+
 void ShapesGraphicProperties::setNodeId(int id)
 {
 	this->mNodeId = id;
@@ -115,16 +131,6 @@ void ShapesGraphicProperties::setNodeId(int id)
 int ShapesGraphicProperties::getNodeId()
 {
 	return this->mNodeId;
-}
-
-void ShapesGraphicProperties::setCentroid(DPoint3d newCenter)
-{
-	this->mCentroid = newCenter;
-}
-
-DPoint3d ShapesGraphicProperties::getCentroid()
-{
-	return this->mCentroid;
 }
 
 bool ShapesGraphicProperties::getHasSingleCurve()

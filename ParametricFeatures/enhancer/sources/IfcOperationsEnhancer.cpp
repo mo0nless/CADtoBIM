@@ -4,7 +4,8 @@ IfcOperationsEnhancer::IfcOperationsEnhancer()
 {
 }
 
-Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(DPoint3d newControlPoints)
+//3 Dimension
+Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(DPoint3d newControlPoints)
 {
 	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
 		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<DPoint3d>(newControlPoints)
@@ -13,18 +14,18 @@ Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoin
 	return cP;
 }
 
-Ifc4::IfcVector * IfcOperationsEnhancer::buildIfcVectorFromDirectionPoint3D(DPoint3d newVector)
+//2 Dimension
+Ifc4::IfcCartesianPoint * IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(DPoint3d newControlPoint)
 {
-	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(
-		IfcOperationsEnhancer::buildDoubleVectorFromTriplet<DPoint3d>(newVector)
+	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
+		IfcOperationsEnhancer::buildDoubleVectorFromTuple<DPoint3d>(newControlPoint)
 	);
 
-	Ifc4::IfcVector* vC = new Ifc4::IfcVector(dir, newVector.Magnitude());
-
-	return vC;
+	return cP;
 }
 
-Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(DVec3d newDirection)
+//3 Dimension
+Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection)
 {
 	std::vector<double> points;
 	points.push_back(newDirection.x);
@@ -36,12 +37,36 @@ Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(
 	return dir;
 }
 
+//2 Dimension
+Ifc4::IfcDirection * IfcOperationsEnhancer::buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection)
+{
+	std::vector<double> points;
+	points.push_back(newDirection.x);
+	points.push_back(newDirection.y);
+
+	Ifc4::IfcDirection* dir = new Ifc4::IfcDirection(points);
+
+	return dir;
+}
+
+//3 Dimension
 Ifc4::IfcAxis2Placement3D * IfcOperationsEnhancer::buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX)
 {
 	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
-		IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(pointOfPlacement),
-		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorZ),
-		IfcOperationsEnhancer::buildIfcDirectionFromDirectionVec3D(dirVectorX)
+		IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(pointOfPlacement),
+		IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(dirVectorZ),
+		IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(dirVectorX)
+	);
+
+	return place;
+}
+
+//2 Dimension
+Ifc4::IfcAxis2Placement2D * IfcOperationsEnhancer::buildIfcAxis2Placement2D(DVec3d pointOfPlacement, DVec3d dirVectorX)
+{
+	Ifc4::IfcAxis2Placement2D* place = new Ifc4::IfcAxis2Placement2D(
+		IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(pointOfPlacement),
+		IfcOperationsEnhancer::buildIfcDirection2DfromDirectionVec3D(dirVectorX)
 	);
 
 	return place;
@@ -70,6 +95,71 @@ bool IfcOperationsEnhancer::isVectorDoubleEqual(std::vector<double> v1, std::vec
 	}
 
 	return false;
+}
+
+void IfcOperationsEnhancer::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position, bool rotatePoint)
+{
+	bool invertedAxis = false;
+	std::string axis = "";
+
+	if (rotatePoint)
+	{
+		if (std::abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+		{
+			invertedAxis = true;
+			axis = "X";
+		}
+		else if (std::abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
+		{
+			invertedAxis = true;
+			axis = "Y";
+		}
+	}
+
+	// adjust global points of the shape/curve related to the global placement of the revolve			
+	for (auto curve : shape->getCurvesPrimitivesContainerVector())
+	{
+		std::vector<DPoint3d> temp;
+		for (auto point : curve->getControlPoints())
+		{
+			DPoint3d oldPoint;
+			DPoint3d newPoint;
+
+			if (invertedAxis)
+			{
+				oldPoint.Subtract(point, position);
+				newPoint = rotateAlongAxis(axis, oldPoint);
+			}
+			else
+			{
+				oldPoint = point;
+				newPoint.Subtract(oldPoint, position);
+			}
+
+			temp.push_back(newPoint);
+		}
+		curve->setControlPoints(temp);
+	}
+}
+
+DPoint3d IfcOperationsEnhancer::rotateAlongAxis(std::string axis, DPoint3d oldPoint)
+{
+	DPoint3d newPoint;
+
+	if (axis == "X")
+	{
+		newPoint.x = oldPoint.x;
+		newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
+		newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
+	}
+	else if (axis == "Y")
+	{
+		newPoint.x = oldPoint.z*sin(90) + oldPoint.x*cos(90);
+		newPoint.y = oldPoint.y;
+		newPoint.z = oldPoint.y*cos(90) - oldPoint.x*sin(90);
+	}
+
+	return newPoint;
 }
 
 

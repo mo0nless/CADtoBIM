@@ -14,6 +14,16 @@ std::vector<MSBsplineSurfaceGraphicProperties*> SolidEntityGraphicProperties::ge
 	return this->mBrepFaces;
 }
 
+void SolidEntityGraphicProperties::addFaceBoundaryShape(ShapesGraphicProperties * bound)
+{
+	this->mFaceBoundaries.push_back(bound);
+}
+
+std::vector<ShapesGraphicProperties*> SolidEntityGraphicProperties::getSurfaceBoundaryShapes()
+{
+	return this->mFaceBoundaries;
+}
+
 void SolidEntityGraphicProperties::setBRepTypeEnum(int solidBentleyType)
 {
 	this->mBRepType = BRepTypeEnumUtils::getBRepTypeEnumByInt(solidBentleyType);

@@ -2,10 +2,28 @@
 
 #include<tuple> // for tuple 
 #include "../../../stdafx.h"
-#include "../../../modeler/properties/headers/DictionaryProperties.h"
+//#include "../../headers/IfcElementBundle.h"
+//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/brep_solids/headers/BRepGraphicProperties.h"
-#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
-#include "IfcBRepRelationship.h"
+#include "../../../common/enums/headers/ShapesTypeEnum.h"
+#include "../../shapes/headers/IfcShapesEnhancer.h"
+
+struct EdgeIfcCurve
+{
+	Ifc4::IfcVertex* startVertex;
+	Ifc4::IfcVertex* endVertex;
+	Ifc4::IfcCartesianPoint* start;
+	Ifc4::IfcCartesianPoint* end;
+	Ifc4::IfcEdgeCurve* ifcEdgeCurve;
+	Ifc4::IfcOrientedEdge* orientedEdge;
+	std::vector<Ifc4::IfcOrientedEdge*> continuosOrientedEdges;
+	bool isShared = false;
+	std::vector<int> faceIDs;
+	Ifc4::IfcEdgeLoop* edgeLoop;
+	bool isSingleCurveClosedPath = false;
+
+	DPoint3d startD3p, endD3p;
+};
 
 class IfcBRepSolidsEnhancer
 {
@@ -16,10 +34,14 @@ public:
 	
 private:
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	//Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file);
 
 	template<class T>
 	T searchOnMap(std::map<int, T>, int key);
+
+	std::vector<EdgeIfcCurve*> solidEdges;
 };
 
 template<class T>

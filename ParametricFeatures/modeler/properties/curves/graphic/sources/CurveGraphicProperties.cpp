@@ -4,30 +4,40 @@ CurveGraphicProperties::CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurve
 {
 	this->mCurvesTypeEnum = newCurveType;
 	this->mControlPoints = std::vector<DPoint3d>();
+	this->mUVcontrolPoints = std::vector<DPoint3d>();
 	this->mStartPoint = DPoint3d();
 	this->mEndPoint = DPoint3d();
+	this->mUVstartPoint = DPoint3d();
+	this->mUVendPoint = DPoint3d();
 }
 
 void CurveGraphicProperties::setControlPoints(bvector<DPoint3d> newControlPoints)
 {
-	this->mControlPoints.clear();
+	if(!this->mControlPoints.empty())
+		this->mControlPoints.clear();
 	for (auto p: newControlPoints)
 		this->mControlPoints.push_back(p);
 }
 void CurveGraphicProperties::setControlPoints(std::vector<DPoint3d> newControlPoints)
 {
-	this->mControlPoints.clear();
-	for (auto p : newControlPoints) {
-		this->mControlPoints.push_back(p);
-	}
-		
+	this->mControlPoints = newControlPoints;
 }
 
 
 std::vector<DPoint3d> CurveGraphicProperties::getControlPoints() 
 { 
 	return this->mControlPoints;
-};
+}
+void CurveGraphicProperties::setUVcontrolPoints(std::vector<DPoint3d> newControlPoints)
+{
+	this->mUVcontrolPoints = newControlPoints;
+}
+
+std::vector<DPoint3d> CurveGraphicProperties::getUVcontrolPoints()
+{
+	return this->mUVcontrolPoints;
+}
+
 
 CurvesPrimitivesTypeEnum CurveGraphicProperties::getCurvesTypeEnum() 
 { 
@@ -38,6 +48,22 @@ void CurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
 {
 	this->mStartPoint = sPoint;
 	this->mEndPoint = ePoint;
+}
+
+void CurveGraphicProperties::setUVstartEndPoints(DPoint3d sPoint, DPoint3d ePoint)
+{
+	this->mUVstartPoint = sPoint;
+	this->mUVendPoint = ePoint;
+}
+
+DPoint3d CurveGraphicProperties::getUVstartPoint()
+{
+	return this->mUVstartPoint;
+}
+
+DPoint3d CurveGraphicProperties::getUVendPoint()
+{
+	return this->mUVendPoint;
 }
 
 DPoint3d CurveGraphicProperties::getStartPoint()
