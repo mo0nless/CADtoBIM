@@ -12,25 +12,45 @@ DictionaryProperties::DictionaryProperties(long newElementId, std::string newEme
 	this->isSmartSolid = false;
 }
 
-std::vector<ReaderPropertiesBundle*> DictionaryProperties::getReaderPropertiesBundleVector()
+//std::vector<ReaderPropertiesBundle*> DictionaryProperties::getGraphicsReaderPropertiesBundleVector()
+//{
+//	return this->graphicsReaderPropertiesBundleVector;
+//}
+//
+//void DictionaryProperties::addGraphicsReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
+//{
+//	this->graphicsReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
+//}
+
+std::vector<ElementBundle*> DictionaryProperties::getElementBundle()
 {
-	return this->readerPropertiesBundleVector;
+	return this->subElements;
 }
 
-void DictionaryProperties::addReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
+void DictionaryProperties::addElementBundle(ElementBundle * elementBundle)
 {
-	this->readerPropertiesBundleVector.push_back(readerPropertiesBundle);
+	this->subElements.push_back(elementBundle);
 }
 
-std::vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
+std::vector<ReaderPropertiesBundle*> DictionaryProperties::getElementReaderPropertiesBundleVector()
 {
-	return this->graphicPropertiesVector;
+	return this->elementReaderPropertiesBundleVector;
 }
 
-void DictionaryProperties::addGraphicProperties(GraphicProperties * graphicProperties)
+void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
 {
-	this->graphicPropertiesVector.push_back(graphicProperties);
+	this->elementReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 }
+
+//std::vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
+//{
+//	return this->graphicPropertiesVector;
+//}
+//
+//void DictionaryProperties::addGraphicProperties(GraphicProperties * graphicProperties)
+//{
+//	this->graphicPropertiesVector.push_back(graphicProperties);
+//}
 
 void DictionaryProperties::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
 {

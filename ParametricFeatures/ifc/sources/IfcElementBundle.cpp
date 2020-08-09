@@ -28,9 +28,9 @@ void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcCartesianPoint * newIfcPoint)
 	this->ifcPointsPortsVector.push_back(newIfcPoint);
 }
 
-void IfcElementBundle::addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
+void IfcElementBundle::addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
 {
-	this->ifcReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
+	this->ifcElementReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
 }
 
 void IfcElementBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle * newIfcGraphicPropertiesBundle)
@@ -95,9 +95,9 @@ bool IfcElementBundle::getIsSmartSolid()
 }
 
 
-std::vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcReaderPropertiesBundleVector()
+std::vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()
 {
-	return this->ifcReaderPropertiesBundleVector;
+	return this->ifcElementReaderPropertiesBundleVector;
 }
 
 std::vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getIfcGraphicPropertiesBundleVector()

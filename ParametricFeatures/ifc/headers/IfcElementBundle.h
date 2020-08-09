@@ -15,7 +15,7 @@ private:
 	long modelerElementId;
 	std::string modelerElementDescriptor;
 
-	std::vector<IfcReaderPropertiesBundle*> ifcReaderPropertiesBundleVector;
+	std::vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
 	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
 	std::vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
@@ -39,12 +39,12 @@ public:
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
-	void addIfcReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+	void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
 	void addSolidEdgesCollection(std::vector<SolidEdge*> solidEdges);
 
-	std::vector<IfcReaderPropertiesBundle*> getIfcReaderPropertiesBundleVector();
+	std::vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
 	std::vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 

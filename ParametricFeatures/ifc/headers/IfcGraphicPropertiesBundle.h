@@ -7,30 +7,45 @@
 #include <ifcparse\Ifc4x1.h>
 #include <ifcparse\utils.h>
 #include <ifcparse\IfcHierarchyHelper.h>
-#include "../../modeler/properties/headers/GraphicProperties.h"
+#include "../../modeler/properties/headers/ElementBundle.h"
 
 
 class IfcGraphicPropertiesBundle {
 
 private:
+	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem;
+
 	GraphicProperties* graphicProperties;
 
-	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem;
-	//Ifc4::IfcRepresentationItem* ifcRepresentationItem;
+	ElementHandle elementHandle;
+	ElemDisplayParamsCP elemDisplayParamsCP;
 
 	// if the graphic element is included in another operation/object (ex BooleanResult), it should not be showed(show=false)
 	bool show = true;
 
+	UInt32 color;
+	double transparency;
+
 public:
-	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem);
+	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
+		ElementHandle newElementHandle, ElemDisplayParamsCP newElemDisplayParamsCP);
 
 	GraphicProperties* getGraphicProperties();
 
 	void setIfcRepresentationItem(Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItemValue);
-	//void setIfcRepresentationItem(Ifc4::IfcRepresentationItem* ifcRepresentationItemValue);
-	//Ifc4::IfcRepresentationItem* getIfcRepresentationItem();
 	Ifc4::IfcGeometricRepresentationItem* getIfcRepresentationItem();
+
+	ElementHandle getElementHandle();
 	
 	bool getShow();
 	void setShow(bool newShow);
+
+	ElemDisplayParamsCP getElemDisplayParamsCP();
+
+	UInt32 getColor();
+	void setColor(UInt32 newColor);
+
+	double getTransparency();
+	void setTransparency(double newTransparency);
+
 };

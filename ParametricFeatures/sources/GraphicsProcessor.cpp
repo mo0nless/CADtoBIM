@@ -95,7 +95,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	outfile << std::fixed;
 	outfile.close();
 
-	SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
+	//SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 	//SolidUtil::Debug::DumpSubEntity(entity, L"DumpSubEntity");
 
 		
@@ -1529,18 +1529,75 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		break;
 	}
 
+	return ERROR;
+}
+
+void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayParams)
+{
+
+	//ElemDisplayParamsCR d = displayParams;
+	//ElemDisplayParamsCP d = &displayParams;
+
+	this->mGraphicsProcessorEnhancer.getElementBundle()->setElemDisplayParamsCR(displayParams);
+	this->mGraphicsProcessorEnhancer.getElementBundle()->setColor(displayParams.GetLineColorTBGR());
+	this->mGraphicsProcessorEnhancer.getElementBundle()->setTransparency(displayParams.GetTransparency());
+
+	//std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 
-	outfile << std::fixed;
-	outfile << "shit knows tf is this id" << std::endl;
-	outfile << this->mSolidDetails.GetParentId() << std::endl;
+	UInt32 color;
 
+	color = displayParams.GetLineColorTBGR();
+	int blue1 = (color >> 16) & 0xFF;
+	int green1 = (color >> 8) & 0xFF;
+	int red1 = color & 0xFF;
+
+	outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << std::endl;
+	//outfile.close();
+
+
+	outfile << "transparency =" << displayParams.GetTransparency() << std::endl;
+
+	auto level = displayParams.GetLevel();
+
+	auto model = ISessionMgr::GetActiveDgnModelRefP();
+	UInt colorOut;
+	bool ov;
+	mdlLevel_getColor(&colorOut, &ov, model, level);
+	outfile << "level " << level << " , " << &colorOut << std::endl;
+	outfile << "level color"<< colorOut<<" , "<<& colorOut << std::endl;
+
+		int blue3 = (colorOut >> 16) & 0xFF;
+		int green3 = (colorOut >> 8) & 0xFF;
+		int red3 = colorOut & 0xFF;
+
+		outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << std::endl;
+
+	outfile << "level  =" << displayParams.GetLevel() << std::endl;
+	//displayParams.GetMaterial()->
+
+	//if (!displayParams.IsLineColorTBGR()) {
+	//	color = displayParams.GetLineColorTBGR();
+	//	int blue3 = (color >> 16) & 0xFF;
+	//	int green3 = (color >> 8) & 0xFF;
+	//	int red3 = color & 0xFF;
+
+	//	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << std::endl;
+	//}
+	//else {
+	//	color = displayParams.GetLineColor();
+	//	auto rez = ISessionMgr::GetActiveDgnFile()->GetColorMapP();
+
+	//	auto colorDefinition = rez->GetColor(color);
+	//	auto rgbColorDefinition = colorDefinition.m_rgb;
+	//	int blue2 = rgbColorDefinition.blue & 0xFF;
+	//	int green2 = rgbColorDefinition.green & 0xFF;
+	//	int red2 = rgbColorDefinition.red & 0xFF;
+
+	//	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << std::endl;
+	//}
 	outfile.close();
-
-	
-
-
-	return ERROR;
 }
 
 void GraphicsProcessor::_AnnounceTransform(TransformCP trans)

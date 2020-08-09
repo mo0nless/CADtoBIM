@@ -1,5 +1,6 @@
 #include "../headers/SmartFeatureHandler.h"
 
+#pragma warning (disable:4311 4302 4312 4189)
 void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	for (auto ifcBundle : ifcBundleVector) {
@@ -7,10 +8,13 @@ void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifc
 			IfcElementBundle* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle,file);
 			// TODO [MP] keep the existing graphic properties and only add the ifc representation item
 			//ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult));
-			ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()));
+			//TODO [MP] fix this shit
+			//ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()));
 		}
 	}
 }
+
+
 
 
 IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* smartFeature, IfcHierarchyHelper<Ifc4>& file)
@@ -34,7 +38,8 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vec
 		Ifc4::IfcGeometricRepresentationItem* result =  IfcBooleanOperatorHandler::solveBooleanOperation(left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
 			rigth->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),*ifcReaderPropertiesBundle);
 		IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
-		temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
+		//TODO [MP] fix this shit
+		//temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
 		return temp;
 	}
 	else if (ifcReaderPropertiesBundle != nullptr && 
@@ -42,7 +47,8 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vec
 		(left != nullptr || rigth != nullptr)) {
 			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
 			IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
-			temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
+			//TODO [MP] fix this shit
+			//temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
 			return temp;
 	}
 	
@@ -67,7 +73,7 @@ IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(std::vector<IfcEle
 
 IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcElementBundle& ifcBundle, int localId) {
 
-	for (auto const& readerProperty : ifcBundle.getIfcReaderPropertiesBundleVector()) {
+	for (auto const& readerProperty : ifcBundle.getIfcElementReaderPropertiesBundleVector()) {
 		if (readerProperty!=nullptr && readerProperty->getReaderPropertiesBundle()!=nullptr && readerProperty->getReaderPropertiesBundle()->getLocalId() == localId) {
 			return readerProperty;
 		}
@@ -75,3 +81,4 @@ IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLo
 	
 	return nullptr;
 }
+#pragma warning(pop)

@@ -11,6 +11,8 @@
 
 #include "../common/enums/headers/ShapesTypeEnum.h"
 
+#include <regex>
+
 /// @addtogroup ElementProperties
 /// @beginGroup
 
@@ -30,7 +32,7 @@ public:
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
 	//! @param[in] the reference of the SmartFeatureContainer
-	void processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer);
+	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem);
 
 private:
 	std::string mElemClassName;

@@ -3,13 +3,24 @@
 
 GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
+	//this->elementBundle = new ElementBundle();
 	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
 {
 	this->pDictionaryProperties = &newDictionaryProperties;
+}
+
+void GraphicsProcessorEnhancer::setElementBundle(ElementBundle & newElementBundle)
+{
+	this->elementBundle = &newElementBundle;
+}
+
+ElementBundle * GraphicsProcessorEnhancer::getElementBundle()
+{
+	return this->elementBundle;
 }
 
 DictionaryProperties* GraphicsProcessorEnhancer::getDictionaryProperties()
@@ -139,7 +150,8 @@ void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetai
 	boxGraphicProperties->setHeight(height);
 
 	// add box graphic property to dictionary
-	pDictionaryProperties->addGraphicProperties(boxGraphicProperties);
+	//pDictionaryProperties->addGraphicProperties(boxGraphicProperties);
+	this->elementBundle->setGraphicProperties(*boxGraphicProperties);
 }
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
@@ -189,7 +201,9 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 		}
 	}
 	// add property to the dictionary
-	this->pDictionaryProperties->addGraphicProperties(coneGraphicProperties);
+	//this->pDictionaryProperties->addGraphicProperties(coneGraphicProperties);
+	this->elementBundle->setGraphicProperties(*coneGraphicProperties);
+
 
 }
 
@@ -218,7 +232,9 @@ void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnCo
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
 
 	// add property to the dictionary
-	this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
+	//this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
+	this->elementBundle->setGraphicProperties(*cylinderGraphicProperties);
+
 
 }
 
@@ -242,7 +258,9 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperti
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
-	pDictionaryProperties->addGraphicProperties(sphereGraphicProperties);
+	//pDictionaryProperties->addGraphicProperties(sphereGraphicProperties);
+	this->elementBundle->setGraphicProperties(*sphereGraphicProperties);
+
 
 }
 
@@ -265,7 +283,9 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 
 
 	// add torus property to the dictionary
-	pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
+	//pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
+	this->elementBundle->setGraphicProperties(*torusGraphicProperties);
+
 
 }
 
@@ -279,7 +299,9 @@ void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationa
 	rotationalSweepGraphicProperties->setSweepRadians(dgnRotationalSweepDetail.m_sweepAngle);
 
 	// add rotationalSweepGraphic property to the dictionary
-	pDictionaryProperties->addGraphicProperties(rotationalSweepGraphicProperties);
+	//pDictionaryProperties->addGraphicProperties(rotationalSweepGraphicProperties);
+	this->elementBundle->setGraphicProperties(*rotationalSweepGraphicProperties);
+
 }
 
 void GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimitiveCR& primitive)
@@ -1140,9 +1162,12 @@ void GraphicsProcessorEnhancer::processShapesCurvesVector(CurveVectorCR & curves
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
 		
-		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() && addToDictionary)
+		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() && addToDictionary) {
+
 			//Add the shape to the Dictionary
-			pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+			//pDictionaryProperties->addGraphicProperties(shapesGraphicProperties);
+			this->elementBundle->setGraphicProperties(*shapesGraphicProperties);
+		}
 
 	}
 }
@@ -1443,67 +1468,6 @@ bool GraphicsProcessorEnhancer::processElementAsMesh()
 
 	return true;
 }
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
-std::vector<double> GraphicsProcessorEnhancer::getColor() {
-	std::ofstream outfile;
-
-	IFacetOptionsPtr facetOptions = IFacetOptions::New();
-
-	////Set different parameters for facet.
-	//facetOptions->SetIgnoreFaceMaterialAttachments(true); // Don't separate multi-symbology BReps by face symbology...
-	//facetOptions->SetChordTolerance(0.0);                 //many different parameters to control the final result mesh
-	//facetOptions->SetAngleTolerance(0.0);
-	//facetOptions->SetMaxEdgeLength(0.0);
-	//facetOptions->SetMaxFacetWidth(0.0);
-	//facetOptions->SetNormalsRequired(false);
-	//facetOptions->SetParamsRequired(false);
-	//facetOptions->SetMaxPerFace(4);
-	//facetOptions->SetCurvedSurfaceMaxPerFace(4);
-	//facetOptions->SetEdgeHiding(true);
-	//facetOptions->SetSmoothTriangleFlowRequired(true);
-	facetOptions->SetVertexColorsRequired(true);
-
-	bvector<PolyfaceHeaderPtr> meshes;
-	std::vector<double> colourVector;
-
-	if (true == ElementToApproximateFacets(mCurrentElementHandle, meshes, facetOptions.get()) && meshes.size()>0) {
-		auto colour1 = meshes.at(0)->GetFloatColorCP();
-		FloatRgb* colour = const_cast<FloatRgb*>(colour1);
-		auto color2 = meshes.at(0)->ColorIndex();
-		auto color3 = meshes.at(0)->ColorTable();
-		auto color4 = meshes.at(0)->DoubleColor();
-		if (colour != nullptr) {
-			colourVector.push_back(static_cast<double>(colour->red));
-			colourVector.push_back(static_cast<double>(colour->green));
-			colourVector.push_back(static_cast<double>(colour->blue));
-		}
-
-		if (!color2.empty()) {
-			auto ceva = color2.at(0);
-			colourVector.push_back(static_cast<double>(ceva));
-		}
-
-		if (!color3.empty()) {
-			auto ceva2 = color3.at(0);
-			colourVector.push_back(static_cast<double>(ceva2));
-		}
-
-		if (!color4.empty()) {
-			auto ceva3 = color4.at(0);
-			colourVector.push_back(static_cast<double>(ceva3.red));
-			colourVector.push_back(static_cast<double>(ceva3.green));
-			colourVector.push_back(static_cast<double>(ceva3.blue));
-		}
-
-
-	}
-	return colourVector;
-
-}
-#pragma warning(pop)
 
 bool GraphicsProcessorEnhancer::ElementToApproximateFacets(ElementHandleCR source,bvector<PolyfaceHeaderPtr> &output,IFacetOptionsP options)
 {

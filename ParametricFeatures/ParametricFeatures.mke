@@ -84,6 +84,7 @@ appObjects = \
 	$(o)ResultStatusEnum$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)DictionaryProperties$(oext) \
+	$(o)ElementBundle$(oext) \
 	$(o)GeneralProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
@@ -135,6 +136,7 @@ appObjects = \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
 	$(o)IfcMaterialEnhancer$(oext) \
+	$(o)IfcColorEnhancer$(oext) \
 	$(o)IfcPropertiesEnhancer$(oext) \
 	$(o)PropertyTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
@@ -209,6 +211,8 @@ $(o)ResultStatusEnum$(oext) : $(baseDir)common/enums/sources/ResultStatusEnum.cp
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
 
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
+
+$(o)ElementBundle$(oext) : $(baseDir)modeler/properties/sources/ElementBundle.cpp $(baseDir)modeler/properties/headers/ElementBundle.h
 
 $(o)GeneralProperties$(oext) : $(baseDir)modeler/properties/sources/GeneralProperties.cpp $(baseDir)modeler/properties/headers/GeneralProperties.h
 
@@ -319,6 +323,8 @@ $(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/grap
 $(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
 
 $(o)IfcMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcMaterialEnhancer.h
+
+$(o)IfcColorEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorEnhancer.h
 
 $(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
 

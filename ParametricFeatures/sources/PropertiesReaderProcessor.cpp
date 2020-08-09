@@ -4,7 +4,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
 }
 
-void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, DictionaryProperties& dictionaryProperties, SmartFeatureContainer& smartFeatureContainer)
+ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem)
 {
 	std::ofstream outfile;
 	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
@@ -86,16 +86,64 @@ void PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR c
 			outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
-			outfile.close();
+			//outfile.close();
 
 			// set class name
 			//dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
 			
 			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
-			dictionaryProperties.addReaderPropertiesBundle(readerPropertiesBundle);
 
-					
+			//for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
+			//	if (readerPropertyDefinition->getPropertyName().find("Color") != std::string::npos && 
+			//		readerPropertyDefinition->getPropertyValueAsString().find("ByLevel")) {
+			//		outfile << "found level" << std::endl;
+
+			//		std::string result;
+			//		std::string searched = readerPropertyDefinition->getPropertyValueAsString();
+			//		try {
+			//			std::regex re("Level by//(//d+//)");
+			//			std::smatch match;
+			//			if (std::regex_search(searched, match, re) && match.size() > 0) {
+			//				result = match.str(0);
+			//			}
+			//			else {
+			//				result = std::string("");
+			//			}
+			//		}
+			//		catch (std::regex_error& e) {
+			//			e.code();
+			//		}
+
+			//		outfile << " level = " << result << std::endl;
+
+			//		int intValue;
+			//		try {
+			//			intValue = std::stoi(result);
+			//			outfile << " level int = " << intValue << std::endl;
+
+			//		}
+			//		catch (std::exception& e) {
+			//			e.what();
+			//		}
+
+			//		if (intValue > 0) {
+			//			auto model = ISessionMgr::GetActiveDgnModelRefP();
+			//			LevelId l(intValue);
+			//			UInt colorOut;
+			//			bool ov;
+			//			mdlLevel_getColor(&colorOut, &ov, model, l);
+			//			outfile << "level color"<< colorOut<<" , "<<& colorOut << std::endl;
+
+			//		}
+			//	}
+			//}
+	
+			return readerPropertiesBundle;
 		}
 	}
+	outfile.close();
+
+
+	return new ReaderPropertiesBundle("", -1);
 }

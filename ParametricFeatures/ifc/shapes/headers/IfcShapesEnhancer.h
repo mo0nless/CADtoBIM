@@ -13,7 +13,8 @@ class IfcShapesEnhancer
 {
 public:	
 	void enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);	
-	void buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle, bool addToIfcElementBundle = true);
+	void buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle,
+		ElementBundle* elementBundle,bool addToIfcElementBundle = true);
 	
 	bool hasSingleShapeItem();
 	Ifc4::IfcGeometricRepresentationItem* getSingleShapeRepresentation();

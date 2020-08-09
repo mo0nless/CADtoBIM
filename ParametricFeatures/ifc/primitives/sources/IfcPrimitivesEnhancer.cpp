@@ -10,41 +10,24 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			double rotationX, rotationY, rotationZ;
-			int orientation;
-
-			for each (auto readerBundle in dictionaryProperties.getReaderPropertiesBundleVector())
-			{
-				for each(auto readerProperty in readerBundle->getProperties()) {
-					if (readerProperty->getPropertyName() == "Rotation-X") {
-						rotationX = readerProperty->getPropertyValue().GetDouble();
-					}
-					else if (readerProperty->getPropertyName() == "Rotation-Y") {
-						rotationY = readerProperty->getPropertyValue().GetDouble();
-					}
-					else if (readerProperty->getPropertyName() == "Rotation-Z") {
-						rotationZ = readerProperty->getPropertyValue().GetDouble();
-					}
-					else if (readerProperty->getPropertyName() == "Orientation") {
-						orientation = readerProperty->getPropertyValue().GetInteger();
-					}
-				}
-			}
-
+		
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
 
-			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
+			for (auto element : dictionaryProperties.getElementBundle())
 			{
-				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(graphicProperties);
+				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(element->getGraphicProperties());
 				if (solidPrimitiveProperty != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file, rotationX, rotationY, rotationZ,orientation);
+					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file,element);
 					if (ifcRepresentationItem != nullptr)
 					{
-						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
+						auto bundle = new IfcGraphicPropertiesBundle(element->getGraphicProperties(),
+							ifcRepresentationItem, element->getElementHandle(), element->getElemDisplayParamsCP());
+						bundle->setColor(element->getColor());
+						bundle->setTransparency(element->getTransparency());
+						ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
 				}
@@ -55,7 +38,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	double rotationX, double rotationY, double rotationZ, int orientation)
+	ElementBundle* elementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -67,7 +50,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	}
 	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP)
 	{
-		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file,  rotationX,  rotationY,  rotationZ, orientation);
+		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
 	}
 
 	return ifcRepresentationItem;
@@ -140,8 +123,8 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	return nullptr;
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	double rotationX, double rotationY, double rotationZ, int orientation)
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, 
+	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -235,7 +218,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			rotationalSweepGraphicProperties.getShapesGraphicProperties()->getCurvesPrimitivesContainerVector().at(0)->setControlPoints(temp);
 			Ifc4::IfcGeometricRepresentationItem* result = nullptr;
 			bool addToIfcElementBundle = false;
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(), file, ifcElementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->buildGeometricRepresentationShapes(rotationalSweepGraphicProperties.getShapesGraphicProperties(), file, ifcElementBundle, 
+				elementBundle,addToIfcElementBundle);
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
 

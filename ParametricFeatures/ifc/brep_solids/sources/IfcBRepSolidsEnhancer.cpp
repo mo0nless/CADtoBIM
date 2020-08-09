@@ -18,17 +18,19 @@ void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryP
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
+			for (auto element : dictionaryProperties.getElementBundle())
 			{
 				//SolidEntityGraphicProperties* brepSolidsKernelEntity = dynamic_cast<SolidEntityGraphicProperties*>(graphicProperties);
-				BRepGraphicProperties* brepSolidsKernelEntity = dynamic_cast<BRepGraphicProperties*>(graphicProperties);
+				BRepGraphicProperties* brepSolidsKernelEntity = dynamic_cast<BRepGraphicProperties*>(element->getGraphicProperties());
 				if (brepSolidsKernelEntity != nullptr)
 				{
 					//Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildGeometricRepresentationBsplineSurface(brepSolidsKernelEntity, ifcElementBundle, file);
 					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildGeometricRepresentationFacetBrep(brepSolidsKernelEntity, ifcElementBundle, file);
 					if (ifcRepresentationItem != nullptr)
 					{
-						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(graphicProperties, ifcRepresentationItem));
+
+						ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(element->getGraphicProperties(), ifcRepresentationItem,
+							element->getElementHandle(), element->getElemDisplayParamsCP()));
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
 				}

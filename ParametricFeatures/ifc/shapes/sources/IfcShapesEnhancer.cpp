@@ -16,7 +16,8 @@ std::vector<BoundTypeCurvesVector> IfcShapesEnhancer::getCurvesShapeRepresentati
 	return this->mShapeBoundTypeCurvesVector;
 }
 
-void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle, bool addToIfcElementBundle)
+void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperties* shapeGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+	IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, bool addToIfcElementBundle)
 {
 	//Handler for boundaries 
 	switch (shapeGraphicProperties->getBoundaryTypeCurvesContainer())
@@ -120,7 +121,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 			{
-				buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
+				buildGeometricRepresentationShapes(shape, file, ifcElementBundle, elementBundle);
 			}
 		}
 	}
@@ -134,7 +135,7 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 		{
 			for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 			{
-				buildGeometricRepresentationShapes(shape, file, ifcElementBundle);
+				buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle);
 			}
 		}
 	}
@@ -173,12 +174,21 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 	{
 		mHasSingleShape = true;
 
-		if (addToIfcElementBundle)
-			ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));
+		if (addToIfcElementBundle) {
+			//TODO [MP] this this shit
+			auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+				mSingleShapeRepresentation, elementBundle->getElementHandle(), elementBundle->getElemDisplayParamsCP());
+			bundle->setColor(elementBundle->getColor());
+			bundle->setTransparency(elementBundle->getTransparency());
+			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			//ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation));
+		}
+			
 	}
 }
 
-void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector,
+	IfcHierarchyHelper<Ifc4>& file)
 {
 	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
@@ -192,12 +202,12 @@ void IfcShapesEnhancer::enhanceIfcShapesPrimitives(std::vector<DictionaryPropert
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
 			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-			for (GraphicProperties* graphicProperties : dictionaryProperties.getGraphicPropertiesVector())
+			for (auto element : dictionaryProperties.getElementBundle())
 			{
-				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(graphicProperties);
+				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
 				if (shapeGraphicProperties != nullptr)
 				{		
-					buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle);
+					buildGeometricRepresentationShapes(shapeGraphicProperties, file, ifcElementBundle, element);
 				}
 			}							
 		}
@@ -388,6 +398,10 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 		default:
 			break;
 	}	
+	//Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(std::string("Color"), 1,0,0);
+	//Ifc4::IfcDescriptiveMeasure* ss = new Ifc4::IfcDescriptiveMeasure(std::string("ss"));
+	//Ifc4::IfcPreDefinedCurveFont* csfs = new Ifc4::IfcPreDefinedCurveFont(std::string("red"));
+	//Ifc4::IfcCurveStyle* curveStyle = new Ifc4::IfcCurveStyle(std::string("style"), csfs, ss, ifcColour, boost::none);
 
 	return curveRepresentationItem;
 }

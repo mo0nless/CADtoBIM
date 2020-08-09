@@ -77,7 +77,8 @@
     <ClCompile Include="modeler\properties\brep_solids\sources\BRepGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
-    <ClCompile Include="sources\TestSubEntityTool.cpp" />
+    <ClCompile Include="ifc\properties\sources\IfcColorEnhancer.cpp" />
+    <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -171,6 +172,7 @@
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
-    <ClInclude Include="headers\TestSubEntityTool.h" />
+    <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
+    <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
   </ItemGroup>
 </Project>

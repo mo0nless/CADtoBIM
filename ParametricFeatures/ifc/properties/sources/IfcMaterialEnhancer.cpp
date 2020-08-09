@@ -14,11 +14,29 @@ void IfcMaterialEnhancer::enhanceMaterials(std::vector<DictionaryProperties*>& d
 
 			Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
 			ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
+
+			for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
+				processMaterials(*readerPropertyBundle, file, *ifcElementBundle);
+			}
+
+			for (auto const& elem : dictionaryProperties.getElementBundle()) {
+				processMaterials(*elem->getReaderPropertiesBundle(), file, *ifcElementBundle);
+			}
+
+
 			//IfcTemplatedEntityList<Ifc4::IfcElement>* templatedList2 = new IfcTemplatedEntityList<Ifc4::IfcElement>();
 
-			for (auto const& readerPropertyBundle : dictionaryProperties.getReaderPropertiesBundleVector()) {
-				processMaterials(*readerPropertyBundle,file, *ifcElementBundle);
-			}
+			//if (!dictionaryProperties.getGraphicsReaderPropertiesBundleVector().empty()) {
+			//	for (auto const& readerPropertyBundle : dictionaryProperties.getGraphicsReaderPropertiesBundleVector()) {
+			//		processMaterials(*readerPropertyBundle, file, *ifcElementBundle);
+			//	}
+			//}
+			//else {
+			//	for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
+			//		processMaterials(*readerPropertyBundle, file, *ifcElementBundle);
+			//	}
+			//}
+
 		}
 	}
 }
@@ -26,74 +44,13 @@ void IfcMaterialEnhancer::enhanceMaterials(std::vector<DictionaryProperties*>& d
 void IfcMaterialEnhancer::processMaterials(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle& ifcElementBundle)
 {
 	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) {
-		if (readerPropertyDefinition->getPropertyName().find("Color") != std::string::npos) {
-			processColour(*readerPropertyDefinition,file, ifcElementBundle);
-		} else 	if (readerPropertyDefinition->getPropertyName().find("Material") != std::string::npos) {
+		if (readerPropertyDefinition->getPropertyName().find("Material") != std::string::npos) {
 			processMaterial(*readerPropertyDefinition,file, ifcElementBundle.getIfcElement());
 		}
 	}
 }
 
-void IfcMaterialEnhancer::processColour(ReaderPropertyDefinition& readerPropertyDefinition, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle& ifcElementBundle)
-{
-	typedef Ifc4::IfcGloballyUniqueId guid;
 
-	Ifc4::IfcColourRgb* ifcColour = parseAndCreateColour(readerPropertyDefinition.getPropertyValueAsString());
-
-	Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(ifcColour, 1, new Ifc4::IfcNormalisedRatioMeasure(1),
-		new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),
-		new Ifc4::IfcNormalisedRatioMeasure(1), Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
-	file.addEntity(ifcSurfaceStyleRendering);
-
-	IfcEntityList* entityList3 = new IfcEntityList();
-	entityList3->push(ifcSurfaceStyleRendering);
-	boost::shared_ptr<IfcEntityList> unitEntity3(entityList3);
-
-	Ifc4::IfcSurfaceStyle* ifcSurfaceStyle = new Ifc4::IfcSurfaceStyle(std::string("ColourSurfaceStyle"), Ifc4::IfcSurfaceSide::IfcSurfaceSide_BOTH, unitEntity3);
-	file.addEntity(ifcSurfaceStyle);
-
-
-	IfcEntityList* ifcSurfaceStyleList = new IfcEntityList();
-	ifcSurfaceStyleList->push(ifcSurfaceStyle);
-	boost::shared_ptr<IfcEntityList> ifcSurfaceStyleSharedList(ifcSurfaceStyleList);
-	Ifc4::IfcPresentationStyleAssignment* ifcPresentationStyleAssignment = new Ifc4::IfcPresentationStyleAssignment(ifcSurfaceStyleSharedList);
-	file.addEntity(ifcPresentationStyleAssignment);
-
-	IfcEntityList* entityIfcPresentationStyleAssignmentList = new IfcEntityList();
-	entityIfcPresentationStyleAssignmentList->push(ifcPresentationStyleAssignment);
-	boost::shared_ptr<IfcEntityList> IfcPresentationStyleAssignmentList(entityIfcPresentationStyleAssignmentList);
-	Ifc4::IfcRepresentationItem::list::ptr styledItemList(new Ifc4::IfcRepresentationItem::list());
-
-	for (int i = 0; i < ifcElementBundle.getIfcGraphicPropertiesBundleVector().size(); ++i) {
-		Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcElementBundle.getIfcGraphicPropertiesBundleVector().at(i)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
-		file.addEntity(ifcStyledItem);
-		styledItemList->push(ifcStyledItem);
-	}
-
-	Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcElementBundle.getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
-	file.addEntity(ifcStyledItem);
-	styledItemList->push(ifcStyledItem);
-	Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), boost::none,
-		boost::none, styledItemList);
-	file.addEntity(ifcStyledRepresentation);
-
-
-	IfcTemplatedEntityList<Ifc4::IfcRepresentation>* ceva1 = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
-	ceva1->push(ifcStyledRepresentation);
-	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> unitEntity7(ceva1);
-	Ifc4::IfcMaterial* ifcMaterial = new Ifc4::IfcMaterial("Material", boost::none, boost::none);
-
-	Ifc4::IfcMaterialDefinitionRepresentation* ifcMaterialDefinitionRepresentation = new Ifc4::IfcMaterialDefinitionRepresentation(boost::none, boost::none,
-		unitEntity7, ifcMaterial);
-	file.addEntity(ifcMaterialDefinitionRepresentation);
-
-	IfcEntityList* entityList8 = new IfcEntityList();
-	entityList8->push(ifcElementBundle.getIfcElement());
-	boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
-	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId("ceva"), file.getSingle<Ifc4::IfcOwnerHistory>(),
-		boost::none, boost::none, unitEntity8, ifcMaterial);
-	file.addEntity(ifcRelAssociatesMaterial);
-}
 
 
 void IfcMaterialEnhancer::processMaterial(ReaderPropertyDefinition& readerPropertyDefinition, IfcHierarchyHelper<Ifc4>& file,Ifc4::IfcElement* ifcElement) {
@@ -130,10 +87,26 @@ Ifc4::IfcColourRgb* IfcMaterialEnhancer::parseAndCreateColour(std::string colour
 		e.code();
 	}
 
+
+
 	if (result.empty()) {
-		int intValue = std::stoi(colourValue);
+		int intValue;
+		try {
+			intValue = std::stoi(colourValue);
+		}
+		catch (std::exception& e) {
+			e.what();
+		}
 		if (intValue > 0) {
-			return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);
+			int blue = (intValue >> 16) & 0xFF;
+			int green = (intValue >> 8) & 0xFF;
+			int red = intValue & 0xFF;
+
+			double red1 = red*1.0;
+			double green1 = green*1.0;
+			double blue1 = blue*1.0;
+
+			return new Ifc4::IfcColourRgb(colourName, red1/255.0, green1/255.0, blue1/255.0);
 		}
 		else {
 			return new Ifc4::IfcColourRgb(colourName, 0.6, 0.6, 0.6);

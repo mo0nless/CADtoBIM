@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ReaderPropertiesBundle.h"
-#include "GraphicProperties.h"
+
+#include "../headers/ElementBundle.h"
 #include "../smart_feature/headers/SmartFeatureContainer.h"
 
 
@@ -17,19 +17,31 @@ private:
 	bool isSmartSolid;
 	bool isPrimitiveSolid;
 
-	std::vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
-	std::vector<GraphicProperties*> graphicPropertiesVector;
+	//std::vector<ReaderPropertiesBundle*> graphicsReaderPropertiesBundleVector;
+	//std::vector<GraphicProperties*> graphicPropertiesVector;
+
+	std::vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
 
 	SmartFeatureContainer * smartFeatureContainer;
+
+	std::vector<ElementBundle*> subElements;
+	
 
 public:
 	DictionaryProperties(long newElementId, std::string newEmentDescriptor);
 
-	std::vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
-	void addReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
+	/*std::vector<ReaderPropertiesBundle*> getGraphicsReaderPropertiesBundleVector();
+	void addGraphicsReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
 
 	std::vector<GraphicProperties*> getGraphicPropertiesVector();
-	void addGraphicProperties(GraphicProperties* graphicProperties);
+	void addGraphicProperties(GraphicProperties* graphicProperties);*/
+
+	std::vector<ElementBundle*> getElementBundle();
+	void addElementBundle(ElementBundle* elementBundle);
+
+	std::vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
+	void addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
+
 
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();

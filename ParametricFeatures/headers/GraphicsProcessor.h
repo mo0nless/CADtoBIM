@@ -29,6 +29,8 @@ private:
 	virtual BentleyStatus _ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) override;
 	virtual BentleyStatus _ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) override;
 	virtual BentleyStatus _ProcessSolidPrimitive(ISolidPrimitiveCR primitive) override;
+
+	virtual void _AnnounceElemDisplayParams(ElemDisplayParamsCR displayParams) override;
 	
 	//! Supply the current context that is processing the geometry.
 	//! @param[in] context The current view context.

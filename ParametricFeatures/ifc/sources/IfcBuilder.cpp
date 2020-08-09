@@ -75,12 +75,13 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 
 			ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
 
-			if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid())
+			if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
 				ifcElementBundle->solidModel = true;
+			}
 
 			ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
 			// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
-			for (auto const& readerProperty : dictionaryProperties.getReaderPropertiesBundleVector()) {
+			for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
 				ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
 				for (auto const& property1 : readerProperty->getProperties()) {
 					ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
@@ -88,7 +89,9 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 					readerPropertiesBundle->addProperty(readerPropertyDefinition);
 
 				}
-				ifcElementBundle->addIfcReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+				ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+
+
 			}
 			ifcElementBundleVector.push_back(ifcElementBundle);
 		}
@@ -196,6 +199,9 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 	//DGN mmmens01 CRASH HERE
 	IfcMaterialEnhancer* ifcMaterialEnhancer = new IfcMaterialEnhancer();
 	ifcMaterialEnhancer->enhanceMaterials(dictionaryPropertiesVector, ifcElementBundleVector, file);
+
+	IfcColorEnhancer* ifcColorEnhancer = new IfcColorEnhancer();
+	ifcColorEnhancer->enhanceColors(ifcElementBundleVector, file);
 
 	IfcPortsBuilder* ifcPortsBuilder = new IfcPortsBuilder(geometricContext);
 	ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);

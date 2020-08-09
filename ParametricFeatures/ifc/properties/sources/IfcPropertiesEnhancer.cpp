@@ -17,7 +17,7 @@ void IfcPropertiesEnhancer::enhanceIfcProperties(std::vector<DictionaryPropertie
 			Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
 			ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
 
-			for (auto const& readerPropertyBundle : dictionaryProperties.getReaderPropertiesBundleVector()) {
+			for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
 				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName()),

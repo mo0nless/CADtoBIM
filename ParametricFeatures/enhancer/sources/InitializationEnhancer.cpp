@@ -74,70 +74,116 @@ SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(Elem
 	return smartFeatureContainer;
 }
 
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-void InitializationEnhancer::testFunction(PersistentElementRefP elemRef)
+//#pragma warning( push )
+//#pragma warning( disable : 4700)
+//#pragma warning( disable : 4189)
+//void InitializationEnhancer::testFunction(PersistentElementRefP elemRef)
+//{
+//	std::ofstream outfile;
+//	ElementRefP* referenceDependents;
+//	ElementRefP parentRef = elemRef->GetParentElementRef();
+//
+//	// Handles persistance of ECInstances
+//	DgnECManagerR ecMgr = DgnECManager::GetManager();
+//	RelationshipEntryVector relationshipVec;
+//	ecMgr.FindRelationshipEntriesOnElement(elemRef, relationshipVec);
+//
+//	outfile.open(filePath, std::ios_base::app);
+//	outfile << "Level Position of the current element: " << elemRef->GetLevel() << std::endl;
+//	outfile << "Dependences of the element request: " << elemRef->GetDependents(referenceDependents, 3) << std::endl;
+//	outfile << "Is Complex Component: " << elemRef->IsComplexComponent() << std::endl;
+//	outfile << std::endl;
+//	outfile.close();
+//
+//	if (parentRef != nullptr)
+//	{
+//		ElementHandle p(parentRef);
+//		outfile.open(filePath, std::ios_base::app);
+//		outfile << "Parent element : " << p.GetElementId() << std::endl;
+//		outfile << std::endl;
+//		outfile.close();
+//	}
+//
+//	for (size_t i = 0; i < 3; i++)
+//	{
+//		if (referenceDependents[i] != nullptr) {
+//			ElementHandle df(*referenceDependents);
+//			WString eDescr;
+//			df.GetHandler().GetDescription(df, eDescr, 100);
+//
+//			outfile.open(filePath, std::ios_base::app);
+//			outfile << "Dependences element: " << df.GetElementId() << std::endl;
+//			outfile << "Element Description: " << static_cast<Utf8String>(eDescr.GetWCharCP()) << std::endl;
+//			outfile << "------" << std::endl;
+//			outfile << std::endl;
+//			outfile.close();
+//		}
+//	}
+//
+//
+//
+//	for (auto rel : relationshipVec)
+//	{
+//		outfile.open(filePath, std::ios_base::app);
+//		outfile << "Relationship " << std::endl;
+//		outfile << "Class Name: " << StringUtils::getString(rel.RelationshipClassName) << std::endl;
+//		outfile << "Schema Name: " << StringUtils::getString(rel.RelationshipSchemaName) << std::endl;
+//		outfile << "Source Name: " << StringUtils::getString(rel.SourceClassName) << std::endl;
+//		outfile << "Source Schema Name: " << StringUtils::getString(rel.SourceSchemaName) << std::endl;
+//		outfile << "Source InstanceId: " << StringUtils::getString(rel.SourceInstanceId) << std::endl;
+//		outfile << "Target Class Name: " << StringUtils::getString(rel.TargetClassName) << std::endl;
+//		outfile << "Target Schema Name: " << StringUtils::getString(rel.TargetSchemaName) << std::endl;
+//		outfile << "Target InstanceId: " << StringUtils::getString(rel.TargetInstanceId) << std::endl;
+//		outfile << std::endl;
+//		outfile.close();
+//	}
+//
+//}
+
+StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, DictionaryProperties* dictionaryProperties)
 {
-	std::ofstream outfile;
-	ElementRefP* referenceDependents;
-	ElementRefP parentRef = elemRef->GetParentElementRef();
+	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
-	// Handles persistance of ECInstances
-	DgnECManagerR ecMgr = DgnECManager::GetManager();
-	RelationshipEntryVector relationshipVec;
-	ecMgr.FindRelationshipEntriesOnElement(elemRef, relationshipVec);
-
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "Level Position of the current element: " << elemRef->GetLevel() << std::endl;
-	outfile << "Dependences of the element request: " << elemRef->GetDependents(referenceDependents, 3) << std::endl;
-	outfile << "Is Complex Component: " << elemRef->IsComplexComponent() << std::endl;
-	outfile << std::endl;
-	outfile.close();
-
-	if (parentRef != nullptr)
+	if (MSElementTypes::LINE_ELM == eh.GetElementType()|| MSElementTypes::LINE_STRING_ELM == eh.GetElementType() || MSElementTypes::SHAPE_ELM == eh.GetElementType() || 
+		MSElementTypes::CURVE_ELM == eh.GetElementType() || MSElementTypes::ELLIPSE_ELM == eh.GetElementType() || MSElementTypes::ARC_ELM == eh.GetElementType() || 
+		MSElementTypes::TEXT_ELM == eh.GetElementType() || MSElementTypes::SURFACE_ELM == eh.GetElementType() || MSElementTypes::SOLID_ELM == eh.GetElementType() || 
+		MSElementTypes::BSPLINE_POLE_ELM == eh.GetElementType() || MSElementTypes::POINT_STRING_ELM == eh.GetElementType() || MSElementTypes::CONE_ELM == eh.GetElementType() || 
+		MSElementTypes::BSPLINE_SURFACE_ELM == eh.GetElementType() || MSElementTypes::BSURF_BOUNDARY_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_KNOT_ELM == eh.GetElementType() || 
+		MSElementTypes::BSPLINE_CURVE_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_WEIGHT_ELM == eh.GetElementType() || MSElementTypes::DIMENSION_ELM == eh.GetElementType() || 
+		MSElementTypes::MULTILINE_ELM == eh.GetElementType() || MSElementTypes::ATTRIBUTE_ELM == eh.GetElementType() || MSElementTypes::LINE_ELM == eh.GetElementType())
 	{
-		ElementHandle p(parentRef);
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Parent element : " << p.GetElementId() << std::endl;
-		outfile << std::endl;
-		outfile.close();
+
+		//outfile << std::endl;
+		//outfile << "Child3 id" << child3.GetElementId() << std::endl;
+		//outfile << "Child3 type" << child3.GetElementType() << std::endl;
+
+		//ElementHandle childEl3(child3);
+
+		ElementBundle* elementBundle = new ElementBundle();
+		elementBundle->setElementHandle(eh);
+
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh);
+		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
+
+		GraphicsProcessor graphicsProcessor = GraphicsProcessor();
+		GraphicsProcessorEnhancer* graphicsProcessorEnhancer = graphicsProcessor.getGraphicsProcessorEnhancer();
+
+		graphicsProcessorEnhancer->mCurrentElementHandle = eh;
+		graphicsProcessorEnhancer->setElementBundle(*elementBundle);
+		ElementGraphicsOutput::Process(eh, graphicsProcessor);
+
+		dictionaryProperties->addElementBundle(elementBundle);
+
+		return SUCCESS;
 	}
 
-	for (size_t i = 0; i < 3; i++)
+	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
-		if (referenceDependents[i] != nullptr) {
-			ElementHandle df(*referenceDependents);
-			WString eDescr;
-			df.GetHandler().GetDescription(df, eDescr, 100);
-
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Dependences element: " << df.GetElementId() << std::endl;
-			outfile << "Element Description: " << static_cast<Utf8String>(eDescr.GetWCharCP()) << std::endl;
-			outfile << "------" << std::endl;
-			outfile << std::endl;
-			outfile.close();
-		}
+		findElementByType(child.GetElementRef(), dictionaryProperties);
 	}
 
-
-
-	for (auto rel : relationshipVec)
-	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Relationship " << std::endl;
-		outfile << "Class Name: " << StringUtils::getString(rel.RelationshipClassName) << std::endl;
-		outfile << "Schema Name: " << StringUtils::getString(rel.RelationshipSchemaName) << std::endl;
-		outfile << "Source Name: " << StringUtils::getString(rel.SourceClassName) << std::endl;
-		outfile << "Source Schema Name: " << StringUtils::getString(rel.SourceSchemaName) << std::endl;
-		outfile << "Source InstanceId: " << StringUtils::getString(rel.SourceInstanceId) << std::endl;
-		outfile << "Target Class Name: " << StringUtils::getString(rel.TargetClassName) << std::endl;
-		outfile << "Target Schema Name: " << StringUtils::getString(rel.TargetSchemaName) << std::endl;
-		outfile << "Target InstanceId: " << StringUtils::getString(rel.TargetInstanceId) << std::endl;
-		outfile << std::endl;
-		outfile.close();
-	}
-
+	return SUCCESS;
 }
 
 #pragma warning( pop ) 
@@ -159,271 +205,19 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
-	//DgnModelRef::inter
-	//dgnModelRef->
-	//ISessionMgr::get
-
-	//ScanCriteria* s = new ScanCriteria();
-	
-	
-	//dgnModelRef->AsDgnAttachmentCP()->GetFileLevelCacheP()->
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
 		
 		DgnModelP c = elemRef->GetDgnModelP();
-
-		//ISessionMgr::
-		
-
-		//for (auto m : *c->GetGraphicElementsP()) {
-		/*for (auto m : *c->GetControlElementsP()) {*/
-		//for (auto m : c->GetReachableElements()) {
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "cacat0" << std::endl;
-		//	outfile << m.GetElementId()<< std::endl;
-		//	//outfile << m->IsGraphics() << std::endl;
-		//	//outfile << m->GetLevel()<< std::endl;
-		//	outfile.close();
-		//}
-
-		//for (auto m : c->GetElementsCollection()) {
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "cacat1" << std::endl;
-		//	outfile << m->GetElementId() << std::endl;
-		//	//outfile << m->IsGraphics() << std::endl;
-		//	//outfile << m->GetLevel()<< std::endl;
-		//	outfile.close();
-		//}
-		for (auto m : c->GetReachableModelRefs()) {
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "cacat0" << std::endl;
-			//outfile << m->IsGraphics() << std::endl;
-			//outfile << m->GetLevel()<< std::endl;
-			outfile.close();
-		}
-
-		//ElementRefP el;
-		//int num = elemRef->GetDependents(&el,100);
-		////auto c1 = el->GetFirstDependent();
-
-		//outfile.open(filePath, std::ios_base::app);
-		//outfile << "cacat1" << std::endl;
-		//outfile << num << std::endl;
-		//outfile << elemRef->IsComplexComponent() << std::endl;
-		//outfile << elemRef->IsGraphics() << std::endl;
-		////outfile << el->GetLevel() << std::endl;
-		////outfile << el->GetElementType() << std::endl;
-		////outfile << el->GetElementId() << std::endl;
-		////outfile <<  << std::endl;
-		//outfile.close();
-		//DgnECManagerR ecMgr = DgnECManager::GetManager();
-		//RelationshipEntryVector relationshipVec;
-		//ecMgr.FindRelationshipEntriesOnElement(elemRef, relationshipVec);
-		//
-		//for (auto something : relationshipVec) {
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << std::endl;
-		//	outfile << something.RelatedInstanceDirection<< std::endl;
-		//	outfile << something.RelatedInstanceStrength << std::endl;
-		//	outfile <<StringUtils::getString(something.RelationshipClassName) << std::endl;
-		//	outfile << std::endl;
-		//	outfile.close();
-		//}
-
-		//if (ecMgr.FindInstances(*scope, *ecQuery).empty())
-		//{
-		//	/*outfile.open(filePath, std::ios_base::app);
-		//	outfile << std::endl;
-		//	outfile << "= Properties Not Found =" << std::endl;
-		//	outfile.close();*/
-		//	this->mElemClassName = "SmartFeatureSolid";
-
-		//}
-
-		
 		ElementHandle currentElem(elemRef);
-		
-		Elm_hdr hdr;
-		currentElem.GetElementHeader(hdr);
-
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "hdr" << std::endl;
-				outfile << static_cast<int>(hdr.uniqueId) << std::endl;
-				outfile.close();
-		
-
-		/*EditElementHandle ee(elemRef);
-		ee.*/
-		//byte* cc1;
-
-		//mdlColor_elementColorFromRGB(elemRef->GetDgnModelP(), cc1);
-		//		outfile.open(filePath, std::ios_base::app);
-		//		outfile << "cc1" << std::endl;
-		//		outfile << static_cast<int>(*cc1) << std::endl;
-		//		outfile << cc1 << std::endl;
-		//		outfile.close();
-
-		//DgnIndexIteratorP pDgnIndexIterator = mdlModelIterator_create(currentElem.GetDgnFileP());
-		//mdlModelIterator_setAcceptCellsOnly(pDgnIndexIterator, true);
-
-		//GuiTreeNode *pNode, *pChildNode;
-		//pChildNode = mdlTreeNode_getFirstChild(pNode);
-		//MSDialogP       dbP;
-		//ListModel       *pList;
-
-		//int                 count = 0;
-		//DgnIndexIteratorP   pDgnIndexIterator;
-		//DgnFileP            pLibObj;
-		//WChar               wCellName[MAX_CELLNAME_LENGTH];//this should be unicode
-		//WChar               wCellDescription[MAX_CELLDSCR_LENGTH];
-		//bool                isThreeD, isHidden, isLocked;
-		//DgnModelType        cellType;
-		//DgnIndexItemP       pDgnIndexItem;
-		//int                 iStatus, row, col;
-		//GuiTreeNode         *pNode, *pChildNode;
-		//GuiTreeCell         *pCell;
-		//ListRow             *pRow;
-		//ListCell            *pListCell;
-		//WCharCP             pString;
-		//bool                found;
 
 
-		//ISessionMgr::GetActiveDgnModelP()->
-		
-		//DialogItem  *pItem = mdlDialog_itemGetByTypeAndId(dbP, RTYPE_Tree, 1, 0);
-		//mdlDialog_treeLastCellClicked(&row, &col, pItem->rawItemP);
+		// TODO might be useful
 
-		//dlDialog_treeGetNextSelection(&found, &row, &col, pItem->rawItemP);
+		//ElementId elemIdPrev(-1);
 
-		//currentElem.GetDgnModelP()->item
-
-		//pNode = mdlTreeModel_getDisplayRowAtIndex(mdlDialog_treeGetTreeModelP(pItem->rawItemP), row);
-		//pCell = mdlTreeNode_getCellAtIndex(pNode, 0);
-
-		//iStatus = mdlTreeCell_getStringValue(pCell, &pString);
-
-		//iStatus = mdlCell_getLibraryObject(&pLibObj, pString, true);
-
-		//if (pLibObj!=nullptr) {
-		//	pDgnIndexIterator = mdlModelIterator_create(pLibObj);
-
-		//	mdlModelIterator_setAcceptCellsOnly(pDgnIndexIterator, true);
-
-		//	pChildNode = mdlTreeNode_getFirstChild(pNode);
-		//	//pChildNode->
-
-		//	while (pDgnIndexItem = mdlModelIterator_getNext(pDgnIndexIterator))
-		//	{
-		//		double      lastSaved;
-		//		pRow = mdlListRow_create(pList);
-		//		//do the name column
-		//		mdlModelItem_getName(pDgnIndexItem, wCellName, MAX_CELLNAME_LENGTH);
-		//		pListCell = mdlListRow_getCellAtIndex(pRow, 0);
-		//		mdlListCell_setStringValue(pListCell, wCellName, true);
-		//		iStatus = mdlListCell_setInfoFieldInt32(pListCell, 0, (long)pChildNode);
-		//		long    infoField;
-		//		infoField = mdlListCell_getInfoFieldInt32(pListCell, 0, &iStatus);
-		//		//do the description column
-		//		mdlModelItem_getDescription(pDgnIndexItem, wCellDescription, MAX_CELLDSCR_LENGTH);
-		//		pListCell = mdlListRow_getCellAtIndex(pRow, 1);
-		//		//mdlListCell_setStringValue(pListCell, wCellDescription, true);
-		//		mdlModelItem_getData(pDgnIndexItem, &cellType, &isThreeD, &isLocked, &isHidden, &lastSaved);
-		//		CellLibraryType cellLibType = mdlModelItem_getCellType(pDgnIndexItem);
-		//	}
-		//}
-
-		
-
-		//if (elemRef->IsComplexComponent())
-
-		//{
-		//	
-		//	//ComplexElement compEl = (Complex)elemRef;
-
-		//	auto compElEnum = elemRef->eleme
-
-		//	Element cEl;
-
-		//	while (compElEnum.MoveNext())
-
-		//	{
-
-		//		cEl = (Element)compElEnum.Current;
-
-		//		int found = elementRef_isHilited(cEl.MdlElementRef(), cEl.ModelReference.MdlModelRefP());
-
-		//		if (found > 0)
-
-		//		{
-
-		//			long xx = cEl.ID;
-
-		//		}
-
-		//	}
-
-		//auto rez = ISessionMgr::GetActiveDgnModelP();
-		//
-		////for(auto l1 = rez->GetControlElmStart(); l1!=nullptr; l1=r)
-		////rez->GetControlElmStart();
-		////rez->get
-		//for (auto n12 : *rez->GetControlElementsP()) {
-		//		outfile.open(filePath, std::ios_base::app);
-		//		outfile << "n12" << std::endl;
-		//		outfile << n12->GetElementId() << std::endl;
-		//		outfile << n12->GetLevel() << std::endl;
-		//		outfile.close();
-		//}
-		//for (auto m1 : rez->GetReachableElements()) {
-		//		outfile.open(filePath, std::ios_base::app);
-		//		outfile << "m1" << std::endl;
-		//		outfile << m1.GetElementId() << std::endl;
-		//		outfile.close();
-		//}
-		//rez->GetControlElementsP();
-		//ISessionMgr::
-
-		//elemRef->ca
-
-		//for (CacheElemRef elRef = iter.FirstCacheElm(dgnCache->GetControlElms()); NULL != elRef; elRef = iter.NextCacheElm())
-		//{
-		//	
-		//}
-
-		
-
-		//currentElem.GetDisplayHandler()->
-		
-		//ISharedCellQuery::IsNormalCell();
-
-		/*Elm_hdr hdr;
-		currentElem.*/
-
-
-		// error
-		//WCharP nana;
-		//NormalCellHeaderHandler* nl;
-		//nl->ExtractDescription(nana, 100, currentElem);
-
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "nananame" << std::endl;
-		//	outfile << static_cast<Utf8String>(nana) << std::endl;
-		//	outfile.close();
-		
-		//for (auto i = currentElem.BeginElementLinkages(); i != currentElem.EndElementLinkages(); ++i)
-		//{
-		//	
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "cacat2" << std::endl;
-		//	outfile << i->primaryID << std::endl;
-		//	outfile.close();
-		//}
-
-		
-		
-
-		//mdl_Scan
+		//DictionaryProperties* d1 = new DictionaryProperties(-1, "");
 
 		WString elDescr;
 
@@ -431,6 +225,80 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
+		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);
+
+		findElementByType(elemRef, propertiesDictionary);
+
+
+		//outfile.open(filePath, std::ios_base::app);
+
+
+		//for (ChildElemIter child(currentElem, ExposeChildrenReason::Edit); child.IsValid(); child = child.ToNext())
+		//{
+		//	outfile << std::endl;
+		//	outfile << "Child id" << child.GetElementId() << std::endl;
+		//	outfile << "Child type" << child.GetElementType() << std::endl;
+		//	ElementHandle childEl(child);
+
+		//	if (MSElementTypes::CELL_HEADER_ELM == child.GetElementType()) {
+
+
+		//		//propertiesReaderProcessor->processElementReaderProperties(childEl, *d, *s);
+
+		//		//graphicsProcessorEnhancer->setDictionaryProperties(*d);
+		//		//graphicsProcessorEnhancer->mCurrentElementHandle = childEl;	
+
+		//		//Handler::ExposeChildren(currentElem,ExposeChildrenReason::Query);
+
+		//		outfile << "is CELL_HEADER_ELM" << std::endl;
+
+		//		//ElementGraphicsOutput::Process(childEl, graphicsProcessor);
+		//	}
+		//	if (MSElementTypes::SHAREDCELL_DEF_ELM == child.GetElementType()) {
+		//		outfile << "is SHAREDCELL_DEF_ELM" << std::endl;
+		//	}
+		//	if (MSElementTypes::SHARED_CELL_ELM == child.GetElementType()) {
+		//		outfile << "is SHARED_CELL_ELM" << std::endl;
+		//	}
+
+		//	for (ChildElemIter child2(childEl, ExposeChildrenReason::Query); child2.IsValid(); child2 = child2.ToNext())
+		//	{
+		//		outfile << std::endl;
+		//		outfile << "Child2 id" << child2.GetElementId() << std::endl;
+		//		outfile << "Child2 type" << child2.GetElementType() << std::endl;
+		//		ElementHandle childEl2(child2);
+		//		//propertiesReaderProcessor->processElementReaderProperties(childEl2, *d, *s);
+
+		//		for (ChildElemIter child3(childEl2, ExposeChildrenReason::Query); child3.IsValid(); child3 = child3.ToNext())
+		//		{
+		//			outfile << std::endl;
+		//			outfile << "Child3 id" << child3.GetElementId() << std::endl;
+		//			outfile << "Child3 type" << child3.GetElementType() << std::endl;
+
+		//			ElementHandle childEl3(child3);
+
+		//			ElementBundle* elementBundle = new ElementBundle();
+		//			elementBundle->setElementHandle(childEl3);
+
+		//			ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(childEl3);
+		//			elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
+
+		//			graphicsProcessorEnhancer->mCurrentElementHandle = childEl3;
+		//			graphicsProcessorEnhancer->setElementBundle(*elementBundle);
+		//			ElementGraphicsOutput::Process(childEl3, graphicsProcessor);
+
+		//			propertiesDictionary->addElementBundle(elementBundle);
+
+
+		//			
+		//		}
+		//	}
+
+
+		//}
+		//outfile.close();
+
+
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
@@ -440,16 +308,10 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 			if (smartFeatureContainer != nullptr) {
-				//smartFeatureContainerVector.push_back(smartFeatureContainer);
+				smartFeatureContainerVector.push_back(smartFeatureContainer);
 				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
-
-		/*const bool simplify = false;
-		ISolidPrimitivePtr solid = ISolidPrimitiveQuery::ElementToSolidPrimitive(currentElem, simplify);
-		bool valid = solid.IsValid();
-		ISolidKernelEntityPtr smartSolid;
-		bool validSolid = (SUCCESS == SolidUtil::Convert::ElementToBody(smartSolid, currentElem) && smartSolid.IsValid());*/
 					
 
 
@@ -463,208 +325,20 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 		outfile << std::endl;
 		outfile.close();
 
-		//SmartFeatureElement::ExtractTree(sFeatNode, currentElem);
-		//DgnLinkTree::GetTreeSpecPtr();
-		//ElementGraphicsTool::
-
-		//NormalCellHeaderHandler::cell
-		// doesnt work either
-		//UInt* culoare1;
-		//mdlLevel_getColor(culoare1, false, currentElem.GetDgnModelP(), 0);
-
-		//UInt* culoare2;
-		//mdlLevel_getColor(culoare2, false, currentElem.GetDgnModelP(), 1);
-
-		//if (culoare1 != nullptr) {
-		//	//FloatRgb* c = new FloatRgb()
-		//	int red = (*culoare1 >> 16) & 0xFF;
-		//	int green = (*culoare1 >> 8) & 0xFF;
-		//	int blue = *culoare1 & 0xFF;
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "=======================zaebisi============================" << std::endl;
-		//	outfile << "Cell cacat: " << culoare1 << std::endl;
-		//	outfile << "Cell cacat: " << *culoare1 << std::endl;
-		//	outfile << "Cell red: " << red << std::endl;
-		//	outfile << "Cell green: " << green << std::endl;
-		//	outfile << "Cell blue: " << blue << std::endl;
-		//	outfile << "Cell cacat: " << culoare2 << std::endl;
-		//	outfile << "Cell cacat: " << *culoare2 << std::endl;
-		//	outfile << "===================================================" << std::endl;
-		//	outfile << std::endl;
-		//	outfile.close();
-		//}
-
-		
-
-		//NoteCellHeaderHandler c(2);
-
-		//SolidHandler* s = new SolidHandler();
-		
-		//ISolidPrimitiveQuery::
-
-		//lidHandler::ExposeChildren(currentElem, );
-
-		currentElem.GetElementCP()->GetID();
-
-		propertiesReaderProcessor->processElementReaderProperties(currentElem, *propertiesDictionary, *smartFeatureContainer);
-
-		graphicsProcessorEnhancer->setDictionaryProperties(*propertiesDictionary);
-
+		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
+		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 		graphicsProcessorEnhancer->mCurrentElementHandle = currentElem; //store the element in graphic processor enhancer
-
-		TestSubEntityTool* test = new TestSubEntityTool();
 		
 
-
-		// color objects are null or empty
-		//graphicsProcessorEnhancer->getColor();
-
-		// works if the element is basic(slab,cylinder) doesnt work for pipe
-		//UInt32 colour;
-		//mdlElement_getSymbology(&colour, 0, 0, currentElem.GetElementCP());
-
-		//ElementHandle eh(currentElem);
-		//DisplayHandlerP handler = currentElem.GetDisplayHandler();
-		//if (nullptr != handler)
-		//{
-		//	NormalCellHeaderHandler* cellHandler = dynamic_cast<NormalCellHeaderHandler*>(handler);
-		//	if (nullptr != cellHandler)
-		//	{
-		//		//DoSomethingWithCellHandler(handler, eh);
-		//		if (nullptr != cellHandler) {
-		//			WChar name[MAX_MODEL_NAME_LENGTH];
-		//			cellHandler->ExtractName(name, MAX_MODEL_NAME_LENGTH, currentElem);
-		//			outfile.open(filePath, std::ios_base::app);
-		//			outfile << "=======================CELL============================" << std::endl;
-		//			outfile << "Cell Description: " << static_cast<Utf8String>(name) << std::endl;
-		//			outfile << "===================================================" << std::endl;
-		//			outfile << std::endl;
-		//			outfile.close();
-		//		}
-
-
-		//	}
-		//}
-
-
-		ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
-
-		//ScanCriteriaP	criteria = mdlScanCriteria_create();
-		//mdlScanCriteria_setModel(criteria, this->mDgnModel);
-
-		//mdlScanCriteria_setReturnType(criteria, MSSCANCRIT_ITERATE_ELMREF, FALSE, TRUE);
-		//mdlScanCriteria_setElemRefCallback(criteria, ElementRefScanCallback, &this->mDgnModel);
-
-		GraphicElementTool* ccc = new GraphicElementTool();
-		ccc->_DoCollectElementGraphics(currentElem);
-		ccc->_CollectComplexComponents();
-		ccc->_CollectSolids();
-
-
-		//ISolidPrimitivePtr s = ISolidPrimitiveQuery::ElementToSolidPrimitive(currentElem, true);
-
-		//ExtendedElementHandler::
-		//mdlSolid_bodyToElement
-
-		
-
-		//ccc->_OnProcessSolidPrimitive();
-		//ccc->InstallTool();
-
-		//elementcolordata::blue;
-
-		//ElementColorData* ecd = new ElementColorData();
-		//int reee = ecd->red;
-		//int gee = ecd->green;
-		//int blll = ecd->blue;
-		//ecd->colorBook;
-
-		//outfile.open(filePath, std::ios_base::app);
-		//outfile << "=======================cecece============================" << std::endl;
-		//outfile << reee << std::endl;
-		//outfile << gee << std::endl;
-		//outfile << blll << std::endl;
-		//outfile << std::endl;
-		//outfile.close();
-
-		//ElementGraphicsTool::
-
-		NamedViewCollectionCR nvCollect = ISessionMgr::GetActiveDgnFile()->GetNamedViews();
-		//NamedViewCollectionCR NamedViewCollection = dgnFile->GetNamedViews();
-		//for each (NamedViewPtr namedView in nvCollect)
-		//{
-		//	// do something with the namedView here.
-		//}
-		//int totalSavedViews = nvCollect.Size();
-
-		for each(NamedViewPtr namedView in nvCollect)
-		{
-
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "=======================bl1============================" << std::endl;
-						outfile << " Description: " << static_cast<Utf8String>(namedView->GetName()) << std::endl;
-						outfile << namedView->GetElementId() << std::endl;
-						outfile << std::endl;
-						outfile.close();
-			
-			/*INamedViewElementHandler*   namedViewHandler = namedView->GetElementHandlerP();
-			ISupportCallout*            supportDetailingSymbol = dynamic_cast <ISupportCallout*> (namedViewHandler);
-			if (!supportDetailingSymbol)
-				continue;
-			DetailingSymbolType symbolType = supportDetailingSymbol->GetCalloutType(ElementHandle(namedView->GetElementRef(), NULL));
-			switch (symbolType)
-			{
-			case DetailingSymbolType::SectionCallout:
-			{
-				sectionViewCount++;
-				break;
-			}
-			case DetailingSymbolType::PlanCallout:
-			{
-				planViewCount++;
-				break;
-			}
-			default:
-				break;
-			}*/
-		}
-		
-		
-		// doesnt work properly
-		//UInt32* col1 = 0;
-		//mdlElement_getFillColor(col1, currentElem.GetElementCP());
-
-		//if (col1 != nullptr) {
-		//	//FloatRgb* c = new FloatRgb()
-		//	int red = (*col1 >> 16) & 0xFF;
-		//	int green = (*col1 >> 8) & 0xFF;
-		//	int blue = *col1 & 0xFF;
-
-		//	outfile.open(filePath, std::ios_base::app);
-		//	outfile << "=======================col 1============================" << std::endl;
-		//	outfile << "Cell cacat: " << col1 << std::endl;
-		//	outfile << "Cell cacat: " << *col1 << std::endl;
-		//	outfile << "Cell cacat: " << (int)*col1 << std::endl;
-		//	outfile << "Cell cacat: " << red << std::endl;
-		//	outfile << "Cell cacat: " << green << std::endl;
-		//	outfile << "Cell cacat: " << blue << std::endl;
-		//	outfile << "===================================================" << std::endl;
-		//	outfile << std::endl;
-		//	outfile.close();
-		//}
-		
-
-		//mdlcell
-		//auto rez = currentElem.GetElementCP()->colorTable;
-		//auto r = rez.color_info;
-		//auto nana = r[0];
-
+		//ElementGraphicsOutput::Process(currentElem, graphicsProcessor);
 
 		//Add as BRep after finishing processing
 		if (graphicsProcessorEnhancer->mBRepGraphicProperties != nullptr)
 		{
-			if (graphicsProcessorEnhancer->mBRepGraphicProperties->getSolidEntityVector().size() > 0)
-				propertiesDictionary->addGraphicProperties(graphicsProcessorEnhancer->mBRepGraphicProperties);
+			if (graphicsProcessorEnhancer->mBRepGraphicProperties->getSolidEntityVector().size() > 0) {
+				//propertiesDictionary->addGraphicProperties(graphicsProcessorEnhancer->mBRepGraphicProperties);
+				//TODO [MP] check this shit
+			}
 
 			graphicsProcessorEnhancer->mBRepGraphicProperties = nullptr;
 			graphicsProcessorEnhancer->mNumberSolidEntity = 0;
@@ -689,6 +363,8 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 	}
 }
 #pragma warning( pop ) 
+
+
 
 //int InitializationEnhancer::ElementRefScanCallback(ElementRef eleR, void *callbackArg, ScanCriteriaP pCriteria) {
 //
