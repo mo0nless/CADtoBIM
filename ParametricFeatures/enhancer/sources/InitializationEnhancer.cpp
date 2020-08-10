@@ -8,8 +8,8 @@ InitializationEnhancer::InitializationEnhancer()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -144,15 +144,23 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 {
 	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
-	if (MSElementTypes::LINE_ELM == eh.GetElementType()|| MSElementTypes::LINE_STRING_ELM == eh.GetElementType() || MSElementTypes::SHAPE_ELM == eh.GetElementType() || 
+	std::ofstream outfile;
+	outfile.open(filePath, std::ios_base::app);
+	outfile << "IsComplexComponent: " << elementRefP->IsComplexComponent() << std::endl;
+	outfile.close();
+
+	/*if (MSElementTypes::LINE_ELM == eh.GetElementType()|| MSElementTypes::LINE_STRING_ELM == eh.GetElementType() || MSElementTypes::SHAPE_ELM == eh.GetElementType() || 
 		MSElementTypes::CURVE_ELM == eh.GetElementType() || MSElementTypes::ELLIPSE_ELM == eh.GetElementType() || MSElementTypes::ARC_ELM == eh.GetElementType() || 
 		MSElementTypes::TEXT_ELM == eh.GetElementType() || MSElementTypes::SURFACE_ELM == eh.GetElementType() || MSElementTypes::SOLID_ELM == eh.GetElementType() || 
 		MSElementTypes::BSPLINE_POLE_ELM == eh.GetElementType() || MSElementTypes::POINT_STRING_ELM == eh.GetElementType() || MSElementTypes::CONE_ELM == eh.GetElementType() || 
 		MSElementTypes::BSPLINE_SURFACE_ELM == eh.GetElementType() || MSElementTypes::BSURF_BOUNDARY_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_KNOT_ELM == eh.GetElementType() || 
 		MSElementTypes::BSPLINE_CURVE_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_WEIGHT_ELM == eh.GetElementType() || MSElementTypes::DIMENSION_ELM == eh.GetElementType() || 
-		MSElementTypes::MULTILINE_ELM == eh.GetElementType() || MSElementTypes::ATTRIBUTE_ELM == eh.GetElementType() || MSElementTypes::LINE_ELM == eh.GetElementType())
+		MSElementTypes::MULTILINE_ELM == eh.GetElementType() || MSElementTypes::ATTRIBUTE_ELM == eh.GetElementType() || MSElementTypes::LINE_ELM == eh.GetElementType())*/
+	if (!elementRefP->IsComplexComponent())
 	{
-
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Basic type" << std::endl;
+		outfile.close();
 		//outfile << std::endl;
 		//outfile << "Child3 id" << child3.GetElementId() << std::endl;
 		//outfile << "Child3 type" << child3.GetElementType() << std::endl;
@@ -181,6 +189,10 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 
 	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
+		outfile.open(filePath, std::ios_base::app);
+		outfile << "Child type" << std::endl;
+		outfile.close();
+
 		findElementByType(child.GetElementRef(), dictionaryProperties);
 	}
 

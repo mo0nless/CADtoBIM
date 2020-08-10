@@ -10,9 +10,6 @@
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
-    <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
-    <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
-    <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="modeler\properties\boolean_operations\sources\BooleanOperationProperties.cpp" />
@@ -25,9 +22,6 @@
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\properties\create_solids_operations\reader\sources\RevolveReaderProperties.cpp" />
-    <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
-    <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\sources\PipesContainer.cpp" />
@@ -58,7 +52,6 @@
     <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
-    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
@@ -81,6 +74,13 @@
     <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ExtrusionGraphicProperties.cpp" />
+    <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
+    <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="common\models\result_status\sources\ResultStatus.cpp" />
+    <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
+    <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
+    <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
+    <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -96,17 +96,8 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
-    <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
-    <ClInclude Include="common\utils\headers\StringUtils.hpp" />
-    <ClInclude Include="common\utils\headers\NumberUtils.h" />
-    <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
-    <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
-    <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
-    <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
     <ClInclude Include="ifc\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
-    <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
-    <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="modeler\properties\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\CreateSolidsOperationProperties.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\PrimitiveGraphicProperties.h" />
@@ -117,11 +108,8 @@
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\create_solids_operations\reader\headers\RevolveReaderProperties.h" />
-    <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
-    <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="modeler\properties\pipes\reader\headers\PipeReaderProperties.h" />
     <ClInclude Include="modeler\properties\pipes\headers\PipesContainer.h" />
-    <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
     <ClInclude Include="enhancer\headers\GraphicsProcessorEnhancer.h" />
     <ClInclude Include="enhancer\headers\InitializationEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ArcGraphicProperties.h" />
@@ -149,13 +137,10 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\LineStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\PointStringGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
-    <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
-    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="ifc\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\headers\IfcPortsBuilder.h" />
-    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
@@ -170,12 +155,27 @@
     <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicProperties.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\BRepGraphicProperties.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\SolidEntityGraphicProperties.h" />
-    <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
-    <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
-    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
+    <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
+    <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
+    <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
+    <ClInclude Include="common\enums\headers\PrimitiveTypeEnum.h" />
+    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
+    <ClInclude Include="common\enums\headers\ReaderPropertiesEnum.h" />
+    <ClInclude Include="common\enums\headers\ResultStatusEnum.h" />
+    <ClInclude Include="common\enums\headers\ShapesTypeEnum.h" />
+    <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
+    <ClInclude Include="common\models\result_status\headers\ResultStatus.h" />
+    <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\CreateSolidFunctionsEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\NumberUtils.h" />
+    <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\ReaderPropertiesEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\StringUtils.hpp" />
   </ItemGroup>
 </Project>
