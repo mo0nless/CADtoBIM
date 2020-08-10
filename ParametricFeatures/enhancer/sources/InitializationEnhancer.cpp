@@ -146,26 +146,39 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
-	outfile << "IsComplexComponent: " << elementRefP->IsComplexComponent() << std::endl;
+	int index = 0;
+
+
+	outfile << "eh id = " << eh.GetElementId() << std::endl;
+	outfile << "eh type = " << eh.GetElementType() << std::endl;
+	outfile << "index1 = " << index << std::endl;
+
 	outfile.close();
 
-	/*if (MSElementTypes::LINE_ELM == eh.GetElementType()|| MSElementTypes::LINE_STRING_ELM == eh.GetElementType() || MSElementTypes::SHAPE_ELM == eh.GetElementType() || 
-		MSElementTypes::CURVE_ELM == eh.GetElementType() || MSElementTypes::ELLIPSE_ELM == eh.GetElementType() || MSElementTypes::ARC_ELM == eh.GetElementType() || 
-		MSElementTypes::TEXT_ELM == eh.GetElementType() || MSElementTypes::SURFACE_ELM == eh.GetElementType() || MSElementTypes::SOLID_ELM == eh.GetElementType() || 
-		MSElementTypes::BSPLINE_POLE_ELM == eh.GetElementType() || MSElementTypes::POINT_STRING_ELM == eh.GetElementType() || MSElementTypes::CONE_ELM == eh.GetElementType() || 
-		MSElementTypes::BSPLINE_SURFACE_ELM == eh.GetElementType() || MSElementTypes::BSURF_BOUNDARY_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_KNOT_ELM == eh.GetElementType() || 
-		MSElementTypes::BSPLINE_CURVE_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_WEIGHT_ELM == eh.GetElementType() || MSElementTypes::DIMENSION_ELM == eh.GetElementType() || 
-		MSElementTypes::MULTILINE_ELM == eh.GetElementType() || MSElementTypes::ATTRIBUTE_ELM == eh.GetElementType() || MSElementTypes::LINE_ELM == eh.GetElementType())*/
-	if (!elementRefP->IsComplexComponent())
+	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Basic type" << std::endl;
-		outfile.close();
-		//outfile << std::endl;
-		//outfile << "Child3 id" << child3.GetElementId() << std::endl;
-		//outfile << "Child3 type" << child3.GetElementType() << std::endl;
+		findElementByType(child.GetElementRef(), dictionaryProperties);
+		++index;
+	}
 
-		//ElementHandle childEl3(child3);
+	//if (MSElementTypes::LINE_ELM == eh.GetElementType() || MSElementTypes::LINE_STRING_ELM == eh.GetElementType() || MSElementTypes::SHAPE_ELM == eh.GetElementType() ||
+	//	MSElementTypes::CURVE_ELM == eh.GetElementType() || MSElementTypes::ELLIPSE_ELM == eh.GetElementType() || MSElementTypes::ARC_ELM == eh.GetElementType() ||
+	//	MSElementTypes::TEXT_ELM == eh.GetElementType() || MSElementTypes::SURFACE_ELM == eh.GetElementType() || MSElementTypes::SOLID_ELM == eh.GetElementType() ||
+	//	MSElementTypes::BSPLINE_POLE_ELM == eh.GetElementType() || MSElementTypes::POINT_STRING_ELM == eh.GetElementType() || MSElementTypes::CONE_ELM == eh.GetElementType() ||
+	//	MSElementTypes::BSPLINE_SURFACE_ELM == eh.GetElementType() || MSElementTypes::BSURF_BOUNDARY_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_KNOT_ELM == eh.GetElementType() ||
+	//	MSElementTypes::BSPLINE_CURVE_ELM == eh.GetElementType() || MSElementTypes::BSPLINE_WEIGHT_ELM == eh.GetElementType() || MSElementTypes::DIMENSION_ELM == eh.GetElementType() ||
+	//	MSElementTypes::MULTILINE_ELM == eh.GetElementType() || MSElementTypes::ATTRIBUTE_ELM == eh.GetElementType() || MSElementTypes::LINE_ELM == eh.GetElementType())
+	//{
+	if(index==0){
+
+		outfile.open(filePath, std::ios_base::app);
+
+		outfile << "eh2 id" << eh.GetElementId() << std::endl;
+		outfile << "eh2 type" << eh.GetElementType() << std::endl;
+		outfile << "index2 = " << index << std::endl;
+
+
+		outfile.close();
 
 		ElementBundle* elementBundle = new ElementBundle();
 		elementBundle->setElementHandle(eh);
@@ -185,15 +198,6 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 		dictionaryProperties->addElementBundle(elementBundle);
 
 		return SUCCESS;
-	}
-
-	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
-	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Child type" << std::endl;
-		outfile.close();
-
-		findElementByType(child.GetElementRef(), dictionaryProperties);
 	}
 
 	return SUCCESS;
@@ -353,18 +357,25 @@ void InitializationEnhancer::processDgnGraphicsElements(std::vector<DictionaryPr
 
 		//			ElementHandle childEl3(child3);
 
-		//			ElementBundle* elementBundle = new ElementBundle();
-		//			elementBundle->setElementHandle(childEl3);
+		//			//ElementBundle* elementBundle = new ElementBundle();
+		//			//elementBundle->setElementHandle(childEl3);
 
-		//			ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(childEl3);
-		//			elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
+		//			//ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(childEl3);
+		//			//elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
 
-		//			graphicsProcessorEnhancer->mCurrentElementHandle = childEl3;
-		//			graphicsProcessorEnhancer->setElementBundle(*elementBundle);
-		//			ElementGraphicsOutput::Process(childEl3, graphicsProcessor);
+		//			//graphicsProcessorEnhancer->mCurrentElementHandle = childEl3;
+		//			//graphicsProcessorEnhancer->setElementBundle(*elementBundle);
+		//			//ElementGraphicsOutput::Process(childEl3, graphicsProcessor);
 
-		//			propertiesDictionary->addElementBundle(elementBundle);
+		//			//propertiesDictionary->addElementBundle(elementBundle);
+		//			for (ChildElemIter child4(childEl3, ExposeChildrenReason::Query); child4.IsValid(); child4 = child4.ToNext())
+		//			{
+		//				outfile << std::endl;
+		//				outfile << "Child4 id" << child4.GetElementId() << std::endl;
+		//				outfile << "Child4 type" << child4.GetElementType() << std::endl;
 
+		//				//ElementHandle childEl3(child3);
+		//			}
 
 		//			
 		//		}

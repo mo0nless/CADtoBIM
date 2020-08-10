@@ -43,7 +43,6 @@
     <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
-    <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\curves\graphic\sources\LineStringGraphicProperties.cpp" />

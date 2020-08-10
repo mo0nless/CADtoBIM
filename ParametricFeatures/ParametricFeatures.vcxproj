@@ -36,7 +36,6 @@
     <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="ifc\sources\IfcElementBundle.cpp" />
-    <ClCompile Include="ifc\primitives\sources\IfcMaterialBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\sources\IfcReaderPropertiesBundle.cpp" />
