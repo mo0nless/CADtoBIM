@@ -70966,3 +70966,5439 @@ Next Point  X = 8.440630
 Next Point  Y = 42.070369
 Next Point  Z = 5.337496
 
+Port Name  = Port 0 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.677083
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.677083
+
+Port Name  = Port 1 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.635417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 7575
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.635417
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.666667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 2246
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.666667
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 18.865547
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 18.865547
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.093750
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.093750
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.260417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4977
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.260417
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.083333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4911
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.083333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 4984
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.645833
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5029
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 4951
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.270833
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4968
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.270833
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 40.805774
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5039
+Next Point  X = 40.805774
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 22.248031
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5084
+Next Point  X = 22.248031
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5094
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 12.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5139
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 12.913778
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 37.870079
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5149
+Next Point  X = 20.748031
+Next Point  Y = 37.870079
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 24.000000
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5205
+Next Point  X = 20.748031
+Next Point  Y = 24.000000
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5181
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 9.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5424
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 9.913778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5412
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 8.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5469
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 8.712527
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 19.248031
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5479
+Next Point  X = 19.248031
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 11.764096
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5524
+Next Point  X = 11.764096
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5500
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5622
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.712527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5610
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.030347
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6013
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.030347
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.989583
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.989583
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.656250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6416
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.656250
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 2.000000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 5834
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 2.000000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Point  X = 7.251191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Next Point  X = 7.251191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.092847
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6056
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.092847
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 2.577133
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6211
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 2.577133
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.644931
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6006
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.644931
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.478264
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6049
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.478264
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5980
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.655347
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 5997
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.655347
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6023
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.467847
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 6040
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.467847
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Point  X = 6.751191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Next Point  X = 6.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6400
+Point  X = 6.417858
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6482
+Next Point  X = 6.417858
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6446
+Point  X = 9.264096
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6471
+Next Point  X = 9.264096
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.072917
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6577
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.072917
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.416667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 6536
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.416667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6561
+Point  X = 6.417858
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6597
+Next Point  X = 6.417858
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6587
+Point  X = 10.656982
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6633
+Next Point  X = 10.656982
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6643
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 7.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6679
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 7.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6662
+Point  X = 12.656982
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6709
+Next Point  X = 12.656982
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6699
+Point  X = 22.417032
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6745
+Next Point  X = 22.417032
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6728
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 9.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7019
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 9.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7009
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7055
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 14.333333
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7065
+Next Point  X = 23.417032
+Next Point  Y = 14.333333
+Next Point  Z = 14.333332
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 52.576559
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7101
+Next Point  X = 23.417032
+Next Point  Y = 52.576559
+Next Point  Z = 14.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7075
+Point  X = 23.417032
+Point  Y = 53.576559
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7111
+Next Point  X = 23.417032
+Next Point  Y = 53.576559
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.929861
+Point  Y = 7.650959
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Next Point  X = 39.929861
+Next Point  Y = 7.650959
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.622679
+Point  Y = 7.435868
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7313
+Next Point  X = 39.622679
+Next Point  Y = 7.435868
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Point  X = 39.938394
+Point  Y = 7.656934
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7290
+Next Point  X = 39.938394
+Next Point  Y = 7.656934
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7297
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 26.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7395
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 26.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7385
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 13.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7431
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 13.625107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 8.362291
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7441
+Next Point  X = 38.803527
+Next Point  Y = 8.362291
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 13.916667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7477
+Next Point  X = 38.803527
+Next Point  Y = 13.916667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 37.303527
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7487
+Next Point  X = 37.303527
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 20.159350
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8197
+Next Point  X = 20.159350
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 10.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7533
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 10.625107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 9.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7592
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 9.645833
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7506
+Point  X = 7.251191
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8163
+Next Point  X = 7.251191
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM CRANE
+Element ID  = 7543
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.979167
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7582
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.979167
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7552
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.645833
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 7566
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.645833
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.190889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Next Point  X = 44.375468
+Next Point  Y = 16.190889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7718
+Next Point  X = 44.375468
+Next Point  Y = 16.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Point  X = 44.375468
+Point  Y = 16.180473
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7669
+Next Point  X = 44.375468
+Next Point  Y = 16.180473
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7702
+Point  X = 43.375468
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7738
+Next Point  X = 43.375468
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7728
+Point  X = 38.069108
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7774
+Next Point  X = 38.069108
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 25.833333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7784
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 25.833333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7820
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 35.069108
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7830
+Next Point  X = 35.069108
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 31.915516
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7866
+Next Point  X = 31.915516
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7849
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7916
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7906
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7952
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 28.915516
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7962
+Next Point  X = 28.915516
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 26.574836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8082
+Next Point  X = 26.574836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7972
+Point  X = 20.748031
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8008
+Next Point  X = 20.748031
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7981
+Point  X = 22.248031
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8028
+Next Point  X = 22.248031
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8018
+Point  X = 24.637336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8121
+Next Point  X = 24.637336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 26.189419
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8075
+Next Point  X = 26.189419
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 25.022753
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8114
+Next Point  X = 25.022753
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8053
+Point  X = 26.199836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8066
+Next Point  X = 26.199836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8092
+Point  X = 25.012336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8105
+Next Point  X = 25.012336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8153
+Point  X = 18.492684
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8208
+Next Point  X = 18.492684
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 2 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 8173
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 11.291774
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8294
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 11.291774
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8284
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 5.583434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8330
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 5.583434
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8304
+Point  X = 19.326017
+Point  Y = 16.916667
+Point  Z = 4.083434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8340
+Next Point  X = 19.326017
+Next Point  Y = 16.916667
+Next Point  Z = 4.083434
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9057
+Point  X = 9.362505
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9352
+Next Point  X = 9.362505
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9085
+Point  X = 9.362505
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9152
+Next Point  X = 9.362505
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.357296
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9143
+Next Point  X = 9.357296
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.648963
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9840
+Next Point  X = 9.648963
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.357296
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9343
+Next Point  X = 9.357296
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.648963
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10220
+Next Point  X = 9.648963
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.906250
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.906250
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9414
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.531250
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.916667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 9391
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.916667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9398
+Point  X = 29.222441
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9475
+Next Point  X = 29.222441
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9465
+Point  X = 16.248031
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9501
+Next Point  X = 16.248031
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9485
+Point  X = 14.748031
+Point  Y = 39.370079
+Point  Z = 7.031250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9535
+Next Point  X = 14.748031
+Next Point  Y = 39.370079
+Next Point  Z = 7.031250
+
+Port Name  = Port 0 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9511
+Point  X = 14.748031
+Point  Y = 40.203412
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9727
+Next Point  X = 14.748031
+Next Point  Y = 40.203412
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Point  X = 14.748031
+Point  Y = 41.203412
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Next Point  X = 14.748031
+Next Point  Y = 41.203412
+Next Point  Z = 3.750000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9717
+Point  X = 14.748031
+Point  Y = 40.570369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9763
+Next Point  X = 14.748031
+Next Point  Y = 40.570369
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9773
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9809
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 13.248031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9819
+Next Point  X = 13.248031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 12.740115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10037
+Next Point  X = 12.740115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9829
+Point  X = 10.315630
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9983
+Next Point  X = 10.315630
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9973
+Point  X = 10.802615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10076
+Next Point  X = 10.802615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 12.354698
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10030
+Next Point  X = 12.354698
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 11.188031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10069
+Next Point  X = 11.188031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10008
+Point  X = 12.365115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10021
+Next Point  X = 12.365115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10047
+Point  X = 11.177615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10060
+Next Point  X = 11.177615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10153
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10189
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 13.248031
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10199
+Next Point  X = 13.248031
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 12.789979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10304
+Next Point  X = 12.789979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10209
+Point  X = 10.315630
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10250
+Next Point  X = 10.315630
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10240
+Point  X = 10.852479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10343
+Next Point  X = 10.852479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 12.404563
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10297
+Next Point  X = 12.404563
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 11.237896
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10336
+Next Point  X = 11.237896
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10275
+Point  X = 12.414979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10288
+Next Point  X = 12.414979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10314
+Point  X = 11.227479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10327
+Next Point  X = 11.227479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10608
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10396
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.916667
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10474
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10424
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.916667
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10464
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.170829
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11138
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.170829
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 41.320369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10520
+Next Point  X = 8.440630
+Next Point  Y = 41.320369
+Next Point  Z = 6.197917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 39.973686
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10806
+Next Point  X = 8.440630
+Next Point  Y = 39.973686
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10493
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11084
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10598
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.200621
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11003
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.200621
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10949
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.992225
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10772
+Next Point  X = 8.440630
+Next Point  Y = 37.992225
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10762
+Point  X = 8.440630
+Point  Y = 39.037019
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10817
+Next Point  X = 8.440630
+Next Point  Y = 39.037019
+Next Point  Z = 6.197917
+
+Port Name  = Port 2 Element: Equal Pipe Tee 6 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 10782
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 6.666250
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10837
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 6.666250
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10827
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 10.866511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10873
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 10.866511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 9.190630
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10883
+Next Point  X = 9.190630
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 16.378273
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10919
+Next Point  X = 16.378273
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10893
+Point  X = 17.128273
+Point  Y = 39.505353
+Point  Z = 12.366511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10929
+Next Point  X = 17.128273
+Next Point  Y = 39.505353
+Next Point  Z = 12.366511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10939
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.648538
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11042
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.648538
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.487080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 10996
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.487080
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.362080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11035
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.362080
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10974
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.481871
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10987
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.481871
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11013
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.367288
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11026
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.367288
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 11074
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.618746
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11177
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.618746
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.457287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11131
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.457287
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.332287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11170
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.332287
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11109
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.452079
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11122
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.452079
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11148
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.337496
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11161
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.337496
+
+Port Name  = Port 0 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.677083
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.677083
+
+Port Name  = Port 1 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.635417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 7575
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.635417
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.666667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 2246
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.666667
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 18.865547
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 18.865547
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.093750
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.093750
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.260417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4977
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.260417
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.083333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4911
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.083333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 4984
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.645833
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5029
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 4951
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.270833
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4968
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.270833
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 40.805774
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5039
+Next Point  X = 40.805774
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 22.248031
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5084
+Next Point  X = 22.248031
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5094
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 12.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5139
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 12.913778
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 37.870079
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5149
+Next Point  X = 20.748031
+Next Point  Y = 37.870079
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 24.000000
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5205
+Next Point  X = 20.748031
+Next Point  Y = 24.000000
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5181
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 9.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5424
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 9.913778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5412
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 8.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5469
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 8.712527
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 19.248031
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5479
+Next Point  X = 19.248031
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 11.764096
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5524
+Next Point  X = 11.764096
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5500
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5622
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.712527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5610
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.030347
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6013
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.030347
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.989583
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.989583
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.656250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6416
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.656250
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 2.000000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 5834
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 2.000000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Point  X = 7.251191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Next Point  X = 7.251191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.092847
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6056
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.092847
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 2.577133
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6211
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 2.577133
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.644931
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6006
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.644931
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.478264
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6049
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.478264
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5980
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.655347
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 5997
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.655347
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6023
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.467847
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 6040
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.467847
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Point  X = 6.751191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Next Point  X = 6.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6400
+Point  X = 6.417858
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6482
+Next Point  X = 6.417858
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6446
+Point  X = 9.264096
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6471
+Next Point  X = 9.264096
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.072917
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6577
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.072917
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.416667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 6536
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.416667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6561
+Point  X = 6.417858
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6597
+Next Point  X = 6.417858
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6587
+Point  X = 10.656982
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6633
+Next Point  X = 10.656982
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6643
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 7.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6679
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 7.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6662
+Point  X = 12.656982
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6709
+Next Point  X = 12.656982
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6699
+Point  X = 22.417032
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6745
+Next Point  X = 22.417032
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6728
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 9.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7019
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 9.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7009
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7055
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 14.333333
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7065
+Next Point  X = 23.417032
+Next Point  Y = 14.333333
+Next Point  Z = 14.333332
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 52.576559
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7101
+Next Point  X = 23.417032
+Next Point  Y = 52.576559
+Next Point  Z = 14.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7075
+Point  X = 23.417032
+Point  Y = 53.576559
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7111
+Next Point  X = 23.417032
+Next Point  Y = 53.576559
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.929861
+Point  Y = 7.650959
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Next Point  X = 39.929861
+Next Point  Y = 7.650959
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.622679
+Point  Y = 7.435868
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7313
+Next Point  X = 39.622679
+Next Point  Y = 7.435868
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Point  X = 39.938394
+Point  Y = 7.656934
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7290
+Next Point  X = 39.938394
+Next Point  Y = 7.656934
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7297
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 26.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7395
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 26.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7385
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 13.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7431
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 13.625107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 8.362291
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7441
+Next Point  X = 38.803527
+Next Point  Y = 8.362291
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 13.916667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7477
+Next Point  X = 38.803527
+Next Point  Y = 13.916667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 37.303527
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7487
+Next Point  X = 37.303527
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 20.159350
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8197
+Next Point  X = 20.159350
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 10.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7533
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 10.625107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 9.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7592
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 9.645833
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7506
+Point  X = 7.251191
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8163
+Next Point  X = 7.251191
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM CRANE
+Element ID  = 7543
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.979167
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7582
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.979167
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7552
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.645833
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 7566
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.645833
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.190889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Next Point  X = 44.375468
+Next Point  Y = 16.190889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7718
+Next Point  X = 44.375468
+Next Point  Y = 16.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Point  X = 44.375468
+Point  Y = 16.180473
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7669
+Next Point  X = 44.375468
+Next Point  Y = 16.180473
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7702
+Point  X = 43.375468
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7738
+Next Point  X = 43.375468
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7728
+Point  X = 38.069108
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7774
+Next Point  X = 38.069108
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 25.833333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7784
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 25.833333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7820
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 35.069108
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7830
+Next Point  X = 35.069108
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 31.915516
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7866
+Next Point  X = 31.915516
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7849
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7916
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7906
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7952
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 28.915516
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7962
+Next Point  X = 28.915516
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 26.574836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8082
+Next Point  X = 26.574836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7972
+Point  X = 20.748031
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8008
+Next Point  X = 20.748031
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7981
+Point  X = 22.248031
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8028
+Next Point  X = 22.248031
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8018
+Point  X = 24.637336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8121
+Next Point  X = 24.637336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 26.189419
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8075
+Next Point  X = 26.189419
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 25.022753
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8114
+Next Point  X = 25.022753
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8053
+Point  X = 26.199836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8066
+Next Point  X = 26.199836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8092
+Point  X = 25.012336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8105
+Next Point  X = 25.012336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8153
+Point  X = 18.492684
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8208
+Next Point  X = 18.492684
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 2 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 8173
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 11.291774
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8294
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 11.291774
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8284
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 5.583434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8330
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 5.583434
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8304
+Point  X = 19.326017
+Point  Y = 16.916667
+Point  Z = 4.083434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8340
+Next Point  X = 19.326017
+Next Point  Y = 16.916667
+Next Point  Z = 4.083434
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9057
+Point  X = 9.362505
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9352
+Next Point  X = 9.362505
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9085
+Point  X = 9.362505
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9152
+Next Point  X = 9.362505
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.357296
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9143
+Next Point  X = 9.357296
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.648963
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9840
+Next Point  X = 9.648963
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.357296
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9343
+Next Point  X = 9.357296
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.648963
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10220
+Next Point  X = 9.648963
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.906250
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.906250
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9414
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.531250
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.916667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 9391
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.916667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9398
+Point  X = 29.222441
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9475
+Next Point  X = 29.222441
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9465
+Point  X = 16.248031
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9501
+Next Point  X = 16.248031
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9485
+Point  X = 14.748031
+Point  Y = 39.370079
+Point  Z = 7.031250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9535
+Next Point  X = 14.748031
+Next Point  Y = 39.370079
+Next Point  Z = 7.031250
+
+Port Name  = Port 0 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9511
+Point  X = 14.748031
+Point  Y = 40.203412
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9727
+Next Point  X = 14.748031
+Next Point  Y = 40.203412
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Point  X = 14.748031
+Point  Y = 41.203412
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Next Point  X = 14.748031
+Next Point  Y = 41.203412
+Next Point  Z = 3.750000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9717
+Point  X = 14.748031
+Point  Y = 40.570369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9763
+Next Point  X = 14.748031
+Next Point  Y = 40.570369
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9773
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9809
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 13.248031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9819
+Next Point  X = 13.248031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 12.740115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10037
+Next Point  X = 12.740115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9829
+Point  X = 10.315630
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9983
+Next Point  X = 10.315630
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9973
+Point  X = 10.802615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10076
+Next Point  X = 10.802615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 12.354698
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10030
+Next Point  X = 12.354698
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 11.188031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10069
+Next Point  X = 11.188031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10008
+Point  X = 12.365115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10021
+Next Point  X = 12.365115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10047
+Point  X = 11.177615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10060
+Next Point  X = 11.177615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10153
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10189
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 13.248031
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10199
+Next Point  X = 13.248031
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 12.789979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10304
+Next Point  X = 12.789979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10209
+Point  X = 10.315630
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10250
+Next Point  X = 10.315630
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10240
+Point  X = 10.852479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10343
+Next Point  X = 10.852479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 12.404563
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10297
+Next Point  X = 12.404563
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 11.237896
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10336
+Next Point  X = 11.237896
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10275
+Point  X = 12.414979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10288
+Next Point  X = 12.414979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10314
+Point  X = 11.227479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10327
+Next Point  X = 11.227479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10608
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10396
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.916667
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10474
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10424
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.916667
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10464
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.170829
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11138
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.170829
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 41.320369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10520
+Next Point  X = 8.440630
+Next Point  Y = 41.320369
+Next Point  Z = 6.197917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 39.973686
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10806
+Next Point  X = 8.440630
+Next Point  Y = 39.973686
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10493
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11084
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10598
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.200621
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11003
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.200621
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10949
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.992225
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10772
+Next Point  X = 8.440630
+Next Point  Y = 37.992225
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10762
+Point  X = 8.440630
+Point  Y = 39.037019
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10817
+Next Point  X = 8.440630
+Next Point  Y = 39.037019
+Next Point  Z = 6.197917
+
+Port Name  = Port 2 Element: Equal Pipe Tee 6 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 10782
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 6.666250
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10837
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 6.666250
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10827
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 10.866511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10873
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 10.866511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 9.190630
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10883
+Next Point  X = 9.190630
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 16.378273
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10919
+Next Point  X = 16.378273
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10893
+Point  X = 17.128273
+Point  Y = 39.505353
+Point  Z = 12.366511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10929
+Next Point  X = 17.128273
+Next Point  Y = 39.505353
+Next Point  Z = 12.366511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10939
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.648538
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11042
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.648538
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.487080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 10996
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.487080
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.362080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11035
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.362080
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10974
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.481871
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10987
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.481871
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11013
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.367288
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11026
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.367288
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 11074
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.618746
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11177
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.618746
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.457287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11131
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.457287
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.332287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11170
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.332287
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11109
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.452079
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11122
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.452079
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11148
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.337496
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11161
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.337496
+
+Port Name  = Port 0 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.677083
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.677083
+
+Port Name  = Port 1 Element: GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 2221
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.635417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 7575
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.635417
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 2237
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 7.666667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 2246
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 7.666667
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 18.865547
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 3141
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 18.865547
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.093750
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.093750
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 4878
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.260417
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4977
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.260417
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4902
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 19.083333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 4911
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 19.083333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 4984
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.645833
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4940
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5029
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 4951
+Point  X = 42.305774
+Point  Y = 39.370079
+Point  Z = 20.270833
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 4968
+Next Point  X = 42.305774
+Next Point  Y = 39.370079
+Next Point  Z = 20.270833
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 40.805774
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5039
+Next Point  X = 40.805774
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 4994
+Point  X = 22.248031
+Point  Y = 39.370079
+Point  Z = 24.347697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5084
+Next Point  X = 22.248031
+Next Point  Y = 39.370079
+Next Point  Z = 24.347697
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 22.847697
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5094
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 22.847697
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5049
+Point  X = 20.748031
+Point  Y = 39.370079
+Point  Z = 12.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5139
+Next Point  X = 20.748031
+Next Point  Y = 39.370079
+Next Point  Z = 12.913778
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 37.870079
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5149
+Next Point  X = 20.748031
+Next Point  Y = 37.870079
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5104
+Point  X = 20.748031
+Point  Y = 24.000000
+Point  Z = 11.413778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5205
+Next Point  X = 20.748031
+Next Point  Y = 24.000000
+Next Point  Z = 11.413778
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5181
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 9.913778
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5424
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 9.913778
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5412
+Point  X = 20.748031
+Point  Y = 22.500000
+Point  Z = 8.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5469
+Next Point  X = 20.748031
+Next Point  Y = 22.500000
+Next Point  Z = 8.712527
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 19.248031
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5479
+Next Point  X = 19.248031
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5434
+Point  X = 11.764096
+Point  Y = 22.500000
+Point  Z = 7.212527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5524
+Next Point  X = 11.764096
+Next Point  Y = 22.500000
+Next Point  Z = 7.212527
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5500
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.712527
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 5622
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.712527
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5610
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 5.030347
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6013
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 5.030347
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.989583
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.989583
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5813
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 1.656250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6416
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.656250
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 5825
+Point  X = 5.751191
+Point  Y = 22.500000
+Point  Z = 2.000000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 5834
+Next Point  X = 5.751191
+Next Point  Y = 22.500000
+Next Point  Z = 2.000000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Point  X = 7.251191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5874
+Next Point  X = 7.251191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.092847
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6056
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.092847
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 5935
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 2.577133
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 6211
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 2.577133
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.644931
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6006
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.644931
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 5957
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.478264
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 6049
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.478264
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 5980
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 4.655347
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 5997
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 4.655347
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6023
+Point  X = 10.264096
+Point  Y = 22.500000
+Point  Z = 3.467847
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 6040
+Next Point  X = 10.264096
+Next Point  Y = 22.500000
+Next Point  Z = 3.467847
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Point  X = 6.751191
+Point  Y = 22.500000
+Point  Z = 1.077133
+
+Next Connected Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6303
+Next Point  X = 6.751191
+Next Point  Y = 22.500000
+Next Point  Z = 1.077133
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6400
+Point  X = 6.417858
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6482
+Next Point  X = 6.417858
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6446
+Point  X = 9.264096
+Point  Y = 22.500000
+Point  Z = 0.989583
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6471
+Next Point  X = 9.264096
+Next Point  Y = 22.500000
+Next Point  Z = 0.989583
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 6515
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.072917
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6577
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.072917
+
+Port Name  = Port 0 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 6527
+Point  X = 5.751191
+Point  Y = 13.333333
+Point  Z = 2.416667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 8 IN AWWA / C115
+Element ID  = 6536
+Next Point  X = 5.751191
+Next Point  Y = 13.333333
+Next Point  Z = 2.416667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 8 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 6561
+Point  X = 6.417858
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6597
+Next Point  X = 6.417858
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6587
+Point  X = 10.656982
+Point  Y = 13.333333
+Point  Z = 1.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6633
+Next Point  X = 10.656982
+Next Point  Y = 13.333333
+Next Point  Z = 1.406250
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 2.406250
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6643
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 2.406250
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6607
+Point  X = 11.656982
+Point  Y = 13.333333
+Point  Z = 7.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6679
+Next Point  X = 11.656982
+Next Point  Y = 13.333333
+Next Point  Z = 7.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6662
+Point  X = 12.656982
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6709
+Next Point  X = 12.656982
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6699
+Point  X = 22.417032
+Point  Y = 13.333333
+Point  Z = 8.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 6745
+Next Point  X = 22.417032
+Next Point  Y = 13.333333
+Next Point  Z = 8.572857
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 6728
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 9.572857
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7019
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 9.572857
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7009
+Point  X = 23.417032
+Point  Y = 13.333333
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7055
+Next Point  X = 23.417032
+Next Point  Y = 13.333333
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 14.333333
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7065
+Next Point  X = 23.417032
+Next Point  Y = 14.333333
+Next Point  Z = 14.333332
+
+Port Name  = Port 1 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7029
+Point  X = 23.417032
+Point  Y = 52.576559
+Point  Z = 14.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7101
+Next Point  X = 23.417032
+Next Point  Y = 52.576559
+Next Point  Z = 14.333332
+
+Port Name  = Port 0 Element: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7075
+Point  X = 23.417032
+Point  Y = 53.576559
+Point  Z = 13.333332
+
+Next Connected Port Name  = Port 0 Element:  8  U-S-1-EX-OPM
+Element ID  = 7111
+Next Point  X = 23.417032
+Next Point  Y = 53.576559
+Next Point  Z = 13.333332
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.929861
+Point  Y = 7.650959
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Next Point  X = 39.929861
+Next Point  Y = 7.650959
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7269
+Point  X = 39.622679
+Point  Y = 7.435868
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7313
+Next Point  X = 39.622679
+Next Point  Y = 7.435868
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7281
+Point  X = 39.938394
+Point  Y = 7.656934
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7290
+Next Point  X = 39.938394
+Next Point  Y = 7.656934
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7297
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 26.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7395
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 26.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7385
+Point  X = 38.803527
+Point  Y = 6.862291
+Point  Z = 13.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7431
+Next Point  X = 38.803527
+Next Point  Y = 6.862291
+Next Point  Z = 13.625107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 8.362291
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7441
+Next Point  X = 38.803527
+Next Point  Y = 8.362291
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7405
+Point  X = 38.803527
+Point  Y = 13.916667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7477
+Next Point  X = 38.803527
+Next Point  Y = 13.916667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 37.303527
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7487
+Next Point  X = 37.303527
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7451
+Point  X = 20.159350
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8197
+Next Point  X = 20.159350
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 10.625107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7533
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 10.625107
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7497
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 9.645833
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7592
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 9.645833
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7506
+Point  X = 7.251191
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8163
+Next Point  X = 7.251191
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 1 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM CRANE
+Element ID  = 7543
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.979167
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7582
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.979167
+
+Port Name  = Port 0 Element: Weld Neck Flange 8 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7552
+Point  X = 5.751191
+Point  Y = 15.416667
+Point  Z = 8.645833
+
+Next Connected Port Name  = Port 1 Element: GASKET 8 IN NON-STANDARD
+Element ID  = 7566
+Next Point  X = 5.751191
+Next Point  Y = 15.416667
+Next Point  Z = 8.645833
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.190889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Next Point  X = 44.375468
+Next Point  Y = 16.190889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 7648
+Point  X = 44.375468
+Point  Y = 16.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7718
+Next Point  X = 44.375468
+Next Point  Y = 16.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 7660
+Point  X = 44.375468
+Point  Y = 16.180473
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 7669
+Next Point  X = 44.375468
+Next Point  Y = 16.180473
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 7702
+Point  X = 43.375468
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7738
+Next Point  X = 43.375468
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7728
+Point  X = 38.069108
+Point  Y = 17.565889
+Point  Z = 27.333333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7774
+Next Point  X = 38.069108
+Next Point  Y = 17.565889
+Next Point  Z = 27.333333
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 25.833333
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7784
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 25.833333
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7748
+Point  X = 36.569108
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7820
+Next Point  X = 36.569108
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 35.069108
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7830
+Next Point  X = 35.069108
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7794
+Point  X = 31.915516
+Point  Y = 17.565889
+Point  Z = 17.765278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7866
+Next Point  X = 31.915516
+Next Point  Y = 17.565889
+Next Point  Z = 17.765278
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7849
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 19.265278
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7916
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 19.265278
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7906
+Point  X = 30.415516
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7952
+Next Point  X = 30.415516
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 28.915516
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 7962
+Next Point  X = 28.915516
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7926
+Point  X = 26.574836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8082
+Next Point  X = 26.574836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7972
+Point  X = 20.748031
+Point  Y = 17.565889
+Point  Z = 28.745371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8008
+Next Point  X = 20.748031
+Next Point  Y = 17.565889
+Next Point  Z = 28.745371
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 7981
+Point  X = 22.248031
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8028
+Next Point  X = 22.248031
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8018
+Point  X = 24.637336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8121
+Next Point  X = 24.637336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 26.189419
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8075
+Next Point  X = 26.189419
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 8038
+Point  X = 25.022753
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 8114
+Next Point  X = 25.022753
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8053
+Point  X = 26.199836
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8066
+Next Point  X = 26.199836
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 8092
+Point  X = 25.012336
+Point  Y = 17.565889
+Point  Z = 30.245371
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 8105
+Next Point  X = 25.012336
+Next Point  Y = 17.565889
+Next Point  Z = 30.245371
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8153
+Point  X = 18.492684
+Point  Y = 15.416667
+Point  Z = 12.125107
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8208
+Next Point  X = 18.492684
+Next Point  Y = 15.416667
+Next Point  Z = 12.125107
+
+Port Name  = Port 2 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 8173
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 11.291774
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8294
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 11.291774
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8284
+Point  X = 19.326017
+Point  Y = 15.416667
+Point  Z = 5.583434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8330
+Next Point  X = 19.326017
+Next Point  Y = 15.416667
+Next Point  Z = 5.583434
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 8304
+Point  X = 19.326017
+Point  Y = 16.916667
+Point  Z = 4.083434
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 8340
+Next Point  X = 19.326017
+Next Point  Y = 16.916667
+Next Point  Z = 4.083434
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9057
+Point  X = 9.362505
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9352
+Next Point  X = 9.362505
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9085
+Point  X = 9.362505
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 9152
+Next Point  X = 9.362505
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.357296
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9143
+Next Point  X = 9.357296
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9124
+Point  X = 9.648963
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9840
+Next Point  X = 9.648963
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.357296
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 9343
+Next Point  X = 9.357296
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9324
+Point  X = 9.648963
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10220
+Next Point  X = 9.648963
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.906250
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.906250
+
+Port Name  = Port 1 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9370
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9414
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.531250
+
+Port Name  = Port 0 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 9382
+Point  X = 30.222441
+Point  Y = 39.370079
+Point  Z = 9.916667
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 9391
+Next Point  X = 30.222441
+Next Point  Y = 39.370079
+Next Point  Z = 9.916667
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Short Radius 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9398
+Point  X = 29.222441
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9475
+Next Point  X = 29.222441
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9465
+Point  X = 16.248031
+Point  Y = 39.370079
+Point  Z = 8.531250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9501
+Next Point  X = 16.248031
+Next Point  Y = 39.370079
+Next Point  Z = 8.531250
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9485
+Point  X = 14.748031
+Point  Y = 39.370079
+Point  Z = 7.031250
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9535
+Next Point  X = 14.748031
+Next Point  Y = 39.370079
+Next Point  Z = 7.031250
+
+Port Name  = Port 0 Element: Equal Pipe Tee 12 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 9511
+Point  X = 14.748031
+Point  Y = 40.203412
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9727
+Next Point  X = 14.748031
+Next Point  Y = 40.203412
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Point  X = 14.748031
+Point  Y = 41.203412
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9646
+Next Point  X = 14.748031
+Next Point  Y = 41.203412
+Next Point  Z = 3.750000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9717
+Point  X = 14.748031
+Point  Y = 40.570369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9763
+Next Point  X = 14.748031
+Next Point  Y = 40.570369
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9773
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9737
+Point  X = 14.748031
+Point  Y = 42.070369
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9809
+Next Point  X = 14.748031
+Next Point  Y = 42.070369
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 13.248031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9819
+Next Point  X = 13.248031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9783
+Point  X = 12.740115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10037
+Next Point  X = 12.740115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 9829
+Point  X = 10.315630
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 9983
+Next Point  X = 10.315630
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 9973
+Point  X = 10.802615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10076
+Next Point  X = 10.802615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 12.354698
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10030
+Next Point  X = 12.354698
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 9993
+Point  X = 11.188031
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10069
+Next Point  X = 11.188031
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10008
+Point  X = 12.365115
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10021
+Next Point  X = 12.365115
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10047
+Point  X = 11.177615
+Point  Y = 42.070369
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10060
+Next Point  X = 11.177615
+Next Point  Y = 42.070369
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 4.697917
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10153
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 4.697917
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10128
+Point  X = 14.748031
+Point  Y = 37.242225
+Point  Z = 3.750000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10189
+Next Point  X = 14.748031
+Next Point  Y = 37.242225
+Next Point  Z = 3.750000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 13.248031
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10199
+Next Point  X = 13.248031
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10163
+Point  X = 12.789979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10304
+Next Point  X = 12.789979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Concentric Pipe Reducer 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10209
+Point  X = 10.315630
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10250
+Next Point  X = 10.315630
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Pipe 12 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10240
+Point  X = 10.852479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element:  12  U-S-1-EX-OPM
+Element ID  = 10343
+Next Point  X = 10.852479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 12.404563
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10297
+Next Point  X = 12.404563
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 1 Element: GATE VALVE 12 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10260
+Point  X = 11.237896
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 12 IN AWWA / C115
+Element ID  = 10336
+Next Point  X = 11.237896
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10275
+Point  X = 12.414979
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10288
+Next Point  X = 12.414979
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 12 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10314
+Point  X = 11.227479
+Point  Y = 37.242225
+Point  Z = 2.250000
+
+Next Connected Port Name  = Port 1 Element: GASKET 12 IN NON-STANDARD
+Element ID  = 10327
+Next Point  X = 11.227479
+Next Point  Y = 37.242225
+Next Point  Z = 2.250000
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10375
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10608
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10387
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10396
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 3.916667
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.921875
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.921875
+
+Port Name  = Port 1 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10403
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.213542
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10474
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.213542
+
+Port Name  = Port 0 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10415
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 3.916667
+
+Next Connected Port Name  = Port 0 Element: 
+Element ID  = 10424
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 3.916667
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10464
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.170829
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11138
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.170829
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 41.320369
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10520
+Next Point  X = 8.440630
+Next Point  Y = 41.320369
+Next Point  Z = 6.197917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10484
+Point  X = 8.440630
+Point  Y = 39.973686
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10806
+Next Point  X = 8.440630
+Next Point  Y = 39.973686
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10493
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11084
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10598
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.200621
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11003
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.200621
+
+Port Name  = Port 0 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.447917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10949
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.447917
+
+Port Name  = Port 1 Element: Pipe Elbow 90 Degree Long Radius 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10627
+Point  X = 8.440630
+Point  Y = 37.992225
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10772
+Next Point  X = 8.440630
+Next Point  Y = 37.992225
+Next Point  Z = 6.197917
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10762
+Point  X = 8.440630
+Point  Y = 39.037019
+Point  Z = 6.197917
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10817
+Next Point  X = 8.440630
+Next Point  Y = 39.037019
+Next Point  Z = 6.197917
+
+Port Name  = Port 2 Element: Equal Pipe Tee 6 IN U-S-1-EX-OPM ASME - B16.9
+Element ID  = 10782
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 6.666250
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10837
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 6.666250
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10827
+Point  X = 8.440630
+Point  Y = 39.505353
+Point  Z = 10.866511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10873
+Next Point  X = 8.440630
+Next Point  Y = 39.505353
+Next Point  Z = 10.866511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 9.190630
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10883
+Next Point  X = 9.190630
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 1 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10847
+Point  X = 16.378273
+Point  Y = 39.505353
+Point  Z = 11.616511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10919
+Next Point  X = 16.378273
+Next Point  Y = 39.505353
+Next Point  Z = 11.616511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10893
+Point  X = 17.128273
+Point  Y = 39.505353
+Point  Z = 12.366511
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 10929
+Next Point  X = 17.128273
+Next Point  Y = 39.505353
+Next Point  Z = 12.366511
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 10939
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.648538
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11042
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.648538
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.487080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 10996
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.487080
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 10959
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.362080
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11035
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.362080
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 10974
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 4.481871
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 10987
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 4.481871
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11013
+Point  X = 8.440630
+Point  Y = 37.242225
+Point  Z = 5.367288
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11026
+Next Point  X = 8.440630
+Next Point  Y = 37.242225
+Next Point  Z = 5.367288
+
+Port Name  = Port 0 Element: Pipe 6 IN U-S-1-EX-OPM ASME - B36.10
+Element ID  = 11074
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.618746
+
+Next Connected Port Name  = Port 0 Element:  6  U-S-1-EX-OPM
+Element ID  = 11177
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.618746
+
+Port Name  = Port 0 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.457287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11131
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.457287
+
+Port Name  = Port 1 Element: GATE VALVE 6 IN U-S-1-EX-OPM HAND_WHEEL
+Element ID  = 11094
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.332287
+
+Next Connected Port Name  = Port 0 Element: MACHINE BOLT 6 IN ASTM A307
+Element ID  = 11170
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.332287
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11109
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 4.452079
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11122
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 4.452079
+
+Port Name  = Port 0 Element: Weld Neck Flange 6 IN U-S-1-EX-OPM ASME - B16.5
+Element ID  = 11148
+Point  X = 8.440630
+Point  Y = 42.070369
+Point  Z = 5.337496
+
+Next Connected Port Name  = Port 1 Element: Gasket 6 IN ASME - B16.21
+Element ID  = 11161
+Next Point  X = 8.440630
+Next Point  Y = 42.070369
+Next Point  Z = 5.337496
+

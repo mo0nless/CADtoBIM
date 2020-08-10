@@ -11,9 +11,7 @@ void IfcColorEnhancer::enhanceColors(std::vector<IfcElementBundle*>& ifcBundleVe
 
 void IfcColorEnhancer::processColour(IfcElementBundle& ifcElementBundle,IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	if (dynamic_cast<Ifc4::IfcCurve*>(ifcGraphicPropertiesBundle.getIfcRepresentationItem()) == nullptr) {
-		return;
-	}
+
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	Ifc4::IfcColourRgb* ifcColour = buildIfcColor(ifcGraphicPropertiesBundle.getColor());
@@ -21,25 +19,25 @@ void IfcColorEnhancer::processColour(IfcElementBundle& ifcElementBundle,IfcGraph
 	IfcEntityList* ifcSurfaceStyleList = new IfcEntityList();
 
 
-	if (dynamic_cast<Ifc4::IfcCurve*>(ifcGraphicPropertiesBundle.getIfcRepresentationItem()) != nullptr) {
+	//if (dynamic_cast<Ifc4::IfcCurve*>(ifcGraphicPropertiesBundle.getIfcRepresentationItem()) != nullptr) {
 
 
-		//Ifc4::IfcCurveStyleFontPattern* csfp = new Ifc4::IfcCurveStyleFontPattern(1, 0);
-		//IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>* entityListCurve = new IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>();
-		//entityListCurve->push(csfp);
-		//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>> ceva_cacat(entityListCurve);
+	//	//Ifc4::IfcCurveStyleFontPattern* csfp = new Ifc4::IfcCurveStyleFontPattern(1, 0);
+	//	//IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>* entityListCurve = new IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>();
+	//	//entityListCurve->push(csfp);
+	//	//boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurveStyleFontPattern>> ceva_cacat(entityListCurve);
 
-		//Ifc4::IfcCurveStyleFont* ss = new Ifc4::IfcCurveStyleFont(std::string("font"), ceva_cacat);
-		Ifc4::IfcPreDefinedCurveFont* pdcf = new Ifc4::IfcPreDefinedCurveFont("predefinedFont");
-		//Ifc4::IfcRatioMeasure * rm = new Ifc4::IfcRatioMeasure(5.0);
-		Ifc4::IfcDescriptiveMeasure* dm = new Ifc4::IfcDescriptiveMeasure("descriptiveMeasure");
+	//	//Ifc4::IfcCurveStyleFont* ss = new Ifc4::IfcCurveStyleFont(std::string("font"), ceva_cacat);
+	//	Ifc4::IfcPreDefinedCurveFont* pdcf = new Ifc4::IfcPreDefinedCurveFont("predefinedFont");
+	//	//Ifc4::IfcRatioMeasure * rm = new Ifc4::IfcRatioMeasure(5.0);
+	//	Ifc4::IfcDescriptiveMeasure* dm = new Ifc4::IfcDescriptiveMeasure("descriptiveMeasure");
 
-		Ifc4::IfcCurveStyle* curveStyle = new Ifc4::IfcCurveStyle(std::string("style"), dm, pdcf, ifcColour, true);
-		
-		ifcSurfaceStyleList->push(curveStyle);
-		file.addEntity(curveStyle);
-	}
-	else {
+	//	Ifc4::IfcCurveStyle* curveStyle = new Ifc4::IfcCurveStyle(std::string("style"), dm, pdcf, ifcColour, true);
+	//	
+	//	ifcSurfaceStyleList->push(curveStyle);
+	//	file.addEntity(curveStyle);
+	//}
+	//else {
 		Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(ifcColour,
 			ifcGraphicPropertiesBundle.getTransparency(), new Ifc4::IfcNormalisedRatioMeasure(1),
 			new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),
@@ -54,7 +52,7 @@ void IfcColorEnhancer::processColour(IfcElementBundle& ifcElementBundle,IfcGraph
 		
 		ifcSurfaceStyleList->push(ifcSurfaceStyle);
 		file.addEntity(ifcSurfaceStyle);
-	}
+	//}
 
 	boost::shared_ptr<IfcEntityList> ifcSurfaceStyleSharedList(ifcSurfaceStyleList);
 	Ifc4::IfcPresentationStyleAssignment* ifcPresentationStyleAssignment = new Ifc4::IfcPresentationStyleAssignment(ifcSurfaceStyleSharedList);
@@ -70,15 +68,12 @@ void IfcColorEnhancer::processColour(IfcElementBundle& ifcElementBundle,IfcGraph
 	file.addEntity(ifcStyledItem);
 	styledItemList->push(ifcStyledItem);
 
-	//Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcElementBundle.getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(), IfcPresentationStyleAssignmentList, boost::none);
-	//file.addEntity(ifcStyledItem);
-	//styledItemList->push(ifcStyledItem);
 	Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), boost::none,
 		boost::none, styledItemList);
 	file.addEntity(ifcStyledRepresentation);
 
 
-	/*IfcTemplatedEntityList<Ifc4::IfcRepresentation>* ceva1 = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
+	IfcTemplatedEntityList<Ifc4::IfcRepresentation>* ceva1 = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
 	ceva1->push(ifcStyledRepresentation);
 	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> unitEntity7(ceva1);
 	Ifc4::IfcMaterial* ifcMaterial = new Ifc4::IfcMaterial("Material", boost::none, boost::none);
@@ -92,7 +87,7 @@ void IfcColorEnhancer::processColour(IfcElementBundle& ifcElementBundle,IfcGraph
 	boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
 	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId("ElementAssociatesMaterial"), file.getSingle<Ifc4::IfcOwnerHistory>(),
 		boost::none, boost::none, unitEntity8, ifcMaterial);
-	file.addEntity(ifcRelAssociatesMaterial);*/
+	file.addEntity(ifcRelAssociatesMaterial);
 }
 
 Ifc4::IfcColourRgb * IfcColorEnhancer::buildIfcColor(UInt32 color)
