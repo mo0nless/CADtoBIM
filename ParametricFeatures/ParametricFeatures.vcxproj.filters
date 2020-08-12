@@ -80,6 +80,7 @@
     <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ExtrusionGraphicProperties.cpp" />
     <ClCompile Include="sources\SessionManager.cpp" />
+    <ClCompile Include="sources\ModelerDataWriterManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -176,5 +177,6 @@
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
     <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
     <ClInclude Include="headers\SessionManager.h" />
+    <ClInclude Include="headers\ModelerDataWriterManager.h" />
   </ItemGroup>
 </Project>

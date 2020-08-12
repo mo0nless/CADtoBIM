@@ -24,11 +24,10 @@ public:
 	}
 
 	string getDataOutputFilePath();
-
 	void setDataOutputFilePath(string dataOutputFilePath);
 
 
 	string getIfcOutputFilePath();
-
 	void setIfcOutputFilePath(string ifcOutputFilePath);
+
 };

@@ -17,7 +17,8 @@
 #include "PolyfaceConvertTool.h"
 #include <math.h>
 
-#include "../../headers/SessionManager.h"
+//#include "../../headers/SessionManager.h"
+#include "../../headers/ModelerDataWriterManager.h"
 
 class GraphicsProcessorEnhancer
 {
@@ -63,6 +64,8 @@ private:
 	ElementBundle* elementBundle;
 	std::string filePath;
 	DictionaryProperties* pDictionaryProperties;
+
+	ModelerDataWriterManager* _modelerDataWriterManager;
 	
 	template <class T, class U>
 	T searchOnMap(std::map<U, T>, U key);
