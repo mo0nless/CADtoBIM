@@ -163,10 +163,6 @@ void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetai
 	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
 	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
 	boxGraphicProperties->setHeight(height);
-
-	// add box graphic property to dictionary
-	//pDictionaryProperties->addGraphicProperties(boxGraphicProperties);
-	this->elementBundle->setGraphicProperties(*boxGraphicProperties);
 }
 
 void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
@@ -215,11 +211,6 @@ void GraphicsProcessorEnhancer::setConeGraphicProperties(DgnConeDetail cgnConeDe
 			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
 		}
 	}
-	// add property to the dictionary
-	//this->pDictionaryProperties->addGraphicProperties(coneGraphicProperties);
-	this->elementBundle->setGraphicProperties(*coneGraphicProperties);
-
-
 }
 
 void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
@@ -245,12 +236,6 @@ void GraphicsProcessorEnhancer::setCylinderGraphicProperties(DgnConeDetail dgnCo
 	cylinderGraphicProperties->setHeight(height);
 	cylinderGraphicProperties->setRadius(dgnConeDetail.m_radiusA);
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
-
-	// add property to the dictionary
-	//this->pDictionaryProperties->addGraphicProperties(cylinderGraphicProperties);
-	this->elementBundle->setGraphicProperties(*cylinderGraphicProperties);
-
-
 }
 
 void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
@@ -273,10 +258,6 @@ void GraphicsProcessorEnhancer::setSphereGraphicProperties(SphereGraphicProperti
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
-	//pDictionaryProperties->addGraphicProperties(sphereGraphicProperties);
-	this->elementBundle->setGraphicProperties(*sphereGraphicProperties);
-
-
 }
 
 void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
@@ -295,13 +276,6 @@ void GraphicsProcessorEnhancer::setTorusGraphicProperties(DgnTorusPipeDetail dgn
 	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
 	torusGraphicProperties->setSweepRadians(sweepRadians);
 
-
-
-	// add torus property to the dictionary
-	//pDictionaryProperties->addGraphicProperties(torusGraphicProperties);
-	this->elementBundle->setGraphicProperties(*torusGraphicProperties);
-
-
 }
 
 void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, RotationalSweepGraphicProperties *& rotationalSweepGraphicProperties)
@@ -319,7 +293,6 @@ void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationa
 	bool addToDictionary = false;
 
 	dgnRotationalSweepDetail.GetTransforms(localToWorld, worldToLocal);
-	//dgnRotationalSweepDetail.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
 	dgnRotationalSweepDetail.TryGetRotationAxis(centerOfRotation, rotationAxes, sweepRadians);
 	dgnRotationalSweepDetail.GetRadius(radius, DgnRotationalSweepDetail::RadiusType::Centroidal);
@@ -351,9 +324,6 @@ void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationa
 	rotationalSweepGraphicProperties->ltoW = ltoW;
 	rotationalSweepGraphicProperties->wtoL = wtoL;
 		
-	// add rotationalSweepGraphic property to the dictionary
-	//pDictionaryProperties->addGraphicProperties(rotationalSweepGraphicProperties);
-	this->elementBundle->setGraphicProperties(*rotationalSweepGraphicProperties);
 
 }
 
@@ -393,7 +363,6 @@ void GraphicsProcessorEnhancer::setExtrusionGraphicProperties(DgnExtrusionDetail
 	outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
 	outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
 	
-	//pDictionaryProperties->addGraphicProperties(extrusionGraphicProperties);
 }
 
 

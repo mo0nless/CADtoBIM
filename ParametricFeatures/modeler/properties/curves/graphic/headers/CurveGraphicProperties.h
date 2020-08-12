@@ -4,6 +4,7 @@
 #include <vector>
 #include "../../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
+
 class CurveGraphicProperties 
 {
 public:
