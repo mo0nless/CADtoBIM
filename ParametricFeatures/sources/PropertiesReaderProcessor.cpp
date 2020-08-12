@@ -4,11 +4,12 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
 }
 
-ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem)
+ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
 	std::ofstream outfile;
 	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	WString elDescr;
 
@@ -93,6 +94,21 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			
 			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
+
+			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
+				if (readerPropertyDefinition->getPropertyName().find("Material") != std::string::npos) {
+					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
+					if (PropertyTypeEnum::STRING == propertyTypeEnum && elementBundle!=nullptr) {
+						std::string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
+						if (!val.empty()) {
+							elementBundle->setMaterial(readerPropertyDefinition->getPropertyValueAsString());
+							break;
+						}
+						
+					}
+					
+				}
+			}
 
 			//for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
 			//	if (readerPropertyDefinition->getPropertyName().find("Color") != std::string::npos && 

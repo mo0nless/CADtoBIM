@@ -10,7 +10,8 @@ IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGr
 	this->elemDisplayParamsCP = newElemDisplayParamsCP;
 	this->show = true;
 
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 
@@ -81,6 +82,16 @@ double IfcGraphicPropertiesBundle::getTransparency()
 void IfcGraphicPropertiesBundle::setTransparency(double newTransparency)
 {
 	this->transparency = newTransparency;
+}
+
+std::string IfcGraphicPropertiesBundle::getMaterial()
+{
+	return this->_material;
+}
+
+void IfcGraphicPropertiesBundle::setMaterial(std::string material)
+{
+	this->_material = material;
 }
 
 

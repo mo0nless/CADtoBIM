@@ -39,7 +39,7 @@ void ElementBundle::setElemDisplayParamsCR(ElemDisplayParamsCR newElemDisplayPar
 {
 	this->elemDisplayParamsCP =  ElemDisplayParamsCP(&newElemDisplayParamsCR);
 
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	/*std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 
@@ -51,7 +51,7 @@ void ElementBundle::setElemDisplayParamsCR(ElemDisplayParamsCR newElemDisplayPar
 	int red1 = color2 & 0xFF;
 	outfile << "setElemDisplayParamsCR" << std::endl;
 	outfile << "RGB =" << red1 << "," << green1 << "," << blue1 << std::endl;
-	outfile.close();
+	outfile.close();*/
 }
 
 UInt32 ElementBundle::getColor()
@@ -72,4 +72,14 @@ double ElementBundle::getTransparency()
 void ElementBundle::setTransparency(double newTransparency)
 {
 	this->transparency = newTransparency;
+}
+
+std::string ElementBundle::getMaterial()
+{
+	return this->_material;
+}
+
+void ElementBundle::setMaterial(std::string material)
+{
+	this->_material = material;
 }

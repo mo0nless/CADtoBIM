@@ -2,8 +2,9 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
@@ -1186,7 +1187,8 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	this->mGraphicsProcessorEnhancer.getElementBundle()->setColor(displayParams.GetLineColorTBGR());
 	this->mGraphicsProcessorEnhancer.getElementBundle()->setTransparency(displayParams.GetTransparency());
 
-	std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filepath = SessionManager::getInstance()->getDataOutputFilePath();
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 
@@ -1198,6 +1200,7 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	int red1 = color & 0xFF;
 
 	outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << std::endl;
+
 	//outfile.close();
 
 

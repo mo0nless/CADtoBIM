@@ -13,7 +13,7 @@ public:
 	void enhanceColors(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
-	void processColour(IfcElementBundle& ifcElementBundle, IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);
 

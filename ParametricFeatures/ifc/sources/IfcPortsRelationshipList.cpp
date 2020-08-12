@@ -129,7 +129,8 @@ void IfcPortsRelationshipList::display()
 {
 	std::ofstream outfile;
 	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.text";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.text";
+	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 
 	PortElement *temp = new PortElement;

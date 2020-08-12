@@ -17,6 +17,8 @@
 #include "PolyfaceConvertTool.h"
 #include <math.h>
 
+#include "../../headers/SessionManager.h"
+
 class GraphicsProcessorEnhancer
 {
 public:

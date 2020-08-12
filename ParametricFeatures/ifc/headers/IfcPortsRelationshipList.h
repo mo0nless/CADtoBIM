@@ -2,7 +2,7 @@
 
 //#include "../../enhancer/headers/IfcOperationsEnhancer.h"
 #include "../headers/IfcElementBundle.h"
-
+#include "../../headers/SessionManager.h"
 #include <vector>
 
 

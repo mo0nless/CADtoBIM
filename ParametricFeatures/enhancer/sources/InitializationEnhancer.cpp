@@ -10,6 +10,11 @@ InitializationEnhancer::InitializationEnhancer()
 
 	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string ifcOutputFileName = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcCustomName.ifc";
+	
+	SessionManager* sm = sm->getInstance();
+	sm->setDataOutputFilePath(filePath);
+	sm->setIfcOutputFilePath(ifcOutputFileName);
 }
 
 SmartFeatureContainer * InitializationEnhancer::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -184,7 +189,7 @@ StatusInt InitializationEnhancer::findElementByType(ElementRefP elementRefP, Dic
 		elementBundle->setElementHandle(eh);
 
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh);
+		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
 		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
 
 		GraphicsProcessor graphicsProcessor = GraphicsProcessor();

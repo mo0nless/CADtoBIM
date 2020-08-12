@@ -15,6 +15,7 @@ private:
 
 	UInt32 color;
 	double transparency;
+	std::string _material;
 
 public:
 
@@ -36,5 +37,8 @@ public:
 	
 	double getTransparency();
 	void setTransparency(double newTransparency);
+
+	std::string getMaterial();
+	void setMaterial(std::string material);
 
 };

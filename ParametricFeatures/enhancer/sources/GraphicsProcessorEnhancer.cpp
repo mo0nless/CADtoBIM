@@ -5,7 +5,8 @@ GraphicsProcessorEnhancer::GraphicsProcessorEnhancer()
 {
 	//this->elementBundle = new ElementBundle();
 	//filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = SessionManager::getInstance()->getDataOutputFilePath();
 }
 
 void GraphicsProcessorEnhancer::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)

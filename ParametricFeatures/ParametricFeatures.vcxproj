@@ -29,7 +29,6 @@
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorEnhancer.cpp" />
-    <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
@@ -88,6 +87,7 @@
     <ClCompile Include="sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="enhancer\sources\GraphicsProcessorEnhancer.cpp" />
     <ClCompile Include="enhancer\sources\InitializationEnhancer.cpp" />
+    <ClCompile Include="sources\SessionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -105,6 +105,7 @@
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="headers\GraphicElementTool.h" />
+    <ClInclude Include="headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
@@ -114,7 +115,6 @@
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
-    <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\BRepGraphicProperties.h" />
