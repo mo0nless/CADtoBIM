@@ -99,52 +99,9 @@ void GraphicsProcessorEnhancer::setGraphicPropertiesAxes(GraphicProperties*& gra
 	outfile.close();
 }
 
-void GraphicsProcessorEnhancer::PrintPrincipalProperties(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld)
-{
-
-	this->_modelerDataWriterManager->writeGeneralPropertiesToFile(range, vectorRotation, qRotation, localToWorld);
-	//std::ofstream outfile;
-	//outfile.open(filePath, std::ios_base::app);
-
-	//outfile << std::fixed;
-	//outfile << "Range [XLength] = " << range.XLength() << std::endl;
-	//outfile << "Range [YLength] = " << range.YLength() << std::endl;
-	//outfile << "Range [ZLength] = " << range.ZLength() << std::endl;
-	//outfile << std::endl;
-
-	//outfile << "Quaternion Rotation" << std::endl;
-	//outfile << "qRotation [X] = " << qRotation.x << std::endl;
-	//outfile << "qRotation [Y] = " << qRotation.y << std::endl;
-	//outfile << "qRotation [Z] = " << qRotation.z << std::endl;
-	//outfile << "qRotation [W] = " << qRotation.w << std::endl;
-	//outfile << std::endl;
-
-	//outfile << "Vector Rotation Axis Local to World" << std::endl;
-	//outfile << "vRotation [X] = " << vectorRotation.x << std::endl;
-	//outfile << "vRotation [Y] = " << vectorRotation.y << std::endl;
-	//outfile << "vRotation [Z] = " << vectorRotation.z << std::endl;
-	//outfile << std::endl;
-
-	//outfile << "Origin [X] = " << localToWorld.Origin().x << std::endl;
-	//outfile << "Origin [Y] = " << localToWorld.Origin().y << std::endl;
-	//outfile << "Origin [Z] = " << localToWorld.Origin().z << std::endl;
-
-	//outfile << std::endl;
-
-	//outfile.close();
-}
-
 
 void GraphicsProcessorEnhancer::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
-	// TODO to be removed
-	// write to file the type of solide which was parsed
-	//std::ofstream outfile;
-	//outfile.open(filePath, std::ios_base::app);
-	//outfile << std::fixed;
-	//outfile << std::endl;
-	//outfile << " BOX "<< std::endl;
-	//outfile << std::endl;
 
 	// calculate height of the box
 	double height;
@@ -447,9 +404,10 @@ GraphicProperties* GraphicsProcessorEnhancer::processConeAndCylinder(ISolidPrimi
 
 void GraphicsProcessorEnhancer::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, bool addToDictionary)
 {
-	if (msBsplineSurfaceGraphicProperties == nullptr)
+	if (msBsplineSurfaceGraphicProperties == nullptr) {
 		msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
-
+	}
+		
 	std::ofstream outfile;
 	outfile.open(filePath, std::ios_base::app);
 	outfile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << "Type: " << msBsplineSurface.type << std::endl;
@@ -1186,7 +1144,8 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
 		{
-			Transform localToWorld;
+			Transform localToWorld, worldToLocal;
+			extrusionDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 			this->_modelerDataWriterManager->writeExtrusionDataToFile(extrusionDetails);
 
 			primitiveGraphicProperties = new ExtrusionGraphicProperties();
@@ -1253,15 +1212,17 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 
 		if (primitive.TryGetDgnTorusPipeDetail(torusDetails))
 		{
+			RotMatrix rotationAxes;
 			DPoint3d centerRotation;
+
 			Transform localToWorld, worldToLocal;
 
-			double sweepRadians;
-
+			double radiusA, radiusB, sweepRadians;
 			this->_modelerDataWriterManager->writeTorusDataToFile(torusDetails);
 
 			// get local to world class to get the X,Y,Z axes 
 			torusDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			torusDetails.TryGetFrame(centerRotation, rotationAxes, radiusA, radiusB, sweepRadians);
 
 			primitiveGraphicProperties = new TorusGraphicProperties();
 
