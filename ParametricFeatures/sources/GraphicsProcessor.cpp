@@ -577,6 +577,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 						msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
 						msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+						msBsplineSurfaceGraphicProperties->geometryType = IGeometry::GeometryType::BsplineSurface;
 
 						bool addToDictionary = false;
 						mGraphicsProcessorEnhancer.processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties, addToDictionary);
@@ -590,7 +591,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						outfile.close();
 
 						//Add the face to the solidKernelEntity
-						solidKernelEntity->addBSplineSurfaceFace(msBsplineSurfaceGraphicProperties);
+						solidKernelEntity->addSurfaceFace((GraphicProperties*&)msBsplineSurfaceGraphicProperties);
 					}
 					break;
 					case IGeometry::GeometryType::SolidPrimitive:
@@ -599,8 +600,18 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						outfile << "IGeometry::GeometryType::SolidPrimitive: " << (int)IGeometry::GeometryType::SolidPrimitive << std::endl;
 						outfile << std::endl;
 						outfile.close();
+
+						//GraphicProperties* primitiveGraphicProperties = new GraphicProperties();
+
 						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
-						_ProcessSolidPrimitive(prim);
+						bool addToDictionary = false;
+
+						GraphicProperties* primitiveGraphicProperties = mGraphicsProcessorEnhancer.processSolidPrimitives(prim, addToDictionary);
+						primitiveGraphicProperties->geometryType = IGeometry::GeometryType::SolidPrimitive;
+
+						//Add the face to the solidKernelEntity
+						if (primitiveGraphicProperties != nullptr)
+							solidKernelEntity->addSurfaceFace((GraphicProperties*&)primitiveGraphicProperties);
 					}
 					break;
 					case IGeometry::GeometryType::Polyface:

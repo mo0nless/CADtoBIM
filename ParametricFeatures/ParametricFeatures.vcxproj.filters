@@ -80,6 +80,8 @@
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
+    <ClCompile Include="ifc\surfaces\headers\IfcSurfaceEnhancer.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RuledSweepGraphicProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -176,5 +178,7 @@
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
+    <ClInclude Include="ifc\surfaces\sources\IfcSurfaceEnhancer.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\RuledSweepGraphicProperties.h" />
   </ItemGroup>
 </Project>

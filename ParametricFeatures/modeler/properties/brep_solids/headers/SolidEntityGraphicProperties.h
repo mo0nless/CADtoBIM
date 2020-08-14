@@ -25,8 +25,8 @@ class SolidEntityGraphicProperties: public GraphicProperties
 public:
 	SolidEntityGraphicProperties();
 
-	void addBSplineSurfaceFace(MSBsplineSurfaceGraphicProperties*& newFace);
-	std::vector<MSBsplineSurfaceGraphicProperties*> getBSplineSurfaceFacesVector();
+	void addSurfaceFace(GraphicProperties*& newFace);
+	std::vector<GraphicProperties*> getSurfaceFacesVector();
 
 	void addFaceBoundaryShape(ShapesGraphicProperties* bound);
 	std::vector<ShapesGraphicProperties*> getSurfaceBoundaryShapes();
@@ -42,7 +42,7 @@ public:
 
 private:
 	std::vector<ShapesGraphicProperties*> mFaceBoundaries;
-	std::vector<MSBsplineSurfaceGraphicProperties*> mBrepFaces;
+	std::vector<GraphicProperties*> mBrepFaces;
 	std::vector<std::vector<DPoint3d>> mFacetTriangulatedVector;
 	std::vector<std::tuple<int, int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;

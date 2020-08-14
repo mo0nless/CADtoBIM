@@ -38,4 +38,6 @@ public:
 	DVec3d getVectorAxisX();
 	DVec3d getVectorAxisY();
 	DVec3d getVectorAxisZ();
+
+	IGeometry::GeometryType geometryType;
 };

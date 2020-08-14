@@ -322,6 +322,37 @@ void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationa
 
 }
 
+void GraphicsProcessorEnhancer::setRuledSweepGraphicProperties(DgnRuledSweepDetail ruledSweepDetails, RuledSweepGraphicProperties *& ruledSweepGraphicProperties)
+{
+	int countCurves = 0;
+	std::ofstream outfile;
+
+	for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
+	{
+		DVec3d curveStart;
+		DVec3d curveEnd;
+
+		cv->GetStartEnd(curveStart, curveEnd);
+
+		outfile << countCurves << "° " << "Curve Start Point of Swept [X] = " << curveStart.x << std::endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Y] = " << curveStart.y << std::endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Z] = " << curveStart.z << std::endl;
+		outfile << std::endl;
+
+		outfile << countCurves << "° " << "Curve End Point of Swept [X] = " << curveEnd.x << std::endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Y] = " << curveEnd.y << std::endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Z] = " << curveEnd.z << std::endl;
+		outfile << std::endl;
+
+		countCurves += 1;
+
+		bool curveAddToDictionary = false;
+		ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+		processShapesCurvesVector(*cv, false, &*shapesGraphicProperties, curveAddToDictionary);
+		ruledSweepGraphicProperties->addSectionCurve(shapesGraphicProperties);
+	}
+}
+
 void GraphicsProcessorEnhancer::setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties *& extrusionGraphicProperties)
 {
 	std::ofstream outfile;
@@ -1115,13 +1146,12 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 	}
 }
 
-void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
+GraphicProperties* GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
 {
-	std::ofstream outfile;
-
-	GraphicProperties* primitiveGraphicProperties = nullptr;
+	std::ofstream outfile;	
 
 	pDictionaryProperties->setIsPrimitiveSolid(true);
+	GraphicProperties* primitiveGraphicProperties = nullptr;
 
 	switch (primitive.GetSolidPrimitiveType())
 	{
@@ -1256,7 +1286,7 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 			outfile.open(filePath, std::ios_base::app);
 			outfile << "-------- " << pDictionaryProperties->getElementDescriptor() << " --------" << std::endl;
 			outfile.close();
-
+			//coneDetails.SilhouetteCurves()
 			coneDetails.GetRange(range);
 			coneDetails.GetTransforms(localToWorld, worldToLocal, radiusA, radiusB);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
@@ -1496,11 +1526,12 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 		DRange3d range;
 		DVec3d rotation;
 		DPoint4d qRotation;
+		bvector<SolidLocationDetail::FaceIndices> indices;
 
 		Transform localToWorld;
 		Transform worldToLocal;
 		int countCurves = 1;
-
+		
 		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
 		{
 			outfile.open(filePath, std::ios_base::app);
@@ -1508,6 +1539,7 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 			outfile.close();
 
 			ruledSweepDetails.GetRange(range);
+			ruledSweepDetails.GetFaceIndices(indices);
 			ruledSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 			localToWorld.Matrix().GetRotationAngleAndVector(rotation);
 			localToWorld.Matrix().GetQuaternion(qRotation, false);
@@ -1521,28 +1553,12 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 			outfile << "DiagonalDistanceXY = " << range.DiagonalDistanceXY() << std::endl;
 			outfile << "DiagonalDistance = " << range.DiagonalDistance() << std::endl;
 			outfile << "Range Difference = " << abs(range.high.x) - abs(range.low.x) << std::endl;
-
-			for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
-			{
-				DVec3d curveStart;
-				DVec3d curveEnd;
-
-				cv->GetStartEnd(curveStart, curveEnd);
-
-				outfile << countCurves << "° " << "Curve Start Point of Swept [X] = " << curveStart.x << std::endl;
-				outfile << countCurves << "° " << "Curve Start Point of Swept [Y] = " << curveStart.y << std::endl;
-				outfile << countCurves << "° " << "Curve Start Point of Swept [Z] = " << curveStart.z << std::endl;
-				outfile << std::endl;
-
-				outfile << countCurves << "° " << "Curve End Point of Swept [X] = " << curveEnd.x << std::endl;
-				outfile << countCurves << "° " << "Curve End Point of Swept [Y] = " << curveEnd.y << std::endl;
-				outfile << countCurves << "° " << "Curve End Point of Swept [Z] = " << curveEnd.z << std::endl;
-				outfile << std::endl;
-
-				countCurves += 1;
-			}
-
 			outfile << "True if the end cap is enabled = " << ruledSweepDetails.m_capped << std::endl;
+
+			primitiveGraphicProperties = new RuledSweepGraphicProperties();
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(*&primitiveGraphicProperties, localToWorld);
+			setRuledSweepGraphicProperties(ruledSweepDetails, (RuledSweepGraphicProperties*&)primitiveGraphicProperties);
 
 			outfile.close();
 		}
@@ -1595,6 +1611,7 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 
 			// set centroid, area and volume
 			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(*&primitiveGraphicProperties, sphereDetails.m_localToWorld);
 
 			// set spehere properties
 			setSphereGraphicProperties((SphereGraphicProperties*&) primitiveGraphicProperties);
@@ -1731,6 +1748,7 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 		this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
 	}
 		
+	return *&primitiveGraphicProperties;
 }
 
 void GraphicsProcessorEnhancer::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)

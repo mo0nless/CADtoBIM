@@ -109,6 +109,7 @@ appObjects = \
 	$(o)ShapesGraphicProperties$(oext) \
 	$(o)TorusGraphicProperties$(oext) \
 	$(o)RotationalSweepGraphicProperties$(oext) \
+	$(o)RuledSweepGraphicProperties$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
 	$(o)IfcBooleanOperatorHandler$(oext) \
@@ -235,6 +236,8 @@ $(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/g
 $(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
 
 $(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h
+
+$(o)RuledSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RuledSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RuledSweepGraphicProperties.h
 
 $(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
 
