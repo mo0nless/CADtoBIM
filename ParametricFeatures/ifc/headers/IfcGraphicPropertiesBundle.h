@@ -8,6 +8,7 @@
 #include <ifcparse\utils.h>
 #include <ifcparse\IfcHierarchyHelper.h>
 #include "../../modeler/properties/headers/ElementBundle.h"
+#include "../../headers/SessionManager.h"
 
 
 class IfcGraphicPropertiesBundle {
@@ -25,6 +26,7 @@ private:
 
 	UInt32 color;
 	double transparency;
+	std::string _material;
 
 public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
@@ -47,5 +49,9 @@ public:
 
 	double getTransparency();
 	void setTransparency(double newTransparency);
+
+	std::string getMaterial();
+	void setMaterial(std::string material);
+
 
 };

@@ -134,13 +134,13 @@ appObjects = \
 	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)SolidPrimitiveProperty$(oext) \
-	$(o)IfcMaterialEnhancer$(oext) \
 	$(o)IfcColorEnhancer$(oext) \
 	$(o)IfcPropertiesEnhancer$(oext) \
 	$(o)PropertyTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
 	$(o)GraphicElementTool$(oext) \
-
+	$(o)SessionManager$(oext) \
+	$(o)ModelerDataWriterManager$(oext) \
 
 #--------------------------------------------------------------------------------------
 #    Set up to use dlmcomp.mki and dlmlink.mki
@@ -319,8 +319,6 @@ $(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/grap
 
 $(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
 
-$(o)IfcMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcMaterialEnhancer.h
-
 $(o)IfcColorEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorEnhancer.h
 
 $(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
@@ -331,6 +329,9 @@ $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatur
 
 $(o)GraphicElementTool$(oext) : $(baseDir)/sources/GraphicElementTool.cpp $(baseDir)/headers/GraphicElementTool.h
 
+$(o)SessionManager$(oext) : $(baseDir)/sources/SessionManager.cpp $(baseDir)/headers/SessionManager.h
+
+$(o)ModelerDataWriterManager$(oext) : $(baseDir)/sources/ModelerDataWriterManager.cpp $(baseDir)/headers/ModelerDataWriterManager.h
 
 %include $(MDLMKI)dlmlink.mki
 

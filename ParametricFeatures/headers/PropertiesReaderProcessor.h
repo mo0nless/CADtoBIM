@@ -10,6 +10,8 @@
 #include "../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../common/enums/headers/ShapesTypeEnum.h"
+#include "../common/utils/headers/PropertyTypeEnumUtils.h"
+
 
 #include <regex>
 
@@ -32,7 +34,7 @@ public:
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
 	//! @param[in] the reference of the SmartFeatureContainer
-	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem);
+	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
 
 private:
 	std::string mElemClassName;

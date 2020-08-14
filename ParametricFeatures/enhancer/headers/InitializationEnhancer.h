@@ -3,6 +3,7 @@
 #include "../../headers/GraphicsProcessor.h"
 #include "../../common/utils/headers/StringUtils.hpp"
 #include "../../headers/GraphicElementTool.h"
+#include "../../headers/SessionManager.h"
 
 class InitializationEnhancer
 {

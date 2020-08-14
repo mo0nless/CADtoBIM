@@ -5,7 +5,7 @@
 
 	enum class PrimitiveTypeEnum {
 
-		NONE = 0,
+		NONE = -1,
 		TORUS = 1,
 		CONE = 2,
 		BOX = 3,

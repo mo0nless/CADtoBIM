@@ -224,9 +224,14 @@ void IfcShapesEnhancer::buildGeometricRepresentationShapes(ShapesGraphicProperti
 
 			this->mSingleShapeRepresentation = shape;
 		}
+		auto bundle = new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
+			elementBundle->getElementHandle(), elementBundle->getElemDisplayParamsCP());
+		bundle->setColor(elementBundle->getColor());
+		bundle->setTransparency(elementBundle->getTransparency());
+		bundle->setMaterial(elementBundle->getMaterial());
 
-		ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
-			elementBundle->getElementHandle(),elementBundle->getElemDisplayParamsCP()));		
+		ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+
 
 		this->mSingleShapeRepresentation = nullptr;
 	}

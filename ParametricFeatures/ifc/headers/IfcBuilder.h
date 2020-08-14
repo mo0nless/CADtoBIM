@@ -8,9 +8,9 @@
 #include "IfcElementBuilder.h"
 #include "IfcPortsBuilder.h"
 #include "../properties/headers/IfcPropertiesEnhancer.h"
-#include "../properties/headers/IfcMaterialEnhancer.h"
 #include "../brep_solids/headers/IfcBRepSolidsEnhancer.h"
 #include "../properties/headers/IfcColorEnhancer.h"
+#include "../../headers/SessionManager.h"
 
 class IfcBuilder {
 private:

@@ -15,6 +15,8 @@
 #include "../../headers/IfcElementBundle.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 
+#include "../../../headers/SessionManager.h"
+
 
 class IfcPrimitivesEnhancer {
 

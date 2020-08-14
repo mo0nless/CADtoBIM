@@ -3,6 +3,7 @@
 
 #include "../headers/ElementBundle.h"
 #include "../smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../headers/SessionManager.h"
 
 
 /**

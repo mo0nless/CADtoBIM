@@ -52,7 +52,6 @@
     <ClCompile Include="ifc\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
-    <ClCompile Include="ifc\properties\sources\IfcMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcPortsRelationshipList.cpp" />
@@ -80,8 +79,8 @@
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="ifc\surfaces\headers\IfcSurfaceEnhancer.cpp" />
-    <ClCompile Include="modeler\properties\primitives\graphic\sources\RuledSweepGraphicProperties.cpp" />
+	<ClCompile Include="sources\SessionManager.cpp" />
+    <ClCompile Include="sources\ModelerDataWriterManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -143,6 +142,7 @@
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\headers\IfcPortsBuilder.h" />
     <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
+    <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="ifc\headers\IfcPortsRelationshipList.h" />
@@ -178,7 +178,7 @@
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
-    <ClInclude Include="ifc\surfaces\sources\IfcSurfaceEnhancer.h" />
-    <ClInclude Include="modeler\properties\primitives\graphic\headers\RuledSweepGraphicProperties.h" />
+    <ClInclude Include="headers\SessionManager.h" />
+    <ClInclude Include="headers\ModelerDataWriterManager.h" />
   </ItemGroup>
 </Project>

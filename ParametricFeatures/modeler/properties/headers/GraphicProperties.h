@@ -18,6 +18,8 @@ private:
 	DVec3d vectorAxisY;
 	DVec3d vectorAxisZ;
 
+
+
 public:
 	GraphicProperties();
 	virtual ~GraphicProperties() {}

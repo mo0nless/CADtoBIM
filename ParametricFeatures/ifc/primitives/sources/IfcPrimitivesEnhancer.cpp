@@ -27,6 +27,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 							ifcRepresentationItem, element->getElementHandle(), element->getElemDisplayParamsCP());
 						bundle->setColor(element->getColor());
 						bundle->setTransparency(element->getTransparency());
+						bundle->setMaterial(element->getMaterial());
 						ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 					}
@@ -132,9 +133,16 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
+
+
+	SessionManager* sm = sm->getInstance();
+	sm->getDataOutputFilePath();
+	sm->getIfcOutputFilePath();
+
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 	std::ofstream outfile;
-	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 
