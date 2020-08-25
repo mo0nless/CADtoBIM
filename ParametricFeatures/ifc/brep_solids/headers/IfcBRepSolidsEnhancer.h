@@ -5,8 +5,15 @@
 //#include "../../headers/IfcElementBundle.h"
 //#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/properties/brep_solids/headers/BRepGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h"
+#include "../../../modeler/properties/primitives/graphic/headers/RuledSweepGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
+#include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
 struct EdgeIfcCurve
 {
@@ -36,10 +43,14 @@ public:
 private:
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity,
 		IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
-	//Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(BRepGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	
 	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity,
 		IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+
 	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
+
+	void buildIfcSurface(std::vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, 
+		ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
 
 	template<class T>
 	T searchOnMap(std::map<int, T>, int key);

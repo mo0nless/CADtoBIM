@@ -55,7 +55,7 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		representationIdentifier,
 		representationContextType,
 		3,
-		1.0E-05,
+		1.0E-03, //1.0E-05
 		//file.addTriplet<Ifc4::IfcAxis2Placement3D>(4,4,4),
 		originAndAxisPlacement,
 		trueNorthDirection

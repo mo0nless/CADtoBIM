@@ -42,6 +42,7 @@
     <ClCompile Include="ifc\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
     <ClCompile Include="ifc\sources\IfcBuilder.cpp" />
+    <ClCompile Include="ifc\surfaces\headers\IfcSurfaceEnhancer.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
@@ -61,6 +62,7 @@
     <ClCompile Include="modeler\properties\curves\graphic\sources\PointStringGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\ExtrusionGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\primitives\graphic\sources\RotationalSweepGraphicProperties.cpp" />
+    <ClCompile Include="modeler\properties\primitives\graphic\sources\RuledSweepGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\pipes\reader\sources\PipeReaderProperties.cpp" />
@@ -121,6 +123,7 @@
     <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
+    <ClInclude Include="ifc\surfaces\sources\IfcSurfaceEnhancer.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\BRepGraphicProperties.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\CurveGraphicProperties.h" />
     <ClInclude Include="modeler\properties\brep_solids\headers\SolidEntityGraphicProperties.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="modeler\properties\primitives\graphic\headers\ExtrusionGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
     <ClInclude Include="modeler\properties\primitives\graphic\headers\RotationalSweepGraphicProperties.h" />
+    <ClInclude Include="modeler\properties\primitives\graphic\headers\RuledSweepGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />

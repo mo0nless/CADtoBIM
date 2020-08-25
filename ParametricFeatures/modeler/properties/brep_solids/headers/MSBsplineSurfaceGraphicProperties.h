@@ -59,6 +59,7 @@ public:
 	void addSurfaceBoundaryShape(ShapesGraphicProperties* bound);
 	ShapesGraphicProperties* getSurfaceBoundaryShape();
 
+	//TODO [SB] Create get function
 	bool hasValidWeights;
 	bool hasValidKnots;
 

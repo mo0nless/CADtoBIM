@@ -284,6 +284,37 @@ void GraphicsProcessorEnhancer::setRotationalSweepGraphicProperties(DgnRotationa
 
 }
 
+void GraphicsProcessorEnhancer::setRuledSweepGraphicProperties(DgnRuledSweepDetail ruledSweepDetails, RuledSweepGraphicProperties *& ruledSweepGraphicProperties)
+{
+	int countCurves = 0;
+	std::ofstream outfile;
+
+	for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
+	{
+		DVec3d curveStart;
+		DVec3d curveEnd;
+
+		cv->GetStartEnd(curveStart, curveEnd);
+
+		outfile << countCurves << "° " << "Curve Start Point of Swept [X] = " << curveStart.x << std::endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Y] = " << curveStart.y << std::endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Z] = " << curveStart.z << std::endl;
+		outfile << std::endl;
+
+		outfile << countCurves << "° " << "Curve End Point of Swept [X] = " << curveEnd.x << std::endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Y] = " << curveEnd.y << std::endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Z] = " << curveEnd.z << std::endl;
+		outfile << std::endl;
+
+		countCurves += 1;
+
+		bool curveAddToDictionary = false;
+		ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+		processShapesCurvesVector(*cv, false, &*shapesGraphicProperties, curveAddToDictionary);
+		ruledSweepGraphicProperties->addSectionCurve(shapesGraphicProperties);
+	}
+}
+
 void GraphicsProcessorEnhancer::setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties *& extrusionGraphicProperties)
 {
 	std::ofstream outfile;
@@ -1078,13 +1109,12 @@ void GraphicsProcessorEnhancer::processCurvesPrimitives(CurveVectorCR& curvesVec
 	}
 }
 
-void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
+GraphicProperties* GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
 {
-	std::ofstream outfile;
-
-	GraphicProperties* primitiveGraphicProperties = nullptr;
+	std::ofstream outfile;	
 
 	pDictionaryProperties->setIsPrimitiveSolid(true);
+	GraphicProperties* primitiveGraphicProperties = nullptr;
 
 	switch (primitive.GetSolidPrimitiveType())
 	{
@@ -1198,6 +1228,8 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 			primitiveGraphicProperties = new SphereGraphicProperties();
 			// set centroid, area and volume
 			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(*&primitiveGraphicProperties, sphereDetails.m_localToWorld);
+
 			// set spehere properties
 			setSphereGraphicProperties((SphereGraphicProperties*&) primitiveGraphicProperties);
 		}
@@ -1264,6 +1296,7 @@ void GraphicsProcessorEnhancer::processSolidPrimitives(ISolidPrimitiveCR & primi
 		this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
 	}
 		
+	return *&primitiveGraphicProperties;
 }
 
 void GraphicsProcessorEnhancer::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)

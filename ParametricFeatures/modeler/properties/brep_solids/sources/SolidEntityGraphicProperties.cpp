@@ -4,12 +4,12 @@ SolidEntityGraphicProperties::SolidEntityGraphicProperties()
 {
 }
 
-void SolidEntityGraphicProperties::addBSplineSurfaceFace(MSBsplineSurfaceGraphicProperties*& newFace)
+void SolidEntityGraphicProperties::addSurfaceFace(GraphicProperties*& newFace)
 {
 	this->mBrepFaces.push_back(newFace);
 }
 
-std::vector<MSBsplineSurfaceGraphicProperties*> SolidEntityGraphicProperties::getBSplineSurfaceFacesVector()
+std::vector<GraphicProperties*> SolidEntityGraphicProperties::getSurfaceFacesVector()
 {
 	return this->mBrepFaces;
 }
