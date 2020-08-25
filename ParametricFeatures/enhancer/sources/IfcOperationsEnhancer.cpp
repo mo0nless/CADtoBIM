@@ -149,14 +149,14 @@ DPoint3d IfcOperationsEnhancer::rotateAlongAxis(std::string axis, DPoint3d oldPo
 	if (axis == "X")
 	{
 		newPoint.x = oldPoint.x;
-		newPoint.y = oldPoint.y*cos(90) - oldPoint.z*sin(90);
-		newPoint.z = oldPoint.y*sin(90) + oldPoint.z*cos(90);
+		newPoint.y = oldPoint.y*cos(-90) - oldPoint.z*sin(-90);
+		newPoint.z = oldPoint.y*sin(-90) + oldPoint.z*cos(-90);
 	}
 	else if (axis == "Y")
 	{
-		newPoint.x = oldPoint.z*sin(90) + oldPoint.x*cos(90);
+		newPoint.x = oldPoint.z*sin(-90) + oldPoint.x*cos(-90);
 		newPoint.y = oldPoint.y;
-		newPoint.z = oldPoint.y*cos(90) - oldPoint.x*sin(90);
+		newPoint.z = oldPoint.y*cos(-90) - oldPoint.x*sin(-90);
 	}
 
 	return newPoint;

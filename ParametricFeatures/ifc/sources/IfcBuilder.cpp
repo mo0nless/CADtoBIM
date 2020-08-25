@@ -4,13 +4,9 @@
 void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {	
 	typedef Ifc4::IfcGloballyUniqueId guid;
-	// Current date/time based on current system
-	time_t currentTimeNow = time(0);	
 	
 	std::string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	//std::string filename = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/" + name + ".ifc";
-	//std::string filename = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/" + name + ".ifc";
 	std::string filename = SessionManager::getInstance()->getIfcOutputFilePath();
 	
 	//DEV CREDIT
@@ -111,6 +107,9 @@ void IfcBuilder::buildIfc(std::vector<DictionaryProperties*>& dictionaryProperti
 		std::string("Bentley IFC Exporter"),
 		std::string("Bentley-IFC-Exp")
 	);
+
+	// Current date/time based on current system
+	time_t currentTimeNow = time(0);
 
 	Ifc4::IfcOwnerHistory* ownerHistory = new Ifc4::IfcOwnerHistory(
 		personAndOrganization,

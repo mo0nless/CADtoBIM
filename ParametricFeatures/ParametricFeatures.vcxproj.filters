@@ -79,7 +79,7 @@
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-	<ClCompile Include="sources\SessionManager.cpp" />
+    <ClCompile Include="sources\SessionManager.cpp" />
     <ClCompile Include="sources\ModelerDataWriterManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +141,6 @@
     <ClInclude Include="ifc\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\headers\IfcPortsBuilder.h" />
-    <ClInclude Include="ifc\properties\headers\IfcMaterialEnhancer.h" />
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
@@ -180,5 +179,7 @@
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
     <ClInclude Include="headers\SessionManager.h" />
     <ClInclude Include="headers\ModelerDataWriterManager.h" />
+    <ClInclude Include="ifc\general_information\headers\GeneralInformationEnhancer.h" />
+    <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
   </ItemGroup>
 </Project>

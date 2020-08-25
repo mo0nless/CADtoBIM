@@ -110,6 +110,8 @@
     <ClInclude Include="headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
+    <ClInclude Include="ifc\general_information\headers\GeneralInformationEnhancer.h" />
+    <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
     <ClInclude Include="ifc\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\headers\IfcGraphicPropertiesBundle.h" />
