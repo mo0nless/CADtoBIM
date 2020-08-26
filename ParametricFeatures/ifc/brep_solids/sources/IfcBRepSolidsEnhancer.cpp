@@ -58,7 +58,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 	std::vector<Ifc4::IfcVertexLoop*> vertexLoopVec;
 	/*for (auto point : brepSolidsKernelEntity->mVertexLoop)
 	{
-		Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(point);
+		Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
 		Ifc4::IfcVertex* vertex(new Ifc4::IfcVertexPoint(cP));
 		Ifc4::IfcVertexLoop* vLoop = new Ifc4::IfcVertexLoop(vertex);
 		vertexLoopVec.push_back(vLoop);
@@ -86,7 +86,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				for (size_t j = 0; j < msBsplineGraphicProperties->getNumVPoles(); j++)
 				{
 
-					Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(tempCP.at(j));
+					Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(tempCP.at(j));
 					cartesianPointsUV.push_back(cP);
 				}
 				tempCartesianPointList->push(cartesianPointsUV);
@@ -261,7 +261,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* cartesianPointList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
 				for (DPoint3d point : bound)
 				{
-					Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(point);
+					Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
 					cartesianPointList->push(cP);
 				}
 
@@ -300,7 +300,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 									//Create IfcCartesianPoint List 
 									for (DPoint3d point : boundPoints->pointsVector)
 									{
-										Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(point);
+										Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
 										sharedCartesianPointList->push(cP);
 									}
 									boundPoints->isCreated = true;
@@ -320,7 +320,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 									IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* cartesianPointList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
 									for (DPoint3d point : boundPoints->pointsVector)
 									{
-										Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(point);
+										Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
 										cartesianPointList->push(cP);
 									}
 
@@ -432,8 +432,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 	IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
@@ -467,7 +465,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 
 				for (auto p: vCP)
 				{
-					Ifc4::IfcCartesianPoint * crtP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 					cartesianPointsUV.push_back(crtP);
 				}
 				tempCartesianPointList->push(cartesianPointsUV);
@@ -531,8 +529,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				//IfcOrientedEdge list
 				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
 
-				Ifc4::IfcCartesianPoint * cpStart = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
-				Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);				
+				Ifc4::IfcCartesianPoint * cpStart = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
+				Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);				
 
 				Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
 					cpStart
@@ -544,7 +542,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				Ifc4::IfcVertex* start(vpStart);
 				Ifc4::IfcVertex* end(vpEnd);
 
-				if (IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
+				if (IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
 					end = start;
 
 				//Ifc4::IfcSurfaceCurve* d = new Ifc4::IfcSurfaceCurve()
@@ -588,12 +586,12 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 			for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
 			{
 				Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
-					IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getStartPoint())
-					//IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->start)
+					IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getStartPoint())
+					//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->start)
 				);
 				Ifc4::IfcVertexPoint* vpEnd = new Ifc4::IfcVertexPoint(
-					IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getEndPoint())
-					//IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
+					IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getEndPoint())
+					//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
 				);
 
 				Ifc4::IfcVertexPoint* startEnd = vpStart;
@@ -621,8 +619,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 						vpStart = vpEnd;
 
 						vpEnd = new Ifc4::IfcVertexPoint(
-							IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(primitiveCurve->getEndPoint())
-							//IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
+							IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(primitiveCurve->getEndPoint())
+							//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
 						);
 
 						Ifc4::IfcVertex* s(vpStart);
@@ -742,8 +740,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
@@ -787,7 +783,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 
 				for (auto p : vCP)
 				{
-					Ifc4::IfcCartesianPoint * crtP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 					cartesianPointsUV.push_back(crtP);
 				}
 				tempCartesianPointList->push(cartesianPointsUV);
@@ -1072,7 +1068,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 			IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* cPList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
 			for (DPoint3d point : face)
 			{
-				Ifc4::IfcCartesianPoint * cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(point);
+				Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(point);
 				cPList->push(cP);
 			}
 
@@ -1119,8 +1115,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	std::ofstream outfile;
-	//std::string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	bool addToIfcElementBundle = false;
@@ -1152,8 +1146,8 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 		//Pick the first and only one
 		BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
 
-		Ifc4::IfcCartesianPoint* p0 = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(bound->getStartPoint());
-		Ifc4::IfcCartesianPoint* p1 = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(bound->getEndPoint());
+		Ifc4::IfcCartesianPoint* p0 = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(bound->getStartPoint());
+		Ifc4::IfcCartesianPoint* p1 = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(bound->getEndPoint());
 
 		Ifc4::IfcVertexPoint* vp0 = new Ifc4::IfcVertexPoint(p0);
 		Ifc4::IfcVertexPoint* vp1 = new Ifc4::IfcVertexPoint(p1);
@@ -1289,13 +1283,13 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 
 			if (p0 == nullptr)
 			{
-				p0 = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(startP);
+				p0 = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(startP);
 				vp0 = new Ifc4::IfcVertexPoint(p0);
 			}
 
 			if (p1 == nullptr)
 			{
-				p1 = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(endP);
+				p1 = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(endP);
 				vp1 = new Ifc4::IfcVertexPoint(p1);
 			}
 
@@ -1464,7 +1458,7 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 
 					for (auto p : vCP)
 					{
-						Ifc4::IfcCartesianPoint * crtP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+						Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 						cartesianPointsUV.push_back(crtP);
 					}
 					tempCartesianPointList->push(cartesianPointsUV);
@@ -1528,8 +1522,8 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 					//IfcOrientedEdge list
 					IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
 
-					Ifc4::IfcCartesianPoint * cpStart = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
-					Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);
+					Ifc4::IfcCartesianPoint * cpStart = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
+					Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);
 
 					Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
 						cpStart
@@ -1541,7 +1535,7 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 					Ifc4::IfcVertex* start(vpStart);
 					Ifc4::IfcVertex* end(vpEnd);
 
-					if (IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
+					if (IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
 						end = start;
 
 					//Ifc4::IfcSurfaceCurve* d = new Ifc4::IfcSurfaceCurve()
@@ -1603,7 +1597,7 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 #if false
 					Ifc4::IfcSurface* ifcSurface = nullptr;
 
-					Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+					Ifc4::IfcAxis2Placement3D* placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 						primitiveGraphicProperties->getCentroid(),
 						primitiveGraphicProperties->getVectorAxisZ(),
 						primitiveGraphicProperties->getVectorAxisX()

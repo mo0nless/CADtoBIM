@@ -2,10 +2,10 @@
 
 
 #include "../../../stdafx.h"
-#include "../../headers/IfcElementBundle.h"
-//#include "../../../enhancer/headers/IfcOperationsEnhancer.h"
+#include "../../main/headers/IfcElementBundle.h"
+//#include "../../../enhancer/headers/IfcOperationsHelper.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
-#include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 //#include <vector>
 
 class IfcBRepRelationship

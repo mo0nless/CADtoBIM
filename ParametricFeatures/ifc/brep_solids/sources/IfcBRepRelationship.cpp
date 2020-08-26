@@ -17,14 +17,14 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 		if (index > 0)
 			continue;
 
-		//bool closed = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(curve->getStartPoint(), curve->getEndPoint());
+		//bool closed = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(curve->getStartPoint(), curve->getEndPoint());
 		bool closed = shapeGraphicProperties->getIsClosed();
 
 		//Check if the Edge is Closed or Continuos
 		if (closed)
 		{
 			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
+				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
 			);
 
 			Ifc4::IfcVertex* start(p0);
@@ -65,10 +65,10 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 		else
 		{		
 			Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
+				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(curve->getStartPoint())
 			);
 			Ifc4::IfcVertexPoint* p1 = new Ifc4::IfcVertexPoint(
-				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(curve->getEndPoint())
+				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(curve->getEndPoint())
 			);
 
 			Ifc4::IfcVertex* start(p0);
@@ -96,13 +96,13 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 
 #if false
 
-	bool closed = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(shapeGraphicProperties->getStartPoint(), shapeGraphicProperties->getEndPoint());
+	bool closed = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(shapeGraphicProperties->getStartPoint(), shapeGraphicProperties->getEndPoint());
 
 	//Check if the Edge is Closed or Continuos
 	if (closed)
 	{
 		Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-			IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getStartPoint())
+			IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getStartPoint())
 		);
 
 		Ifc4::IfcVertex* start(p0);
@@ -143,10 +143,10 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 	else
 	{
 		Ifc4::IfcVertexPoint* p0 = new Ifc4::IfcVertexPoint(
-			IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getStartPoint())
+			IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getStartPoint())
 		);
 		Ifc4::IfcVertexPoint* p1 = new Ifc4::IfcVertexPoint(
-			IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getEndPoint())
+			IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(shapeGraphicProperties->getEndPoint())
 		);
 
 		Ifc4::IfcVertex* start(p0);
@@ -253,8 +253,8 @@ void IfcBRepRelationship::connectContinuosEdges()
 				continue;
 
 			//Check the equality of the Vertex Points of the EDGES
-			startConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->startDPoint3d, currentEdge->endDPoint3d);
-			endConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->endDPoint3d, currentEdge->startDPoint3d);
+			startConnected = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(newEdge->startDPoint3d, currentEdge->endDPoint3d);
+			endConnected = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(newEdge->endDPoint3d, currentEdge->startDPoint3d);
 
 			if (startConnected) {
 				//Connect the START Vertex of the new edge to the END Vertex of the current edge
@@ -312,8 +312,8 @@ bool IfcBRepRelationship::processContinuosEdges(ContinuosEdge*& head, ContinuosE
 		while (currentEdge != NULL)
 		{
 			//Check the equality of the Vertex Points of the EDGES
-			startConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->startDPoint3d, currentEdge->endDPoint3d);
-			endConnected = IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(newEdge->endDPoint3d, currentEdge->startDPoint3d);
+			startConnected = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(newEdge->startDPoint3d, currentEdge->endDPoint3d);
+			endConnected = IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(newEdge->endDPoint3d, currentEdge->startDPoint3d);
 
 			if (startConnected) {
 				//Connect the START Vertex of the new edge to the END Vertex of the current edge

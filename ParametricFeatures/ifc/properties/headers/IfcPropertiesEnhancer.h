@@ -2,7 +2,7 @@
 
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../headers/IfcElementBundle.h"
+#include "../../main/headers/IfcElementBundle.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"

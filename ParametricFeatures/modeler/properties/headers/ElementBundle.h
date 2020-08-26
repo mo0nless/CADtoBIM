@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ReaderPropertiesBundle.h"
+#include "../reader/headers/ReaderPropertiesBundle.h"
 #include "GraphicProperties.h"
 #include <fstream>
 

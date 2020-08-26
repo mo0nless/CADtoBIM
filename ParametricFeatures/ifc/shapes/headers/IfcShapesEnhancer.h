@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../headers/IfcElementBundle.h"
+#include "../../main/headers/IfcElementBundle.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../../modeler/properties/shapes/headers/ShapesGraphicProperties.h" //curveshape..
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h" //curveshape..
 //#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 //#include "../../brep_solids/headers/IfcBRepRelationship.h"

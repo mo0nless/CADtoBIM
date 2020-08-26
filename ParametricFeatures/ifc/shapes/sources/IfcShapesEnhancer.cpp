@@ -281,9 +281,9 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 				//Check dimension 2D/3D
 				if (dimension == IfcDimensionEnum::dim_3D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 				else if (dimension == IfcDimensionEnum::dim_2D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(p);
 
 				tempEntityList->push(cP);
 			}
@@ -326,13 +326,13 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 			//Check dimension 2D/3D
 			if (dimension == IfcDimensionEnum::dim_3D)
-				place = place = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+				place = place = IfcOperationsHelper::buildIfcAxis2Placement3D(
 					curveP->getCenterOut(),
 					curveP->getDirectionZ(),
 					curveP->getDirectionX()
 				);
 			else if (dimension == IfcDimensionEnum::dim_2D)
-				place = place = IfcOperationsEnhancer::buildIfcAxis2Placement2D(
+				place = place = IfcOperationsHelper::buildIfcAxis2Placement2D(
 					curveP->getCenterOut(),
 					curveP->getDirectionX()
 				);
@@ -355,7 +355,7 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 				);
 			}
 
-			if (!IfcOperationsEnhancer::areTripletsDoubleEqual<DPoint3d>(curveP->getStartPoint(), curveP->getEndPoint())) //!isClosed 
+			if (!IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(curveP->getStartPoint(), curveP->getEndPoint())) //!isClosed 
 			{
 				IfcEntityList* t1EntityList = new IfcEntityList();
 				IfcEntityList* t2EntityList = new IfcEntityList();
@@ -363,8 +363,8 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 				Ifc4::IfcParameterValue* pV0 = new Ifc4::IfcParameterValue(curveP->getStartAngle());
 				Ifc4::IfcParameterValue* pV1 = new Ifc4::IfcParameterValue(curveP->getSweepAngle());
 
-				/*Ifc4::IfcCartesianPoint* cP0 = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curveP->getStartPoint());
-				Ifc4::IfcCartesianPoint* cP1 = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curveP->getEndPoint());				
+				/*Ifc4::IfcCartesianPoint* cP0 = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(curveP->getStartPoint());
+				Ifc4::IfcCartesianPoint* cP1 = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(curveP->getEndPoint());				
 				
 				t1EntityList->push(cP0);
 				t2EntityList->push(cP1);*/
@@ -393,10 +393,10 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 		{
 			LineGraphicProperties* curveP = dynamic_cast<LineGraphicProperties*>(curveProperties);
 
-			/*Ifc4::IfcCartesianPoint * cP0 = IfcOperationsEnhancer::buildIfcCartesianFromCoordsPoint3D(curveP->getStartPoint());
+			/*Ifc4::IfcCartesianPoint * cP0 = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(curveP->getStartPoint());
 
 			
-			Ifc4::IfcVector* dir0 = IfcOperationsEnhancer::buildIfcVectorFromDirectionPoint3D<DVec3d>(curveP->getDirectionTangent());
+			Ifc4::IfcVector* dir0 = IfcOperationsHelper::buildIfcVectorFromDirectionPoint3D<DVec3d>(curveP->getDirectionTangent());
 
 			curveRepresentationItem = new Ifc4::IfcLine(cP0, dir0);*/
 
@@ -407,9 +407,9 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 				//Check dimension 2D/3D
 				if (dimension == IfcDimensionEnum::dim_3D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 				else if (dimension == IfcDimensionEnum::dim_2D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(p);
 
 				tempEntityList->push(cP);
 			}
@@ -438,9 +438,9 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 				{
 					//Check dimension 2D/3D
 					if (dimension == IfcDimensionEnum::dim_3D)
-						cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+						cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 					else if (dimension == IfcDimensionEnum::dim_2D)
-						cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+						cP = IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(p);
 				}
 				tempEntityList->push(cP);
 			}
@@ -463,9 +463,9 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 				//Check dimension 2D/3D
 				if (dimension == IfcDimensionEnum::dim_3D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 				else if (dimension == IfcDimensionEnum::dim_2D)
-					cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+					cP = IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(p);
 
 				tempEntityList->push(cP);
 			}
@@ -490,15 +490,15 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 			PointStringGraphicProperties* curveP = dynamic_cast<PointStringGraphicProperties*>(curveProperties);
 
 			for each(DPoint3d p in curveP->getControlPoints()) {
-				Ifc4::IfcCartesianPoint* cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+				Ifc4::IfcCartesianPoint* cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 
 				//Ifc4::IfcCartesianPoint * cP = nullptr;
 
 				////Check dimension 2D/3D
 				//if (dimension == IfcDimensionEnum::dim_3D)
-				//	cP = IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(p);
+				//	cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
 				//else if (dimension == IfcDimensionEnum::dim_2D)
-				//	cP = IfcOperationsEnhancer::buildIfcCartesian2DfromCoordsPoint3D(p);
+				//	cP = IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(p);
 				
 				//Add the point to the IfcElementBundle its own ports
 				ifcElementBundle->addIfcPortsPoints(cP);

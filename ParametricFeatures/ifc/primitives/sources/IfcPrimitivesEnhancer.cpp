@@ -64,7 +64,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
-		Ifc4::IfcAxis2Placement3D* placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+		Ifc4::IfcAxis2Placement3D* placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 			primitiveGraphicProperties.getCentroid(), 
 			primitiveGraphicProperties.getVectorAxisZ(), 
 			primitiveGraphicProperties.getVectorAxisX()
@@ -89,7 +89,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 			DVec3d cylinderPlacement;
 			cylinderPlacement.Init(cylinderGraphicProperties.getBaseOrigin());
 			// overwrite the placement value
-			placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				cylinderPlacement,
 				cylinderGraphicProperties.getVectorAxisZ(),
 				cylinderGraphicProperties.getVectorAxisX()
@@ -107,7 +107,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 			DVec3d conePlacement;
 			conePlacement.Init(coneGraphicProperties.getBaseOrigin());
 			// overwrite the placement value
-			placement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				conePlacement,
 				coneGraphicProperties.getVectorAxisZ(),
 				coneGraphicProperties.getVectorAxisX()
@@ -162,7 +162,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 			// !!! torus placement axes should be provided in the order of Y, Z
-			Ifc4::IfcAxis2Placement3D* torusPlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			Ifc4::IfcAxis2Placement3D* torusPlacement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				torusPointPlacement,
 				torusGraphicProperties.getVectorAxisY(),
 				torusGraphicProperties.getVectorAxisZ()
@@ -181,7 +181,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			DVec3d bigConePlacementVector;
 			bigConePlacementVector.Init(coneGraphicProperties.getBaseOrigin());
 
-			Ifc4::IfcAxis2Placement3D* bigConePlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			Ifc4::IfcAxis2Placement3D* bigConePlacement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				bigConePlacementVector,
 				coneGraphicProperties.getVectorAxisZ(),
 				coneGraphicProperties.getVectorAxisX()
@@ -190,7 +190,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			DVec3d smallConePlacementVector;
 			smallConePlacementVector.Init(coneGraphicProperties.getTopOrigin());
 
-			Ifc4::IfcAxis2Placement3D* smallConePlacement = IfcOperationsEnhancer::buildIfcAxis2Placement3D(
+			Ifc4::IfcAxis2Placement3D* smallConePlacement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				smallConePlacementVector,
 				coneGraphicProperties.getVectorAxisZ(),
 				coneGraphicProperties.getVectorAxisX()
@@ -224,13 +224,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//Single Bound
 			if (shape->getShapesGraphicsContainer().empty())
 			{				
-				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation, true);
+				IfcOperationsHelper::adjustShapeGlobalPlacement(shape, sweepCenterOfRotation, true);
 			}
 			//Parity Region, set of bounds 
 			else
 			{
 				for (auto bound: shape->getShapesGraphicsContainer())
-					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
+					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
 			}
 
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
@@ -246,11 +246,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			
 			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(
 					file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
-					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(rotationalSweepGraphicProperties.getVectorAxisZ())
+					IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(rotationalSweepGraphicProperties.getVectorAxisZ())
 				);
 
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
-				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(rotationalSweepGraphicProperties.getCenterRotation()),
+				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(rotationalSweepGraphicProperties.getCenterRotation()),
 				new Ifc4::IfcDirection(std::vector<double>()), 
 				new Ifc4::IfcDirection(std::vector<double>())
 			);
@@ -310,13 +310,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//Single Bound
 			if (shape->getShapesGraphicsContainer().empty())
 			{
-				IfcOperationsEnhancer::adjustShapeGlobalPlacement(shape, extrusionGraphicProperties.getCentroid(), false);
+				IfcOperationsHelper::adjustShapeGlobalPlacement(shape, extrusionGraphicProperties.getCentroid(), false);
 			}
 			//Parity Region, set of bounds 
 			else
 			{
 				for (auto bound : shape->getShapesGraphicsContainer())
-					IfcOperationsEnhancer::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
+					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
 			}
 
 			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
@@ -373,7 +373,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			}
 			
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
-				IfcOperationsEnhancer::buildIfcCartesian3DfromCoordsPoint3D(extrusionGraphicProperties.getCentroid()),
+				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(extrusionGraphicProperties.getCentroid()),
 				new Ifc4::IfcDirection(std::vector<double>()),
 				new Ifc4::IfcDirection(std::vector<double>())
 			);
@@ -384,7 +384,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				Ifc4::IfcExtrudedAreaSolid* extrusionitem = new Ifc4::IfcExtrudedAreaSolid(
 					profileDef,
 					placement,
-					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
 					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
 				);
 
@@ -395,7 +395,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				Ifc4::IfcSurfaceOfLinearExtrusion* surfaceExtrusion = new Ifc4::IfcSurfaceOfLinearExtrusion(
 					profileDef,
 					placement,
-					IfcOperationsEnhancer::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
+					IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(extrusionGraphicProperties.getDirectionOfExtrusion()),
 					NumberUtils::convertCurrentUnitToMeters(extrusionGraphicProperties.getLegnthOfExtrusion())
 				);
 

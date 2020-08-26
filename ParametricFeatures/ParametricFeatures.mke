@@ -75,11 +75,11 @@ appObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
 	$(o)GraphicsProcessor$(oext) \
-	$(o)GraphicsProcessorEnhancer$(oext) \
-	$(o)IfcOperationsEnhancer$(oext) \
+	$(o)GraphicsProcessorHelper$(oext) \
+	$(o)IfcOperationsHelper$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)BooleanFunctionsEnum$(oext) \
-	$(o)InitializationEnhancer$(oext) \
+	$(o)InitializationHelper$(oext) \
 	$(o)ResultStatus$(oext) \
 	$(o)ResultStatusEnum$(oext) \
 	$(o)ReaderPropertiesMapper$(oext) \
@@ -197,18 +197,184 @@ LINKER_LIBRARIES + $(mdlLibs)ECObjects.lib
 #--------------------------------------------------------------------------------------
 #    Compile the source files for the DLM
 #--------------------------------------------------------------------------------------
-$(o)$(appName)$(oext) : $(baseDir)sources/$(appName).cpp $(baseDir)headers/$(appName).h 
 
-$(o)Initialization$(oext) : $(baseDir)sources/Initialization.cpp $(baseDir)headers/$(appName).h 
 
-$(o)PropertiesReaderProcessor$(oext) : $(baseDir)sources/PropertiesReaderProcessor.cpp $(baseDir)headers/PropertiesReaderProcessor.h 
+#--------------------------------------------------------------------------------------
+#     data_processing
+#--------------------------------------------------------------------------------------
 
-$(o)ResultStatus$(oext) : $(baseDir)common/models/result_status/sources/ResultStatus.cpp $(baseDir)common/models/result_status/headers/ResultStatus.h
+#--- initialization
+$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp $(baseDir)data_processing/initialization/headers/$(appName).h 
 
+$(o)Initialization$(oext) : $(baseDir)data_processing/initialization/sources/Initialization.cpp $(baseDir)data_processing/initialization/headers/$(appName).h
+
+$(o)InitializationHelper$(oext) : $(baseDir)data_processing/initialization/sources/InitializationHelper.cpp $(baseDir)data_processing/initialization/headers/InitializationHelper.h
+
+
+#--- reader_properties
+$(o)PropertiesReaderProcessor$(oext) : $(baseDir)data_processing/reader_properties/sources/PropertiesReaderProcessor.cpp $(baseDir)data_processing/reader_properties/headers/PropertiesReaderProcessor.h 
+
+#--- graphic_properties
+$(o)GraphicsProcessorHelper$(oext) : $(baseDir)data_processing/graphic_properties/sources/GraphicsProcessorHelper.cpp $(baseDir)data_processing/graphic_properties/headers/GraphicsProcessorHelper.h 
+
+$(o)GraphicsProcessor$(oext) : $(baseDir)data_processing/graphic_properties/sources/GraphicsProcessor.cpp $(baseDir)data_processing/graphic_properties/headers/GraphicsProcessor.h
+
+
+#-------------------------------------------------------------------------------------
+#    common
+#-------------------------------------------------------------------------------------
+
+#--- models
+$(o)ResultStatus$(oext) : $(baseDir)common/models/sources/ResultStatus.cpp $(baseDir)common/models/headers/ResultStatus.h
+
+$(o)SessionManager$(oext) : $(baseDir)common/models/sources/SessionManager.cpp $(baseDir)common/models/headers/SessionManager.h
+
+
+#--- enums
 $(o)ResultStatusEnum$(oext) : $(baseDir)common/enums/sources/ResultStatusEnum.cpp $(baseDir)common/enums/headers/ResultStatusEnum.h
 
+$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/enums/sources/BooleanFunctionsEnum.cpp $(baseDir)common/enums/headers/BooleanFunctionsEnum.h
+
+
+#--- utils
+$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
+
+$(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
+
+$(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
+
+$(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
+
+
+#-------------------------------------------------------------------------------------
+#    ifc
+#-------------------------------------------------------------------------------------
+
+#--- boolean_functions
+$(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
+
+
+#--- brep_solids
+$(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h
+
+$(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepRelationship.h
+
+
+#--- create_solids_operation
+$(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
+
+
+#--- main
+$(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
+
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
+
+$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
+
+$(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/main/sources/IfcPortsBuilder.cpp $(baseDir)ifc/main/headers/IfcPortsBuilder.h
+
+$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/main/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/main/headers/IfcPortsRelationshipList.h
+
+$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
+
+$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
+
+
+#--- operations_helper
+$(o)IfcOperationsHelper$(oext) : $(baseDir)ifc/operations_helper/sources/IfcOperationsHelper.cpp $(baseDir)ifc/operations_helper/headers/IfcOperationsHelper.h 
+
+
+#--- primitives
+$(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesEnhancer.h
+
+
+#--- properties
+$(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
+
+$(o)IfcColorEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorEnhancer.h
+
+
+#--- shapes
+$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/shapes/headers/IfcShapesEnhancer.h
+
+
+#--- smart_feature
+$(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
+
+
+#-------------------------------------------------------------------------------------
+#    mapper
+#-------------------------------------------------------------------------------------
+
+#--- properties
 $(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
 
+$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
+
+$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
+
+
+#-------------------------------------------------------------------------------------
+#    modeler
+#-------------------------------------------------------------------------------------
+
+#--- boolean_operations
+$(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/boolean_operations/headers/BooleanOperationProperties.h
+
+
+#--- brep_solids
+$(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h
+
+$(o)SolidEntityGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/SolidEntityGraphicProperties.h
+
+$(o)BRepGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/BRepGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/BRepGraphicProperties.h
+
+
+#--- curves
+$(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/curves/headers/BsplineGraphicProperties.h
+
+$(o)ArcGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/ArcGraphicProperties.cpp $(baseDir)modeler/curves/headers/ArcGraphicProperties.h
+
+$(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/InterpolationGraphicProperties.cpp $(baseDir)modeler/curves/headers/InterpolationGraphicProperties.h
+
+$(o)LineGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/LineGraphicProperties.cpp $(baseDir)modeler/curves/headers/LineGraphicProperties.h
+
+$(o)LineStringGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/LineStringGraphicProperties.cpp $(baseDir)modeler/curves/headers/LineStringGraphicProperties.h
+
+$(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/curves/headers/PointStringGraphicProperties.h
+
+$(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/curves/headers/AkimaGraphicProperties.h
+
+$(o)CurveGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/CurveGraphicProperties.cpp $(baseDir)modeler/curves/headers/CurveGraphicProperties.h
+
+
+#--- data_writer
+$(o)ModelerDataWriterManager$(oext) : $(baseDir)modeler/data_writer/sources/ModelerDataWriterManager.cpp $(baseDir)modeler/data_writer/headers/ModelerDataWriterManager.h
+
+
+#--- primitives
+$(o)BoxGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/BoxGraphicProperties.cpp $(baseDir)modeler/primitives/headers/BoxGraphicProperties.h
+
+$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/ConeGraphicProperties.cpp $(baseDir)modeler/primitives/headers/ConeGraphicProperties.h
+
+$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/primitives/headers/SphereGraphicProperties.h
+
+$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/primitives/headers/CylinderGraphicProperties.h
+
+$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/TorusGraphicProperties.cpp $(baseDir)modeler/primitives/headers/TorusGraphicProperties.h
+
+$(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/primitives/headers/RotationalSweepGraphicProperties.h
+
+$(o)RuledSweepGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/RuledSweepGraphicProperties.cpp $(baseDir)modeler/primitives/headers/RuledSweepGraphicProperties.h
+
+$(o)ExtrusionGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/ExtrusionGraphicProperties.cpp $(baseDir)modeler/primitives/headers/ExtrusionGraphicProperties.h
+
+$(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/primitives/headers/PrimitiveGraphicProperties.h
+
+$(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/primitives/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/primitives/headers/SolidPrimitiveProperty.h
+
+
+#--- properties
 $(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
 
 $(o)ElementBundle$(oext) : $(baseDir)modeler/properties/sources/ElementBundle.cpp $(baseDir)modeler/properties/headers/ElementBundle.h
@@ -221,117 +387,17 @@ $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/so
 
 $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 
-$(o)BooleanFunctionsEnum$(oext) : $(baseDir)common/enums/sources/BooleanFunctionsEnum.cpp $(baseDir)common/enums/headers/BooleanFunctionsEnum.h
-
-$(o)ReaderPropertiesEnumUtils$(oext) : $(baseDir)common/utils/sources/ReaderPropertiesEnumUtils.cpp $(baseDir)common/utils/headers/ReaderPropertiesEnumUtils.h
-
-$(o)BoxGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/BoxGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/BoxGraphicProperties.h
-
-$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ConeGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ConeGraphicProperties.h
-
-$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SphereGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SphereGraphicProperties.h
-
-$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/CylinderGraphicProperties.h
-
-$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/TorusGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/TorusGraphicProperties.h
-
-$(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RotationalSweepGraphicProperties.h
-
-$(o)RuledSweepGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/RuledSweepGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/RuledSweepGraphicProperties.h
-
-$(o)GraphicsProcessorEnhancer$(oext) : $(baseDir)enhancer/sources/GraphicsProcessorEnhancer.cpp $(baseDir)enhancer/headers/GraphicsProcessorEnhancer.h 
-
-$(o)GraphicsProcessor$(oext) : $(baseDir)sources/GraphicsProcessor.cpp $(baseDir)headers/GraphicsProcessor.h 
-
-$(o)InitializationEnhancer$(oext) : $(baseDir)enhancer/sources/InitializationEnhancer.cpp $(baseDir)enhancer/headers/InitializationEnhancer.h
-
-$(o)IfcOperationsEnhancer$(oext) : $(baseDir)enhancer/sources/IfcOperationsEnhancer.cpp $(baseDir)enhancer/headers/IfcOperationsEnhancer.h 
-
-$(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
-
-$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/shapes/headers/IfcShapesEnhancer.h
-
-$(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
-
-$(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesEnhancer.h
-
-$(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h
-
-$(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepRelationship.h
-
-$(o)IfcBuilder$(oext) : $(baseDir)ifc/sources/IfcBuilder.cpp $(baseDir)ifc/headers/IfcBuilder.h
-
-$(o)IfcElementBundle$(oext) : $(baseDir)ifc/sources/IfcElementBundle.cpp $(baseDir)ifc/headers/IfcElementBundle.h
-
-$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/sources/IfcElementBuilder.cpp $(baseDir)ifc/headers/IfcElementBuilder.h
-
-$(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/sources/IfcPortsBuilder.cpp $(baseDir)ifc/headers/IfcPortsBuilder.h
-
-$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/headers/IfcPortsRelationshipList.h
-
-$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/headers/IfcGraphicPropertiesBundle.h
-
-$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/headers/IfcReaderPropertiesBundle.h
-
-$(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/BsplineGraphicProperties.h
-
-$(o)ArcGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/ArcGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/ArcGraphicProperties.h
-
-$(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/InterpolationGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/InterpolationGraphicProperties.h
-
-$(o)LineGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineGraphicProperties.h
-
-$(o)LineStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/LineStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/LineStringGraphicProperties.h
-
-$(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/PointStringGraphicProperties.h
-
-$(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/AkimaGraphicProperties.h
-
-$(o)CurveGraphicProperties$(oext) : $(baseDir)modeler/properties/curves/graphic/sources/CurveGraphicProperties.cpp $(baseDir)modeler/properties/curves/graphic/headers/CurveGraphicProperties.h
-
-$(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/CurvesShapesGraphicProperties.h
-
-$(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/properties/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/properties/shapes/headers/ShapesGraphicProperties.h
-
-$(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/properties/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/properties/boolean_operations/headers/BooleanOperationProperties.h
-
-$(o)ExtrusionGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/ExtrusionGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/ExtrusionGraphicProperties.h
-
-$(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/properties/primitives/graphic/headers/PrimitiveGraphicProperties.h
-
-$(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h
-
-$(o)SolidEntityGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/SolidEntityGraphicProperties.h
-
-$(o)BRepGraphicProperties$(oext) : $(baseDir)modeler/properties/brep_solids/sources/BRepGraphicProperties.cpp $(baseDir)modeler/properties/brep_solids/headers/BRepGraphicProperties.h
-
-$(o)SmartFeatureTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/SmartFeatureTypeEnumUtils.cpp $(baseDir)common/utils/headers/SmartFeatureTypeEnumUtils.h
-
-$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
-
-$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
-
 $(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
 
-$(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/headers/ReaderPropertiesBundle.h
+$(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertiesBundle.h
 
-$(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/properties/primitives/graphic/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/properties/primitives/graphic/headers/SolidPrimitiveProperty.h
 
-$(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
+#--- shapes
+$(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/CurvesShapesGraphicProperties.h
 
-$(o)IfcColorEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorEnhancer.h
+$(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
 
-$(o)PropertyTypeEnumUtils$(oext) : $(baseDir)common/utils/sources/PropertyTypeEnumUtils.cpp $(baseDir)common/utils/headers/PropertyTypeEnumUtils.h
 
-$(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/CreateSolidFunctionsEnumUtils.cpp $(baseDir)common/utils/headers/CreateSolidFunctionsEnumUtils.h
-
-$(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
-
-$(o)GraphicElementTool$(oext) : $(baseDir)/sources/GraphicElementTool.cpp $(baseDir)/headers/GraphicElementTool.h
-
-$(o)SessionManager$(oext) : $(baseDir)/sources/SessionManager.cpp $(baseDir)/headers/SessionManager.h
-
-$(o)ModelerDataWriterManager$(oext) : $(baseDir)/sources/ModelerDataWriterManager.cpp $(baseDir)/headers/ModelerDataWriterManager.h
 
 %include $(MDLMKI)dlmlink.mki
 

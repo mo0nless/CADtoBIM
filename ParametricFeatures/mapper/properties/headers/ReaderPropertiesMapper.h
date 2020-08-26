@@ -4,9 +4,9 @@
 
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "BooleanOperationReaderPropertiesMapper.h"
-#include "../../../modeler/properties/headers/ReaderPropertiesBundle.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include "CreateSolidsOperationPropertiesReaderMapper.h"
-#include "../../../headers/SessionManager.h"
+#include "../../../common/models/headers/SessionManager.h"
 
 /**
 *  Class used to map reader properties from the modeler to the object ReaderProperties
