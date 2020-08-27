@@ -5,15 +5,16 @@
 
 #include "../../enums/headers/CreateSolidFunctionsEnum.h"
 
+using namespace std;
 
 class CreateSolidFunctionsEnumUtils {
 
 private:
 	CreateSolidFunctionsEnumUtils() {};
-	static std::map<CreateSolidFunctionsEnum, std::string> mappedValues;
-	static std::map<CreateSolidPropertiesEnum, std::string> mappedValuesProps;
+	static map<CreateSolidFunctionsEnum, string> mappedValues;
+	static map<CreateSolidPropertiesEnum, string> mappedValuesProps;
 
 public:
-	static CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(std::string className);
-	static CreateSolidPropertiesEnum getSolidPropertiesEnumByClassName(std::string className);
+	static CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(string className);
+	static CreateSolidPropertiesEnum getSolidPropertiesEnumByClassName(string className);
 };

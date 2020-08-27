@@ -1,7 +1,6 @@
 #pragma once
 
-#include <map>
-#include <string>
+
 #include "../../enums/headers/ShapesTypeEnum.h"
 
 struct ShapesTypeEnumUtils

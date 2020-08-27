@@ -5,6 +5,7 @@
 
 #include "../../enums/headers/ReaderPropertiesEnum.h"
 
+using namespace std;
 /**
 *  Class used to contain the immutable map between ReaderPropertiesEnum and the string value from the modeler
 */
@@ -16,7 +17,7 @@ public:
 	*  @param stringValue[in]
 	*  @return ReaderPropertiesEnum
 	*/
-	static ReaderPropertiesEnum getElementPropertiesEnumByStringValue(std::string stringValue);
+	static ReaderPropertiesEnum getElementPropertiesEnumByStringValue(string stringValue);
 	static ReaderPropertiesEnum getElementPropertiesEnumByInt(int primitiveBentleyInt);
 
 private:
@@ -28,6 +29,6 @@ private:
 	/**
 	* map contains relevant and needed properties from the reader, enum as keys and values as the string(label) value from modeler
 	*/
-	static std::map<ReaderPropertiesEnum, std::string> mappedValues;
+	static map<ReaderPropertiesEnum, string> mappedValues;
 
 };

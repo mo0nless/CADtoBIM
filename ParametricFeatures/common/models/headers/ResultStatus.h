@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include "../../enums/headers/ResultStatusEnum.h"
+
+using namespace std;
 
 /**
  *  Class used to return status and message after an execution
@@ -11,32 +12,32 @@ class ResultStatus {
 
 private:
 	ResultStatusEnum::ResultStatusEnum mResultStatusEnum;
-	std::string mErrorText;
+	string mErrorText;
 public:
 	ResultStatus<T>();
 	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum);
-	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, std::string newErrorText);
+	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, string newErrorText);
 
 	ResultStatusEnum::ResultStatusEnum getResultStatusEnum();
-	std::string getErrorText();
+	string getErrorText();
 };
 
 template<class T>
 inline ResultStatus<T>::ResultStatus()
 {
 	this->mResultStatusEnum = ResultStatusEnum::ResultStatusEnum::SUCCESS;
-	this->mErrorText = std::string();
+	this->mErrorText = string();
 }
 
 template<class T>
 inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum)
 {
 	this->mResultStatusEnum = newResultStatusEnum;
-	this->mErrorText = std::string();
+	this->mErrorText = string();
 }
 
 template<class T>
-inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, std::string newErrorText)
+inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, string newErrorText)
 {
 	this->mResultStatusEnum = newResultStatusEnum;
 	this->mErrorText = newErrorText;
@@ -49,7 +50,7 @@ inline ResultStatusEnum::ResultStatusEnum ResultStatus<T>::getResultStatusEnum()
 }
 
 template<class T>
-inline std::string ResultStatus<T>::getErrorText()
+inline string ResultStatus<T>::getErrorText()
 {
 	return this->mErrorText;
 }

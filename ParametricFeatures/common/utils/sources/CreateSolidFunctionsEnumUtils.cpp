@@ -1,7 +1,7 @@
 #include "../headers/CreateSolidFunctionsEnumUtils.h"
 
 
-std::map<CreateSolidFunctionsEnum, std::string> CreateSolidFunctionsEnumUtils::mappedValues = {
+map<CreateSolidFunctionsEnum, string> CreateSolidFunctionsEnumUtils::mappedValues = {
 	{ CreateSolidFunctionsEnum::REVOLVE, "Revolve" },
 	{ CreateSolidFunctionsEnum::EXTRUDE, "Extrude" },
 	{ CreateSolidFunctionsEnum::THICKEN, "ThickenFeature" },
@@ -9,7 +9,7 @@ std::map<CreateSolidFunctionsEnum, std::string> CreateSolidFunctionsEnumUtils::m
 	{ CreateSolidFunctionsEnum::UNDEFINED, "" },
 };
 
-std::map<CreateSolidPropertiesEnum, std::string> CreateSolidFunctionsEnumUtils::mappedValuesProps = {
+map<CreateSolidPropertiesEnum, string> CreateSolidFunctionsEnumUtils::mappedValuesProps = {
 
 	{ CreateSolidPropertiesEnum::THICKNESS,"Thickness" },
 	{ CreateSolidPropertiesEnum::DISTANCE,"Distance" },
@@ -17,7 +17,7 @@ std::map<CreateSolidPropertiesEnum, std::string> CreateSolidFunctionsEnumUtils::
 };
 
 
-CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(std::string className)
+CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(string className)
 {
 	for (auto const& element : mappedValues) {
 		if (element.second == className) {
@@ -28,7 +28,7 @@ CreateSolidFunctionsEnum CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsE
 	return CreateSolidFunctionsEnum::UNDEFINED;
 }
 
-CreateSolidPropertiesEnum CreateSolidFunctionsEnumUtils::getSolidPropertiesEnumByClassName(std::string className)
+CreateSolidPropertiesEnum CreateSolidFunctionsEnumUtils::getSolidPropertiesEnumByClassName(string className)
 {
 	for (auto const& element : mappedValuesProps) {
 		if (element.second == className) {

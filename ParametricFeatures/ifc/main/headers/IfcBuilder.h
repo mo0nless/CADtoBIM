@@ -1,12 +1,15 @@
 #pragma once
 
 #include <ctime>
+
+#include "../../ports/headers/IfcPortsBuilder.h"
+
+
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
-//#include "../create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h"
-//#include "../../enhancer/headers/IfcOperationsHelper.h"
+
+
 #include "IfcElementBuilder.h"
-#include "IfcPortsBuilder.h"
 #include "../../properties/headers/IfcPropertiesEnhancer.h"
 #include "../../brep_solids/headers/IfcBRepSolidsEnhancer.h"
 #include "../../properties/headers/IfcColorEnhancer.h"

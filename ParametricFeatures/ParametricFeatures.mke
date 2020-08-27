@@ -71,52 +71,31 @@ $(o)$(sAppName).h                : $(baseDir)$(sAppName).r
 #--------------------------------------------------------------------------------------
 #    Define the object container files
 #--------------------------------------------------------------------------------------
-appObjects = \
+
+
+commonObjects = \
+	$(o)ResultStatus$(oext) \
+	$(o)SessionManager$(oext) \
+	$(o)ResultStatusEnum$(oext) \
+	$(o)BooleanFunctionsEnum$(oext) \
+	$(o)ReaderPropertiesEnumUtils$(oext) \
+	$(o)SmartFeatureTypeEnumUtils$(oext) \
+	$(o)PropertyTypeEnumUtils$(oext) \
+	$(o)CreateSolidFunctionsEnumUtils$(oext) \
+
+dataProcessingObjects = \
 	$(o)$(appName)$(oext) \
 	$(o)Initialization$(oext) \
-	$(o)GraphicsProcessor$(oext) \
-	$(o)GraphicsProcessorHelper$(oext) \
-	$(o)IfcOperationsHelper$(oext) \
-	$(o)PropertiesReaderProcessor$(oext) \
-	$(o)BooleanFunctionsEnum$(oext) \
 	$(o)InitializationHelper$(oext) \
-	$(o)ResultStatus$(oext) \
-	$(o)ResultStatusEnum$(oext) \
-	$(o)ReaderPropertiesMapper$(oext) \
-	$(o)DictionaryProperties$(oext) \
-	$(o)ElementBundle$(oext) \
-	$(o)GeneralProperties$(oext) \
-	$(o)GraphicProperties$(oext) \
-	$(o)SmartFeatureContainer$(oext) \
-	$(o)SmartFeatureTreeNode$(oext) \
-	$(o)PrimitiveTypeEnumUtils$(oext) \
-	$(o)BoxGraphicProperties$(oext) \
-	$(o)ConeGraphicProperties$(oext) \
-	$(o)SphereGraphicProperties$(oext) \
-	$(o)CylinderGraphicProperties$(oext) \
-	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
-	$(o)SolidEntityGraphicProperties$(oext) \
-	$(o)BRepGraphicProperties$(oext) \
-	$(o)CurveGraphicProperties$(oext) \
-	$(o)BsplineGraphicProperties$(oext) \
-	$(o)ArcGraphicProperties$(oext) \
-	$(o)InterpolationGraphicProperties$(oext) \
-	$(o)LineGraphicProperties$(oext) \
-	$(o)LineStringGraphicProperties$(oext) \
-	$(o)PointStringGraphicProperties$(oext) \
-	$(o)AkimaGraphicProperties$(oext) \
-	$(o)CurvesShapesGraphicProperties$(oext) \
-	$(o)ShapesGraphicProperties$(oext) \
-	$(o)TorusGraphicProperties$(oext) \
-	$(o)RotationalSweepGraphicProperties$(oext) \
-	$(o)RuledSweepGraphicProperties$(oext) \
-	$(o)IfcCreateSolidsOperationBuilder$(oext) \
-	$(o)IfcShapesEnhancer$(oext) \
+	$(o)PropertiesReaderProcessor$(oext) \
+	$(o)GraphicsProcessorHelper$(oext) \
+	$(o)GraphicsProcessor$(oext) \
+
+ifcObjects = \
 	$(o)IfcBooleanOperatorHandler$(oext) \
-	$(o)SmartFeatureHandler$(oext) \
-	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcBRepSolidsEnhancer$(oext) \
 	$(o)IfcBRepRelationship$(oext) \
+	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcBuilder$(oext) \
 	$(o)IfcElementBundle$(oext) \
 	$(o)IfcElementBuilder$(oext) \
@@ -124,23 +103,62 @@ appObjects = \
 	$(o)IfcPortsRelationshipList$(oext) \
 	$(o)IfcGraphicPropertiesBundle$(oext) \
 	$(o)IfcReaderPropertiesBundle$(oext) \
+	$(o)IfcOperationsHelper$(oext) \
+	$(o)IfcPrimitivesEnhancer$(oext) \
+	$(o)IfcPropertiesEnhancer$(oext) \
+	$(o)IfcColorEnhancer$(oext) \
+	$(o)IfcShapesEnhancer$(oext) \
+	$(o)SmartFeatureHandler$(oext) \
+
+mapperObjects = \
+	$(o)ReaderPropertiesMapper$(oext) \
+	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
+
+
+modelerObjects = \
 	$(o)BooleanOperationProperties$(oext) \
+	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
+	$(o)SolidEntityGraphicProperties$(oext) \
+	$(o)BRepGraphicProperties$(oext) \
+	$(o)BsplineGraphicProperties$(oext) \
+	$(o)ArcGraphicProperties$(oext) \
+	$(o)InterpolationGraphicProperties$(oext) \
+	$(o)LineGraphicProperties$(oext) \
+	$(o)LineStringGraphicProperties$(oext) \
+	$(o)PointStringGraphicProperties$(oext) \
+	$(o)AkimaGraphicProperties$(oext) \
+	$(o)CurveGraphicProperties$(oext) \
+	$(o)ModelerDataWriterManager$(oext) \
+	$(o)BoxGraphicProperties$(oext) \
+	$(o)ConeGraphicProperties$(oext) \
+	$(o)SphereGraphicProperties$(oext) \
+	$(o)CylinderGraphicProperties$(oext) \
+	$(o)TorusGraphicProperties$(oext) \
+	$(o)RotationalSweepGraphicProperties$(oext) \
+	$(o)RuledSweepGraphicProperties$(oext) \
 	$(o)ExtrusionGraphicProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
-	$(o)SmartFeatureTypeEnumUtils$(oext) \
-	$(o)ReaderPropertiesEnumUtils$(oext) \
-	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
+	$(o)SolidPrimitiveProperty$(oext) \
+	$(o)DictionaryProperties$(oext) \
+	$(o)ElementBundle$(oext) \
+	$(o)GeneralProperties$(oext) \
+	$(o)GraphicProperties$(oext) \
+	$(o)SmartFeatureContainer$(oext) \
+	$(o)SmartFeatureTreeNode$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
 	$(o)ReaderPropertiesBundle$(oext) \
-	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
-	$(o)SolidPrimitiveProperty$(oext) \
-	$(o)IfcColorEnhancer$(oext) \
-	$(o)IfcPropertiesEnhancer$(oext) \
-	$(o)PropertyTypeEnumUtils$(oext) \
-	$(o)CreateSolidFunctionsEnumUtils$(oext) \
-	$(o)GraphicElementTool$(oext) \
-	$(o)SessionManager$(oext) \
-	$(o)ModelerDataWriterManager$(oext) \
+	$(o)CurvesShapesGraphicProperties$(oext) \
+	$(o)ShapesGraphicProperties$(oext) \
+
+
+appObjects = \
+	$(commonObjects) \
+	$(dataProcessingObjects \
+	$(ifcObjects) \
+	$(mapperObjects) \
+	$(modelerObjects) \
+
 
 #--------------------------------------------------------------------------------------
 #    Set up to use dlmcomp.mki and dlmlink.mki
@@ -271,10 +289,6 @@ $(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(
 
 $(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
 
-$(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/main/sources/IfcPortsBuilder.cpp $(baseDir)ifc/main/headers/IfcPortsBuilder.h
-
-$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/main/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/main/headers/IfcPortsRelationshipList.h
-
 $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
 
 $(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
@@ -282,6 +296,12 @@ $(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPrope
 
 #--- operations_helper
 $(o)IfcOperationsHelper$(oext) : $(baseDir)ifc/operations_helper/sources/IfcOperationsHelper.cpp $(baseDir)ifc/operations_helper/headers/IfcOperationsHelper.h 
+
+
+#--- ports
+$(o)IfcPortsBuilder$(oext) : $(baseDir)ifc/ports/sources/IfcPortsBuilder.cpp $(baseDir)ifc/ports/headers/IfcPortsBuilder.h
+
+$(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/ports/sources/IfcPortsRelationshipList.cpp $(baseDir)ifc/ports/headers/IfcPortsRelationshipList.h
 
 
 #--- primitives

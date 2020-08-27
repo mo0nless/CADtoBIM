@@ -1,10 +1,9 @@
 #pragma once
 
-//#include "../../enhancer/headers/IfcOperationsHelper.h"
-#include "../headers/IfcElementBundle.h"
-#include "../../../common/models/headers/SessionManager.h"
-#include <vector>
+#include "../../main/headers/IfcElementBundle.h"
 
+#include "../../../common/models/headers/SessionManager.h"
+#include "../../../common/utils/headers/Comparator.h"
 
 struct PortElement
 {

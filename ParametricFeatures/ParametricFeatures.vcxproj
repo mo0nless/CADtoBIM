@@ -36,8 +36,8 @@
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="ifc\main\sources\IfcElementBundle.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcPortsBuilder.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcPortsRelationshipList.cpp" />
+    <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
+    <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\main\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\main\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
+    <ClInclude Include="common\utils\headers\Comparator.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\IfcDimensionEnum.h" />
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
@@ -113,8 +114,8 @@
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\main\headers\IfcGraphicPropertiesBundle.h" />
-    <ClInclude Include="ifc\main\headers\IfcPortsBuilder.h" />
-    <ClInclude Include="ifc\main\headers\IfcPortsRelationshipList.h" />
+    <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
+    <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\main\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />

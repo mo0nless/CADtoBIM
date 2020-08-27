@@ -1,7 +1,6 @@
 #pragma once
 
-//#include "../../enhancer/headers/IfcOperationsHelper.h"
-//#include "../headers/IfcElementBundle.h"
+
 #include "IfcPortsRelationshipList.h"
 
 class IfcPortsBuilder

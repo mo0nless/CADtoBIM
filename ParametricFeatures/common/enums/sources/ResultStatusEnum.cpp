@@ -2,7 +2,7 @@
 
 namespace ResultStatusEnum 
 {
-	const std::map<ResultStatusEnum, std::string> mappedValues =
+	const map<ResultStatusEnum, string> mappedValues =
 	{
 		{ ResultStatusEnum::SUCCESS,"Success" },
 		{ ResultStatusEnum::NO_RESULT,"NoResult" },
@@ -10,7 +10,7 @@ namespace ResultStatusEnum
 
 	};
 
-	std::string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) 
+	string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) 
 	{
 		for (auto const& element : mappedValues) {
 			if (element.first == resultStatusEnum) {
@@ -18,7 +18,7 @@ namespace ResultStatusEnum
 			}
 		}
 
-		return std::string();
+		return string();
 	}
 
 }

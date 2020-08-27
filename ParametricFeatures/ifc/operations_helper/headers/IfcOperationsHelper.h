@@ -1,9 +1,11 @@
 #pragma once
 
-#include <vector>
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/enums/headers/IfcDimensionEnum.h"
+#include "../../../common/utils/headers/Comparator.h"
+
 #include "../../../stdafx.h"
+
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 class IfcOperationsHelper
@@ -20,9 +22,6 @@ public:
 	
 	static Ifc4::IfcAxis2Placement3D * buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX);
 	static Ifc4::IfcAxis2Placement2D * buildIfcAxis2Placement2D(DVec3d pointOfPlacement, DVec3d dirVectorX);
-
-	static bool isDoubleEqual(double x, double y);
-	static bool isVectorDoubleEqual(std::vector<double> v1, std::vector<double>  v2);
 
 	template<class Triplet3D>
 	static bool areTripletsDoubleEqual(Triplet3D firstTriplet, Triplet3D secondTriplet);
@@ -59,7 +58,7 @@ inline bool IfcOperationsHelper::areTripletsDoubleEqual(Triplet3D firstTriplet, 
 {
 	for (int i = 0; i < 3; i++)
 	{
-		if (isDoubleEqual(firstTriplet.GetComponent(i), secondTriplet.GetComponent(i)))
+		if (Comparator::isEqual (firstTriplet.GetComponent(i), secondTriplet.GetComponent(i)))
 		{
 			continue;
 		}

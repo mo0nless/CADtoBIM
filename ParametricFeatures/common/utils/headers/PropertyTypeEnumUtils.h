@@ -5,13 +5,15 @@
 #include<string>
 #include "../../enums/headers/PropertyTypeEnum.h"
 
+using namespace std;
+
 class PropertyTypeEnumUtils {
 
 private:
-	static const std::map<PropertyTypeEnum, std::string> mappedValues;
+	static const map<PropertyTypeEnum, string> mappedValues;
 	PropertyTypeEnumUtils() {}
 
 public:
-	static PropertyTypeEnum getEnumByStringValue(std::string stringValue);
+	static PropertyTypeEnum getEnumByStringValue(string stringValue);
 
 };

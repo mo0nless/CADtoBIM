@@ -1,6 +1,6 @@
 #include "../headers/PropertyTypeEnumUtils.h"
 
-const std::map<PropertyTypeEnum, std::string> PropertyTypeEnumUtils::mappedValues =
+const map<PropertyTypeEnum, string> PropertyTypeEnumUtils::mappedValues =
 {
 	{ PropertyTypeEnum::BINARY,"binary" },
 	{ PropertyTypeEnum::INTEGER,"int" },
@@ -13,7 +13,7 @@ const std::map<PropertyTypeEnum, std::string> PropertyTypeEnumUtils::mappedValue
 	{ PropertyTypeEnum::DATETIME,"dateTime" }
 };
 
-PropertyTypeEnum PropertyTypeEnumUtils::getEnumByStringValue(std::string stringValue)
+PropertyTypeEnum PropertyTypeEnumUtils::getEnumByStringValue(string stringValue)
 {
 	for (auto const& element : mappedValues) {
 		if (element.second == stringValue) {

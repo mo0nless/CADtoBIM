@@ -47,8 +47,6 @@
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\main\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\main\sources\IfcGraphicPropertiesBundle.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcPortsBuilder.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\main\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
@@ -76,6 +74,8 @@
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperty.cpp" />
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
+    <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
+    <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -140,8 +140,6 @@
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\main\headers\IfcGraphicPropertiesBundle.h" />
-    <ClInclude Include="ifc\main\headers\IfcPortsBuilder.h" />
-    <ClInclude Include="ifc\main\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\main\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\operations_helper\headers\IfcOperationsHelper.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
@@ -172,5 +170,8 @@
     <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\primitives\headers\TorusGraphicProperties.h" />
+    <ClInclude Include="common\utils\headers\Comparator.h" />
+    <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
+    <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
   </ItemGroup>
 </Project>

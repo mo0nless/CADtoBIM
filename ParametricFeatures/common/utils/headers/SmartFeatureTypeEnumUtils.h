@@ -5,13 +5,15 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class SmartFeatureTypeEnumUtils {
 public:
 
-	static SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(std::string classNameValue);
+	static SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(string classNameValue);
 
 private:
 
 	SmartFeatureTypeEnumUtils() {};
-	static std::map<SmartFeatureTypeEnum, std::vector<std::string>> mappedValues;
+	static map<SmartFeatureTypeEnum, vector<string>> mappedValues;
 };

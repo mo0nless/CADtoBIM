@@ -49,7 +49,7 @@ bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElemen
 		//check if the temp element is connected to the current one
 		pointCurrent = temp->cartesianPointPort->Coordinates();
 		//Check the equality of the ports
-		connected = IfcOperationsHelper::isVectorDoubleEqual(pointCurrent, pointNew);
+		connected = Comparator::isEqual(pointCurrent, pointNew);
 
 		if (connected) {
 			temp->isElementConnected = connected;

@@ -3,6 +3,8 @@
 #include <string>
 #include <map>
 
+using namespace std;
+
 namespace ResultStatusEnum {
 	/**
 	*  Result status values of the execution

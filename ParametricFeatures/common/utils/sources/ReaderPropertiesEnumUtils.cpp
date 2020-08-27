@@ -2,7 +2,7 @@
 
 
 
-std::map<ReaderPropertiesEnum, std::string> ReaderPropertiesEnumUtils::mappedValues =
+map<ReaderPropertiesEnum, string> ReaderPropertiesEnumUtils::mappedValues =
 {
 	{ ReaderPropertiesEnum::NODE_ID, "NodeId" },
 	{ ReaderPropertiesEnum::BOOLEAN_FUNCTION,"BooleanFunction" },
@@ -10,7 +10,7 @@ std::map<ReaderPropertiesEnum, std::string> ReaderPropertiesEnumUtils::mappedVal
 	{ ReaderPropertiesEnum::NONE,"" },
 };
 
-ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(std::string stringValue)
+ReaderPropertiesEnum ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(string stringValue)
 {
 	for (auto const& element : mappedValues) 
 	{
