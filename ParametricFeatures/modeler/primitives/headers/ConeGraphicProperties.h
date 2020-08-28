@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 
-class ConeGraphicProperties : public SolidPrimitiveProperty {
+class ConeGraphicProperties : public SolidPrimitiveProperties {
 
 private:
 	double mBaseRadius;

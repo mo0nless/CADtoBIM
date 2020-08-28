@@ -9,11 +9,11 @@ MSBsplineSurfaceGraphicProperties::MSBsplineSurfaceGraphicProperties()
 	this->mIsSelfIntersect = false;
 	this->mUIsClosed = false;
 	this->mVIsClosed = false;
-	this->mUKnots = std::vector<double>();
-	this->mUKnotsMultiplicity = std::vector<int>();
-	this->mVKnots = std::vector<double>();
-	this->mVKnotsMultiplicity = std::vector<int>();
-	this->mControlPoints = std::vector<std::vector<DPoint3d>>();
+	this->mUKnots = vector<double>();
+	this->mUKnotsMultiplicity = vector<int>();
+	this->mVKnots = vector<double>();
+	this->mVKnotsMultiplicity = vector<int>();
+	this->mControlPoints = vector<vector<DPoint3d>>();
 	this->mNumUPoles = 0;
 	this->mNumVPoles = 0;
 	this->mNodeId = -1;
@@ -21,14 +21,14 @@ MSBsplineSurfaceGraphicProperties::MSBsplineSurfaceGraphicProperties()
 	this->mSurfaceBoundary = nullptr;
 }
 
-void MSBsplineSurfaceGraphicProperties::setControlPoints(std::vector<std::vector<DPoint3d>> newControlPoints, int numU, int numV)
+void MSBsplineSurfaceGraphicProperties::setControlPoints(vector<vector<DPoint3d>> newControlPoints, int numU, int numV)
 {
 	this->mControlPoints = newControlPoints;
 	this->mNumUPoles = numU;
 	this->mNumVPoles = numV;
 };
 
-std::vector<std::vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getControlPoints()
+vector<vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getControlPoints()
 {
 	return this->mControlPoints;
 }
@@ -108,12 +108,12 @@ void MSBsplineSurfaceGraphicProperties::setUVKnots(bvector<double> newUKnots, bv
 	}
 }
 
-std::vector<double> MSBsplineSurfaceGraphicProperties::getUKnots()
+vector<double> MSBsplineSurfaceGraphicProperties::getUKnots()
 {
 	return this->mUKnots;
 }
 
-std::vector<double> MSBsplineSurfaceGraphicProperties::getVKnots()
+vector<double> MSBsplineSurfaceGraphicProperties::getVKnots()
 {
 	return this->mVKnots;
 }
@@ -130,23 +130,23 @@ void MSBsplineSurfaceGraphicProperties::setUVKnotsMultiplicity(bvector<size_t> n
 	}
 }
 
-std::vector<int> MSBsplineSurfaceGraphicProperties::getUKnotsMultiplicity()
+vector<int> MSBsplineSurfaceGraphicProperties::getUKnotsMultiplicity()
 {
 	return this->mUKnotsMultiplicity;
 }
 
-std::vector<int> MSBsplineSurfaceGraphicProperties::getVKnotsMultiplicity()
+vector<int> MSBsplineSurfaceGraphicProperties::getVKnotsMultiplicity()
 {
 	return this->mVKnotsMultiplicity;
 }
 
-void MSBsplineSurfaceGraphicProperties::setWeights(std::vector<std::vector<double>> newWeights)
+void MSBsplineSurfaceGraphicProperties::setWeights(vector<vector<double>> newWeights)
 {
 	this->mWeigths = newWeights;
 	
 }
 
-std::vector<std::vector<double>> MSBsplineSurfaceGraphicProperties::getWeights()
+vector<vector<double>> MSBsplineSurfaceGraphicProperties::getWeights()
 {
 	return this->mWeigths;
 }
@@ -191,12 +191,12 @@ int MSBsplineSurfaceGraphicProperties::getNumberOfBounds()
 	return this->mNumberOfBounds;
 }
 
-void MSBsplineSurfaceGraphicProperties::setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds)
+void MSBsplineSurfaceGraphicProperties::setBoundsVectorPoints(vector<vector<DPoint3d>> bounds)
 {
 	this->mBoundsVectorPoints = bounds;
 }
 
-std::vector<std::vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getBoundsVectorPoints()
+vector<vector<DPoint3d>> MSBsplineSurfaceGraphicProperties::getBoundsVectorPoints()
 {
 	return this->mBoundsVectorPoints;
 }

@@ -2,7 +2,7 @@
 
 
 
-DictionaryProperties::DictionaryProperties(long newElementId, std::string newEmentDescriptor)
+DictionaryProperties::DictionaryProperties(long newElementId, string newEmentDescriptor)
 {
 	this->elementId = newElementId;
 	this->elementDescriptor = newEmentDescriptor;
@@ -12,7 +12,7 @@ DictionaryProperties::DictionaryProperties(long newElementId, std::string newEme
 	this->isSmartSolid = false;
 }
 
-//std::vector<ReaderPropertiesBundle*> DictionaryProperties::getGraphicsReaderPropertiesBundleVector()
+//vector<ReaderPropertiesBundle*> DictionaryProperties::getGraphicsReaderPropertiesBundleVector()
 //{
 //	return this->graphicsReaderPropertiesBundleVector;
 //}
@@ -22,7 +22,7 @@ DictionaryProperties::DictionaryProperties(long newElementId, std::string newEme
 //	this->graphicsReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 //}
 
-std::vector<ElementBundle*> DictionaryProperties::getElementBundle()
+vector<ElementBundle*> DictionaryProperties::getElementBundle()
 {
 	return this->subElements;
 }
@@ -32,7 +32,7 @@ void DictionaryProperties::addElementBundle(ElementBundle * elementBundle)
 	this->subElements.push_back(elementBundle);
 }
 
-std::vector<ReaderPropertiesBundle*> DictionaryProperties::getElementReaderPropertiesBundleVector()
+vector<ReaderPropertiesBundle*> DictionaryProperties::getElementReaderPropertiesBundleVector()
 {
 	return this->elementReaderPropertiesBundleVector;
 }
@@ -42,7 +42,7 @@ void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBund
 	this->elementReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 }
 
-//std::vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
+//vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
 //{
 //	return this->graphicPropertiesVector;
 //}
@@ -62,7 +62,7 @@ SmartFeatureContainer * DictionaryProperties::getSmartFeatureContainer()
 	return this->smartFeatureContainer;
 }
 
-std::string DictionaryProperties::getElementDescriptor()
+string DictionaryProperties::getElementDescriptor()
 {
 	return this->elementDescriptor;
 }

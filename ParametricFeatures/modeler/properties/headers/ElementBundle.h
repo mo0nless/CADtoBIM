@@ -4,6 +4,8 @@
 #include "GraphicProperties.h"
 #include <fstream>
 
+using namespace std;
+
 class ElementBundle {
 
 private:
@@ -15,7 +17,7 @@ private:
 
 	UInt32 color;
 	double transparency;
-	std::string _material;
+	string _material;
 
 public:
 
@@ -38,7 +40,7 @@ public:
 	double getTransparency();
 	void setTransparency(double newTransparency);
 
-	std::string getMaterial();
-	void setMaterial(std::string material);
+	string getMaterial();
+	void setMaterial(string material);
 
 };

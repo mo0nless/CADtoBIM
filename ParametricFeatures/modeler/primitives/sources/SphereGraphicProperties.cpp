@@ -1,6 +1,6 @@
 #include "../headers/SphereGraphicProperties.h"
 
-SphereGraphicProperties::SphereGraphicProperties():SolidPrimitiveProperty(PrimitiveTypeEnum::SPHERE)
+SphereGraphicProperties::SphereGraphicProperties():SolidPrimitiveProperties(PrimitiveTypeEnum::SPHERE)
 {
 	this->mRadius = 0;
 }

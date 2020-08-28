@@ -5,6 +5,7 @@
 #include "../smart_feature/headers/SmartFeatureContainer.h"
 #include "../../../common/models/headers/SessionManager.h"
 
+using namespace std;
 
 /**
  *  Class stores ReaderProperties, GraphicProperties and other relevant properties
@@ -13,41 +14,33 @@ class DictionaryProperties {
 
 private:
 	long elementId;
-	std::string elementDescriptor;
+	string elementDescriptor;
 
 	bool isSmartSolid;
 	bool isPrimitiveSolid;
 
-	//std::vector<ReaderPropertiesBundle*> graphicsReaderPropertiesBundleVector;
-	//std::vector<GraphicProperties*> graphicPropertiesVector;
-
-	std::vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
+	vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
 
 	SmartFeatureContainer * smartFeatureContainer;
 
-	std::vector<ElementBundle*> subElements;
+	vector<ElementBundle*> subElements;
 	
 
 public:
-	DictionaryProperties(long newElementId, std::string newEmentDescriptor);
+	DictionaryProperties(long newElementId, string newElementDescriptor);
 
-	/*std::vector<ReaderPropertiesBundle*> getGraphicsReaderPropertiesBundleVector();
-	void addGraphicsReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
 
-	std::vector<GraphicProperties*> getGraphicPropertiesVector();
-	void addGraphicProperties(GraphicProperties* graphicProperties);*/
-
-	std::vector<ElementBundle*> getElementBundle();
+	vector<ElementBundle*> getElementBundle();
 	void addElementBundle(ElementBundle* elementBundle);
 
-	std::vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
+	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
 	void addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
 
 
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();
 
-	std::string getElementDescriptor();
+	string getElementDescriptor();
 
 	long getElementId();
 

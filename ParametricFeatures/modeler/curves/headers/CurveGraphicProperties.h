@@ -4,17 +4,31 @@
 #include <vector>
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
+using namespace std;
 
 class CurveGraphicProperties 
 {
+
+private:
+	DPoint3d mStartPoint;
+	DPoint3d mEndPoint;
+
+	DPoint3d mUVstartPoint;
+	DPoint3d mUVendPoint;
+
+	int mNumCPoints;
+	vector<DPoint3d> mControlPoints;
+	vector<DPoint3d> mUVcontrolPoints;
+	CurvesPrimitivesTypeEnum mCurvesTypeEnum;
+
 public:
 	CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);
 	void setControlPoints(bvector<DPoint3d> newControlPoints);
-	void setControlPoints(std::vector<DPoint3d> newControlPoints);
-	std::vector<DPoint3d> getControlPoints();
+	void setControlPoints(vector<DPoint3d> newControlPoints);
+	vector<DPoint3d> getControlPoints();
 
-	void setUVcontrolPoints(std::vector<DPoint3d> newControlPoints);
-	std::vector<DPoint3d> getUVcontrolPoints();
+	void setUVcontrolPoints(vector<DPoint3d> newControlPoints);
+	vector<DPoint3d> getUVcontrolPoints();
 
 	CurvesPrimitivesTypeEnum getCurvesTypeEnum();
 
@@ -29,16 +43,6 @@ public:
 
 	virtual ~CurveGraphicProperties() {}; //Needed for dynamic cast at least one virtual function
 
-private:
-	DPoint3d mStartPoint;
-	DPoint3d mEndPoint;
 
-	DPoint3d mUVstartPoint;
-	DPoint3d mUVendPoint;
-
-	int mNumCPoints;
-	std::vector<DPoint3d> mControlPoints;
-	std::vector<DPoint3d> mUVcontrolPoints;
-	CurvesPrimitivesTypeEnum mCurvesTypeEnum;
 };
 

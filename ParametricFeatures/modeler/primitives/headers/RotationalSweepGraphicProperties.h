@@ -1,9 +1,9 @@
 #pragma once
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 #include "../../shapes/headers/ShapesGraphicProperties.h"
 
-class RotationalSweepGraphicProperties : public SolidPrimitiveProperty {
+class RotationalSweepGraphicProperties : public SolidPrimitiveProperties {
 
 private:
 	double radius;

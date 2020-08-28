@@ -1,12 +1,12 @@
 #include "../headers/ReaderPropertiesBundle.h"
 
-ReaderPropertiesBundle::ReaderPropertiesBundle(std::string newClassName, int newLocalId)
+ReaderPropertiesBundle::ReaderPropertiesBundle(string newClassName, int newLocalId)
 {
 	this->className = newClassName;
 	this->localId = newLocalId;
 }
 
-std::string ReaderPropertiesBundle::getCassName()
+string ReaderPropertiesBundle::getCassName()
 {
 	return this->className;
 }
@@ -16,7 +16,7 @@ int ReaderPropertiesBundle::getLocalId()
 	return this->localId;
 }
 
-std::vector<ReaderPropertyDefinition*> ReaderPropertiesBundle::getProperties()
+vector<ReaderPropertyDefinition*> ReaderPropertiesBundle::getProperties()
 {
 	return this->properties;
 }

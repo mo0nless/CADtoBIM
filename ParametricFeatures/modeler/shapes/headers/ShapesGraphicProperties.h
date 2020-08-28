@@ -10,6 +10,8 @@
 #include "../../properties/headers/GraphicProperties.h"
 #include <vector>
 
+using namespace std;
+
 class ShapesGraphicProperties: public GraphicProperties
 {
 public:
@@ -18,13 +20,13 @@ public:
 	ShapesTypeEnum getCurvesShapeTypeEnum();
 
 	void addFaceBoundID(int newFaceidentifier);
-	std::vector<int> getFacesBoundIDs();
+	vector<int> getFacesBoundIDs();
 
 	void setBoundaryTypeCurvesContainer(int boundaryBentleyType);
 	CurvesBoundaryTypeEnum getBoundaryTypeCurvesContainer();
 
 	void insertCurvesGraphicsProperties(CurveGraphicProperties* newCurveGraphicProperties);
-	std::vector<CurveGraphicProperties*> getCurvesPrimitivesContainerVector();
+	vector<CurveGraphicProperties*> getCurvesPrimitivesContainerVector();
 
 	void setIsFilled(bool value);
 	bool getIsFilled();
@@ -34,7 +36,7 @@ public:
 
 	bool hasShapesGraphicsContainer() const;
 
-	std::vector<ShapesGraphicProperties*> getShapesGraphicsContainer();
+	vector<ShapesGraphicProperties*> getShapesGraphicsContainer();
 
 	DVec3d getNormal() const;
 	void setNormal(DVec3d normal);
@@ -59,11 +61,11 @@ public:
 	virtual ~ShapesGraphicProperties();
 
 	//TEMP
-	std::string type = "";
+	string type = "";
 	bool isPartOfLoop = false;
 
 private:
-	std::vector<int> mFaceBoundIdentifier;
+	vector<int> mFaceBoundIdentifier;
 
 	int mNodeId;
 
@@ -83,6 +85,6 @@ private:
 
 	ShapesTypeEnum mCurvesShapeTypeEnum;
 	CurvesBoundaryTypeEnum mCurvesBoundaryType;
-	std::vector<CurveGraphicProperties*> mCurvesPrimitivesContainer;
-	std::vector<ShapesGraphicProperties*> mShapesGraphicsContainer;
+	vector<CurveGraphicProperties*> mCurvesPrimitivesContainer;
+	vector<ShapesGraphicProperties*> mShapesGraphicsContainer;
 };

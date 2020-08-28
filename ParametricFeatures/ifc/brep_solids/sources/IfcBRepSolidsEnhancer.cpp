@@ -1592,7 +1592,7 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 			{
 				if (surfaceGraphic->geometryType == IGeometry::GeometryType::SolidPrimitive)
 				{
-					SolidPrimitiveProperty* primitiveGraphicProperties = dynamic_cast<SolidPrimitiveProperty*>(surfaceGraphic);
+					SolidPrimitiveProperties* primitiveGraphicProperties = dynamic_cast<SolidPrimitiveProperties*>(surfaceGraphic);
 
 #if false
 					Ifc4::IfcSurface* ifcSurface = nullptr;

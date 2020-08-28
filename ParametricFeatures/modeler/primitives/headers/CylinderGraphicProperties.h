@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 
-class CylinderGraphicProperties:public SolidPrimitiveProperty {
+class CylinderGraphicProperties:public SolidPrimitiveProperties {
 
 private:
 	double mRadius;

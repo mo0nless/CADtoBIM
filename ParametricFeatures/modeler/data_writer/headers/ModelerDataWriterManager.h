@@ -17,7 +17,6 @@
 
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
-//#include <DgnPlatform/ElementGeometry.h>
 #include <DgnPlatform/DgnFileIO/ModelInfo.h>
 #include <DgnPlatform/DgnFileIO/UnitDefinition.h>
 
@@ -43,10 +42,8 @@
 #include <Mstn\Constraint3dElement\Constraint3dElementApi.h>
 
 
-//#include <ECObjects/ECSchema.h>
 #include <ECObjects/ECObjects.h>
 #include <ECObjects/ECObjectsAPI.h>
-//#include <ECObjects/ECValue.h>
 #include <Geom/SolidPrimitive.h>
 
 #include    <Mstn\MdlApi\MdlApi.h>

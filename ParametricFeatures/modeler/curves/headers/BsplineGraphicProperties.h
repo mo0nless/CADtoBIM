@@ -4,6 +4,19 @@
 
 class BsplineGraphicProperties : public CurveGraphicProperties
 {
+
+private:
+	std::vector<double> mKnots;
+	std::vector<int> mKnotsMultiplicity;
+
+	int mNumberKnots;
+	int mDegree;
+	int mOrder;
+
+	bool mIsClosed;
+	bool mIsSelfIntersect;
+	bool mKnotsValid;
+
 public:
 	BsplineGraphicProperties();
 
@@ -28,14 +41,5 @@ public:
 	void setKnotsMultiplicity(bvector<size_t> newMultiplicity);
 	std::vector<int> getKnotsMultiplicity();
 
-private:
 
-	std::vector<double> mKnots;
-	std::vector<int> mKnotsMultiplicity;
-	int mNumberKnots;
-	int mDegree;
-	int mOrder;
-	bool mIsClosed;
-	bool mIsSelfIntersect;
-	bool mKnotsValid;
 };

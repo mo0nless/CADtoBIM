@@ -71,11 +71,11 @@
     <ClCompile Include="modeler\primitives\sources\PrimitiveGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\RotationalSweepGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\RuledSweepGraphicProperties.cpp" />
-    <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperty.cpp" />
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
+    <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -167,11 +167,11 @@
     <ClInclude Include="modeler\primitives\headers\PrimitiveGraphicProperties.h" />
     <ClInclude Include="modeler\primitives\headers\RotationalSweepGraphicProperties.h" />
     <ClInclude Include="modeler\primitives\headers\RuledSweepGraphicProperties.h" />
-    <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperty.h" />
     <ClInclude Include="modeler\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\primitives\headers\TorusGraphicProperties.h" />
     <ClInclude Include="common\utils\headers\Comparator.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
+    <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperties.h" />
   </ItemGroup>
 </Project>

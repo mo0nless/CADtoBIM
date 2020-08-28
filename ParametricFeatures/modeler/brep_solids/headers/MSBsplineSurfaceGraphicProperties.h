@@ -5,13 +5,15 @@
 #include "../../properties/headers/GraphicProperties.h"
 #include <vector>
 
+using namespace std;
+
 class MSBsplineSurfaceGraphicProperties: public GraphicProperties
 {
 public:
 	MSBsplineSurfaceGraphicProperties();
 
-	void setControlPoints(std::vector<std::vector<DPoint3d>> newControlPoints, int numU, int numV);
-	std::vector<std::vector<DPoint3d>> getControlPoints();
+	void setControlPoints(vector<vector<DPoint3d>> newControlPoints, int numU, int numV);
+	vector<vector<DPoint3d>> getControlPoints();
 
 	int getNumUPoles();
 	int getNumVPoles();
@@ -31,15 +33,15 @@ public:
 	bool getIsSelfIntersect();
 
 	void setUVKnots(bvector<double> newUKnots, bvector<double> newVKnots);
-	std::vector<double> getUKnots();
-	std::vector<double> getVKnots();
+	vector<double> getUKnots();
+	vector<double> getVKnots();
 
 	void setUVKnotsMultiplicity(bvector<size_t> newUMultiplicity, bvector<size_t> newVMultiplicity);
-	std::vector<int> getUKnotsMultiplicity();
-	std::vector<int> getVKnotsMultiplicity();
+	vector<int> getUKnotsMultiplicity();
+	vector<int> getVKnotsMultiplicity();
 
-	void setWeights(std::vector<std::vector<double>> newWeights);
-	std::vector<std::vector<double>> getWeights();
+	void setWeights(vector<vector<double>> newWeights);
+	vector<vector<double>> getWeights();
 
 	void setFaceId(FaceId id);
 	FaceId getBFaceId();
@@ -53,8 +55,8 @@ public:
 	void setNumberOfBounds(int num);
 	int getNumberOfBounds();
 
-	void setBoundsVectorPoints(std::vector<std::vector<DPoint3d>> bounds);
-	std::vector<std::vector<DPoint3d>> getBoundsVectorPoints();
+	void setBoundsVectorPoints(vector<vector<DPoint3d>> bounds);
+	vector<vector<DPoint3d>> getBoundsVectorPoints();
 
 	void addSurfaceBoundaryShape(ShapesGraphicProperties* bound);
 	ShapesGraphicProperties* getSurfaceBoundaryShape();
@@ -64,20 +66,20 @@ public:
 	bool hasValidKnots;
 
 private:
-	std::vector<std::vector<DPoint3d>> mControlPoints;
-	std::vector<std::vector<DPoint3d>> mBoundsVectorPoints;
+	vector<vector<DPoint3d>> mControlPoints;
+	vector<vector<DPoint3d>> mBoundsVectorPoints;
 
 	int mNumberOfBounds;
 	int mFaceId;
 	int mNodeId;
 	FaceId mBentleyFaceId;
 
-	std::vector<std::vector<double>> mWeigths;
-	std::vector<double> mUKnots;
-	std::vector<double> mVKnots;
+	vector<vector<double>> mWeigths;
+	vector<double> mUKnots;
+	vector<double> mVKnots;
 
-	std::vector<int> mUKnotsMultiplicity;
-	std::vector<int> mVKnotsMultiplicity;
+	vector<int> mUKnotsMultiplicity;
+	vector<int> mVKnotsMultiplicity;
 
 	ShapesGraphicProperties* mSurfaceBoundary;
 

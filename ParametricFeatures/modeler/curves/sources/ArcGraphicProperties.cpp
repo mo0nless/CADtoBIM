@@ -5,12 +5,17 @@ ArcGraphicProperties::ArcGraphicProperties():CurveGraphicProperties(CurvesPrimit
 	this->mDirectionX = DVec3d();
 	this->mDirectionY = DVec3d();
 	this->mDirectionZ = DVec3d();
+
 	this->mLength = 0.0;
+
 	this->mIsCircular = false;
 	this->mIsFullEllipse = false;
+
 	this->mCenter = DVec3d();
+
 	this->mSweepAngle = 0.0;
 	this->mStartAngle = 0.0;
+
 	this->mRadiusX = 0.0;
 	this->mRadiusY = 0.0;
 }

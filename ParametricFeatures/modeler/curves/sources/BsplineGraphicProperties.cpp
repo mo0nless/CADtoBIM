@@ -6,10 +6,10 @@ BsplineGraphicProperties::BsplineGraphicProperties():CurveGraphicProperties(Curv
 	this->mOrder = 0;
 	this->mIsSelfIntersect = false;
 	this->mIsClosed = false;
-	this->mKnots = std::vector<double>();
+	this->mKnots = vector<double>();
 	this->mNumberKnots = 0;
 	this->mKnotsValid = false;
-	this->mKnotsMultiplicity = std::vector<int>();
+	this->mKnotsMultiplicity = vector<int>();
 }
 
 void BsplineGraphicProperties::setOrder(size_t newOrder)
@@ -57,7 +57,7 @@ void BsplineGraphicProperties::setKnots(bvector<double> newKnots)
 	this->mNumberKnots = int(mKnots.size());
 }
 
-std::vector<double> BsplineGraphicProperties::getKnots()
+vector<double> BsplineGraphicProperties::getKnots()
 {
 	return this->mKnots;
 }
@@ -86,7 +86,7 @@ void BsplineGraphicProperties::setKnotsMultiplicity(bvector<size_t> newMultiplic
 	}
 }
 
-std::vector<int> BsplineGraphicProperties::getKnotsMultiplicity()
+vector<int> BsplineGraphicProperties::getKnotsMultiplicity()
 {
 	return this->mKnotsMultiplicity;
 }

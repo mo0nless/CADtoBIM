@@ -4,6 +4,9 @@
 
 #include <DgnPlatform/ElementGeometry.h>
 
+
+using namespace std;
+
 class GraphicProperties {
 
 private:

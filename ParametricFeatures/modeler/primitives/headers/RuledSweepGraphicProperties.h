@@ -1,9 +1,9 @@
 #pragma once
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 #include "../../shapes/headers/ShapesGraphicProperties.h"
 
-class RuledSweepGraphicProperties : public SolidPrimitiveProperty {
+class RuledSweepGraphicProperties : public SolidPrimitiveProperties {
 
 private:
 	std::vector<ShapesGraphicProperties*> mSectionCurvesVector;

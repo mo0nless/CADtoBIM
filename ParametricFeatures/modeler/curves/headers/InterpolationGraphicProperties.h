@@ -4,6 +4,12 @@
 
 class InterpolationGraphicProperties : public CurveGraphicProperties
 {
+
+private:
+	int mDegree;
+	int mOrder;
+	bool mIsPeriodic;
+
 public:
 	InterpolationGraphicProperties();
 
@@ -15,9 +21,5 @@ public:
 	void setIsPeriodic(bool newIsPeriodic);
 	bool getIsPeriodic();
 
-private:
 
-	int mDegree;
-	int mOrder;
-	bool mIsPeriodic;
 };

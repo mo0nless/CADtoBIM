@@ -3,7 +3,7 @@
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../common/utils/headers/NumberUtils.h"
-#include "../../../modeler/primitives/headers/SolidPrimitiveProperty.h"
+#include "../../../modeler/primitives/headers/SolidPrimitiveProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
 #include "../../../modeler/primitives/headers/BoxGraphicProperties.h"
@@ -22,12 +22,12 @@ class IfcPrimitivesEnhancer {
 
 public:
 	void enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 		ElementBundle* elementBundle);
 private:
 	
 
-	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 		ElementBundle* elementBundle);
 };

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 
 
-class TorusGraphicProperties: public SolidPrimitiveProperty {
+class TorusGraphicProperties: public SolidPrimitiveProperties {
 
 private:
 	double mMinorRadius;

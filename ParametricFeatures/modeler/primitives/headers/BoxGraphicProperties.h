@@ -1,8 +1,8 @@
 #pragma once
 
-#include"SolidPrimitiveProperty.h"
+#include"SolidPrimitiveProperties.h"
 
-class BoxGraphicProperties : public SolidPrimitiveProperty {
+class BoxGraphicProperties : public SolidPrimitiveProperties {
 
 private:
 	double mLength;

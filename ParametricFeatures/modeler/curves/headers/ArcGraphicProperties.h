@@ -4,6 +4,25 @@
 
 class ArcGraphicProperties : public CurveGraphicProperties
 {
+
+private:
+	double mRadiusX;
+	double mRadiusY;
+
+	double mLength;
+
+	double mSweepAngle;
+	double mStartAngle;
+
+	DVec3d mCenter;
+
+	DVec3d mDirectionX;
+	DVec3d mDirectionY;
+	DVec3d mDirectionZ;
+
+	bool mIsCircular;
+	bool mIsFullEllipse;
+
 public:
 	ArcGraphicProperties();
 
@@ -35,16 +54,5 @@ public:
 	void setSweepAngle(double newSweepAngle);
 	double getSweepAngle();
 
-private:
-	double mRadiusX;
-	double mRadiusY;
-	double mLength;
-	double mSweepAngle;
-	double mStartAngle;
-	DVec3d mCenter;
-	DVec3d mDirectionX;
-	DVec3d mDirectionY;
-	DVec3d mDirectionZ;
-	bool mIsCircular;
-	bool mIsFullEllipse;
+
 };

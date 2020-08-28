@@ -7,12 +7,12 @@ ShapesGraphicProperties::ShapesGraphicProperties(ShapesTypeEnum newShapeType)
 	this->mCurvesShapeTypeEnum = newShapeType;
 	this->mIsFilled = false;
 	this->mIsClosed = false;
-	this->mCurvesPrimitivesContainer = std::vector<CurveGraphicProperties*>();
-	this->mShapesGraphicsContainer = std::vector<ShapesGraphicProperties*>();
+	this->mCurvesPrimitivesContainer = vector<CurveGraphicProperties*>();
+	this->mShapesGraphicsContainer = vector<ShapesGraphicProperties*>();
 	this->mHasShapesGraphicsContainer = false;
 	this->mIsSingleCurve = false;
 	this->mNormal = DVec3d();
-	this->mFaceBoundIdentifier = std::vector<int>();
+	this->mFaceBoundIdentifier = vector<int>();
 	this->mNodeId = -1;
 }
 
@@ -21,7 +21,7 @@ void ShapesGraphicProperties::insertCurvesGraphicsProperties(CurveGraphicPropert
 	this->mCurvesPrimitivesContainer.push_back(newCurveGraphicProperties);
 }
 
-std::vector<CurveGraphicProperties*> ShapesGraphicProperties::getCurvesPrimitivesContainerVector()
+vector<CurveGraphicProperties*> ShapesGraphicProperties::getCurvesPrimitivesContainerVector()
 {
 	return this->mCurvesPrimitivesContainer;
 }
@@ -46,7 +46,7 @@ void ShapesGraphicProperties::addFaceBoundID(int newFaceidentifier)
 	this-> mFaceBoundIdentifier.push_back(newFaceidentifier);
 }
 
-std::vector<int> ShapesGraphicProperties::getFacesBoundIDs()
+vector<int> ShapesGraphicProperties::getFacesBoundIDs()
 {
 	return this->mFaceBoundIdentifier;
 }
@@ -76,7 +76,7 @@ bool ShapesGraphicProperties::hasShapesGraphicsContainer() const
 	return this->mHasShapesGraphicsContainer;
 }
 
-std::vector<ShapesGraphicProperties*> ShapesGraphicProperties::getShapesGraphicsContainer()
+vector<ShapesGraphicProperties*> ShapesGraphicProperties::getShapesGraphicsContainer()
 {
 	return this->mShapesGraphicsContainer;
 }

@@ -1,6 +1,6 @@
 #include "../headers/ExtrusionGraphicProperties.h"
 
-ExtrusionGraphicProperties::ExtrusionGraphicProperties(): SolidPrimitiveProperty(PrimitiveTypeEnum::EXTRUSION)
+ExtrusionGraphicProperties::ExtrusionGraphicProperties(): SolidPrimitiveProperties(PrimitiveTypeEnum::EXTRUSION)
 {
 	this->mShapesGraphicProperties = nullptr;
 	this->mIsSolid = false;

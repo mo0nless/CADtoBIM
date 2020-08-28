@@ -4,30 +4,32 @@
 #include "SolidEntityGraphicProperties.h"
 #include <vector>
 
+using namespace std;
+
 class BRepGraphicProperties : public GraphicProperties
 {
 public:
 	BRepGraphicProperties();
 
 	void addSolidEntityGraphicProperties(SolidEntityGraphicProperties* solidGraphic);
-	std::vector<SolidEntityGraphicProperties*> getSolidEntityVector();
+	vector<SolidEntityGraphicProperties*> getSolidEntityVector();
 
 	void addVertexLoop(DPoint3d loop);
-	std::vector<DPoint3d> getVertexLoopVector();
+	vector<DPoint3d> getVertexLoopVector();
 
 	void addNodeIDFaceID(int idN, int idF);
-	std::vector<std::tuple<int, int>> getNodeIDFaceIDVector();
+	vector<tuple<int, int>> getNodeIDFaceIDVector();
 
 	void setBRepTypeEnum(int solidBentleyType);
 	BRepTypeEnum getBRepTypeEnum();
 
 	void addBoundsPoints(BoundPoints*& newBound);
-	std::vector<BoundPoints*> getBoundsPoints();
+	vector<BoundPoints*> getBoundsPoints();
 
 private:
-	std::vector<SolidEntityGraphicProperties*> mSolidEntityVector;
-	std::vector<DPoint3d> mVertexLoopVector;
-	std::vector<std::tuple<int,int>> mFaceIDVector;
+	vector<SolidEntityGraphicProperties*> mSolidEntityVector;
+	vector<DPoint3d> mVertexLoopVector;
+	vector<tuple<int,int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;
-	std::vector<BoundPoints*> mBoundsPoint;
+	vector<BoundPoints*> mBoundsPoint;
 };

@@ -10,20 +10,22 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 #include <string>
 
+using namespace std;
+
 class ReaderPropertyDefinition {
 
 private:
-	std::string propertyName;
-	std::string propertyTypeName;
+	string propertyName;
+	string propertyTypeName;
 	ECValue propertyValue;
-	std::string propertyValueAsString;
+	string propertyValueAsString;
 
 public:
-	ReaderPropertyDefinition(std::string newPropertyName,std::string newPropertyTypeName,ECValue newPropertyValue, std::string newPropertyValueAsString);
+	ReaderPropertyDefinition(string newPropertyName,string newPropertyTypeName,ECValue newPropertyValue, string newPropertyValueAsString);
 
-	std::string getPropertyName();
-	std::string getPropertyTypeName();
+	string getPropertyName();
+	string getPropertyTypeName();
 	ECValue getPropertyValue();
-	std::string getPropertyValueAsString();
+	string getPropertyValueAsString();
 
 };

@@ -17,9 +17,9 @@ void IfcSurfaceEnhancer::enhanceIfcSurface(std::vector<DictionaryProperties*>& d
 
 			for (auto element : dictionaryProperties.getElementBundle())
 			{
-				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(element->getGraphicProperties());
-				if (solidPrimitiveProperty != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*solidPrimitiveProperty, file, element);
+				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+				if (solidPrimitiveProperties != nullptr) {
+					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*solidPrimitiveProperties, file, element);
 					if (ifcRepresentationItem != nullptr)
 					{
 						auto bundle = new IfcGraphicPropertiesBundle(element->getGraphicProperties(),
@@ -35,7 +35,7 @@ void IfcSurfaceEnhancer::enhanceIfcSurface(std::vector<DictionaryProperties*>& d
 	}
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcSurfaceEnhancer::buildIfcSurface(SolidPrimitiveProperty & primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
+Ifc4::IfcGeometricRepresentationItem * IfcSurfaceEnhancer::buildIfcSurface(SolidPrimitiveProperties & primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
 {
 	
 }

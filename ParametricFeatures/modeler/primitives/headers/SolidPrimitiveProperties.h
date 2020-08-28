@@ -3,13 +3,13 @@
 #include "../../../common/enums/headers/PrimitiveTypeEnum.h"
 #include "../../properties/headers/GraphicProperties.h"
 
-class SolidPrimitiveProperty : public GraphicProperties  {
+class SolidPrimitiveProperties : public GraphicProperties  {
 
 private:
 	PrimitiveTypeEnum primitiveTypeEnum;
 public:
-	SolidPrimitiveProperty(PrimitiveTypeEnum newPrimitiveTypeEnum);
-	virtual ~SolidPrimitiveProperty() {}
+	SolidPrimitiveProperties(PrimitiveTypeEnum newPrimitiveTypeEnum);
+	virtual ~SolidPrimitiveProperties() {}
 
 	PrimitiveTypeEnum getPrimitiveTypeEnum();
 };

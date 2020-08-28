@@ -18,9 +18,9 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 
 			for (auto element : dictionaryProperties.getElementBundle())
 			{
-				SolidPrimitiveProperty* solidPrimitiveProperty = dynamic_cast<SolidPrimitiveProperty*>(element->getGraphicProperties());
-				if (solidPrimitiveProperty != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperty, file,element);
+				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+				if (solidPrimitiveProperties != nullptr) {
+					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file,element);
 					if (ifcRepresentationItem != nullptr)
 					{
 						auto bundle = new IfcGraphicPropertiesBundle(element->getGraphicProperties(),
@@ -38,7 +38,7 @@ void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryPropertie
 
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 	ElementBundle* elementBundle)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
@@ -59,7 +59,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	
 }
 
-Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
@@ -130,7 +130,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperty& primitiveGraphicProperties, 
+Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
 

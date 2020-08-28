@@ -1,6 +1,6 @@
 #include "../headers/RuledSweepGraphicProperties.h"
 
-RuledSweepGraphicProperties::RuledSweepGraphicProperties(): SolidPrimitiveProperty(PrimitiveTypeEnum::RULED_SWEEP)
+RuledSweepGraphicProperties::RuledSweepGraphicProperties(): SolidPrimitiveProperties(PrimitiveTypeEnum::RULED_SWEEP)
 {
 }
 

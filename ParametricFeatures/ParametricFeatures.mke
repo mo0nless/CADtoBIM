@@ -139,7 +139,7 @@ modelerObjects = \
 	$(o)RuledSweepGraphicProperties$(oext) \
 	$(o)ExtrusionGraphicProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
-	$(o)SolidPrimitiveProperty$(oext) \
+	$(o)SolidPrimitiveProperties$(oext) \
 	$(o)DictionaryProperties$(oext) \
 	$(o)ElementBundle$(oext) \
 	$(o)GeneralProperties$(oext) \
@@ -154,7 +154,7 @@ modelerObjects = \
 
 appObjects = \
 	$(commonObjects) \
-	$(dataProcessingObjects \
+	$(dataProcessingObjects) \
 	$(ifcObjects) \
 	$(mapperObjects) \
 	$(modelerObjects) \
@@ -391,7 +391,7 @@ $(o)ExtrusionGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/Ext
 
 $(o)PrimitiveGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/PrimitiveGraphicProperties.cpp $(baseDir)modeler/primitives/headers/PrimitiveGraphicProperties.h
 
-$(o)SolidPrimitiveProperty$(oext) : $(baseDir)modeler/primitives/sources/SolidPrimitiveProperty.cpp $(baseDir)modeler/primitives/headers/SolidPrimitiveProperty.h
+$(o)SolidPrimitiveProperties$(oext) : $(baseDir)modeler/primitives/sources/SolidPrimitiveProperties.cpp $(baseDir)modeler/primitives/headers/SolidPrimitiveProperties.h
 
 
 #--- properties

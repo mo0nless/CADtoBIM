@@ -2,12 +2,13 @@
 
 #include <string>
 
+using namespace std;
 
 class GeneralProperties {
 
 private:
-	std::string mElementClassName;
-	std::string mElementDescriptorName;
+	string mElementClassName;
+	string mElementDescriptorName;
 
 	long mElementId;
 	long mCurrentElementId;
@@ -17,11 +18,11 @@ private:
 public:
 	GeneralProperties();
 
-	std::string getElementClassName();
-	void setElementClassName(std::string newClassName);
+	string getElementClassName();
+	void setElementClassName(string newClassName);
 
-	std::string getElementDescriptorName();
-	void setElementDescriptorName(std::string newElementDescriptorName);
+	string getElementDescriptorName();
+	void setElementDescriptorName(string newElementDescriptorName);
 	
 	long getElementId();
 	void setElementId(long newElementId);

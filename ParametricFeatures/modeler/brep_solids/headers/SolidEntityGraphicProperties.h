@@ -5,6 +5,7 @@
 #include "MSBsplineSurfaceGraphicProperties.h"
 #include "../../../common/utils/headers/BRepTypeEnumUtils.h"
 
+using namespace std;
 
 struct BoundPoints
 {
@@ -12,12 +13,12 @@ struct BoundPoints
 	bool isClosed = false;
 	bool isCreated = false;
 	bool isShared;
-	std::vector<int> faceID;
+	vector<int> faceID;
 	int nodeID;
 	int boundType;
 
-	std::vector<DPoint3d> pointsVector;
-	std::vector<int> connectedBoundIDs;
+	vector<DPoint3d> pointsVector;
+	vector<int> connectedBoundIDs;
 };
 
 class SolidEntityGraphicProperties: public GraphicProperties
@@ -26,25 +27,25 @@ public:
 	SolidEntityGraphicProperties();
 
 	void addSurfaceFace(GraphicProperties*& newFace);
-	std::vector<GraphicProperties*> getSurfaceFacesVector();
+	vector<GraphicProperties*> getSurfaceFacesVector();
 
 	void addFaceBoundaryShape(ShapesGraphicProperties* bound);
-	std::vector<ShapesGraphicProperties*> getSurfaceBoundaryShapes();
+	vector<ShapesGraphicProperties*> getSurfaceBoundaryShapes();
 	
-	void addFacetTriangulated(std::vector<DPoint3d> face);
-	std::vector<std::vector<DPoint3d>> getFacetTriangulated();
+	void addFacetTriangulated(vector<DPoint3d> face);
+	vector<vector<DPoint3d>> getFacetTriangulated();
 
 	void setBRepTypeEnum(int solidBentleyType);
 	BRepTypeEnum getBRepTypeEnum();
 		
-	std::vector<int> faceID;
-	std::vector<std::vector<ShapesGraphicProperties*>> loopShapesBounds;
+	vector<int> faceID;
+	vector<vector<ShapesGraphicProperties*>> loopShapesBounds;
 
 private:
-	std::vector<ShapesGraphicProperties*> mFaceBoundaries;
-	std::vector<GraphicProperties*> mBrepFaces;
-	std::vector<std::vector<DPoint3d>> mFacetTriangulatedVector;
-	std::vector<std::tuple<int, int>> mFaceIDVector;
+	vector<ShapesGraphicProperties*> mFaceBoundaries;
+	vector<GraphicProperties*> mBrepFaces;
+	vector<vector<DPoint3d>> mFacetTriangulatedVector;
+	vector<tuple<int, int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;
 };
 

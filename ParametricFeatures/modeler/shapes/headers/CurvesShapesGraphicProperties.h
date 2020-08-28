@@ -4,9 +4,8 @@
 
 class CurvesShapesGraphicProperties: public ShapesGraphicProperties
 {
+
 public:
 	CurvesShapesGraphicProperties();
 
-
-private:
 };

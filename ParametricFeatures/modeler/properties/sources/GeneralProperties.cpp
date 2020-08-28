@@ -3,29 +3,29 @@
 
 GeneralProperties::GeneralProperties()
 {
-	this->mElementClassName = std::string();
-	this->mElementDescriptorName = std::string();
+	this->mElementClassName = string();
+	this->mElementDescriptorName = string();
 	this->mElementId = -1;
 	this->mCurrentElementId = -1;
 	this->mIsSmartFeature = false;
 }
 
-std::string GeneralProperties::getElementClassName()
+string GeneralProperties::getElementClassName()
 {
 	return this->mElementClassName;
 }
 
-void GeneralProperties::setElementClassName(std::string newClassName)
+void GeneralProperties::setElementClassName(string newClassName)
 {
 	this->mElementClassName = newClassName;
 }
 
-std::string GeneralProperties::getElementDescriptorName()
+string GeneralProperties::getElementDescriptorName()
 {
 	return this->mElementDescriptorName;
 }
 
-void GeneralProperties::setElementDescriptorName(std::string newElementDescriptorName)
+void GeneralProperties::setElementDescriptorName(string newElementDescriptorName)
 {
 	this->mElementDescriptorName = newElementDescriptorName;
 }

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "SolidPrimitiveProperty.h"
+#include "SolidPrimitiveProperties.h"
 #include "../../shapes/headers/ShapesGraphicProperties.h"
 
-class ExtrusionGraphicProperties : public SolidPrimitiveProperty {
+class ExtrusionGraphicProperties : public SolidPrimitiveProperties {
 
 private:
 	DVec3d mDirectionExtrusion;

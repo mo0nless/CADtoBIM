@@ -3,7 +3,8 @@
 #include "RevolveReaderProperties.h"
 #include "ExtrusionReaderProperties.h"
 #include "../../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
-//#include "../../../../../common/enums/headers/CreateSolidFunctionsEnum.h"
+
+
 
 class CreateSolidsOperationProperties {
 

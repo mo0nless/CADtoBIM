@@ -1,6 +1,6 @@
 #include "../headers/RotationalSweepGraphicProperties.h"
 
-RotationalSweepGraphicProperties::RotationalSweepGraphicProperties() :SolidPrimitiveProperty(PrimitiveTypeEnum::ROTATIONAL_SWEEP)
+RotationalSweepGraphicProperties::RotationalSweepGraphicProperties() :SolidPrimitiveProperties(PrimitiveTypeEnum::ROTATIONAL_SWEEP)
 {
 	this->radius=0;
 	this->sweepRadians=0;

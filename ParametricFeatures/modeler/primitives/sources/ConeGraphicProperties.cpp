@@ -1,6 +1,6 @@
 #include "../headers/ConeGraphicProperties.h"
 
-ConeGraphicProperties::ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum):SolidPrimitiveProperty(primitiveTypeEnum)
+ConeGraphicProperties::ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum):SolidPrimitiveProperties(primitiveTypeEnum)
 {
 
 	if (primitiveTypeEnum != PrimitiveTypeEnum::CONE || primitiveTypeEnum != PrimitiveTypeEnum::TRUNCATED_CONE) {

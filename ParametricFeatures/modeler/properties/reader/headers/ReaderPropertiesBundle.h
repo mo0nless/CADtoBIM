@@ -4,21 +4,22 @@
 
 #include "ReaderPropertyDefinition.h"
 
+using namespace std;
 
 class ReaderPropertiesBundle {
 
 private:
-	std::string className;
+	string className;
 	int localId;
-	std::vector<ReaderPropertyDefinition*> properties;
+	vector<ReaderPropertyDefinition*> properties;
 
 public:
-	ReaderPropertiesBundle(std::string newClassName, int newLocalId);
+	ReaderPropertiesBundle(string newClassName, int newLocalId);
 
-	std::string getCassName();
+	string getCassName();
 	int getLocalId();
 
-	std::vector<ReaderPropertyDefinition*> getProperties();
+	vector<ReaderPropertyDefinition*> getProperties();
 	void addProperty(ReaderPropertyDefinition* readerPropertyDefinition);
 
 };

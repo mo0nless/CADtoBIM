@@ -1,6 +1,6 @@
 #include "../headers/BoxGraphicProperties.h"
 
-BoxGraphicProperties::BoxGraphicProperties():SolidPrimitiveProperty(PrimitiveTypeEnum::BOX)
+BoxGraphicProperties::BoxGraphicProperties():SolidPrimitiveProperties(PrimitiveTypeEnum::BOX)
 {
 	this->mLength = 0;
 	this->mWidth = 0;

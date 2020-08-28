@@ -9,7 +9,7 @@ void SolidEntityGraphicProperties::addSurfaceFace(GraphicProperties*& newFace)
 	this->mBrepFaces.push_back(newFace);
 }
 
-std::vector<GraphicProperties*> SolidEntityGraphicProperties::getSurfaceFacesVector()
+vector<GraphicProperties*> SolidEntityGraphicProperties::getSurfaceFacesVector()
 {
 	return this->mBrepFaces;
 }
@@ -19,7 +19,7 @@ void SolidEntityGraphicProperties::addFaceBoundaryShape(ShapesGraphicProperties 
 	this->mFaceBoundaries.push_back(bound);
 }
 
-std::vector<ShapesGraphicProperties*> SolidEntityGraphicProperties::getSurfaceBoundaryShapes()
+vector<ShapesGraphicProperties*> SolidEntityGraphicProperties::getSurfaceBoundaryShapes()
 {
 	return this->mFaceBoundaries;
 }
@@ -34,12 +34,12 @@ BRepTypeEnum SolidEntityGraphicProperties::getBRepTypeEnum()
 	return this->mBRepType;
 }
 
-void SolidEntityGraphicProperties::addFacetTriangulated(std::vector<DPoint3d> face)
+void SolidEntityGraphicProperties::addFacetTriangulated(vector<DPoint3d> face)
 {
 	this->mFacetTriangulatedVector.push_back(face);
 }
 
-std::vector<std::vector<DPoint3d>> SolidEntityGraphicProperties::getFacetTriangulated()
+vector<vector<DPoint3d>> SolidEntityGraphicProperties::getFacetTriangulated()
 {
 	return this->mFacetTriangulatedVector;
 }
