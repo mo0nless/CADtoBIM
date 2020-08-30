@@ -42,8 +42,8 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 	//	file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertMicrometersToMetters(centroid.x),
 	//	NumberUtils::convertMicrometersToMetters(centroid.y),
 	//	NumberUtils::convertMicrometersToMetters(centroid.z)),
-	//	new Ifc4::IfcDirection(std::vector<double>()),
-	//	new Ifc4::IfcDirection(std::vector<double>()));
+	//	new Ifc4::IfcDirection(vector<double>()),
+	//	new Ifc4::IfcDirection(vector<double>()));
 
 
 	Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(file.addTriplet<Ifc4::IfcCartesianPoint>(NumberUtils::convertCurrentUnitToMeters(centroid.x),
@@ -62,7 +62,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		}
 		//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0, 0), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 		//Ifc4::IfcCircleProfileDef* profileDefinition = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, boost::none, localPlacement, 1);
-		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("Revolve"),
+		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, string("Revolve"),
 			(Ifc4::IfcCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
 		//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
 		//	10), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
@@ -70,7 +70,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		//Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
 		//	boost::none, localPlacement, 3);
 
-		Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), new Ifc4::IfcDirection(std::vector<double>()));
+		Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0), new Ifc4::IfcDirection(vector<double>()));
 
 
 
@@ -110,7 +110,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 
 		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
 			Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
-			std::string("Extrude"),
+			string("Extrude"),
 			(Ifc4::IfcCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
 		
 		Ifc4::IfcGeometricRepresentationItem* result =  new Ifc4::IfcExtrudedAreaSolid(profileDef,
@@ -143,13 +143,13 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		DVec3d vec;
 		vec = vec.FromStartEndNormalize(rangeLow, rangeHigh);
 
-		/*Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, std::string("Thicken"), (Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());*/
+		/*Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryOpenProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE, string("Thicken"), (Ifc4::IfcBoundedCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());*/
 
 		//Ifc4::IfcAxis2Placement2D* localPlacement = new Ifc4::IfcAxis2Placement2D(file.addDoublet<Ifc4::IfcCartesianPoint>(0,
 		//	10), file.addTriplet<Ifc4::IfcDirection>(1, 0, 0));
 
 		Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
-			Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, std::string("Thicken"),
+			Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, string("Thicken"),
 			(Ifc4::IfcCurve*)ifcElementBundle->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem());
 
 		//Ifc4::IfcCircleProfileDef* profileDef = new Ifc4::IfcCircleProfileDef(Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,

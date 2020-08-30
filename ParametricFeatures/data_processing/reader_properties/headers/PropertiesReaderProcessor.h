@@ -37,7 +37,7 @@ public:
 	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
 
 private:
-	std::string mElemClassName;
+	string mElemClassName;
 	
 };
 

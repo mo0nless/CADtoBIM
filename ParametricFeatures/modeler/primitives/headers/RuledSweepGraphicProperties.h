@@ -6,12 +6,12 @@
 class RuledSweepGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	std::vector<ShapesGraphicProperties*> mSectionCurvesVector;
+	vector<ShapesGraphicProperties*> mSectionCurvesVector;
 
 public:
 	RuledSweepGraphicProperties();
 
-	std::vector<ShapesGraphicProperties*> getSectionCurvesVector();
+	vector<ShapesGraphicProperties*> getSectionCurvesVector();
 	void addSectionCurve(ShapesGraphicProperties* newSectionCurve);
 
 	double getWidth();

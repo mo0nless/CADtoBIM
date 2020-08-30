@@ -1,6 +1,6 @@
 #include "../headers/CreateSolidsOperationPropertiesReaderMapper.h"
 //
-//void CreateSolidsOperationPropertiesReaderMapper::mapCreateSolidsOperationPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties & readerProperties)
+//void CreateSolidsOperationPropertiesReaderMapper::mapCreateSolidsOperationPropertiesToReaderProperties(string labelValue, ECValue eCValue, ReaderProperties & readerProperties)
 //{
 //	// TODO [MP] to be removed or/and replaced
 //	/*if (readerProperties.getSmartFeatureGeneralProperties()->getSmartFeatureTypeEnum() == SmartFeatureTypeEnum::CREATE_SOLIDS)

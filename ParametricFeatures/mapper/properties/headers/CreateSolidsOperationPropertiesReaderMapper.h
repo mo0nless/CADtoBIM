@@ -17,7 +17,7 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 class CreateSolidsOperationPropertiesReaderMapper
 {
 public:
-	//static void mapCreateSolidsOperationPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties & readerProperties);
+	//static void mapCreateSolidsOperationPropertiesToReaderProperties(string labelValue, ECValue eCValue, ReaderProperties & readerProperties);
 private:
 	//CreateSolidsOperationPropertiesReaderMapper();
 

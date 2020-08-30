@@ -1,7 +1,7 @@
 #include "../headers/SmartFeatureHandler.h"
 
 #pragma warning (disable:4311 4302 4312 4189)
-void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	for (auto ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getIsSmartFeature()) {
@@ -17,7 +17,7 @@ void SmartFeatureHandler::handleSmartFeature(std::vector<IfcElementBundle*>& ifc
 
 
 
-IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* smartFeature, IfcHierarchyHelper<Ifc4>& file)
+IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* smartFeature, IfcHierarchyHelper<Ifc4>& file)
 {
 	if (!root)
 		return nullptr;
@@ -56,7 +56,7 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, std::vec
 
 }
 
-IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(std::vector<IfcElementBundle*>& ifcBundleVector, int globalId) {
+IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(vector<IfcElementBundle*>& ifcBundleVector, int globalId) {
 	if (globalId < 0) {
 		return nullptr;
 	}

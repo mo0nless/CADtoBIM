@@ -30,17 +30,6 @@ void ElementBundle::setReaderPropertiesBundle(ReaderPropertiesBundle & newReader
 	this->readerPropertiesBundle = &newReaderPropertiesBundle;
 }
 
-ElemDisplayParamsCP ElementBundle::getElemDisplayParamsCP()
-{
-	return this->elemDisplayParamsCP;
-}
-
-void ElementBundle::setElemDisplayParamsCR(ElemDisplayParamsCR newElemDisplayParamsCR)
-{
-	this->elemDisplayParamsCP =  ElemDisplayParamsCP(&newElemDisplayParamsCR);
-
-}
-
 UInt32 ElementBundle::getColor()
 {
 	return this->color;

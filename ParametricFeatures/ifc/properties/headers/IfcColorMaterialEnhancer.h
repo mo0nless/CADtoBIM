@@ -7,10 +7,10 @@
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
 
-class IfcColorEnhancer {
+class IfcColorMaterialEnhancer {
 
 public:
-	void enhanceColors(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
 	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);

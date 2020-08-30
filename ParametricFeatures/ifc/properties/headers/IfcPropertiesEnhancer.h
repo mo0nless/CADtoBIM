@@ -10,7 +10,7 @@
 class IfcPropertiesEnhancer {
 
 public:
-	void enhanceIfcProperties(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhanceIfcProperties(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
 	Ifc4::IfcPropertySet* createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);

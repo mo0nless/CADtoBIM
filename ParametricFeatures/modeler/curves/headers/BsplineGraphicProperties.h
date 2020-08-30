@@ -6,8 +6,8 @@ class BsplineGraphicProperties : public CurveGraphicProperties
 {
 
 private:
-	std::vector<double> mKnots;
-	std::vector<int> mKnotsMultiplicity;
+	vector<double> mKnots;
+	vector<int> mKnotsMultiplicity;
 
 	int mNumberKnots;
 	int mDegree;
@@ -32,14 +32,14 @@ public:
 	bool getIsSelfIntersect();
 	
 	void setKnots(bvector<double> newKnots);
-	std::vector<double> getKnots();
+	vector<double> getKnots();
 	int getNumberKnots();
 
 	void setAreKnotsValid(bool value);
 	bool getAreKnotsValid();
 
 	void setKnotsMultiplicity(bvector<size_t> newMultiplicity);
-	std::vector<int> getKnotsMultiplicity();
+	vector<int> getKnotsMultiplicity();
 
 
 };

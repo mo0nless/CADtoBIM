@@ -6,6 +6,7 @@ GraphicsProcessorHelper::GraphicsProcessorHelper()
 
 	this->filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	this->_modelerDataWriterManager = new ModelerDataWriterManager(true);
+	this->_bRepGraphicProperties = nullptr;
 }
 
 void GraphicsProcessorHelper::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -28,17 +29,9 @@ DictionaryProperties* GraphicsProcessorHelper::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
-bool GraphicsProcessorHelper::isDoubleEqual(double x, double y)
-{
-	/* some small number such as 1e-5 */
-	const double epsilon = 1e-5;
-	return std::abs(x - y) <= epsilon * std::abs(x);
-	// see Knuth section 4.2.2 pages 217-218
-}
-
 void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 	double area, volume;
 	DVec3d centroid;
 	RotMatrix axes;
@@ -49,24 +42,24 @@ void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& 
 	GraphicProperties->setCentroid(centroid);
 	GraphicProperties->setArea(area);
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-	outfile << std::endl;
-	outfile << "Centroid from Area [X] = " << centroid.x << std::endl;
-	outfile << "Centroid from Area [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid from Area [Z] = " << centroid.z << std::endl;
-	outfile << "Area1 = " << area << std::endl;
-	outfile << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << fixed;
+	outfile << endl;
+	outfile << "Centroid from Area [X] = " << centroid.x << endl;
+	outfile << "Centroid from Area [Y] = " << centroid.y << endl;
+	outfile << "Centroid from Area [Z] = " << centroid.z << endl;
+	outfile << "Area1 = " << area << endl;
+	outfile << endl;
 
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
 	GraphicProperties->setVolume(volume);
 
-	outfile << "Centroid from Volume [X] = " << centroid.x << std::endl;
-	outfile << "Centroid from Volume [Y] = " << centroid.y << std::endl;
-	outfile << "Centroid from Volume [Z] = " << centroid.z << std::endl;
-	outfile << "Volume = " << volume << std::endl;
-	outfile << "Area2 = " << area << std::endl;
-	outfile << std::endl;
+	outfile << "Centroid from Volume [X] = " << centroid.x << endl;
+	outfile << "Centroid from Volume [Y] = " << centroid.y << endl;
+	outfile << "Centroid from Volume [Z] = " << centroid.z << endl;
+	outfile << "Volume = " << volume << endl;
+	outfile << "Area2 = " << area << endl;
+	outfile << endl;
 	
 	outfile.close();
 
@@ -83,16 +76,16 @@ void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graph
 	graphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 	graphicProperties->setOrigin(origin);
 
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::fixed;
-	outfile << std::endl;
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
+	outfile << fixed;
+	outfile << endl;
 
-	outfile << std::endl;
-	outfile << "Origin [X] = " << origin.x << std::endl;
-	outfile << "Origin [Y] = " << origin.y << std::endl;
-	outfile << "Origin [Z] = " << origin.z << std::endl;
-	outfile << std::endl;
+	outfile << endl;
+	outfile << "Origin [X] = " << origin.x << endl;
+	outfile << "Origin [Y] = " << origin.y << endl;
+	outfile << "Origin [Z] = " << origin.z << endl;
+	outfile << endl;
 	outfile.close();
 }
 
@@ -195,12 +188,12 @@ void GraphicsProcessorHelper::setCylinderGraphicProperties(DgnConeDetail dgnCone
 void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
 {
 	// TODO to enable if needed, but to be removed at the end
-	//std::ofstream outfile;
-	//outfile.open(filePath, std::ios_base::app);
-	//outfile << std::fixed;
-	//outfile << std::endl;
-	//outfile << " Sphere " << std::endl;
-	//outfile << std::endl;
+	//ofstream outfile;
+	//outfile.open(filePath, ios_base::app);
+	//outfile << fixed;
+	//outfile << endl;
+	//outfile << " Sphere " << endl;
+	//outfile << endl;
 
 	// calculate the radius
 	double radius;
@@ -217,12 +210,12 @@ void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties
 void GraphicsProcessorHelper::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
 {
 	// TODO to be enabled if needed, remove at the end
-	//std::ofstream outfile;
-	//outfile.open(filePath, std::ios_base::app);
-	//outfile << std::fixed;
-	//outfile << std::endl;
-	//outfile << " Torus " << std::endl;
-	//outfile << std::endl;
+	//ofstream outfile;
+	//outfile.open(filePath, ios_base::app);
+	//outfile << fixed;
+	//outfile << endl;
+	//outfile << " Torus " << endl;
+	//outfile << endl;
 
 	// set torus properties
 	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
@@ -234,7 +227,7 @@ void GraphicsProcessorHelper::setTorusGraphicProperties(DgnTorusPipeDetail dgnTo
 
 void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, RotationalSweepGraphicProperties *& rotationalSweepGraphicProperties)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 
 	Transform localToWorld;
 	Transform worldToLocal;
@@ -262,9 +255,9 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 	processShapesCurvesVector(*dgnRotationalSweepDetail.m_baseCurve, false, shapesGraphicProperties, addToDictionary);
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "REVOLVED CURVES CALL ENDED" << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << endl;
+	outfile << "REVOLVED CURVES CALL ENDED" << endl;
 	outfile.close();
 
 	if (shapesGraphicProperties != nullptr) {
@@ -284,7 +277,7 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail ruledSweepDetails, RuledSweepGraphicProperties *& ruledSweepGraphicProperties)
 {
 	int countCurves = 0;
-	std::ofstream outfile;
+	ofstream outfile;
 
 	for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
 	{
@@ -293,15 +286,15 @@ void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail
 
 		cv->GetStartEnd(curveStart, curveEnd);
 
-		outfile << countCurves << "° " << "Curve Start Point of Swept [X] = " << curveStart.x << std::endl;
-		outfile << countCurves << "° " << "Curve Start Point of Swept [Y] = " << curveStart.y << std::endl;
-		outfile << countCurves << "° " << "Curve Start Point of Swept [Z] = " << curveStart.z << std::endl;
-		outfile << std::endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [X] = " << curveStart.x << endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Y] = " << curveStart.y << endl;
+		outfile << countCurves << "° " << "Curve Start Point of Swept [Z] = " << curveStart.z << endl;
+		outfile << endl;
 
-		outfile << countCurves << "° " << "Curve End Point of Swept [X] = " << curveEnd.x << std::endl;
-		outfile << countCurves << "° " << "Curve End Point of Swept [Y] = " << curveEnd.y << std::endl;
-		outfile << countCurves << "° " << "Curve End Point of Swept [Z] = " << curveEnd.z << std::endl;
-		outfile << std::endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [X] = " << curveEnd.x << endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Y] = " << curveEnd.y << endl;
+		outfile << countCurves << "° " << "Curve End Point of Swept [Z] = " << curveEnd.z << endl;
+		outfile << endl;
 
 		countCurves += 1;
 
@@ -314,7 +307,7 @@ void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail
 
 void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties *& extrusionGraphicProperties)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 
 	extrusionGraphicProperties->setDirectionOfExtrusion(extrusionDetails.m_extrusionVector);
 	extrusionGraphicProperties->setIsSolid (extrusionDetails.m_capped);
@@ -336,24 +329,24 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	cDY = shapesGraphicProperties->getVectorAxisY();
 	cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "Extrusion solid: " << std::endl;
-	outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;
-	outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << std::endl;
-	outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << std::endl;
-	outfile << std::endl;
-	outfile << "Curve Profile: " << std::endl;
-	outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-	outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-	outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << endl;
+	outfile << "Extrusion solid: " << endl;
+	outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << endl;
+	outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << endl;
+	outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << endl;
+	outfile << endl;
+	outfile << "Curve Profile: " << endl;
+	outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+	outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+	outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 	
 }
 
 
 GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimitiveCR& primitive)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 
 	DgnConeDetail dgnConeDetail;
 	Transform localToWorld;
@@ -367,25 +360,25 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	//Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!!
 	centerOfTheConeInB = dgnConeDetail.GetTransforms(localToWorld, worldToLocal, rA, rB);
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << std::endl;
-	outfile << "THIS IS A CONE: " << std::endl;
-	outfile << "Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!! " << std::endl;
-	outfile << "CenterB is in base plane: " << centerOfTheConeInB << std::endl;
-	outfile << std::endl;
-	outfile << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << endl;
+	outfile << endl;
+	outfile << "THIS IS A CONE: " << endl;
+	outfile << "Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!! " << endl;
+	outfile << "CenterB is in base plane: " << centerOfTheConeInB << endl;
+	outfile << endl;
+	outfile << endl;
 	outfile.close();
 
 	GraphicProperties* primitiveGraphicProperties = nullptr;
 
-	if (isDoubleEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB) && dgnConeDetail.m_radiusA > 0)
+	if (Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB) && dgnConeDetail.m_radiusA > 0)
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::fixed;
-		outfile << std::endl;
-		outfile << " Cylinder " << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << fixed;
+		outfile << endl;
+		outfile << " Cylinder " << endl;
+		outfile << endl;
 		outfile.close();
 
 		primitiveGraphicProperties = new CylinderGraphicProperties();
@@ -397,11 +390,11 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	}
 	else if (dgnConeDetail.m_radiusB == 0)
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::fixed;
-		outfile << std::endl;
-		outfile << " Cone " << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << fixed;
+		outfile << endl;
+		outfile << " Cone " << endl;
+		outfile << endl;
 		outfile.close();
 
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
@@ -410,13 +403,13 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 		setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
 		setConeGraphicProperties(dgnConeDetail, (ConeGraphicProperties*&)primitiveGraphicProperties);
 	}
-	else if (dgnConeDetail.m_radiusB > 0 && !isDoubleEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB))
+	else if (dgnConeDetail.m_radiusB > 0 && !Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB))
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::fixed;
-		outfile << std::endl;
-		outfile << " Truncated cone " << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << fixed;
+		outfile << endl;
+		outfile << " Truncated cone " << endl;
+		outfile << endl;
 		outfile.close();
 
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
@@ -436,9 +429,9 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 		msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
 	}
 		
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << "Type: " << msBsplineSurface.type << std::endl;
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
+	outfile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << "Type: " << msBsplineSurface.type << endl;
 	outfile.close();
 
 	int numOfBounds;
@@ -458,22 +451,22 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 	double uMin, uMax, vMin, vMax;
 	T_DoubleVector uKnotsSupport, vKnotsSupport, uParams, vParams;
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "Number of Bounds: " << numOfBounds << std::endl;
-	outfile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << std::endl;
-	outfile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << std::endl;
-	outfile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << std::endl;
-	outfile << "U is Closed: " << msBsplineSurface.GetIsUClosed() << std::endl;
-	outfile << "V is Closed: " << msBsplineSurface.GetIsVClosed() << std::endl;
-	outfile << "Number of UV Poles Get Poles: " << weightPoles.size() << std::endl;
-	outfile << "Grid Poles Number: " << polesGrid.size() << std::endl;
-	outfile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << std::endl;
-	outfile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << std::endl;
-	outfile << "HasValidWeightAllocation: " << msBsplineSurface.HasValidWeightAllocation() << std::endl;
-	outfile << "HasWeights: " << msBsplineSurface.HasWeights() << std::endl;
-	outfile << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << "Number of Bounds: " << numOfBounds << endl;
+	outfile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << endl;
+	outfile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << endl;
+	outfile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << endl;
+	outfile << "U is Closed: " << msBsplineSurface.GetIsUClosed() << endl;
+	outfile << "V is Closed: " << msBsplineSurface.GetIsVClosed() << endl;
+	outfile << "Number of UV Poles Get Poles: " << weightPoles.size() << endl;
+	outfile << "Grid Poles Number: " << polesGrid.size() << endl;
+	outfile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << endl;
+	outfile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << endl;
+	outfile << "HasValidWeightAllocation: " << msBsplineSurface.HasValidWeightAllocation() << endl;
+	outfile << "HasWeights: " << msBsplineSurface.HasWeights() << endl;
+	outfile << endl;
 	
-	outfile << "POINT Following the m/n parameters" << std::endl;
+	outfile << "POINT Following the m/n parameters" << endl;
 
 	uOrder = msBsplineSurface.GetIntUOrder();
 	vOrder = msBsplineSurface.GetIntVOrder();
@@ -482,13 +475,13 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 	int nParam = msBsplineSurface.GetIntNumPoles();
 	int nParamCalc = ((msBsplineSurface.GetIntNumVKnots()) - (vOrder - 1) - 1);
 
-	outfile << "mParam: " << mParam << std::endl;
-	outfile << "nParam: " << nParam << std::endl;
-	outfile << "nParamCalc: " << nParamCalc << std::endl;
-	outfile << "V_Degree: " << vOrder - 1 << std::endl;
-	outfile << "U_Degree: " << uOrder - 1 << std::endl;
-	outfile << "V_Order: " << vOrder << std::endl;
-	outfile << "U_Order: " << uOrder << std::endl;
+	outfile << "mParam: " << mParam << endl;
+	outfile << "nParam: " << nParam << endl;
+	outfile << "nParamCalc: " << nParamCalc << endl;
+	outfile << "V_Degree: " << vOrder - 1 << endl;
+	outfile << "U_Degree: " << uOrder - 1 << endl;
+	outfile << "V_Order: " << vOrder << endl;
+	outfile << "U_Order: " << uOrder << endl;
 	outfile.close();
 	
 	msBsplineSurface.GetVKnots(vKnots);
@@ -516,33 +509,33 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 		polesToParse = weightPoles;
 	
 	//Get the UV Poles control points of the surface
-	std::vector<std::vector<DPoint3d>> controlPointsUV;
-	std::vector<std::vector<double>> weightsVec;
+	vector<vector<DPoint3d>> controlPointsUV;
+	vector<vector<double>> weightsVec;
 
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "POINT Controls with GET POLES STORED : " << std::endl;
-	outfile << "has weight: " << msBsplineSurface.HasWeights() << std::endl;
-	outfile << std::fixed;
-	outfile << std::endl;
+	outfile.open(filePath, ios_base::app, sizeof(string));
+	outfile << "POINT Controls with GET POLES STORED : " << endl;
+	outfile << "has weight: " << msBsplineSurface.HasWeights() << endl;
+	outfile << fixed;
+	outfile << endl;
 
 	for (size_t i = 0; i < nU; i++) 
 	{		
-		std::vector<DPoint3d> tempCP;
-		std::vector<double> tempW;
+		vector<DPoint3d> tempCP;
+		vector<double> tempW;
 
 		for (size_t j = 0; j < nV; j++) 
 		{
 			DPoint3d point = polesToParse.at(i); 
 			tempCP.push_back(point);
 
-			outfile << "Point " << i << ": " << " = [" << point.x << ", " << point.y << ", " << point.z << "]" << std::endl;
+			outfile << "Point " << i << ": " << " = [" << point.x << ", " << point.y << ", " << point.z << "]" << endl;
 
 			if (msBsplineSurface.HasWeights())
 			{
 				double w = weights.at(i);
 				tempW.push_back(w);
 
-				outfile << "Weight: " << w << std::endl;
+				outfile << "Weight: " << w << endl;
 			}		
 			
 			i += nU;
@@ -553,7 +546,7 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 			i -= nU;
 		}
 
-		outfile << std::endl;
+		outfile << endl;
 
 		controlPointsUV.push_back(tempCP);
 		weightsVec.push_back(tempW);
@@ -590,10 +583,10 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 
 //DPoint3d PolyLoop Evaluation MDL
 #if false
-	std::vector<std::vector<DPoint3d>> UVBoundsP;
+	vector<vector<DPoint3d>> UVBoundsP;
 	for (int i = 0; i<msBsplineSurface.numBounds; i++)
 	{
-		std::vector<DPoint3d> bound;
+		vector<DPoint3d> bound;
 		DPoint3d   *pPoints = (DPoint3d *)dlmSystem_mdlMalloc(msBsplineSurface.boundaries[i].numPoints * sizeof(DPoint3d));
 		for (int j = 0; j < msBsplineSurface.boundaries[i].numPoints; j++)
 		{
@@ -609,18 +602,18 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 
 //Bounds as points
 #if false
-	std::vector<std::vector<DPoint3d>> boundsVectorPoints;
+	vector<vector<DPoint3d>> boundsVectorPoints;
 	//msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, true);
 	msBsplineSurface.GetUVBoundaryLoops(boundaryUVLoops, false);
 
 	//Points Loop of the boundaries
 	for (auto b : boundaryUVLoops)
 	{
-		/*outfile.open(filePath, std::ios_base::app);
-		outfile << "-------- Points UV Boundary --------" << std::endl;
+		/*outfile.open(filePath, ios_base::app);
+		outfile << "-------- Points UV Boundary --------" << endl;
 		outfile.close();*/
 
-		std::vector<DPoint3d> bound;
+		vector<DPoint3d> bound;
 		for (auto uv : b)
 		{
 			DPoint3d evalP;
@@ -656,11 +649,11 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 #pragma warning( disable : 4189)
 void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 	
-	outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-	outfile << "                              " << std::endl;
-	outfile << std::fixed;
+	outfile.open(filePath, ios_base::app, sizeof(string));
+	outfile << "                              " << endl;
+	outfile << fixed;
 	outfile.close();
 
 
@@ -668,9 +661,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 	{
 		/*CurveTopologyId topologyID = curvePrimitive->GetId()->GetCurveTopologyId();
 		
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "CURVE_PRIMITIVE_ID: " << topologyID.GetType() << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app, sizeof(string));
+		outfile << "CURVE_PRIMITIVE_ID: " << topologyID.GetType() << endl;
+		outfile << endl;
 		outfile.close();*/
 
 		switch (curvePrimitive->GetCurvePrimitiveType())
@@ -679,21 +672,21 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			AkimaGraphicProperties* curveGraphicProperties = new AkimaGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			if (curvePrimitive->GetAkimaCurveCP() != nullptr)
 			{
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile.open(filePath, ios_base::app, sizeof(string));
 
 				for (size_t k = 0; k < curvePrimitive->GetAkimaCurveCP()->size(); k++)
 				{
-					outfile << "point " << k << " [X] = " << curvePrimitive->GetAkimaCurveCP()->at(k).x << std::endl;
-					outfile << "point " << k << " [Y] = " << curvePrimitive->GetAkimaCurveCP()->at(k).y << std::endl;
-					outfile << "point " << k << " [Z] = " << curvePrimitive->GetAkimaCurveCP()->at(k).z << std::endl;
-					outfile << std::endl;
+					outfile << "point " << k << " [X] = " << curvePrimitive->GetAkimaCurveCP()->at(k).x << endl;
+					outfile << "point " << k << " [Y] = " << curvePrimitive->GetAkimaCurveCP()->at(k).y << endl;
+					outfile << "point " << k << " [Z] = " << curvePrimitive->GetAkimaCurveCP()->at(k).z << endl;
+					outfile << endl;
 				}
 
 				outfile.close();
@@ -737,21 +730,21 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
 			curveGraphicProperties->setStartEndPoints(startP, endP);
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_Arc --------" << std::endl;
-			outfile << "Is Circular: " << ellipse.IsCircular() << std::endl;
-			outfile << "Is Ellipse: " << ellipse.IsFullEllipse() << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Arc --------" << endl;
+			outfile << "Is Circular: " << ellipse.IsCircular() << endl;
+			outfile << "Is Ellipse: " << ellipse.IsFullEllipse() << endl;
+			outfile << endl;
 
-			outfile << "Start Point [X]: " << startP.x << std::endl;
-			outfile << "Start Point [Y]: " << startP.y << std::endl;
-			outfile << "Start Point [Z]: " << startP.z << std::endl;
-			outfile << std::endl;
+			outfile << "Start Point [X]: " << startP.x << endl;
+			outfile << "Start Point [Y]: " << startP.y << endl;
+			outfile << "Start Point [Z]: " << startP.z << endl;
+			outfile << endl;
 
-			outfile << "End Point [X]: " << endP.x << std::endl;
-			outfile << "End Point [Y]: " << endP.y << std::endl;
-			outfile << "End Point [Z]: " << endP.z << std::endl;
-			outfile << std::endl;
+			outfile << "End Point [X]: " << endP.x << endl;
+			outfile << "End Point [Y]: " << endP.y << endl;
+			outfile << "End Point [Z]: " << endP.z << endl;
+			outfile << endl;
 			outfile.close();
 
 			if (curveGraphicProperties != nullptr)
@@ -762,9 +755,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			BsplineGraphicProperties* curveGraphicProperties = new BsplineGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			MSBsplineCurvePtr bSpline = curvePrimitive->GetBsplineCurvePtr();
@@ -780,23 +773,23 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			{
 				bSpline->ExtractEndPoints(startP, endP);
 				bool isParabola = bSpline->IsParabola(lToW, wToL, vertexF, localStart, localEnd, squaredC);
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-				outfile << "Is Closed = " << bSpline->IsClosed() << std::endl;
-				outfile << "Is Parabola = " << isParabola << std::endl;
+				outfile.open(filePath, ios_base::app, sizeof(string));
+				outfile << "Is Closed = " << bSpline->IsClosed() << endl;
+				outfile << "Is Parabola = " << isParabola << endl;
 
 				bSpline->GetPoles(polesControlP);
 
-				outfile << "Control Points: " << std::endl;
-				outfile << std::endl;
+				outfile << "Control Points: " << endl;
+				outfile << endl;
 				outfile.close();
 
 				for (auto point : polesControlP)
 				{
-					outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-					outfile << "point " << " [X] = " << point.x << std::endl;
-					outfile << "point " << " [Y] = " << point.y << std::endl;
-					outfile << "point " << " [Z] = " << point.z << std::endl;
-					outfile << std::endl;
+					outfile.open(filePath, ios_base::app, sizeof(string));
+					outfile << "point " << " [X] = " << point.x << endl;
+					outfile << "point " << " [Y] = " << point.y << endl;
+					outfile << "point " << " [Z] = " << point.z << endl;
+					outfile << endl;
 					outfile.close();
 				}
 
@@ -830,9 +823,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
 		{
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_CurveVector --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_CurveVector --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 
@@ -852,9 +845,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			InterpolationGraphicProperties* curveGraphicProperties = new InterpolationGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			bvector<DPoint3d> polesControlP;
@@ -866,20 +859,20 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				MSInterpolationCurveCP intCurve = curvePrimitive->GetInterpolationCurveCP();
 				interpolationParam intParams = curvePrimitive->GetInterpolationCurveCP()->params;
 
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-				outfile << "Interpolation Is Periodic: " << intParams.isPeriodic << std::endl;
-				outfile << "Interpolation Curve Order: " << intParams.order << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app, sizeof(string));
+				outfile << "Interpolation Is Periodic: " << intParams.isPeriodic << endl;
+				outfile << "Interpolation Curve Order: " << intParams.order << endl;
+				outfile << endl;
 
 				for (size_t k = 0; k < intParams.numPoints; k++)
 				{
 					DPoint3d point = curvePrimitive->GetInterpolationCurveCP()->fitPoints[k];
 					polesControlP.push_back(point);
 
-					outfile << "point " << k << " [X] = " << point.x << std::endl;
-					outfile << "point " << k << " [Y] = " << point.y << std::endl;
-					outfile << "point " << k << " [Z] = " << point.z << std::endl;
-					outfile << std::endl;
+					outfile << "point " << k << " [X] = " << point.x << endl;
+					outfile << "point " << k << " [Y] = " << point.y << endl;
+					outfile << "point " << k << " [Z] = " << point.z << endl;
+					outfile << endl;
 
 				}
 
@@ -902,9 +895,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			LineGraphicProperties* curveGraphicProperties = new LineGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_Line --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Line --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			DSegment3d segment;
@@ -918,19 +911,19 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			{
 				curvePrimitive->GetStartEnd(startP, endP);
 
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-				outfile << "Start Point [X]: " << startP.x << std::endl;
-				outfile << "Start Point [Y]: " << startP.y << std::endl;
-				outfile << "Start Point [Z]: " << startP.z << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app, sizeof(string));
+				outfile << "Start Point [X]: " << startP.x << endl;
+				outfile << "Start Point [Y]: " << startP.y << endl;
+				outfile << "Start Point [Z]: " << startP.z << endl;
+				outfile << endl;
 
-				outfile << "End Point [X]: " << endP.x << std::endl;
-				outfile << "End Point [Y]: " << endP.y << std::endl;
-				outfile << "End Point [Z]: " << endP.z << std::endl;
-				outfile << std::endl;
+				outfile << "End Point [X]: " << endP.x << endl;
+				outfile << "End Point [Y]: " << endP.y << endl;
+				outfile << "End Point [Z]: " << endP.z << endl;
+				outfile << endl;
 				
-				outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-				outfile << std::endl;
+				outfile << "Curve Line String Length: " << segment.Length() << endl;
+				outfile << endl;
 
 				outfile.close();
 
@@ -961,10 +954,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			LineStringGraphicProperties* curveGraphicProperties = new LineStringGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_LineString --------" << std::endl;
-			outfile << "NUMBER OF COMPONENT: " << curvePrimitive->NumComponent() << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_LineString --------" << endl;
+			outfile << "NUMBER OF COMPONENT: " << curvePrimitive->NumComponent() << endl;
+			outfile << endl;
 			outfile.close(); 
 
 			DSegment3d segment;
@@ -977,10 +970,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 
 			if (curvePrimitive->GetBreakFraction(breakFractionIndex, fraction))
 			{
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-				outfile << "breakFractionIndex: " << breakFractionIndex << std::endl;
-				outfile << "fraction: " << fraction << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app, sizeof(string));
+				outfile << "breakFractionIndex: " << breakFractionIndex << endl;
+				outfile << "fraction: " << fraction << endl;
+				outfile << endl;
 				outfile.close();
 			}
 			
@@ -988,30 +981,30 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			{
 				curvePrimitive->GetStartEnd(startP, endP);
 
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-				outfile << "Start Point [X]: " << startP.x << std::endl;
-				outfile << "Start Point [Y]: " << startP.y << std::endl;
-				outfile << "Start Point [Z]: " << startP.z << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app, sizeof(string));
+				outfile << "Start Point [X]: " << startP.x << endl;
+				outfile << "Start Point [Y]: " << startP.y << endl;
+				outfile << "Start Point [Z]: " << startP.z << endl;
+				outfile << endl;
 
-				outfile << "End Point [X]: " << endP.x << std::endl;
-				outfile << "End Point [Y]: " << endP.y << std::endl;
-				outfile << "End Point [Z]: " << endP.z << std::endl;
-				outfile << std::endl;
+				outfile << "End Point [X]: " << endP.x << endl;
+				outfile << "End Point [Y]: " << endP.y << endl;
+				outfile << "End Point [Z]: " << endP.z << endl;
+				outfile << endl;
 
-				outfile << "Curve Line String Length: " << segment.Length() << std::endl;
-				outfile << std::endl;
-				outfile << "Control Points: " << segment.Length() << std::endl;
-				outfile << std::endl;
+				outfile << "Curve Line String Length: " << segment.Length() << endl;
+				outfile << endl;
+				outfile << "Control Points: " << segment.Length() << endl;
+				outfile << endl;
 				bvector<DPoint3d> polesControlP;
 				if (curvePrimitive->GetLineStringCP() != nullptr) {
 					for each (DPoint3d point in *curvePrimitive->GetLineStringCP())
 					{
-						/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-						outfile << "point " << " [X] = " << point.x << std::endl;
-						outfile << "point " << " [Y] = " << point.y << std::endl;
-						outfile << "point " << " [Z] = " << point.z << std::endl;
-						outfile << std::endl;
+						/*outfile.open(filePath, ios_base::app, sizeof(string));
+						outfile << "point " << " [X] = " << point.x << endl;
+						outfile << "point " << " [Y] = " << point.y << endl;
+						outfile << "point " << " [Z] = " << point.z << endl;
+						outfile << endl;
 						outfile.close();*/
 
 						polesControlP.push_back(point);
@@ -1035,9 +1028,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			//CurveGraphicProperties* curveGraphicProperties = nullptr;
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_PartialCurve --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_PartialCurve --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			if (curvePrimitive->GetPartialCurveDetailCP() != nullptr)
@@ -1052,25 +1045,25 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		{
 			PointStringGraphicProperties* curveGraphicProperties = new PointStringGraphicProperties();
 
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_PointString --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_PointString --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			bvector<DPoint3d> polesControlP;
 
 			if (curvePrimitive->GetPointStringCP() != nullptr)
 			{
-				outfile.open(filePath, std::ios_base::app, sizeof(std::string));
+				outfile.open(filePath, ios_base::app, sizeof(string));
 
 				for (size_t k = 0; k < curvePrimitive->GetPointStringCP()->size(); k++)
 				{
 					DPoint3d point = curvePrimitive->GetPointStringCP()->at(k);
 
-					outfile << "point " << k << " [X] = " << point.x << std::endl;
-					outfile << "point " << k << " [Y] = " << point.y << std::endl;
-					outfile << "point " << k << " [Z] = " << point.z << std::endl;
-					outfile << std::endl;
+					outfile << "point " << k << " [X] = " << point.x << endl;
+					outfile << "point " << k << " [Y] = " << point.y << endl;
+					outfile << "point " << k << " [Z] = " << point.z << endl;
+					outfile << endl;
 
 					polesControlP.push_back(point);
 				}
@@ -1086,9 +1079,9 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
 		{
-			outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-			outfile << "CURVE_PRIMITIVE_TYPE_Spiral --------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app, sizeof(string));
+			outfile << "CURVE_PRIMITIVE_TYPE_Spiral --------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			//TODO [SB] Needs to be checked how to handle Spiral 
@@ -1108,7 +1101,7 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 
 GraphicProperties* GraphicsProcessorHelper::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
 {
-	std::ofstream outfile;	
+	ofstream outfile;	
 
 	pDictionaryProperties->setIsPrimitiveSolid(true);
 	GraphicProperties* primitiveGraphicProperties = nullptr;
@@ -1276,10 +1269,10 @@ GraphicProperties* GraphicsProcessorHelper::processSolidPrimitives(ISolidPrimiti
 
 	case SolidPrimitiveType::SolidPrimitiveType_None:
 	{
-		outfile.open(filePath, std::ios_base::app);
+		outfile.open(filePath, ios_base::app);
 
-		outfile << std::fixed;
-		outfile << "!!! None Primitives type !!!" << std::endl;
+		outfile << fixed;
+		outfile << "!!! None Primitives type !!!" << endl;
 
 		outfile.close();
 	}
@@ -1298,7 +1291,7 @@ GraphicProperties* GraphicsProcessorHelper::processSolidPrimitives(ISolidPrimiti
 
 void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)
 {
-	std::ofstream outfile;	
+	ofstream outfile;	
 
 	//Parity Region Container
 	if (shapesGraphicProperties->hasShapesGraphicsContainer())
@@ -1308,8 +1301,8 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 		DVec3d newCentroid;
 		DPoint3d shapeCentroid, shapeStartPoint, shapeEndpoint;
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "-------- PARITY REGION Boundaries -------- Type: " << shapesGraphicProperties->type << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "-------- PARITY REGION Boundaries -------- Type: " << shapesGraphicProperties->type << endl;
 		outfile.close();
 
 		//Save the faceID to Parity Region
@@ -1333,9 +1326,9 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 			primCurvesCount += boundary->getCurvesPrimitivesContainerVector().size();
 			size_t primCurvesPointsCount = 0;
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Bound -------- " << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Bound -------- " << endl;
+			outfile << endl;
 			outfile.close();
 
 			//Save the faceID to the Outer/Inner boundary
@@ -1358,17 +1351,17 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 			{
 				DPoint3d cvStartPoint, cvEndpoint;
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "Curve -------- " << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "Curve -------- " << endl;
+				outfile << endl;
 				outfile.close();
 
 				primCurvesPointsCount += curvePrimitive->getControlPoints().size();
 
 				// Evaluation of the Control Points using the surface
-				std::vector<DPoint3d> controlPointsBound;
+				vector<DPoint3d> controlPointsBound;
 				//Keep the UV
-				std::vector<DPoint3d> curveControlPointsUV;
+				vector<DPoint3d> curveControlPointsUV;
 				for (auto uv : curvePrimitive->getControlPoints())
 				{
 
@@ -1379,11 +1372,11 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 					//Keep the UV
 					curveControlPointsUV.push_back(uv);
 
-					/*outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-					outfile << "point " << " [X] = " << uv.x << std::endl;
-					outfile << "point " << " [Y] = " << uv.y << std::endl;
-					outfile << "point " << " [Z] = " << uv.z << std::endl;
-					outfile << std::endl;
+					/*outfile.open(filePath, ios_base::app, sizeof(string));
+					outfile << "point " << " [X] = " << uv.x << endl;
+					outfile << "point " << " [Y] = " << uv.y << endl;
+					outfile << "point " << " [Z] = " << uv.z << endl;
+					outfile << endl;
 					outfile.close();*/
 				}
 
@@ -1403,15 +1396,15 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 				curvePrimitive->setUVstartEndPoints(curvePrimitive->getStartPoint(), curvePrimitive->getEndPoint());
 			}
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Curves Points Count:  " << primCurvesPointsCount << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Curves Points Count:  " << primCurvesPointsCount << endl;
+			outfile << endl;
 			outfile.close();
 		}
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Curves Count:  " << primCurvesCount << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Curves Count:  " << primCurvesCount << endl;
+		outfile << endl;
 		outfile.close();
 	}
 
@@ -1429,12 +1422,12 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		}
 			
 
-		std::ofstream outfile;
-		outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-		outfile << "-------------------CURVE VECTOR---------------------" << std::endl;
-		outfile << "Size: " << curvesVector.size() << std::endl;
-		outfile << std::fixed;
-		outfile << std::endl;
+		ofstream outfile;
+		outfile.open(filePath, ios_base::app, sizeof(string));
+		outfile << "-------------------CURVE VECTOR---------------------" << endl;
+		outfile << "Size: " << curvesVector.size() << endl;
+		outfile << fixed;
+		outfile << endl;
 		outfile.close();
 
 		DPoint3d center, start, end;
@@ -1453,9 +1446,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		{
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
 		{
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_Inner --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_Inner --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1464,9 +1457,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
 		{
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_Open --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_Open --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1474,9 +1467,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
 		{
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_Outer --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_Outer --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1484,9 +1477,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
 		{
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_ParityRegion --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_ParityRegion --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1494,9 +1487,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
 		{
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_UnionRegion --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_UnionRegion --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1504,9 +1497,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
 		{
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "BOUNDARY_TYPE_None --------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "BOUNDARY_TYPE_None --------" << endl;
 			outfile.flush();
 			outfile.close();
 		}
@@ -1514,26 +1507,26 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 			break;
 		}
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Centroid point [X] = " << center.x << std::endl;
-		outfile << "Centroid point [Y] = " << center.y << std::endl;
-		outfile << "Centroid point [Z] = " << center.z << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Centroid point [X] = " << center.x << endl;
+		outfile << "Centroid point [Y] = " << center.y << endl;
+		outfile << "Centroid point [Z] = " << center.z << endl;
+		outfile << endl;
 
-		outfile << "Normal [X] = " << normal.x << std::endl;
-		outfile << "Normal [Y] = " << normal.y << std::endl;
-		outfile << "Normal [Z] = " << normal.z << std::endl;
-		outfile << std::endl;
+		outfile << "Normal [X] = " << normal.x << endl;
+		outfile << "Normal [Y] = " << normal.y << endl;
+		outfile << "Normal [Z] = " << normal.z << endl;
+		outfile << endl;
 		
-		outfile << "Start Point [X]: " << start.x << std::endl;
-		outfile << "Start Point [Y]: " << start.y << std::endl;
-		outfile << "Start Point [Z]: " << start.z << std::endl;
-		outfile << std::endl;
+		outfile << "Start Point [X]: " << start.x << endl;
+		outfile << "Start Point [Y]: " << start.y << endl;
+		outfile << "Start Point [Z]: " << start.z << endl;
+		outfile << endl;
 
-		outfile << "End Point [X]: " << end.x << std::endl;
-		outfile << "End Point [Y]: " << end.y << std::endl;
-		outfile << "End Point [Z]: " << end.z << std::endl;
-		outfile << std::endl;
+		outfile << "End Point [X]: " << end.x << endl;
+		outfile << "End Point [Y]: " << end.y << endl;
+		outfile << "End Point [Z]: " << end.z << endl;
+		outfile << endl;
 
 		outfile.flush();
 		outfile.close();
@@ -1583,7 +1576,7 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 //ONLY FACETED BREP SUPPORTED
 bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR entity)
 {
-	std::ofstream outfile;
+	ofstream outfile;
 	auto entityType = entity.GetEntityType();
 
 #if false
@@ -1610,21 +1603,21 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 			size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
 			size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Entity------------ " << std::endl;
-			outfile << "Edges Entity: " << nEdges << std::endl;
-			outfile << "Faces Entity: " << nFaces << std::endl;
-			outfile << "Vertices Entity: " << nVertices << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Entity------------ " << endl;
+			outfile << "Edges Entity: " << nEdges << endl;
+			outfile << "Faces Entity: " << nFaces << endl;
+			outfile << "Vertices Entity: " << nVertices << endl;
+			outfile << endl;
 			outfile.close();
 
 			SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 			
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << std::endl;
-			outfile << std::endl;
-			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << endl;
+			outfile << endl;
+			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << endl;
+			outfile << endl;
 			outfile.close();
 
 			int boundID = 0;
@@ -1635,7 +1628,7 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 			//Clear the previous vertices
 			subEntitiesVertices.clear();
 
-			std::map<std::vector<int>, bool> mapFacesID;
+			map<vector<int>, bool> mapFacesID;
 
 			for (auto edge : subEntitiesEdges)
 			{
@@ -1643,9 +1636,9 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 				EdgeId edgeID;
 				SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "EDGE Sub Entity: " << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "EDGE Sub Entity: " << endl;
+				outfile << endl;
 				outfile.close();
 							
 
@@ -1696,12 +1689,12 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 					bound->nodeID = (int)faceID.nodeId;
 					bound->faceID.push_back((int)faceID.entityId);
 
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-					outfile << std::endl;
+					outfile.open(filePath, ios_base::app);
+					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+					outfile << endl;
 					outfile.close();
 
-					std::vector<int> key = { (int)faceID.nodeId, (int)faceID.entityId };
+					vector<int> key = { (int)faceID.nodeId, (int)faceID.entityId };
 					if (searchOnMap(mapFacesID, key) == NULL)
 					{
 						mapFacesID.insert({ key , true });
@@ -1720,11 +1713,11 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 						{
 							if (vertexCreated < nVertices)
 							{
-								outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-								outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
-								outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
-								outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
-								outfile << std::endl;
+								outfile.open(filePath, ios_base::app, sizeof(string));
+								outfile << "Vertex Point [X]: " << vertexPoint.x << endl;
+								outfile << "Vertex Point [Y]: " << vertexPoint.y << endl;
+								outfile << "Vertex Point [Z]: " << vertexPoint.z << endl;
+								outfile << endl;
 								outfile.close();
 
 								mBRepGraphicProperties->addVertexLoop(vertexPoint);
@@ -1747,10 +1740,10 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 				subEntitiesFaces.clear();
 			}
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------------------------------- End BREP Entiy --------------------------------" << std::endl;
-			outfile << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "-------------------------------- End BREP Entiy --------------------------------" << endl;
+			outfile << endl;
+			outfile << endl;
 			outfile.close();
 
 			subEntitiesEdges.clear();
@@ -1763,27 +1756,27 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 
 	SolidUtil::Debug::DumpEntity(entity, L"Dump-Entity: ");
 	//New instance of the BRep Element
-	if (mBRepGraphicProperties == nullptr)
+	if (this->_bRepGraphicProperties == nullptr)
 	{
-		mBRepGraphicProperties = new BRepGraphicProperties();
-		mBRepGraphicProperties->setBRepTypeEnum((int)entityType);
+		this->_bRepGraphicProperties = new BRepGraphicProperties();
+		this->_bRepGraphicProperties->setBRepTypeEnum((int)entityType);
 		elementProcessed = processElementAsMesh();
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Number of Meshes: " << mBRepGraphicProperties->getSolidEntityVector().size() << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Number of Meshes: " << this->_bRepGraphicProperties->getSolidEntityVector().size() << endl;
 		outfile.close();
 	}
 
-	if (mBRepGraphicProperties != nullptr && (mBRepGraphicProperties->getSolidEntityVector().size() > 0))
+	if (this->_bRepGraphicProperties != nullptr && (this->_bRepGraphicProperties->getSolidEntityVector().size() > 0))
 	{
-		auto solidEntity = mBRepGraphicProperties->getSolidEntityVector().at(mNumberSolidEntity);
+		auto solidEntity = this->_bRepGraphicProperties->getSolidEntityVector().at(this->_numberSolidEntity);
 		solidEntity->setBRepTypeEnum((int)entityType);
 		elementProcessed = true;
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Solid Number: " << mNumberSolidEntity << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Solid Number: " << this->_numberSolidEntity << endl;
 		outfile.close();
-		mNumberSolidEntity++;
+		this->_numberSolidEntity++;
 	}
 
 	return elementProcessed;
@@ -1792,7 +1785,7 @@ bool GraphicsProcessorHelper::processEntityAsFacetedBRep(ISolidKernelEntityCR en
 
 bool GraphicsProcessorHelper::processElementAsMesh()
 {
-	std::ofstream outfile;
+	ofstream outfile;
 
 	IFacetOptionsPtr facetOptions = IFacetOptions::New();
 
@@ -1811,7 +1804,7 @@ bool GraphicsProcessorHelper::processElementAsMesh()
 
 	bvector<PolyfaceHeaderPtr> meshes;
 
-	if (true == ElementToApproximateFacets(mCurrentElementHandle, meshes, facetOptions.get()))
+	if (true == ElementToApproximateFacets(this->_currentElementHandle, meshes, facetOptions.get()))
 	{
 		for (size_t i = 0; i < meshes.size(); i++)
 		{
@@ -1821,20 +1814,20 @@ bool GraphicsProcessorHelper::processElementAsMesh()
 			PolyfaceHeaderPtr pMesh = meshes.at(i);
 			PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
 
-			std::vector<std::vector<DPoint3d>> facetTriangulated;
+			vector<vector<DPoint3d>> facetTriangulated;
 
 			pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Mesh Number: " << i << std::endl;
-			outfile << "numVertex: " << numVertex << std::endl;
-			outfile << "numFacet: " << numFacet << std::endl;
-			outfile << "numQuad: " << numQuad << std::endl;
-			outfile << "numTriangle: " << numTriangle << std::endl;
-			outfile << "numImplicitTriangle: " << numImplicitTriangle << std::endl;
-			outfile << "numVisEdges: " << numVisEdges << std::endl;
-			outfile << "numInvEdges: " << numInvEdges << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Mesh Number: " << i << endl;
+			outfile << "numVertex: " << numVertex << endl;
+			outfile << "numFacet: " << numFacet << endl;
+			outfile << "numQuad: " << numQuad << endl;
+			outfile << "numTriangle: " << numTriangle << endl;
+			outfile << "numImplicitTriangle: " << numImplicitTriangle << endl;
+			outfile << "numVisEdges: " << numVisEdges << endl;
+			outfile << "numInvEdges: " << numInvEdges << endl;
+			outfile << endl;
 			outfile.close();
 
 			int nFace = 1;
@@ -1843,7 +1836,7 @@ bool GraphicsProcessorHelper::processElementAsMesh()
 			{
 				BlockedVectorDPoint3dR pts = pv->Point();
 
-				std::vector<DPoint3d> face;
+				vector<DPoint3d> face;
 				for (DPoint3d pt : pts)
 				{
 					//Store the point for the triangle face
@@ -1857,13 +1850,13 @@ bool GraphicsProcessorHelper::processElementAsMesh()
 				outfile.close();
 			}
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Num Of Facet: " << nFace << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Num Of Facet: " << nFace << endl;
+			outfile << endl;
 			outfile.close();
 
 			//Add to the BRep Entity
-			mBRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
+			this->_bRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
 		}
 	}
 	else
@@ -1878,4 +1871,34 @@ bool GraphicsProcessorHelper::ElementToApproximateFacets(ElementHandleCR source,
 	MeshProcessor dest(output, options);
 	ElementGraphicsOutput::Process(source, dest);
 	return output.size() > 0 ? true : false;
+}
+
+ElementHandle GraphicsProcessorHelper::getCurrentElementHandle()
+{
+	return this->_currentElementHandle;
+}
+
+void GraphicsProcessorHelper::setElementHandle(ElementHandle elementHandle)
+{
+	this->_currentElementHandle = elementHandle;
+}
+
+BRepGraphicProperties * GraphicsProcessorHelper::getBRepGraphicProperties()
+{
+	return this->_bRepGraphicProperties;
+}
+
+void GraphicsProcessorHelper::setBRepGraphicProperties(BRepGraphicProperties * bRepGraphicProperties)
+{
+	this->_bRepGraphicProperties = bRepGraphicProperties;
+}
+
+int GraphicsProcessorHelper::getNumberSolidEntity()
+{
+	return this->_numberSolidEntity;
+}
+
+void GraphicsProcessorHelper::setNumberSolidEntity(int numberSolidEntity)
+{
+	this->_numberSolidEntity = numberSolidEntity;
 }

@@ -21,7 +21,8 @@
 class IfcPrimitivesEnhancer {
 
 public:
-	void enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties, IfcElementBundle* ifcElementBundle,
+		ElementBundle* elementBundle);
 	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 		ElementBundle* elementBundle);
 private:

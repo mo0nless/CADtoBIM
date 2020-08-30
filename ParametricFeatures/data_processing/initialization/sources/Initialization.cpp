@@ -8,8 +8,8 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	InitializationHelper* initializationHelper = new InitializationHelper();
 
-	std::vector<DictionaryProperties*> propsDictVec;
-	std::vector<SmartFeatureContainer*> smartFeatureContainerVector;
+	vector<DictionaryProperties*> propsDictVec;
+	vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
 	initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
 

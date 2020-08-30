@@ -7,7 +7,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOpe
 	BooleanFunctions::BooleanFunctionsEnum booleanFunctionsEnum;
 	for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 		if (modelerProperty->getPropertyName() == "BooleanFunction") {
-			booleanFunctionsEnum = BooleanFunctions::getBooleanFunctionsEnumByIntValue(std::stoi(modelerProperty->getPropertyValueAsString()));
+			booleanFunctionsEnum = BooleanFunctions::getBooleanFunctionsEnumByIntValue(stoi(modelerProperty->getPropertyValueAsString()));
 		}
 	}
 

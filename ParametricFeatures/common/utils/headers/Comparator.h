@@ -11,10 +11,10 @@ struct Comparator {
 	{
 		/* some small number such as 1e-5 */
 		const double epsilon = 1e-5;
-		return std::abs(n1 - n2) <= epsilon * std::abs(n1);
+		return abs(n1 - n2) <= epsilon * abs(n1);
 	}
 
-	static bool Comparator::isEqual(std::vector<double> v1, std::vector<double> v2)
+	static bool Comparator::isEqual(vector<double> v1, vector<double> v2)
 	{
 		if (v1.size() != v2.size())
 		{

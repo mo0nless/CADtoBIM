@@ -2,29 +2,12 @@
 #include "..\headers\IfcGraphicPropertiesBundle.h"
 
 IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem,
-	ElementHandle newElementHandle, ElemDisplayParamsCP newElemDisplayParamsCP)
+	ElementHandle newElementHandle)
 {
 	this->graphicProperties = newGraphicProperties;
 	this->ifcRepresentationItem = newIfcRepresentationItem;
 	this->elementHandle = newElementHandle;
-	this->elemDisplayParamsCP = newElemDisplayParamsCP;
 	this->show = true;
-
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-
-	UInt32 color3;
-
-	color3 = newElemDisplayParamsCP->GetLineColorTBGR();
-	int blue1 = (color3 >> 16) & 0xFF;
-	int green1 = (color3 >> 8) & 0xFF;
-	int red1 = color3 & 0xFF;
-
-	outfile << "IfcGraphicPropertiesBundle constructor" << std::endl;
-	outfile << "RGB =" << red1 << "," << green1 << "," << blue1 << std::endl;
-	outfile.close();
 }
 
 GraphicProperties * IfcGraphicPropertiesBundle::getGraphicProperties()
@@ -84,12 +67,12 @@ void IfcGraphicPropertiesBundle::setTransparency(double newTransparency)
 	this->transparency = newTransparency;
 }
 
-std::string IfcGraphicPropertiesBundle::getMaterial()
+string IfcGraphicPropertiesBundle::getMaterial()
 {
 	return this->_material;
 }
 
-void IfcGraphicPropertiesBundle::setMaterial(std::string material)
+void IfcGraphicPropertiesBundle::setMaterial(string material)
 {
 	this->_material = material;
 }

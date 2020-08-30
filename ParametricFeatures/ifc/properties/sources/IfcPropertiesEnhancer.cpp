@@ -1,9 +1,9 @@
 #include "../headers/IfcPropertiesEnhancer.h"
 
-void IfcPropertiesEnhancer::enhanceIfcProperties(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	typedef Ifc4::IfcGloballyUniqueId guid;
-	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
+	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
 	if (!dictionaryPropertiesVector.empty())
 	{
@@ -54,7 +54,7 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 			// log unmapped property type
 		}
 
-/*		std::string normalized_value = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValueAsString());
+/*		string normalized_value = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValueAsString());
 		ifcPropertyList->push(new Ifc4::IfcProperty(readerPropertyDefinition->getPropertyName(), normalized_value));*/		
 	}
 

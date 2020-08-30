@@ -11,10 +11,10 @@
 class SmartFeatureHandler {
 
 public:
-	void handleSmartFeature(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void handleSmartFeature(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
-	IfcElementBundle* eval(SmartFeatureTreeNode* root, std::vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement,IfcHierarchyHelper<Ifc4>& file);
-	IfcElementBundle* getIfcBundleByGlobalId(std::vector<IfcElementBundle*>& ifcBundleVector, int globalId);
+	IfcElementBundle* eval(SmartFeatureTreeNode* root, vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* currentElement,IfcHierarchyHelper<Ifc4>& file);
+	IfcElementBundle* getIfcBundleByGlobalId(vector<IfcElementBundle*>& ifcBundleVector, int globalId);
 	IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcElementBundle& ifcBundle, int localId);
 };

@@ -90,28 +90,28 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 	//	Load the command table defined in ParametricFeatures.r
 	mdlParse_loadCommandTable(NULL);
 
-	//std::ofstream outfile;
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//ofstream outfile;
+	//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	//outfile.open(filePath);
-	//outfile << "" << std::endl;
+	//outfile << "" << endl;
 	//outfile.close();
 	//
 
 	//if (argc == 3) {
-	//	std::wstring ws(argv[2]);
-	//	std::string stringValue(ws.begin(), ws.end());
+	//	wstring ws(argv[2]);
+	//	string stringValue(ws.begin(), ws.end());
 	//	levelName = stringValue;
 
-	//	outfile.open(filePath, std::ios_base::app);
-	//	outfile << " level name="<<levelName << std::endl;
+	//	outfile.open(filePath, ios_base::app);
+	//	outfile << " level name="<<levelName << endl;
 	//	outfile.close();
 	//}
 	//else
 	//{
 	//	mdlDialog_cmdNumberQueue(FALSE, CMD_MDL_UNLOAD, mdlSystem_getCurrTaskID(), MSInputQueuePos::INPUTQ_EOQ);//Unload program
 	//	//return SUCCESS;//end program
-	//	outfile.open(filePath, std::ios_base::app);
-	//	outfile << " empty level name=" << std::endl;
+	//	outfile.open(filePath, ios_base::app);
+	//	outfile << " empty level name=" << endl;
 	//	outfile.close();
 	//}
 	//DgnModelRefP dgnModelRef = mdlModelRef_getActive();
@@ -183,10 +183,10 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 //		UInt32 worked = mdlElmdscr_getByElemRef(&elemDescrP, eleR, dgnModelRef, TRUE, &filePos);
 //		int(*foo)(MSElement *, void *, int, UInt32, MSElementDescr *);
 //
-//		std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-//		std::ofstream outfile;
-//		outfile.open(filePath, std::ios_base::app);
-//		outfile << " edit elem handle id "<< eh.GetElementId() << std::endl;
+//		string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+//		ofstream outfile;
+//		outfile.open(filePath, ios_base::app);
+//		outfile << " edit elem handle id "<< eh.GetElementId() << endl;
 //		outfile.close();
 //
 //		foo = &elmFunc;
@@ -196,7 +196,7 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 //			mdlSelect_addElement(filePos, dgnModelRef);
 //		}
 //	}
-//	if (eleLevelName.find(levelName) != std::string::npos) {//If the string is contained in the level's name
+//	if (eleLevelName.find(levelName) != string::npos) {//If the string is contained in the level's name
 //		mdlSelect_addElement(filePos, dgnModelRef);
 //	}
 //
@@ -214,14 +214,14 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 //	wstring eleLevelNamew(pLevelNameOut);
 //	string eleLevelName = narrowWString(eleLevelNamew);
 //
-//	std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-//	std::ofstream outfile;
-//	outfile.open(filePath, std::ios_base::app);
-//	outfile << " ele level name " << eleLevelName << std::endl;
-//	outfile << " filePos" << filePos << std::endl;
+//	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+//	ofstream outfile;
+//	outfile.open(filePath, ios_base::app);
+//	outfile << " ele level name " << eleLevelName << endl;
+//	outfile << " filePos" << filePos << endl;
 //	outfile.close();
 //
-//	if (eleLevelName.find(levelName) != std::string::npos) {//If the string is contained in the level's name
+//	if (eleLevelName.find(levelName) != string::npos) {//If the string is contained in the level's name
 //		mdlSelect_addElement(filePos, dgnModelRef);
 //		return 3;
 //	}

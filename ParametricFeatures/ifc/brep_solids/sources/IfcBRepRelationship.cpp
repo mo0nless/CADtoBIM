@@ -6,7 +6,7 @@ IfcBRepRelationship::IfcBRepRelationship()
 
 }
 
-void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, std::vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType)
+void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType)
 {
 //Bspline Surface Edges as Single preimitives
 #if true
@@ -175,8 +175,8 @@ void IfcBRepRelationship::connectContinuosEdges()
 {
 #if false
 
-	std::vector<ContinuosEdge*> connectedContinuosEdges = std::vector<ContinuosEdge*>();
-	std::vector<ContinuosEdge*> newSetContinuosEdges = std::vector<ContinuosEdge*>();
+	vector<ContinuosEdge*> connectedContinuosEdges = vector<ContinuosEdge*>();
+	vector<ContinuosEdge*> newSetContinuosEdges = vector<ContinuosEdge*>();
 
 	ContinuosEdge* headEdgeC = NULL;
 
@@ -345,7 +345,7 @@ bool IfcBRepRelationship::processContinuosEdges(ContinuosEdge*& head, ContinuosE
 	return hadConnection;
 }
 
-std::vector<SolidEdge*> IfcBRepRelationship::getSmartSolidEdgesCollection()
+vector<SolidEdge*> IfcBRepRelationship::getSmartSolidEdgesCollection()
 {
 	return mSmartSolidEdgesCollection;
 }

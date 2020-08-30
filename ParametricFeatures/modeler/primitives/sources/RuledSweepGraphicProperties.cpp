@@ -4,7 +4,7 @@ RuledSweepGraphicProperties::RuledSweepGraphicProperties(): SolidPrimitiveProper
 {
 }
 
-std::vector<ShapesGraphicProperties*> RuledSweepGraphicProperties::getSectionCurvesVector()
+vector<ShapesGraphicProperties*> RuledSweepGraphicProperties::getSectionCurvesVector()
 {
 	return this->mSectionCurvesVector;
 }

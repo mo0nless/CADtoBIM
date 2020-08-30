@@ -25,9 +25,6 @@ class IfcPortsRelationshipList
 {
 private:
 	PortElement *mHead;
-
-	bool isEqual(std::vector<double> v1, std::vector<double> v2);
-	bool isDoubleEqual(double x, double y);
 	bool connectPortAtLocation(PortElement*& newPortElement);
 
 public:

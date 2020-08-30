@@ -7,7 +7,7 @@ IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomCo
 	this->ownerHistory = ownerHistory;
 }
 
-void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	ifcPortsRelationshipList = new IfcPortsRelationshipList();
 
@@ -29,8 +29,8 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 
 				//TODO: Needs to be set up correctly the 3rd input parameter following:
 				//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
-				std::string representationType = "Point";
-				std::string representationIdentifier = "Reference";
+				string representationType = "Point";
+				string representationIdentifier = "Reference";
 
 				//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
 				Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
@@ -39,7 +39,7 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 					geometricRepresentationContext,
 					boost::none,
 					Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-					std::string("$")
+					string("$")
 				);
 				
 				Ifc4::IfcShapeRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
@@ -51,8 +51,8 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 				ifcPortsRepList->push(ifcPortsRepresentation);
 
 				Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(
-					std::string("$"),
-					std::string("$"), 
+					string("$"),
+					string("$"), 
 					ifcPortsRepList
 				);
 
@@ -60,12 +60,12 @@ void IfcPortsBuilder::processIfcPorts(std::vector<IfcElementBundle*>& ifcBundleV
 
 				//Need to be used the subtype because otherwise the flow , distribution type, distribution system cqnnot be specified
 				Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
-					guid::IfcGloballyUniqueId("Port: " + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor()),
+					guid::IfcGloballyUniqueId("Port: " + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor()),
 					//file.getSingle<Ifc4::IfcOwnerHistory>(),
 					ownerHistory,
-					std::string("Port ") + std::to_string(portSequence) + std::string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
+					string("Port ") + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
 					ifcElementBundle->getModelerElementDescriptor(),
-					std::string("PORT"),
+					string("PORT"),
 					ifcElementBundle->getIfcElement()->ObjectPlacement(),
 					//file.getSingle<Ifc4::IfcObjectPlacement>(),
 					portShape,
@@ -108,8 +108,8 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 		guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
 		//file.getSingle<Ifc4::IfcOwnerHistory>(),
 		ownerHistory,
-		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
-		std::string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + std::string(" Ports"),
+		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
+		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
 		ifcElementBundle->getIfcElement(),
 		objectDefinition
 	);
@@ -126,11 +126,11 @@ void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc
 		if (temp->isElementConnected)
 		{
 			Ifc4::IfcRelConnectsPorts* connectsPorts = new Ifc4::IfcRelConnectsPorts(
-				guid::IfcGloballyUniqueId("Element: " + temp->ifcDistributionElement->Name() + " Connection Port: " + std::to_string(temp->distributionPort->FlowDirection())),
+				guid::IfcGloballyUniqueId("Element: " + temp->ifcDistributionElement->Name() + " Connection Port: " + to_string(temp->distributionPort->FlowDirection())),
 				//file.getSingle<Ifc4::IfcOwnerHistory>(),
 				ownerHistory,
-				std::string("Connection: ") + temp->ifcDistributionElement->Name() + std::string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
-				std::string("Connection: ") + temp->ifcDistributionElement->Name() + std::string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
+				string("Connection: ") + temp->ifcDistributionElement->Name() + string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
+				string("Connection: ") + temp->ifcDistributionElement->Name() + string(" To: ") + temp->nextPortElement->ifcDistributionElement->Name(),
 				temp->distributionPort,
 				temp->nextPortElement->distributionPort,
 				temp->ifcDistributionElement

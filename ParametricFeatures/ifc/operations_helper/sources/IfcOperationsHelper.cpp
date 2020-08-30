@@ -27,7 +27,7 @@ Ifc4::IfcCartesianPoint * IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoin
 //3 Dimension
 Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection)
 {
-	std::vector<double> points;
+	vector<double> points;
 	points.push_back(newDirection.x);
 	points.push_back(newDirection.y);
 	points.push_back(newDirection.z);
@@ -40,7 +40,7 @@ Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(
 //2 Dimension
 Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection)
 {
-	std::vector<double> points;
+	vector<double> points;
 	points.push_back(newDirection.x);
 	points.push_back(newDirection.y);
 
@@ -75,16 +75,16 @@ Ifc4::IfcAxis2Placement2D * IfcOperationsHelper::buildIfcAxis2Placement2D(DVec3d
 void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position, bool rotatePoint)
 {
 	bool invertedAxis = false;
-	std::string axis = "";
+	string axis = "";
 
 	if (rotatePoint)
 	{
-		if (std::abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+		if (abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
 		{
 			invertedAxis = true;
 			axis = "X";
 		}
-		else if (std::abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
+		else if (abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
 		{
 			invertedAxis = true;
 			axis = "Y";
@@ -94,7 +94,7 @@ void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * s
 	// adjust global points of the shape/curve related to the global placement of the revolve			
 	for (auto curve : shape->getCurvesPrimitivesContainerVector())
 	{
-		std::vector<DPoint3d> temp;
+		vector<DPoint3d> temp;
 		for (auto point : curve->getControlPoints())
 		{
 			DPoint3d oldPoint;
@@ -117,7 +117,7 @@ void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * s
 	}
 }
 
-DPoint3d IfcOperationsHelper::rotateAlongAxis(std::string axis, DPoint3d oldPoint)
+DPoint3d IfcOperationsHelper::rotateAlongAxis(string axis, DPoint3d oldPoint)
 {
 	DPoint3d newPoint;
 

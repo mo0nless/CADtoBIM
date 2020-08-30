@@ -6,8 +6,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 
 ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	WString elDescr;
 
@@ -40,9 +40,9 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 	
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
-		/*outfile.open(filePath, std::ios_base::app);
-		outfile << std::endl;
-		outfile << "= Properties Not Found =" << std::endl;
+		/*outfile.open(filePath, ios_base::app);
+		outfile << endl;
+		outfile << "= Properties Not Found =" << endl;
 		outfile.close();*/
 		this->mElemClassName = "SmartFeatureSolid"; 
 
@@ -52,13 +52,13 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 		//ElementECClassInfo  info;
 		//ecMgr.FindECClassesOnElement(currentElem.GetElementRef(), info);
 
-		//outfile.open(filePath, std::ios_base::app);
-		//outfile << std::endl;
-		//outfile << "extra" << std::endl;		
-		//outfile << info.count << std::endl;
-		//outfile << info.empty() << std::endl;
-		////outfile << info.leaf_nodes.size() << std::endl;
-		////outfile << info.nodes.size() << std::endl;
+		//outfile.open(filePath, ios_base::app);
+		//outfile << endl;
+		//outfile << "extra" << endl;		
+		//outfile << info.count << endl;
+		//outfile << info.empty() << endl;
+		////outfile << info.leaf_nodes.size() << endl;
+		////outfile << info.nodes.size() << endl;
 		//outfile.close();
 
 
@@ -74,17 +74,17 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 
 			this->mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
 			
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
 			outfile.close();
 
 			// get class name
-			std::string className = StringUtils::getString(elemInst->GetClass().GetName());
+			string className = StringUtils::getString(elemInst->GetClass().GetName());
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << endl;
 			//outfile.close();
 
 			// set class name
@@ -94,10 +94,10 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
-				if (readerPropertyDefinition->getPropertyName().find("Material") != std::string::npos) {
+				if (readerPropertyDefinition->getPropertyName().find("Material") != string::npos) {
 					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
 					if (PropertyTypeEnum::STRING == propertyTypeEnum && elementBundle!=nullptr) {
-						std::string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
+						string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
 						if (!val.empty()) {
 							elementBundle->setMaterial(readerPropertyDefinition->getPropertyValueAsString());
 							break;
@@ -109,35 +109,35 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			}
 
 			//for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
-			//	if (readerPropertyDefinition->getPropertyName().find("Color") != std::string::npos && 
+			//	if (readerPropertyDefinition->getPropertyName().find("Color") != string::npos && 
 			//		readerPropertyDefinition->getPropertyValueAsString().find("ByLevel")) {
-			//		outfile << "found level" << std::endl;
+			//		outfile << "found level" << endl;
 
-			//		std::string result;
-			//		std::string searched = readerPropertyDefinition->getPropertyValueAsString();
+			//		string result;
+			//		string searched = readerPropertyDefinition->getPropertyValueAsString();
 			//		try {
-			//			std::regex re("Level by//(//d+//)");
-			//			std::smatch match;
-			//			if (std::regex_search(searched, match, re) && match.size() > 0) {
+			//			regex re("Level by//(//d+//)");
+			//			smatch match;
+			//			if (regex_search(searched, match, re) && match.size() > 0) {
 			//				result = match.str(0);
 			//			}
 			//			else {
-			//				result = std::string("");
+			//				result = string("");
 			//			}
 			//		}
-			//		catch (std::regex_error& e) {
+			//		catch (regex_error& e) {
 			//			e.code();
 			//		}
 
-			//		outfile << " level = " << result << std::endl;
+			//		outfile << " level = " << result << endl;
 
 			//		int intValue;
 			//		try {
-			//			intValue = std::stoi(result);
-			//			outfile << " level int = " << intValue << std::endl;
+			//			intValue = stoi(result);
+			//			outfile << " level int = " << intValue << endl;
 
 			//		}
-			//		catch (std::exception& e) {
+			//		catch (exception& e) {
 			//			e.what();
 			//		}
 
@@ -147,7 +147,7 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			//			UInt colorOut;
 			//			bool ov;
 			//			mdlLevel_getColor(&colorOut, &ov, model, l);
-			//			outfile << "level color"<< colorOut<<" , "<<& colorOut << std::endl;
+			//			outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;
 
 			//		}
 			//	}

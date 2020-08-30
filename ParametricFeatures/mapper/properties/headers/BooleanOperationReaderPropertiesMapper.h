@@ -20,5 +20,5 @@ private:
 	BooleanOperationReaderPropertiesMapper() {};
 
 public:
-	//static void mapBooleanOperationReaderPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties);
+	//static void mapBooleanOperationReaderPropertiesToReaderProperties(string labelValue, ECValue eCValue, ReaderProperties &readerProperties);
 };

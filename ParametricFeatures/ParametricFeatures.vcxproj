@@ -29,7 +29,7 @@
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
-    <ClCompile Include="ifc\properties\sources\IfcColorEnhancer.cpp" />
+    <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
@@ -117,7 +117,7 @@
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\main\headers\IfcReaderPropertiesBundle.h" />
-    <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
+    <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="ifc\surfaces\headers\IfcSurfaceEnhancer.h" />

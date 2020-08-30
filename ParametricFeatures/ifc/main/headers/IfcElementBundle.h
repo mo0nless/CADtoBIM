@@ -13,15 +13,15 @@ class IfcElementBundle {
 
 private:
 	long modelerElementId;
-	std::string modelerElementDescriptor;
+	string modelerElementDescriptor;
 
-	std::vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
-	std::vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
+	vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
+	vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
-	std::vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
-	std::vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
+	vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
+	vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
 
-	std::vector<SolidEdge*> smartSolidEdgesCollection;
+	vector<SolidEdge*> smartSolidEdgesCollection;
 
 	Ifc4::IfcElement* ifcElement;
 
@@ -29,36 +29,36 @@ private:
 	bool isSmartSolid;
 
 	SmartFeatureContainer* smartFeatureContainer;
-	std::string representationType;
+	string representationType;
 
 public:
-	IfcElementBundle(long newModelerElementId,std::string newModelerElementName);
+	IfcElementBundle(long newModelerElementId,string newModelerElementName);
 
-	std::string getRepresentationType();
-	void setRepresentationType(std::string type);
+	string getRepresentationType();
+	void setRepresentationType(string type);
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
 	void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
-	void addSolidEdgesCollection(std::vector<SolidEdge*> solidEdges);
+	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
 
-	std::vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
+	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
-	std::vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
+	vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
-	std::vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
-	std::vector<Ifc4::IfcDistributionPort*> getIfcDistributionPortsVector();
+	vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
+	vector<Ifc4::IfcDistributionPort*> getIfcDistributionPortsVector();
 
-	std::vector<SolidEdge*> getSolidEdgesCollection();
+	vector<SolidEdge*> getSolidEdgesCollection();
 
 	Ifc4::IfcElement* getIfcElement();
 	void setIfcElement(Ifc4::IfcElement* newIfcElement);
 
 	bool getHasElementConnection();
 	long getModelerElementId();
-	std::string getModelerElementDescriptor();
+	string getModelerElementDescriptor();
 
 	bool getIsSmartFeature();
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);

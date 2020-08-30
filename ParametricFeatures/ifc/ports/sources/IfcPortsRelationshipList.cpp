@@ -6,35 +6,11 @@ IfcPortsRelationshipList::IfcPortsRelationshipList()
 }
 
 
-bool IfcPortsRelationshipList::isDoubleEqual(double x, double y)
-{
-	/* some small number such as 1e-5 */
-	const double epsilon = 1e-5;
-	return std::abs(x - y) <= epsilon * std::abs(x);
-	// see Knuth section 4.2.2 pages 217-218
-}
-
-bool IfcPortsRelationshipList::isEqual(std::vector<double> v1, std::vector<double>  v2)
-{
-	if (v1.size() == v2.size())
-	{
-		for (size_t i = 0; i < v1.size(); i++)
-		{
-			if (isDoubleEqual(v1[i], v2[i]))
-				continue;
-			else
-				return false;
-		}
-		return true;
-	}
-
-	return false;
-}
 
 bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElement)
 {
-	std::vector<double> pointCurrent;
-	std::vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
+	vector<double> pointCurrent;
+	vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
 	
 	PortElement *temp;
 	PortElement *tempLast = NULL;
@@ -127,8 +103,8 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 
 void IfcPortsRelationshipList::display()
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 
 	PortElement *temp = new PortElement;
@@ -138,29 +114,29 @@ void IfcPortsRelationshipList::display()
 		bool connection = temp->isElementConnected;
 		if (connection)
 		{
-			std::vector<double> point = temp->cartesianPointPort->Coordinates();
+			vector<double> point = temp->cartesianPointPort->Coordinates();
 		
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::fixed;
+			outfile.open(filePath, ios_base::app);
+			outfile << fixed;
 
-			outfile << "Port Name  = " << temp->distributionPort->Name() << std::endl;
-			outfile << "Element ID  = " << temp->elementIdNumber << std::endl;
-			outfile << "Point  X = " << point[0] << std::endl;
-			outfile << "Point  Y = " << point[1] << std::endl;
-			outfile << "Point  Z = " << point[2] << std::endl;
-			outfile << std::endl;
+			outfile << "Port Name  = " << temp->distributionPort->Name() << endl;
+			outfile << "Element ID  = " << temp->elementIdNumber << endl;
+			outfile << "Point  X = " << point[0] << endl;
+			outfile << "Point  Y = " << point[1] << endl;
+			outfile << "Point  Z = " << point[2] << endl;
+			outfile << endl;
 			
 			temp = temp->nextPortElement;
 
 		
 			point = temp->cartesianPointPort->Coordinates();
 			
-			outfile << "Next Connected Port Name  = " << temp->distributionPort->Name() << std::endl;
-			outfile << "Element ID  = " << temp->elementIdNumber << std::endl;
-			outfile << "Next Point  X = " << point[0] << std::endl;
-			outfile << "Next Point  Y = " << point[1] << std::endl;
-			outfile << "Next Point  Z = " << point[2] << std::endl;
-			outfile << std::endl;
+			outfile << "Next Connected Port Name  = " << temp->distributionPort->Name() << endl;
+			outfile << "Element ID  = " << temp->elementIdNumber << endl;
+			outfile << "Next Point  X = " << point[0] << endl;
+			outfile << "Next Point  Y = " << point[1] << endl;
+			outfile << "Next Point  Z = " << point[2] << endl;
+			outfile << endl;
 		}
 		else
 			temp = temp->nextPortElement;		

@@ -42,7 +42,7 @@ private:
 
 
 	
-	std::string filePath;
+	string filePath;
 
 	GraphicsProcessorHelper mGraphicsProcessorHelper;
 	Transform m_currentTransform;

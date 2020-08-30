@@ -4,10 +4,10 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
 
-void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector,
+void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector,
 	IfcHierarchyHelper<Ifc4>& file)
 {
-	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
+	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
 	if (!dictionaryPropertiesVector.empty())
 	{
@@ -37,7 +37,7 @@ void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryP
 				if (ifcRepresentationItem != nullptr)
 				{
 					ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(element->getGraphicProperties(), ifcRepresentationItem,
-						element->getElementHandle(), element->getElemDisplayParamsCP()));
+						element->getElementHandle()));
 				}
 				
 			}
@@ -55,7 +55,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 	IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 	IfcEntityList* entityList = new IfcEntityList();
 	Ifc4::IfcPolyLoop* polySharedLoop = nullptr;
-	std::vector<Ifc4::IfcVertexLoop*> vertexLoopVec;
+	vector<Ifc4::IfcVertexLoop*> vertexLoopVec;
 	/*for (auto point : brepSolidsKernelEntity->mVertexLoop)
 	{
 		Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
@@ -77,11 +77,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 
 			//TODO[SB] Check the surface poles
 			//Get the control point UV of the FACE surface
-			std::vector<std::vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
+			vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
 			for (size_t i = 0; i < msBsplineGraphicProperties->getNumUPoles(); i++)
 			{
-				std::vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
-				std::vector<DPoint3d> tempCP = controlPointsPatch.at(i);
+				vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+				vector<DPoint3d> tempCP = controlPointsPatch.at(i);
 
 				for (size_t j = 0; j < msBsplineGraphicProperties->getNumVPoles(); j++)
 				{
@@ -431,8 +431,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, 
 	IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
 
@@ -458,10 +458,10 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 			IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
 
 			//Get the control point UV of the FACE surface
-			std::vector<std::vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
+			vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
 			for (auto vCP: controlPointsPatch)
 			{
-				std::vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+				vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
 
 				for (auto p: vCP)
 				{
@@ -739,8 +739,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
 
@@ -776,10 +776,10 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 
 			//TODO[SB] Check the surface poles
 			//Get the control point UV of the FACE surface
-			std::vector<std::vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
+			vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
 			for (auto vCP : controlPointsPatch)
 			{
-				std::vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+				vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
 
 				for (auto p : vCP)
 				{
@@ -846,7 +846,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				//IfcOrientedEdge list
 				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
 				
-				std::vector<Ifc4::IfcVertex*> vertexVec;
+				vector<Ifc4::IfcVertex*> vertexVec;
 
 				//Polyline Curve 3D
 				IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* polyCurveEntityList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();					
@@ -922,7 +922,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 				//IfcOrientedEdge list
 				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
 
-				std::vector<Ifc4::IfcVertex*> vertexVec;
+				vector<Ifc4::IfcVertex*> vertexVec;
 
 				//Polyline Curve 3D
 				IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* polyCurveEntityList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
@@ -1114,22 +1114,22 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 
 void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	bool addToIfcElementBundle = false;
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
 	
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "----Start Edge Processing-----" << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << endl;
+	outfile << "----Start Edge Processing-----" << endl;
 	outfile.close();
 
 	for (auto  bound: brepSolidsKernelEntity->getSurfaceBoundaryShapes())
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::endl;
-		outfile << "Close bound" << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << endl;
+		outfile << "Close bound" << endl;
 		outfile.close();
 
 		bool isShared = false;
@@ -1141,7 +1141,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 
 		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 		//ifcShapesEnhancer->dimension = IfcDimensionEnum::dim_2D;
-		ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, elementBundle, addToIfcElementBundle);
+		ifcShapesEnhancer->enhance(file, bound, elm, elementBundle, addToIfcElementBundle);
 
 		//Pick the first and only one
 		BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
@@ -1246,9 +1246,9 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 
 	for (auto boundVector : brepSolidsKernelEntity->loopShapesBounds)
 	{
-		outfile.open(filePath, std::ios_base::app);
-		outfile << std::endl;
-		outfile << "Continuos bound" << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << endl;
+		outfile << "Continuos bound" << endl;
 		outfile.close();
 
 		EdgeIfcCurve* true_EdgeIfcCurve = nullptr;
@@ -1272,7 +1272,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 				isShared = true;			
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(bound, file, elm, elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,bound, elm, elementBundle, addToIfcElementBundle);
 
 			//Pick the first and only one
 			BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
@@ -1425,13 +1425,13 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 		}
 	}
 
-	outfile.open(filePath, std::ios_base::app);
-	outfile << std::endl;
-	outfile << "----End Edge Processing-----" << std::endl;
+	outfile.open(filePath, ios_base::app);
+	outfile << endl;
+	outfile << "----End Edge Processing-----" << endl;
 	outfile.close();
 }
 
-void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
+void IfcBRepSolidsEnhancer::buildIfcSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
 	IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcAdvancedFaceList)
 {
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
@@ -1451,10 +1451,10 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 				IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
 
 				//Get the control point UV of the FACE surface
-				std::vector<std::vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
+				vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
 				for (auto vCP : controlPointsPatch)
 				{
-					std::vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+					vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
 
 					for (auto p : vCP)
 					{
@@ -1515,7 +1515,7 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(std::vector<GraphicProperties*> surf
 				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 				bool addToIfcElementBundle = false;
 				auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
-				ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, elementBundle, addToIfcElementBundle);
+				ifcShapesEnhancer->enhance(file,curveShape, elm, elementBundle, addToIfcElementBundle);
 
 				for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
 				{

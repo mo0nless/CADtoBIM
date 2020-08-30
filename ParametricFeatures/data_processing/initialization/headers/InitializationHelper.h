@@ -9,12 +9,12 @@ class InitializationHelper
 public:
 	InitializationHelper();
 	
-	void processDgnGraphicsElements(std::vector<DictionaryProperties*>& propsDictVec, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector);
+	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 private:	
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
 	StatusInt iterateSubElements(ElementRefP elementRefP, DictionaryProperties* dictionaryProperties);
 	PersistentElementRefList* pGraElement;
-	std::string filePath;
+	string filePath;
 	DgnModelP mDgnModel;
 	WString mDgnFileName;
 };

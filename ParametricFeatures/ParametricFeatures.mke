@@ -106,7 +106,7 @@ ifcObjects = \
 	$(o)IfcOperationsHelper$(oext) \
 	$(o)IfcPrimitivesEnhancer$(oext) \
 	$(o)IfcPropertiesEnhancer$(oext) \
-	$(o)IfcColorEnhancer$(oext) \
+	$(o)IfcColorMaterialEnhancer$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
 	$(o)SmartFeatureHandler$(oext) \
 
@@ -311,7 +311,7 @@ $(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitive
 #--- properties
 $(o)IfcPropertiesEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcPropertiesEnhancer.cpp $(baseDir)ifc/properties/headers/IfcPropertiesEnhancer.h
 
-$(o)IfcColorEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorEnhancer.h
+$(o)IfcColorMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorMaterialEnhancer.cpp $(baseDir)ifc/properties/headers/IfcColorMaterialEnhancer.h
 
 
 #--- shapes

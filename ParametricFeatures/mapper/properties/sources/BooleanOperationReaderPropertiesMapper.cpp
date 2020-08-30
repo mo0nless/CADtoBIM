@@ -1,6 +1,6 @@
 #include "../headers/BooleanOperationReaderPropertiesMapper.h"
 
-//void BooleanOperationReaderPropertiesMapper::mapBooleanOperationReaderPropertiesToReaderProperties(std::string labelValue, ECValue eCValue, ReaderProperties & readerProperties)
+//void BooleanOperationReaderPropertiesMapper::mapBooleanOperationReaderPropertiesToReaderProperties(string labelValue, ECValue eCValue, ReaderProperties & readerProperties)
 //{
 //	if (ReaderPropertiesEnumUtils::getElementPropertiesEnumByStringValue(labelValue) == ReaderPropertiesEnum::BOOLEAN_FUNCTION)
 //	{

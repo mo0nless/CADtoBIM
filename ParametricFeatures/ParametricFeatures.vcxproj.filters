@@ -23,7 +23,6 @@
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
-    <ClCompile Include="ifc\properties\sources\IfcColorEnhancer.cpp" />
     <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
@@ -76,6 +75,7 @@
     <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
+    <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -103,7 +103,6 @@
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
-    <ClInclude Include="ifc\properties\headers\IfcColorEnhancer.h" />
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
@@ -173,5 +172,6 @@
     <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
     <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperties.h" />
+    <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
   </ItemGroup>
 </Project>

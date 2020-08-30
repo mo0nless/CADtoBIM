@@ -1,8 +1,8 @@
 #include "..\headers\IfcSurfaceEnhancer.h"
 
-void IfcSurfaceEnhancer::enhanceIfcSurface(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcSurfaceEnhancer::enhanceIfcSurface(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
+	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
 	if (!dictionaryPropertiesVector.empty())
 	{

@@ -70,11 +70,11 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "-------------------------------- MSBsplineSurfaceCR surface --------------------------------" << std::endl;
-	outfile << std::endl;
-	outfile << std::endl;
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
+	outfile << "-------------------------------- MSBsplineSurfaceCR surface --------------------------------" << endl;
+	outfile << endl;
+	outfile << endl;
 	outfile.close();
 
 	//mGraphicsProcessorHelper.processMSBsplineSurface(surface);
@@ -96,10 +96,10 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {
 
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile <<"_ProcessBody"<< std::endl;
-	outfile << std::fixed;
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
+	outfile <<"_ProcessBody"<< endl;
+	outfile << fixed;
 	outfile.close();
 
 	//SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
@@ -114,31 +114,31 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 		{
 			case ISolidKernelEntity::KernelEntityType::EntityType_Solid:
 			{
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << endl;
+				outfile << endl;
 				outfile.close();
 			}
 				break;
 			case ISolidKernelEntity::KernelEntityType::EntityType_Sheet: // Is different from a solid IfcShellBasedSurfaceModel
 			{
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << endl;
+				outfile << endl;
 				outfile.close();
 			}
 				break;
 
 			case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << endl;
+				outfile << endl;
 				outfile.close();
 				break;
 			case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << endl;
+				outfile << endl;
 				outfile.close();
 				break;
 
@@ -149,9 +149,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 #if false 
 		if (mGraphicsProcessorHelper.processEntityAsFacetedBRep(entity))
 		{
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Element or Entity Processed Correctly" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Element or Entity Processed Correctly" << endl;
+			outfile << endl;
 			outfile.close();
 		}
 #endif
@@ -175,12 +175,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
 
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Entity------------ " << std::endl;
-			outfile << "Edges Entity: " << nEdges << std::endl;
-			outfile << "Faces Entity: " << nFaces << std::endl;
-			outfile << "Vertices Entity: " << nVertices << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Entity------------ " << endl;
+			outfile << "Edges Entity: " << nEdges << endl;
+			outfile << "Faces Entity: " << nFaces << endl;
+			outfile << "Vertices Entity: " << nVertices << endl;
+			outfile << endl;
 			outfile.close();
 
 			SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
@@ -188,18 +188,18 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
 			solidKernelEntity->setBRepTypeEnum((int)entityType);
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "-------------------------------- Processing BREP Entiy --------------------------------" << endl;
+			outfile << endl;
 			outfile.close();
 
 			//Mesh Polyface converter WORKING REPRESENTATION
 #if false
 			//mGraphicsProcessorHelper.ProcessAsMeshElement(solidKernelEntity);
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "Faceted BREP / ShellBased with Mesh Polyface" << endl;
+			outfile << endl;
 			outfile.close();
 
 			int boundID = 0;
@@ -212,9 +212,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				//Get the faces of the current edge
 				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "EDGE Sub Entity: " << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "EDGE Sub Entity: " << endl;
+				outfile << endl;
 				outfile.close();
 
 				BoundPoints* bound = new BoundPoints();
@@ -263,9 +263,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					bound->nodeID = faceID.nodeId;
 					bound->faceID.push_back((int)faceID.entityId);
 					
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-					outfile << std::endl;
+					outfile.open(filePath, ios_base::app);
+					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+					outfile << endl;
 					outfile.close();
 
 					if (faceParsed < nFaces)
@@ -285,7 +285,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 			//Vertices start dependences BSpline Surface
 #if false 
-			std::vector<std::vector<ShapesGraphicProperties*>> subShapesLoopVec = std::vector<std::vector<ShapesGraphicProperties*>>();
+			vector<vector<ShapesGraphicProperties*>> subShapesLoopVec = vector<vector<ShapesGraphicProperties*>>();
 
 			for (auto vertex : subEntitiesVertices)
 			{
@@ -317,9 +317,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						{
 							shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 
-							outfile.open(filePath, std::ios_base::app);
-							outfile << "-------- EDGE Sub Entity: " << std::endl;
-							outfile << std::endl;
+							outfile.open(filePath, ios_base::app);
+							outfile << "-------- EDGE Sub Entity: " << endl;
+							outfile << endl;
 							outfile.close();
 
 							bool addToDictionary = false;
@@ -333,12 +333,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							cDY = shapesGraphicProperties->getVectorAxisY();
 							cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-							outfile.open(filePath, std::ios_base::app);
-							outfile << std::endl;
-							outfile << "Curve XY Plane: " << std::endl;
-							outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-							outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-							outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+							outfile.open(filePath, ios_base::app);
+							outfile << endl;
+							outfile << "Curve XY Plane: " << endl;
+							outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+							outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+							outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 							outfile.close();
 						}
 						else
@@ -351,7 +351,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					//Get te faces of the current edge
 					SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
 
-					std::vector<ShapesGraphicProperties*> loopVector;
+					vector<ShapesGraphicProperties*> loopVector;
 
 					for (auto face : subEntitiesFaces)
 					{
@@ -388,9 +388,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 											if ((s->getStartPoint() == startP) && (s->getEndPoint() == endP))
 											{
 												loopAleadyParsed = true;
-												outfile.open(filePath, std::ios_base::app);
-												outfile << "loopAleadyParsed = true" << std::endl;
-												outfile << std::endl;
+												outfile.open(filePath, ios_base::app);
+												outfile << "loopAleadyParsed = true" << endl;
+												outfile << endl;
 												outfile.close();
 												break;
 											}
@@ -404,9 +404,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							//If the loop it was not parsed yet do it
 							if (!loopAleadyParsed)
 							{
-								outfile.open(filePath, std::ios_base::app);
-								outfile << "-------- EDGE LOOP Sub Entities: " << std::endl;
-								outfile << std::endl;
+								outfile.open(filePath, ios_base::app);
+								outfile << "-------- EDGE LOOP Sub Entities: " << endl;
+								outfile << endl;
 								outfile.close();
 
 								for (auto edgeLoop : edgeLoopSubEntities)
@@ -414,10 +414,10 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 									ISubEntityCR edgeRefLoop = *edgeLoop;
 									CurveVectorPtr loopEval;
 
-									outfile.open(filePath, std::ios_base::app);
-									outfile << std::endl;
-									outfile << "Curve of the loop: " << std::endl;
-									outfile << std::endl;
+									outfile.open(filePath, ios_base::app);
+									outfile << endl;
+									outfile << "Curve of the loop: " << endl;
+									outfile << endl;
 									outfile.close();
 
 									shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
@@ -433,12 +433,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 										cDY = shapesGraphicProperties->getVectorAxisY();
 										cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-										outfile.open(filePath, std::ios_base::app);
-										outfile << std::endl;
-										outfile << "Curve XY Plane: " << std::endl;
-										outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-										outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-										outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+										outfile.open(filePath, ios_base::app);
+										outfile << endl;
+										outfile << "Curve XY Plane: " << endl;
+										outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+										outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+										outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 										outfile.close();
 
 										loopVector.push_back(shapesGraphicProperties);
@@ -471,9 +471,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							}
 						}
 
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+						outfile << endl;
 						outfile.close();
 					}
 
@@ -499,9 +499,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				FaceId faceID;
 				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+				outfile << endl;
 				outfile.close();
 
 				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
@@ -525,9 +525,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					break;
 					case IGeometry::GeometryType::SolidPrimitive:
 					{
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << endl;
+						outfile << endl;
 						outfile.close();
 						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
 						_ProcessSolidPrimitive(prim);
@@ -552,9 +552,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				FaceId faceID;
 				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+				outfile << endl;
 				outfile.close();
 
 				bvector<double> uParams, vParams;
@@ -581,12 +581,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						bool addToDictionary = false;
 						mGraphicsProcessorHelper.processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties, addToDictionary);
 
-						outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-						outfile << "uParams: " << uParams.size() << std::endl;
-						outfile << "vParams: " << vParams.size() << std::endl;
-						outfile << "uvParams: " << uvParams.size() << std::endl;
-						outfile << "gridPoints: " << gridPoints.size() << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app, sizeof(string));
+						outfile << "uParams: " << uParams.size() << endl;
+						outfile << "vParams: " << vParams.size() << endl;
+						outfile << "uvParams: " << uvParams.size() << endl;
+						outfile << "gridPoints: " << gridPoints.size() << endl;
+						outfile << endl;
 						outfile.close();
 
 						//Add the face to the solidKernelEntity
@@ -595,9 +595,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					break;
 					case IGeometry::GeometryType::SolidPrimitive:
 					{
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "IGeometry::GeometryType::SolidPrimitive: " << (int)IGeometry::GeometryType::SolidPrimitive << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "IGeometry::GeometryType::SolidPrimitive: " << (int)IGeometry::GeometryType::SolidPrimitive << endl;
+						outfile << endl;
 						outfile.close();
 
 						//GraphicProperties* primitiveGraphicProperties = new GraphicProperties();
@@ -615,9 +615,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					break;
 					case IGeometry::GeometryType::Polyface:
 					{
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "IGeometry::GeometryType::Polyface: " << (int)IGeometry::GeometryType::Polyface << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "IGeometry::GeometryType::Polyface: " << (int)IGeometry::GeometryType::Polyface << endl;
+						outfile << endl;
 						outfile.close();
 						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
 						_ProcessSolidPrimitive(prim);
@@ -636,7 +636,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 			subEntitiesFaces.clear();
 			subEntitiesVertices.clear();
 
-			std::vector<std::vector<ShapesGraphicProperties*>> subShapesLoopVec = std::vector<std::vector<ShapesGraphicProperties*>>();
+			vector<vector<ShapesGraphicProperties*>> subShapesLoopVec = vector<vector<ShapesGraphicProperties*>>();
 			for (auto edge : subEntitiesEdges)
 			{
 				bool parseEdgeLoop = false;
@@ -654,9 +654,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					{
 						shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
 
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "-------- EDGE Sub Entity: " << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "-------- EDGE Sub Entity: " << endl;
+						outfile << endl;
 						outfile.close();
 
 						bool addToDictionary = false;
@@ -673,12 +673,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						cDY = shapesGraphicProperties->getVectorAxisY();
 						cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-						outfile.open(filePath, std::ios_base::app);
-						outfile << std::endl;
-						outfile << "Curve XY Plane: " << std::endl;
-						outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-						outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-						outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << endl;
+						outfile << "Curve XY Plane: " << endl;
+						outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+						outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+						outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 						outfile.close();
 					}
 					else
@@ -691,7 +691,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				//Get te faces of the current edge
 				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
 
-				std::vector<ShapesGraphicProperties*> loopVector;
+				vector<ShapesGraphicProperties*> loopVector;
 
 				for (auto face : subEntitiesFaces)
 				{
@@ -728,9 +728,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 										if ((s->getStartPoint() == startP) && (s->getEndPoint() == endP))
 										{
 											loopAleadyParsed = true;
-											outfile.open(filePath, std::ios_base::app);
-											outfile << "loopAleadyParsed = true" << std::endl;
-											outfile << std::endl;
+											outfile.open(filePath, ios_base::app);
+											outfile << "loopAleadyParsed = true" << endl;
+											outfile << endl;
 											outfile.close();
 											break;
 										}
@@ -744,9 +744,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						//If the loop it was not parsed yet do it
 						if (!loopAleadyParsed)
 						{
-							outfile.open(filePath, std::ios_base::app);
-							outfile << "-------- EDGE LOOP Sub Entities: " << std::endl;
-							outfile << std::endl;
+							outfile.open(filePath, ios_base::app);
+							outfile << "-------- EDGE LOOP Sub Entities: " << endl;
+							outfile << endl;
 							outfile.close();
 
 							for (auto edgeLoop : edgeLoopSubEntities)
@@ -754,10 +754,10 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 								ISubEntityCR edgeRefLoop = *edgeLoop;
 								CurveVectorPtr loopEval;
 
-								outfile.open(filePath, std::ios_base::app);
-								outfile << std::endl;
-								outfile << "Curve of the loop: " << std::endl;
-								outfile << std::endl;
+								outfile.open(filePath, ios_base::app);
+								outfile << endl;
+								outfile << "Curve of the loop: " << endl;
+								outfile << endl;
 								outfile.close();
 
 								shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
@@ -776,12 +776,12 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 									cDY = shapesGraphicProperties->getVectorAxisY();
 									cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-									outfile.open(filePath, std::ios_base::app);
-									outfile << std::endl;
-									outfile << "Curve XY Plane: " << std::endl;
-									outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-									outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-									outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+									outfile.open(filePath, ios_base::app);
+									outfile << endl;
+									outfile << "Curve XY Plane: " << endl;
+									outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+									outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+									outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 									outfile.close();
 
 									loopVector.push_back(shapesGraphicProperties);
@@ -818,9 +818,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 						}						
 					}
 
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-					outfile << std::endl;
+					outfile.open(filePath, ios_base::app);
+					outfile << "FACE of the Edge: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+					outfile << endl;
 					outfile.close();
 				}				
 
@@ -845,9 +845,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				FaceId faceID;
 				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "--------- FACE Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+				outfile << endl;
 				outfile.close();
 
 				if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
@@ -871,9 +871,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					break;
 					case IGeometry::GeometryType::SolidPrimitive:
 					{
-						outfile.open(filePath, std::ios_base::app);
-						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << std::endl;
-						outfile << std::endl;
+						outfile.open(filePath, ios_base::app);
+						outfile << "---------------- IGeometry::GeometryType::SolidPrimitive ----------------" << endl;
+						outfile << endl;
 						outfile.close();
 						ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
 						_ProcessSolidPrimitive(prim);
@@ -908,9 +908,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 				SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
 
 
-				outfile.open(filePath, std::ios_base::app);
-				outfile << "EDGE Sub Entity: " << std::endl;
-				outfile << std::endl;
+				outfile.open(filePath, ios_base::app);
+				outfile << "EDGE Sub Entity: " << endl;
+				outfile << endl;
 				outfile.close();
 
 				BoundPoints* bound = new BoundPoints();
@@ -940,11 +940,11 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 							//[SHARED]
 							if (bound->isShared)
 							{
-								outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-								outfile << "Point [X]: " << vertexPoint.x << std::endl;
-								outfile << "Point [Y]: " << vertexPoint.y << std::endl;
-								outfile << "Point [Z]: " << vertexPoint.z << std::endl;
-								outfile << std::endl;
+								outfile.open(filePath, ios_base::app, sizeof(string));
+								outfile << "Point [X]: " << vertexPoint.x << endl;
+								outfile << "Point [Y]: " << vertexPoint.y << endl;
+								outfile << "Point [Z]: " << vertexPoint.z << endl;
+								outfile << endl;
 								outfile.close();
 							}
 						}
@@ -961,9 +961,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					FaceId faceID;
 					SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
 
-					outfile.open(filePath, std::ios_base::app);
-					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << std::endl;
-					outfile << std::endl;
+					outfile.open(filePath, ios_base::app);
+					outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
+					outfile << endl;
 					outfile.close();
 
 					bound->nodeID = faceID.nodeId;
@@ -1012,11 +1012,11 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 								DPoint3d vertexPoint;
 								if (SolidUtil::EvaluateVertex(vertexRef, vertexPoint) == SUCCESS)
 								{
-									outfile.open(filePath, std::ios_base::app, sizeof(std::string));
-									outfile << "Vertex Point [X]: " << vertexPoint.x << std::endl;
-									outfile << "Vertex Point [Y]: " << vertexPoint.y << std::endl;
-									outfile << "Vertex Point [Z]: " << vertexPoint.z << std::endl;
-									outfile << std::endl;
+									outfile.open(filePath, ios_base::app, sizeof(string));
+									outfile << "Vertex Point [X]: " << vertexPoint.x << endl;
+									outfile << "Vertex Point [Y]: " << vertexPoint.y << endl;
+									outfile << "Vertex Point [Z]: " << vertexPoint.z << endl;
+									outfile << endl;
 									outfile.close();
 
 									if (vertexCreated < nVertices)
@@ -1043,10 +1043,10 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 					solidKernelEntity->addBoundsPoints(bound);
 			}
 #endif
-			outfile.open(filePath, std::ios_base::app);
-			outfile << "-------------------------------- End BREP Entiy --------------------------------" << std::endl;
-			outfile << std::endl;
-			outfile << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << "-------------------------------- End BREP Entiy --------------------------------" << endl;
+			outfile << endl;
+			outfile << endl;
 			outfile.close();
 
 			subEntitiesEdges.clear();
@@ -1067,11 +1067,11 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
-	outfile << "-------------------------------- PolyfaceQueryCR - meshData --------------------------------" << std::endl;
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
+	outfile << "-------------------------------- PolyfaceQueryCR - meshData --------------------------------" << endl;
 
-	//std::vector<double> colourVector;
+	//vector<double> colourVector;
 
 	////FloatRgb* colour = const_cast<FloatRgb*>(colour1);
 	//auto color2 = meshData.GetColorIndexCP();
@@ -1095,13 +1095,13 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 	//	colourVector.push_back(static_cast<double>(color4->blue));
 	//}
 	//if (!colourVector.empty()) {
-	//	outfile << "color0 " << colourVector.at(0) << std::endl;
+	//	outfile << "color0 " << colourVector.at(0) << endl;
 	//}
-	//outfile << "color1 " << color2 << std::endl;
+	//outfile << "color1 " << color2 << endl;
 
 
-	outfile << std::endl;
-	outfile << std::endl;
+	outfile << endl;
+	outfile << endl;
 	outfile.close();
 
 	DictionaryProperties* dictionaryProperties = mGraphicsProcessorHelper.getDictionaryProperties();
@@ -1122,20 +1122,20 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 		PolyfaceHeaderPtr pMesh = meshes.at(i);
 		PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
 
-		std::vector<std::vector<DPoint3d>> facetTriangulated;
+		vector<vector<DPoint3d>> facetTriangulated;
 
 		pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Mesh Number: " << i << std::endl;
-		outfile << "numVertex: " << numVertex << std::endl;
-		outfile << "numFacet: " << numFacet << std::endl;
-		outfile << "numQuad: " << numQuad << std::endl;
-		outfile << "numTriangle: " << numTriangle << std::endl;
-		outfile << "numImplicitTriangle: " << numImplicitTriangle << std::endl;
-		outfile << "numVisEdges: " << numVisEdges << std::endl;
-		outfile << "numInvEdges: " << numInvEdges << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Mesh Number: " << i << endl;
+		outfile << "numVertex: " << numVertex << endl;
+		outfile << "numFacet: " << numFacet << endl;
+		outfile << "numQuad: " << numQuad << endl;
+		outfile << "numTriangle: " << numTriangle << endl;
+		outfile << "numImplicitTriangle: " << numImplicitTriangle << endl;
+		outfile << "numVisEdges: " << numVisEdges << endl;
+		outfile << "numInvEdges: " << numInvEdges << endl;
+		outfile << endl;
 		outfile.close();
 
 		int nFace = 1;
@@ -1144,7 +1144,7 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 		{
 			BlockedVectorDPoint3dR pts = pv->Point();
 
-			std::vector<DPoint3d> face;
+			vector<DPoint3d> face;
 			for (DPoint3d pt : pts)
 			{
 				//Store the point for the triangle face
@@ -1158,9 +1158,9 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 			outfile.close();
 		}
 
-		outfile.open(filePath, std::ios_base::app);
-		outfile << "Num Of Facet: " << nFace << std::endl;
-		outfile << std::endl;
+		outfile.open(filePath, ios_base::app);
+		outfile << "Num Of Facet: " << nFace << endl;
+		outfile << endl;
 		outfile.close();
 
 		//Add to the BRep Entity
@@ -1192,14 +1192,13 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	//ElemDisplayParamsCR d = displayParams;
 	//ElemDisplayParamsCP d = &displayParams;
 
-	this->mGraphicsProcessorHelper.getElementBundle()->setElemDisplayParamsCR(displayParams);
 	this->mGraphicsProcessorHelper.getElementBundle()->setColor(displayParams.GetLineColorTBGR());
 	this->mGraphicsProcessorHelper.getElementBundle()->setTransparency(displayParams.GetTransparency());
 
-	//std::string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	std::string filepath = SessionManager::getInstance()->getDataOutputFilePath();
-	std::ofstream outfile;
-	outfile.open(filePath, std::ios_base::app);
+	//string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	string filepath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	outfile.open(filePath, ios_base::app);
 
 	UInt32 color;
 
@@ -1208,12 +1207,12 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	int green1 = (color >> 8) & 0xFF;
 	int red1 = color & 0xFF;
 
-	outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << std::endl;
+	outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << endl;
 
 	//outfile.close();
 
 
-	outfile << "transparency =" << displayParams.GetTransparency() << std::endl;
+	outfile << "transparency =" << displayParams.GetTransparency() << endl;
 
 	auto level = displayParams.GetLevel();
 
@@ -1221,16 +1220,16 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	UInt colorOut;
 	bool ov;
 	mdlLevel_getColor(&colorOut, &ov, model, level);
-	outfile << "level " << level << " , " << &colorOut << std::endl;
-	outfile << "level color"<< colorOut<<" , "<<& colorOut << std::endl;
+	outfile << "level " << level << " , " << &colorOut << endl;
+	outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;
 
 		int blue3 = (colorOut >> 16) & 0xFF;
 		int green3 = (colorOut >> 8) & 0xFF;
 		int red3 = colorOut & 0xFF;
 
-		outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << std::endl;
+		outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << endl;
 
-	outfile << "level  =" << displayParams.GetLevel() << std::endl;
+	outfile << "level  =" << displayParams.GetLevel() << endl;
 	//displayParams.GetMaterial()->
 
 	//if (!displayParams.IsLineColorTBGR()) {
@@ -1239,7 +1238,7 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	//	int green3 = (color >> 8) & 0xFF;
 	//	int red3 = color & 0xFF;
 
-	//	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << std::endl;
+	//	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << endl;
 	//}
 	//else {
 	//	color = displayParams.GetLineColor();
@@ -1251,7 +1250,7 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	//	int green2 = rgbColorDefinition.green & 0xFF;
 	//	int red2 = rgbColorDefinition.red & 0xFF;
 
-	//	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << std::endl;
+	//	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << endl;
 	//}
 	outfile.close();
 }

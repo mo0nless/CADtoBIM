@@ -5,9 +5,9 @@
 
 void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle*& readerPropertiesBundle)
 {
-	std::ofstream outfile;
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
-	outfile.open(filePath, std::ios_base::app);
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	outfile.open(filePath, ios_base::app);
 
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
 	{
@@ -17,7 +17,7 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 		// Gets the value stored in the specified ECProperty. 
 		dgnElementECInstanceP->GetValue(ecVal, ecProp->GetName().GetWCharCP());
 
-		// Provides methods for converting to and from an ECProperty's internal type to a user-fristd::endly representation. 
+		// Provides methods for converting to and from an ECProperty's internal type to a user-friendly representation. 
 		// Obtain a type adapter for the specified property. 
 		IDgnECTypeAdapterR typeAdapter = IDgnECTypeAdapter::GetForProperty(*ecProp);
 		// Create a context for a DgnECInstance
@@ -28,8 +28,8 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 
 		
 
-		std::string valueAsString = StringUtils::getString(wStr);
-		std::string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
+		string valueAsString = StringUtils::getString(wStr);
+		string propertyName = StringUtils::getString(ecProp->GetDisplayLabel());
 
 		if (!valueAsString.empty()) {
 			//mapPropertyToReaderPropertiesMember(propertyName, ecVal, readerProperties,smartFeatureTypeEnum);
@@ -38,11 +38,11 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 
 			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
 				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "
-				<< "= " << static_cast<Utf8String>(wStr) << std::endl;
+				<< "= " << static_cast<Utf8String>(wStr) << endl;
 
 			//outfile << "val " << propertyName << "["
 			//	<< StringUtils::getString(ecProp->GetTypeName()) << "] "
-			//	<< "= " << ecVal.GetUtf8CP() << std::endl;
+			//	<< "= " << ecVal.GetUtf8CP() << endl;
 		}
 
 		

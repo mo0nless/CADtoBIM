@@ -65,7 +65,7 @@ class ModelerDataWriterManager{
 
 private:
 	string _dataOutputFilePath;
-	std::ofstream _outFile;
+	ofstream _outFile;
 
 	bool _printDataEnabled;
 

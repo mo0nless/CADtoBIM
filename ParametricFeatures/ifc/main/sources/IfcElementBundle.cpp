@@ -1,18 +1,18 @@
 #include "../headers/IfcElementBundle.h"
 
-IfcElementBundle::IfcElementBundle(long newModelerElementId, std::string newModelerElementDescriptor)
+IfcElementBundle::IfcElementBundle(long newModelerElementId, string newModelerElementDescriptor)
 {
 	this->modelerElementId = newModelerElementId;
 	this->modelerElementDescriptor = newModelerElementDescriptor;
 	this->hasConnections = false;
 }
 
-std::string IfcElementBundle::getRepresentationType()
+string IfcElementBundle::getRepresentationType()
 {
 	return this->representationType;
 }
 
-void IfcElementBundle::setRepresentationType(std::string type)
+void IfcElementBundle::setRepresentationType(string type)
 {
 	this->representationType = type;
 }
@@ -38,7 +38,7 @@ void IfcElementBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle 
 	this->ifcGraphicPropertiesBundleVector.push_back(newIfcGraphicPropertiesBundle);
 }
 
-void IfcElementBundle::addSolidEdgesCollection(std::vector<SolidEdge*> solidEdges)
+void IfcElementBundle::addSolidEdgesCollection(vector<SolidEdge*> solidEdges)
 {
 	this->smartSolidEdgesCollection = solidEdges;
 }
@@ -64,7 +64,7 @@ long IfcElementBundle::getModelerElementId()
 	return this->modelerElementId;
 }
 
-std::string IfcElementBundle::getModelerElementDescriptor()
+string IfcElementBundle::getModelerElementDescriptor()
 {
 	return this->modelerElementDescriptor;
 }
@@ -95,27 +95,27 @@ bool IfcElementBundle::getIsSmartSolid()
 }
 
 
-std::vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()
+vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()
 {
 	return this->ifcElementReaderPropertiesBundleVector;
 }
 
-std::vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getIfcGraphicPropertiesBundleVector()
+vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getIfcGraphicPropertiesBundleVector()
 {
 	return this->ifcGraphicPropertiesBundleVector;
 }
 
-std::vector<Ifc4::IfcCartesianPoint*> IfcElementBundle::getIfcPortsPointsVector()
+vector<Ifc4::IfcCartesianPoint*> IfcElementBundle::getIfcPortsPointsVector()
 {
 	return this->ifcPointsPortsVector;
 }
 
-std::vector<Ifc4::IfcDistributionPort*> IfcElementBundle::getIfcDistributionPortsVector()
+vector<Ifc4::IfcDistributionPort*> IfcElementBundle::getIfcDistributionPortsVector()
 {
 	return this->ifcDistributionPortVector;
 }
 
-std::vector<SolidEdge*> IfcElementBundle::getSolidEdgesCollection()
+vector<SolidEdge*> IfcElementBundle::getSolidEdgesCollection()
 {
 	return this->smartSolidEdgesCollection;
 }

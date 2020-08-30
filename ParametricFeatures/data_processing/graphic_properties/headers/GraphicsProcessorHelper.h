@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
-//#include "../../modeler/properties/brep_solids/headers/SolidEntityGraphicProperties.h"
 #include "../../../modeler/brep_solids/headers/BRepGraphicProperties.h"
 #include "../../../modeler/shapes/headers/CurvesShapesGraphicProperties.h"
 
@@ -18,11 +17,27 @@
 #include "PolyfaceConvertTool.h"
 #include <math.h>
 
-//#include "../../headers/SessionManager.h"
 #include "../../../modeler/data_writer/headers/ModelerDataWriterManager.h"
+
+#include "../../../common/utils/headers/Comparator.h"
 
 class GraphicsProcessorHelper
 {
+
+private:
+	ElementBundle* elementBundle;
+	string filePath;
+	DictionaryProperties* pDictionaryProperties;
+
+	ModelerDataWriterManager* _modelerDataWriterManager;
+
+	template <class T, class U>
+	T searchOnMap(map<U, T>, U key);
+
+	ElementHandle _currentElementHandle;
+	BRepGraphicProperties* _bRepGraphicProperties;
+	int _numberSolidEntity = 0;
+
 public:
 	GraphicsProcessorHelper();
 
@@ -46,8 +61,6 @@ public:
 	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);// use this method to set vector axis X,Y,Z
 	void setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);// use this method to set centroid, area and volume
 
-	bool isDoubleEqual(double x, double y);	
-
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
 	void setElementBundle(ElementBundle& newElementBundle);
 	ElementBundle* getElementBundle();
@@ -58,22 +71,21 @@ public:
 	bool processElementAsMesh();
 	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
 
-	ElementHandle mCurrentElementHandle;
-	BRepGraphicProperties* mBRepGraphicProperties = nullptr;
-	int mNumberSolidEntity = 0;
-private:
-	ElementBundle* elementBundle;
-	std::string filePath;
-	DictionaryProperties* pDictionaryProperties;
 
-	ModelerDataWriterManager* _modelerDataWriterManager;
-	
-	template <class T, class U>
-	T searchOnMap(std::map<U, T>, U key);
+	ElementHandle getCurrentElementHandle();
+	void setElementHandle(ElementHandle elementHandle);
+
+
+	BRepGraphicProperties* getBRepGraphicProperties();
+	void setBRepGraphicProperties(BRepGraphicProperties* bRepGraphicProperties);
+
+	int getNumberSolidEntity();
+	void setNumberSolidEntity(int numberSolidEntity);
+
 };
 
 template <class T, class U>
-inline T GraphicsProcessorHelper::searchOnMap(std::map<U, T> mappedValues, U key)
+inline T GraphicsProcessorHelper::searchOnMap(map<U, T> mappedValues, U key)
 {
 	for (auto const& element : mappedValues)
 	{

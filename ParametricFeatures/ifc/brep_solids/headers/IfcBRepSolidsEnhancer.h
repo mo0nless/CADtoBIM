@@ -23,9 +23,9 @@ struct EdgeIfcCurve
 	Ifc4::IfcCartesianPoint* end;
 	Ifc4::IfcEdgeCurve* ifcEdgeCurve;
 	Ifc4::IfcOrientedEdge* orientedEdge;
-	std::vector<Ifc4::IfcOrientedEdge*> continuosOrientedEdges;
+	vector<Ifc4::IfcOrientedEdge*> continuosOrientedEdges;
 	bool isShared = false;
-	std::vector<int> faceIDs;
+	vector<int> faceIDs;
 	Ifc4::IfcEdgeLoop* edgeLoop;
 	bool isSingleCurveClosedPath = false;
 
@@ -37,7 +37,7 @@ class IfcBRepSolidsEnhancer
 public:
 	IfcBRepSolidsEnhancer();
 
-	void enhanceIfcBRepSolidsEnhancer(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector,
+	void enhanceIfcBRepSolidsEnhancer(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector,
 		IfcHierarchyHelper<Ifc4>& file);
 	
 private:
@@ -49,17 +49,17 @@ private:
 
 	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	void buildIfcSurface(std::vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, 
+	void buildIfcSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, 
 		ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
 
 	template<class T>
-	T searchOnMap(std::map<int, T>, int key);
+	T searchOnMap(map<int, T>, int key);
 
-	std::vector<EdgeIfcCurve*> solidEdges;
+	vector<EdgeIfcCurve*> solidEdges;
 };
 
 template<class T>
-inline T IfcBRepSolidsEnhancer::searchOnMap(std::map<int, T> mappedValues, int key)
+inline T IfcBRepSolidsEnhancer::searchOnMap(map<int, T> mappedValues, int key)
 {
 	for (auto const& element : mappedValues)
 	{

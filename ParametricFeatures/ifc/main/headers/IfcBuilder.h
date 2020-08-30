@@ -12,15 +12,21 @@
 #include "IfcElementBuilder.h"
 #include "../../properties/headers/IfcPropertiesEnhancer.h"
 #include "../../brep_solids/headers/IfcBRepSolidsEnhancer.h"
-#include "../../properties/headers/IfcColorEnhancer.h"
+#include "../../properties/headers/IfcColorMaterialEnhancer.h"
 #include "../../../common/models/headers/SessionManager.h"
 
 class IfcBuilder {
 private:
+	IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;
+	IfcShapesEnhancer* _ifcShapesEnhancer;
+	IfcBRepSolidsEnhancer* _ifcBRepSolidsEnhancer;
+	IfcPropertiesEnhancer* _ifcPropertiesEnhancer;
+	IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
+	IfcPortsBuilder* _ifcPortsBuilder;
 	
 public:
-	IfcBuilder() {};
+	IfcBuilder();
 
-	void buildIfc(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<SmartFeatureContainer*>& smartFeatureContainerVector);
+	void buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 	
 };

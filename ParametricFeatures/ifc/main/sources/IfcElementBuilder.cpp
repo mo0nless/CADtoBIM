@@ -7,10 +7,10 @@ IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* ge
 	this->objectPlacement = objectPlacement;
 }
 
-void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	//Create the vector for the distribution element 
-	//std::vector<IfcElementBundle*>ifcDistributionBundleVector;
+	//vector<IfcElementBundle*>ifcDistributionBundleVector;
 	for (auto& ifcElementBundle : ifcBundleVector) //const& removed
 	{
 		Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
@@ -22,8 +22,8 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			}
 		}
 
-		std::string representationType = "";
-		std::string representationIdentifier = "";
+		string representationType = "";
+		string representationIdentifier = "";
 		//TODO: Needs to be set up correctly the 3rd input parameter following:
 		//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
 		if (ifcElementBundle->solidModel)
@@ -44,7 +44,7 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 			geometricRepresentationContext,
 			boost::none,
 			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-			std::string("$")
+			string("$")
 		);
 
 				
@@ -60,8 +60,8 @@ void IfcElementBuilder::processIfcElement(std::vector<IfcElementBundle*>& ifcBun
 		ifcRepresentationList->push(ifcRepresentation);
 
 		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(
-			std::string("$"),
-			std::string("$"),
+			string("$"),
+			string("$"),
 			ifcRepresentationList
 		);
 
@@ -98,11 +98,11 @@ Ifc4::IfcElement * IfcElementBuilder::buildIfcElement(IfcElementBundle *& ifcEle
 		ifcElementBundle->getModelerElementDescriptor(),
 		ifcElementBundle->getModelerElementDescriptor(),
 		//boost::none,
-		std::string("$"),
+		string("$"),
 		file.addLocalPlacement(),
 		elemShape, 
 		//boost::none
-		std::string("$")
+		string("$")
 	);
 
 	return ifcElement;
@@ -118,11 +118,11 @@ Ifc4::IfcDistributionElement * IfcElementBuilder::buildIfcDistributionElement(If
 		ifcElementBundle->getModelerElementDescriptor(),
 		ifcElementBundle->getModelerElementDescriptor(),
 		//boost::none,
-		std::string("$"),
+		string("$"),
 		file.addLocalPlacement(),
 		elemShape,
 		//boost::none
-		std::string("$")
+		string("$")
 	);	
 
 	return ifcDistributionElem;

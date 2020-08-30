@@ -25,7 +25,7 @@ private:
 	*   @param eCValue[in] value of the property
 	*   @param readerProperties[out] store property and it's value
 	*/
-	//static void mapPropertyToReaderPropertiesMember(std::string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum);
+	//static void mapPropertyToReaderPropertiesMember(string labelValue, ECValue eCValue, ReaderProperties &readerProperties, SmartFeatureTypeEnum smartFeatureTypeEnum);
 
 public:
 	/**

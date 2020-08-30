@@ -1,40 +1,24 @@
 #include "../headers/IfcPrimitivesEnhancer.h"
 
 
-void IfcPrimitivesEnhancer::enhanceIfcPrimitives(std::vector<DictionaryProperties*>& dictionaryPropertiesVector, std::vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
+	ElementBundle* elementBundle)
 {
-	std::vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
-	if (!dictionaryPropertiesVector.empty())
-	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+	if (solidPrimitiveProperties != nullptr) {
+		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, elementBundle);
+		if (ifcRepresentationItem != nullptr)
 		{
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-		
-			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
-
-			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-
-			for (auto element : dictionaryProperties.getElementBundle())
-			{
-				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-				if (solidPrimitiveProperties != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file,element);
-					if (ifcRepresentationItem != nullptr)
-					{
-						auto bundle = new IfcGraphicPropertiesBundle(element->getGraphicProperties(),
-							ifcRepresentationItem, element->getElementHandle(), element->getElemDisplayParamsCP());
-						bundle->setColor(element->getColor());
-						bundle->setTransparency(element->getTransparency());
-						bundle->setMaterial(element->getMaterial());
-						ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+				ifcRepresentationItem, elementBundle->getElementHandle());
+			bundle->setColor(elementBundle->getColor());
+			bundle->setTransparency(elementBundle->getTransparency());
+			bundle->setMaterial(elementBundle->getMaterial());
+			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
-					}
-				}
-			}
 		}
 	}
+
 
 }
 
@@ -140,9 +124,9 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 	sm->getIfcOutputFilePath();
 
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
-	std::ofstream outfile;
-	//std::string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	std::string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream outfile;
+	//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 
@@ -233,14 +217,14 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
 			}
 
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
 
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
 
 			Ifc4::IfcProfileDef* profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
 				Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA, 
-				std::string("RotationalSweep"),
+				string("RotationalSweep"),
 				(Ifc4::IfcCurve*) result
 			);
 			
@@ -251,8 +235,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
 				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(rotationalSweepGraphicProperties.getCenterRotation()),
-				new Ifc4::IfcDirection(std::vector<double>()), 
-				new Ifc4::IfcDirection(std::vector<double>())
+				new Ifc4::IfcDirection(vector<double>()), 
+				new Ifc4::IfcDirection(vector<double>())
 			);
 			
 			ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolid(
@@ -271,18 +255,18 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			cDY = shape->getVectorAxisY();
 			cDZ = shape->getVectorAxisZ();
 			
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << "IFC Revolve --------" << std::endl;
-			outfile << "Revolved solid: " << std::endl;
-			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;
-			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << std::endl;
-			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << std::endl;
-			outfile << std::endl;
-			outfile << "Curve Profile: " << std::endl;
-			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << "IFC Revolve --------" << endl;
+			outfile << "Revolved solid: " << endl;
+			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << endl;
+			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << endl;
+			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << endl;
+			outfile << endl;
+			outfile << "Curve Profile: " << endl;
+			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 			outfile.close();
 		}
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::EXTRUSION)
@@ -319,7 +303,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
 			}
 
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(shape, file, ifcElementBundle,elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
 			
 			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
 			{
@@ -332,7 +316,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					Ifc4::IfcCurve* curveToExtrude = ifcCurve;
 					profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
 						pEnum,
-						std::string("Closed Profile"),
+						string("Closed Profile"),
 						curveToExtrude
 					);
 				}
@@ -341,7 +325,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					Ifc4::IfcBoundedCurve* curveToExtrude = (Ifc4::IfcBoundedCurve*)ifcCurve;
 					profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
 						pEnum,
-						std::string("Open Profile"),
+						string("Open Profile"),
 						curveToExtrude
 					);
 				}
@@ -365,7 +349,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 				profileDef = new Ifc4::IfcArbitraryProfileDefWithVoids(
 					pEnum,
-					std::string("Outer and Inner"),
+					string("Outer and Inner"),
 					outer,
 					tempProfiles
 				);
@@ -374,8 +358,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			
 			Ifc4::IfcAxis2Placement3D* placement = new Ifc4::IfcAxis2Placement3D(
 				IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(extrusionGraphicProperties.getCentroid()),
-				new Ifc4::IfcDirection(std::vector<double>()),
-				new Ifc4::IfcDirection(std::vector<double>())
+				new Ifc4::IfcDirection(vector<double>()),
+				new Ifc4::IfcDirection(vector<double>())
 			);
 
 
@@ -413,22 +397,22 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 			dirExt = extrusionGraphicProperties.getDirectionOfExtrusion();
 
-			outfile.open(filePath, std::ios_base::app);
-			outfile << std::endl;
-			outfile << std::fixed;
-			outfile << "IFC Extrusion --------" << std::endl;
-			outfile << "Extrusion solid: " << std::endl;
-			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << std::endl;
-			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << std::endl;
-			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << std::endl;
-			outfile << std::endl;
-			outfile << "Curve Profile: " << std::endl;
-			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << std::endl;
-			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << std::endl;
-			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << std::endl;
-			outfile << std::endl;
-			outfile << "Direction of Extrusion: " << std::endl;
-			outfile << "Direction [X] = " << dirExt.x << ", " << dirExt.y << ", " << dirExt.z << std::endl;
+			outfile.open(filePath, ios_base::app);
+			outfile << endl;
+			outfile << fixed;
+			outfile << "IFC Extrusion --------" << endl;
+			outfile << "Extrusion solid: " << endl;
+			outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << endl;
+			outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << endl;
+			outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << endl;
+			outfile << endl;
+			outfile << "Curve Profile: " << endl;
+			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
+			outfile << endl;
+			outfile << "Direction of Extrusion: " << endl;
+			outfile << "Direction [X] = " << dirExt.x << ", " << dirExt.y << ", " << dirExt.z << endl;
 			outfile.close();
 		}
 

@@ -26,11 +26,11 @@ private:
 
 	UInt32 color;
 	double transparency;
-	std::string _material;
+	string _material;
 
 public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
-		ElementHandle newElementHandle, ElemDisplayParamsCP newElemDisplayParamsCP);
+		ElementHandle newElementHandle);
 
 	GraphicProperties* getGraphicProperties();
 
@@ -50,8 +50,8 @@ public:
 	double getTransparency();
 	void setTransparency(double newTransparency);
 
-	std::string getMaterial();
-	void setMaterial(std::string material);
+	string getMaterial();
+	void setMaterial(string material);
 
 
 };

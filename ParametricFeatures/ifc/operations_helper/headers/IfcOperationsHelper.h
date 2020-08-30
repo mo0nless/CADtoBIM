@@ -32,11 +32,11 @@ public:
 	static void adjustShapeGlobalPlacement(ShapesGraphicProperties* shape, DVec3d position, bool rotatePoint);
 	
 private:
-	static DPoint3d rotateAlongAxis(std::string axis, DPoint3d oldPoint);
+	static DPoint3d rotateAlongAxis(string axis, DPoint3d oldPoint);
 	template<class Triplet3D>
-	static std::vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
+	static vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
 	template<class Tuple2D>
-	static std::vector<double> buildDoubleVectorFromTuple(Tuple2D newTuple);
+	static vector<double> buildDoubleVectorFromTuple(Tuple2D newTuple);
 };
 
 //Dpoint3d, Dvec3d
@@ -69,9 +69,9 @@ inline bool IfcOperationsHelper::areTripletsDoubleEqual(Triplet3D firstTriplet, 
 }
 
 template<class Triplet3D>
-inline std::vector<double> IfcOperationsHelper::buildDoubleVectorFromTriplet(Triplet3D newTriplet)
+inline vector<double> IfcOperationsHelper::buildDoubleVectorFromTriplet(Triplet3D newTriplet)
 {
-	std::vector<double> points;
+	vector<double> points;
 	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.x));
 	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.y));
 	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTriplet.z));
@@ -80,9 +80,9 @@ inline std::vector<double> IfcOperationsHelper::buildDoubleVectorFromTriplet(Tri
 }
 
 template<class Tuple2D>
-inline std::vector<double> IfcOperationsHelper::buildDoubleVectorFromTuple(Tuple2D newTuple)
+inline vector<double> IfcOperationsHelper::buildDoubleVectorFromTuple(Tuple2D newTuple)
 {
-	std::vector<double> points;
+	vector<double> points;
 	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTuple.x));
 	points.push_back(NumberUtils::convertCurrentUnitToMeters(newTuple.y));
 
@@ -94,7 +94,7 @@ inline std::vector<double> IfcOperationsHelper::buildDoubleVectorFromTuple(Tuple
 
 struct SolidEdge {
 	Ifc4::IfcCurve* ifcCurve;
-	std::vector<int> faceID;
+	vector<int> faceID;
 	Ifc4::IfcOrientedEdge* edge = nullptr;
 	
 	int type;
