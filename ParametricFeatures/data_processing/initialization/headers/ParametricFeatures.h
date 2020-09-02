@@ -11,6 +11,9 @@
 * REMEMBER THAT THE INCLUDES ORDER MATTER
 */
 
+#include <windows.h>
+#include <shellapi.h>
+
 #include "../headers/InitializationHelper.h"
 #include "../../../ifc/main/headers/IfcBuilder.h"
 

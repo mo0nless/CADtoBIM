@@ -76,6 +76,7 @@
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
+    <ClCompile Include="interface\MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -173,5 +174,9 @@
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
     <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperties.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
+    <ClInclude Include="interface\MainForm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="interface\MainForm.resx" />
   </ItemGroup>
 </Project>
