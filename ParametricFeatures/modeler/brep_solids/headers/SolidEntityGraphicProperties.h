@@ -26,7 +26,7 @@ class SolidEntityGraphicProperties: public GraphicProperties
 public:
 	SolidEntityGraphicProperties();
 
-	void addSurfaceFace(GraphicProperties*& newFace);
+	void addSolidOrSurfaceFace(GraphicProperties*& newFace);
 	vector<GraphicProperties*> getSurfaceFacesVector();
 
 	void addFaceBoundaryShape(ShapesGraphicProperties* bound);

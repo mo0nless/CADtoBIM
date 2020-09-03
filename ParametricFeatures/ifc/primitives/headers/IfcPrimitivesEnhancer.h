@@ -10,6 +10,7 @@
 #include "../../../modeler/primitives/headers/SphereGraphicProperties.h"
 #include "../../../modeler/primitives/headers/TorusGraphicProperties.h"
 #include "../../../modeler/primitives/headers/RotationalSweepGraphicProperties.h"
+#include "../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ExtrusionGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../main/headers/IfcElementBundle.h"

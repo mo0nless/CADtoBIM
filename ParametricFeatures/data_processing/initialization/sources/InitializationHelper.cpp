@@ -8,10 +8,11 @@ InitializationHelper::InitializationHelper()
 
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 
-	//this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	string ifcOutputFileName = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcCustomName.ifc";
-	
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	string ifcOutputFileName = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/ifc/IfcCustomName.ifc";
+	/*this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	string ifcOutputFileName = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcCustomName.ifc";*/
+
 	SessionManager* sm = sm->getInstance();
 	sm->setDataOutputFilePath(filePath);
 	sm->setIfcOutputFilePath(ifcOutputFileName);
@@ -258,18 +259,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 		GraphicsProcessorHelper->getCurrentElementHandle() = currentElem; 
 		
-		if (GraphicsProcessorHelper->getBRepGraphicProperties() != nullptr)
-		{
-			if (GraphicsProcessorHelper->getBRepGraphicProperties()->getSolidEntityVector().size() > 0) {
-				//propertiesDictionary->addGraphicProperties(GraphicsProcessorHelper->mBRepGraphicProperties);
-				//TODO [MP] check this shit
-			}
-
-			GraphicsProcessorHelper->setBRepGraphicProperties(nullptr);
-			GraphicsProcessorHelper->setNumberSolidEntity(0);
-		}
-
-
 		propsDictVec.push_back(propertiesDictionary);
 
 

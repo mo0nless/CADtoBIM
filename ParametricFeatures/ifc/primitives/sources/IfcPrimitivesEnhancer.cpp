@@ -34,7 +34,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
 	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || 
-		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION)
+		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION || primitiveType == PrimitiveTypeEnum::RULED_SWEEP)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
 	}
@@ -117,8 +117,6 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
-
-
 	SessionManager* sm = sm->getInstance();
 	sm->getDataOutputFilePath();
 	sm->getIfcOutputFilePath();
@@ -416,6 +414,73 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			outfile.close();
 		}
 
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::RULED_SWEEP)
+		{
+			RuledSweepGraphicProperties& ruledSweepGraphicProperties = dynamic_cast<RuledSweepGraphicProperties&>(primitiveGraphicProperties);
+
+			IfcElementBundle* ifcElementBundle = new IfcElementBundle(-1, "");
+
+			std::vector<Ifc4::IfcProfileDef*> profiles;
+			bool addToIfcElementBundle = false;
+			for (ShapesGraphicProperties* shape : ruledSweepGraphicProperties.getSectionCurvesVector()) 
+			{
+				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+				ifcShapesEnhancer->enhance(file, shape, ifcElementBundle, elementBundle, addToIfcElementBundle);
+
+				Ifc4::IfcGeometricRepresentationItem* result = nullptr;
+				if (ifcShapesEnhancer->hasSingleShapeItem())
+					result = ifcShapesEnhancer->getSingleShapeRepresentation();
+
+				Ifc4::IfcProfileDef* profileDef = nullptr;
+
+				Ifc4::IfcCurve* curveIfc = (Ifc4::IfcCurve*)result;
+
+				/*if (curveIfc->declaration().is(Ifc4::IfcTrimmedCurve::Class()))
+				{
+					Ifc4::IfcTrimmedCurve* temp = (Ifc4::IfcTrimmedCurve*)curveIfc;
+					curveIfc = temp->BasisCurve();
+				}*/
+
+				if(shape->getIsClosed())
+					profileDef = new Ifc4::IfcArbitraryClosedProfileDef(
+						Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
+						string("RotationalSweep"),
+						curveIfc
+					);
+				else
+					profileDef = new Ifc4::IfcArbitraryOpenProfileDef(
+						Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA,
+						string("RotationalSweep"),
+						(Ifc4::IfcBoundedCurve*) curveIfc
+					);
+
+				profiles.push_back(profileDef);				
+			}
+
+			Ifc4::IfcAxis2Placement3D* placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
+				ruledSweepGraphicProperties.getCentroid(),
+				ruledSweepGraphicProperties.getVectorAxisZ(),
+				ruledSweepGraphicProperties.getVectorAxisX()
+			);
+
+			Ifc4::IfcAxis1Placement* localAxis1Placement = new Ifc4::IfcAxis1Placement(
+				file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
+				IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(ruledSweepGraphicProperties.getVectorAxisZ())
+			);
+
+			//Ifc4::IfcBSplineSurface()
+			//ifcRepresentationItem = new Ifc4::IfcFixedReferenceSweptAreaSolid(
+			//	profiles[0],
+			//	placement,
+			//	;
+			////Ifc4::IfcSweptDiskSolid* sweptDS = new Ifc4::IfcSweptDiskSolid();
+			//ifcRepresentationItem = new Ifc4::IfcRevolvedAreaSolidTapered(
+			//	profiles[0],
+			//	placement,
+			//	localAxis1Placement,
+			//	profiles[1]
+			//);
+		}
 
 	return ifcRepresentationItem;
 }
