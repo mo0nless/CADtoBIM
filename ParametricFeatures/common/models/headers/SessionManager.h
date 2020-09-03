@@ -10,6 +10,7 @@ private:
 	static SessionManager* _instance;
 	string _dataOutputFilePath;
 	string _ifcOutputFilePath;
+	string _outputFolderPath;
 
 	// Private constructor so that no objects can be created.
 	SessionManager();
@@ -29,5 +30,8 @@ public:
 
 	string getIfcOutputFilePath();
 	void setIfcOutputFilePath(string ifcOutputFilePath);
+
+	string getOutputFolderPath();
+	void setOutputFolderPath(string outputFolderPath);
 
 };

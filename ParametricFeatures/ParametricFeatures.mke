@@ -72,6 +72,8 @@ $(o)$(sAppName).h                : $(baseDir)$(sAppName).r
 #    Define the object container files
 #--------------------------------------------------------------------------------------
 
+interfaceObjects = \
+
 
 commonObjects = \
 	$(o)ResultStatus$(oext) \
@@ -158,6 +160,7 @@ appObjects = \
 	$(ifcObjects) \
 	$(mapperObjects) \
 	$(modelerObjects) \
+	$(interfaceObjects) \
 
 
 #--------------------------------------------------------------------------------------
@@ -211,6 +214,7 @@ LINKER_LIBRARIES + $(mdlLibs)PSolidCore.lib
 LINKER_LIBRARIES + $(mdlLibs)RmgrTools.lib
 LINKER_LIBRARIES + $(mdlLibs)SmartFeature.lib 
 LINKER_LIBRARIES + $(mdlLibs)ECObjects.lib
+LINKER_LIBRARIES + shell32.lib
 
 #--------------------------------------------------------------------------------------
 #    Compile the source files for the DLM

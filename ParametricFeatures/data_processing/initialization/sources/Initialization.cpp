@@ -6,15 +6,21 @@
 #pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
-	InitializationHelper* initializationHelper = new InitializationHelper();
-
 	vector<DictionaryProperties*> propsDictVec;
 	vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
+	InitializationHelper* initializationHelper = new InitializationHelper();
 	initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
 
 	IfcBuilder* ifcBuilder = new IfcBuilder();
 	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+
+	string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
+
+	char myDocPath[MAX_PATH];
+	strcpy(myDocPath, outputFolderPath.c_str());
+
+	ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
 	
 
 	return SUCCESS;
