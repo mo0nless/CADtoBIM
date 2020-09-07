@@ -3,8 +3,9 @@
 #include <windows.h>
 #include <iostream>
 #include <shlobj.h>
-
 #include <time.h>
+
+#include "../../../logging/headers/MyLogger.h"
 
 
 #include "../../graphic_properties/headers/GraphicsProcessor.h"

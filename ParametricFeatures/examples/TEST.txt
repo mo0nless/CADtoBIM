@@ -45,8 +45,8 @@ eh2 type3
 index2 = 0
 RGB1 =0,255,0
 transparency =0
-level 4 , 000000CA9E7FBAB0
-level color0 , 000000CA9E7FBAB0
+level 4 , 000000F3F81FBA50
+level color0 , 000000F3F81FBA50
 colorOut RGB =0,0,0
 level  =4
 -------------------CURVE VECTOR---------------------
@@ -119,16 +119,16 @@ Element Description[string] = Cylinder (Uncapped)
 Level[int] = S-U-S-1-EX-OPM
 Element ID[long] = 6703
 Model[string] = Default
-Last Modified[dateTime] = 8/10/2020 6:34:14 PM
-Size[int] = 120
-Linkages[int] = 2
+Last Modified[dateTime] = 9/6/2020 12:42:02 PM
+Size[int] = 104
+Linkages[int] = 0
 XAttributes[int] = 0
 Type[string] = Cone
 Color[int] = 4
 Weight[int] = 0
 Line Style[int] = 0
 Class[int] = Primary
-Transparency[double] = 70
+Transparency[double] = 0
 Template[long] = (None)
 Modified[boolean] = Not Modified
 New[boolean] = New
@@ -137,7 +137,7 @@ Complex[boolean] = Complex
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = Steel carbon
+Attached Material[string] = (None)
 Range Low[point3d] = 12' 7.8838", 12' 11.6875", 8' 2.5618"
 Range High[point3d] = 22' 5.0044", 13' 8.3125", 8' 11.1868"
 Surface Area[double] = 22.0384 Sq.'
@@ -147,9 +147,9 @@ Rotation-Z[double] = 0.0000°
 Angle[double] = 270.0000°
 Orientation[int] = Right
 RGB1 =255,255,0
-transparency =0.7
-level 2 , 000000CA9E7FB820
-level color0 , 000000CA9E7FB820
+transparency =0
+level 2 , 000000F3F81FB7C0
+level color0 , 000000F3F81FB7C0
 colorOut RGB =0,0,0
 level  =2
 -------- CONE/CYLINDER/TRUNCATED_CONE --------
@@ -236,7 +236,7 @@ Element Description[string] = Line
 Level[int] = S-U-S-1-EX-OPM
 Element ID[long] = 6704
 Model[string] = Default
-Last Modified[dateTime] = 8/10/2020 6:34:14 PM
+Last Modified[dateTime] = 9/6/2020 12:42:02 PM
 Size[int] = 89
 Linkages[int] = 1
 XAttributes[int] = 0
@@ -264,8 +264,8 @@ Total Length[double] = 9' 9.1206"
 Elevation[double] = 8' 6.8743"
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000CA9E7FB450
-level color0 , 000000CA9E7FB450
+level 2 , 000000F3F81FB3F0
+level color0 , 000000F3F81FB3F0
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -329,7 +329,7 @@ Element Description[string] = Point String
 Level[int] = S-U-S-1-EX-OPM
 Element ID[long] = 6706
 Model[string] = Default
-Last Modified[dateTime] = 8/10/2020 6:34:14 PM
+Last Modified[dateTime] = 9/6/2020 12:42:02 PM
 Size[int] = 84
 Linkages[int] = 0
 XAttributes[int] = 3
@@ -354,8 +354,8 @@ Range High[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000CA9E7FB4A0
-level color0 , 000000CA9E7FB4A0
+level 2 , 000000F3F81FB440
+level color0 , 000000F3F81FB440
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -407,7 +407,7 @@ Element Description[string] = Point String
 Level[int] = S-U-S-1-EX-OPM
 Element ID[long] = 6707
 Model[string] = Default
-Last Modified[dateTime] = 8/10/2020 6:34:14 PM
+Last Modified[dateTime] = 9/6/2020 12:42:02 PM
 Size[int] = 84
 Linkages[int] = 0
 XAttributes[int] = 3
@@ -432,8 +432,8 @@ Range High[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000CA9E7FB4A0
-level color0 , 000000CA9E7FB4A0
+level 2 , 000000F3F81FB440
+level color0 , 000000F3F81FB440
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -485,7 +485,7 @@ IsGraphicalElement[boolean] = True
 Element Description[string] = Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
 Element ID[long] = 6699
 Model[string] = Default
-Last Modified[dateTime] = 8/10/2020 6:34:14 PM
+Last Modified[dateTime] = 9/6/2020 12:42:02 PM
 Size[int] = 252
 Linkages[int] = 5
 XAttributes[int] = 6
@@ -535,8 +535,8 @@ eh2 type3
 index2 = 0
 RGB1 =0,255,0
 transparency =0
-level 6 , 000000CA9E7FBAB0
-level color0 , 000000CA9E7FBAB0
+level 6 , 000000F3F81FBA50
+level color0 , 000000F3F81FBA50
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -608,12 +608,12 @@ Element Description[string] = Revolved Solid
 Level[int] = Support
 Element ID[long] = 12509
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 60
 Linkages[int] = 0
 XAttributes[int] = 0
 Type[string] = Solid
-Color[int] = ByLevel (52)
+Color[int] = 3
 Weight[int] = ByLevel (0)
 Line Style[int] = ByLevel (0)
 Class[int] = Primary
@@ -635,10 +635,10 @@ Rotation-X[double] = 153.3586°
 Rotation-Y[double] = 90.0000°
 Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
-RGB1 =42,25,99
+RGB1 =255,0,0
 transparency =0
-level 6 , 000000CA9E7FB5A0
-level color0 , 000000CA9E7FB5A0
+level 6 , 000000F3F81FB540
+level color0 , 000000F3F81FB540
 colorOut RGB =0,0,0
 level  =6
 -------- ROTATIONAL_SWEEP --------
@@ -778,7 +778,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12516
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -816,8 +816,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -878,7 +878,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12517
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -916,8 +916,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -978,7 +978,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12518
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1016,8 +1016,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1078,7 +1078,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12519
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1116,8 +1116,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1178,7 +1178,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12520
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1216,8 +1216,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1278,7 +1278,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12521
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1316,8 +1316,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1378,7 +1378,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12522
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1416,8 +1416,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1478,7 +1478,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12523
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1516,8 +1516,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1578,7 +1578,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12524
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1616,8 +1616,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1678,7 +1678,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12525
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1716,8 +1716,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1778,7 +1778,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12526
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1816,8 +1816,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1878,7 +1878,7 @@ Element Description[string] = Shape
 Level[int] = Support
 Element ID[long] = 12527
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 116
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -1916,8 +1916,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB500
-level color0 , 000000CA9E7FB500
+level 6 , 000000F3F81FB4A0
+level color0 , 000000F3F81FB4A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1978,7 +1978,7 @@ Element Description[string] = Point String
 Level[int] = Support
 Element ID[long] = 12528
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 100
 Linkages[int] = 0
 XAttributes[int] = 0
@@ -2003,8 +2003,8 @@ Range High[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000CA9E7FB4A0
-level color0 , 000000CA9E7FB4A0
+level 6 , 000000F3F81FB440
+level color0 , 000000F3F81FB440
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -2056,7 +2056,7 @@ IsGraphicalElement[boolean] = True
 Element Description[string] = Riser Clamp
 Element ID[long] = 11410
 Model[string] = Default
-Last Modified[dateTime] = 6/2/2020 1:45:32 PM
+Last Modified[dateTime] = 9/6/2020 12:41:31 PM
 Size[int] = 230
 Linkages[int] = 5
 XAttributes[int] = 4

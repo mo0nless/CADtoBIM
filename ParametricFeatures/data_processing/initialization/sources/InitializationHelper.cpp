@@ -9,6 +9,16 @@ InitializationHelper::InitializationHelper()
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
+
+
+	MyLogger::getLogger();
+
+	//BOOST_LOG_TRIVIAL(trace) << "This is a trace severity message";
+	//BOOST_LOG_TRIVIAL(debug) << "This is a debug severity message";
+	//BOOST_LOG_TRIVIAL(info) << "This is an informational severity message";
+	//BOOST_LOG_TRIVIAL(warning) << "This is a warning severity message";
+	//BOOST_LOG_TRIVIAL(error) << "This is an error severity message";
+	//BOOST_LOG_TRIVIAL(fatal) << "and this is a fatal severity message";
 }
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -338,6 +348,8 @@ void InitializationHelper::createFilesStructure()
 	string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
 	
 	SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
+
+
 }
 void InitializationHelper::createFolder(string folderPath)
 {
