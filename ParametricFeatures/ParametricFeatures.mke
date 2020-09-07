@@ -110,6 +110,7 @@ ifcObjects = \
 	$(o)IfcPropertiesEnhancer$(oext) \
 	$(o)IfcColorMaterialEnhancer$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
+	$(o)IfcSurfaceEnhancer$(oext) \
 	$(o)SmartFeatureHandler$(oext) \
 
 mapperObjects = \
@@ -321,6 +322,8 @@ $(o)IfcColorMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorM
 #--- shapes
 $(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/shapes/headers/IfcShapesEnhancer.h
 
+#--- surfaces
+$(o)IfcSurfaceEnhancer$(oext) : $(baseDir)ifc/surfaces/sources/IfcSurfaceEnhancer.cpp $(baseDir)ifc/surfaces/headers/IfcSurfaceEnhancer.h
 
 #--- smart_feature
 $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h

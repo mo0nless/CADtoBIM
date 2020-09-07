@@ -21,6 +21,11 @@ struct BoundPoints
 	vector<int> connectedBoundIDs;
 };
 
+struct MeshTriangles 
+{
+	vector<vector<DPoint3d>> facesTriangulatedVector;
+};
+
 class SolidEntityGraphicProperties: public GraphicProperties
 {
 public:
@@ -32,8 +37,8 @@ public:
 	void addFaceBoundaryShape(ShapesGraphicProperties* bound);
 	vector<ShapesGraphicProperties*> getSurfaceBoundaryShapes();
 	
-	void addFacetTriangulated(vector<DPoint3d> face);
-	vector<vector<DPoint3d>> getFacetTriangulated();
+	void addMeshTriangulated(MeshTriangles* mesh);
+	vector<MeshTriangles*> getMeshTriangulated();
 
 	void setBRepTypeEnum(int solidBentleyType);
 	BRepTypeEnum getBRepTypeEnum();
@@ -41,10 +46,12 @@ public:
 	vector<int> faceID;
 	vector<vector<ShapesGraphicProperties*>> loopShapesBounds;
 
+	bool meshProcessing = false;
+
 private:
 	vector<ShapesGraphicProperties*> mFaceBoundaries;
 	vector<GraphicProperties*> mBrepFaces;
-	vector<vector<DPoint3d>> mFacetTriangulatedVector;
+	vector<MeshTriangles*> mMeshTriangulatedVector;
 	vector<tuple<int, int>> mFaceIDVector;
 	BRepTypeEnum mBRepType;
 };

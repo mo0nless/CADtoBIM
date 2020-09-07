@@ -270,7 +270,8 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 }
 void InitializationHelper::createFilesStructure()
 {
-	this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	SessionManager::getInstance()->setDataOutputFilePath(filePath);
 
