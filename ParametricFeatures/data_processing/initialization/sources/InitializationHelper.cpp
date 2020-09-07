@@ -262,18 +262,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 		GraphicsProcessorHelper->getCurrentElementHandle() = currentElem; 
 		
-		if (GraphicsProcessorHelper->getBRepGraphicProperties() != nullptr)
-		{
-			if (GraphicsProcessorHelper->getBRepGraphicProperties()->getSolidEntityVector().size() > 0) {
-				//propertiesDictionary->addGraphicProperties(GraphicsProcessorHelper->mBRepGraphicProperties);
-				//TODO [MP] check this shit
-			}
-
-			GraphicsProcessorHelper->setBRepGraphicProperties(nullptr);
-			GraphicsProcessorHelper->setNumberSolidEntity(0);
-		}
-
-
 		propsDictVec.push_back(propertiesDictionary);
 
 

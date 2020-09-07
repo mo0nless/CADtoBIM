@@ -4,7 +4,7 @@ SolidEntityGraphicProperties::SolidEntityGraphicProperties()
 {
 }
 
-void SolidEntityGraphicProperties::addSurfaceFace(GraphicProperties*& newFace)
+void SolidEntityGraphicProperties::addSolidOrSurfaceFace(GraphicProperties*& newFace)
 {
 	this->mBrepFaces.push_back(newFace);
 }

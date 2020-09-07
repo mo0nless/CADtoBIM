@@ -76,15 +76,17 @@ void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * s
 {
 	bool invertedAxis = false;
 	string axis = "";
+	double epsilon = 1e-5;
+	double valueNumber = 1.0;
 
 	if (rotatePoint)
 	{
-		if (abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
+		if (abs(abs(shape->getVectorAxisX().z) - valueNumber) <= epsilon * abs(shape->getVectorAxisX().z))//(abs(shape->getVectorAxisX().z) == 1) //CASE X is [0,0,1] it's not in the XY plane vector X should be [1,0,0]
 		{
 			invertedAxis = true;
 			axis = "X";
 		}
-		else if (abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
+		else if (abs(abs(shape->getVectorAxisY().z) - valueNumber) <= epsilon * abs(shape->getVectorAxisY().z))//(abs(shape->getVectorAxisY().z) == 1) //CASE Y is [0,0,1] it's not in the XY plane vector Y should be [0,1,0]
 		{
 			invertedAxis = true;
 			axis = "Y";

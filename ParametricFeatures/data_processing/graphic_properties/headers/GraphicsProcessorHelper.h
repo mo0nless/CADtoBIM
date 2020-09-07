@@ -35,8 +35,6 @@ private:
 	T searchOnMap(map<U, T>, U key);
 
 	ElementHandle _currentElementHandle;
-	BRepGraphicProperties* _bRepGraphicProperties;
-	int _numberSolidEntity = 0;
 
 public:
 	GraphicsProcessorHelper();
@@ -55,6 +53,7 @@ public:
 	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr, bool addToDictionary = true);
 	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
 	GraphicProperties* processSolidPrimitives(ISolidPrimitiveCR& primitive, bool addToDictionary = true);
+	void processBodySolid(ISolidKernelEntityCR entity);
 	
 	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 	
@@ -68,20 +67,12 @@ public:
 	DictionaryProperties* getDictionaryProperties();
 	
 	bool processEntityAsFacetedBRep(ISolidKernelEntityCR entity);
-	bool processElementAsMesh();
+	bool processElementAsMesh(BRepGraphicProperties*& bRepGraphicProperties);
 	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
 
 
 	ElementHandle getCurrentElementHandle();
-	void setElementHandle(ElementHandle elementHandle);
-
-
-	BRepGraphicProperties* getBRepGraphicProperties();
-	void setBRepGraphicProperties(BRepGraphicProperties* bRepGraphicProperties);
-
-	int getNumberSolidEntity();
-	void setNumberSolidEntity(int numberSolidEntity);
-
+	void setElementHandle(ElementHandle elementHandle);	
 };
 
 template <class T, class U>

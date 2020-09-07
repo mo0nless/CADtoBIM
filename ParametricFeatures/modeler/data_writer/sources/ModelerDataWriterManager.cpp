@@ -370,7 +370,6 @@ void ModelerDataWriterManager::writeRuledSweepDataToFile(DgnRuledSweepDetail rul
 
 	Transform localToWorld;
 	Transform worldToLocal;
-	int countCurves = 1;
 
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
 	this->_outFile << "-------- RULED_SWEEP --------" << endl;
@@ -391,7 +390,7 @@ void ModelerDataWriterManager::writeRuledSweepDataToFile(DgnRuledSweepDetail rul
 	this->_outFile << "DiagonalDistance = " << range.DiagonalDistance() << endl;
 	this->_outFile << "Range Difference = " << abs(range.high.x) - abs(range.low.x) << endl;
 
-	for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
+	/*for (CurveVectorPtr cv : ruledSweepDetails.m_sectionCurves)
 	{
 		DVec3d curveStart;
 		DVec3d curveEnd;
@@ -409,7 +408,7 @@ void ModelerDataWriterManager::writeRuledSweepDataToFile(DgnRuledSweepDetail rul
 		this->_outFile << endl;
 
 		countCurves += 1;
-	}
+	}*/
 
 	this->_outFile << "True if the end cap is enabled = " << ruledSweepDetails.m_capped << endl;
 	this->_outFile << "--------END OF RULED_SWEEP DATA--------" << endl;
