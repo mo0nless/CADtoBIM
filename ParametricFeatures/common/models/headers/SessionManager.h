@@ -11,6 +11,7 @@ private:
 	string _dataOutputFilePath;
 	string _ifcOutputFilePath;
 	string _outputFolderPath;
+	string _currentDayLogsFolderPath;
 
 	// Private constructor so that no objects can be created.
 	SessionManager();
@@ -33,5 +34,9 @@ public:
 
 	string getOutputFolderPath();
 	void setOutputFolderPath(string outputFolderPath);
+
+
+	string getCurrentDayLogsFolderPath();
+	void setCurrentDayLogsFolderPath(string logsFolderPath);
 
 };

@@ -45,3 +45,13 @@ void SessionManager::setOutputFolderPath(string outputFolderPath)
 	this->_outputFolderPath = outputFolderPath;
 }
 
+string SessionManager::getCurrentDayLogsFolderPath()
+{
+	return this->_currentDayLogsFolderPath;
+}
+
+void SessionManager::setCurrentDayLogsFolderPath(string logsFolderPath)
+{
+	this->_currentDayLogsFolderPath = logsFolderPath;
+}
+

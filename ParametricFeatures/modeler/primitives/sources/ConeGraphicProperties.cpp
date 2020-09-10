@@ -7,69 +7,84 @@ ConeGraphicProperties::ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum
 		// throw exception and log 
 	}
 
-	this->mBaseRadius = 0;
-	this->mTopRadius = 0;
-	this->mHeight = 0;
+	this->_baseRadius = 0;
+	this->_topRadius = 0;
+	this->_height = 0;
 
-	this->mTopOrigin = DPoint3d();
-	mTopOrigin.x = 0;
-	mTopOrigin.y = 0;
-	mTopOrigin.z = 0;
+	this->_topOrigin = DPoint3d();
+	_topOrigin.x = 0;
+	_topOrigin.y = 0;
+	_topOrigin.z = 0;
 
-	this->mBaseOrigin = DPoint3d();
-	mBaseOrigin.x = 0;
-	mBaseOrigin.y = 0;
-	mBaseOrigin.z = 0;
+	this->_baseOrigin = DPoint3d();
+	_baseOrigin.x = 0;
+	_baseOrigin.y = 0;
+	_baseOrigin.z = 0;
 
 }
 
 double ConeGraphicProperties::getBaseRadius()
 {
-	return this->mBaseRadius;
+	return this->_baseRadius;
 }
 
 void ConeGraphicProperties::setBaseRadius(double newBaseRadius)
 {
-	this->mBaseRadius = newBaseRadius;
+	this->_baseRadius = newBaseRadius;
 
 }
 
 double ConeGraphicProperties::getTopRadius()
 {
-	return this->mTopRadius;
+	return this->_topRadius;
 }
 
 void ConeGraphicProperties::setTopRadius(double newTopRadius)
 {
-	this->mTopRadius = newTopRadius;
+	this->_topRadius = newTopRadius;
 }
 
 double ConeGraphicProperties::getHeight()
 {
-	return this->mHeight;
+	return this->_height;
 }
 
 void ConeGraphicProperties::setHeight(double newHeight)
 {
-	this->mHeight = newHeight;
+	this->_height = newHeight;
 }
 
 DPoint3d ConeGraphicProperties::getTopOrigin()
 {
-	return this->mTopOrigin;
+	return this->_topOrigin;
 }
 
 void ConeGraphicProperties::setTopOrigin(DPoint3d newTopOrigin)
 {
-	this->mTopOrigin = newTopOrigin;
+	this->_topOrigin = newTopOrigin;
 }
 
 DPoint3d ConeGraphicProperties::getBaseOrigin()
 {
-	return this->mBaseOrigin;
+	return this->_baseOrigin;
 }
 
 void ConeGraphicProperties::setBaseOrigin(DPoint3d newBaseOrigin)
 {
-	this->mBaseOrigin = newBaseOrigin;
+	this->_baseOrigin = newBaseOrigin;
+}
+
+string ConeGraphicProperties::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(ConeGraphicProperties).name();
+	stringStream << ", _baseRadius = " << _baseRadius;
+	stringStream << ", _topRadius = " << _topRadius;
+	stringStream << ", _height = " << _height;
+	stringStream << ", _topOrigin x= " << _topOrigin.x << ", y= "<< _topOrigin.y << ", z= "<<_topOrigin.z;
+	stringStream << ", _baseOrigin x= " << _baseOrigin.x << ", y= " << _baseOrigin.y << ", z= " << _baseOrigin.z;
+	stringStream << endl;
+
+	return stringStream.str();
 }

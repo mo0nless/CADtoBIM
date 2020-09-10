@@ -5,9 +5,9 @@
 class BoxGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	double mLength;
-	double mWidth;
-	double mHeight;
+	double _length;
+	double _width;
+	double _height;
 
 public:
 	BoxGraphicProperties();
@@ -20,4 +20,6 @@ public:
 
 	double getHeight();
 	void setHeight(double newHeight);
+
+	string toString();
 };

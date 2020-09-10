@@ -185,7 +185,17 @@ DLM_NO_MANIFEST         = 1             # If not set linker embeds your current 
 DLM_NO_SIGN             = 1             # If not set and no certificate found, ERROR: 'singleton' is not recognized as an internal or external command
 DLM_NO_INITIALIZE_FUNCTION  = 1
 
-LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/libboost_log-vc140-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_atomic-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_chrono-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_date_time-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_filesystem-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_iostreams-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_log-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_log_setup-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_regex-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_system-vc141-mt-x64-1_67.lib
+LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_thread-vc141-mt-x64-1_67.lib
+
 LINKER_LIBRARIES + $(ifcLib)/IfcParse.lib
 
 LINKER_LIBRARIES + $(ifcLib)/IfcGeom.lib
@@ -229,7 +239,7 @@ LINKER_LIBRARIES + shell32.lib
 #--------------------------------------------------------------------------------------
 #     logger
 #--------------------------------------------------------------------------------------
-$(o)Logger$(oext) : $(baseDir)logging/sources/MyLogger.cpp $(baseDir)logging/headers/MyLogger.h 
+$(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/headers/Logger.h 
 
 
 #--------------------------------------------------------------------------------------

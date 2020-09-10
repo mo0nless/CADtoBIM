@@ -6,9 +6,9 @@
 class CylinderGraphicProperties:public SolidPrimitiveProperties {
 
 private:
-	double mRadius;
-	double mHeight;
-	DPoint3d baseOrigin;
+	double _radius;
+	double _height;
+	DPoint3d _baseOrigin;
 
 public:
 	CylinderGraphicProperties();
@@ -21,4 +21,6 @@ public:
 
 	DPoint3d getBaseOrigin();
 	void setBaseOrigin(DPoint3d newBaseOrigin);
+
+	string toString();
 };

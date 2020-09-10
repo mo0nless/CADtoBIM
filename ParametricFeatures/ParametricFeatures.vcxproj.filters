@@ -77,7 +77,7 @@
     <ClCompile Include="interface\MainForm.cpp" />
     <ClCompile Include="common\models\sources\ResultStatus.cpp" />
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
-    <ClCompile Include="logging\sources\MyLogger.cpp" />
+    <ClCompile Include="logging\sources\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -176,7 +176,7 @@
     <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="common\models\headers\ResultStatus.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
-    <ClInclude Include="logging\headers\MyLogger.h" />
+    <ClInclude Include="logging\headers\Logger.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="interface\MainForm.resx" />

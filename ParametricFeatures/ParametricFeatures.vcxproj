@@ -24,7 +24,7 @@
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="interface\MainForm.cpp" />
-    <ClCompile Include="logging\sources\MyLogger.cpp" />
+    <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
@@ -110,7 +110,7 @@
     <ClInclude Include="interface\MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="logging\headers\MyLogger.h" />
+    <ClInclude Include="logging\headers\Logger.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />

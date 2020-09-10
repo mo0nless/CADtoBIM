@@ -5,11 +5,13 @@
 class SphereGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	double mRadius;
+	double _radius;
 
 public:
 	SphereGraphicProperties();
 
 	double getRadius();
 	void setRadius(double newadius);
+
+	string toString();
 };

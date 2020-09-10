@@ -34,7 +34,7 @@
 
 //#include <boost/any.hpp>
 
-//#include "boost\log\core\core.hpp"
+//#include "boost\log\core.hpp"
 //#include <boost/log/trivial.hpp>
 //#include <boost/log/expressions.hpp>
 //#include <boost/log/utility/setup/file.hpp>

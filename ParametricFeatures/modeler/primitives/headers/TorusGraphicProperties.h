@@ -6,10 +6,10 @@
 class TorusGraphicProperties: public SolidPrimitiveProperties {
 
 private:
-	double mMinorRadius;
-	double mMajorRadius;
-	double mSweepRadians;
-	DPoint3d centerPointOfRotation;
+	double _minorRadius;
+	double _majorRadius;
+	double _sweepRadians;
+	DPoint3d _centerPointOfRotation;
 
 public:
 	TorusGraphicProperties();
@@ -26,4 +26,5 @@ public:
 	DPoint3d getCenterPointOfRotation();
 	void setCenterPointOfRotation(DPoint3d newCenterPointOfRotation);
 
+	string toString();
 };

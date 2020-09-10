@@ -5,11 +5,11 @@
 class ConeGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	double mBaseRadius;
-	double mTopRadius;
-	double mHeight;
-	DPoint3d mTopOrigin;
-	DPoint3d mBaseOrigin;
+	double _baseRadius;
+	double _topRadius;
+	double _height;
+	DPoint3d _topOrigin;
+	DPoint3d _baseOrigin;
 
 public:
 	ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum);
@@ -28,4 +28,6 @@ public:
 
 	DPoint3d getBaseOrigin();
 	void setBaseOrigin(DPoint3d newBaseOrigin);
+
+	string toString();
 };

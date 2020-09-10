@@ -2,15 +2,26 @@
 
 SphereGraphicProperties::SphereGraphicProperties():SolidPrimitiveProperties(PrimitiveTypeEnum::SPHERE)
 {
-	this->mRadius = 0;
+	this->_radius = 0;
 }
 
 double SphereGraphicProperties::getRadius()
 {
-	return this->mRadius;
+	return this->_radius;
 }
 
 void SphereGraphicProperties::setRadius(double newRadius)
 {
-	this->mRadius = newRadius;
+	this->_radius = newRadius;
+}
+
+string SphereGraphicProperties::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(SphereGraphicProperties).name();
+	stringStream << ", _radius = " << _radius;
+	stringStream << endl;
+
+	return stringStream.str();
 }
