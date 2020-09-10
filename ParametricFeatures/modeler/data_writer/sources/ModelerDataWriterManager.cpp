@@ -544,4 +544,481 @@ void ModelerDataWriterManager::writeTorusDataToFile(DgnTorusPipeDetail torusDeta
 	this->_outFile << "--------END OF TORUS DATA--------" << endl;
 	this->_outFile.close();
 }
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+void ModelerDataWriterManager::writeShapeCurvesVectorDataToFile(CurveVectorCR curvesVector)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
+	this->_outFile << "-------------------CURVE VECTOR---------------------" << endl;
+	this->_outFile << "Size: " << curvesVector.size() << endl;
+	this->_outFile << fixed;
+	this->_outFile << endl;
+
+	DPoint3d center, start, end;
+	DVec3d normal;
+	double area;
+
+	curvesVector.CentroidNormalArea(center, normal, area);
+
+	switch (curvesVector.GetBoundaryType())
+	{
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Inner:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_Inner --------" << endl;
+	}
+	break;
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Open:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_Open --------" << endl;
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_Outer:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_Outer --------" << endl;
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_ParityRegion:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_ParityRegion --------" << endl;
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_UnionRegion:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_UnionRegion --------" << endl;
+	}
+	break;
+	case CurveVector::BoundaryType::BOUNDARY_TYPE_None:
+	{
+		this->_outFile << endl;
+		this->_outFile << "BOUNDARY_TYPE_None --------" << endl;
+	}
+	default:
+		break;
+	}
+
+	this->_outFile << "Centroid point [X] = " << center.x << endl;
+	this->_outFile << "Centroid point [Y] = " << center.y << endl;
+	this->_outFile << "Centroid point [Z] = " << center.z << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Normal [X] = " << normal.x << endl;
+	this->_outFile << "Normal [Y] = " << normal.y << endl;
+	this->_outFile << "Normal [Z] = " << normal.z << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Start Point [X]: " << start.x << endl;
+	this->_outFile << "Start Point [Y]: " << start.y << endl;
+	this->_outFile << "Start Point [Z]: " << start.z << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "End Point [X]: " << end.x << endl;
+	this->_outFile << "End Point [Y]: " << end.y << endl;
+	this->_outFile << "End Point [Z]: " << end.z << endl;
+	this->_outFile << endl;
+
+	this->_outFile.flush();
+	this->_outFile.close();
+}
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+void ModelerDataWriterManager::writeCurvePrimitiveDataToFile(ICurvePrimitivePtr curvePrimitive)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	
+	/*CurveTopologyId topologyID = curvePrimitive->GetId()->GetCurveTopologyId();
+
+	this->_outFile << "CURVE_PRIMITIVE_ID: " << topologyID.GetType() << endl;
+	this->_outFile << endl;*/
+
+	switch (curvePrimitive->GetCurvePrimitiveType())
+	{
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_AkimaCurve:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_AkimaCurve --------" << endl;
+		this->_outFile << endl;		
+
+		DPoint3d startP, endP;
+
+		curvePrimitive->GetStartEnd(startP, endP);
+
+		this->_outFile << "Start Point [X]: " << startP.x << endl;
+		this->_outFile << "Start Point [Y]: " << startP.y << endl;
+		this->_outFile << "Start Point [Z]: " << startP.z << endl;
+		this->_outFile << endl;
+
+		this->_outFile << "End Point [X]: " << endP.x << endl;
+		this->_outFile << "End Point [Y]: " << endP.y << endl;
+		this->_outFile << "End Point [Z]: " << endP.z << endl;
+		this->_outFile << endl;
+
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_Arc --------" << endl;
+		this->_outFile << endl;
+
+		DEllipse3d ellipse;
+		DPoint3d centerOUT, startP, endP;
+		DVec3d directionX, directionY;
+		double* pQuatXYZW = nullptr;
+		double rx, ry, startAngle, sweepAngle;
+
+		if (!curvePrimitive->TryGetArc(ellipse))
+			break;
+
+		ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
+
+		ellipse.EvaluateEndPoints(startP, endP);
+		
+		this->_outFile << "Is Circular: " << ellipse.IsCircular() << endl;
+		this->_outFile << "Is Ellipse: " << ellipse.IsFullEllipse() << endl;
+		this->_outFile << endl;
+
+		this->_outFile << "Start Point [X]: " << startP.x << endl;
+		this->_outFile << "Start Point [Y]: " << startP.y << endl;
+		this->_outFile << "Start Point [Z]: " << startP.z << endl;
+		this->_outFile << endl;
+
+		this->_outFile << "End Point [X]: " << endP.x << endl;
+		this->_outFile << "End Point [Y]: " << endP.y << endl;
+		this->_outFile << "End Point [Z]: " << endP.z << endl;
+		this->_outFile << endl;
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_BsplineCurve --------" << endl;
+		this->_outFile << endl;
+
+		MSBsplineCurvePtr bSpline = curvePrimitive->GetBsplineCurvePtr();
+		bvector<DPoint3d> polesControlP;
+
+		Transform lToW, wToL;
+		double vertexF, squaredC;
+		DPoint3d localStart, localEnd;
+
+		DPoint3d startP, endP;
+
+		bSpline->ExtractEndPoints(startP, endP);
+
+		this->_outFile << "Start Point [X]: " << startP.x << endl;
+		this->_outFile << "Start Point [Y]: " << startP.y << endl;
+		this->_outFile << "Start Point [Z]: " << startP.z << endl;
+		this->_outFile << endl;
+
+		this->_outFile << "End Point [X]: " << endP.x << endl;
+		this->_outFile << "End Point [Y]: " << endP.y << endl;
+		this->_outFile << "End Point [Z]: " << endP.z << endl;
+		this->_outFile << endl;
+
+		if (bSpline != nullptr)
+		{
+			bool isParabola = bSpline->IsParabola(lToW, wToL, vertexF, localStart, localEnd, squaredC);
+
+			this->_outFile << "Is Closed = " << bSpline->IsClosed() << endl;
+			this->_outFile << "Is Parabola = " << isParabola << endl;
+
+			bSpline->GetPoles(polesControlP);
+
+			this->_outFile << "Control Points: " << endl;
+			this->_outFile << endl;
+		}
+		else { break; }
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_CurveVector --------" << endl;
+		this->_outFile << endl;
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_InterpolationCurve:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_InterpolationCurve --------" << endl;
+		this->_outFile << endl;
+
+		bvector<DPoint3d> polesControlP;
+		DPoint3d startP, endP;
+
+		curvePrimitive->GetStartEnd(startP, endP);
+
+		this->_outFile << "Start Point [X]: " << startP.x << endl;
+		this->_outFile << "Start Point [Y]: " << startP.y << endl;
+		this->_outFile << "Start Point [Z]: " << startP.z << endl;
+		this->_outFile << endl;
+
+		this->_outFile << "End Point [X]: " << endP.x << endl;
+		this->_outFile << "End Point [Y]: " << endP.y << endl;
+		this->_outFile << "End Point [Z]: " << endP.z << endl;
+		this->_outFile << endl;
+
+		if (curvePrimitive->GetInterpolationCurveCP() != nullptr)
+		{
+			MSInterpolationCurveCP intCurve = curvePrimitive->GetInterpolationCurveCP();
+			interpolationParam intParams = intCurve->params;
+
+			this->_outFile << "Interpolation Is Periodic: " << intParams.isPeriodic << endl;
+			this->_outFile << "Interpolation Curve Order: " << intParams.order << endl;
+			this->_outFile << endl;
+		}
+	}
+	break;
+	
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Line:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_Line --------" << endl;
+		this->_outFile << endl;
+
+		DPoint3d startP, endP;
+		DSegment3d segment;
+
+		if (curvePrimitive->TryGetLine(segment))
+		{
+			curvePrimitive->GetStartEnd(startP, endP);
+
+			this->_outFile << "Start Point [X]: " << startP.x << endl;
+			this->_outFile << "Start Point [Y]: " << startP.y << endl;
+			this->_outFile << "Start Point [Z]: " << startP.z << endl;
+			this->_outFile << endl;
+
+			this->_outFile << "End Point [X]: " << endP.x << endl;
+			this->_outFile << "End Point [Y]: " << endP.y << endl;
+			this->_outFile << "End Point [Z]: " << endP.z << endl;
+			this->_outFile << endl;
+
+			this->_outFile << "Curve Line String Length: " << segment.Length() << endl;
+			this->_outFile << endl;
+		}
+	}
+	break;
+
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: 
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_LineString --------" << endl;
+		this->_outFile << "NUMBER OF COMPONENT: " << curvePrimitive->NumComponent() << endl;
+		this->_outFile << endl;
+
+		DSegment3d segment;
+		size_t startPointIndex = 0;
+		DPoint3d startP, endP;
+
+		size_t breakFractionIndex;
+		double fraction;
+
+		if (curvePrimitive->GetBreakFraction(breakFractionIndex, fraction))
+		{
+			this->_outFile << "breakFractionIndex: " << breakFractionIndex << endl;
+			this->_outFile << "fraction: " << fraction << endl;
+			this->_outFile << endl;
+		}
+
+		if (curvePrimitive->TryGetSegmentInLineString(segment, startPointIndex))
+		{
+			curvePrimitive->GetStartEnd(startP, endP);
+
+			this->_outFile << "Start Point [X]: " << startP.x << endl;
+			this->_outFile << "Start Point [Y]: " << startP.y << endl;
+			this->_outFile << "Start Point [Z]: " << startP.z << endl;
+			this->_outFile << endl;
+
+			this->_outFile << "End Point [X]: " << endP.x << endl;
+			this->_outFile << "End Point [Y]: " << endP.y << endl;
+			this->_outFile << "End Point [Z]: " << endP.z << endl;
+			this->_outFile << endl;
+
+			this->_outFile << "Curve Line String Length: " << segment.Length() << endl;
+			this->_outFile << endl;
+			this->_outFile << "Control Points: " << segment.Length() << endl;
+			this->_outFile << endl;
+		}
+	}
+
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PartialCurve:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_PartialCurve --------" << endl;
+		this->_outFile << endl;		
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_PointString:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_PointString --------" << endl;
+		this->_outFile << endl;
+		
+	}
+	break;
+	case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
+	{
+		this->_outFile << "CURVE_PRIMITIVE_TYPE_Spiral --------" << endl;
+		this->_outFile << endl;
+	}
+	break;
+	default:
+		break;
+	}
+
+	this->_outFile.flush();
+	this->_outFile.close();
+}
+
+void ModelerDataWriterManager::writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceCR msBsplineSurface)
+{
+	bvector<DPoint3d> weightPoles, unWeightPoles, polesToParse;
+	bvector<double> weights;
+	bvector<DPoint3d> polesGrid, gridPoints;
+	size_t uIntervals, vIntervals;
+	bvector<DPoint2d> uvParams; 
+	T_DoubleVector uParams, vParams;
+	double uMin, uMax, vMin, vMax;
+
+	msBsplineSurface.GetUnWeightedPoles(unWeightPoles);
+	msBsplineSurface.GetPoles(weightPoles);
+	msBsplineSurface.GetWeights(weights);
+
+	msBsplineSurface.GetIntervalCounts(uIntervals, vIntervals);
+	msBsplineSurface.EvaluateUniformGrid(msBsplineSurface.GetIntNumUPoles(), msBsplineSurface.GetIntNumVPoles(), uvParams, polesGrid);
+	msBsplineSurface.EvaluateUniformGrid(msBsplineSurface.GetNumUPoles(), msBsplineSurface.GetNumVPoles(), uParams, vParams, gridPoints);
+	msBsplineSurface.GetParameterRegion(uMin, uMax, vMin, vMax);
+
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
+	this->_outFile << "-------- MSBsplineSurfaceCR msBsplineSurface --------" << "Type: " << msBsplineSurface.type << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Number of Bounds: " << msBsplineSurface.GetIntNumBounds() << endl;
+	this->_outFile << "Total number of Poles: " << msBsplineSurface.GetNumPoles() << endl;
+	this->_outFile << "U number of Poles: " << msBsplineSurface.GetIntNumUPoles() << endl;
+	this->_outFile << "V number of Poles: " << msBsplineSurface.GetIntNumVPoles() << endl;
+	this->_outFile << "U is Closed: " << msBsplineSurface.GetIsUClosed() << endl;
+	this->_outFile << "V is Closed: " << msBsplineSurface.GetIsVClosed() << endl;
+	this->_outFile << "Number of UV Poles Get Poles: " << weightPoles.size() << endl;
+	this->_outFile << "Grid Poles Number: " << polesGrid.size() << endl;
+	this->_outFile << "HasValidPoleCounts: " << msBsplineSurface.HasValidPoleCounts() << endl;
+	this->_outFile << "HasValidPoleAllocation: " << msBsplineSurface.HasValidPoleAllocation() << endl;
+	this->_outFile << "HasValidWeightAllocation: " << msBsplineSurface.HasValidWeightAllocation() << endl;
+	this->_outFile << "HasWeights: " << msBsplineSurface.HasWeights() << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "POINT Following the m/n parameters" << endl;
+
+	int uOrder = msBsplineSurface.GetIntUOrder();
+	int vOrder = msBsplineSurface.GetIntVOrder();
+
+	int mParam = ((msBsplineSurface.GetIntNumUKnots()) - (uOrder - 1) - 1);
+	int nParam = msBsplineSurface.GetIntNumPoles();
+	int nParamCalc = ((msBsplineSurface.GetIntNumVKnots()) - (vOrder - 1) - 1);
+
+	this->_outFile << "mParam: " << mParam << endl;
+	this->_outFile << "nParam: " << nParam << endl;
+	this->_outFile << "nParamCalc: " << nParamCalc << endl;
+	this->_outFile << "V_Degree: " << vOrder - 1 << endl;
+	this->_outFile << "U_Degree: " << uOrder - 1 << endl;
+	this->_outFile << "V_Order: " << vOrder << endl;
+	this->_outFile << "U_Order: " << uOrder << endl;
+	
+	this->_outFile << "POINT Controls with GET POLES STORED : " << endl;
+	this->_outFile << "has weight: " << msBsplineSurface.HasWeights() << endl;
+	this->_outFile << fixed;
+	this->_outFile << endl;
+	this->_outFile.close();
+
+}
+
+void ModelerDataWriterManager::writeBodyDataToFile(ISolidKernelEntityCR entity)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
+	this->_outFile << fixed;
+
+	auto entityType = entity.GetEntityType();
+	
+	switch (entityType)
+	{
+	case ISolidKernelEntity::KernelEntityType::EntityType_Solid:
+	{
+		this->_outFile << "In SolidKernel Entity is: Solid " << ISolidKernelEntity::KernelEntityType::EntityType_Solid << endl;
+		this->_outFile << endl;
+	}
+		break;
+	case ISolidKernelEntity::KernelEntityType::EntityType_Sheet: // Is different from a solid IfcShellBasedSurfaceModel
+	{
+		this->_outFile << "In SolidKernel Entity is: Sheet " << ISolidKernelEntity::KernelEntityType::EntityType_Sheet << endl;
+		this->_outFile << endl;
+	}
+		break;
+
+	case ISolidKernelEntity::KernelEntityType::EntityType_Wire:
+	{
+		this->_outFile << "In SolidKernel Entity is: Wire " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << endl;
+		this->_outFile << endl;
+	}
+		break;
+	case  ISolidKernelEntity::KernelEntityType::EntityType_Minimal:
+	{
+		this->_outFile << "In SolidKernel Entity is: Minimal " << ISolidKernelEntity::KernelEntityType::EntityType_Wire << endl;
+		this->_outFile << endl;
+	}
+	break;
+
+	default:
+		break;
+	}
+
+	bvector<ISubEntityPtr> subEntitiesFaces;
+	bvector<ISubEntityPtr> subEntitiesEdges;
+	bvector<ISubEntityPtr> subEntitiesVertices;
+
+	size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
+	size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
+	size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
+	
+
+	this->_outFile << "-------------------------------- Processing BREP Entiy --------------------------------" << endl;
+	this->_outFile << "Entity------------ " << endl;
+	this->_outFile << "Edges Entity: " << nEdges << endl;
+	this->_outFile << "Faces Entity: " << nFaces << endl;
+	this->_outFile << "Vertices Entity: " << nVertices << endl;
+	this->_outFile << endl;
+
+	this->_outFile.close();
+}
+
 #pragma endregion
+
+
+void ModelerDataWriterManager::writeTitleProcessDataToFile(string s)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	this->_outFile << "------------------- " << s << " -------------------"<< endl;
+	this->_outFile << endl;
+	this->_outFile.close();
+}
+
+void ModelerDataWriterManager::writeSinglePointDataToFile(DPoint3d point, int index)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	if (index == -1)
+	{
+		this->_outFile << "Point " << " [X] = " << point.x << endl;
+		this->_outFile << "Point " << " [Y] = " << point.y << endl;
+		this->_outFile << "Point " << " [Z] = " << point.z << endl;
+		this->_outFile << endl;
+	}
+	else
+	{
+		this->_outFile << "Point " << index << ": " << " = [" << point.x << ", " << point.y << ", " << point.z << "]" << endl;
+	}
+	this->_outFile.close();
+}
+

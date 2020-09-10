@@ -34,12 +34,12 @@ BRepTypeEnum SolidEntityGraphicProperties::getBRepTypeEnum()
 	return this->mBRepType;
 }
 
-void SolidEntityGraphicProperties::addFacetTriangulated(vector<DPoint3d> face)
+void SolidEntityGraphicProperties::addMeshTriangulated(MeshTriangles* mesh)
 {
-	this->mFacetTriangulatedVector.push_back(face);
+	this->mMeshTriangulatedVector.push_back(mesh);
 }
 
-vector<vector<DPoint3d>> SolidEntityGraphicProperties::getFacetTriangulated()
+vector<MeshTriangles*> SolidEntityGraphicProperties::getMeshTriangulated()
 {
-	return this->mFacetTriangulatedVector;
+	return this->mMeshTriangulatedVector;
 }

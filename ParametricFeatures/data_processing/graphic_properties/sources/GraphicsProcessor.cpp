@@ -70,16 +70,12 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
-	ofstream outfile;
-	outfile.open(filePath, ios_base::app);
-	outfile << "-------------------------------- MSBsplineSurfaceCR surface --------------------------------" << endl;
-	outfile << endl;
-	outfile << endl;
-	outfile.close();
-
-	//mGraphicsProcessorHelper.processMSBsplineSurface(surface);
-
+	//TODO[SB] return ERROR _ProcessSurface
 	return ERROR;
+
+	mGraphicsProcessorHelper.processMSBsplineSurface(surface);
+
+	//return SUCCESS;
 }
 
 //! Collect output for surfaces and solids using a solid kernel entity.
@@ -95,7 +91,9 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {	
-	mGraphicsProcessorHelper.processBodySolid(entity);
+	//TODO[SB] MESH PROCESSIG NOT ACTIVE
+	bool meshProcessing = false;
+	mGraphicsProcessorHelper.processBodySolid(entity, meshProcessing);
 
 	return SUCCESS;
 }
@@ -107,108 +105,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
-	ofstream outfile;
-	outfile.open(filePath, ios_base::app);
-	outfile << "-------------------------------- PolyfaceQueryCR - meshData --------------------------------" << endl;
-
-	//vector<double> colourVector;
-
-	////FloatRgb* colour = const_cast<FloatRgb*>(colour1);
-	//auto color2 = meshData.GetColorIndexCP();
-	//auto color3 = meshData.GetDoubleColorCP();
-	//auto color4 = meshData.GetFloatColorCP();
-	////if (colour2 != nullptr) {
-	////	colourVector.push_back(static_cast<double>(colour->red));
-	////	colourVector.push_back(static_cast<double>(colour->green));
-	////	colourVector.push_back(static_cast<double>(colour->blue));
-	////}
-
-	//if (color3!=nullptr) {
-	//	colourVector.push_back(static_cast<double>(color3->red));
-	//	colourVector.push_back(static_cast<double>(color3->green));
-	//	colourVector.push_back(static_cast<double>(color3->blue));
-	//}
-
-	//if (color4!=nullptr) {
-	//	colourVector.push_back(static_cast<double>(color4->red));
-	//	colourVector.push_back(static_cast<double>(color4->green));
-	//	colourVector.push_back(static_cast<double>(color4->blue));
-	//}
-	//if (!colourVector.empty()) {
-	//	outfile << "color0 " << colourVector.at(0) << endl;
-	//}
-	//outfile << "color1 " << color2 << endl;
-
-
-	outfile << endl;
-	outfile << endl;
-	outfile.close();
-
-	DictionaryProperties* dictionaryProperties = mGraphicsProcessorHelper.getDictionaryProperties();
-
-	bvector<PolyfaceHeaderPtr> meshes;
-	PolyfaceHeaderPtr header = PolyfaceHeader::CreateVariableSizeIndexed();
-	header->CopyFrom(meshData);
-	header->Transform(m_currentTransform);
-	meshes.push_back(header);
-
-	BRepGraphicProperties* bRepGraphicProperties = new BRepGraphicProperties();
-
-	for (size_t i = 0; i < meshes.size(); i++)
-	{
-		SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
-		//size_t numOpen, numClosed;
-		size_t numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges;
-		PolyfaceHeaderPtr pMesh = meshes.at(i);
-		PolyfaceVisitorPtr pv = PolyfaceVisitor::Attach(*pMesh);
-
-		vector<vector<DPoint3d>> facetTriangulated;
-
-		pMesh->CollectCounts(numVertex, numFacet, numQuad, numTriangle, numImplicitTriangle, numVisEdges, numInvEdges);
-
-		outfile.open(filePath, ios_base::app);
-		outfile << "Mesh Number: " << i << endl;
-		outfile << "numVertex: " << numVertex << endl;
-		outfile << "numFacet: " << numFacet << endl;
-		outfile << "numQuad: " << numQuad << endl;
-		outfile << "numTriangle: " << numTriangle << endl;
-		outfile << "numImplicitTriangle: " << numImplicitTriangle << endl;
-		outfile << "numVisEdges: " << numVisEdges << endl;
-		outfile << "numInvEdges: " << numInvEdges << endl;
-		outfile << endl;
-		outfile.close();
-
-		int nFace = 1;
-
-		while (pv->AdvanceToNextFace())
-		{
-			BlockedVectorDPoint3dR pts = pv->Point();
-
-			vector<DPoint3d> face;
-			for (DPoint3d pt : pts)
-			{
-				//Store the point for the triangle face
-				face.push_back(pt);
-			}
-
-			//Push the face in the container
-			solidKernelEntity->addFacetTriangulated(face);
-
-			nFace++;
-			outfile.close();
-		}
-
-		outfile.open(filePath, ios_base::app);
-		outfile << "Num Of Facet: " << nFace << endl;
-		outfile << endl;
-		outfile.close();
-
-		//Add to the BRep Entity
-		bRepGraphicProperties->addSolidEntityGraphicProperties(solidKernelEntity);
-	}
-	
-	//dictionaryProperties->addGraphicProperties(bRepGraphicProperties);
-	this->mGraphicsProcessorHelper.getElementBundle()->setGraphicProperties(*bRepGraphicProperties);
+	mGraphicsProcessorHelper.processPolyfaceFacets(meshData, isFilled, m_currentTransform);
 
 	return SUCCESS;
 }
@@ -221,8 +118,7 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 #pragma warning( disable : 4700)
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
-	if (mGraphicsProcessorHelper.processSolidPrimitives(primitive) == nullptr)
-		return ERROR;
+	mGraphicsProcessorHelper.processSolidPrimitives(primitive);
 
 	return SUCCESS;
 }

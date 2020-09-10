@@ -4,43 +4,22 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
 
-void IfcBRepSolidsEnhancer::enhanceIfcBRepSolidsEnhancer(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector,
-	IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, ElementBundle * elementBundle)
 {
-	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
+	if (solidEntityGraphicProperties != nullptr) {
+		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
-	if (!dictionaryPropertiesVector.empty())
-	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+		ifcRepresentationItem = buildBRepSolid(solidEntityGraphicProperties, file, elementBundle);
+
+		if (ifcRepresentationItem != nullptr)
 		{
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
-
-			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-			for (auto element : dictionaryProperties.getElementBundle())
-			{
-				Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
-				BRepGraphicProperties* brepSolidsKernelEntity = dynamic_cast<BRepGraphicProperties*>(element->getGraphicProperties());
-				SolidEntityGraphicProperties* solidsKernelEntity = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-
-				if (brepSolidsKernelEntity != nullptr)
-				{
-					ifcRepresentationItem = buildGeometricRepresentationFacetBrep(brepSolidsKernelEntity, ifcElementBundle, file);
-				}
-				else if (solidsKernelEntity != nullptr)
-				{
-					ifcRepresentationItem = buildGeometricRepresentationBsplineSurface(solidsKernelEntity, ifcElementBundle, element, file);
-				}
-
-				if (ifcRepresentationItem != nullptr)
-				{
-					ifcElementBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(element->getGraphicProperties(), ifcRepresentationItem,
-						element->getElementHandle()));
-				}
-				
-			}
+			auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+				ifcRepresentationItem, elementBundle->getElementHandle());
+			bundle->setColor(elementBundle->getColor());
+			bundle->setTransparency(elementBundle->getTransparency());
+			bundle->setMaterial(elementBundle->getMaterial());
+			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
 	}
 }
@@ -423,222 +402,124 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #endif
 
 //WORKS
-#if true 
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, 
-	IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
-	ofstream outfile;
-	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
-
-	IfcElementBundle* elm = new IfcElementBundle(-1, "");
-
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
 
-	IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
-	IfcEntityList* entityList = new IfcEntityList();
+	if (!brepSolidsKernelEntity->meshProcessing)
+	{
+		IfcEntityList* entityList = new IfcEntityList();
+		IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
-	buildIfcSurface(brepSolidsKernelEntity->getSurfaceFacesVector(), ifcElementBundle, elementBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
+		buildIfcFaceSurface(brepSolidsKernelEntity->getSurfaceFacesVector(), elementBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
 
-	//buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
+		//buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
 
 #if false	
-	
-	for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getSurfaceFacesVector())
-	{
-		if (msBsplineGraphicProperties != nullptr)
+
+		for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getSurfaceFacesVector())
 		{
-			//Create IfcCartesianPoint List 
-			IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
-
-			//Create a FaceBound list
-			IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
-
-			//Get the control point UV of the FACE surface
-			vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
-			for (auto vCP: controlPointsPatch)
+			if (msBsplineGraphicProperties != nullptr)
 			{
-				vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+				//Create IfcCartesianPoint List 
+				IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
 
-				for (auto p: vCP)
+				//Create a FaceBound list
+				IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
+
+				//Get the control point UV of the FACE surface
+				vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
+				for (auto vCP : controlPointsPatch)
 				{
-					Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
-					cartesianPointsUV.push_back(crtP);
-				}
-				tempCartesianPointList->push(cartesianPointsUV);
-			}
+					vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
 
-			//Collect all the UV IfcCartesianPoint for the surface
-			boost::shared_ptr<IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>> controlPoints(tempCartesianPointList);
-
-			Ifc4::IfcBSplineSurface* bSplineSurface = nullptr;
-
-			if (msBsplineGraphicProperties->hasValidKnots && msBsplineGraphicProperties->hasValidWeights)
-				bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
-					msBsplineGraphicProperties->getUDegree(),
-					msBsplineGraphicProperties->getVDegree(),
-					controlPoints,
-					Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-					msBsplineGraphicProperties->getUIsCLosed(),
-					msBsplineGraphicProperties->getVIsCLosed(),
-					msBsplineGraphicProperties->getIsSelfIntersect(),
-					msBsplineGraphicProperties->getUKnotsMultiplicity(),
-					msBsplineGraphicProperties->getVKnotsMultiplicity(),
-					msBsplineGraphicProperties->getUKnots(),
-					msBsplineGraphicProperties->getVKnots(),
-					Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
-					msBsplineGraphicProperties->getWeights()
-				);
-			else if(msBsplineGraphicProperties->hasValidKnots)
-				bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
-					msBsplineGraphicProperties->getUDegree(),
-					msBsplineGraphicProperties->getVDegree(),
-					controlPoints,
-					Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-					msBsplineGraphicProperties->getUIsCLosed(),
-					msBsplineGraphicProperties->getVIsCLosed(),
-					msBsplineGraphicProperties->getIsSelfIntersect(),
-					msBsplineGraphicProperties->getUKnotsMultiplicity(),
-					msBsplineGraphicProperties->getVKnotsMultiplicity(),
-					msBsplineGraphicProperties->getUKnots(),
-					msBsplineGraphicProperties->getVKnots(),
-					Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
-					msBsplineGraphicProperties->getWeights()
-				);
-			else
-				bSplineSurface = new Ifc4::IfcBSplineSurface(
-					msBsplineGraphicProperties->getUDegree(),
-					msBsplineGraphicProperties->getVDegree(),
-					controlPoints,
-					Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-					msBsplineGraphicProperties->getUIsCLosed(),
-					msBsplineGraphicProperties->getVIsCLosed(),
-					msBsplineGraphicProperties->getIsSelfIntersect()
-				);
-
-			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-			bool addToIfcElementBundle = false;
-			auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
-			ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, elementBundle, addToIfcElementBundle);
-
-			for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
-			{
-				//IfcOrientedEdge list
-				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
-
-				Ifc4::IfcCartesianPoint * cpStart = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
-				Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);				
-
-				Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
-					cpStart
-				);
-				Ifc4::IfcVertexPoint* vpEnd = new Ifc4::IfcVertexPoint(
-					cpEnd
-				);
-							
-				Ifc4::IfcVertex* start(vpStart);
-				Ifc4::IfcVertex* end(vpEnd);
-
-				if (IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
-					end = start;
-
-				//Ifc4::IfcSurfaceCurve* d = new Ifc4::IfcSurfaceCurve()
-				/*	IfcEdgeCurve RULES
-				*	1-	EdgeStart	IfcVertex	Start point (vertex) of the edge.
-				*	2-	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
-				*/
-				Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
-					start,
-					end,
-					boundTypeIfcCurve->ifcCurve,
-					true
-				);
-
-				// SameSense: 
-				// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
-				// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
-				Ifc4::IfcOrientedEdge* orientedEdgeT = new Ifc4::IfcOrientedEdge(edgeCurve, true);
-
-				//Push the oriented edge
-				orientedEdgesList->push(orientedEdgeT);
-
-				//The edges saved here are continuos 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
-
-				//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
-				Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
-
-				//Orientation: 
-				// This indicated whether (TRUE) or not (FALSE) the loop has the same sense when used to bound the face as when first defined. 
-				// If sense is FALSE the senses of all its component oriented edges are implicitly reversed when used in the face.				
-				Ifc4::IfcFaceBound* newfaceOuterBound = new Ifc4::IfcFaceBound(edgeLoop, true);
-
-				//Add it to the IfcFaceOuterBound List for the currecnt face
-				tempIfcFaceBoundList->push(newfaceOuterBound);
-			}
-			
-
-#if false			
-			bool outerBoundCreated = false;
-			for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
-			{
-				Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
-					IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getStartPoint())
-					//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->start)
-				);
-				Ifc4::IfcVertexPoint* vpEnd = new Ifc4::IfcVertexPoint(
-					IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getEndPoint())
-					//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
-				);
-
-				Ifc4::IfcVertexPoint* startEnd = vpStart;
-
-				//IfcOrientedEdge list
-				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
-
-				for (size_t i = 0; i < boundTypeIfcCurve->vecPrimitivesCurves.size(); i++)
-				{
-					auto primitiveCurve = boundTypeIfcCurve->vecPrimitivesCurves[i];
-					auto ifcCurve = boundTypeIfcCurve->vecIfcCurves[i];
-
-					Ifc4::IfcVertex* start = nullptr;
-					Ifc4::IfcVertex* end = nullptr;
-
-					if (i == 0) //start oriented edge
+					for (auto p : vCP)
 					{
-						Ifc4::IfcVertex* s(vpStart);
-						Ifc4::IfcVertex* e(vpEnd);
-						start = s;
-						end = e;
+						Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
+						cartesianPointsUV.push_back(crtP);
 					}
-					else
-					{						
-						vpStart = vpEnd;
+					tempCartesianPointList->push(cartesianPointsUV);
+				}
 
-						vpEnd = new Ifc4::IfcVertexPoint(
-							IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(primitiveCurve->getEndPoint())
-							//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
-						);
+				//Collect all the UV IfcCartesianPoint for the surface
+				boost::shared_ptr<IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>> controlPoints(tempCartesianPointList);
 
-						Ifc4::IfcVertex* s(vpStart);
-						start = s;
+				Ifc4::IfcBSplineSurface* bSplineSurface = nullptr;
 
-						//Last bound needs to have first vertex as end
-						if (i == boundTypeIfcCurve->vecPrimitivesCurves.size()-1)
-						{
-							Ifc4::IfcVertex* e(startEnd);
-							end = e;
-						}
-						else
-						{
-							Ifc4::IfcVertex* e(vpEnd);
-							end = e;
-						}
-					}
+				if (msBsplineGraphicProperties->hasValidKnots && msBsplineGraphicProperties->hasValidWeights)
+					bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
+						msBsplineGraphicProperties->getUDegree(),
+						msBsplineGraphicProperties->getVDegree(),
+						controlPoints,
+						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+						msBsplineGraphicProperties->getUIsCLosed(),
+						msBsplineGraphicProperties->getVIsCLosed(),
+						msBsplineGraphicProperties->getIsSelfIntersect(),
+						msBsplineGraphicProperties->getUKnotsMultiplicity(),
+						msBsplineGraphicProperties->getVKnotsMultiplicity(),
+						msBsplineGraphicProperties->getUKnots(),
+						msBsplineGraphicProperties->getVKnots(),
+						Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
+						msBsplineGraphicProperties->getWeights()
+					);
+				else if (msBsplineGraphicProperties->hasValidKnots)
+					bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
+						msBsplineGraphicProperties->getUDegree(),
+						msBsplineGraphicProperties->getVDegree(),
+						controlPoints,
+						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+						msBsplineGraphicProperties->getUIsCLosed(),
+						msBsplineGraphicProperties->getVIsCLosed(),
+						msBsplineGraphicProperties->getIsSelfIntersect(),
+						msBsplineGraphicProperties->getUKnotsMultiplicity(),
+						msBsplineGraphicProperties->getVKnotsMultiplicity(),
+						msBsplineGraphicProperties->getUKnots(),
+						msBsplineGraphicProperties->getVKnots(),
+						Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
+						msBsplineGraphicProperties->getWeights()
+					);
+				else
+					bSplineSurface = new Ifc4::IfcBSplineSurface(
+						msBsplineGraphicProperties->getUDegree(),
+						msBsplineGraphicProperties->getVDegree(),
+						controlPoints,
+						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+						msBsplineGraphicProperties->getUIsCLosed(),
+						msBsplineGraphicProperties->getVIsCLosed(),
+						msBsplineGraphicProperties->getIsSelfIntersect()
+					);
 
+				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
+				bool addToIfcElementBundle = false;
+				auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
+				ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, elementBundle, addToIfcElementBundle);
+
+				for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
+				{
+					//IfcOrientedEdge list
+					IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
+
+					Ifc4::IfcCartesianPoint * cpStart = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->start);
+					Ifc4::IfcCartesianPoint * cpEnd = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->end);
+
+					Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
+						cpStart
+					);
+					Ifc4::IfcVertexPoint* vpEnd = new Ifc4::IfcVertexPoint(
+						cpEnd
+					);
+
+					Ifc4::IfcVertex* start(vpStart);
+					Ifc4::IfcVertex* end(vpEnd);
+
+					if (IfcOperationsHelper::areTripletsDoubleEqual<DPoint3d>(boundTypeIfcCurve->start, boundTypeIfcCurve->end))
+						end = start;
+
+					//Ifc4::IfcSurfaceCurve* d = new Ifc4::IfcSurfaceCurve()
 					/*	IfcEdgeCurve RULES
 					*	1-	EdgeStart	IfcVertex	Start point (vertex) of the edge.
 					*	2-	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
@@ -646,470 +527,243 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 					Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
 						start,
 						end,
-						ifcCurve,
+						boundTypeIfcCurve->ifcCurve,
 						true
 					);
 
 					// SameSense: 
 					// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
 					// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
-					Ifc4::IfcOrientedEdge* orientedEdge = new Ifc4::IfcOrientedEdge(edgeCurve, true);
-					
+					Ifc4::IfcOrientedEdge* orientedEdgeT = new Ifc4::IfcOrientedEdge(edgeCurve, true);
+
 					//Push the oriented edge
-					orientedEdgesList->push(orientedEdge);
+					orientedEdgesList->push(orientedEdgeT);
+
+					//The edges saved here are continuos 
+					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
+
+					//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
+					Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
+
+					//Orientation: 
+					// This indicated whether (TRUE) or not (FALSE) the loop has the same sense when used to bound the face as when first defined. 
+					// If sense is FALSE the senses of all its component oriented edges are implicitly reversed when used in the face.				
+					Ifc4::IfcFaceBound* newfaceOuterBound = new Ifc4::IfcFaceBound(edgeLoop, true);
+
+					//Add it to the IfcFaceOuterBound List for the currecnt face
+					tempIfcFaceBoundList->push(newfaceOuterBound);
 				}
 
-				//The edges saved here are continuos 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
 
-				//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
-				Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
+#if false			
+				bool outerBoundCreated = false;
+				for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
+				{
+					Ifc4::IfcVertexPoint* vpStart = new Ifc4::IfcVertexPoint(
+						IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getStartPoint())
+						//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->start)
+					);
+					Ifc4::IfcVertexPoint* vpEnd = new Ifc4::IfcVertexPoint(
+						IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(boundTypeIfcCurve->vecPrimitivesCurves.front()->getEndPoint())
+						//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
+					);
 
-				Ifc4::IfcFaceBound* newfaceOuterBound = nullptr;
-				//Orientation: 
-				// This indicated whether (TRUE) or not (FALSE) the loop has the same sense when used to bound the face as when first defined. 
-				// If sense is FALSE the senses of all its component oriented edges are implicitly reversed when used in the face.
-				if (boundTypeIfcCurve->boundary == CurvesBoundaryTypeEnum::INNER)
-					newfaceOuterBound = new Ifc4::IfcFaceBound(edgeLoop, true);
-				else if (boundTypeIfcCurve->boundary == CurvesBoundaryTypeEnum::OUTER)
-					if (!outerBoundCreated)
+					Ifc4::IfcVertexPoint* startEnd = vpStart;
+
+					//IfcOrientedEdge list
+					IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
+
+					for (size_t i = 0; i < boundTypeIfcCurve->vecPrimitivesCurves.size(); i++)
 					{
-						newfaceOuterBound = new Ifc4::IfcFaceOuterBound(edgeLoop, true);
-						outerBoundCreated = true;
+						auto primitiveCurve = boundTypeIfcCurve->vecPrimitivesCurves[i];
+						auto ifcCurve = boundTypeIfcCurve->vecIfcCurves[i];
+
+						Ifc4::IfcVertex* start = nullptr;
+						Ifc4::IfcVertex* end = nullptr;
+
+						if (i == 0) //start oriented edge
+						{
+							Ifc4::IfcVertex* s(vpStart);
+							Ifc4::IfcVertex* e(vpEnd);
+							start = s;
+							end = e;
+						}
+						else
+						{
+							vpStart = vpEnd;
+
+							vpEnd = new Ifc4::IfcVertexPoint(
+								IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(primitiveCurve->getEndPoint())
+								//IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(boundTypeIfcCurve->end)
+							);
+
+							Ifc4::IfcVertex* s(vpStart);
+							start = s;
+
+							//Last bound needs to have first vertex as end
+							if (i == boundTypeIfcCurve->vecPrimitivesCurves.size() - 1)
+							{
+								Ifc4::IfcVertex* e(startEnd);
+								end = e;
+							}
+							else
+							{
+								Ifc4::IfcVertex* e(vpEnd);
+								end = e;
+							}
+						}
+
+						/*	IfcEdgeCurve RULES
+						*	1-	EdgeStart	IfcVertex	Start point (vertex) of the edge.
+						*	2-	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
+						*/
+						Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
+							start,
+							end,
+							ifcCurve,
+							true
+						);
+
+						// SameSense: 
+						// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
+						// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
+						Ifc4::IfcOrientedEdge* orientedEdge = new Ifc4::IfcOrientedEdge(edgeCurve, true);
+
+						//Push the oriented edge
+						orientedEdgesList->push(orientedEdge);
 					}
-					else
+
+					//The edges saved here are continuos 
+					boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
+
+					//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
+					Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
+
+					Ifc4::IfcFaceBound* newfaceOuterBound = nullptr;
+					//Orientation: 
+					// This indicated whether (TRUE) or not (FALSE) the loop has the same sense when used to bound the face as when first defined. 
+					// If sense is FALSE the senses of all its component oriented edges are implicitly reversed when used in the face.
+					if (boundTypeIfcCurve->boundary == CurvesBoundaryTypeEnum::INNER)
 						newfaceOuterBound = new Ifc4::IfcFaceBound(edgeLoop, true);
-					
+					else if (boundTypeIfcCurve->boundary == CurvesBoundaryTypeEnum::OUTER)
+						if (!outerBoundCreated)
+						{
+							newfaceOuterBound = new Ifc4::IfcFaceOuterBound(edgeLoop, true);
+							outerBoundCreated = true;
+						}
+						else
+							newfaceOuterBound = new Ifc4::IfcFaceBound(edgeLoop, true);
 
-				//Add it to the IfcFaceOuterBound List for the currecnt face
-				tempIfcFaceBoundList->push(newfaceOuterBound);
-							
 
-			}						
+					//Add it to the IfcFaceOuterBound List for the currecnt face
+					tempIfcFaceBoundList->push(newfaceOuterBound);
+
+
+				}
 #endif
 
-			//collect all the IfcFaceBound in the list
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> faceBoundsList(tempIfcFaceBoundList);
+				//collect all the IfcFaceBound in the list
+				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> faceBoundsList(tempIfcFaceBoundList);
 
-			//Create the face with all the bounds			
-			// SameSense: This flag indicates whether the sense of the surface normal agrees with (TRUE), or opposes (FALSE), 
-			// the sense of the topological normal to the face.
-			//Ifc4::IfcFaceSurface* advanceFace = new Ifc4::IfcFaceSurface(faceBoundsList, bSplineSurface, true);
-			Ifc4::IfcAdvancedFace* advanceFace = new Ifc4::IfcAdvancedFace(faceBoundsList, bSplineSurface, true);
+				//Create the face with all the bounds			
+				// SameSense: This flag indicates whether the sense of the surface normal agrees with (TRUE), or opposes (FALSE), 
+				// the sense of the topological normal to the face.
+				//Ifc4::IfcFaceSurface* advanceFace = new Ifc4::IfcFaceSurface(faceBoundsList, bSplineSurface, true);
+				Ifc4::IfcAdvancedFace* advanceFace = new Ifc4::IfcAdvancedFace(faceBoundsList, bSplineSurface, true);
 
-			tempIfcAdvancedFaceList->push(advanceFace);
+				tempIfcAdvancedFaceList->push(advanceFace);
+			}
 		}
-	}
 
 #endif
 
-	if (tempIfcAdvancedFaceList->size() > 0)
-	{
-		//Collect all the faces created
-		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> advancedFaces(tempIfcAdvancedFaceList);
+		if (tempIfcAdvancedFaceList->size() > 0)
+		{
+			//Collect all the faces created
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> advancedFaces(tempIfcAdvancedFaceList);
 
-		//Create a closedShell from the advancedFaces list
-		Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(advancedFaces);
-		//Ifc4::IfcClosedShell* openShell = new Ifc4::IfcClosedShell(advancedFaces);
+			//Create a closedShell from the advancedFaces list
+			//Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(advancedFaces);
+			Ifc4::IfcClosedShell* closedShell = new Ifc4::IfcClosedShell(advancedFaces);
 
-		entityList->push(openShell);				
+			entityList->push(closedShell);
+		}
+
+		boost::shared_ptr<IfcEntityList> shellModel(entityList);
+
+		Ifc4::IfcShellBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcShellBasedSurfaceModel(shellModel);
+
+		//Create the IfcAdvancedBrep
+		//Ifc4::IfcAdvancedBrep* advanceBrep = new Ifc4::IfcAdvancedBrep(openShell);
+		//Ifc4::IfcFacetedBrep* advanceBrep = new Ifc4::IfcFacetedBrep(closedShell);
+
+		//Ifc4::IfcSolidModel* shellBasedSurfaceModel(advanceBrep);
+
+		geomItem = shellBasedSurfaceModel;
 	}
+	else if (brepSolidsKernelEntity->meshProcessing)
+	{
+		IfcEntityList* solidEntityList = new IfcEntityList();
+		//Parse all the solid inside the Faceted BRep
+		for (auto meshTriangles : brepSolidsKernelEntity->getMeshTriangulated())
+		{
+			IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
-	boost::shared_ptr<IfcEntityList> shellModel(entityList);
+			processPolyfaceMesh(meshTriangles, tempIfcFaceList);
 
-	Ifc4::IfcShellBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcShellBasedSurfaceModel(shellModel);
+			//Collect all the faces created
+			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> temFacesList(tempIfcFaceList);
 
-	//Create the IfcAdvancedBrep
-	//Ifc4::IfcAdvancedBrep* advanceBrep = new Ifc4::IfcAdvancedBrep(openShell);
-	//Ifc4::IfcFacetedBrep* advanceBrep = new Ifc4::IfcFacetedBrep(closedShell);
+			if (brepSolidsKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SOLID)
+			{
+				Ifc4::IfcClosedShell* closedShell = new Ifc4::IfcClosedShell(temFacesList);
+				solidEntityList->push(closedShell);
+			}
+			else if (brepSolidsKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SHEET)
+			{
+				Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(temFacesList);
+				solidEntityList->push(openShell);
+			}
+		}
 
-	//Ifc4::IfcSolidModel* shellBasedSurfaceModel(advanceBrep);
+		boost::shared_ptr<IfcEntityList> shellModel(solidEntityList);
 
-	geomItem = shellBasedSurfaceModel;
+		Ifc4::IfcShellBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcShellBasedSurfaceModel(shellModel);
+		geomItem = shellBasedSurfaceModel;
+	}
 
 	return geomItem;
 }
 #pragma warning (pop)
-#endif
 
-#if false
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList)
 {
-	ofstream outfile;
-	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
-
-	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
-
-	IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
-	IfcEntityList* entityList = new IfcEntityList();
-
-	buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
-
-	//TODO[SB] entity needs to be checked
-	for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getBSplineSurfaceFacesVector())
+	//Triangulated (NOT SURE ALL) faces to Fill the BRep
+	for (auto face : meshTriangles->facesTriangulatedVector)
 	{
-		msBsplineGraphicProperties->setNumberOfBounds(0);
-		for (auto edge : this->solidEdges)
+		//Create IfcCartesianPoint List 
+		IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* cPList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
+		for (DPoint3d point : face)
 		{
-			for (auto id : edge->faceIDs)
-			{
-				if (id == msBsplineGraphicProperties->getFaceId())
-				{
-					msBsplineGraphicProperties->setNumberOfBounds(1);// += 1;
-				}
-			}
-		}
-	}
-	
-
-
-	for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getBSplineSurfaceFacesVector())
-	{
-		if (msBsplineGraphicProperties != nullptr)
-		{
-			//Create IfcCartesianPoint List 
-			IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
-
-			//TODO[SB] Check the surface poles
-			//Get the control point UV of the FACE surface
-			vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
-			for (auto vCP : controlPointsPatch)
-			{
-				vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
-
-				for (auto p : vCP)
-				{
-					Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
-					cartesianPointsUV.push_back(crtP);
-				}
-				tempCartesianPointList->push(cartesianPointsUV);
-			}
-
-			//Collect all the UV IfcCartesianPoint for the surface
-			boost::shared_ptr<IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>> controlPoints(tempCartesianPointList);
-
-			Ifc4::IfcRationalBSplineSurfaceWithKnots* bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
-				msBsplineGraphicProperties->getUDegree(),
-				msBsplineGraphicProperties->getVDegree(),
-				controlPoints,
-				Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-				msBsplineGraphicProperties->getUIsCLosed(),
-				msBsplineGraphicProperties->getVIsCLosed(),
-				msBsplineGraphicProperties->getIsSelfIntersect(),
-				msBsplineGraphicProperties->getUKnotsMultiplicity(),
-				msBsplineGraphicProperties->getVKnotsMultiplicity(),
-				msBsplineGraphicProperties->getUKnots(),
-				msBsplineGraphicProperties->getVKnots(),
-				Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
-				msBsplineGraphicProperties->getWeights()
-			);
-
-			//Create a FaceBound list
-			IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
-
-#if true
-			for (auto edge : this->solidEdges)
-			{
-				for (auto id : edge->faceIDs)
-				{
-					if (id == msBsplineGraphicProperties->getFaceId())
-					{
-						Ifc4::IfcFaceBound* faceOuterBound = new Ifc4::IfcFaceBound(edge->edgeLoop, true);
-
-						//Add it to the IfcFaceOuterBound List for the currecnt face
-						tempIfcFaceBoundList->push(faceOuterBound);
-
-						if (edge->isShared)
-						{
-							Ifc4::IfcVertexLoop* vLoop = new Ifc4::IfcVertexLoop(edge->startVertex);
-							Ifc4::IfcFaceBound* faceBound = new Ifc4::IfcFaceBound(vLoop, true);
-
-							Ifc4::IfcVertexLoop* vLoop2 = new Ifc4::IfcVertexLoop(edge->endVertex);
-							Ifc4::IfcFaceBound* faceBound2 = new Ifc4::IfcFaceBound(vLoop2, true);
-
-							tempIfcFaceBoundList->push(faceBound);
-							tempIfcFaceBoundList->push(faceBound2);
-						}
-					}
-				}
-			}
-#endif
-
-
-#if false
-			if (msBsplineGraphicProperties->mNumberOfBounds == 3)
-			{
-				//IfcOrientedEdge list
-				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
-				
-				vector<Ifc4::IfcVertex*> vertexVec;
-
-				//Polyline Curve 3D
-				IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* polyCurveEntityList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();					
-				
-				for (auto edge : this->solidEdges)
-				{
-					for (auto id : edge->faceIDs)
-					{
-						if (id == msBsplineGraphicProperties->getFaceId())
-						{
-							//Inner Bound
-							if (!edge->isSingleCurveClosedPath)
-							{
-								//Orientation: 
-								// This indicated whether (TRUE) or not (FALSE) the loop has the same sense when used to bound the face as when first defined. 
-								// If sense is FALSE the senses of all its component oriented edges are implicitly reversed when used in the face.
-								Ifc4::IfcFaceBound* newfaceOuterBound = new Ifc4::IfcFaceBound(edge->edgeLoop, true);
-
-								//Add it to the IfcFaceOuterBound List for the currecnt face
-								tempIfcFaceBoundList->push(newfaceOuterBound);
-							}
-							//Outer Bound
-							else
-							{
-								//Push the oriented edge
-								orientedEdgesList->push(edge->orientedEdge);
-								//set a point for the polyline
-								polyCurveEntityList->push(edge->start); //TODO[SB] check Maybe it wants a new instance of cartesian point 
-								//Set the vertex point
-								vertexVec.push_back(edge->startVertex);
-							}
-						}
-					}
-				}
-
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> polyControlPoints(polyCurveEntityList);
-
-				Ifc4::IfcPolyline* polyline = new Ifc4::IfcPolyline(polyControlPoints);
-				
-				//*	IfcEdgeCurve RULES
-				//*	1-	EdgeStart	IfcVertex	Start point (vertex) of the edge.
-				//*	2-	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
-				//*
-				Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
-					vertexVec[0],
-					vertexVec[1],
-					polyline,
-					true
-				);
-
-				// SameSense: 
-				// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
-				// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
-				Ifc4::IfcOrientedEdge* orientedEdgeT = new Ifc4::IfcOrientedEdge(edgeCurve, true);
-				Ifc4::IfcOrientedEdge* orientedEdgeF = new Ifc4::IfcOrientedEdge(edgeCurve, false);
-
-				//Push the oriented edge
-				orientedEdgesList->push(orientedEdgeT);
-				orientedEdgesList->push(orientedEdgeF);
-				
-				//The edges saved here are continuos 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
-
-				//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
-				Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
-				Ifc4::IfcFaceOuterBound* faceOuterBound = new Ifc4::IfcFaceOuterBound(edgeLoop, true);
-
-				//Add it to the IfcFaceOuterBound List for the currecnt face
-				tempIfcFaceBoundList->push(faceOuterBound);
-			}
-			else if (msBsplineGraphicProperties->mNumberOfBounds == 2)
-			{
-				//IfcOrientedEdge list
-				IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>* orientedEdgesList = new IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>();
-
-				vector<Ifc4::IfcVertex*> vertexVec;
-
-				//Polyline Curve 3D
-				IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* polyCurveEntityList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
-
-				for (auto edge : this->solidEdges)
-				{
-					for (auto id : edge->faceIDs)
-					{
-						if (id == msBsplineGraphicProperties->getFaceId())
-						{
-							//Inner Bound
-							if (!edge->isSingleCurveClosedPath)
-							{
-								for (auto oE: edge->sharedOrientedEdge)
-									//Push the oriented edge
-									orientedEdgesList->push(oE);
-
-								//set a point for the polyline
-								polyCurveEntityList->push(edge->start); //TODO[SB] check Maybe it wants a new instance of cartesian point 
-																		//Set the vertex point
-								vertexVec.push_back(edge->startVertex);
-							}
-							//Outer Bound
-							else
-							{
-								//Push the oriented edge
-								orientedEdgesList->push(edge->orientedEdge);
-								//set a point for the polyline
-								polyCurveEntityList->push(edge->start); //TODO[SB] check Maybe it wants a new instance of cartesian point 
-																		//Set the vertex point
-								vertexVec.push_back(edge->startVertex);
-							}
-						}
-					}
-				}
-
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> polyControlPoints(polyCurveEntityList);
-
-				Ifc4::IfcPolyline* polyline = new Ifc4::IfcPolyline(polyControlPoints);
-
-				//*	IfcEdgeCurve RULES
-				//*	1-	EdgeStart	IfcVertex	Start point (vertex) of the edge.
-				//*	2-	EdgeEnd		IfcVertex	End point (vertex) of the edge. The same vertex can be used for both EdgeStart and EdgeEnd.
-				//*
-				Ifc4::IfcEdgeCurve* edgeCurve = new Ifc4::IfcEdgeCurve(
-					vertexVec[0],
-					vertexVec[1],
-					polyline,
-					true
-				);
-
-				// SameSense: 
-				// This logical flag indicates whether (TRUE), or not (FALSE) the senses of the edge and the curve defining the edge geometry are the same. 
-				// The sense of an edge is from the edge start vertex to the edge end vertex; the sense of a curve is in the direction of increasing parameter.
-				Ifc4::IfcOrientedEdge* orientedEdgeT = new Ifc4::IfcOrientedEdge(edgeCurve, true);
-				Ifc4::IfcOrientedEdge* orientedEdgeF = new Ifc4::IfcOrientedEdge(edgeCurve, false);
-
-				//Push the oriented edge
-				orientedEdgesList->push(orientedEdgeT);
-				orientedEdgesList->push(orientedEdgeF);
-
-				//The edges saved here are continuos 
-				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcOrientedEdge>> edgeLoopList(orientedEdgesList);
-
-				//Store them as a single IfcEdgeLoop and define the IfcFaceOuterBound
-				Ifc4::IfcEdgeLoop* edgeLoop = new Ifc4::IfcEdgeLoop(edgeLoopList);
-				Ifc4::IfcFaceOuterBound* faceOuterBound = new Ifc4::IfcFaceOuterBound(edgeLoop, true);
-
-				//Add it to the IfcFaceOuterBound List for the currecnt face
-				tempIfcFaceBoundList->push(faceOuterBound);
-			}
-#endif
-			//collect all the IfcFaceBound in the list
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> faceBoundsList(tempIfcFaceBoundList);
-			
-			//Create the face with all the bounds			
-			// SameSense: This flag indicates whether the sense of the surface normal agrees with (TRUE), or opposes (FALSE), 
-			// the sense of the topological normal to the face.
-			//Ifc4::IfcFaceSurface* advanceFace = new Ifc4::IfcFaceSurface(faceBoundsList, bSplineSurface, true);
-			Ifc4::IfcAdvancedFace* advanceFace = new Ifc4::IfcAdvancedFace(faceBoundsList, bSplineSurface, true);
-
-			tempIfcAdvancedFaceList->push(advanceFace);
-
-			IfcTemplatedEntityList<Ifc4::IfcFace>* ifcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
-			ifcAdvancedFaceList->push(advanceFace);
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> advFaces(ifcAdvancedFaceList);
-			Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(advFaces);
-			entityList->push(openShell);
-
-		}
-	}
-
-	//Collect all the faces created
-	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> advancedFaces(tempIfcAdvancedFaceList);
-
-	//Create a closedShell from the advancedFaces list
-	//Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(advancedFaces);
-	//Ifc4::IfcClosedShell* closedShell = new Ifc4::IfcClosedShell(advancedFaces);
-
-	//entityList->push(openShell);
-
-	boost::shared_ptr<IfcEntityList> shellModel(entityList);
-
-	Ifc4::IfcShellBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcShellBasedSurfaceModel(shellModel);
-
-	/*Ifc4::IfcConnectedFaceSet* closedShell = new Ifc4::IfcConnectedFaceSet(advancedFaces);
-	IfcTemplatedEntityList<Ifc4::IfcConnectedFaceSet>* cFacesSet = new IfcTemplatedEntityList<Ifc4::IfcConnectedFaceSet>();
-	cFacesSet->push(closedShell);
-	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcConnectedFaceSet>> tempConnectedFaces(cFacesSet);
-	Ifc4::IfcFaceBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcFaceBasedSurfaceModel(tempConnectedFaces);*/
-
-	//Create the IfcAdvancedBrep
-	//Ifc4::IfcAdvancedBrep* advanceBrep = new Ifc4::IfcAdvancedBrep(closedShell);
-	//Ifc4::IfcFacetedBrep* advanceBrep = new Ifc4::IfcFacetedBrep(closedShell);
-
-	//Ifc4::IfcSolidModel* shellBasedSurfaceModel(advanceBrep);
-
-	geomItem = shellBasedSurfaceModel;
-
-	return geomItem;
-}
-#pragma warning (pop)
-#endif
-
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationFacetBrep(BRepGraphicProperties * bRepGraphicProperties, IfcElementBundle *& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
-{
-	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
-
-	IfcEntityList* solidEntityList = new IfcEntityList();
-	//Parse all the solid inside the Faceted BRep
-	for (auto solidKernelEntity : bRepGraphicProperties->getSolidEntityVector())
-	{
-		IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
-
-		//Triangulated (NOT SURE ALL) faces to Fill the BRep
-		for (auto face : solidKernelEntity->getFacetTriangulated())
-		{
-			//Create IfcCartesianPoint List 
-			IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* cPList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
-			for (DPoint3d point : face)
-			{
-				Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(point);
-				cPList->push(cP);
-			}
-
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> polyCP(cPList);
-			Ifc4::IfcPolyLoop* pLoop = new Ifc4::IfcPolyLoop(polyCP);
-			Ifc4::IfcFaceOuterBound* facet = new Ifc4::IfcFaceOuterBound(pLoop, false);
-
-			//Create a FaceBound list
-			IfcTemplatedEntityList<Ifc4::IfcFaceBound>* trFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
-			trFaceBoundList->push(facet);
-
-			//collect all the IfcFaceBound in the list
-			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> trBoundsList(trFaceBoundList);
-
-			//Create the face with all the bounds
-			Ifc4::IfcFace* trFace = new Ifc4::IfcFace(trBoundsList);
-			tempIfcFaceList->push(trFace);
+			Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(point);
+			cPList->push(cP);
 		}
 
-		//Collect all the faces created
-		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> temFacesList(tempIfcFaceList);
+		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>> polyCP(cPList);
+		Ifc4::IfcPolyLoop* pLoop = new Ifc4::IfcPolyLoop(polyCP);
+		Ifc4::IfcFaceOuterBound* facet = new Ifc4::IfcFaceOuterBound(pLoop, false);
 
-		if (solidKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SOLID)
-		{
-			Ifc4::IfcClosedShell* closedShell = new Ifc4::IfcClosedShell(temFacesList);
-			solidEntityList->push(closedShell);
-		}
-		else if (solidKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SHEET)
-		{
-			Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(temFacesList);
-			solidEntityList->push(openShell);
-		}
-	}
+		//Create a FaceBound list
+		IfcTemplatedEntityList<Ifc4::IfcFaceBound>* trFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
+		trFaceBoundList->push(facet);
 
-	boost::shared_ptr<IfcEntityList> shellModel(solidEntityList);
+		//collect all the IfcFaceBound in the list
+		boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> trBoundsList(trFaceBoundList);
 
-	Ifc4::IfcShellBasedSurfaceModel* shellBasedSurfaceModel = new Ifc4::IfcShellBasedSurfaceModel(shellModel);
-	geomItem = shellBasedSurfaceModel;
-	
-
-	return geomItem;
+		//Create the face with all the bounds
+		Ifc4::IfcFace* trFace = new Ifc4::IfcFace(trBoundsList);
+		ifcFaceList->push(trFace);
+	}	
 }
 
 void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
@@ -1431,7 +1085,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 	outfile.close();
 }
 
-void IfcBRepSolidsEnhancer::buildIfcSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
+void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
 	IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcAdvancedFaceList)
 {
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
@@ -1444,74 +1098,12 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(vector<GraphicProperties*> surfaceVe
 			{
 				MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(surfaceGraphic);
 
-				//Create IfcCartesianPoint List 
-				IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
-
 				//Create a FaceBound list
 				IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
 
-				//Get the control point UV of the FACE surface
-				vector<vector<DPoint3d>> controlPointsPatch = msBsplineGraphicProperties->getControlPoints();
-				for (auto vCP : controlPointsPatch)
-				{
-					vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+				IfcSurfaceEnhancer* ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
+				Ifc4::IfcBSplineSurface* bSplineSurface = ifcSurfaceEnhancer->buildIfcSurface(*msBsplineGraphicProperties, file, elementBundle);
 
-					for (auto p : vCP)
-					{
-						Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
-						cartesianPointsUV.push_back(crtP);
-					}
-					tempCartesianPointList->push(cartesianPointsUV);
-				}
-
-				//Collect all the UV IfcCartesianPoint for the surface
-				boost::shared_ptr<IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>> controlPoints(tempCartesianPointList);
-
-				Ifc4::IfcBSplineSurface* bSplineSurface = nullptr;
-
-				if (msBsplineGraphicProperties->hasValidKnots && msBsplineGraphicProperties->hasValidWeights)
-					bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
-						msBsplineGraphicProperties->getUDegree(),
-						msBsplineGraphicProperties->getVDegree(),
-						controlPoints,
-						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-						msBsplineGraphicProperties->getUIsCLosed(),
-						msBsplineGraphicProperties->getVIsCLosed(),
-						msBsplineGraphicProperties->getIsSelfIntersect(),
-						msBsplineGraphicProperties->getUKnotsMultiplicity(),
-						msBsplineGraphicProperties->getVKnotsMultiplicity(),
-						msBsplineGraphicProperties->getUKnots(),
-						msBsplineGraphicProperties->getVKnots(),
-						Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
-						msBsplineGraphicProperties->getWeights()
-					);
-				else if (msBsplineGraphicProperties->hasValidKnots)
-					bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
-						msBsplineGraphicProperties->getUDegree(),
-						msBsplineGraphicProperties->getVDegree(),
-						controlPoints,
-						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-						msBsplineGraphicProperties->getUIsCLosed(),
-						msBsplineGraphicProperties->getVIsCLosed(),
-						msBsplineGraphicProperties->getIsSelfIntersect(),
-						msBsplineGraphicProperties->getUKnotsMultiplicity(),
-						msBsplineGraphicProperties->getVKnotsMultiplicity(),
-						msBsplineGraphicProperties->getUKnots(),
-						msBsplineGraphicProperties->getVKnots(),
-						Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
-						msBsplineGraphicProperties->getWeights()
-					);
-				else
-					bSplineSurface = new Ifc4::IfcBSplineSurface(
-						msBsplineGraphicProperties->getUDegree(),
-						msBsplineGraphicProperties->getVDegree(),
-						controlPoints,
-						Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
-						msBsplineGraphicProperties->getUIsCLosed(),
-						msBsplineGraphicProperties->getVIsCLosed(),
-						msBsplineGraphicProperties->getIsSelfIntersect()
-					);
-#if true
 				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 				bool addToIfcElementBundle = false;
 				auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
@@ -1583,81 +1175,43 @@ void IfcBRepSolidsEnhancer::buildIfcSurface(vector<GraphicProperties*> surfaceVe
 				//Ifc4::IfcFaceSurface* advanceFace = new Ifc4::IfcFaceSurface(faceBoundsList, bSplineSurface, true);
 				Ifc4::IfcAdvancedFace* advancedFace = new Ifc4::IfcAdvancedFace(faceBoundsList, bSplineSurface, true);
 
-				ifcAdvancedFaceList->push(advancedFace);
-
-				//entityList->push(advancedFace);
-#endif				
+				ifcAdvancedFaceList->push(advancedFace);		
 			}
-			else
+			else if (surfaceGraphic->geometryType == IGeometry::GeometryType::SolidPrimitive)
 			{
-				if (surfaceGraphic->geometryType == IGeometry::GeometryType::SolidPrimitive)
+				SolidPrimitiveProperties* primitiveGraphicProperties = dynamic_cast<SolidPrimitiveProperties*>(surfaceGraphic);
+
+				IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
+
+				entityList->push(ifcPrimitivesEnhancer->buildIfcPrimitive(*primitiveGraphicProperties, file, elementBundle));				
+			}
+			else if (surfaceGraphic->geometryType == IGeometry::GeometryType::Polyface)
+			{
+				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(surfaceGraphic); 
+				
+				for (auto meshTriangles : solidEntityGraphicProperties->getMeshTriangulated())
 				{
-					SolidPrimitiveProperties* primitiveGraphicProperties = dynamic_cast<SolidPrimitiveProperties*>(surfaceGraphic);
-
-#if false
-					Ifc4::IfcSurface* ifcSurface = nullptr;
-
-					Ifc4::IfcAxis2Placement3D* placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
-						primitiveGraphicProperties->getCentroid(),
-						primitiveGraphicProperties->getVectorAxisZ(),
-						primitiveGraphicProperties->getVectorAxisX()
-					);
-
-					//Create a FaceBound list
-					IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
-
-					PrimitiveTypeEnum primitiveType = primitiveGraphicProperties->getPrimitiveTypeEnum();
-
-					switch (primitiveType)
-					{
-					case PrimitiveTypeEnum::SPHERE:
-					{
-						SphereGraphicProperties* sphereGraphicProperties = dynamic_cast<SphereGraphicProperties*>(primitiveGraphicProperties);
-						ifcSurface = new Ifc4::IfcSphericalSurface(placement, NumberUtils::convertCurrentUnitToMeters(sphereGraphicProperties->getRadius()));
-					}
-						break;
-					case PrimitiveTypeEnum::CONE:
-					{
-						ConeGraphicProperties* coneGraphicProperties = dynamic_cast<ConeGraphicProperties*>(primitiveGraphicProperties);
-						ifcSurface = new Ifc4::IfcCylindricalSurface(placement, NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties->getBaseRadius()));
-					}
-						break;
-					case PrimitiveTypeEnum::CYLINDER:
-					{
-						CylinderGraphicProperties* cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties*>(primitiveGraphicProperties);
-						ifcSurface = new Ifc4::IfcCylindricalSurface(placement, NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties->getRadius()));
-					}
-						break;
-					case PrimitiveTypeEnum::RULED_SWEEP:
-					{
-						RuledSweepGraphicProperties* cylinderGraphicProperties = dynamic_cast<RuledSweepGraphicProperties*>(primitiveGraphicProperties);
-						//ifcSurface = new Ifc4::IfcSurfaceCurveSweptAreaSolid()
-					}
-					break;
-					default:
-						break;
-					}
-
-					if (ifcSurface != nullptr)
-					{
-						//collect all the IfcFaceBound in the list
-						boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFaceBound>> faceBoundsList(tempIfcFaceBoundList);
-
-						//Create the face with all the bounds			
-						// SameSense: This flag indicates whether the sense of the surface normal agrees with (TRUE), or opposes (FALSE), 
-						// the sense of the topological normal to the face.
-						Ifc4::IfcAdvancedFace* advanceFace = new Ifc4::IfcAdvancedFace(faceBoundsList, ifcSurface, true);
-
-						ifcAdvancedFaceList->push(advanceFace);
-					}
-#endif
-					IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
-					//Ifc4::IfcShell* singleShell(ifcPrimitivesEnhancer->buildIfcPrimitive(*primitiveGraphicProperties, file, elementBundle));
-					entityList->push(ifcPrimitivesEnhancer->buildIfcPrimitive(*primitiveGraphicProperties, file, elementBundle));
+					processPolyfaceMesh(meshTriangles, ifcAdvancedFaceList);
 				}
+			}
+			else if (surfaceGraphic->geometryType == IGeometry::GeometryType::CurveVector)
+			{
+				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(surfaceGraphic);
+
+				MeshTriangles* meshTriangles = new MeshTriangles();
+				vector<DPoint3d> pointShape;
+
+				for (auto curve : shapeGraphicProperties->getCurvesPrimitivesContainerVector())
+				{
+					auto cp = curve->getStartPoint();
+					auto cp1 = curve->getEndPoint();
+					pointShape.push_back(cp);
+					pointShape.push_back(cp1);
+				}
+				meshTriangles->facesTriangulatedVector.push_back(pointShape);
+				processPolyfaceMesh(meshTriangles, ifcAdvancedFaceList);
 			}
 		}
 	}
 }
-#pragma warning (pop)
 

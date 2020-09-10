@@ -414,7 +414,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			outfile.close();
 		}
 
-		else if (primitiveTypeEnum == PrimitiveTypeEnum::RULED_SWEEP)
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::RULED_SWEEP) //TODO[SB] To be Handle Ruled Sweep
 		{
 			RuledSweepGraphicProperties& ruledSweepGraphicProperties = dynamic_cast<RuledSweepGraphicProperties&>(primitiveGraphicProperties);
 

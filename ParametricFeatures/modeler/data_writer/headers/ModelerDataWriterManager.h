@@ -91,6 +91,35 @@ public:
 	void writeTorusDataToFile(DgnTorusPipeDetail torusDetails);
 #pragma endregion
 
+#pragma region Shapes
+	void writeShapeCurvesVectorDataToFile(CurveVectorCR curvesVector);
 
+	void writeCurvePrimitiveDataToFile(ICurvePrimitivePtr curvePrimitive);	
+#pragma endregion
+
+#pragma region Surface & Solid
+	void writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceCR msBsplineSurface);
+
+	void writeBodyDataToFile(ISolidKernelEntityCR entity);
+#pragma endregion
+
+#pragma region General Data
+	void writeTitleProcessDataToFile(string s);
+
+	void writeSinglePointDataToFile(DPoint3d point, int index = -1);
+
+	template <class Num> 
+	void writeTupleDataToFile(string s, Num data);
+
+#pragma endregion
 
 };
+
+template <class Num>
+void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	this->_outFile << s << ": " << data << endl;
+	this->_outFile << endl;
+	this->_outFile.close();
+}

@@ -23,12 +23,13 @@ class IfcSurfaceEnhancer
 {
 
 public:
-	void enhanceIfcSurface(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
+		ElementBundle* elementBundle, bool addToIfcElementBundle = true);
 
-	Ifc4::IfcGeometricRepresentationItem* buildIfcSurface(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle);
+	Ifc4::IfcBSplineSurface* buildIfcSurface(MSBsplineSurfaceGraphicProperties& msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle);
 private:
 
-	Ifc4::IfcSurface* buildIfcElementarySurface(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcSurface* buildBoundedSurface(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+	Ifc4::IfcSurface* buildIfcElementarySurface(MSBsplineSurfaceGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcSurface* buildBoundedSurface(MSBsplineSurfaceGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 		ElementBundle* elementBundle);
 };

@@ -7,6 +7,7 @@
 
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
+#include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 
 
 #include "IfcElementBuilder.h"
@@ -23,6 +24,7 @@ private:
 	IfcPropertiesEnhancer* _ifcPropertiesEnhancer;
 	IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
 	IfcPortsBuilder* _ifcPortsBuilder;
+	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
 	
 public:
 	IfcBuilder();

@@ -1,41 +1,89 @@
 #include "..\headers\IfcSurfaceEnhancer.h"
 
-void IfcSurfaceEnhancer::enhanceIfcSurface(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
+	ElementBundle* elementBundle, bool addToIfcElementBundle)
 {
-	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
-
-	if (!dictionaryPropertiesVector.empty())
-	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+	if (msBsplineSurfaceGraphicProperties != nullptr) {
+		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*msBsplineSurfaceGraphicProperties, file, elementBundle);
+		if (ifcRepresentationItem != nullptr)
 		{
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
-
-			Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-
-			for (auto element : dictionaryProperties.getElementBundle())
-			{
-				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-				if (solidPrimitiveProperties != nullptr) {
-					Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*solidPrimitiveProperties, file, element);
-					if (ifcRepresentationItem != nullptr)
-					{
-						auto bundle = new IfcGraphicPropertiesBundle(element->getGraphicProperties(),
-							ifcRepresentationItem, element->getElementHandle(), element->getElemDisplayParamsCP());
-						bundle->setColor(element->getColor());
-						bundle->setTransparency(element->getTransparency());
-						ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
-						//ifcTemplatedEntityList->push(ifcRepresentationItem);
-					}
-				}
-			}
+			auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+				ifcRepresentationItem, elementBundle->getElementHandle());
+			bundle->setColor(elementBundle->getColor());
+			bundle->setTransparency(elementBundle->getTransparency());
+			bundle->setMaterial(elementBundle->getMaterial());
+			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
 	}
 }
 
-Ifc4::IfcGeometricRepresentationItem * IfcSurfaceEnhancer::buildIfcSurface(SolidPrimitiveProperties & primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
+Ifc4::IfcBSplineSurface* IfcSurfaceEnhancer::buildIfcSurface(MSBsplineSurfaceGraphicProperties & msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
 {
+	//Create IfcCartesianPoint List 
+	IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
 	
+	//Get the control point UV of the FACE surface
+	vector<vector<DPoint3d>> controlPointsPatch = msBsplineSurfaceGraphicProperties.getControlPoints();
+	for (auto vCP : controlPointsPatch)
+	{
+		vector<Ifc4::IfcCartesianPoint*> cartesianPointsUV;
+
+		for (auto p : vCP)
+		{
+			Ifc4::IfcCartesianPoint * crtP = IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(p);
+			cartesianPointsUV.push_back(crtP);
+		}
+		tempCartesianPointList->push(cartesianPointsUV);
+	}
+
+	//Collect all the UV IfcCartesianPoint for the surface
+	boost::shared_ptr<IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>> controlPoints(tempCartesianPointList);
+
+	Ifc4::IfcBSplineSurface* bSplineSurface = nullptr;
+
+	if (msBsplineSurfaceGraphicProperties.hasValidKnots && msBsplineSurfaceGraphicProperties.hasValidWeights)
+		bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
+			msBsplineSurfaceGraphicProperties.getUDegree(),
+			msBsplineSurfaceGraphicProperties.getVDegree(),
+			controlPoints,
+			Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+			msBsplineSurfaceGraphicProperties.getUIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getVIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getIsSelfIntersect(),
+			msBsplineSurfaceGraphicProperties.getUKnotsMultiplicity(),
+			msBsplineSurfaceGraphicProperties.getVKnotsMultiplicity(),
+			msBsplineSurfaceGraphicProperties.getUKnots(),
+			msBsplineSurfaceGraphicProperties.getVKnots(),
+			Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
+			msBsplineSurfaceGraphicProperties.getWeights()
+		);
+	else if (msBsplineSurfaceGraphicProperties.hasValidKnots)
+		bSplineSurface = new Ifc4::IfcRationalBSplineSurfaceWithKnots(
+			msBsplineSurfaceGraphicProperties.getUDegree(),
+			msBsplineSurfaceGraphicProperties.getVDegree(),
+			controlPoints,
+			Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+			msBsplineSurfaceGraphicProperties.getUIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getVIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getIsSelfIntersect(),
+			msBsplineSurfaceGraphicProperties.getUKnotsMultiplicity(),
+			msBsplineSurfaceGraphicProperties.getVKnotsMultiplicity(),
+			msBsplineSurfaceGraphicProperties.getUKnots(),
+			msBsplineSurfaceGraphicProperties.getVKnots(),
+			Ifc4::IfcKnotType::IfcKnotType_UNSPECIFIED,
+			msBsplineSurfaceGraphicProperties.getWeights()
+		);
+	else
+		bSplineSurface = new Ifc4::IfcBSplineSurface(
+			msBsplineSurfaceGraphicProperties.getUDegree(),
+			msBsplineSurfaceGraphicProperties.getVDegree(),
+			controlPoints,
+			Ifc4::IfcBSplineSurfaceForm::IfcBSplineSurfaceForm_UNSPECIFIED,
+			msBsplineSurfaceGraphicProperties.getUIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getVIsCLosed(),
+			msBsplineSurfaceGraphicProperties.getIsSelfIntersect()
+		);
+
+	return bSplineSurface;
 }

@@ -56,7 +56,7 @@ public:
 	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr, bool addToDictionary = true);
 	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
 	GraphicProperties* processSolidPrimitives(ISolidPrimitiveCR& primitive, bool addToDictionary = true);
-	void processBodySolid(ISolidKernelEntityCR entity);
+	void processBodySolid(ISolidKernelEntityCR entity, bool meshProcessing = false);
 	
 	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 	
@@ -69,8 +69,8 @@ public:
 
 	DictionaryProperties* getDictionaryProperties();
 	
-	bool processEntityAsFacetedBRep(ISolidKernelEntityCR entity);
-	bool processElementAsMesh(BRepGraphicProperties*& bRepGraphicProperties);
+	bool processPolyfaceFacets(PolyfaceQueryCR meshData, bool isFilled, Transform currentTransform);
+	bool processElementAsMesh(SolidEntityGraphicProperties*& bRepGraphicProperties, bvector<PolyfaceHeaderPtr> meshes);
 	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
 
 

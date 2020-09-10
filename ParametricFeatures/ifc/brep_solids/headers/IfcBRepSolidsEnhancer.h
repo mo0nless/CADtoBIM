@@ -13,6 +13,7 @@
 #include "../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
+#include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
 struct EdgeIfcCurve
@@ -37,20 +38,17 @@ class IfcBRepSolidsEnhancer
 public:
 	IfcBRepSolidsEnhancer();
 
-	void enhanceIfcBRepSolidsEnhancer(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector,
-		IfcHierarchyHelper<Ifc4>& file);
+	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcElementBundle*& ifcElementBundle,
+		ElementBundle* elementBundle);
 	
 private:
-	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity,
-		IfcElementBundle*& ifcElementBundle, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
-	
-	Ifc4::IfcGeometricRepresentationItem* buildGeometricRepresentationFacetBrep(BRepGraphicProperties* brepSolidsKernelEntity,
-		IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle);
+
+	void processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList);
 
 	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	void buildIfcSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcElementBundle*& ifcElementBundle, 
-		ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
+	void buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties,	ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
 
 	template<class T>
 	T searchOnMap(map<int, T>, int key);

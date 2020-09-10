@@ -8,6 +8,7 @@ IfcBuilder::IfcBuilder()
 	this->_ifcBRepSolidsEnhancer = new IfcBRepSolidsEnhancer();
 	this->_ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
 	this->_IfcColorMaterialEnhancer = new IfcColorMaterialEnhancer();
+	this->_ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
 
 }
 
@@ -224,12 +225,23 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 					_ifcShapesEnhancer->enhance(file,shapeGraphicProperties, ifcElementBundle, element);
 					continue;
 				}
+
+				MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+				if (msBsplineSurfaceGraphicProperties != nullptr)
+				{
+					_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+					continue;
+				}
+
+				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+				if (solidEntityGraphicProperties != nullptr)
+				{
+					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+					continue;
+				}
 			}
 		}
 	}
-
-	
-	_ifcBRepSolidsEnhancer->enhanceIfcBRepSolidsEnhancer(dictionaryPropertiesVector, ifcElementBundleVector, file);
 	
 	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 	ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
