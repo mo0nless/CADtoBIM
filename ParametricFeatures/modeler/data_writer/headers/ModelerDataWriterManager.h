@@ -109,7 +109,10 @@ public:
 	void writeSinglePointDataToFile(DPoint3d point, int index = -1);
 
 	template <class Num> 
-	void writeTupleDataToFile(string s, Num data);
+	void writeTupleDataToFile(string s, Num data);	
+	
+	template <class Triplet>
+	void writeTripetXyzDataToFile(string s, Triplet data);
 
 #pragma endregion
 
@@ -119,7 +122,18 @@ template <class Num>
 void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
 {
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
-	this->_outFile << s << ": " << data << endl;
+	this->_outFile << s << " = " << data << endl;
+	this->_outFile << endl;
+	this->_outFile.close();
+}
+
+template<class Triplet>
+inline void ModelerDataWriterManager::writeTripetXyzDataToFile(string s, Triplet data)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+
+	this->_outFile << fixed;
+	this->_outFile << s << " = [" << data.x << ", " << data.y << ", " << data.z << "]" << endl;
 	this->_outFile << endl;
 	this->_outFile.close();
 }

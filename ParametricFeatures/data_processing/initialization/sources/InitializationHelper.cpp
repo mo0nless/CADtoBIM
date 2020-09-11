@@ -206,10 +206,18 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
 	
+	//Open ProgressBar
+	DialogCompletionBar progressBar = DialogCompletionBar(); 
+	progressBar.Open(L"Working...");
+
+	//Count the element (this function gets also the deleted ones??)
+	int numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements);
+	int percentage = 0;
+	int index = 0;
+	WString myString;	
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
-		
 		DgnModelP c = elemRef->GetDgnModelP();
 		ElementHandle currentElem(elemRef);
 
@@ -220,6 +228,16 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 		GraphicsProcessorHelper->setDictionaryProperties(*propertiesDictionary);
+
+		//ProgressBar
+		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", index, numGraphicElement, elDescr);
+		percentage = 100 * index / numGraphicElement;
+
+		if (percentage > 100)
+			percentage = 100;
+
+		progressBar.Update(myString, percentage);
+		index++;
 
 		iterateSubElements(elemRef, propertiesDictionary);
 
@@ -265,8 +283,11 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		outfile << "===================================================" << endl;
 		outfile << endl;
 		outfile.close();
-
+		
 	}
+
+	//Close ProgressBar
+	progressBar.Close();
 }
 void InitializationHelper::createFilesStructure()
 {
@@ -311,19 +332,8 @@ void InitializationHelper::createFilesStructure()
 	// create log folder
 	createFolder(currentDayLogFolderPath);
 
-	string re = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
+	string fname = SessionManager::getInstance()->getDgnFileName();
 
-
-	// get dgn file name
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char fname[_MAX_FNAME];
-	char ext[_MAX_EXT];
-
-	_splitpath_s(re.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, fname, _MAX_FNAME, ext, _MAX_EXT);
-
-
-	//string ifcOutputFileName1 = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcCustomName.ifc";
 	string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
 	
 	SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);

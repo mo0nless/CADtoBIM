@@ -48,7 +48,6 @@
     <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="modeler\boolean_operations\sources\BooleanOperationProperties.cpp" />
-    <ClCompile Include="modeler\brep_solids\sources\BRepGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\create_solids_operations\sources\CreateSolidsOperationProperties.cpp" />
@@ -71,7 +70,6 @@
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
-    <ClCompile Include="modeler\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertiesBundle.cpp" />
@@ -104,6 +102,8 @@
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\NotificationMessage.h" />
+    <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="interface\MainForm.h">
@@ -125,7 +125,6 @@
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
     <ClInclude Include="ifc\surfaces\headers\IfcSurfaceEnhancer.h" />
-    <ClInclude Include="modeler\brep_solids\headers\BRepGraphicProperties.h" />
     <ClInclude Include="modeler\curves\headers\CurveGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\SolidEntityGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
@@ -176,7 +175,6 @@
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
-    <ClInclude Include="modeler\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
@@ -186,12 +184,14 @@
     <ClInclude Include="modeler\curves\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessorHelper.h" />
     <ClInclude Include="data_processing\initialization\headers\InitializationHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -199,6 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="interface\MainForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ParametricFeatures1.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

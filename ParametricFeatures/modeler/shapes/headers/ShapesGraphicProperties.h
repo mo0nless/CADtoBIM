@@ -15,9 +15,7 @@ using namespace std;
 class ShapesGraphicProperties: public GraphicProperties
 {
 public:
-	ShapesGraphicProperties(ShapesTypeEnum newShapeType);
-
-	ShapesTypeEnum getCurvesShapeTypeEnum();
+	ShapesGraphicProperties();
 
 	void addFaceBoundID(int newFaceidentifier);
 	vector<int> getFacesBoundIDs();

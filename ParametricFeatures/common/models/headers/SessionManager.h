@@ -1,6 +1,7 @@
 #pragma once
 
-#include<string>
+//#include<string>
+#include "../../utils/headers/StringUtils.hpp"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ private:
 	string _dataOutputFilePath;
 	string _ifcOutputFilePath;
 	string _outputFolderPath;
+	string _dgnFileName;
 
 	// Private constructor so that no objects can be created.
 	SessionManager();
@@ -34,4 +36,6 @@ public:
 	string getOutputFolderPath();
 	void setOutputFolderPath(string outputFolderPath);
 
+	string getDgnFileName();
+	void setDgnFileName(string path);
 };

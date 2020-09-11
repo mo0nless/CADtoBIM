@@ -4,7 +4,7 @@
 #include "../../../stdafx.h"
 //#include "../../headers/IfcElementBundle.h"
 //#include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../../modeler/brep_solids/headers/BRepGraphicProperties.h"
+#include "../../../modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
 #include "../../../modeler/primitives/headers/BoxGraphicProperties.h"

@@ -1,8 +1,7 @@
 #pragma once
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
-#include "../../../modeler/brep_solids/headers/BRepGraphicProperties.h"
-#include "../../../modeler/shapes/headers/CurvesShapesGraphicProperties.h"
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
@@ -39,6 +38,7 @@ private:
 public:
 	GraphicsProcessorHelper();
 
+#pragma region PRIMITIVES SETTER
 	void setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& BoxGraphicProperties);
 	void setConeGraphicProperties(DgnConeDetail dgnConeDetail, ConeGraphicProperties*& coneGraphicProperties);
 	void setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties*& cylinderGraphicProperties);
@@ -47,32 +47,42 @@ public:
 	void setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, RotationalSweepGraphicProperties*& rotationalSweepGraphicProperties);
 	void setRuledSweepGraphicProperties(DgnRuledSweepDetail ruledSweepDetails, RuledSweepGraphicProperties*& ruledSweepGraphicProperties);
 	void setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties*& extrusionGraphicProperties);
-	
-	GraphicProperties* processConeAndCylinder(ISolidPrimitiveCR& primitive);
-	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = nullptr, bool addToDictionary = true);
-	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties = nullptr, bool addToDictionary = true);
-	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
-	GraphicProperties* processSolidPrimitives(ISolidPrimitiveCR& primitive, bool addToDictionary = true);
-	void processBodySolid(ISolidKernelEntityCR entity, bool meshProcessing = false);
-	
-	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
-	
+#pragma endregion
+
+#pragma region GEN. PROPERTIES
 	void setGraphicPropertiesAxes(GraphicProperties*& GraphicProperties, Transform& localToWorld);// use this method to set vector axis X,Y,Z
 	void setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties);// use this method to set centroid, area and volume
+#pragma endregion
+
+#pragma region PROCESSORS SETUP CALL
+	bool processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface);
+	bool processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled);	
+	bool processSolidPrimitive(ISolidPrimitiveCR& primitive);
+	bool processPolyfaceFacets(PolyfaceQueryCR meshData, bool isFilled, Transform currentTransform);
+#pragma endregion
+
+#pragma region PROCESSORS EXECUTION
+	GraphicProperties* processConeAndCylinder(ISolidPrimitiveCR& primitive);
+	GraphicProperties* processPrimitives(ISolidPrimitiveCR& primitive);
+
+	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties);
+	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
+
+	void processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties);
+	void processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties);
+
+	void processBodySolid(ISolidKernelEntityCR entity, bool meshProcessing = false);
+	bool processElementAsMesh(SolidEntityGraphicProperties*& bRepGraphicProperties, bvector<PolyfaceHeaderPtr> meshes);
+	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
+#pragma endregion
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
 	void setElementBundle(ElementBundle& newElementBundle);
+	void setElementHandle(ElementHandle elementHandle);
+
 	ElementBundle* getElementBundle();
-
 	DictionaryProperties* getDictionaryProperties();
-	
-	bool processPolyfaceFacets(PolyfaceQueryCR meshData, bool isFilled, Transform currentTransform);
-	bool processElementAsMesh(SolidEntityGraphicProperties*& bRepGraphicProperties, bvector<PolyfaceHeaderPtr> meshes);
-	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
-
-
 	ElementHandle getCurrentElementHandle();
-	void setElementHandle(ElementHandle elementHandle);	
 };
 
 template <class T, class U>

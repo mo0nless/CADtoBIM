@@ -23,6 +23,19 @@ struct StringUtils {
 	}
 
 	/**
+	*  Convert WString to string
+	*  @param wStringValue[in]
+	*  @return std:string
+	*/
+	inline static WString getWString(string stringValue) {
+
+		wstring ws(stringValue.begin(), stringValue.end());
+		WString wString(ws.c_str());
+
+		return wString;
+	}
+
+	/**
 	*  Normalize string, remove special characters, otherwise exception thrown in IfcParse
 	*  @param stringValue[in]
 	*  @return std:string

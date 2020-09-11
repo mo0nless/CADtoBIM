@@ -45,3 +45,23 @@ void SessionManager::setOutputFolderPath(string outputFolderPath)
 	this->_outputFolderPath = outputFolderPath;
 }
 
+string SessionManager::getDgnFileName()
+{
+	return this->_dgnFileName;
+}
+
+void SessionManager::setDgnFileName(string path)
+{
+	// get dgn file name
+	char drive[_MAX_DRIVE];
+	char dir[_MAX_DIR];
+	char fname[_MAX_FNAME];
+	char ext[_MAX_EXT];
+
+	_splitpath_s(path.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, fname, _MAX_FNAME, ext, _MAX_EXT);
+
+	string s = fname;
+
+	_dgnFileName = StringUtils::getNormalizedString(s);
+}
+

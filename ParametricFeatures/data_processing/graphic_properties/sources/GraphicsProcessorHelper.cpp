@@ -28,6 +28,15 @@ DictionaryProperties* GraphicsProcessorHelper::getDictionaryProperties()
 	return this->pDictionaryProperties;
 }
 
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+
+
+#pragma region GEN. PROPERTIES
+
 void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
 	ofstream outfile;
@@ -41,27 +50,14 @@ void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& 
 	GraphicProperties->setCentroid(centroid);
 	GraphicProperties->setArea(area);
 
-	outfile.open(filePath, ios_base::app);
-	outfile << fixed;
-	outfile << endl;
-	outfile << "Centroid from Area [X] = " << centroid.x << endl;
-	outfile << "Centroid from Area [Y] = " << centroid.y << endl;
-	outfile << "Centroid from Area [Z] = " << centroid.z << endl;
-	outfile << "Area1 = " << area << endl;
-	outfile << endl;
-
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile<DVec3d>("Centroid from Area", centroid);
+	this->_modelerDataWriterManager->writeTupleDataToFile("Area", area);
+	
 	primitive.ComputePrincipalMoments(volume, centroid, axes, momentxyz);
 	GraphicProperties->setVolume(volume);
 
-	outfile << "Centroid from Volume [X] = " << centroid.x << endl;
-	outfile << "Centroid from Volume [Y] = " << centroid.y << endl;
-	outfile << "Centroid from Volume [Z] = " << centroid.z << endl;
-	outfile << "Volume = " << volume << endl;
-	outfile << "Area2 = " << area << endl;
-	outfile << endl;
-	
-	outfile.close();
-
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile<DVec3d>("Centroid from Volume", centroid);
+	this->_modelerDataWriterManager->writeTupleDataToFile("Volume", volume);
 }
 
 void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graphicProperties, Transform& localToWorld)
@@ -88,6 +84,9 @@ void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graph
 	outfile.close();
 }
 
+#pragma endregion
+
+#pragma region PRIMITIVES SETTER
 
 void GraphicsProcessorHelper::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
@@ -216,9 +215,7 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 	DVec3d rotationAxes;
 	double sweepRadians;
 	DPoint3d centerOfRotation;
-
-	bool addToDictionary = false;
-
+	
 	dgnRotationalSweepDetail.GetTransforms(localToWorld, worldToLocal);
 
 	dgnRotationalSweepDetail.TryGetRotationAxis(centerOfRotation, rotationAxes, sweepRadians);
@@ -232,8 +229,8 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 
 	setGraphicPropertiesAxes((GraphicProperties*&)rotationalSweepGraphicProperties, localToWorld);
 
-	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-	processShapesCurvesVector(*dgnRotationalSweepDetail.m_baseCurve, false, shapesGraphicProperties, addToDictionary);
+	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
+	processShapesCurvesVector(*dgnRotationalSweepDetail.m_baseCurve, false, shapesGraphicProperties);
 	
 	if (shapesGraphicProperties != nullptr) {
 		rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
@@ -266,9 +263,8 @@ void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail
 
 		cv->GetStartEnd(curveStart, curveEnd);		
 
-		bool curveAddToDictionary = false;
-		ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-		processShapesCurvesVector(*cv, false, &*shapesGraphicProperties, curveAddToDictionary);
+		ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
+		processShapesCurvesVector(*cv, false, &*shapesGraphicProperties);
 		ruledSweepGraphicProperties->addSectionCurve(shapesGraphicProperties);
 	}
 }
@@ -280,10 +276,9 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	extrusionGraphicProperties->setDirectionOfExtrusion(extrusionDetails.m_extrusionVector);
 	extrusionGraphicProperties->setIsSolid (extrusionDetails.m_capped);
 
-	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
 
-	bool addToDictionary = false;
-	processShapesCurvesVector(*extrusionDetails.m_baseCurve, false, *&shapesGraphicProperties, addToDictionary);
+	processShapesCurvesVector(*extrusionDetails.m_baseCurve, false, *&shapesGraphicProperties);
 	if (shapesGraphicProperties != nullptr) {
 		extrusionGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
 	}
@@ -311,6 +306,79 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	
 }
 
+#pragma endregion 
+
+#pragma region PROCESSORS SETUP CALL
+
+bool GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface)
+{
+	//TODO[SB] Handle false operation
+	MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+	msBsplineSurface.HasValidPoleAllocation();
+
+	processMSBsplineSurface(msBsplineSurface, msBsplineSurfaceGraphicProperties);
+
+	this->elementBundle->setGraphicProperties(*msBsplineSurfaceGraphicProperties);
+
+	return true;
+}
+
+bool GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled)
+{
+	ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
+
+	processShapesCurvesVector(curvesVector, isFilled, *&shapesGraphicProperties);
+
+	if (!shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() || !shapesGraphicProperties->getShapesGraphicsContainer().empty())
+	{
+		this->elementBundle->setGraphicProperties(*shapesGraphicProperties);
+		return true;
+	}
+
+	return false;
+}
+
+bool GraphicsProcessorHelper::processSolidPrimitive(ISolidPrimitiveCR & primitive)
+{
+	GraphicProperties* primitiveGraphicProperties = processPrimitives(primitive);
+
+	if (primitiveGraphicProperties == nullptr)
+		return false;
+
+	this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
+
+	return true;
+}
+
+bool GraphicsProcessorHelper::processPolyfaceFacets(PolyfaceQueryCR meshData, bool isFilled, Transform currentTransform)
+{
+	this->_modelerDataWriterManager->writeTitleProcessDataToFile("PolyfaceQueryCR - meshData");
+
+	bvector<PolyfaceHeaderPtr> meshes;
+	PolyfaceHeaderPtr header = PolyfaceHeader::CreateVariableSizeIndexed();
+	header->CopyFrom(meshData);
+	header->Transform(currentTransform);
+	meshes.push_back(header);
+
+	SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
+	solidKernelEntity->meshProcessing = true;
+	solidKernelEntity->setBRepTypeEnum(0);
+
+	bool elementProcessed;
+
+	if (meshes.empty())
+		return elementProcessed = false;
+
+	elementProcessed = processElementAsMesh(*&solidKernelEntity, meshes);
+	this->getElementBundle()->setGraphicProperties(*solidKernelEntity);
+
+	return elementProcessed;
+}
+
+
+#pragma endregion
+
+#pragma region PROCESSORS EXECUTION
 
 GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimitiveCR& primitive)
 {
@@ -390,13 +458,196 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	return *&primitiveGraphicProperties;
 }
 
-
-void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, bool addToDictionary)
+GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR & primitive)
 {
-	if (msBsplineSurfaceGraphicProperties == nullptr) {
-		msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
-	}		
+	pDictionaryProperties->setIsPrimitiveSolid(true);
+	GraphicProperties* primitiveGraphicProperties = nullptr;
 
+	switch (primitive.GetSolidPrimitiveType())
+	{
+	case SolidPrimitiveType::SolidPrimitiveType_DgnBox:
+	{
+		DgnBoxDetail boxDetails;
+
+		if (primitive.TryGetDgnBoxDetail(boxDetails))
+		{
+			Transform localToWorld, worldToLocal;
+
+			this->_modelerDataWriterManager->writeBoxDataToFile(boxDetails);
+
+			// get local to world class to get the X,Y,Z axes 
+			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			primitiveGraphicProperties = new BoxGraphicProperties();
+
+			// set centroid, area and volume
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+
+			// set X,Y,Z axes
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+			columnVectorX = boxDetails.ParameterizationSign() * boxDetails.m_vectorX;
+			columnVectorY = boxDetails.ParameterizationSign() * boxDetails.m_vectorY;
+
+			columnVectorZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
+			columnVectorZ = boxDetails.ParameterizationSign() * columnVectorZ;
+
+			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+			setBoxGraphicProperties(boxDetails, (BoxGraphicProperties*&)primitiveGraphicProperties);
+
+		}
+
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnCone:
+	{
+		DgnConeDetail coneDetails;
+
+		if (primitive.TryGetDgnConeDetail(coneDetails))
+		{
+			this->_modelerDataWriterManager->writeConeDataToFile(coneDetails);
+			// get local to world class to get the X,Y,Z axes 
+			primitiveGraphicProperties = processConeAndCylinder(primitive);
+		}
+
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnExtrusion:
+	{
+		DgnExtrusionDetail extrusionDetails;
+
+		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
+		{
+			Transform localToWorld, worldToLocal;
+			extrusionDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			this->_modelerDataWriterManager->writeExtrusionDataToFile(extrusionDetails);
+
+			primitiveGraphicProperties = new ExtrusionGraphicProperties();
+			setExtrusionGraphicProperties(extrusionDetails, (ExtrusionGraphicProperties*&)primitiveGraphicProperties);
+
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
+		}
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnRotationalSweep:
+	{
+		DgnRotationalSweepDetail rotSweepDetails;
+
+		if (primitive.TryGetDgnRotationalSweepDetail(rotSweepDetails))
+		{
+
+			this->_modelerDataWriterManager->writeRotationalSweepDataToFile(rotSweepDetails);
+
+			primitiveGraphicProperties = new RotationalSweepGraphicProperties();
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setRotationalSweepGraphicProperties(rotSweepDetails, (RotationalSweepGraphicProperties*&)primitiveGraphicProperties);
+		}
+
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
+	{
+		DgnRuledSweepDetail ruledSweepDetails;
+
+		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
+		{
+			Transform localToWorld, worldToLocal;
+			ruledSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			this->_modelerDataWriterManager->writeRuledSweepDataToFile(ruledSweepDetails);
+
+			primitiveGraphicProperties = new RuledSweepGraphicProperties();
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
+			setRuledSweepGraphicProperties(ruledSweepDetails, (RuledSweepGraphicProperties*&)primitiveGraphicProperties);
+		}
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnSphere:
+	{
+		DgnSphereDetail sphereDetails;
+
+		if (primitive.TryGetDgnSphereDetail(sphereDetails))
+		{
+
+			this->_modelerDataWriterManager->writeSphereDataToFile(sphereDetails);
+
+			primitiveGraphicProperties = new SphereGraphicProperties();
+			// set centroid, area and volume
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+			setGraphicPropertiesAxes(*&primitiveGraphicProperties, sphereDetails.m_localToWorld);
+
+			// set spehere properties
+			setSphereGraphicProperties((SphereGraphicProperties*&)primitiveGraphicProperties);
+		}
+
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_DgnTorusPipe:
+	{
+		DgnTorusPipeDetail torusDetails;
+
+
+		if (primitive.TryGetDgnTorusPipeDetail(torusDetails))
+		{
+			RotMatrix rotationAxes;
+			DPoint3d centerRotation;
+
+			Transform localToWorld, worldToLocal;
+
+			double radiusA, radiusB, sweepRadians;
+			this->_modelerDataWriterManager->writeTorusDataToFile(torusDetails);
+
+			// get local to world class to get the X,Y,Z axes 
+			torusDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			torusDetails.TryGetFrame(centerRotation, rotationAxes, radiusA, radiusB, sweepRadians);
+
+			primitiveGraphicProperties = new TorusGraphicProperties();
+
+			// set centroid, area and volume
+			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
+
+			// set X,Y,Z axes
+			DVec3d columnVectorX, columnVectorY, columnVectorZ;
+
+			columnVectorX = torusDetails.ParameterizationSign() * torusDetails.m_vectorX;
+			columnVectorY = torusDetails.ParameterizationSign() * torusDetails.m_vectorY;
+
+			columnVectorZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
+			columnVectorZ = torusDetails.ParameterizationSign() * columnVectorZ;
+
+			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+			setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, (TorusGraphicProperties*&)primitiveGraphicProperties);
+		}
+
+	}
+	break;
+
+	case SolidPrimitiveType::SolidPrimitiveType_None:
+	{
+
+	}
+
+	default:
+		break;
+	}
+
+	return primitiveGraphicProperties;
+	/*if (primitiveGraphicProperties != nullptr)
+	return *&primitiveGraphicProperties;
+	else
+	return nullptr;*/
+}
+
+
+void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties)
+{
 	this->_modelerDataWriterManager->writeMSBsplineSurfaceDataToFile(msBsplineSurface);
 	
 	size_t lowAindex, highAindex;
@@ -468,19 +719,18 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 	//This function returns a parity regions
 	//Outer/Inner BSpline Surface Boundaries
 	CurveVectorPtr surfaceVecBound = msBsplineSurface.GetUVBoundaryCurves(true, true);
-	ShapesGraphicProperties* surfaceShapesGP = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	ShapesGraphicProperties* surfaceShapesGP = new ShapesGraphicProperties();
 	surfaceShapesGP->type = "BS";
 	
 	//This function returns a parity regions
 	//Outer/Inner Line String Boundaries
 	CurveVectorPtr linesVecBound = msBsplineSurface.GetUVBoundaryCurves(true, false);
-	ShapesGraphicProperties* pCurveShapesGP = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+	ShapesGraphicProperties* pCurveShapesGP = new ShapesGraphicProperties();
 	pCurveShapesGP->type = "LS";
 
 	//Process the primitives
-	bool curveAddToDictionary = false;
-	//processShapesCurvesVector(*surfaceVecBound, false, &*surfaceShapesGP, curveAddToDictionary);
-	processShapesCurvesVector(*linesVecBound, false, &*pCurveShapesGP, curveAddToDictionary);
+	//processShapesCurvesVector(*surfaceVecBound, false, &*surfaceShapesGP);
+	processShapesCurvesVector(*linesVecBound, false, &*pCurveShapesGP);
 
 	//Points evaluation in 3D Space
 	//evaluateUVShapesCurvesVector(msBsplineSurface, surfaceShapesGP, msBsplineSurfaceGraphicProperties);
@@ -545,10 +795,6 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 	msBsplineSurfaceGraphicProperties->hasValidWeights = msBsplineSurface.HasWeights();
 	msBsplineSurfaceGraphicProperties->hasValidKnots = msBsplineSurface.HasValidKnotAllocation();
 	//msBsplineSurfaceGraphicProperties->setBoundsVectorPoints(boundsVectorPoints);
-
-	if (addToDictionary) {
-		this->elementBundle->setGraphicProperties(*msBsplineSurfaceGraphicProperties);
-	}
 }
 
 void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)
@@ -635,10 +881,6 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 }
 
 
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
 void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties)
 {
 	for each (ICurvePrimitivePtr curvePrimitive in curvesVector)
@@ -755,9 +997,8 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			if (curvePrimitive->GetChildCurveVectorCP() != nullptr)
 			{
 				CurveVectorCP cPvector = curvePrimitive->GetChildCurveVectorCP();
-				ShapesGraphicProperties* newShapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-				bool addToDictionary = false;
-				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties, addToDictionary);
+				ShapesGraphicProperties* newShapesGraphicProperties = new ShapesGraphicProperties();
+				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties);
 				shapesGraphicProperties->insertShapesGraphicProperties(newShapesGraphicProperties);
 			}
 		}
@@ -897,15 +1138,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 	}
 }
 
-void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties, bool addToDictionary)
+void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
 {
 	if (!curvesVector.empty())
 	{
-		if (shapesGraphicProperties == nullptr)
-		{
-			shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
-		}
-
 		this->_modelerDataWriterManager->writeShapeCurvesVectorDataToFile(curvesVector);
 
 		DPoint3d center, start, end;
@@ -944,204 +1180,9 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
-
-		if (shapesGraphicProperties != nullptr && !shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() && addToDictionary)
-			this->elementBundle->setGraphicProperties(*shapesGraphicProperties);
-		
-
 	}
 }
 
-
-GraphicProperties* GraphicsProcessorHelper::processSolidPrimitives(ISolidPrimitiveCR & primitive, bool addToDictionary)
-{
-	pDictionaryProperties->setIsPrimitiveSolid(true);
-	GraphicProperties* primitiveGraphicProperties = nullptr;
-
-	switch (primitive.GetSolidPrimitiveType())
-	{
-	case SolidPrimitiveType::SolidPrimitiveType_DgnBox:
-	{
-		DgnBoxDetail boxDetails;
-
-		if (primitive.TryGetDgnBoxDetail(boxDetails))
-		{
-			Transform localToWorld, worldToLocal;
-
-			this->_modelerDataWriterManager->writeBoxDataToFile(boxDetails);
-
-			// get local to world class to get the X,Y,Z axes 
-			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-
-			primitiveGraphicProperties = new BoxGraphicProperties();
-
-			// set centroid, area and volume
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-
-			// set X,Y,Z axes
-			DVec3d columnVectorX, columnVectorY, columnVectorZ;
-
-			columnVectorX = boxDetails.ParameterizationSign() * boxDetails.m_vectorX;
-			columnVectorY = boxDetails.ParameterizationSign() * boxDetails.m_vectorY;
-
-			columnVectorZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
-			columnVectorZ = boxDetails.ParameterizationSign() * columnVectorZ;
-
-			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
-			setBoxGraphicProperties(boxDetails, (BoxGraphicProperties*&)primitiveGraphicProperties);
-
-		}
-
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnCone:
-	{
-		DgnConeDetail coneDetails;
-
-		if (primitive.TryGetDgnConeDetail(coneDetails))
-		{
-			this->_modelerDataWriterManager->writeConeDataToFile(coneDetails);
-			// get local to world class to get the X,Y,Z axes 
-			primitiveGraphicProperties = processConeAndCylinder(primitive);
-		}
-
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnExtrusion:
-	{
-		DgnExtrusionDetail extrusionDetails;
-
-		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
-		{
-			Transform localToWorld, worldToLocal;
-			extrusionDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-			this->_modelerDataWriterManager->writeExtrusionDataToFile(extrusionDetails);
-
-			primitiveGraphicProperties = new ExtrusionGraphicProperties();
-			setExtrusionGraphicProperties(extrusionDetails, (ExtrusionGraphicProperties*&)primitiveGraphicProperties);
-
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
-		}
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnRotationalSweep:
-	{
-		DgnRotationalSweepDetail rotSweepDetails;
-
-		if (primitive.TryGetDgnRotationalSweepDetail(rotSweepDetails))
-		{
-
-			this->_modelerDataWriterManager->writeRotationalSweepDataToFile(rotSweepDetails);
-
-			primitiveGraphicProperties = new RotationalSweepGraphicProperties();
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-			setRotationalSweepGraphicProperties(rotSweepDetails, (RotationalSweepGraphicProperties*&)primitiveGraphicProperties);
-		}
-
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
-	{
-		DgnRuledSweepDetail ruledSweepDetails;
-
-		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
-		{
-			Transform localToWorld, worldToLocal;
-			ruledSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-			this->_modelerDataWriterManager->writeRuledSweepDataToFile(ruledSweepDetails);
-
-			primitiveGraphicProperties = new RuledSweepGraphicProperties();
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
-			setRuledSweepGraphicProperties(ruledSweepDetails, (RuledSweepGraphicProperties*&)primitiveGraphicProperties);
-		}
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnSphere:
-	{
-		DgnSphereDetail sphereDetails;
-
-		if (primitive.TryGetDgnSphereDetail(sphereDetails))
-		{
-			
-			this->_modelerDataWriterManager->writeSphereDataToFile(sphereDetails);
-
-			primitiveGraphicProperties = new SphereGraphicProperties();
-			// set centroid, area and volume
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-			setGraphicPropertiesAxes(*&primitiveGraphicProperties, sphereDetails.m_localToWorld);
-
-			// set spehere properties
-			setSphereGraphicProperties((SphereGraphicProperties*&) primitiveGraphicProperties);
-		}
-
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_DgnTorusPipe:
-	{
-		DgnTorusPipeDetail torusDetails;
-
-
-		if (primitive.TryGetDgnTorusPipeDetail(torusDetails))
-		{
-			RotMatrix rotationAxes;
-			DPoint3d centerRotation;
-
-			Transform localToWorld, worldToLocal;
-
-			double radiusA, radiusB, sweepRadians;
-			this->_modelerDataWriterManager->writeTorusDataToFile(torusDetails);
-
-			// get local to world class to get the X,Y,Z axes 
-			torusDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-			torusDetails.TryGetFrame(centerRotation, rotationAxes, radiusA, radiusB, sweepRadians);
-
-			primitiveGraphicProperties = new TorusGraphicProperties();
-
-			// set centroid, area and volume
-			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-
-			// set X,Y,Z axes
-			DVec3d columnVectorX, columnVectorY, columnVectorZ;
-
-			columnVectorX = torusDetails.ParameterizationSign() * torusDetails.m_vectorX;
-			columnVectorY = torusDetails.ParameterizationSign() * torusDetails.m_vectorY;
-
-			columnVectorZ.CrossProduct(torusDetails.m_vectorX, torusDetails.m_vectorY);
-			columnVectorZ = torusDetails.ParameterizationSign() * columnVectorZ;
-
-			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
-			setTorusGraphicProperties(torusDetails, sweepRadians, centerRotation, (TorusGraphicProperties*&)primitiveGraphicProperties);
-		}
-
-	}
-	break;
-
-	case SolidPrimitiveType::SolidPrimitiveType_None:
-	{
-
-	}
-
-	default:
-		break;
-	}
-
-	if (addToDictionary && primitiveGraphicProperties != nullptr) {
-		this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
-	}
-		
-	if (primitiveGraphicProperties != nullptr)
-		return *&primitiveGraphicProperties;
-	else
-		return nullptr;
-}
 
 void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool meshProcessing) //DEFAULT meshProcessing = false
 {
@@ -1153,7 +1194,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 
 	ofstream outfile;
 
-	SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
+	//SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 
 	SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
 	solidKernelEntity->meshProcessing = meshProcessing;
@@ -1178,96 +1219,6 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 		size_t nFaces = SolidUtil::GetBodyFaces(&subEntitiesFaces, entity);
 		size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
 		size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
-
-		//Mesh Polyface converter WORKING REPRESENTATION
-#if false
-		//mGraphicsProcessorHelper.ProcessAsMeshElement(solidKernelEntity);
-
-		outfile.open(filePath, ios_base::app);
-		outfile << "Faceted BREP / ShellBased with Mesh Polyface" << endl;
-		outfile << endl;
-		outfile.close();
-
-		int boundID = 0;
-		int faceParsed = 0;
-		for (auto edge : subEntitiesEdges)
-		{
-			ISubEntityCR edgeRef = *edge;
-			EdgeId edgeID;
-			SolidUtil::TopologyID::IdFromEdge(edgeID, edgeRef, true);
-			//Get the faces of the current edge
-			SolidUtil::GetEdgeFaces(subEntitiesFaces, edgeRef);
-
-			outfile.open(filePath, ios_base::app);
-			outfile << "EDGE Sub Entity: " << endl;
-			outfile << endl;
-			outfile.close();
-
-			BoundPoints* bound = new BoundPoints();
-			bound->boundID = boundID;
-			bound->isShared = subEntitiesFaces.size() > 1;
-
-			if (SolidUtil::Convert::SubEntityToCurveVector(curveEdgesEval, edgeRef) == SUCCESS)
-			{
-				bound->boundType = curveEdgesEval->GetBoundaryType();
-				// Chek if the shape is closed 
-				bound->isClosed = false;
-				if (curveEdgesEval->IsClosedPath())
-					bound->isClosed = true;
-				else if (curveEdgesEval->IsPhysicallyClosedPath())
-					bound->isClosed = true;
-
-				//Read more:
-				//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/193380/c-connect-point-at-distance-along-element/572437#572437
-				//15 Sampling Fraction 
-				for (double i = 0; i <= 15; i++)
-				{
-					//fraction 
-					double f = i / 15;
-					CurveLocationDetail cDetail;
-
-					//Fraction Evaluation of the point on the curve
-					if (curveEdgesEval->front()->FractionToPoint(f, cDetail))
-					{
-						auto vertexPoint = cDetail.point;
-						bound->pointsVector.push_back(vertexPoint);
-					}
-
-				}
-			}
-
-			for (auto face : subEntitiesFaces)
-			{
-				if (face == NULL)
-					continue;
-
-				ISubEntityCR faceRef = *face;
-				FaceId faceID;
-				SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
-
-				//Set the faceID
-				bound->nodeID = faceID.nodeId;
-				bound->faceID.push_back((int)faceID.entityId);
-
-				outfile.open(filePath, ios_base::app);
-				outfile << "--------- FACE -------- Entity: " << faceID.nodeId << " ID: " << faceID.entityId << endl;
-				outfile << endl;
-				outfile.close();
-
-				if (faceParsed < nFaces)
-				{
-					solidKernelEntity->faceID.push_back((int)faceID.entityId);
-					faceParsed++;
-				}
-			}
-
-			boundID++;
-
-			//Add bound Points
-			//solidKernelEntity->addBoundsPoints(bound);
-			subEntitiesFaces.clear();
-		}
-#endif
 
 		//Vertices start dependences BSpline Surface
 #if false 
@@ -1301,7 +1252,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 				{
 					if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
 					{
-						shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+						shapesGraphicProperties = new ShapesGraphicProperties();
 
 						outfile.open(filePath, ios_base::app);
 						outfile << "-------- EDGE Sub Entity: " << endl;
@@ -1406,7 +1357,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 								outfile << endl;
 								outfile.close();
 
-								shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+								shapesGraphicProperties = new ShapesGraphicProperties();
 
 								if (SolidUtil::Convert::SubEntityToCurveVector(loopEval, edgeRefLoop) == SUCCESS)
 								{
@@ -1555,8 +1506,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 					msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
 					msBsplineSurfaceGraphicProperties->geometryType = IGeometry::GeometryType::BsplineSurface;
 
-					bool addToDictionary = false;
-					processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties, addToDictionary);
+					processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties);
 
 					//Add the face to the solidKernelEntity
 					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)msBsplineSurfaceGraphicProperties);
@@ -1565,10 +1515,9 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 				case IGeometry::GeometryType::SolidPrimitive:
 				{
 					ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
-					bool addToDictionary = false;
 
 					//Add the face to the solidKernelEntity					
-					GraphicProperties* primitiveGraphicProperties = processSolidPrimitives(prim, addToDictionary);
+					GraphicProperties* primitiveGraphicProperties = processPrimitives(prim);
 
 					if (primitiveGraphicProperties != nullptr)
 					{
@@ -1598,15 +1547,13 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 				
 				case IGeometry::GeometryType::CurveVector:
 				{
-					ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+					ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
 					
 					shapesGraphicProperties->geometryType = IGeometry::GeometryType::CurveVector;
 
-					bool addToDictionary = false;
-
 					CurveVectorPtr curveVec = geomFacesEval->GetAsCurveVector();
 					
-					processShapesCurvesVector(*curveVec, false, &*shapesGraphicProperties, addToDictionary);
+					processShapesCurvesVector(*curveVec, false, &*shapesGraphicProperties);
 
 					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)shapesGraphicProperties);
 				}
@@ -1641,7 +1588,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 			{
 				if (curveEdgesEval->IsClosedPath() || curveEdgesEval->IsPhysicallyClosedPath())
 				{
-					shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+					shapesGraphicProperties = new ShapesGraphicProperties();
 
 					outfile.open(filePath, ios_base::app);
 					outfile << "-------- EDGE Sub Entity: " << endl;
@@ -1749,7 +1696,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 							outfile << endl;
 							outfile.close();
 
-							shapesGraphicProperties = new ShapesGraphicProperties(ShapesTypeEnum::SHAPE);
+							shapesGraphicProperties = new ShapesGraphicProperties();
 
 							if (SolidUtil::Convert::SubEntityToCurveVector(loopEval, edgeRefLoop) == SUCCESS)
 							{
@@ -2071,27 +2018,6 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 	this->getElementBundle()->setGraphicProperties(*solidKernelEntity);	
 }
 
-bool GraphicsProcessorHelper::processPolyfaceFacets(PolyfaceQueryCR meshData, bool isFilled, Transform currentTransform)
-{
-	this->_modelerDataWriterManager->writeTitleProcessDataToFile("PolyfaceQueryCR - meshData");
-
-	bvector<PolyfaceHeaderPtr> meshes;
-	PolyfaceHeaderPtr header = PolyfaceHeader::CreateVariableSizeIndexed();
-	header->CopyFrom(meshData);
-	header->Transform(currentTransform);
-	meshes.push_back(header);
-
-	SolidEntityGraphicProperties* solidKernelEntity = new SolidEntityGraphicProperties();
-	solidKernelEntity->meshProcessing = true;
-	solidKernelEntity->setBRepTypeEnum(0);
-
-	bool elementProcessed = processElementAsMesh(*&solidKernelEntity, meshes);
-
-	this->getElementBundle()->setGraphicProperties(*solidKernelEntity);
-
-	return elementProcessed;
-}
-
 bool GraphicsProcessorHelper::processElementAsMesh(SolidEntityGraphicProperties*& solidKernelEntity, bvector<PolyfaceHeaderPtr> meshes)
 {
 	this->_modelerDataWriterManager->writeTitleProcessDataToFile("processElementAsMesh");
@@ -2151,6 +2077,9 @@ bool GraphicsProcessorHelper::ElementToApproximateFacets(ElementHandleCR source,
 	ElementGraphicsOutput::Process(source, dest);
 	return output.size() > 0 ? true : false;
 }
+
+#pragma endregion
+
 
 ElementHandle GraphicsProcessorHelper::getCurrentElementHandle()
 {
