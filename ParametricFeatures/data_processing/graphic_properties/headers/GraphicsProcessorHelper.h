@@ -1,5 +1,8 @@
 #pragma once
 
+
+#include "../../../logging/headers/Logger.h"
+
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 

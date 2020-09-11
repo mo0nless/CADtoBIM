@@ -9,6 +9,74 @@ InitializationHelper::InitializationHelper()
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
+
+
+	Logs::Logger* logger = Logs::Logger::getLogger();
+	logger->logInfo(__FILE__,__LINE__, __FUNCTION__,"info");
+	logger->logDebug(__FILE__, __LINE__, __FUNCTION__, "debug");
+	logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "warning");
+	logger->logError(__FILE__, __LINE__, __FUNCTION__, "error");
+	logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "fatal");
+
+
+	
+	//try
+	//{
+	//	// Create a text file sink
+	//	typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;
+	//	boost::shared_ptr<file_sink> sink(new file_sink(
+	//		keywords::file_name = "file_%Y-%m-%d_%H-%M-%S.%N.log",      // file name pattern
+	//		keywords::rotation_size = 16384                     // rotation size, in characters
+	//	));
+
+	//	// Set up where the rotated files will be stored
+	//	sink->locked_backend()->set_file_collector(sinks::file::make_collector(
+	//		keywords::target = "logs",                          // where to store rotated files
+	//		keywords::max_size = 16 * 1024 * 1024,              // maximum total size of the stored files, in bytes
+	//		keywords::min_free_space = 100 * 1024 * 1024        // minimum free space on the drive, in bytes
+	//	));
+
+	//	// Upon restart, scan the target directory for files matching the file_name pattern
+	//	sink->locked_backend()->scan_for_files();
+
+	//	sink->set_formatter
+	//	(
+	//		expr::format("%1%: [%2%] - %3%")
+	//		% expr::attr< unsigned int >("RecordID")
+	//		% expr::attr< boost::posix_time::ptime >("TimeStamp")
+	//		% expr::smessage
+	//	);
+
+	//	// Add it to the core
+	//	logging::core::get()->add_sink(sink);
+
+	//	// Add some attributes too
+	//	logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
+	//	logging::core::get()->add_global_attribute("RecordID", attrs::counter< unsigned int >());
+
+	//	// Do some logging
+	//	src::logger lg;
+	//	for (unsigned int i = 0; i < LOG_RECORDS_TO_WRITE; ++i)
+	//	{
+	//		BOOST_LOG(lg) << "Some log record";
+	//	}
+
+	//	/*return 0;*/
+	//}
+	//catch (std::exception& e)
+	//{
+	//	std::cout << "FAILURE: " << e.what() << std::endl;
+	//	/*return 1;*/
+	//}
+
+
+
+	//BOOST_LOG_TRIVIAL(trace) << "This is a trace severity message";
+	//BOOST_LOG_TRIVIAL(debug) << "This is a debug severity message";
+	//BOOST_LOG_TRIVIAL(info) << "This is an informational severity message";
+	//BOOST_LOG_TRIVIAL(warning) << "This is a warning severity message";
+	//BOOST_LOG_TRIVIAL(error) << "This is an error severity message";
+	//BOOST_LOG_TRIVIAL(fatal) << "and this is a fatal severity message";
 }
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -319,7 +387,6 @@ void InitializationHelper::createFilesStructure()
 	// create logs folder
 	createFolder(logFolderPath);
 
-
 	// get date to create logs by day
 	time_t theTime = time(NULL);
 	struct tm *aTime = localtime(&theTime);
@@ -331,12 +398,15 @@ void InitializationHelper::createFilesStructure()
 	string currentDayLogFolderPath = logFolderPath + "\\" + to_string(day)+"-"+to_string(month)+"-"+to_string(year);
 	// create log folder
 	createFolder(currentDayLogFolderPath);
+	SessionManager::getInstance()->setCurrentDayLogsFolderPath(currentDayLogFolderPath);
+
 
 	string fname = SessionManager::getInstance()->getDgnFileName();
 
 	string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
 	
 	SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
+
 }
 void InitializationHelper::createFolder(string folderPath)
 {

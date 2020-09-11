@@ -3,86 +3,86 @@
 
 ShapesGraphicProperties::ShapesGraphicProperties()
 {
-	this->mCurvesBoundaryType = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
-	this->mIsFilled = false;
-	this->mIsClosed = false;
-	this->mCurvesPrimitivesContainer = vector<CurveGraphicProperties*>();
-	this->mShapesGraphicsContainer = vector<ShapesGraphicProperties*>();
-	this->mHasShapesGraphicsContainer = false;
-	this->mIsSingleCurve = false;
-	this->mNormal = DVec3d();
-	this->mFaceBoundIdentifier = vector<int>();
-	this->mNodeId = -1;
+	this->_curvesBoundaryType = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
+	this->_isFilled = false;
+	this->_isClosed = false;
+	this->_curvesPrimitivesContainer = vector<CurveGraphicProperties*>();
+	this->_shapesGraphicsContainer = vector<ShapesGraphicProperties*>();
+	this->_hasShapesGraphicsContainer = false;
+	this->_isSingleCurve = false;
+	this->_normal = DVec3d();
+	this->_faceBoundIdentifier = vector<int>();
+	this->_nodeId = -1;
 }
 
 void ShapesGraphicProperties::insertCurvesGraphicsProperties(CurveGraphicProperties * newCurveGraphicProperties)
 {
-	this->mCurvesPrimitivesContainer.push_back(newCurveGraphicProperties);
+	this->_curvesPrimitivesContainer.push_back(newCurveGraphicProperties);
 }
 
 vector<CurveGraphicProperties*> ShapesGraphicProperties::getCurvesPrimitivesContainerVector()
 {
-	return this->mCurvesPrimitivesContainer;
+	return this->_curvesPrimitivesContainer;
 }
 
 void ShapesGraphicProperties::setBoundaryTypeCurvesContainer(int boundaryBentleyType)
 {
-	this->mCurvesBoundaryType = ShapesTypeEnumUtils::getCurvesBoundaryTypeEnumByInt(boundaryBentleyType);
+	this->_curvesBoundaryType = ShapesTypeEnumUtils::getCurvesBoundaryTypeEnumByInt(boundaryBentleyType);
 }
 
 CurvesBoundaryTypeEnum ShapesGraphicProperties::getBoundaryTypeCurvesContainer()
 {
-	return this->mCurvesBoundaryType;
+	return this->_curvesBoundaryType;
 }
 
 void ShapesGraphicProperties::addFaceBoundID(int newFaceidentifier)
 {
-	this-> mFaceBoundIdentifier.push_back(newFaceidentifier);
+	this-> _faceBoundIdentifier.push_back(newFaceidentifier);
 }
 
 vector<int> ShapesGraphicProperties::getFacesBoundIDs()
 {
-	return this->mFaceBoundIdentifier;
+	return this->_faceBoundIdentifier;
 }
 
 void ShapesGraphicProperties::setIsFilled(bool value)
 {
-	this->mIsFilled = value;
+	this->_isFilled = value;
 }
 
 bool ShapesGraphicProperties::getIsFilled()
 {
-	return this->mIsFilled;
+	return this->_isFilled;
 }
 
 bool ShapesGraphicProperties::getIsClosed() const
 {
-	return mIsClosed;
+	return _isClosed;
 }
 
 void ShapesGraphicProperties::setIsClosed(bool isClosed)
 {
-	this->mIsClosed = isClosed;
+	this->_isClosed = isClosed;
 }
 
 bool ShapesGraphicProperties::hasShapesGraphicsContainer() const
 {
-	return this->mHasShapesGraphicsContainer;
+	return this->_hasShapesGraphicsContainer;
 }
 
 vector<ShapesGraphicProperties*> ShapesGraphicProperties::getShapesGraphicsContainer()
 {
-	return this->mShapesGraphicsContainer;
+	return this->_shapesGraphicsContainer;
 }
 
 DVec3d ShapesGraphicProperties::getNormal() const
 {
-	return this->mNormal;
+	return this->_normal;
 }
 
 void ShapesGraphicProperties::setNormal(DVec3d normal)
 {
-	this->mNormal = normal;
+	this->_normal = normal;
 }
 
 void ShapesGraphicProperties::setStartEndPoints(DPoint3d start, DPoint3d end)
@@ -119,30 +119,43 @@ DPoint3d ShapesGraphicProperties::getUVendPoint()
 
 void ShapesGraphicProperties::setNodeId(int id)
 {
-	this->mNodeId = id;
+	this->_nodeId = id;
 }
 
 int ShapesGraphicProperties::getNodeId()
 {
-	return this->mNodeId;
+	return this->_nodeId;
 }
 
 bool ShapesGraphicProperties::getHasSingleCurve()
 {
-	return this->mIsSingleCurve;
+	return this->_isSingleCurve;
 }
 
 void ShapesGraphicProperties::setHasSingleCurve(bool value)
 {
-	this->mIsSingleCurve = value;
+	this->_isSingleCurve = value;
 }
 
 void ShapesGraphicProperties::insertShapesGraphicProperties(ShapesGraphicProperties * newShapesGraphicProperties)
 {
-	this->mShapesGraphicsContainer.push_back(newShapesGraphicProperties);
-	this->mHasShapesGraphicsContainer = true;
+	this->_shapesGraphicsContainer.push_back(newShapesGraphicProperties);
+	this->_hasShapesGraphicsContainer = true;
 }
 
 ShapesGraphicProperties::~ShapesGraphicProperties()
 {
+}
+
+string ShapesGraphicProperties::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(ShapesGraphicProperties).name();
+	stringStream << ", _nodeId = " << _nodeId;
+	stringStream << ", _isFilled = " << _isFilled;
+	stringStream << ", _isClosed = " << _isClosed;
+	stringStream << endl;
+
+	return stringStream.str();
 }

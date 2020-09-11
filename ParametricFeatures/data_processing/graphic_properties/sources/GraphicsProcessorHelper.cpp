@@ -107,6 +107,7 @@ void GraphicsProcessorHelper::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail,
 	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
 	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
 	boxGraphicProperties->setHeight(height);
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, boxGraphicProperties->toString());
 }
 
 void GraphicsProcessorHelper::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
@@ -155,6 +156,7 @@ void GraphicsProcessorHelper::setConeGraphicProperties(DgnConeDetail cgnConeDeta
 			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
 		}
 	}
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, coneGraphicProperties->toString());
 }
 
 void GraphicsProcessorHelper::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
@@ -178,6 +180,8 @@ void GraphicsProcessorHelper::setCylinderGraphicProperties(DgnConeDetail dgnCone
 	cylinderGraphicProperties->setHeight(height);
 	cylinderGraphicProperties->setRadius(dgnConeDetail.m_radiusA);
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, cylinderGraphicProperties->toString());
+
 }
 
 void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
@@ -192,6 +196,8 @@ void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, sphereGraphicProperties->toString());
+
 }
 
 void GraphicsProcessorHelper::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
@@ -201,6 +207,7 @@ void GraphicsProcessorHelper::setTorusGraphicProperties(DgnTorusPipeDetail dgnTo
 	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
 	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
 	torusGraphicProperties->setSweepRadians(sweepRadians);
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, torusGraphicProperties->toString());
 
 }
 
@@ -304,6 +311,8 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
 	outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 	
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, extrusionGraphicProperties->toString());
+
 }
 
 #pragma endregion 

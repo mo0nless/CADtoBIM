@@ -62,12 +62,14 @@ public:
 	string type = "";
 	bool isPartOfLoop = false;
 
+	string toString();
+
 private:
-	vector<int> mFaceBoundIdentifier;
+	vector<int> _faceBoundIdentifier;
 
-	int mNodeId;
+	int _nodeId;
 
-	DVec3d mNormal;
+	DVec3d _normal;
 
 	DPoint3d mStartPoint;
 	DPoint3d mEndPoint;
@@ -76,13 +78,13 @@ private:
 	DPoint3d mUVstartPoint;
 	DPoint3d mUVendPoint;
 
-	bool mIsFilled;
-	bool mIsClosed;
-	bool mHasShapesGraphicsContainer;
-	bool mIsSingleCurve;
+	bool _isFilled;
+	bool _isClosed;
+	bool _hasShapesGraphicsContainer;
+	bool _isSingleCurve;
 
-	ShapesTypeEnum mCurvesShapeTypeEnum;
-	CurvesBoundaryTypeEnum mCurvesBoundaryType;
-	vector<CurveGraphicProperties*> mCurvesPrimitivesContainer;
-	vector<ShapesGraphicProperties*> mShapesGraphicsContainer;
+	ShapesTypeEnum _curvesShapeTypeEnum;
+	CurvesBoundaryTypeEnum _curvesBoundaryType;
+	vector<CurveGraphicProperties*> _curvesPrimitivesContainer;
+	vector<ShapesGraphicProperties*> _shapesGraphicsContainer;
 };

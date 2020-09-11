@@ -2,37 +2,48 @@
 
 BoxGraphicProperties::BoxGraphicProperties():SolidPrimitiveProperties(PrimitiveTypeEnum::BOX)
 {
-	this->mLength = 0;
-	this->mWidth = 0;
-	this->mHeight = 0;
+	this->_length = 0;
+	this->_width = 0;
+	this->_height = 0;
 }
 
 double BoxGraphicProperties::getLength()
 {
-	return this->mLength;
+	return this->_length;
 }
 
 void BoxGraphicProperties::setLength(double newLength)
 {
-	this->mLength = newLength;
+	this->_length = newLength;
 }
 
 double BoxGraphicProperties::getWidth()
 {
-	return this->mWidth;
+	return this->_width;
 }
 
 void BoxGraphicProperties::setWidth(double newWidth)
 {
-	this->mWidth = newWidth;
+	this->_width = newWidth;
 }
 
 double BoxGraphicProperties::getHeight()
 {
-	return this->mHeight;
+	return this->_height;
 }
 
 void BoxGraphicProperties::setHeight(double newHeight)
 {
-	this->mHeight = newHeight;
+	this->_height = newHeight;
+}
+
+string BoxGraphicProperties::toString()
+{
+	std::ostringstream stringStream;
+	stringStream << typeid(BoxGraphicProperties).name();
+	stringStream << ", _length = " << _length;
+	stringStream << ", _width = " << _width;
+	stringStream << ", _height = " << _height;
+	stringStream << endl;
+	return stringStream.str();
 }

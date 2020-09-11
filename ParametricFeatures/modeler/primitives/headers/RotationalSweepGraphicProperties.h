@@ -6,10 +6,10 @@
 class RotationalSweepGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	double radius;
-	double sweepRadians;
-	DPoint3d centerRotation;
-	ShapesGraphicProperties* shapesGraphicProperties;
+	double _radius;
+	double _sweepRadians;
+	DPoint3d _centerRotation;
+	ShapesGraphicProperties* _shapesGraphicProperties;
 
 
 public:
@@ -28,4 +28,6 @@ public:
 
 	DPoint3d getCenterRotation();
 	void setCenterRotation(DPoint3d newCenterRotation);
+
+	string toString();
 };

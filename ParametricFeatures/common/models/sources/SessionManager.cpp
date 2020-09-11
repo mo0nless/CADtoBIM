@@ -65,3 +65,13 @@ void SessionManager::setDgnFileName(string path)
 	_dgnFileName = StringUtils::getNormalizedString(s);
 }
 
+string SessionManager::getCurrentDayLogsFolderPath()
+{
+	return this->_currentDayLogsFolderPath;
+}
+
+void SessionManager::setCurrentDayLogsFolderPath(string logsFolderPath)
+{
+	this->_currentDayLogsFolderPath = logsFolderPath;
+}
+

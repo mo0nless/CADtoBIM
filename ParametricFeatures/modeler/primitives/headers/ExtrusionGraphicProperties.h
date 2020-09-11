@@ -6,10 +6,10 @@
 class ExtrusionGraphicProperties : public SolidPrimitiveProperties {
 
 private:
-	DVec3d mDirectionExtrusion;
-	ShapesGraphicProperties* mShapesGraphicProperties;
+	DVec3d _directionExtrusion;
+	ShapesGraphicProperties* _shapesGraphicProperties;
 
-	bool mIsSolid;
+	bool _isSolid;
 
 public:
 	ExtrusionGraphicProperties();
@@ -24,5 +24,7 @@ public:
 
 	ShapesGraphicProperties* getShapesGraphicProperties();
 	void setShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
+
+	string toString();
 
 };

@@ -36,6 +36,11 @@
 
 #include "common\utils\headers\ProgressBar.hpp"
 #include "common\utils\headers\NotificationMessage.h"
+//#include "boost\log\core.hpp"
+//#include <boost/log/trivial.hpp>
+//#include <boost/log/expressions.hpp>
+//#include <boost/log/utility/setup/file.hpp>
+
 
 //#include <msoutput.fdf>
 #include <PSolid/PSolidCoreAPI.h>

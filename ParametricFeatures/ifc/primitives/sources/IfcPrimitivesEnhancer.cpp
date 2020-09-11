@@ -19,7 +19,6 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 		}
 	}
 
-
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
@@ -34,7 +33,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 		ifcRepresentationItem = buildBasicPrimitive(primitiveGraphicProperties, file);
 	}
 	else if (primitiveType == PrimitiveTypeEnum::TORUS || primitiveType == PrimitiveTypeEnum::TRUNCATED_CONE || 
-		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION || primitiveType == PrimitiveTypeEnum::RULED_SWEEP)
+		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION ||
+		primitiveType == PrimitiveTypeEnum::RULED_SWEEP)
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
 	}

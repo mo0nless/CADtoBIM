@@ -2,55 +2,77 @@
 
 RotationalSweepGraphicProperties::RotationalSweepGraphicProperties() :SolidPrimitiveProperties(PrimitiveTypeEnum::ROTATIONAL_SWEEP)
 {
-	this->radius=0;
-	this->sweepRadians=0;
+	this->_radius=0;
+	this->_sweepRadians=0;
 
-	this->shapesGraphicProperties = nullptr;
+	this->_shapesGraphicProperties = nullptr;
 
-	this->centerRotation = DPoint3d();
-	this->centerRotation.x = 0;
-	this->centerRotation.y = 0;
-	this->centerRotation.z = 0;
+	this->_centerRotation = DPoint3d();
+	this->_centerRotation.x = 0;
+	this->_centerRotation.y = 0;
+	this->_centerRotation.z = 0;
 }
 
 
 double RotationalSweepGraphicProperties::getRadius()
 {
-	return this->radius;
+	return this->_radius;
 }
 
 void RotationalSweepGraphicProperties::setRadius(double newRadius)
 {
-	this->radius = newRadius;
+	this->_radius = newRadius;
 }
 
 double RotationalSweepGraphicProperties::getSweepRadians()
 {
-	return this->sweepRadians;
+	return this->_sweepRadians;
 }
 
 void RotationalSweepGraphicProperties::setSweepRadians(double newSweepRadians)
 {
-	this->sweepRadians = newSweepRadians;
+	this->_sweepRadians = newSweepRadians;
 }
 
 ShapesGraphicProperties * RotationalSweepGraphicProperties::getShapesGraphicProperties()
 {
-	return this->shapesGraphicProperties;
+	return this->_shapesGraphicProperties;
 }
 
 void RotationalSweepGraphicProperties::setShapesGraphicProperties(ShapesGraphicProperties * newShapesGraphicProperties)
 {
-	this->shapesGraphicProperties = newShapesGraphicProperties;
+	this->_shapesGraphicProperties = newShapesGraphicProperties;
 }
 
 DPoint3d RotationalSweepGraphicProperties::getCenterRotation()
 {
-	return this->centerRotation;
+	return this->_centerRotation;
 }
 
 void RotationalSweepGraphicProperties::setCenterRotation(DPoint3d newCenterRotation)
 {
-	this->centerRotation = newCenterRotation;
+	this->_centerRotation = newCenterRotation;
+}
+
+string RotationalSweepGraphicProperties::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(RotationalSweepGraphicProperties).name();
+	stringStream << ", _shapesGraphicProperties = ";
+	if (_shapesGraphicProperties != nullptr) {
+		stringStream << _shapesGraphicProperties->toString();
+
+	}
+	else {
+		stringStream << "nullptr";
+
+	}
+	stringStream << ", _radius = " << _radius;
+	stringStream << ", _sweepRadians = " << _sweepRadians;
+	stringStream << ", _centerRotation x= " << _centerRotation.x << ", y= " << _centerRotation.y << ", z= " << _centerRotation.z;
+	stringStream << endl;
+
+	return stringStream.str();
 }
 
