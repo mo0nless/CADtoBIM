@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../shapes/headers/CurvesShapesGraphicProperties.h"
+#include "../../shapes/headers/ShapesGraphicProperties.h"
 #include <DgnPlatform/ElementGeometry.h>
 #include "../../properties/headers/GraphicProperties.h"
 #include <vector>

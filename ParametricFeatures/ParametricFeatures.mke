@@ -126,7 +126,6 @@ modelerObjects = \
 	$(o)BooleanOperationProperties$(oext) \
 	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
 	$(o)SolidEntityGraphicProperties$(oext) \
-	$(o)BRepGraphicProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
 	$(o)ArcGraphicProperties$(oext) \
 	$(o)InterpolationGraphicProperties$(oext) \
@@ -154,7 +153,6 @@ modelerObjects = \
 	$(o)SmartFeatureTreeNode$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
 	$(o)ReaderPropertiesBundle$(oext) \
-	$(o)CurvesShapesGraphicProperties$(oext) \
 	$(o)ShapesGraphicProperties$(oext) \
 
 
@@ -375,8 +373,6 @@ $(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sou
 
 $(o)SolidEntityGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/SolidEntityGraphicProperties.h
 
-$(o)BRepGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/BRepGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/BRepGraphicProperties.h
-
 
 #--- curves
 $(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/curves/headers/BsplineGraphicProperties.h
@@ -441,8 +437,6 @@ $(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/
 
 
 #--- shapes
-$(o)CurvesShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/CurvesShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/CurvesShapesGraphicProperties.h
-
 $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
 
 

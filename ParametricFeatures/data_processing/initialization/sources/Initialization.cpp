@@ -7,25 +7,54 @@
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	createFilesStructure();
-	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__,"!!-- Starting application --!!");
+	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
+	//mdlInput_sendKeyin(L"MsgCenter ClearMessages", true, MSInputQueuePos::INPUTQ_EOQ, L"0");
 
-	vector<DictionaryProperties*> propsDictVec;
-	vector<SmartFeatureContainer*> smartFeatureContainerVector;
+	NotificationManager::SetDispatchEvents(true);
 
-	InitializationHelper* initializationHelper = new InitializationHelper();
-	initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+	WString stringOutMsg;	
+	
+	string fileName = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
+	SessionManager::getInstance()->setDgnFileName(fileName);
+	fileName = SessionManager::getInstance()->getDgnFileName();
+	WString fname = StringUtils::getWString(fileName);
 
-	IfcBuilder* ifcBuilder = new IfcBuilder();
-	ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+	stringOutMsg.Sprintf(L"Export the active '%s.dgn' file to IFC?", fname);
 
-	string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
+	NotificationManager::MessageBoxValue resultUser = NotificationManager::OpenMessageBox(
+		NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_YesNo,
+		stringOutMsg.c_str(),
+		NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Question
+	);
+	
+	if (NotificationManager::MessageBoxValue::MESSAGEBOX_VALUE_Yes == resultUser)
+	{
+		stringOutMsg.clear();
+		stringOutMsg.Sprintf(L"Start IFC Conversion");
+		NotificationMessage::send(stringOutMsg, OutputMessagePriority::Debug);
 
-	char myDocPath[MAX_PATH];
-	strcpy(myDocPath, outputFolderPath.c_str());
+		vector<DictionaryProperties*> propsDictVec;
+		vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
-	ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
+		InitializationHelper* initializationHelper = new InitializationHelper();
+		initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
 
-	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Ended the application process --!!");
+		IfcBuilder* ifcBuilder = new IfcBuilder();
+		ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+
+		string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
+
+		char myDocPath[MAX_PATH];
+		strcpy(myDocPath, outputFolderPath.c_str());
+
+		ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
+
+		stringOutMsg.clear();
+		stringOutMsg.Sprintf(L"End IFC Conversion");
+
+		NotificationMessage::send(stringOutMsg, OutputMessagePriority::Debug);
+		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Ended the application process --!!");
+	}
 
 	return SUCCESS;
 }

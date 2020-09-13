@@ -4,9 +4,9 @@ GraphicsProcessor::GraphicsProcessor()
 {
 	filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
-	WString myString;
+	/*WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
-	mdlOutput_messageCenter(DgnPlatform::OutputMessagePriority::Debug, myString.c_str(), myString.c_str(), DgnPlatform::OutputMessageAlert::None);
+	mdlOutput_messageCenter(DgnPlatform::OutputMessagePriority::Debug, myString.c_str(), myString.c_str(), DgnPlatform::OutputMessageAlert::None);*/
 
 	this->mGraphicsProcessorHelper = GraphicsProcessorHelper();
 }
@@ -59,8 +59,19 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
 	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	if(!mGraphicsProcessorHelper.processShapesCurvesVector(curves, isFilled))
+	{
+		WString myString;
+		myString.Sprintf(L"_ProcessCurveVector");
 
-	mGraphicsProcessorHelper.processShapesCurvesVector(curves, isFilled);
+		NotificationMessage::send(
+			mGraphicsProcessorHelper.getCurrentElementHandle(),
+			myString,
+			OutputMessagePriority::Warning
+		);
+
+		return SUCCESS;
+	}
 		
 	return SUCCESS;
 }
@@ -77,7 +88,19 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 	//TODO[SB] return ERROR _ProcessSurface
 	return ERROR;
 
-	mGraphicsProcessorHelper.processMSBsplineSurface(surface);
+	if(!mGraphicsProcessorHelper.processMSBsplineSurface(surface))
+	{
+		WString myString;
+		myString.Sprintf(L"_ProcessSurface");
+
+		NotificationMessage::send(
+			mGraphicsProcessorHelper.getCurrentElementHandle(),
+			myString,
+			OutputMessagePriority::Warning
+		);
+
+		return ERROR;
+	}
 
 	//return SUCCESS;
 }
@@ -111,7 +134,19 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
-	mGraphicsProcessorHelper.processPolyfaceFacets(meshData, isFilled, m_currentTransform);
+	if (!mGraphicsProcessorHelper.processPolyfaceFacets(meshData, isFilled, m_currentTransform))
+	{
+		WString myString;
+		myString.Sprintf(L"_ProcessFacets");
+
+		NotificationMessage::send(
+			mGraphicsProcessorHelper.getCurrentElementHandle(),
+			myString,
+			OutputMessagePriority::Warning
+		);
+
+		return ERROR;
+	}
 
 	return SUCCESS;
 }
@@ -125,8 +160,20 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
 	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	if (!mGraphicsProcessorHelper.processSolidPrimitive(primitive))
+	{
+		WString myString;
+		myString.Sprintf(L"_ProcessSolidPrimitive");
 
-	mGraphicsProcessorHelper.processSolidPrimitives(primitive);
+		NotificationMessage::send(
+			mGraphicsProcessorHelper.getCurrentElementHandle(),
+			myString,
+			OutputMessagePriority::Warning
+		);
+
+		return SUCCESS;
+	}
+
 
 	return SUCCESS;
 }

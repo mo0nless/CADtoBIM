@@ -1,10 +1,9 @@
 #include "../headers/ShapesGraphicProperties.h"
 
 
-ShapesGraphicProperties::ShapesGraphicProperties(ShapesTypeEnum newShapeType)
+ShapesGraphicProperties::ShapesGraphicProperties()
 {
 	this->_curvesBoundaryType = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
-	this->_curvesShapeTypeEnum = newShapeType;
 	this->_isFilled = false;
 	this->_isClosed = false;
 	this->_curvesPrimitivesContainer = vector<CurveGraphicProperties*>();
@@ -34,11 +33,6 @@ void ShapesGraphicProperties::setBoundaryTypeCurvesContainer(int boundaryBentley
 CurvesBoundaryTypeEnum ShapesGraphicProperties::getBoundaryTypeCurvesContainer()
 {
 	return this->_curvesBoundaryType;
-}
-
-ShapesTypeEnum ShapesGraphicProperties::getCurvesShapeTypeEnum()
-{
-	return this->_curvesShapeTypeEnum;
 }
 
 void ShapesGraphicProperties::addFaceBoundID(int newFaceidentifier)

@@ -36,12 +36,15 @@
 
 //#include <boost/any.hpp>
 
+#include "common\utils\headers\ProgressBar.hpp"
+#include "common\utils\headers\NotificationMessage.h"
 //#include "boost\log\core.hpp"
 //#include <boost/log/trivial.hpp>
 //#include <boost/log/expressions.hpp>
 //#include <boost/log/utility/setup/file.hpp>
 
 
+//#include <msoutput.fdf>
 #include <PSolid/PSolidCoreAPI.h>
 #include <Bentley/WString.h>
 
@@ -53,13 +56,13 @@
 #include <Mstn/PSolid/mssolid.fdf>
 #include <Mstn/cmdlist.r.h>
 
+//#include <DgnPlatform/NotificationManager.h>
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
 //#include <DgnPlatform/ElementGeometry.h>
 #include <DgnPlatform/DgnFileIO/ModelInfo.h>
 #include <DgnPlatform/DgnFileIO/UnitDefinition.h>
 
-#include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementHandle.h>
 #include <DgnPlatform/DgnECInstance.h>
 #include <DgnPlatform/DgnECManager.h>
@@ -87,10 +90,11 @@
 //#include <ECObjects/ECValue.h>
 #include <Geom/SolidPrimitive.h>
 
-#include    <Mstn\MdlApi\MdlApi.h>
-#include    <Mstn\MdlApi\modelindex.fdf>
-#include    <Mstn\MdlApi\mscell.fdf>
-#include    <Mstn\cmdlist.r.h>
+
+#include <Mstn\MdlApi\MdlApi.h>
+#include <Mstn\MdlApi\modelindex.fdf>
+#include <Mstn\MdlApi\mscell.fdf>
+#include <Mstn\cmdlist.r.h>
 
 
 USING_NAMESPACE_BENTLEY_ECOBJECT;

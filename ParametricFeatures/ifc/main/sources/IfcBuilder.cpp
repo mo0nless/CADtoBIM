@@ -201,10 +201,28 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	//smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
+	//Open ProgressBar
+	DialogCompletionBar progressBar = DialogCompletionBar();
+	progressBar.Open(L"Working...");
+
+	int numGraphicElement = (int)dictionaryPropertiesVector.size();
+	int percentage = 0;
+	WString myString;
+
+	myString.Sprintf(L"Generating IFC file...");
+
 	if (!dictionaryPropertiesVector.empty())
 	{
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
+			//ProgressBar
+			percentage = 100 * i / numGraphicElement;
+
+			if (percentage > 100)
+				percentage = 100;
+
+			progressBar.Update(myString, percentage);
+
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
@@ -253,6 +271,11 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	this->_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
+		
+
+	//Close ProgressBar
+	progressBar.Close();
+
 				
 	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Finished IFC conversion -!");
 	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting writing to the IFC file -!");

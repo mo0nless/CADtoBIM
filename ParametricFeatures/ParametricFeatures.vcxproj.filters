@@ -31,10 +31,8 @@
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="modeler\boolean_operations\sources\BooleanOperationProperties.cpp" />
-    <ClCompile Include="modeler\brep_solids\sources\BRepGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
-    <ClCompile Include="modeler\shapes\sources\CurvesShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessor.cpp" />
     <ClCompile Include="data_processing\reader_properties\sources\PropertiesReaderProcessor.cpp" />
@@ -127,10 +125,8 @@
     <ClInclude Include="ifc\general_information\headers\GeneralInformationEnhancer.h" />
     <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
     <ClInclude Include="modeler\boolean_operations\headers\BooleanOperationProperties.h" />
-    <ClInclude Include="modeler\brep_solids\headers\BRepGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\SolidEntityGraphicProperties.h" />
-    <ClInclude Include="modeler\shapes\headers\CurvesShapesGraphicProperties.h" />
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessor.h" />
     <ClInclude Include="data_processing\reader_properties\headers\PropertiesReaderProcessor.h" />
@@ -174,11 +170,17 @@
     <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperties.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
     <ClInclude Include="interface\MainForm.h" />
+    <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
+    <ClInclude Include="common\utils\headers\NotificationMessage.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="common\models\headers\ResultStatus.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="logging\headers\Logger.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="interface\MainForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ParametricFeatures1.rc" />
   </ItemGroup>
 </Project>

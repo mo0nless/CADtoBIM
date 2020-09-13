@@ -193,10 +193,18 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
 	
+	//Open ProgressBar
+	DialogCompletionBar progressBar = DialogCompletionBar(); 
+	progressBar.Open(L"Working...");
+
+	//Count the element (this function gets also the deleted ones??)
+	int numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements);
+	int percentage = 0;
+	int index = 0;
+	WString myString;	
 
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
-		
 		DgnModelP c = elemRef->GetDgnModelP();
 		ElementHandle currentElem(elemRef);
 
@@ -207,6 +215,16 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 		GraphicsProcessorHelper->setDictionaryProperties(*propertiesDictionary);
+
+		//ProgressBar
+		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", index, numGraphicElement, elDescr);
+		percentage = 100 * index / numGraphicElement;
+
+		if (percentage > 100)
+			percentage = 100;
+
+		progressBar.Update(myString, percentage);
+		index++;
 
 		iterateSubElements(elemRef, propertiesDictionary);
 
@@ -252,6 +270,8 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		outfile << "===================================================" << endl;
 		outfile << endl;
 		outfile.close();
+		//Close ProgressBar
+		progressBar.Close();
 
 		_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended elements processing -!");
 	}
