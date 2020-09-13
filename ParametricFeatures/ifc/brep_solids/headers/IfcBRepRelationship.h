@@ -19,6 +19,8 @@ public:
 	vector<SolidEdge*> getSmartSolidEdgesCollection();
 
 private:	
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	bool processContinuosEdges(ContinuosEdge*& head, ContinuosEdge*& currentEdge);
 	vector<SolidEdge*> mSmartSolidEdgesCollection;
 	vector<ContinuosEdge*> mContinuosEdgeList;

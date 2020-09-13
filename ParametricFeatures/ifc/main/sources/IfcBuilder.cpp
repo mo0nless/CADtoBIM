@@ -14,9 +14,10 @@ IfcBuilder::IfcBuilder()
 
 void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {	
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__,"!- Starting IFC conversion -!");
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
-	string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
+	//string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	string filename = SessionManager::getInstance()->getIfcOutputFilePath();
 	
@@ -134,7 +135,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	);
 
 	Ifc4::IfcProject* project = new Ifc4::IfcProject(
-		guid::IfcGloballyUniqueId(name), 
+		guid::IfcGloballyUniqueId(filename),
 		ownerHistory,
 		//file.getSingle<Ifc4::IfcOwnerHistory>(), 
 		string("OpenPlant IFC Exporter"), 
@@ -253,9 +254,13 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	this->_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
 				
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Finished IFC conversion -!");
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting writing to the IFC file -!");
+
 	ofstream f;
 	f.open(filename);
 	f << file;
 	f.close();
 
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended writing to the IFC file -!");
 }

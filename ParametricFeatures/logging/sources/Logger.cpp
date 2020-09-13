@@ -17,7 +17,7 @@ namespace Logs {
 			typedef sinks::synchronous_sink<sinks::text_file_backend > file_sink;
 			boost::shared_ptr< file_sink > sink(new file_sink(
 				keywords::file_name = logsOutputFolderPath+"\\file_%Y-%m-%d_%H-%M-%S.%N.log",      // file name pattern
-				keywords::rotation_size = 16384     ,                // rotation size, in characters
+				keywords::rotation_size = 16384,                // rotation size, in characters
 				keywords::auto_flush = true
 			));
 
@@ -49,7 +49,7 @@ namespace Logs {
 	
 			// Add some attributes too
 			logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
-			logging::core::get()->add_global_attribute("RecordID", attrs::counter< unsigned int >());
+			logging::core::get()->add_global_attribute("RecordID", attrs::counter<unsigned int>());
 			// New attributes that hold filename and line number
 			logging::core::get()->add_thread_attribute("File", attrs::mutable_constant<std::string>(""));
 			logging::core::get()->add_thread_attribute("Line", attrs::mutable_constant<int>(0));

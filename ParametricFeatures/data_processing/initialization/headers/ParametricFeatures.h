@@ -36,6 +36,9 @@ extern "C" {
 	//  name mangling
 	void UnloadParametricFeatures(WCharCP unparsedP);
 	StatusInt GetSmartFeatureTree(WCharCP unparsedP);
+	
+	void createFilesStructure();
+	void createFolder(string folderPath);
 }
 
 

@@ -3,6 +3,8 @@
 void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
 	ElementBundle* elementBundle, bool addToIfcElementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	if (msBsplineSurfaceGraphicProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*msBsplineSurfaceGraphicProperties, file, elementBundle);
 		if (ifcRepresentationItem != nullptr)
@@ -20,6 +22,8 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 
 Ifc4::IfcBSplineSurface* IfcSurfaceEnhancer::buildIfcSurface(MSBsplineSurfaceGraphicProperties & msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	//Create IfcCartesianPoint List 
 	IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();
 	

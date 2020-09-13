@@ -19,6 +19,7 @@ public:
 	GraphicsProcessor();
 	GraphicsProcessorHelper* getGraphicsProcessorHelper();
 private:
+	Logs::Logger* _logger = Logs::Logger::getLogger();
 
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 	virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;

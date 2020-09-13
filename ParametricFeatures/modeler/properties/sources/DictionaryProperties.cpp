@@ -9,7 +9,6 @@ DictionaryProperties::DictionaryProperties(long newElementId, string newEmentDes
 	this->isSmartSolid = false;
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 	this->isPrimitiveSolid = false;
-	this->isSmartSolid = false;
 }
 
 //vector<ReaderPropertiesBundle*> DictionaryProperties::getGraphicsReaderPropertiesBundleVector()
@@ -90,4 +89,18 @@ void DictionaryProperties::setIsPrimitiveSolid(bool value)
 bool DictionaryProperties::getIsPrimitiveSolid()
 {
 	return this->isPrimitiveSolid;
+}
+
+string DictionaryProperties::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(DictionaryProperties).name();
+	stringStream << ", elementId = " << elementId;
+	stringStream << ", elementDescriptor = " << elementDescriptor;
+	stringStream << ", isSmartSolid = " << isSmartSolid;
+	stringStream << ", isPrimitiveSolid = " << isPrimitiveSolid;
+	stringStream << endl;
+
+	return stringStream.str();
 }

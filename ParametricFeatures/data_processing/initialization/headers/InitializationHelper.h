@@ -21,6 +21,8 @@ public:
 
 
 private:	
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	void createFilesStructure();
 	void createFolder(string folderPath);
 

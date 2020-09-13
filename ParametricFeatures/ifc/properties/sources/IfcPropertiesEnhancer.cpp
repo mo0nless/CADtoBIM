@@ -2,6 +2,8 @@
 
 void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting enhancing the IFC properties -!");
+
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 
@@ -27,11 +29,15 @@ void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& 
 
 		}
 	}
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended enhancing the IFC properties -!");
+
 
 }
 
 Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
@@ -67,6 +73,8 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 
 Ifc4::IfcProperty* IfcPropertiesEnhancer::createIfcBasicProperty(ReaderPropertyDefinition& readerPropertyDefinition)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	// TODO [MP] look for a binary value and check it should be translated in Ifc(binary->int or simply pur the value as text???)
 	Ifc4::IfcValue* ifcValue;
 	PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition.getPropertyTypeName());
@@ -91,6 +99,8 @@ Ifc4::IfcProperty* IfcPropertiesEnhancer::createIfcBasicProperty(ReaderPropertyD
 
 Ifc4::IfcProperty * IfcPropertiesEnhancer::createIfcComplexProperty(ReaderPropertyDefinition & readerPropertyDefinition)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
 
 	Ifc4::IfcValue* ifcValue;

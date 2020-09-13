@@ -26,6 +26,8 @@ vector<BoundTypeIfcCurve*> IfcShapesEnhancer::getCurvesShapeRepresentationVector
 void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties, IfcElementBundle*& ifcElementBundle,
 	ElementBundle* elementBundle, bool addToIfcElementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	//Handler for boundaries 
 	switch (shapeGraphicProperties->getBoundaryTypeCurvesContainer())
 	{
@@ -242,6 +244,8 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicProperties * curveProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcCurve* curveRepresentationItem = nullptr;
 
 	switch (curveProperties->getCurvesTypeEnum())
@@ -496,6 +500,8 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 vector<Ifc4::IfcCurve*> IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	vector<Ifc4::IfcCurve*> curveVector;
 	for each (CurveGraphicProperties* curveProperties in curvesShape->getCurvesPrimitivesContainerVector())
 	{
@@ -509,6 +515,8 @@ vector<Ifc4::IfcCurve*> IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGraphicPr
 
 IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcShapesEnhancer::buildIfcCompositeCurveSegment(vector<Ifc4::IfcCurve*> curveVector)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* tempEntityList = new IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>();
 
 	for each (auto curve in curveVector)

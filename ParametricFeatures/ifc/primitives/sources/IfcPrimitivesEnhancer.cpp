@@ -4,6 +4,7 @@
 void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
 	ElementBundle* elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
 
 	if (solidPrimitiveProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, elementBundle);
@@ -24,6 +25,8 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 	ElementBundle* elementBundle)
 {
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 	PrimitiveTypeEnum primitiveType = primitiveGraphicProperties.getPrimitiveTypeEnum();
@@ -45,6 +48,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 
 Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
@@ -117,6 +122,8 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	SessionManager* sm = sm->getInstance();
 	sm->getDataOutputFilePath();
 	sm->getIfcOutputFilePath();

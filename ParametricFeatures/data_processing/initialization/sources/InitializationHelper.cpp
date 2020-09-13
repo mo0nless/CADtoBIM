@@ -4,83 +4,17 @@
 InitializationHelper::InitializationHelper()
 {	
 
-	createFilesStructure();
-
+	this->filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
-
-
-	Logs::Logger* logger = Logs::Logger::getLogger();
-	logger->logInfo(__FILE__,__LINE__, __FUNCTION__,"info");
-	logger->logDebug(__FILE__, __LINE__, __FUNCTION__, "debug");
-	logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "warning");
-	logger->logError(__FILE__, __LINE__, __FUNCTION__, "error");
-	logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "fatal");
-
-
-	
-	//try
-	//{
-	//	// Create a text file sink
-	//	typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;
-	//	boost::shared_ptr<file_sink> sink(new file_sink(
-	//		keywords::file_name = "file_%Y-%m-%d_%H-%M-%S.%N.log",      // file name pattern
-	//		keywords::rotation_size = 16384                     // rotation size, in characters
-	//	));
-
-	//	// Set up where the rotated files will be stored
-	//	sink->locked_backend()->set_file_collector(sinks::file::make_collector(
-	//		keywords::target = "logs",                          // where to store rotated files
-	//		keywords::max_size = 16 * 1024 * 1024,              // maximum total size of the stored files, in bytes
-	//		keywords::min_free_space = 100 * 1024 * 1024        // minimum free space on the drive, in bytes
-	//	));
-
-	//	// Upon restart, scan the target directory for files matching the file_name pattern
-	//	sink->locked_backend()->scan_for_files();
-
-	//	sink->set_formatter
-	//	(
-	//		expr::format("%1%: [%2%] - %3%")
-	//		% expr::attr< unsigned int >("RecordID")
-	//		% expr::attr< boost::posix_time::ptime >("TimeStamp")
-	//		% expr::smessage
-	//	);
-
-	//	// Add it to the core
-	//	logging::core::get()->add_sink(sink);
-
-	//	// Add some attributes too
-	//	logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
-	//	logging::core::get()->add_global_attribute("RecordID", attrs::counter< unsigned int >());
-
-	//	// Do some logging
-	//	src::logger lg;
-	//	for (unsigned int i = 0; i < LOG_RECORDS_TO_WRITE; ++i)
-	//	{
-	//		BOOST_LOG(lg) << "Some log record";
-	//	}
-
-	//	/*return 0;*/
-	//}
-	//catch (std::exception& e)
-	//{
-	//	std::cout << "FAILURE: " << e.what() << std::endl;
-	//	/*return 1;*/
-	//}
-
-
-
-	//BOOST_LOG_TRIVIAL(trace) << "This is a trace severity message";
-	//BOOST_LOG_TRIVIAL(debug) << "This is a debug severity message";
-	//BOOST_LOG_TRIVIAL(info) << "This is an informational severity message";
-	//BOOST_LOG_TRIVIAL(warning) << "This is a warning severity message";
-	//BOOST_LOG_TRIVIAL(error) << "This is an error severity message";
-	//BOOST_LOG_TRIVIAL(fatal) << "and this is a fatal severity message";
 }
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
+
 	ofstream outfile;
 
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer(currentElem.GetElementId());
@@ -143,18 +77,10 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 
 StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties* dictionaryProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
-
-	ofstream outfile;
-	outfile.open(filePath, ios_base::app);
 	int index = 0;
-
-
-	outfile << "eh id = " << eh.GetElementId() << endl;
-	outfile << "eh type = " << eh.GetElementType() << endl;
-	outfile << "index1 = " << index << endl;
-
-	outfile.close();
 
 	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
@@ -162,15 +88,6 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 		++index;
 	}
 	if(index==0){
-
-		outfile.open(filePath, ios_base::app);
-
-		outfile << "eh2 id" << eh.GetElementId() << endl;
-		outfile << "eh2 type" << eh.GetElementType() << endl;
-		outfile << "index2 = " << index << endl;
-
-
-		outfile.close();
 
 		ElementBundle* elementBundle = new ElementBundle();
 		elementBundle->setElementHandle(eh);
@@ -203,6 +120,8 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 #pragma warning (disable:4311 4302 4312)
 void InitializationHelper::processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting elements processing -!");
+
 	ofstream outfile;	
 	outfile.open(filePath);
 	outfile << "------------------------" << endl;
@@ -334,82 +253,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		outfile << endl;
 		outfile.close();
 
-	}
-}
-void InitializationHelper::createFilesStructure()
-{
-	//this->filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	this->filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-
-	SessionManager::getInstance()->setDataOutputFilePath(filePath);
-
-
-	CHAR my_documents[MAX_PATH];
-	HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
-
-	if (result != S_OK) {
-		cout << "Error: " << result << "\n";
-	}
-	else {
-		cout << "Path: " << my_documents << "\n";
-	}
-
-	string documentsPath = my_documents;
-
-	string mainFolderPath = documentsPath + "\\IfcModels";
-	// create main folder
-	createFolder(mainFolderPath);
-
-	SessionManager::getInstance()->setOutputFolderPath(mainFolderPath);
-
-	string logFolderPath = mainFolderPath + "\\logs";
-	// create logs folder
-	createFolder(logFolderPath);
-
-	// get date to create logs by day
-	time_t theTime = time(NULL);
-	struct tm *aTime = localtime(&theTime);
-
-	int day = aTime->tm_mday;
-	int month = aTime->tm_mon + 1; 
-	int year = aTime->tm_year + 1900;
-
-	string currentDayLogFolderPath = logFolderPath + "\\" + to_string(day)+"-"+to_string(month)+"-"+to_string(year);
-	// create log folder
-	createFolder(currentDayLogFolderPath);
-	SessionManager::getInstance()->setCurrentDayLogsFolderPath(currentDayLogFolderPath);
-
-
-	string re = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
-
-
-	// get dgn file name
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char fname[_MAX_FNAME];
-	char ext[_MAX_EXT];
-
-	_splitpath_s(re.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, fname, _MAX_FNAME, ext, _MAX_EXT);
-
-
-	//string ifcOutputFileName1 = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/ifc/IfcCustomName.ifc";
-	string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
-	
-	SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
-
-}
-void InitializationHelper::createFolder(string folderPath)
-{
-
-	// create main folder
-	if (CreateDirectory(folderPath.c_str(), NULL) ||
-		ERROR_ALREADY_EXISTS == GetLastError())
-	{
-		// do something. status/boolean
-	}
-	else
-	{
-		// Failed to create directory. return status/boolean and log
+		_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended elements processing -!");
 	}
 }
 #pragma warning( pop ) 

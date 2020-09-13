@@ -25,6 +25,9 @@ private:
 	IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
 	IfcPortsBuilder* _ifcPortsBuilder;
 	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
+
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	
 public:
 	IfcBuilder();

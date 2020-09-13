@@ -42,6 +42,8 @@ public:
 		ElementBundle* elementBundle);
 	
 private:
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle);
 
 	void processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList);

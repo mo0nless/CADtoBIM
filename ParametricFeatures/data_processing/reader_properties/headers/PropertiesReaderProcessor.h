@@ -37,6 +37,8 @@ public:
 	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
 
 private:
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	string mElemClassName;
 	
 };

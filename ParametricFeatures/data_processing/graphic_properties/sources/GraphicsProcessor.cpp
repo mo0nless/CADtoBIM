@@ -58,6 +58,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 #pragma warning( disable : 4189)
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	mGraphicsProcessorHelper.processShapesCurvesVector(curves, isFilled);
 		
 	return SUCCESS;
@@ -70,6 +72,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	//TODO[SB] return ERROR _ProcessSurface
 	return ERROR;
 
@@ -91,6 +95,8 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {	
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	//TODO[SB] MESH PROCESSIG NOT ACTIVE
 	bool meshProcessing = false;
 	mGraphicsProcessorHelper.processBodySolid(entity, meshProcessing);
@@ -118,6 +124,8 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 #pragma warning( disable : 4700)
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	mGraphicsProcessorHelper.processSolidPrimitives(primitive);
 
 	return SUCCESS;
@@ -125,6 +133,8 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayParams)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 
 	//ElemDisplayParamsCR d = displayParams;
 	//ElemDisplayParamsCP d = &displayParams;
@@ -194,9 +204,15 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 
 void GraphicsProcessor::_AnnounceTransform(TransformCP trans)
 {
-	if (trans)
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
+	if (trans) {
 		m_currentTransform = *trans;
-	else
+
+	}
+	else {
 		m_currentTransform.InitIdentity();
+
+	}
 }
 

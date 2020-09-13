@@ -34,19 +34,10 @@ UOR per storage304800.000000
 AnnotationScaleFactor1.000000
 Global Origin [x,y,z]= 0.000000, 0.000000, 0.000000
 ------------------------
-eh id = 6699
-eh type = 2
-index1 = 0
-eh id = 6700
-eh type = 3
-index1 = 0
-eh2 id6700
-eh2 type3
-index2 = 0
 RGB1 =0,255,0
 transparency =0
-level 4 , 00000053ECDFBB00
-level color0 , 00000053ECDFBB00
+level 4 , 000000DCEBBFBB10
+level color0 , 000000DCEBBFBB10
 colorOut RGB =0,0,0
 level  =4
 -------------------CURVE VECTOR---------------------
@@ -62,13 +53,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 3857848.032220
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 3857848.032220
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -79,30 +70,18 @@ Origin [Z] = 0.000000
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 1
 
-Start Point [X]: 3.85785e+06
-Start Point [Y]: 4.064e+06
-Start Point [Z]: 2.61301e+06
+Start Point [X]: 3857848.032220
+Start Point [Y]: 4064000.000000
+Start Point [Z]: 2613006.960349
 
-End Point [X]: 3.85785e+06
-End Point [Y]: 4.064e+06
-End Point [Z]: 2.61301e+06
+End Point [X]: 3857848.032220
+End Point [Y]: 4064000.000000
+End Point [Z]: 2613006.960349
 
-Curve Line String Length: 0
+Curve Line String Length: 0.000000
 
-Control Points: 0
+Control Points: 0.000000
 
-eh id = 6701
-eh type = 2
-index1 = 0
-eh id = 6702
-eh type = 2
-index1 = 0
-eh id = 6703
-eh type = 23
-index1 = 0
-eh2 id6703
-eh2 type23
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ConeElement, current element id = 6703, id = 0 ---------
@@ -147,8 +126,8 @@ Angle[double] = 270.0000°
 Orientation[int] = Right
 RGB1 =255,255,0
 transparency =0
-level 2 , 00000053ECDFB890
-level color0 , 00000053ECDFB890
+level 2 , 000000DCEBBFB9C0
+level color0 , 000000DCEBBFB9C0
 colorOut RGB =0,0,0
 level  =2
 -------- CONE/CYLINDER/TRUNCATED_CONE --------
@@ -220,12 +199,6 @@ Origin [X] = 3857848.032220
 Origin [Y] = 4064000.000000
 Origin [Z] = 2613006.960349
 
-eh id = 6704
-eh type = 3
-index1 = 0
-eh2 id6704
-eh2 type3
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = LineElement, current element id = 6704, id = 0 ---------
@@ -263,8 +236,8 @@ Total Length[double] = 9' 9.1206"
 Elevation[double] = 8' 6.8743"
 RGB1 =255,0,0
 transparency =0
-level 2 , 00000053ECDFB4C0
-level color0 , 00000053ECDFB4C0
+level 2 , 000000DCEBBFB5F0
+level color0 , 000000DCEBBFB5F0
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -280,13 +253,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 3857848.032220
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 6832711.330948
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -297,27 +270,18 @@ Origin [Z] = 2613006.960349
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 1
 
-Start Point [X]: 3.85785e+06
-Start Point [Y]: 4.064e+06
-Start Point [Z]: 2.61301e+06
+Start Point [X]: 3857848.032220
+Start Point [Y]: 4064000.000000
+Start Point [Z]: 2613006.960349
 
-End Point [X]: 6.83271e+06
-End Point [Y]: 4.064e+06
-End Point [Z]: 2.61301e+06
+End Point [X]: 6832711.330948
+End Point [Y]: 4064000.000000
+End Point [Z]: 2613006.960349
 
-Curve Line String Length: 2.97486e+06
+Curve Line String Length: 2974863.298729
 
-Control Points: 2.97486e+06
+Control Points: 2974863.298729
 
-eh id = 6705
-eh type = 2
-index1 = 0
-eh id = 6706
-eh type = 22
-index1 = 0
-eh2 id6706
-eh2 type22
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = PointStringElement, current element id = 6706, id = 0 ---------
@@ -352,8 +316,8 @@ Range High[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 00000053ECDFB510
-level color0 , 00000053ECDFB510
+level 2 , 000000DCEBBFB640
+level color0 , 000000DCEBBFB640
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -369,13 +333,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 3857848.032220
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 3857848.032220
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -385,16 +349,10 @@ Origin [Z] = 0.000000
 
 CURVE_PRIMITIVE_TYPE_PointString --------
 
-point 0 [X] = 3.85785e+06
-point 0 [Y] = 4.064e+06
-point 0 [Z] = 2.61301e+06
+Point  [X] = 3857848.032220
+Point  [Y] = 4064000.000000
+Point  [Z] = 2613006.960349
 
-eh id = 6707
-eh type = 22
-index1 = 0
-eh2 id6707
-eh2 type22
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = PointStringElement, current element id = 6707, id = 0 ---------
@@ -429,8 +387,8 @@ Range High[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 00000053ECDFB510
-level color0 , 00000053ECDFB510
+level 2 , 000000DCEBBFB640
+level color0 , 000000DCEBBFB640
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -446,13 +404,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 6832711.330948
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 6832711.330948
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -462,9 +420,9 @@ Origin [Z] = 0.000000
 
 CURVE_PRIMITIVE_TYPE_PointString --------
 
-point 0 [X] = 6.83271e+06
-point 0 [Y] = 4.064e+06
-point 0 [Z] = 2.61301e+06
+Point  [X] = 6832711.330948
+Point  [Y] = 4064000.000000
+Point  [Z] = 2613006.960349
 
 ===================================================
 ===================================================
@@ -520,19 +478,10 @@ Element: ID 6699
 ===================================================
 ===================================================
 
-eh id = 11410
-eh type = 2
-index1 = 0
-eh id = 11411
-eh type = 3
-index1 = 0
-eh2 id11411
-eh2 type3
-index2 = 0
 RGB1 =0,255,0
 transparency =0
-level 6 , 00000053ECDFBB00
-level color0 , 00000053ECDFBB00
+level 6 , 000000DCEBBFBB10
+level color0 , 000000DCEBBFBB10
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -548,13 +497,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 5050104.634018
-Start Point [Y]: 4113117.168696
-Start Point [Z]: 2710914.915315
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 5050104.634018
-End Point [Y]: 4113117.168696
-End Point [Z]: 2710914.915315
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -565,30 +514,18 @@ Origin [Z] = 0.000000
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 1
 
-Start Point [X]: 5.0501e+06
-Start Point [Y]: 4.11312e+06
-Start Point [Z]: 2.71091e+06
+Start Point [X]: 5050104.634018
+Start Point [Y]: 4113117.168696
+Start Point [Z]: 2710914.915315
 
-End Point [X]: 5.0501e+06
-End Point [Y]: 4.11312e+06
-End Point [Z]: 2.71091e+06
+End Point [X]: 5050104.634018
+End Point [Y]: 4113117.168696
+End Point [Z]: 2710914.915315
 
-Curve Line String Length: 0
+Curve Line String Length: 0.000000
 
-Control Points: 0
+Control Points: 0.000000
 
-eh id = 11412
-eh type = 2
-index1 = 0
-eh id = 11413
-eh type = 2
-index1 = 0
-eh id = 12509
-eh type = 19
-index1 = 0
-eh2 id12509
-eh2 type19
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = RotationalSweepSolidElement, current element id = 12509, id = 0 ---------
@@ -632,8 +569,8 @@ Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
 RGB1 =255,0,0
 transparency =0
-level 6 , 00000053ECDFB610
-level color0 , 00000053ECDFB610
+level 6 , 000000DCEBBFB740
+level color0 , 000000DCEBBFB740
 colorOut RGB =0,0,0
 level  =6
 -------- ROTATIONAL_SWEEP --------
@@ -726,13 +663,13 @@ Normal [X] = 0.000000
 Normal [Y] = -0.893830
 Normal [Z] = 0.448405
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 4118811.912893
-Start Point [Z]: 2722266.562267
+Start Point [X]: 1612899999.999966
+Start Point [Y]: 1612899999.999966
+Start Point [Z]: 1612899999.999966
 
-End Point [X]: 4986604.634018
-End Point [Y]: 4118811.912893
-End Point [Z]: 2722266.562267
+End Point [X]: 1612899999.999966
+End Point [Y]: 1612899999.999966
+End Point [Z]: 1612899999.999966
 
 
 
@@ -743,26 +680,18 @@ Origin [Z] = 2722266.562267
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 4.11881e+06
-Start Point [Z]: 2.72227e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 4118811.912893
+Start Point [Z]: 2722266.562267
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 4.11881e+06
-End Point [Z]: 2.72227e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 4118811.912893
+End Point [Z]: 2722266.562267
 
-Curve Line String Length: 12700
+Curve Line String Length: 12700.000000
 
-Control Points: 12700
+Control Points: 12700.000000
 
-
-REVOLVED CURVES CALL ENDED
-eh id = 12516
-eh type = 6
-index1 = 0
-eh2 id12516
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12516, id = 0 ---------
@@ -810,8 +739,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -827,13 +756,13 @@ Normal [X] = 0.000000
 Normal [Y] = -0.893830
 Normal [Z] = 0.448405
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4418748.427626
-Start Point [Z]: 2442145.713729
+Start Point [X]: 1612899999.999993
+Start Point [Y]: 1612899999.999993
+Start Point [Z]: 1612899999.999993
 
-End Point [X]: 5113604.634018
-End Point [Y]: 4418748.427626
-End Point [Z]: 2442145.713729
+End Point [X]: 1612899999.999993
+End Point [Y]: 1612899999.999993
+End Point [Z]: 1612899999.999993
 
 
 
@@ -844,24 +773,18 @@ Origin [Z] = 2442145.713729
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 4.41875e+06
-Start Point [Z]: 2.44215e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 4418748.427626
+Start Point [Z]: 2442145.713729
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 4.41875e+06
-End Point [Z]: 2.44215e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 4418748.427626
+End Point [Z]: 2442145.713729
 
-Curve Line String Length: 127000
+Curve Line String Length: 127000.000000
 
-Control Points: 127000
+Control Points: 127000.000000
 
-eh id = 12517
-eh type = 6
-index1 = 0
-eh2 id12517
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12517, id = 0 ---------
@@ -909,8 +832,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -926,13 +849,13 @@ Normal [X] = 0.000000
 Normal [Y] = -0.893830
 Normal [Z] = 0.448405
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
+Start Point [X]: 1612899999.999993
+Start Point [Y]: 1612899999.999993
+Start Point [Z]: 1612899999.999993
 
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
+End Point [X]: 1612899999.999993
+End Point [Y]: 1612899999.999993
+End Point [Z]: 1612899999.999993
 
 
 
@@ -943,24 +866,18 @@ Origin [Z] = 2563870.870932
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 4.17611e+06
-Start Point [Z]: 2.56387e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 4176106.974016
+Start Point [Z]: 2563870.870932
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 4.17611e+06
-End Point [Z]: 2.56387e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 4176106.974016
+End Point [Z]: 2563870.870932
 
-Curve Line String Length: 127000
+Curve Line String Length: 127000.000000
 
-Control Points: 127000
+Control Points: 127000.000000
 
-eh id = 12518
-eh type = 6
-index1 = 0
-eh2 id12518
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12518, id = 0 ---------
@@ -1008,8 +925,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1025,13 +942,13 @@ Normal [X] = -1.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
+Start Point [X]: 3447573749.999986
+Start Point [Y]: 3447573749.999986
+Start Point [Z]: 3447573749.999986
 
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
+End Point [X]: 3447573749.999986
+End Point [Y]: 3447573749.999986
+End Point [Z]: 3447573749.999986
 
 
 
@@ -1042,24 +959,18 @@ Origin [Z] = 2563870.870932
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 4.17611e+06
-Start Point [Z]: 2.56387e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 4176106.974016
+Start Point [Z]: 2563870.870932
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 4.17611e+06
-End Point [Z]: 2.56387e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 4176106.974016
+End Point [Z]: 2563870.870932
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12519
-eh type = 6
-index1 = 0
-eh2 id12519
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12519, id = 0 ---------
@@ -1107,8 +1018,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1124,13 +1035,13 @@ Normal [X] = -1.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
+Start Point [X]: 3447573749.999986
+Start Point [Y]: 3447573749.999986
+Start Point [Z]: 3447573749.999986
 
-End Point [X]: 4986604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
+End Point [X]: 3447573749.999986
+End Point [Y]: 3447573749.999986
+End Point [Z]: 3447573749.999986
 
 
 
@@ -1141,24 +1052,18 @@ Origin [Z] = 2563870.870932
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 4.17611e+06
-Start Point [Z]: 2.56387e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 4176106.974016
+Start Point [Z]: 2563870.870932
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 4.17611e+06
-End Point [Z]: 2.56387e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 4176106.974016
+End Point [Z]: 2563870.870932
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12520
-eh type = 6
-index1 = 0
-eh2 id12520
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12520, id = 0 ---------
@@ -1206,8 +1111,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1223,13 +1128,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.448405
 Normal [Z] = 0.893830
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4170412.229820
-Start Point [Z]: 2552519.223980
+Start Point [X]: 34475737500.000031
+Start Point [Y]: 34475737500.000031
+Start Point [Z]: 34475737500.000031
 
-End Point [X]: 5113604.634018
-End Point [Y]: 4170412.229820
-End Point [Z]: 2552519.223980
+End Point [X]: 34475737500.000031
+End Point [Y]: 34475737500.000031
+End Point [Z]: 34475737500.000031
 
 
 
@@ -1240,24 +1145,18 @@ Origin [Z] = 2552519.223980
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 4.17041e+06
-Start Point [Z]: 2.55252e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 4170412.229820
+Start Point [Z]: 2552519.223980
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 4.17041e+06
-End Point [Z]: 2.55252e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 4170412.229820
+End Point [Z]: 2552519.223980
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12521
-eh type = 6
-index1 = 0
-eh2 id12521
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12521, id = 0 ---------
@@ -1305,8 +1204,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1322,13 +1221,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.448405
 Normal [Z] = 0.893830
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
+Start Point [X]: 34475737500.000031
+Start Point [Y]: 34475737500.000031
+Start Point [Z]: 34475737500.000031
 
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
+End Point [X]: 34475737500.000031
+End Point [Y]: 34475737500.000031
+End Point [Z]: 34475737500.000031
 
 
 
@@ -1339,24 +1238,18 @@ Origin [Z] = 2563870.870932
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 4.17611e+06
-Start Point [Z]: 2.56387e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 4176106.974016
+Start Point [Z]: 2563870.870932
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 4.17611e+06
-End Point [Z]: 2.56387e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 4176106.974016
+End Point [Z]: 2563870.870932
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12522
-eh type = 6
-index1 = 0
-eh2 id12522
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12522, id = 0 ---------
@@ -1404,8 +1297,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1421,13 +1314,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.893830
 Normal [Z] = -0.448405
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3714946.316570
-Start Point [Z]: 2795219.853922
+Start Point [X]: 1612899999.999993
+Start Point [Y]: 1612899999.999993
+Start Point [Z]: 1612899999.999993
 
-End Point [X]: 4986604.634018
-End Point [Y]: 3714946.316570
-End Point [Z]: 2795219.853922
+End Point [X]: 1612899999.999993
+End Point [Y]: 1612899999.999993
+End Point [Z]: 1612899999.999993
 
 
 
@@ -1438,24 +1331,18 @@ Origin [Z] = 2795219.853922
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 3.71495e+06
-Start Point [Z]: 2.79522e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 3714946.316570
+Start Point [Z]: 2795219.853922
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 3.71495e+06
-End Point [Z]: 2.79522e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 3714946.316570
+End Point [Z]: 2795219.853922
 
-Curve Line String Length: 127000
+Curve Line String Length: 127000.000000
 
-Control Points: 127000
+Control Points: 127000.000000
 
-eh id = 12523
-eh type = 6
-index1 = 0
-eh2 id12523
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12523, id = 0 ---------
@@ -1503,8 +1390,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1520,13 +1407,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.893830
 Normal [Z] = -0.448405
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
+Start Point [X]: 1612899999.999993
+Start Point [Y]: 1612899999.999993
+Start Point [Z]: 1612899999.999993
 
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
+End Point [X]: 1612899999.999993
+End Point [Y]: 1612899999.999993
+End Point [Z]: 1612899999.999993
 
 
 
@@ -1537,24 +1424,18 @@ Origin [Z] = 2673494.696718
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 3.95759e+06
-Start Point [Z]: 2.67349e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 3957587.770180
+Start Point [Z]: 2673494.696718
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 3.95759e+06
-End Point [Z]: 2.67349e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 3957587.770180
+End Point [Z]: 2673494.696718
 
-Curve Line String Length: 127000
+Curve Line String Length: 127000.000000
 
-Control Points: 127000
+Control Points: 127000.000000
 
-eh id = 12524
-eh type = 6
-index1 = 0
-eh2 id12524
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12524, id = 0 ---------
@@ -1602,8 +1483,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1619,13 +1500,13 @@ Normal [X] = 1.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
+Start Point [X]: 3447573749.999988
+Start Point [Y]: 3447573749.999988
+Start Point [Z]: 3447573749.999988
 
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
+End Point [X]: 3447573749.999988
+End Point [Y]: 3447573749.999988
+End Point [Z]: 3447573749.999988
 
 
 
@@ -1636,24 +1517,18 @@ Origin [Z] = 2673494.696718
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 3.95759e+06
-Start Point [Z]: 2.67349e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 3957587.770180
+Start Point [Z]: 2673494.696718
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 3.95759e+06
-End Point [Z]: 2.67349e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 3957587.770180
+End Point [Z]: 2673494.696718
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12525
-eh type = 6
-index1 = 0
-eh2 id12525
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12525, id = 0 ---------
@@ -1701,8 +1576,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1718,13 +1593,13 @@ Normal [X] = 1.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 5113604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
+Start Point [X]: 3447573749.999988
+Start Point [Y]: 3447573749.999988
+Start Point [Z]: 3447573749.999988
 
-End Point [X]: 5113604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
+End Point [X]: 3447573749.999988
+End Point [Y]: 3447573749.999988
+End Point [Z]: 3447573749.999988
 
 
 
@@ -1735,24 +1610,18 @@ Origin [Z] = 2673494.696718
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 5.1136e+06
-Start Point [Y]: 3.95759e+06
-Start Point [Z]: 2.67349e+06
+Start Point [X]: 5113604.634018
+Start Point [Y]: 3957587.770180
+Start Point [Z]: 2673494.696718
 
-End Point [X]: 5.1136e+06
-End Point [Y]: 3.95759e+06
-End Point [Z]: 2.67349e+06
+End Point [X]: 5113604.634018
+End Point [Y]: 3957587.770180
+End Point [Z]: 2673494.696718
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12526
-eh type = 6
-index1 = 0
-eh2 id12526
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12526, id = 0 ---------
@@ -1800,8 +1669,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1817,13 +1686,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.448405
 Normal [Z] = 0.893830
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3951893.025984
-Start Point [Z]: 2662143.049766
+Start Point [X]: 34475737500.000031
+Start Point [Y]: 34475737500.000031
+Start Point [Z]: 34475737500.000031
 
-End Point [X]: 4986604.634018
-End Point [Y]: 3951893.025984
-End Point [Z]: 2662143.049766
+End Point [X]: 34475737500.000031
+End Point [Y]: 34475737500.000031
+End Point [Z]: 34475737500.000031
 
 
 
@@ -1834,24 +1703,18 @@ Origin [Z] = 2662143.049766
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 3.95189e+06
-Start Point [Z]: 2.66214e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 3951893.025984
+Start Point [Z]: 2662143.049766
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 3.95189e+06
-End Point [Z]: 2.66214e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 3951893.025984
+End Point [Z]: 2662143.049766
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12527
-eh type = 6
-index1 = 0
-eh2 id12527
-eh2 type6
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = ShapeElement, current element id = 12527, id = 0 ---------
@@ -1899,8 +1762,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB570
-level color0 , 00000053ECDFB570
+level 6 , 000000DCEBBFB6A0
+level color0 , 000000DCEBBFB6A0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1916,13 +1779,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.448405
 Normal [Z] = 0.893830
 
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
+Start Point [X]: 34475737500.000031
+Start Point [Y]: 34475737500.000031
+Start Point [Z]: 34475737500.000031
 
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
+End Point [X]: 34475737500.000031
+End Point [Y]: 34475737500.000031
+End Point [Z]: 34475737500.000031
 
 
 
@@ -1933,24 +1796,18 @@ Origin [Z] = 2673494.696718
 CURVE_PRIMITIVE_TYPE_LineString --------
 NUMBER OF COMPONENT: 4
 
-Start Point [X]: 4.9866e+06
-Start Point [Y]: 3.95759e+06
-Start Point [Z]: 2.67349e+06
+Start Point [X]: 4986604.634018
+Start Point [Y]: 3957587.770180
+Start Point [Z]: 2673494.696718
 
-End Point [X]: 4.9866e+06
-End Point [Y]: 3.95759e+06
-End Point [Z]: 2.67349e+06
+End Point [X]: 4986604.634018
+End Point [Y]: 3957587.770180
+End Point [Z]: 2673494.696718
 
-Curve Line String Length: 271463
+Curve Line String Length: 271462.500000
 
-Control Points: 271463
+Control Points: 271462.500000
 
-eh id = 12528
-eh type = 22
-index1 = 0
-eh2 id12528
-eh2 type22
-index2 = 0
 
 ------------ Instance Schema full name: DgnElementSchema.01.00
 --------- ClassName = PointStringElement, current element id = 12528, id = 0 ---------
@@ -1985,8 +1842,8 @@ Range High[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =42,25,99
 transparency =0
-level 6 , 00000053ECDFB510
-level color0 , 00000053ECDFB510
+level 6 , 000000DCEBBFB640
+level color0 , 000000DCEBBFB640
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -2002,13 +1859,13 @@ Normal [X] = 0.000000
 Normal [Y] = 0.000000
 Normal [Z] = 0.000000
 
-Start Point [X]: 5050104.634018
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
+Start Point [X]: 0.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
 
-End Point [X]: 5050104.634018
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
+End Point [X]: 0.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
 
 
 
@@ -2018,9 +1875,9 @@ Origin [Z] = 0.000000
 
 CURVE_PRIMITIVE_TYPE_PointString --------
 
-point 0 [X] = 5.0501e+06
-point 0 [Y] = 4.064e+06
-point 0 [Z] = 2.61301e+06
+Point  [X] = 5050104.634018
+Point  [Y] = 4064000.000000
+Point  [Z] = 2613006.960349
 
 ===================================================
 ===================================================

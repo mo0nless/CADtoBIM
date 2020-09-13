@@ -6,6 +6,8 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 
 ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 

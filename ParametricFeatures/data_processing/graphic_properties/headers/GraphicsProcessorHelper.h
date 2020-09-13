@@ -38,6 +38,7 @@ private:
 	T searchOnMap(map<U, T>, U key);
 
 	ElementHandle _currentElementHandle;
+	Logs::Logger* _logger = Logs::Logger::getLogger();
 
 public:
 	GraphicsProcessorHelper();

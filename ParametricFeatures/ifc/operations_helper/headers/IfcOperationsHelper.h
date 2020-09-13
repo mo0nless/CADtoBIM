@@ -32,6 +32,8 @@ public:
 	static void adjustShapeGlobalPlacement(ShapesGraphicProperties* shape, DVec3d position, bool rotatePoint);
 	
 private:
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	static DPoint3d rotateAlongAxis(string axis, DPoint3d oldPoint);
 	template<class Triplet3D>
 	static vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
