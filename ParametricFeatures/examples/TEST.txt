@@ -36,8 +36,8 @@ Global Origin [x,y,z]= 0.000000, 0.000000, 0.000000
 ------------------------
 RGB1 =0,255,0
 transparency =0
-level 4 , 000000DCEBBFBB10
-level color0 , 000000DCEBBFBB10
+level 4 , 000000609E7FB9E0
+level color0 , 000000609E7FB9E0
 colorOut RGB =0,0,0
 level  =4
 -------------------CURVE VECTOR---------------------
@@ -126,8 +126,8 @@ Angle[double] = 270.0000°
 Orientation[int] = Right
 RGB1 =255,255,0
 transparency =0
-level 2 , 000000DCEBBFB9C0
-level color0 , 000000DCEBBFB9C0
+level 2 , 000000609E7FB890
+level color0 , 000000609E7FB890
 colorOut RGB =0,0,0
 level  =2
 -------- CONE/CYLINDER/TRUNCATED_CONE --------
@@ -181,17 +181,13 @@ CenterB is in base plane: 1
 
  Cylinder 
 
+Centroid from Area = [5345279.681584, 4064000.000000, 2613006.960349]
 
-Centroid from Area [X] = 5345279.681584
-Centroid from Area [Y] = 4064000.000000
-Centroid from Area [Z] = 2613006.960349
-Area1 = 2047433037604.968506
+Area = 2047433037604.968506
 
-Centroid from Volume [X] = 0.000000
-Centroid from Volume [Y] = 0.000000
-Centroid from Volume [Z] = 0.000000
+Centroid from Volume = [0.000000, 0.000000, 0.000000]
+
 Volume = 0.000000
-Area2 = 2047433037604.968506
 
 
 
@@ -236,8 +232,8 @@ Total Length[double] = 9' 9.1206"
 Elevation[double] = 8' 6.8743"
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000DCEBBFB5F0
-level color0 , 000000DCEBBFB5F0
+level 2 , 000000609E7FB4C0
+level color0 , 000000609E7FB4C0
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -316,8 +312,8 @@ Range High[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000DCEBBFB640
-level color0 , 000000DCEBBFB640
+level 2 , 000000609E7FB510
+level color0 , 000000609E7FB510
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -387,8 +383,8 @@ Range High[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =255,0,0
 transparency =0
-level 2 , 000000DCEBBFB640
-level color0 , 000000DCEBBFB640
+level 2 , 000000609E7FB510
+level color0 , 000000609E7FB510
 colorOut RGB =0,0,0
 level  =2
 -------------------CURVE VECTOR---------------------
@@ -480,8 +476,8 @@ Element: ID 6699
 
 RGB1 =0,255,0
 transparency =0
-level 6 , 000000DCEBBFBB10
-level color0 , 000000DCEBBFBB10
+level 6 , 000000609E7FB9E0
+level color0 , 000000609E7FB9E0
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -569,8 +565,8 @@ Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
 RGB1 =255,0,0
 transparency =0
-level 6 , 000000DCEBBFB740
-level color0 , 000000DCEBBFB740
+level 6 , 000000609E7FB610
+level color0 , 000000609E7FB610
 colorOut RGB =0,0,0
 level  =6
 -------- ROTATIONAL_SWEEP --------
@@ -632,17 +628,13 @@ Radius min= 109537.500000
 Radius max= 122237.500000
 Radius cen= 115887.500000
 --------END OF ROTATIONAL_SWEEP DATA--------
+Centroid from Area = [5050104.634018, 4064000.000000, 2613006.960349]
 
-Centroid from Area [X] = 5050104.634018
-Centroid from Area [Y] = 4064000.000000
-Centroid from Area [Z] = 2613006.960349
-Area1 = 203443052857.644958
+Area = 203443052857.644958
 
-Centroid from Volume [X] = 5050104.634018
-Centroid from Volume [Y] = 4064000.000000
-Centroid from Volume [Z] = 2613006.960349
+Centroid from Volume = [5050104.634018, 4064000.000000, 2613006.960349]
+
 Volume = 1174421259678142.500000
-Area2 = 203443052857.644958
 
 
 
@@ -739,8 +731,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -832,8 +824,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -925,8 +917,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1018,8 +1010,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1111,8 +1103,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1204,8 +1196,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1297,8 +1289,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1390,8 +1382,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1483,8 +1475,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1576,8 +1568,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1669,8 +1661,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1762,8 +1754,8 @@ Pattern Definition[int] = (None)
 Pattern Name[string] = <null>
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB6A0
-level color0 , 000000DCEBBFB6A0
+level 6 , 000000609E7FB570
+level color0 , 000000609E7FB570
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
@@ -1842,8 +1834,8 @@ Range High[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
 Count[int] = 1
 RGB1 =42,25,99
 transparency =0
-level 6 , 000000DCEBBFB640
-level color0 , 000000DCEBBFB640
+level 6 , 000000609E7FB510
+level color0 , 000000609E7FB510
 colorOut RGB =0,0,0
 level  =6
 -------------------CURVE VECTOR---------------------
