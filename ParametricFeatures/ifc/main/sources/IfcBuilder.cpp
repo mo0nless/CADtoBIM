@@ -203,9 +203,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//Open ProgressBar
 	DialogCompletionBar progressBar = DialogCompletionBar();
 	progressBar.Open(L"Working...");
+	progressBar.numGraphicElement = (int)dictionaryPropertiesVector.size();
 
-	int numGraphicElement = (int)dictionaryPropertiesVector.size();
-	int percentage = 0;
 	WString myString;
 
 	myString.Sprintf(L"Generating IFC file...");
@@ -214,13 +213,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	{
 		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 		{
-			//ProgressBar
-			percentage = 100 * i / numGraphicElement;
-
-			if (percentage > 100)
-				percentage = 100;
-
-			progressBar.Update(myString, percentage);
+			//Progressbar Update
+			progressBar.Update(myString);
 
 			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 

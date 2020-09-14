@@ -71,17 +71,7 @@ void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graph
 	graphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 	graphicProperties->setOrigin(origin);
 
-	ofstream outfile;
-	outfile.open(filePath, ios_base::app);
-	outfile << fixed;
-	outfile << endl;
-
-	outfile << endl;
-	outfile << "Origin [X] = " << origin.x << endl;
-	outfile << "Origin [Y] = " << origin.y << endl;
-	outfile << "Origin [Z] = " << origin.z << endl;
-	outfile << endl;
-	outfile.close();
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile<DPoint3d>("Origin", origin);
 }
 
 #pragma endregion
@@ -299,17 +289,17 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	cDY = shapesGraphicProperties->getVectorAxisY();
 	cDZ = shapesGraphicProperties->getVectorAxisZ();
 
-	outfile.open(filePath, ios_base::app);
-	outfile << endl;
-	outfile << "Extrusion solid: " << endl;
-	outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << endl;
-	outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << endl;
-	outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << endl;
-	outfile << endl;
-	outfile << "Curve Profile: " << endl;
-	outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
-	outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
-	outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
+	//outfile.open(filePath, ios_base::app);
+	//outfile << endl;
+	//outfile << "Extrusion solid: " << endl;
+	//outfile << "Direction [X] = " << rDX.x << ", " << rDX.y << ", " << rDX.z << endl;
+	//outfile << "Direction [Y] = " << rDY.x << ", " << rDY.y << ", " << rDY.z << endl;
+	//outfile << "Direction [Z] = " << rDZ.x << ", " << rDZ.y << ", " << rDZ.z << endl;
+	//outfile << endl;
+	//outfile << "Curve Profile: " << endl;
+	//outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
+	//outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
+	//outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 	
 	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, extrusionGraphicProperties->toString());
 
@@ -405,7 +395,7 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	//Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!!
 	centerOfTheConeInB = dgnConeDetail.GetTransforms(localToWorld, worldToLocal, rA, rB);
 
-	outfile.open(filePath, ios_base::app);
+	/*outfile.open(filePath, ios_base::app);
 	outfile << endl;
 	outfile << endl;
 	outfile << "THIS IS A CONE: " << endl;
@@ -413,18 +403,18 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	outfile << "CenterB is in base plane: " << centerOfTheConeInB << endl;
 	outfile << endl;
 	outfile << endl;
-	outfile.close();
+	outfile.close();*/
 
 	GraphicProperties* primitiveGraphicProperties = nullptr;
 
 	if (Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB) && dgnConeDetail.m_radiusA > 0)
 	{
-		outfile.open(filePath, ios_base::app);
+		/*outfile.open(filePath, ios_base::app);
 		outfile << fixed;
 		outfile << endl;
 		outfile << " Cylinder " << endl;
 		outfile << endl;
-		outfile.close();
+		outfile.close();*/
 
 		primitiveGraphicProperties = new CylinderGraphicProperties();
 
@@ -435,12 +425,12 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	}
 	else if (dgnConeDetail.m_radiusB == 0)
 	{
-		outfile.open(filePath, ios_base::app);
+		/*outfile.open(filePath, ios_base::app);
 		outfile << fixed;
 		outfile << endl;
 		outfile << " Cone " << endl;
 		outfile << endl;
-		outfile.close();
+		outfile.close();*/
 
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
 
@@ -450,12 +440,12 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	}
 	else if (dgnConeDetail.m_radiusB > 0 && !Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB))
 	{
-		outfile.open(filePath, ios_base::app);
+		/*outfile.open(filePath, ios_base::app);
 		outfile << fixed;
 		outfile << endl;
 		outfile << " Truncated cone " << endl;
 		outfile << endl;
-		outfile.close();
+		outfile.close();*/
 
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
 
