@@ -109,57 +109,13 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 					
 				}
 			}
-
-			//for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
-			//	if (readerPropertyDefinition->getPropertyName().find("Color") != string::npos && 
-			//		readerPropertyDefinition->getPropertyValueAsString().find("ByLevel")) {
-			//		outfile << "found level" << endl;
-
-			//		string result;
-			//		string searched = readerPropertyDefinition->getPropertyValueAsString();
-			//		try {
-			//			regex re("Level by//(//d+//)");
-			//			smatch match;
-			//			if (regex_search(searched, match, re) && match.size() > 0) {
-			//				result = match.str(0);
-			//			}
-			//			else {
-			//				result = string("");
-			//			}
-			//		}
-			//		catch (regex_error& e) {
-			//			e.code();
-			//		}
-
-			//		outfile << " level = " << result << endl;
-
-			//		int intValue;
-			//		try {
-			//			intValue = stoi(result);
-			//			outfile << " level int = " << intValue << endl;
-
-			//		}
-			//		catch (exception& e) {
-			//			e.what();
-			//		}
-
-			//		if (intValue > 0) {
-			//			auto model = ISessionMgr::GetActiveDgnModelRefP();
-			//			LevelId l(intValue);
-			//			UInt colorOut;
-			//			bool ov;
-			//			mdlLevel_getColor(&colorOut, &ov, model, l);
-			//			outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;
-
-			//		}
-			//	}
-			//}
 	
 			return readerPropertiesBundle;
 		}
 	}
 	outfile.close();
 
+	_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"Returning an empty ReaderPropertiesBundle");
 
 	return new ReaderPropertiesBundle("", -1);
 }

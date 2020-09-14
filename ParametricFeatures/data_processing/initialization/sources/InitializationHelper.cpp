@@ -97,11 +97,11 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
 
 		GraphicsProcessor graphicsProcessor = GraphicsProcessor();
-		GraphicsProcessorHelper* GraphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
+		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
 
-		GraphicsProcessorHelper->setElementHandle(eh);
-		GraphicsProcessorHelper->setElementBundle(*elementBundle);
-		GraphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
+		graphicsProcessorHelper->setElementHandle(eh);
+		graphicsProcessorHelper->setElementBundle(*elementBundle);
+		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
 		ElementGraphicsOutput::Process(eh, graphicsProcessor);
 
 		dictionaryProperties->addElementBundle(elementBundle);

@@ -32,22 +32,22 @@ void ElementBundle::setReaderPropertiesBundle(ReaderPropertiesBundle & newReader
 
 UInt32 ElementBundle::getColor()
 {
-	return this->color;
+	return this->_color;
 }
 
 void ElementBundle::setColor(UInt32 newColor)
 {
-	this->color = newColor;
+	this->_color = newColor;
 }
 
 double ElementBundle::getTransparency()
 {
-	return this->transparency;
+	return this->_transparency;
 }
 
 void ElementBundle::setTransparency(double newTransparency)
 {
-	this->transparency = newTransparency;
+	this->_transparency = newTransparency;
 }
 
 string ElementBundle::getMaterial()
@@ -58,4 +58,17 @@ string ElementBundle::getMaterial()
 void ElementBundle::setMaterial(string material)
 {
 	this->_material = material;
+}
+
+string ElementBundle::toString()
+{
+	std::ostringstream stringStream;
+
+	stringStream << typeid(ElementBundle).name();
+	stringStream << ", color = " << _color;
+	stringStream << ", transparency = " << _transparency;
+	stringStream << ", _material = " << _material;
+	stringStream << endl;
+
+	return stringStream.str();
 }

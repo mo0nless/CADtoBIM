@@ -33,7 +33,5 @@ public:
 	long getCurrentElementId();
 	void setCurrentElementId(long newCurrentElementId);
 
-
-
-
+	string toString();
 };

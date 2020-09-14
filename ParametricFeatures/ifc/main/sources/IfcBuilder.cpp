@@ -218,8 +218,10 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 			//ProgressBar
 			percentage = 100 * i / numGraphicElement;
 
-			if (percentage > 100)
+			if (percentage > 100) {
 				percentage = 100;
+			}
+				
 
 			progressBar.Update(myString, percentage);
 

@@ -60,3 +60,8 @@ void GeneralProperties::setCurrentElementId(long newCurrentElementId)
 	this->mCurrentElementId = newCurrentElementId;
 }
 
+string GeneralProperties::toString()
+{
+	return string();
+}
+
