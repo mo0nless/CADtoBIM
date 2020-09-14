@@ -23,6 +23,9 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
+		else {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "ifcRepresentationItem IS NULL");
+		}
 	}
 }
 
@@ -1221,6 +1224,9 @@ void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfa
 				meshTriangles->facesTriangulatedVector.push_back(pointShape);
 				processPolyfaceMesh(meshTriangles, ifcAdvancedFaceList);
 			}
+		}
+		else {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "surfaceGraphic IS NULL");
 		}
 	}
 }

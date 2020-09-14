@@ -212,6 +212,7 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		}
 		break;
 		default:
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"CurvesBoundaryTypeEnum case NOT handled");
 			break;
 	}
 
@@ -488,6 +489,8 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 		break;
 
 		default:
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "CurvesPrimitivesTypeEnum case NOT handled");
+
 			break;
 	}	
 	//Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(string("Color"), 1,0,0);
@@ -528,8 +531,10 @@ IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcShapesEnhancer::build
 			curve
 		);
 
-		if (item == nullptr)
+		if (item == nullptr) {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "item is NULL");
 			continue;
+		}
 
 		tempEntityList->push(item);
 	}

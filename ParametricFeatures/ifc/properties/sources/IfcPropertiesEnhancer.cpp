@@ -57,6 +57,7 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 			ifcPropertyList->push(createIfcComplexProperty(*readerPropertyDefinition));
 		}
 		else {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Unmapped property");
 			// log unmapped property type
 		}
 
@@ -140,6 +141,9 @@ Ifc4::IfcProperty * IfcPropertiesEnhancer::createIfcComplexProperty(ReaderProper
 			ifcValue, 0);
 
 		ifcPropertyList->push(ifcPropertySingleValue);
+	}
+	else {
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Unhandled propertyTypeEnum");
 	}
 
 

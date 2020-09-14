@@ -6,41 +6,72 @@
 #pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
-	createFilesStructure();
-	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
-	//mdlInput_sendKeyin(L"MsgCenter ClearMessages", true, MSInputQueuePos::INPUTQ_EOQ, L"0");
-
 	NotificationManager::SetDispatchEvents(true);
 
-	WString stringOutMsg;	
-	
+	createFilesStructure();
+	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
+
 	string fileName = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
-	SessionManager::getInstance()->setDgnFileName(fileName);
 	fileName = SessionManager::getInstance()->getDgnFileName();
-	WString fname = StringUtils::getWString(fileName);
-
-	stringOutMsg.Sprintf(L"Export the active '%s.dgn' file to IFC?", fname);
-
-	NotificationManager::MessageBoxValue resultUser = NotificationManager::OpenMessageBox(
-		NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_YesNo,
-		stringOutMsg.c_str(),
-		NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Question
-	);
 	
-	if (NotificationManager::MessageBoxValue::MESSAGEBOX_VALUE_Yes == resultUser)
+	std::ostringstream stringStream;
+	stringStream << "Do you want to convert the active" << fileName;
+	stringStream << "to IFC? ";
+	stringStream << endl;
+	
+	string mainNotificationMessage = stringStream.str();
+
+	NotificationManager::MessageBoxValue mainNotification = createNotificationMessage(NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_YesNo,
+		mainNotificationMessage, NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Question);
+	
+
+	string statusMessage;
+
+	if (NotificationManager::MessageBoxValue::MESSAGEBOX_VALUE_Yes == mainNotification)
 	{
-		stringOutMsg.clear();
-		stringOutMsg.Sprintf(L"Start IFC Conversion");
-		NotificationMessage::send(stringOutMsg, OutputMessagePriority::Debug);
+		
+		statusMessage = "Start IFC Conversion";
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
 
 		vector<DictionaryProperties*> propsDictVec;
 		vector<SmartFeatureContainer*> smartFeatureContainerVector;
 
-		InitializationHelper* initializationHelper = new InitializationHelper();
-		initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+		string errorMessageModelProcessing = "Error at processing the dgn model";
 
-		IfcBuilder* ifcBuilder = new IfcBuilder();
-		ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+		try {
+			InitializationHelper* initializationHelper = new InitializationHelper();
+			initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+		}
+		catch (exception& ex) {
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageModelProcessing);
+		
+			createErrorNotificationMessage(errorMessageModelProcessing);
+		}
+		catch (...) {
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, errorMessageModelProcessing);
+
+			createErrorNotificationMessage(errorMessageModelProcessing);
+
+		}
+
+
+		string errorMessageIfcConversion = "Error at creating the IFC file";
+
+		try {
+			IfcBuilder* ifcBuilder = new IfcBuilder();
+			ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+		}
+		catch (exception& ex) {
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageIfcConversion);
+
+			createErrorNotificationMessage(errorMessageIfcConversion);
+		}
+		catch (...) {
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, errorMessageIfcConversion);
+
+			createErrorNotificationMessage(errorMessageIfcConversion);
+
+		}
 
 		string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
 
@@ -49,11 +80,17 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
 
-		stringOutMsg.clear();
-		stringOutMsg.Sprintf(L"End IFC Conversion");
+		statusMessage = "End IFC Conversion";
 
-		NotificationMessage::send(stringOutMsg, OutputMessagePriority::Debug);
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
 		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Ended the application process --!!");
+	}
+	else {
+		statusMessage = "Declined IFC Conversion";
+
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+
+		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Declined the start of the application --!!");
 	}
 
 	return SUCCESS;
@@ -147,4 +184,15 @@ void createFolder(string folderPath)
 	{
 		// Failed to create directory. return status/boolean and log
 	}
+}
+
+NotificationManager::MessageBoxValue createNotificationMessage(NotificationManager::MessageBoxType messageType, string message, NotificationManager::MessageBoxIconType messageBoxIconType)
+{
+	return NotificationManager::OpenMessageBox(messageType, StringUtils::getWString(message).c_str(), messageBoxIconType);
+}
+
+NotificationManager::MessageBoxValue createErrorNotificationMessage(string message)
+{
+	return createNotificationMessage(NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_MediumAlert,
+		message, NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Critical);
 }

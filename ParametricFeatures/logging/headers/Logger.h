@@ -45,7 +45,7 @@ namespace Logs {
 		static Logger* _logger;
 
 		// set the severity level filter necessary
-		static const severity_level _severityLevelFilter = info;
+		static const severity_level _severityLevelFilter = debug;
 
 		string _logFolderPath;
 		src::severity_logger<severity_level> _log;
@@ -90,7 +90,11 @@ namespace Logs {
 
 		void logError(string fileName, int lineNumber, string functionName, string errorMessage = "");
 
+		void logError(string fileName, int lineNumber, string functionName,exception& ex, string errorMessage = "");
+
 		void logFatal(string fileName, int lineNumber, string functionName, string fatalMessage = "");
+
+		void logFatal(string fileName, int lineNumber, string functionName, exception& ex, string fatalMessage = "");
 
 	};
 }

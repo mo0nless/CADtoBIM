@@ -17,6 +17,9 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
+		else {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"ifcRepresentationItem is NULL");
+		}
 	}
 }
 

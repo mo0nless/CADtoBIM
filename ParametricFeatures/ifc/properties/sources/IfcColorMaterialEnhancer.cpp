@@ -89,6 +89,8 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 	}
 	else {
 		ifcMaterial = new Ifc4::IfcMaterial("UndefinedMaerial", boost::none, boost::none);
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Undefined material");
+
 	}
 	
 

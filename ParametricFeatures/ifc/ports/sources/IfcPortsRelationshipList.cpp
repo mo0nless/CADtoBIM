@@ -33,9 +33,11 @@ bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElemen
 			temp->isElementConnected = connected;
 			break;
 		}
-		else
+		else {
 			tempLast = temp;
 			temp = temp->nextPortElement;
+		}
+			
 	}
 
 	if (connected)
@@ -144,8 +146,10 @@ void IfcPortsRelationshipList::display()
 			outfile << "Next Point  Z = " << point[2] << endl;
 			outfile << endl;
 		}
-		else
-			temp = temp->nextPortElement;		
+		else {
+			temp = temp->nextPortElement;
+		}
+			
 
 		outfile.close(); 
 	}
