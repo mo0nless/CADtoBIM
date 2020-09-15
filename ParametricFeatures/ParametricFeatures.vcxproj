@@ -107,6 +107,7 @@
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
+    <ClInclude Include="common\utils\headers\ThreadPool.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="interface\MainForm.h">
       <FileType>CppForm</FileType>

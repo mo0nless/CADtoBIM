@@ -5,7 +5,7 @@
 #include <shlobj.h>
 #include <time.h>
 
-//#include "../../../common/utils/headers/ctpl.h"
+#include "../../../common/utils/headers/ThreadPool.h"
 #include "../../../logging/headers/Logger.h"
 
 
@@ -14,13 +14,13 @@
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../modeler\data_writer\headers\ModelerDataWriterManager.h"
 
+
 class InitializationHelper
 {
 public:
 	InitializationHelper();
-	
-	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 
+	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 
 private:	
 	void createFilesStructure();

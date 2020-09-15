@@ -1,5 +1,7 @@
 #pragma once
 
+#include <mutex>
+
 #include "../../../stdafx.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"

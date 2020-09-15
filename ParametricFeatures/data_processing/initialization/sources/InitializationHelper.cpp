@@ -144,6 +144,7 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 
 StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties* dictionaryProperties)
 {
+	mutex g_display_mutex;
 	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
 	int index = 0;
@@ -162,6 +163,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
 		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
 
+		lock_guard<mutex> guard(g_display_mutex);
 		GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 		GraphicsProcessorHelper* GraphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
 
@@ -183,7 +185,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-#pragma warning (disable:4311 4302 4312)
+#pragma warning (disable:4311 4302 4312 4100)
 void InitializationHelper::processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {			
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
@@ -197,20 +199,48 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	
 	WString myString;	
 	
+
+	//DialogCompletionBar threadsProgressBar = DialogCompletionBar();
+	////Open ProgressBar	
+	//threadsProgressBar.numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
+	//threadsProgressBar.Open(L"Working...");
+
 	//Open ProgressBar	
 	this->_progressBar.numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
 	this->_progressBar.Open(L"Working...");
 
-	/*vector<PersistentElementRefP> vecGraphicElements;
+#if false
+	vector<PersistentElementRefP> vecGraphicElements;
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
 		vecGraphicElements.push_back(elemRef);
 	}
 
 	int numThreads = thread::hardware_concurrency();
-	vector<vector<PersistentElementRefP>> elementThreadCollection = splitVector<PersistentElementRefP>(vecGraphicElements, numThreads);*/
-	//ctpl::thread_pool pool(numThreads);
+	vector<vector<PersistentElementRefP>> elementThreadCollection = splitVector<PersistentElementRefP>(vecGraphicElements, numThreads);
+	ctpl::thread_pool pool(numThreads);
 
+	vector<thread> threadVector;
+	for (auto elmVec : elementThreadCollection)
+	{
+		/*pool.push([](int id) {
+			string f = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+			ofstream outfile;
+			outfile.open(f, ios_base::app);
+			outfile << "------------- THREAD ------------- " << id << endl;
+			outfile.close();
+		});*/
+		//for (...) some_threads.push_back(std::thread(&foo::foo_func, this));
+
+		
+		threadVector.push_back(thread (&InitializationHelper::processSubElemVector, this, elmVec, ref(propsDictVec), ref(smartFeatureContainerVector)));
+	}
+
+	for (auto& t : threadVector)
+	{
+		t.join();
+	}
+#endif
 
 #if true
 	for (PersistentElementRefP elemRef : *pGraElement)
@@ -263,6 +293,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> vecGraphicElement, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 	WString myString;
+	mutex g_display_mutex;
 
 	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
@@ -282,7 +313,7 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 		this->_progressBar.globalIndex += 1;	
 		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar.globalIndex, this->_progressBar.numGraphicElement, elDescr);
 		this->_progressBar.Update(myString);
-
+		
 		iterateSubElements(elemRef, propertiesDictionary);
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
@@ -304,6 +335,7 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
 		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 
+		lock_guard<mutex> guard(g_display_mutex);
 		propsDictVec.push_back(propertiesDictionary);
 
 		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
