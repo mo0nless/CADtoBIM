@@ -19,6 +19,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//Open ProgressBar
 	DialogCompletionBar progressBar = DialogCompletionBar();
 	progressBar.Open(L"Creating IFC elements...");
+	progressBar.numGraphicElement = (int)dictionaryPropertiesVector.size();
+
 
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
@@ -169,11 +171,9 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	file.addEntity(project);
 
 	// initialize ifc bundle vector
-	int numGraphicElement = (int)dictionaryPropertiesVector.size();
-	int percentage = 0;
+	//int numGraphicElement = (int)dictionaryPropertiesVector.size();
+	//int percentage = 0;
 	WString myString;
-
-	myString.Sprintf(L"Generating IFC file...");
 
 	vector<IfcElementBundle*>ifcElementBundleVector;
 	try {
@@ -223,15 +223,6 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	//smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
-	//Open ProgressBar
-	DialogCompletionBar progressBar = DialogCompletionBar();
-	progressBar.Open(L"Working...");
-	progressBar.numGraphicElement = (int)dictionaryPropertiesVector.size();
-
-	WString myString;
-
-	myString.Sprintf(L"Generating IFC file...");
-
 	try {
 		if (!dictionaryPropertiesVector.empty())
 		{
@@ -239,7 +230,6 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 			{
 				//ProgressBar
 				progressBar.globalIndex += 1;
-				progressBar.Update(myString);
 
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
@@ -308,12 +298,10 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	this->_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
-		
 
-	//Close ProgressBar
-	progressBar.Close();
+	myString.Sprintf(L"Writing to the IFC file...");
+	progressBar.Update(myString);
 
-				
 	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Finished IFC conversion -!");
 
 	try {
@@ -334,4 +322,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Error at writing the IFC file");
 		throw;
 	}
+
+	//Close ProgressBar
+	progressBar.Close();
 }

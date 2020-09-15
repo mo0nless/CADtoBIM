@@ -26,51 +26,21 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 
 	for (size_t i = 0; i < sFeatVec.size(); i++)
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << "start==================" << endl;
-		outfile.close();*/
 		if (sFeatVec.at(i)->GetParent() != nullptr)
 		{
-			/*outfile.open(filePath, ios_base::app);
-			outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << endl;
-			outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << endl;
-			outfile.close();*/
-
 			newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 		}
 
 		newLocalNodeId = sFeatVec.at(i)->GetNodeId();
-/*
-		outfile.open(filePath, ios_base::app);
-		outfile << "Node ID: " << newLocalNodeId << endl;
-		outfile.close();
-*/
 		sFeatVec.at(i)->GetLeaf(leafNode);
 
 		if (leafNode.IsValid()) {
 
 			newGlobalNodeId = leafNode.GetElementId();
-			
-			/*outfile.open(filePath, ios_base::app);
-			outfile << "Leaf ID:  " << leafNode.GetElementId() << endl;
-			outfile.close();*/
-
 		}
-
-		/*outfile.open(filePath, ios_base::app);
-		outfile << "finish==================" << endl;
-		outfile.close();*/
-
-		
 		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
 
 	}
-
-	/*outfile.open(filePath, ios_base::app);
-	outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << endl;
-	outfile << "Number of Child: " << sFeatNode->GetChildCount() << endl;
-	outfile.close();*/
-
 
 	return smartFeatureContainer;
 }
@@ -128,10 +98,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	DialogCompletionBar progressBar = DialogCompletionBar();
 	progressBar.Open(L"Processing DGN elements...");
 
-	//ofstream outfile;	
-	//outfile.open(filePath);
-	//outfile << "------------------------" << endl;
-	//outfile.close();
 			
 	GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 	GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
@@ -244,7 +210,7 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 
 
 	for (PersistentElementRefP elemRef : *pGraElement)
-	{	
+	{
 		try {
 
 			DgnModelP c = elemRef->GetDgnModelP();
@@ -254,15 +220,15 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 
 			currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
-		SmartFeatureContainer* smartFeatureContainer = nullptr;
-		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
+			SmartFeatureContainer* smartFeatureContainer = nullptr;
+			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
-		//ProgressBar
-		this->_progressBar.globalIndex += 1;	
-		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar.globalIndex, this->_progressBar.numGraphicElement, elDescr);
-		this->_progressBar.Update(myString);
-		
-		iterateSubElements(elemRef, propertiesDictionary);
+			//ProgressBar
+			this->_progressBar.globalIndex += 1;
+			myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar.globalIndex, this->_progressBar.numGraphicElement, elDescr);
+			this->_progressBar.Update(myString);
+
+			iterateSubElements(elemRef, propertiesDictionary);
 
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
@@ -270,24 +236,34 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 				SmartFeatureNodePtr sFeatNode;
 				T_SmartFeatureVector sFeatVec;
 
-			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
-			if (smartFeatureContainer != nullptr) {
-				smartFeatureContainerVector.push_back(smartFeatureContainer);
-				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+				smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+				if (smartFeatureContainer != nullptr) {
+					smartFeatureContainerVector.push_back(smartFeatureContainer);
+					propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+				}
 			}
+
+
+			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
+			PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+			ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
+
+			lock_guard<mutex> guard(g_display_mutex);
+			propsDictVec.push_back(propertiesDictionary);
+
+			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
 		}
-		
+		catch (exception& ex) {
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageAtElementsProcessing);
+		}
+		catch (...) {
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, errorMessageAtElementsProcessing);
 
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
-
-		lock_guard<mutex> guard(g_display_mutex);
-		propsDictVec.push_back(propertiesDictionary);
-
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+		}
 	}
+
 }
 #pragma warning( pop ) 
