@@ -8,7 +8,11 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 {
 	NotificationManager::SetDispatchEvents(true);
 
-	createFilesStructure();
+	if (!createFilesStructure()) {
+		createErrorNotificationMessage("Error at creating the files structure");
+		return ERROR;
+	}
+
 	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
 
 	string fileName = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
@@ -31,7 +35,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	{
 		
 		statusMessage = "Start IFC Conversion";
-		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Info);
 
 		vector<DictionaryProperties*> propsDictVec;
 		vector<SmartFeatureContainer*> smartFeatureContainerVector;
@@ -76,19 +80,19 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
 
 		char myDocPath[MAX_PATH];
-		strcpy(myDocPath, outputFolderPath.c_str());
+		strcpy_s(myDocPath, outputFolderPath.c_str());
 
 		ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
 
 		statusMessage = "End IFC Conversion";
 
-		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Info);
 		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Ended the application process --!!");
 	}
 	else {
 		statusMessage = "Declined IFC Conversion";
 
-		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Info);
 
 		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Declined the start of the application --!!");
 	}
@@ -109,7 +113,7 @@ void UnloadParametricFeatures(WCharCP unparsedP)
 	return;
 }
 
-void createFilesStructure()
+bool createFilesStructure()
 {
 	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	//string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
@@ -131,13 +135,17 @@ void createFilesStructure()
 
 	string mainFolderPath = documentsPath + "\\IfcModels";
 	// create main folder
-	createFolder(mainFolderPath);
+	if (!createFolder(mainFolderPath)) {
+		return false;
+	}
 
 	SessionManager::getInstance()->setOutputFolderPath(mainFolderPath);
 
 	string logFolderPath = mainFolderPath + "\\logs";
 	// create logs folder
-	createFolder(logFolderPath);
+	if (!createFolder(logFolderPath)) {
+		return false;
+	}
 
 	// get date to create logs by day
 	time_t theTime = time(NULL);
@@ -149,7 +157,9 @@ void createFilesStructure()
 
 	string currentDayLogFolderPath = logFolderPath + "\\" + to_string(day) + "-" + to_string(month) + "-" + to_string(year);
 	// create log folder
-	createFolder(currentDayLogFolderPath);
+	if (!createFolder(currentDayLogFolderPath)) {
+		return false;
+	}
 	SessionManager::getInstance()->setCurrentDayLogsFolderPath(currentDayLogFolderPath);
 
 
@@ -170,8 +180,9 @@ void createFilesStructure()
 
 	SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
 
+	return true;
 }
-void createFolder(string folderPath)
+bool createFolder(string folderPath)
 {
 
 	// create main folder
@@ -179,10 +190,13 @@ void createFolder(string folderPath)
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
 		// do something. status/boolean
+		return true;
 	}
 	else
 	{
+		createErrorNotificationMessage("Failed to created folder"+folderPath);
 		// Failed to create directory. return status/boolean and log
+		return false;
 	}
 }
 
@@ -193,6 +207,8 @@ NotificationManager::MessageBoxValue createNotificationMessage(NotificationManag
 
 NotificationManager::MessageBoxValue createErrorNotificationMessage(string message)
 {
+	NotificationMessage::send(StringUtils::getWString(message), OutputMessagePriority::Fatal);
+
 	return createNotificationMessage(NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_MediumAlert,
 		message, NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Critical);
 }

@@ -16,6 +16,10 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 {	
 
 	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__,"!- Starting IFC conversion -!");
+	//Open ProgressBar
+	DialogCompletionBar progressBar = DialogCompletionBar();
+	progressBar.Open(L"Creating IFC elements...");
+
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
 	//string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
@@ -165,12 +169,19 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	file.addEntity(project);
 
 	// initialize ifc bundle vector
+	int numGraphicElement = (int)dictionaryPropertiesVector.size();
+	int percentage = 0;
+	WString myString;
+
+	myString.Sprintf(L"Generating IFC file...");
+
 	vector<IfcElementBundle*>ifcElementBundleVector;
 	try {
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
+
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
@@ -212,29 +223,18 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	//smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
-	//Open ProgressBar
-	DialogCompletionBar progressBar = DialogCompletionBar();
-	progressBar.Open(L"Working...");
-
-	int numGraphicElement = (int)dictionaryPropertiesVector.size();
-	int percentage = 0;
-	WString myString;
-
-	myString.Sprintf(L"Generating IFC file...");
 
 	try {
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
-				//ProgressBar
+				//Update ProgressBar
 				percentage = 100 * i / numGraphicElement;
 
 				if (percentage > 100) {
 					percentage = 100;
 				}
-
-
 				progressBar.Update(myString, percentage);
 
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
@@ -246,30 +246,40 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 				for (auto element : dictionaryProperties.getElementBundle())
 				{
-					SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-					if (solidPrimitiveProperties != nullptr) {
-						_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+					try {
+						SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+						if (solidPrimitiveProperties != nullptr) {
+							_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
+						if (shapeGraphicProperties != nullptr)
+						{
+							_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+						if (msBsplineSurfaceGraphicProperties != nullptr)
+						{
+							_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+						if (solidEntityGraphicProperties != nullptr)
+						{
+							_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
+					}
+					catch (exception& ex) {
+						_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
 						continue;
 					}
-
-					ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
-					if (shapeGraphicProperties != nullptr)
-					{
-						_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
-						continue;
-					}
-
-					MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
-					if (msBsplineSurfaceGraphicProperties != nullptr)
-					{
-						_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
-						continue;
-					}
-
-					SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-					if (solidEntityGraphicProperties != nullptr)
-					{
-						_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+					catch (...) {
+						_logger->logError(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
 						continue;
 					}
 				}
@@ -277,11 +287,11 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		}
 	}
 	catch (exception& ex) {
-		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
 		throw ex;
 	}
 	catch (...) {
-		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
 		throw;
 	}
 	

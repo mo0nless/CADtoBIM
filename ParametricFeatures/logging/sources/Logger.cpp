@@ -17,7 +17,7 @@ namespace Logs {
 			typedef sinks::synchronous_sink<sinks::text_file_backend > file_sink;
 			boost::shared_ptr< file_sink > sink(new file_sink(
 				keywords::file_name = logsOutputFolderPath+"\\file_%Y-%m-%d_%H-%M-%S.%N.log",      // file name pattern
-				keywords::rotation_size = 200000,                // rotation size, in characters
+				keywords::rotation_size = 10000000,                // rotation size, in characters
 				keywords::auto_flush = true
 			));
 

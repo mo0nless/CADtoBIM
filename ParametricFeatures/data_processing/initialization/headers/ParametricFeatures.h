@@ -37,8 +37,8 @@ extern "C" {
 	void UnloadParametricFeatures(WCharCP unparsedP);
 	StatusInt GetSmartFeatureTree(WCharCP unparsedP);
 	
-	void createFilesStructure();
-	void createFolder(string folderPath);
+	bool createFilesStructure();
+	bool createFolder(string folderPath);
 
 	NotificationManager::MessageBoxValue createNotificationMessage(NotificationManager::MessageBoxType messageType,
 		string message, NotificationManager::MessageBoxIconType messageBoxIconType);

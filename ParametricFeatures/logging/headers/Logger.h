@@ -45,7 +45,7 @@ namespace Logs {
 		static Logger* _logger;
 
 		// set the severity level filter necessary
-		static const severity_level _severityLevelFilter = debug;
+		static const severity_level _severityLevelFilter = info;
 
 		string _logFolderPath;
 		src::severity_logger<severity_level> _log;
