@@ -8,6 +8,8 @@ InitializationHelper::InitializationHelper()
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
+	this->_progressBar = DialogCompletionBar();
+	this->_modelerDataWriterManager = new ModelerDataWriterManager(true);
 }
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
@@ -134,12 +136,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	
 	WString myString;	
 	
-
-	//DialogCompletionBar threadsProgressBar = DialogCompletionBar();
-	////Open ProgressBar	
-	//threadsProgressBar.numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
-	//threadsProgressBar.Open(L"Working...");
-
 	//Open ProgressBar	
 	this->_progressBar.numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
 	this->_progressBar.Open(L"Working...");
@@ -223,6 +219,8 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 
 	//Close ProgressBar
 	this->_progressBar.Close();
+
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended elements processing -!");
 }
 
 void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> vecGraphicElement, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
@@ -230,7 +228,7 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 	WString myString;
 	mutex g_display_mutex;
 
-	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+	//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
 	for (PersistentElementRefP elemRef : vecGraphicElement)
 	{
@@ -267,6 +265,7 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 
 		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
+		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
 		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 
@@ -274,14 +273,6 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 		propsDictVec.push_back(propertiesDictionary);
 
 		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-	
-	//Close ProgressBar
-	this->_progressBar.Close();
-
-
-		
-
-		_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended elements processing -!");
 	}
 }
 #pragma warning( pop ) 
