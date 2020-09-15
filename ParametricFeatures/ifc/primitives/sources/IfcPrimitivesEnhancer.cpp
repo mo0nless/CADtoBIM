@@ -267,7 +267,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			cDY = shape->getVectorAxisY();
 			cDZ = shape->getVectorAxisZ();
 			
-			outfile.open(filePath, ios_base::app);
+			/*outfile.open(filePath, ios_base::app);
 			outfile << endl;
 			outfile << "IFC Revolve --------" << endl;
 			outfile << "Revolved solid: " << endl;
@@ -279,7 +279,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			outfile << "Direction [X] = " << cDX.x << ", " << cDX.y << ", " << cDX.z << endl;
 			outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
 			outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
-			outfile.close();
+			outfile.close();*/
 		}
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::EXTRUSION)
 		{
@@ -303,8 +303,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 				
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-			//Change dimension
-			//ifcShapesEnhancer->dimension = 2;
 
 			//Single Bound
 			if (shape->getShapesGraphicsContainer().empty())
@@ -417,7 +415,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 
 			dirExt = extrusionGraphicProperties.getDirectionOfExtrusion();
 
-			outfile.open(filePath, ios_base::app);
+			/*outfile.open(filePath, ios_base::app);
 			outfile << endl;
 			outfile << fixed;
 			outfile << "IFC Extrusion --------" << endl;
@@ -433,7 +431,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			outfile << endl;
 			outfile << "Direction of Extrusion: " << endl;
 			outfile << "Direction [X] = " << dirExt.x << ", " << dirExt.y << ", " << dirExt.z << endl;
-			outfile.close();
+			outfile.close();*/
 		}
 
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::RULED_SWEEP) //TODO[SB] To be Handle Ruled Sweep

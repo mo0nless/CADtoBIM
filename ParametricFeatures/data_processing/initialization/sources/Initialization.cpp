@@ -16,11 +16,12 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
 
 	string fileName = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
+	SessionManager::getInstance()->setDgnFileName(fileName);
 	fileName = SessionManager::getInstance()->getDgnFileName();
 	
 	std::ostringstream stringStream;
-	stringStream << "Do you want to convert the active" << fileName;
-	stringStream << "to IFC? ";
+	stringStream << "Do you want to convert the active " << fileName;
+	stringStream << " to IFC? ";
 	stringStream << endl;
 	
 	string mainNotificationMessage = stringStream.str();
@@ -115,8 +116,8 @@ void UnloadParametricFeatures(WCharCP unparsedP)
 
 bool createFilesStructure()
 {
-	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	SessionManager::getInstance()->setDataOutputFilePath(filePath);
 

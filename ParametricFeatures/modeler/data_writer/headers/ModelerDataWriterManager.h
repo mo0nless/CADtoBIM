@@ -104,6 +104,10 @@ public:
 #pragma endregion
 
 #pragma region General Data
+	void writeElementInfoDataToFile(long elementID, WString elDescr);
+
+	void writeInitializationDataToFile(ModelInfoCP modelInfo);
+
 	void writeTitleProcessDataToFile(string s);
 
 	void writeSinglePointDataToFile(DPoint3d point, int index = -1);

@@ -997,6 +997,76 @@ void ModelerDataWriterManager::writeBodyDataToFile(ISolidKernelEntityCR entity)
 #pragma endregion
 
 
+void ModelerDataWriterManager::writeElementInfoDataToFile(long elementID, WString elDescr)
+{
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
+	this->_outFile << "===================================================" << endl;
+	this->_outFile << "===================================================" << endl;
+	this->_outFile << "Element Description: " << static_cast<Utf8String>(elDescr.GetWCharCP()) << endl;
+	this->_outFile << "Element ID: " << elementID << endl;
+	this->_outFile << "===================================================" << endl;
+	this->_outFile << "===================================================" << endl;
+	this->_outFile << endl;
+	this->_outFile.close();
+}
+
+void ModelerDataWriterManager::writeInitializationDataToFile(ModelInfoCP modelInfo)
+{
+	DPoint3d globalOrigin = modelInfo->GetGlobalOrigin();
+
+	UnitDefinitionCR masterUnit = modelInfo->GetMasterUnit();
+	UnitDefinitionCR subUnit = modelInfo->GetSubUnit();
+
+	UnitDefinitionCR storageUnit = modelInfo->GetStorageUnit();
+	double uorPerUnit = modelInfo->GetUorPerStorage();
+
+	this->_outFile.open(this->_dataOutputFilePath);
+	this->_outFile << "------------------------" << endl;
+	this->_outFile << "DgnModelRefP Unit System" << endl;
+	this->_outFile << fixed;
+	this->_outFile << endl;
+
+	this->_outFile << "UnitSystem::English 1" << endl;
+	this->_outFile << "UnitSystem::Metric 2" << endl;
+	this->_outFile << "UnitSystem::USSurvey 3" << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "UnitBase::Meter 1" << endl;
+	this->_outFile << "UnitBase::Degree 2" << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Master unit: " << StringUtils::getNormalizedString(masterUnit.GetLabel()) << endl;
+	this->_outFile << "masterUnit System" << (int)masterUnit.GetSystem() << endl;
+	this->_outFile << "masterUnit Base" << (int)masterUnit.GetBase() << endl;
+	this->_outFile << "masterUnit Numerator" << masterUnit.GetNumerator() << endl;
+	this->_outFile << "masterUnit Denominator" << masterUnit.GetDenominator() << endl;
+	this->_outFile << "Division Ratio" << (masterUnit.GetNumerator() / masterUnit.GetDenominator()) << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Sub unit: " << StringUtils::getNormalizedString(subUnit.GetLabel()) << endl;
+	this->_outFile << "subUnit System" << (int)subUnit.GetSystem() << endl;
+	this->_outFile << "subUnit Base" << (int)subUnit.GetBase() << endl;
+	this->_outFile << "subUnit Numerator" << subUnit.GetNumerator() << endl;
+	this->_outFile << "subUnit Denominator" << subUnit.GetDenominator() << endl;
+	this->_outFile << "Division Ratio" << (subUnit.GetNumerator() / subUnit.GetDenominator()) << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "Storage unit: " << StringUtils::getNormalizedString(storageUnit.GetLabel()) << endl;
+	this->_outFile << "storageUnit System" << (int)storageUnit.GetSystem() << endl;
+	this->_outFile << "storageUnit Base" << (int)storageUnit.GetBase() << endl;
+	this->_outFile << "storageUnit Numerator" << storageUnit.GetNumerator() << endl;
+	this->_outFile << "storageUnit Denominator" << storageUnit.GetDenominator() << endl;
+	this->_outFile << "Division Ratio" << (storageUnit.GetNumerator() / storageUnit.GetDenominator()) << endl;
+	this->_outFile << endl;
+
+	this->_outFile << "UOR per storage" << uorPerUnit << endl;
+	this->_outFile << "AnnotationScaleFactor" << modelInfo->GetAnnotationScaleFactor() << endl;
+	this->_outFile << "Global Origin [x,y,z]= " << globalOrigin.x << ", " << globalOrigin.y << ", " << globalOrigin.z << endl;
+
+	this->_outFile << "------------------------" << endl;
+	this->_outFile.close();
+}
+
 void ModelerDataWriterManager::writeTitleProcessDataToFile(string s)
 {
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));

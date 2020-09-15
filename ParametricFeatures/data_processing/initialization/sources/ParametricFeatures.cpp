@@ -12,34 +12,34 @@
 
 #include "../headers/ParametricFeatures.h"
 
-#include "../../../stdafx.h"
+//#include "../../../stdafx.h"
 
 
 #if !defined (DIM)
 #define DIM(a) ((sizeof(a)/sizeof((a)[0])))
 #endif
 
-#include <iostream>
-#define LINEAR_TEMPLATE_NAME      L"CreatedGroup\\Created Linear Template"
-#define SHAPE_TEMPLATE_NAME       L"CreatedGroup\\Created Shape Template"
-#define HATCH_TEMPLATE_NAME       L"CreatedGroup\\Created Hatch Template"
-#define AREAPATTERN_TEMPLATE_NAME L"CreatedGroup\\Created AreaPattern Template"
-#define CELL_TEMPLATE_NAME        L"CreatedGroup\\Created Cell Template"
-#define TEXT_TEMPLATE_NAME        L"CreatedGroup\\Created Text Template"
-#define MLINE_TEMPLATE_NAME       L"CreatedGroup\\Created MLine Template"
-#define DIMENSION_TEMPLATE_NAME   L"CreatedGroup\\Created Dimension Template"
-#define HEADER_TEMPLATE_NAME      L"CreatedGroup\\Header"
-#define COMPONENT1_TEMPLATE_NAME  L"CreatedGroup\\Component1"
-#define COMPONENT2_TEMPLATE_NAME  L"CreatedGroup\\Component2"
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <iostream>
+//#include <iostream>
+//#define LINEAR_TEMPLATE_NAME      L"CreatedGroup\\Created Linear Template"
+//#define SHAPE_TEMPLATE_NAME       L"CreatedGroup\\Created Shape Template"
+//#define HATCH_TEMPLATE_NAME       L"CreatedGroup\\Created Hatch Template"
+//#define AREAPATTERN_TEMPLATE_NAME L"CreatedGroup\\Created AreaPattern Template"
+//#define CELL_TEMPLATE_NAME        L"CreatedGroup\\Created Cell Template"
+//#define TEXT_TEMPLATE_NAME        L"CreatedGroup\\Created Text Template"
+//#define MLINE_TEMPLATE_NAME       L"CreatedGroup\\Created MLine Template"
+//#define DIMENSION_TEMPLATE_NAME   L"CreatedGroup\\Created Dimension Template"
+//#define HEADER_TEMPLATE_NAME      L"CreatedGroup\\Header"
+//#define COMPONENT1_TEMPLATE_NAME  L"CreatedGroup\\Component1"
+//#define COMPONENT2_TEMPLATE_NAME  L"CreatedGroup\\Component2"
+//#include <iostream>
+//#include <string>
+//#include <fstream>
+//#include <iostream>
 
 //__declspec(dllexport) ElementID mdlElement_getID();
-#include <iostream>
-#include <fstream>
-#include <sstream>
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
 
 Public RscFileHandle rfHandle; /* Resource file handle */
 

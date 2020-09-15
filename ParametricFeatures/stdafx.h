@@ -23,6 +23,7 @@
 #include <tuple>
 #include <regex>
 #include <sstream>
+//#include <thread>
 
 
 #include <ifcparse\IfcSchema.h>
@@ -36,6 +37,7 @@
 
 //#include <boost/any.hpp>
 
+//#include "common\utils\headers\ctpl.h"
 #include "common\utils\headers\ProgressBar.hpp"
 #include "common\utils\headers\NotificationMessage.h"
 //#include "boost\log\core.hpp"
@@ -56,7 +58,7 @@
 #include <Mstn/PSolid/mssolid.fdf>
 #include <Mstn/cmdlist.r.h>
 
-//#include <DgnPlatform/NotificationManager.h>
+
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
 //#include <DgnPlatform/ElementGeometry.h>

@@ -223,19 +223,23 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
 	//smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);
 
+	//Open ProgressBar
+	DialogCompletionBar progressBar = DialogCompletionBar();
+	progressBar.Open(L"Working...");
+	progressBar.numGraphicElement = (int)dictionaryPropertiesVector.size();
+
+	WString myString;
+
+	myString.Sprintf(L"Generating IFC file...");
 
 	try {
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
-				//Update ProgressBar
-				percentage = 100 * i / numGraphicElement;
-
-				if (percentage > 100) {
-					percentage = 100;
-				}
-				progressBar.Update(myString, percentage);
+				//ProgressBar
+				progressBar.globalIndex += 1;
+				progressBar.Update(myString);
 
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 

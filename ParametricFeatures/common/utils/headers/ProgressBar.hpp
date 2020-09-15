@@ -12,6 +12,8 @@
 struct CompletionBar
 {
 	static constexpr bool AutoClose = true;
+	int numGraphicElement = 0;
+	int globalIndex = 0;
 
 	///	<summary>
 	///	Constructor to be called by inheriting classes.
@@ -64,6 +66,11 @@ struct CompletionBar
 	///	</summary>
 	void Update (WStringCR message, int percentComplete)
 	{
+		Update(message.c_str(), percentComplete);
+	}
+	void Update (WStringCR message)
+	{
+		int percentComplete = 100 * globalIndex / numGraphicElement;
 		Update (message.c_str (), percentComplete);
 	}
 	void Update (WCharCP message, int percentComplete)
