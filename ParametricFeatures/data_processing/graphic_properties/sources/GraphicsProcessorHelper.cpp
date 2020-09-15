@@ -39,6 +39,8 @@ DictionaryProperties* GraphicsProcessorHelper::getDictionaryProperties()
 
 void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& primitive, GraphicProperties*& GraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ofstream outfile;
 	double area, volume;
 	DVec3d centroid;
@@ -62,6 +64,8 @@ void GraphicsProcessorHelper::setSolidPrimCentroidAreaVolume(ISolidPrimitiveCR& 
 
 void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graphicProperties, Transform& localToWorld)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	DVec3d columnVectorX, columnVectorY, columnVectorZ;
 	DPoint3d origin = localToWorld.Origin();
 	localToWorld.GetMatrixColumn(columnVectorX, 0);
@@ -80,6 +84,8 @@ void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graph
 
 void GraphicsProcessorHelper::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail, BoxGraphicProperties*& boxGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	// calculate height of the box
 	double height;
 	if (boxGraphicProperties->getVolume() > 0) {
@@ -97,11 +103,13 @@ void GraphicsProcessorHelper::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail,
 	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
 	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
 	boxGraphicProperties->setHeight(height);
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, boxGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, boxGraphicProperties->toString());
 }
 
 void GraphicsProcessorHelper::setConeGraphicProperties(DgnConeDetail cgnConeDetail,ConeGraphicProperties*& coneGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	// calculate height of the cone
 	double height;
 	if (coneGraphicProperties->getVolume() > 0) {
@@ -146,7 +154,7 @@ void GraphicsProcessorHelper::setConeGraphicProperties(DgnConeDetail cgnConeDeta
 			coneGraphicProperties->setBaseOrigin(cgnConeDetail.m_centerB);
 		}
 	}
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, coneGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, coneGraphicProperties->toString());
 }
 
 void GraphicsProcessorHelper::setCylinderGraphicProperties(DgnConeDetail dgnConeDetail, CylinderGraphicProperties *& cylinderGraphicProperties)
@@ -170,12 +178,14 @@ void GraphicsProcessorHelper::setCylinderGraphicProperties(DgnConeDetail dgnCone
 	cylinderGraphicProperties->setHeight(height);
 	cylinderGraphicProperties->setRadius(dgnConeDetail.m_radiusA);
 	cylinderGraphicProperties->setBaseOrigin(dgnConeDetail.m_centerA);
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, cylinderGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, cylinderGraphicProperties->toString());
 
 }
 
 void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties*& sphereGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	// calculate the radius
 	double radius;
 	if (sphereGraphicProperties->getVolume() > 0) {
@@ -186,23 +196,27 @@ void GraphicsProcessorHelper::setSphereGraphicProperties(SphereGraphicProperties
 	}
 	// set radius
 	sphereGraphicProperties->setRadius(radius);
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, sphereGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, sphereGraphicProperties->toString());
 
 }
 
 void GraphicsProcessorHelper::setTorusGraphicProperties(DgnTorusPipeDetail dgnTorusPipeDetail, double sweepRadians, DPoint3d centerOfRotation, TorusGraphicProperties*& torusGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	// set torus properties
 	torusGraphicProperties->setCenterPointOfRotation(centerOfRotation);
 	torusGraphicProperties->setMinorRadius(dgnTorusPipeDetail.m_minorRadius);
 	torusGraphicProperties->setMajorRadius(dgnTorusPipeDetail.m_majorRadius);
 	torusGraphicProperties->setSweepRadians(sweepRadians);
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, torusGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, torusGraphicProperties->toString());
 
 }
 
 void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalSweepDetail dgnRotationalSweepDetail, RotationalSweepGraphicProperties *& rotationalSweepGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ofstream outfile;
 
 	Transform localToWorld;
@@ -236,6 +250,8 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 
 void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail ruledSweepDetails, RuledSweepGraphicProperties *& ruledSweepGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	this->_modelerDataWriterManager->writeTitleProcessDataToFile("RULED SWEEP Curves START");
 
 	bvector<SolidLocationDetail::FaceIndices> faceIndices;
@@ -268,6 +284,8 @@ void GraphicsProcessorHelper::setRuledSweepGraphicProperties(DgnRuledSweepDetail
 
 void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail extrusionDetails, ExtrusionGraphicProperties *& extrusionGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ofstream outfile;
 
 	extrusionGraphicProperties->setDirectionOfExtrusion(extrusionDetails.m_extrusionVector);
@@ -301,7 +319,7 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 	//outfile << "Direction [Y] = " << cDY.x << ", " << cDY.y << ", " << cDY.z << endl;
 	//outfile << "Direction [Z] = " << cDZ.x << ", " << cDZ.y << ", " << cDZ.z << endl;
 	
-	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__, extrusionGraphicProperties->toString());
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__, extrusionGraphicProperties->toString());
 
 }
 
@@ -459,6 +477,8 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 
 GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR & primitive)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	pDictionaryProperties->setIsPrimitiveSolid(true);
 	GraphicProperties* primitiveGraphicProperties = nullptr;
 
@@ -630,10 +650,13 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 
 	case SolidPrimitiveType::SolidPrimitiveType_None:
 	{
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "SolidPrimitiveType is NOT set");
 
 	}
+	break;
 
 	default:
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "SolidPrimitiveType is NOT handled");
 		break;
 	}
 
@@ -647,6 +670,8 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 
 void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	this->_modelerDataWriterManager->writeMSBsplineSurfaceDataToFile(msBsplineSurface);
 	
 	size_t lowAindex, highAindex;
@@ -798,6 +823,8 @@ void GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 
 void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties *& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	//Parity Region Container
 	if (shapesGraphicProperties->hasShapesGraphicsContainer())
 	{
@@ -882,6 +909,8 @@ void GraphicsProcessorHelper::evaluateUVShapesCurvesVector(MSBsplineSurfaceCR ms
 
 void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVector, ShapesGraphicProperties*& shapesGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	for each (ICurvePrimitivePtr curvePrimitive in curvesVector)
 	{
 		this->_modelerDataWriterManager->writeCurvePrimitiveDataToFile(curvePrimitive);
@@ -903,8 +932,13 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				curveGraphicProperties->setControlPoints(*curvePrimitive->GetAkimaCurveCP());
 			}
 
-			if (curveGraphicProperties != nullptr)
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"curveGraphicProperties is NULL");
+			}
+				
 		}
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Arc:
@@ -917,8 +951,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			double* pQuatXYZW = nullptr;
 			double rx, ry, startAngle, sweepAngle, length;
 
-			if (!curvePrimitive->TryGetArc(ellipse))
+			if (!curvePrimitive->TryGetArc(ellipse)) {
 				break;
+			}
+				
 
 			ellipse.GetDGNFields3d(centerOUT, pQuatXYZW, directionX, directionY, rx, ry, startAngle, sweepAngle);
 			
@@ -938,8 +974,14 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			curveGraphicProperties->setIsFullEllipse(ellipse.IsFullEllipse());
 			curveGraphicProperties->setStartEndPoints(startP, endP);
 
-			if (curveGraphicProperties != nullptr)
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curveGraphicProperties is NULL");
+
+			}
+				
 		}
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_BsplineCurve:
@@ -984,11 +1026,18 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				curveGraphicProperties->setOrder(bSpline->GetOrder());
 				curveGraphicProperties->setStartEndPoints(startP, endP);
 
-				if (curveGraphicProperties != nullptr)
+				if (curveGraphicProperties != nullptr) {
 					shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
-
+				}
+				else {
+					_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "shapesGraphicProperties is NULL");
+				}
+					
 			}
-			else { break; }
+			else { 
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "bSpline is NULL");
+				break;
+			}
 		}
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_CurveVector:
@@ -999,6 +1048,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				ShapesGraphicProperties* newShapesGraphicProperties = new ShapesGraphicProperties();
 				processShapesCurvesVector(*cPvector, false, &*newShapesGraphicProperties);
 				shapesGraphicProperties->insertShapesGraphicProperties(newShapesGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetChildCurveVectorCP() is NULL");
+
 			}
 		}
 		break;
@@ -1030,9 +1083,18 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				curveGraphicProperties->setStartEndPoints(startP, endP);
 
 			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetInterpolationCurveCP() is NULL");
 
-			if (curveGraphicProperties != nullptr)
+			}
+
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "shapesGraphicProperties is NULL");
+			}
+				
 		}
 		break;
 
@@ -1055,9 +1117,17 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				curveGraphicProperties->setControlPoints(polesControlP);				
 				curveGraphicProperties->setStartEndPoints(startP, endP);
 			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Could NOT retrieve data, curvePrimitive->TryGetLine returned false");
+			}
 
-			if (curveGraphicProperties != nullptr)
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curveGraphicProperties is NULL");
+			}
+				
 		}
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_LineString: //Polyline
@@ -1078,12 +1148,20 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 					//this->_modelerDataWriterManager->writeSinglePointDataToFile(point);
 				}
 			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetLineStringCP() is NULL");
+			}
 
 			curveGraphicProperties->setControlPoints(polesControlP);
 			curveGraphicProperties->setStartEndPoints(startP, endP);
 
-			if (curveGraphicProperties != nullptr)
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curveGraphicProperties is NULL");
+			}
+				
 		}
 
 		break;
@@ -1095,6 +1173,10 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			{
 				//TODO [SB] NEEDS TO BE CHECKED the partial curve composition
 				//return processCurvePrimitives(curve->GetPartialCurveDetailCP()->parentCurve);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetPartialCurveDetailCP() is NULL");
+
 			}
 
 		}
@@ -1118,8 +1200,16 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 				curveGraphicProperties->setControlPoints(polesControlP);
 
 			}
-			if (curveGraphicProperties != nullptr)
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetPointStringCP() is NULL");
+			}
+			if (curveGraphicProperties != nullptr) {
 				shapesGraphicProperties->insertCurvesGraphicsProperties(curveGraphicProperties);
+			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curveGraphicProperties is NULL");
+			}
+				
 		}
 		break;
 		case ICurvePrimitive::CURVE_PRIMITIVE_TYPE_Spiral:
@@ -1129,9 +1219,15 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 			{
 				//DSpiral2dPlacementCP spiralPlace = curve->GetSpiralPlacementCP();
 			}
+			else {
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvePrimitive->GetSpiralPlacementCP() is NULL");
+
+			}
 		}
 		break;
 		default:
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "CurvePrimitiveType doesn't handle a case");
+
 			break;
 		}
 	}
@@ -1139,6 +1235,8 @@ void GraphicsProcessorHelper::processCurvesPrimitives(CurveVectorCR& curvesVecto
 
 void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVector, bool isFilled, ShapesGraphicProperties* shapesGraphicProperties)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	if (!curvesVector.empty())
 	{
 		this->_modelerDataWriterManager->writeShapeCurvesVectorDataToFile(curvesVector);
@@ -1159,10 +1257,14 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		curvesVector.IsPlanarWithDefaultNormal(localToWorld, worldToLocal, range, &normal);
 
 		// Chek if the shape is closed 
-		if (curvesVector.IsClosedPath())
+		if (curvesVector.IsClosedPath()) {
 			isClosed = curvesVector.IsClosedPath();
-		else if (curvesVector.IsPhysicallyClosedPath())
+		}
+			
+		else if (curvesVector.IsPhysicallyClosedPath()) {
 			isClosed = curvesVector.IsPhysicallyClosedPath();
+		}
+			
 
 		setGraphicPropertiesAxes((GraphicProperties*&)shapesGraphicProperties, localToWorld);
 
@@ -1180,18 +1282,21 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
 	}
+	else {
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvesVector IS EMPTY");
+	}
 }
 
 
 void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool meshProcessing) //DEFAULT meshProcessing = false
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	this->_modelerDataWriterManager->writeTitleProcessDataToFile("BRep Processing");
 
 	pDictionaryProperties->setIsSmartSolid(true);
 
 	this->_modelerDataWriterManager->writeBodyDataToFile(entity);
-
-	ofstream outfile;
 
 	//SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");
 
@@ -1524,6 +1629,10 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 
 						solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)primitiveGraphicProperties);
 					}
+					else {
+						_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "primitiveGraphicProperties is NULL");
+
+					}
 				}
 				break;
 				case IGeometry::GeometryType::Polyface:
@@ -1559,6 +1668,8 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 				break;
 				
 				default:
+					_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "GeometryType case is not handled");
+
 					break;
 				}
 			}
@@ -2019,6 +2130,8 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 
 bool GraphicsProcessorHelper::processElementAsMesh(SolidEntityGraphicProperties*& solidKernelEntity, bvector<PolyfaceHeaderPtr> meshes)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	this->_modelerDataWriterManager->writeTitleProcessDataToFile("processElementAsMesh");
 
 	for (size_t i = 0; i < meshes.size(); i++)
@@ -2071,6 +2184,8 @@ bool GraphicsProcessorHelper::processElementAsMesh(SolidEntityGraphicProperties*
 
 bool GraphicsProcessorHelper::ElementToApproximateFacets(ElementHandleCR source,bvector<PolyfaceHeaderPtr> &output,IFacetOptionsP options)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	output.clear();
 	MeshProcessor dest(output, options);
 	ElementGraphicsOutput::Process(source, dest);

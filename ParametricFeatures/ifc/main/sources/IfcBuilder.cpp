@@ -14,9 +14,11 @@ IfcBuilder::IfcBuilder()
 
 void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {	
+
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__,"!- Starting IFC conversion -!");
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
-	string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
+	//string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 	string filename = SessionManager::getInstance()->getIfcOutputFilePath();
 	
@@ -134,7 +136,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	);
 
 	Ifc4::IfcProject* project = new Ifc4::IfcProject(
-		guid::IfcGloballyUniqueId(name), 
+		guid::IfcGloballyUniqueId(filename),
 		ownerHistory,
 		//file.getSingle<Ifc4::IfcOwnerHistory>(), 
 		string("OpenPlant IFC Exporter"), 
@@ -164,36 +166,46 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	// initialize ifc bundle vector
 	vector<IfcElementBundle*>ifcElementBundleVector;
-	if (!dictionaryPropertiesVector.empty())
-	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+	try {
+		if (!dictionaryPropertiesVector.empty())
 		{
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+			{
+				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
-			IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
+				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
 
-			ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
+				ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
 
-			if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
-				ifcElementBundle->solidModel = true;
-			}
+				if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
+					ifcElementBundle->solidModel = true;
+				}
 
-			ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
-			// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
-			for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
-				ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
-				for (auto const& property1 : readerProperty->getProperties()) {
-					ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
-						, property1->getPropertyValue(), property1->getPropertyValueAsString());
-					readerPropertiesBundle->addProperty(readerPropertyDefinition);
+				ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
+				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
+				for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
+					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
+					for (auto const& property1 : readerProperty->getProperties()) {
+						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
+							, property1->getPropertyValue(), property1->getPropertyValueAsString());
+						readerPropertiesBundle->addProperty(readerPropertyDefinition);
+
+					}
+					ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+
 
 				}
-				ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
-
-
+				ifcElementBundleVector.push_back(ifcElementBundle);
 			}
-			ifcElementBundleVector.push_back(ifcElementBundle);
 		}
+	}
+	catch (exception& ex) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Error at initializing the ifcElementBundleVector");
+		throw ex;
+	}
+	catch (...) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Error at initializing the ifcElementBundleVector. Unhandled exception type");
+		throw;
 	}
 
 	//TODO [MP] solve the issue
@@ -209,50 +221,67 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	myString.Sprintf(L"Generating IFC file...");
 
-	if (!dictionaryPropertiesVector.empty())
-	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+	try {
+		if (!dictionaryPropertiesVector.empty())
 		{
-			//Progressbar Update
-			progressBar.Update(myString);
-
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
-
-			//Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-
-			for (auto element : dictionaryProperties.getElementBundle())
+			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
 			{
-				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-				if (solidPrimitiveProperties != nullptr) {
-					_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
-					continue;
+				//ProgressBar
+				percentage = 100 * i / numGraphicElement;
+
+				if (percentage > 100) {
+					percentage = 100;
 				}
 
-				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
-				if (shapeGraphicProperties != nullptr)
-				{
-					_ifcShapesEnhancer->enhance(file,shapeGraphicProperties, ifcElementBundle, element);
-					continue;
-				}
 
-				MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
-				if (msBsplineSurfaceGraphicProperties != nullptr)
-				{
-					_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
-					continue;
-				}
+				progressBar.Update(myString, percentage);
 
-				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-				if (solidEntityGraphicProperties != nullptr)
+				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+
+				// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
+				IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
+
+				//Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
+
+				for (auto element : dictionaryProperties.getElementBundle())
 				{
-					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
-					continue;
+					SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+					if (solidPrimitiveProperties != nullptr) {
+						_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+						continue;
+					}
+
+					ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
+					if (shapeGraphicProperties != nullptr)
+					{
+						_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
+						continue;
+					}
+
+					MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+					if (msBsplineSurfaceGraphicProperties != nullptr)
+					{
+						_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+						continue;
+					}
+
+					SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+					if (solidEntityGraphicProperties != nullptr)
+					{
+						_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+						continue;
+					}
 				}
 			}
 		}
+	}
+	catch (exception& ex) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		throw ex;
+	}
+	catch (...) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		throw;
 	}
 	
 	IfcElementBuilder* ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
@@ -269,9 +298,25 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//Close ProgressBar
 	progressBar.Close();
 
-	ofstream f;
-	f.open(filename);
-	f << file;
-	f.close();
+				
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Finished IFC conversion -!");
 
+	try {
+		_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting writing to the IFC file -!");
+
+		ofstream f;
+		f.open(filename);
+		f << file;
+		f.close();
+
+		_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended writing to the IFC file -!");
+	}
+	catch (exception& ex) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Error at writing the IFC file");
+		throw ex;
+	}
+	catch (...) {
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Error at writing the IFC file");
+		throw;
+	}
 }

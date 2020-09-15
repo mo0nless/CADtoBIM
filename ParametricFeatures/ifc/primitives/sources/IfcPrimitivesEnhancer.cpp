@@ -4,6 +4,7 @@
 void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
 	ElementBundle* elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
 
 	if (solidPrimitiveProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, elementBundle);
@@ -17,6 +18,9 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
+		else {
+			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "ifcRepresentationItem IS NULL");
+		}
 	}
 
 }
@@ -24,6 +28,8 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 	ElementBundle* elementBundle)
 {
+	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 	PrimitiveTypeEnum primitiveType = primitiveGraphicProperties.getPrimitiveTypeEnum();
@@ -38,6 +44,9 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	{
 		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
 	}
+	else {
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"primitiveType case is NOT handled");
+	}
 
 	return ifcRepresentationItem;
 	
@@ -45,6 +54,8 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 
 Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
@@ -106,6 +117,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 		return solid;
 
 	}
+	_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "ifcRepresentationItem is NULL");
 	return nullptr;
 }
 
@@ -117,6 +129,8 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	SessionManager* sm = sm->getInstance();
 	sm->getDataOutputFilePath();
 	sm->getIfcOutputFilePath();
@@ -280,10 +294,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			Ifc4::IfcProfileDef* profileDef = nullptr;
 
 			Ifc4::IfcProfileTypeEnum::Value pEnum;
-			if (extrusionGraphicProperties.getIsSolid())
+			if (extrusionGraphicProperties.getIsSolid()) {
 				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_AREA;
-			else
+			}
+			else {
 				pEnum = Ifc4::IfcProfileTypeEnum::IfcProfileType_CURVE;
+			}
+				
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 
@@ -295,8 +312,10 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//Parity Region, set of bounds 
 			else
 			{
-				for (auto bound : shape->getShapesGraphicsContainer())
+				for (auto bound : shape->getShapesGraphicsContainer()) {
 					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, extrusionGraphicProperties.getCentroid(), false);
+				}
+					
 			}
 
 			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
@@ -335,10 +354,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					Ifc4::IfcCurve* curve = boundTypeCurve->ifcCurve;
 					CurvesBoundaryTypeEnum bound = boundTypeCurve->boundary;
 
-					if (CurvesBoundaryTypeEnum::INNER == bound)				
+					if (CurvesBoundaryTypeEnum::INNER == bound) {
 						profiles->push(curve);
-					else if (CurvesBoundaryTypeEnum::OUTER == bound)
+					}
+					else if (CurvesBoundaryTypeEnum::OUTER == bound) {
 						outer = curve;
+					}
+						
 				}
 
 				boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcCurve>> tempProfiles(profiles);
@@ -480,7 +502,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			//);
 		}
 
-	return ifcRepresentationItem;
+	if (ifcRepresentationItem!=nullptr) {
+		return ifcRepresentationItem;
+	}
+	else {
+		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "ifcRepresentationItem is NULL");
+		return nullptr;
+	}
 }
 #pragma warning( pop )
 

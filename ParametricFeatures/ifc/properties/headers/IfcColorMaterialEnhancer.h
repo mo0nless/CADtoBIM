@@ -13,6 +13,8 @@ public:
 	void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 
 private:
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);

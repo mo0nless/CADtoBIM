@@ -14,8 +14,8 @@ private:
 
 	ElementHandle elementHandle;
 
-	UInt32 color;
-	double transparency;
+	UInt32 _color;
+	double _transparency;
 	string _material;
 
 public:
@@ -38,4 +38,5 @@ public:
 	string getMaterial();
 	void setMaterial(string material);
 
+	string toString();
 };

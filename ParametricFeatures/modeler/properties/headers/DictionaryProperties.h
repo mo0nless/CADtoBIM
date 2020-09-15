@@ -49,4 +49,6 @@ public:
 
 	void setIsPrimitiveSolid(bool value);
 	bool getIsPrimitiveSolid();
+
+	string toString();
 };

@@ -33,6 +33,8 @@
 #include <ifcparse\utils.h>
 #include <ifcparse\IfcHierarchyHelper.h>
 
+#include "logging\headers\Logger.h"
+
 //#include <boost/any.hpp>
 
 //#include "common\utils\headers\ctpl.h"

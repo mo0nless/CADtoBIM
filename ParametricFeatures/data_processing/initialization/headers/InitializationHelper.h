@@ -23,6 +23,8 @@ public:
 	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 
 private:	
+	Logs::Logger* _logger = Logs::Logger::getLogger();
+
 	void createFilesStructure();
 	void createFolder(string folderPath);
 

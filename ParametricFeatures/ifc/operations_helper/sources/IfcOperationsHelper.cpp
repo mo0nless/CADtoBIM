@@ -7,6 +7,8 @@ IfcOperationsHelper::IfcOperationsHelper()
 //3 Dimension
 Ifc4::IfcCartesianPoint * IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(DPoint3d newControlPoints)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
 		IfcOperationsHelper::buildDoubleVectorFromTriplet<DPoint3d>(newControlPoints)
 	);
@@ -17,6 +19,8 @@ Ifc4::IfcCartesianPoint * IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoin
 //2 Dimension
 Ifc4::IfcCartesianPoint * IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(DPoint3d newControlPoint)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcCartesianPoint* cP = new Ifc4::IfcCartesianPoint(
 		IfcOperationsHelper::buildDoubleVectorFromTuple<DPoint3d>(newControlPoint)
 	);
@@ -27,6 +31,8 @@ Ifc4::IfcCartesianPoint * IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoin
 //3 Dimension
 Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(DVec3d newDirection)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	vector<double> points;
 	points.push_back(newDirection.x);
 	points.push_back(newDirection.y);
@@ -40,6 +46,8 @@ Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(
 //2 Dimension
 Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection2DfromDirectionVec3D(DVec3d newDirection)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	vector<double> points;
 	points.push_back(newDirection.x);
 	points.push_back(newDirection.y);
@@ -52,6 +60,8 @@ Ifc4::IfcDirection * IfcOperationsHelper::buildIfcDirection2DfromDirectionVec3D(
 //3 Dimension
 Ifc4::IfcAxis2Placement3D * IfcOperationsHelper::buildIfcAxis2Placement3D(DVec3d pointOfPlacement, DVec3d dirVectorZ, DVec3d dirVectorX)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcAxis2Placement3D* place = new Ifc4::IfcAxis2Placement3D(
 		IfcOperationsHelper::buildIfcCartesian3DfromCoordsPoint3D(pointOfPlacement),
 		IfcOperationsHelper::buildIfcDirection3DfromDirectionVec3D(dirVectorZ),
@@ -64,6 +74,8 @@ Ifc4::IfcAxis2Placement3D * IfcOperationsHelper::buildIfcAxis2Placement3D(DVec3d
 //2 Dimension
 Ifc4::IfcAxis2Placement2D * IfcOperationsHelper::buildIfcAxis2Placement2D(DVec3d pointOfPlacement, DVec3d dirVectorX)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	Ifc4::IfcAxis2Placement2D* place = new Ifc4::IfcAxis2Placement2D(
 		IfcOperationsHelper::buildIfcCartesian2DfromCoordsPoint3D(pointOfPlacement),
 		IfcOperationsHelper::buildIfcDirection2DfromDirectionVec3D(dirVectorX)
@@ -74,6 +86,8 @@ Ifc4::IfcAxis2Placement2D * IfcOperationsHelper::buildIfcAxis2Placement2D(DVec3d
 
 void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * shape, DVec3d position, bool rotatePoint)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	bool invertedAxis = false;
 	string axis = "";
 	double epsilon = 0.11;// 1e-2;
@@ -121,6 +135,8 @@ void IfcOperationsHelper::adjustShapeGlobalPlacement(ShapesGraphicProperties * s
 
 DPoint3d IfcOperationsHelper::rotateAlongAxis(string axis, DPoint3d oldPoint)
 {
+	Logs::Logger::getLogger()->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	DPoint3d newPoint;
 
 	if (axis == "X")

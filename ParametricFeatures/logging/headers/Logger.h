@@ -82,15 +82,19 @@ namespace Logs {
 			return path.substr(path.find_last_of("/\\") + 1);
 		}
 
-		void logInfo(string fileName, int lineNumber,string functionName, string infoMessage);
+		void logInfo(string fileName, int lineNumber,string functionName, string infoMessage = "");
 
-		void logDebug(string fileName, int lineNumber, string functionName, string debugMessage);
+		void logDebug(string fileName, int lineNumber, string functionName, string debugMessage = "");
 
-		void logWarning(string fileName, int lineNumber, string functionName, string warningMessage);
+		void logWarning(string fileName, int lineNumber, string functionName, string warningMessage = "");
 
-		void logError(string fileName, int lineNumber, string functionName, string errorMessage);
+		void logError(string fileName, int lineNumber, string functionName, string errorMessage = "");
 
-		void logFatal(string fileName, int lineNumber, string functionName, string fatalMessage);
+		void logError(string fileName, int lineNumber, string functionName,exception& ex, string errorMessage = "");
+
+		void logFatal(string fileName, int lineNumber, string functionName, string fatalMessage = "");
+
+		void logFatal(string fileName, int lineNumber, string functionName, exception& ex, string fatalMessage = "");
 
 	};
 }

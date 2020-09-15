@@ -17,15 +17,15 @@ namespace Logs {
 			typedef sinks::synchronous_sink<sinks::text_file_backend > file_sink;
 			boost::shared_ptr< file_sink > sink(new file_sink(
 				keywords::file_name = logsOutputFolderPath+"\\file_%Y-%m-%d_%H-%M-%S.%N.log",      // file name pattern
-				keywords::rotation_size = 16384     ,                // rotation size, in characters
+				keywords::rotation_size = 200000,                // rotation size, in characters
 				keywords::auto_flush = true
 			));
 
 			// Set up where the rotated files will be stored
 			sink->locked_backend()->set_file_collector(sinks::file::make_collector(
 				keywords::target = logsOutputFolderPath,                          // where to store rotated files
-				keywords::max_size = 16 * 1024 * 1024,              // maximum total size of the stored files, in bytes
-				keywords::min_free_space = 100 * 1024 * 1024        // minimum free space on the drive, in bytes
+				keywords::max_size = 100 * 1024 * 1024,              // maximum total size of the stored files, in bytes
+				keywords::min_free_space = 1000 * 1024 * 1024        // minimum free space on the drive, in bytes
 			));
 
 			// Upon restart, scan the target directory for files matching the file_name pattern
@@ -49,7 +49,7 @@ namespace Logs {
 	
 			// Add some attributes too
 			logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
-			logging::core::get()->add_global_attribute("RecordID", attrs::counter< unsigned int >());
+			logging::core::get()->add_global_attribute("RecordID", attrs::counter<unsigned int>());
 			// New attributes that hold filename and line number
 			logging::core::get()->add_thread_attribute("File", attrs::mutable_constant<std::string>(""));
 			logging::core::get()->add_thread_attribute("Line", attrs::mutable_constant<int>(0));
@@ -92,14 +92,26 @@ namespace Logs {
 	void Logger::logError(string fileName, int lineNumber, string functionName, string errorMessage)
 	{
 		setFileNameLineAndNumber(fileName, lineNumber, functionName);
-		BOOST_LOG_SEV(this->_log, error) << errorMessage;
+		BOOST_LOG_SEV(this->_log, error) << "! ERROR ! - " + errorMessage;
+	}
+
+	void Logger::logError(string fileName, int lineNumber, string functionName, exception & ex, string errorMessage)
+	{
+		string msg = "- Exception message = " + string(ex.what()) + "--" + errorMessage;
+		getLogger()->logError(fileName, lineNumber, functionName, msg);
 	}
 
 	void Logger::logFatal(string fileName, int lineNumber, string functionName, string fatalMessage)
 	{
 		setFileNameLineAndNumber(fileName, lineNumber, functionName);
-		BOOST_LOG_SEV(this->_log, fatal) << fatalMessage;
+		BOOST_LOG_SEV(this->_log, fatal) << "! FATAL ERROR ! - " + fatalMessage;
 
+	}
+
+	void Logger::logFatal(string fileName, int lineNumber, string functionName, exception & ex, string fatalMessage)
+	{
+		string msg = "- Exception message = " + string(ex.what()) + "--" + fatalMessage;
+		getLogger()->logError(fileName, lineNumber, functionName, msg);
 	}
 
 }

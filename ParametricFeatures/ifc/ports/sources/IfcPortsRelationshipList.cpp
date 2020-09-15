@@ -9,6 +9,8 @@ IfcPortsRelationshipList::IfcPortsRelationshipList()
 
 bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElement)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	vector<double> pointCurrent;
 	vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
 	
@@ -31,9 +33,11 @@ bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElemen
 			temp->isElementConnected = connected;
 			break;
 		}
-		else
+		else {
 			tempLast = temp;
 			temp = temp->nextPortElement;
+		}
+			
 	}
 
 	if (connected)
@@ -79,6 +83,8 @@ PortElement* IfcPortsRelationshipList::getHead()
 
 void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* point, Ifc4::IfcDistributionPort* dPort, IfcElementBundle*& ifcElementBundle)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	PortElement* newPortElement = new PortElement;
 		
 	//Data filling for the new element
@@ -103,6 +109,8 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 
 void IfcPortsRelationshipList::display()
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
@@ -138,8 +146,10 @@ void IfcPortsRelationshipList::display()
 			outfile << "Next Point  Z = " << point[2] << endl;
 			outfile << endl;
 		}
-		else
-			temp = temp->nextPortElement;		
+		else {
+			temp = temp->nextPortElement;
+		}
+			
 
 		outfile.close(); 
 	}

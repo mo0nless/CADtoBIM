@@ -8,6 +8,8 @@ IfcBRepRelationship::IfcBRepRelationship()
 
 void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeGraphicProperties, vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 //Bspline Surface Edges as Single preimitives
 #if true
 	int index = 0;
@@ -173,6 +175,8 @@ void IfcBRepRelationship::processBRepEntityEdge(ShapesGraphicProperties * shapeG
 
 void IfcBRepRelationship::connectContinuosEdges()
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 #if false
 
 	vector<ContinuosEdge*> connectedContinuosEdges = vector<ContinuosEdge*>();
@@ -297,6 +301,8 @@ void IfcBRepRelationship::connectContinuosEdges()
 
 bool IfcBRepRelationship::processContinuosEdges(ContinuosEdge*& head, ContinuosEdge *& newEdge)
 {
+	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+
 	bool hadConnection = false;
 
 	//Check if they belongs to the same ENTITY and the same FACE
