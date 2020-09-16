@@ -65,7 +65,7 @@ public:
 	string toString();
 
 private:
-	vector<int> _faceBoundIdentifier;
+	vector<int> _faceBoundIdentifiers;
 
 	int _nodeId;
 

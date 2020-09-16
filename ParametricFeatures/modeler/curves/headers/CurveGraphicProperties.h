@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sstream>
+
 #include <DgnPlatform/ElementGeometry.h>
 #include <vector>
 #include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
@@ -10,15 +12,15 @@ class CurveGraphicProperties
 {
 
 private:
-	DPoint3d mStartPoint;
-	DPoint3d mEndPoint;
+	DPoint3d _startPoint;
+	DPoint3d _endPoint;
 
-	DPoint3d mUVstartPoint;
-	DPoint3d mUVendPoint;
+	DPoint3d _UVstartPoint;
+	DPoint3d _UVendPoint;
 
 	int mNumCPoints;
-	vector<DPoint3d> mControlPoints;
-	vector<DPoint3d> mUVcontrolPoints;
+	vector<DPoint3d> _controlPoints;
+	vector<DPoint3d> _UVcontrolPoints;
 	CurvesPrimitivesTypeEnum mCurvesTypeEnum;
 
 public:
@@ -43,6 +45,6 @@ public:
 
 	virtual ~CurveGraphicProperties() {}; //Needed for dynamic cast at least one virtual function
 
-
+	string toString();
 };
 

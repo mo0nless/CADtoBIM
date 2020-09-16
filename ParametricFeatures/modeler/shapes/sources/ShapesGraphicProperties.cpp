@@ -11,7 +11,7 @@ ShapesGraphicProperties::ShapesGraphicProperties()
 	this->_hasShapesGraphicsContainer = false;
 	this->_isSingleCurve = false;
 	this->_normal = DVec3d();
-	this->_faceBoundIdentifier = vector<int>();
+	this->_faceBoundIdentifiers = vector<int>();
 	this->_nodeId = -1;
 }
 
@@ -37,12 +37,12 @@ CurvesBoundaryTypeEnum ShapesGraphicProperties::getBoundaryTypeCurvesContainer()
 
 void ShapesGraphicProperties::addFaceBoundID(int newFaceidentifier)
 {
-	this-> _faceBoundIdentifier.push_back(newFaceidentifier);
+	this-> _faceBoundIdentifiers.push_back(newFaceidentifier);
 }
 
 vector<int> ShapesGraphicProperties::getFacesBoundIDs()
 {
-	return this->_faceBoundIdentifier;
+	return this->_faceBoundIdentifiers;
 }
 
 void ShapesGraphicProperties::setIsFilled(bool value)
@@ -155,6 +155,39 @@ string ShapesGraphicProperties::toString()
 	stringStream << ", _nodeId = " << _nodeId;
 	stringStream << ", _isFilled = " << _isFilled;
 	stringStream << ", _isClosed = " << _isClosed;
+	stringStream << ", _hasShapesGraphicsContainer = " << _hasShapesGraphicsContainer;
+	stringStream << ", _isSingleCurve = " << _isSingleCurve;
+	stringStream << ", _normal x= " << _normal.x << ", y= " << _normal.y << ", z= " << _normal.z;
+
+	if (!_faceBoundIdentifiers.empty()) {
+		stringStream << ", _faceBoundIdentifiers = {" << endl;
+		for each (int faceBound in _faceBoundIdentifiers)
+		{
+			stringStream << ", faceBound = " << faceBound;
+		}
+		stringStream << "}";
+	}
+
+	if (!_curvesPrimitivesContainer.empty()) {
+		stringStream << ", _curvesPrimitivesContainer = {" << endl;
+		for each (CurveGraphicProperties* cruveGraphicProperty in _curvesPrimitivesContainer)
+		{
+			if (cruveGraphicProperty != nullptr) {
+				stringStream << ", cruveGraphicProperty = " << cruveGraphicProperty->toString();
+			}
+		}
+		stringStream << "}" ;
+	}
+	if (!_shapesGraphicsContainer.empty()) {
+		stringStream << ", _shapesGraphicsContainer = {" << endl;
+		for each (ShapesGraphicProperties* shapesGraphicProperty in _shapesGraphicsContainer)
+		{
+			if (shapesGraphicProperty != nullptr) {
+				stringStream << ", shapesGraphicProperty = " << shapesGraphicProperty->toString();
+			}
+		}
+		stringStream << "}";
+	}
 	stringStream << endl;
 
 	return stringStream.str();

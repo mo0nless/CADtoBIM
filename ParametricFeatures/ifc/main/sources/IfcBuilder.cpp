@@ -21,7 +21,6 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	progressBar.Open(L"Creating IFC elements...");
 	progressBar.numGraphicElement = (int)dictionaryPropertiesVector.size();
 
-
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
 	//string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
