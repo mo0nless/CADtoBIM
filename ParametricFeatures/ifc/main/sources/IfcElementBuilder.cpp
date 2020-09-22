@@ -5,14 +5,23 @@ IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* ge
 	this->geometricRepresentationContext = geomContext;
 	this->ownerHistory = ownerHistory;
 	this->objectPlacement = objectPlacement;
+
+	this->_componentsMappingService = new ComponentsMappingService(Logs::Logger::getLogger());
 }
 
 void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
+
+	vector<ComponentsMappingDTO*> componentsMappings = this->_componentsMappingService->getAll();
+
+	
 	//Create the vector for the distribution element 
 	//vector<IfcElementBundle*>ifcDistributionBundleVector;
 	for (auto& ifcElementBundle : ifcBundleVector) //const& removed
 	{
+		string rezult = getIfcElement(componentsMappings, ifcElementBundle->getModelerElementDescriptor());
+		cout << rezult << endl;
+
 		Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
 
 		for (auto const& ifcGraphicPropertiesBundle : ifcElementBundle->getIfcGraphicPropertiesBundleVector()) {
@@ -66,6 +75,17 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 		);
 
 		file.addEntity(shape);
+	
+		if (rezult == "IfcPipeSegment") {
+			Ifc4::IfcPipeSegment* pipeSegment = new Ifc4::IfcPipeSegment(guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
+				ownerHistory, ifcElementBundle->getModelerElementDescriptor(), ifcElementBundle->getModelerElementDescriptor(), string("none"), file.addLocalPlacement(), shape,
+				string("$"), Ifc4::IfcPipeSegmentTypeEnum::IfcPipeSegmentType_NOTDEFINED);
+
+			file.addBuildingProduct(pipeSegment);
+			ifcElementBundle->setIfcElement(pipeSegment);
+			continue;
+		}
+
 
 		if (ifcElementBundle->getHasElementConnection())
 		{
@@ -126,4 +146,21 @@ Ifc4::IfcDistributionElement * IfcElementBuilder::buildIfcDistributionElement(If
 	);	
 
 	return ifcDistributionElem;
+}
+
+string IfcElementBuilder::getIfcElement(vector<ComponentsMappingDTO*> componentsMapping, string elementDescription)
+{
+	istringstream iss(elementDescription);
+	vector<string> elementWords{ istream_iterator<string>{iss}, istream_iterator<string>{} };
+
+	for each (string element in elementWords)
+	{
+		for each (ComponentsMappingDTO* mapping in componentsMapping)
+		{
+			if (boost::iequals(element, mapping->getModelerComponentName())) {
+				return mapping->getIfcComponentName();
+			}
+		}
+	}
+	return string();
 }
