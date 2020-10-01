@@ -156,8 +156,18 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		ElementHandle currentElem(elemRef);
 
 		WString elDescr;
+		WString elDescr2;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+		
+
+		string rez = StringUtils::getString(elDescr2);
+		
+		if (rez == "SP-3" || rez == "SP-2") {
+			//
+			rez.length();
+			cout << rez << endl;
+		}
 
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));

@@ -26,6 +26,7 @@
 //#include <thread>
 
 
+
 #include <ifcparse\IfcSchema.h>
 #include <ifcparse\Ifc2x3.h>
 #include <ifcparse\Ifc4.h>
@@ -34,6 +35,9 @@
 #include <ifcparse\IfcHierarchyHelper.h>
 
 #include "logging\headers\Logger.h"
+
+#include <../sqlite/sqlite3.h>
+
 
 //#include <boost/any.hpp>
 

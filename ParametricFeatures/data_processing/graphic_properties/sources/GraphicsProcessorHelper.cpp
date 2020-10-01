@@ -1280,6 +1280,7 @@ void GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 		//Bugged function returns Primitive Type curves.HasSingleCurvePrimitive() so check if the vector is equal to 1
 		shapesGraphicProperties->setHasSingleCurve(curvesVector.size() == 1);
 		shapesGraphicProperties->setBoundaryTypeCurvesContainer(curvesVector.GetBoundaryType());
+
 	}
 	else {
 		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "curvesVector IS EMPTY");

@@ -18,6 +18,7 @@ openCascade = $(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3
 boost =  $(IFCO)deps/boost_1_67_0
 ifcLib =  $(IFCO)installed-vs2015-x64/lib
 ifcOpenShell = $(IFCO)src
+sqlite = $(IFCO)deps/sqlite
 
 %include $(MDLMKI)mdl.mki 
 
@@ -210,6 +211,8 @@ LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_log_
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_regex-vc141-mt-x64-1_67.lib
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_system-vc141-mt-x64-1_67.lib
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_thread-vc141-mt-x64-1_67.lib
+
+LINKER_LIBRARIES + $(sqlite)/sqlite3.lib
 
 LINKER_LIBRARIES + $(ifcLib)/IfcParse.lib
 

@@ -993,7 +993,6 @@ void ModelerDataWriterManager::writeBodyDataToFile(ISolidKernelEntityCR entity)
 
 	this->_outFile.close();
 }
-
 #pragma endregion
 
 

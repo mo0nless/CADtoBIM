@@ -13,6 +13,7 @@ public:
 
 	void processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 private:
+	void handleIfcElementCreation(string ifcElementType, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
 	Ifc4::IfcElement* buildIfcElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcDistributionElement* buildIfcDistributionElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file);
 

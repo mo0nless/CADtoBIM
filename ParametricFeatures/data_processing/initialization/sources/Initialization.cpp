@@ -116,8 +116,8 @@ void UnloadParametricFeatures(WCharCP unparsedP)
 
 bool createFilesStructure()
 {
-	//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
+	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	//string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
 
 	SessionManager::getInstance()->setDataOutputFilePath(filePath);
 

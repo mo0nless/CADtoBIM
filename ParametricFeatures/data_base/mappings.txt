@@ -1,2 +1,5 @@
 Pipe:IfcPipeSegment
 Slab:IfcSlab
+Beam:IfcBeam
+Door:IfcDoor
+Wall:IfcWall
