@@ -195,9 +195,17 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Collections">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.ComponentModel">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework64\v4.0.30319\System.ComponentModel.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -227,6 +235,7 @@
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -271,7 +280,7 @@
     <NMakePreprocessorDefinitions>_DEBUG;winNT;WIN32;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>$(MSMDE)include;$(IncludePath);$(NMakeIncludeSearchPath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(ProjectDir);$(IFCO)deps\boost_1_67_0</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(MSMDE)include;$(ProjectDir);$(IncludePath);$(NMakeForcedIncludes);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</NMakeForcedIncludes>
-    <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES) ;$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+    <NMakeAssemblySearchPath>$(SDKPROD);$(SDKASSEMBLIES);$(SDKASSEMBLIES)ECFramework;$(ReferencePath);$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir>$(SDKPROD)Mdlapps</OutDir>
     <TargetExt>.dll</TargetExt>
@@ -281,7 +290,7 @@
     <LocalDebuggerAttach>true</LocalDebuggerAttach>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <IntDir>bin\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)IfcOpenShell-0.7.0\src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</IncludePath>
+    <IncludePath>$(ProjectDir);$(MSMDE)include;$(IncludePath);$(IFCO)src;$(IFCO)deps-vs2015-x64-installed\opencascade-7.3.0p3\inc;$(IFCO)deps\boost_1_67_0</IncludePath>
     <LibraryPath>$(LibraryPath);$(IFCO)installed-vs2015-x64\lib;$(MSMDE)library</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x64);$(MSMDE)include</ReferencePath>
   </PropertyGroup>

@@ -2,141 +2,157 @@
 #if !defined (PROGRESS_BAR_H_INCLUDED_)
 #define PROGRESS_BAR_H_INCLUDED_
 
-
+#include <boost/thread.hpp>
+#include <boost/thread/mutex.hpp>
 #include <Mstn\MdlApi\MdlApi.h>
 #include <Mstn/MdlApi/msdialog.fdf>
 
-///	<summary>
-///	Base class for Completion Bar implementations.
-///	</summary>
-struct CompletionBar
-{
-	static constexpr bool AutoClose = true;
-	int numGraphicElement = 0;
-	int globalIndex = 0;
+namespace PBAR {
 
 	///	<summary>
-	///	Constructor to be called by inheriting classes.
+	///	Base class for Completion Bar implementations.
 	///	</summary>
-	CompletionBar (bool autoClose)
-	: autoClose (autoClose), completionBarDbP (nullptr)
+	struct CompletionBar
 	{
-	}
-	///	<summary>
-	///	Destructor closes Completion Bar automatically if requested.
-	///	</summary>
-	virtual ~CompletionBar ()
-	{
-		if (autoClose)
-			Close ();
-	}
-	///	<summary>
-	///	Abstract method must be overridden by implementation class.
-	///	</summary>
-	virtual MSDialogP	GetDialog	(WCharCP message) = 0;
-	///	<summary>
-	///	Open and initialise a Completion Bar.
-	///	</summary>
-	void Open (WCharCP message, int perc = 0)
-	{
-		MSDialogP   dbP {GetDialog (message)};
+		static constexpr bool AutoClose = true;
+		int numGraphicElement = 0;
 
-		if (message)
-			mdlOutput_printf (MSG_ERROR, message);
-
-		if (dbP)
+		///	<summary>
+		///	Constructor to be called by inheriting classes.
+		///	</summary>
+		CompletionBar(bool autoClose)
+			: autoClose(autoClose), completionBarDbP(nullptr)
 		{
-			CompletionBarInfo       data;
-			data.msgTextW = nullptr;
-			data.percentComplete = 0;
-			mdlDialog_hookDialogSendUserMsg (dbP, CMPLBARID_ResetCompletionBar, &data);
-			mdlDialog_hookDialogSendUserMsg (dbP, GENERICID_CompletionBar, 0);
+		}
+		///	<summary>
+		///	Destructor closes Completion Bar automatically if requested.
+		///	</summary>
+		virtual ~CompletionBar()
+		{
+			if (autoClose)
+				Close();
+		}
+		///	<summary>
+		///	Abstract method must be overridden by implementation class.
+		///	</summary>
+		virtual MSDialogP	GetDialog(WCharCP message) = 0;
+		///	<summary>
+		///	Open and initialise a Completion Bar.
+		///	</summary>
+		void Open(WCharCP message, int perc = 0)
+		{
+			MSDialogP   dbP{ GetDialog(message) };
+
+			if (message)
+				mdlOutput_printf(MSG_ERROR, message);
+
+			if (dbP)
+			{
+				CompletionBarInfo       data;
+				data.msgTextW = nullptr;
+				data.percentComplete = 0;
+				mdlDialog_hookDialogSendUserMsg(dbP, CMPLBARID_ResetCompletionBar, &data);
+				mdlDialog_hookDialogSendUserMsg(dbP, GENERICID_CompletionBar, 0);
+			}
+
+			completionBarDbP = dbP;
+			mdlDialog_completionBarUpdate(completionBarDbP, nullptr, perc);
+			mdlSystem_startBusyCursor();
+		}
+		void Open(WStringCR message, int perc = 0)
+		{
+			Open(message.c_str());
+		}
+		///	<summary>
+		///	Send a message to an existing Completion Bar.
+		///	</summary>
+		void Update(WStringCR message, int percentComplete)
+		{
+			Update(message.c_str(), percentComplete);
+		}
+		void Update(WCharCP message, int percentComplete)
+		{
+			if (completionBarDbP)
+				mdlDialog_completionBarUpdate(completionBarDbP, message, percentComplete);
+		}
+		
+		///	<summary>
+		///	Close an existing Completion Bar.
+		///	</summary>
+		void Close()
+		{
+			if (completionBarDbP)
+			{
+				mdlDialog_completionBarClose(completionBarDbP);
+				mdlDialog_hookDialogSendUserMsg(completionBarDbP, -GENERICID_CompletionBar, 0);
+
+				mdlOutput_error(L"");
+				completionBarDbP = nullptr;
+
+				mdlSystem_stopBusyCursor();
+			}
 		}
 
-		completionBarDbP = dbP;
-		mdlDialog_completionBarUpdate (completionBarDbP, nullptr,  perc);
-		mdlSystem_startBusyCursor();
-	}
-	void Open (WStringCR message, int perc = 0)
-	{
-		Open (message.c_str ());
-	}
+	protected:
+		MSDialogP   completionBarDbP = nullptr;
+		///	<summary>
+		///	Member variable signals the destructor to close the Completion Bar dialog.
+		///	</summary>
+		bool		autoClose = false;
+		int globalIndex = 0;
+		mutable boost::shared_mutex _mutex;
+	};
 	///	<summary>
-	///	Send a message to an existing Completion Bar.
+	///	DialogCompletionBar class shows a Completion Bar in its own dialog.
 	///	</summary>
-	void Update (WStringCR message, int percentComplete)
+	struct DialogCompletionBar : CompletionBar
 	{
-		Update(message.c_str(), percentComplete);
-	}
-	void Update (WStringCR message)
-	{
-		int percentComplete = 100 * globalIndex / numGraphicElement;
-		Update (message.c_str (), percentComplete);
-	}
-	void Update (WCharCP message, int percentComplete)
-	{
-		if (completionBarDbP)
-			mdlDialog_completionBarUpdate (completionBarDbP, message,  percentComplete);
-	}
-	///	<summary>
-	///	Close an existing Completion Bar.
-	///	</summary>
-	void Close ()
-	{
-		if (completionBarDbP)
+		///	<summary>
+		///	Constructor calls the base class constructor.
+		///	</summary>
+		///	<remarks>Defaults to closing Completion Bar automatically in destructor.</remarks>
+		DialogCompletionBar(bool autoClose = AutoClose) : CompletionBar(autoClose) {}
+		///	<summary>
+		///	Return a pointer to a new Completion Bar dialog.
+		///	</summary>
+		MSDialogP GetDialog(WCharCP message) override
 		{
-			mdlDialog_completionBarClose (completionBarDbP);
-			mdlDialog_hookDialogSendUserMsg (completionBarDbP, -GENERICID_CompletionBar, 0);
-
-			mdlOutput_error (L"");
-			completionBarDbP = nullptr;
-
-			mdlSystem_stopBusyCursor();
+			return mdlDialog_completionBarOpen(message);
 		}
-	}
-
-protected:
-	MSDialogP   completionBarDbP = nullptr;
+		void Update(WStringCR message)
+		{
+			boost::unique_lock<boost::shared_mutex> guard(_mutex);
+			int percentComplete = 100 * globalIndex / numGraphicElement;
+			CompletionBar::Update(message.c_str(), percentComplete);
+		}
+		void IncrementIndex()
+		{
+			boost::unique_lock<boost::shared_mutex> guard(_mutex);
+			globalIndex += 1;
+		}
+		int GetIndex()
+		{
+			boost::shared_lock<boost::shared_mutex> guard(_mutex);
+			return globalIndex;
+		}
+	};
 	///	<summary>
-	///	Member variable signals the destructor to close the Completion Bar dialog.
+	///	StatusCompletionBar class shows a Completion Bar in MicroStation's status panel, usually lower-right in MicroStation's window.
 	///	</summary>
-	bool		autoClose = false;
-};
-///	<summary>
-///	DialogCompletionBar class shows a Completion Bar in its own dialog.
-///	</summary>
-struct DialogCompletionBar : CompletionBar
-{
-	///	<summary>
-	///	Constructor calls the base class constructor.
-	///	</summary>
-	///	<remarks>Defaults to closing Completion Bar automatically in destructor.</remarks>
-	DialogCompletionBar (bool autoClose = AutoClose) : CompletionBar (autoClose) {}
-	///	<summary>
-	///	Return a pointer to a new Completion Bar dialog.
-	///	</summary>
-	MSDialogP GetDialog (WCharCP message) override
+	struct StatusCompletionBar : CompletionBar
 	{
-		return mdlDialog_completionBarOpen  (message);
-	}
-};
-///	<summary>
-///	StatusCompletionBar class shows a Completion Bar in MicroStation's status panel, usually lower-right in MicroStation's window.
-///	</summary>
-struct StatusCompletionBar : CompletionBar
-{
-	///	<summary>
-	///	Constructor calls the base class constructor.
-	///	</summary>
-	///	<remarks>Defaults to closing Completion Bar automatically in destructor.</remarks>
-	StatusCompletionBar (bool autoClose = AutoClose) : CompletionBar (autoClose) {}
-	///	<summary>
-	///	Get MicroStation's Command Status dialog.
-	///	</summary>
-	MSDialogP GetDialog (WCharCP unused) override
-	{
-		return mdlDialog_find (DIALOGID_CommandStatus, nullptr);
-	}
-};
-
+		///	<summary>
+		///	Constructor calls the base class constructor.
+		///	</summary>
+		///	<remarks>Defaults to closing Completion Bar automatically in destructor.</remarks>
+		StatusCompletionBar(bool autoClose = AutoClose) : CompletionBar(autoClose) {}
+		///	<summary>
+		///	Get MicroStation's Command Status dialog.
+		///	</summary>
+		MSDialogP GetDialog(WCharCP unused) override
+		{
+			return mdlDialog_find(DIALOGID_CommandStatus, nullptr);
+		}
+	};
+}
 #endif	//	!defined (PROGRESS_BAR_H_INCLUDED_)

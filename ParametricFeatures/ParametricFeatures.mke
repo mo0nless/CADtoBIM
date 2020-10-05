@@ -76,7 +76,7 @@ loggerObjects = \
 	$(o)Logger$(oext) \
 
 interfaceObjects = \
-
+	#$(o)MainForm$(oext) \
 
 commonObjects = \
 	$(o)ResultStatus$(oext) \
@@ -240,6 +240,11 @@ LINKER_LIBRARIES + shell32.lib
 #--------------------------------------------------------------------------------------
 $(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/headers/Logger.h 
 
+#--------------------------------------------------------------------------------------
+#     interface
+#--------------------------------------------------------------------------------------
+
+#$(o)MainForm$(oext) : $(baseDir)interface/MainForm.cpp $(baseDir)interface/MainForm.h
 
 #--------------------------------------------------------------------------------------
 #     data_processing
@@ -292,6 +297,18 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 #    ifc
 #-------------------------------------------------------------------------------------
 
+#--- main
+$(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
+
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
+
+$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
+
+$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
+
+$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
+
+
 #--- boolean_functions
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
@@ -306,16 +323,6 @@ $(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelati
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
 
-#--- main
-$(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
-
-$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
-
-$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
-
-$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
-
-$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
 
 
 #--- operations_helper
@@ -438,6 +445,7 @@ $(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/
 
 #--- shapes
 $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
+
 
 
 

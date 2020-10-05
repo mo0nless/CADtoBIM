@@ -39,7 +39,7 @@ extern "C" {
 	
 	void createFilesStructure();
 	void createFolder(string folderPath);
-
+	
 	NotificationManager::MessageBoxValue createNotificationMessage(NotificationManager::MessageBoxType messageType,
 		string message, NotificationManager::MessageBoxIconType messageBoxIconType);
 

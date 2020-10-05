@@ -6,7 +6,7 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 
 void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, ElementBundle * elementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (solidEntityGraphicProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
@@ -24,7 +24,7 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
 		else {
-			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "ifcRepresentationItem IS NULL");
+			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
 		}
 	}
 }
@@ -36,7 +36,7 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 #pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 	IfcEntityList* entityList = new IfcEntityList();
@@ -415,7 +415,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
 
@@ -747,7 +747,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 
 void IfcBRepSolidsEnhancer::processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//Triangulated (NOT SURE ALL) faces to Fill the BRep
 	for (auto face : meshTriangles->facesTriangulatedVector)
@@ -1099,7 +1099,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
 	IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcAdvancedFaceList)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	IfcElementBundle* elm = new IfcElementBundle(-1, "");
 
@@ -1226,7 +1226,7 @@ void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfa
 			}
 		}
 		else {
-			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "surfaceGraphic IS NULL");
+			_logger->logWarning(__FILE__, __LINE__, __func__, "surfaceGraphic IS NULL");
 		}
 	}
 }

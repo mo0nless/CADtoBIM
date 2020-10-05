@@ -1,6 +1,7 @@
 #pragma once
 
-#include <mutex>
+#include <boost/thread.hpp>
+#include <boost/thread/mutex.hpp>
 
 #include "../../../stdafx.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
@@ -30,19 +31,33 @@
 class PropertiesReaderProcessor
 {
 public:
-	PropertiesReaderProcessor();
-
 	//! The public constructor available.
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
 	//! @param[in] the reference of the SmartFeatureContainer
 	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
 
+	static PropertiesReaderProcessor* getInstance() 
+	{
+		call_once(initInstanceFlag, &PropertiesReaderProcessor::initPropertiesReaderProcessor);		
+		return _PropertiesReaderProcessor;
+	};
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
-
 	string mElemClassName;
+
+	PropertiesReaderProcessor();
+
+	Logs::Logger* _logger = Logs::Logger::getLogger();		
+
+	// Handles persistance of ECInstances
+	DgnECManagerR ecMgr = DgnECManager::GetManager();
 	
+	static PropertiesReaderProcessor* _PropertiesReaderProcessor;
+	static once_flag initInstanceFlag;
+	static void initPropertiesReaderProcessor()
+	{
+		_PropertiesReaderProcessor = new PropertiesReaderProcessor();
+	}
 };
 
 /// @endGroup

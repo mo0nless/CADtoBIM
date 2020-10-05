@@ -1,5 +1,8 @@
 #include "../headers/ModelerDataWriterManager.h"
 
+once_flag ModelerDataWriterManager::initInstanceFlag;
+ModelerDataWriterManager* ModelerDataWriterManager::_ModelerDataWriterManager = 0;
+
 ModelerDataWriterManager::ModelerDataWriterManager(bool printDataEnabled)
 {
 	this->_dataOutputFilePath = SessionManager::getInstance()->getDataOutputFilePath();
@@ -10,9 +13,11 @@ ModelerDataWriterManager::ModelerDataWriterManager(bool printDataEnabled)
 
 void ModelerDataWriterManager::writeGeneralPropertiesToFile(DRange3d & range, DVec3d & vectorRotation, DPoint4d & qRotation, Transform & localToWorld)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
 
 	this->_outFile << fixed;
@@ -45,6 +50,7 @@ void ModelerDataWriterManager::writeGeneralPropertiesToFile(DRange3d & range, DV
 
 void ModelerDataWriterManager::writeBoxDataToFile(DgnBoxDetail boxDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -133,6 +139,7 @@ void ModelerDataWriterManager::writeBoxDataToFile(DgnBoxDetail boxDetails)
 
 void ModelerDataWriterManager::writeConeDataToFile(DgnConeDetail coneDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -193,6 +200,7 @@ void ModelerDataWriterManager::writeConeDataToFile(DgnConeDetail coneDetails)
 
 void ModelerDataWriterManager::writeExtrusionDataToFile(DgnExtrusionDetail extrusionDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -260,7 +268,7 @@ void ModelerDataWriterManager::writeExtrusionDataToFile(DgnExtrusionDetail extru
 
 void ModelerDataWriterManager::writeRotationalSweepDataToFile(DgnRotationalSweepDetail rotSweepDetails)
 {
-
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -360,6 +368,7 @@ void ModelerDataWriterManager::writeRotationalSweepDataToFile(DgnRotationalSweep
 
 void ModelerDataWriterManager::writeRuledSweepDataToFile(DgnRuledSweepDetail ruledSweepDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -418,6 +427,7 @@ void ModelerDataWriterManager::writeRuledSweepDataToFile(DgnRuledSweepDetail rul
 
 void ModelerDataWriterManager::writeSphereDataToFile(DgnSphereDetail sphereDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -466,6 +476,7 @@ void ModelerDataWriterManager::writeSphereDataToFile(DgnSphereDetail sphereDetai
 
 void ModelerDataWriterManager::writeTorusDataToFile(DgnTorusPipeDetail torusDetails)
 {
+	
 	if (!this->_printDataEnabled) {
 		return;
 	}
@@ -551,6 +562,11 @@ void ModelerDataWriterManager::writeTorusDataToFile(DgnTorusPipeDetail torusDeta
 #pragma warning( disable : 4189)
 void ModelerDataWriterManager::writeShapeCurvesVectorDataToFile(CurveVectorCR curvesVector)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
 	this->_outFile << "-------------------CURVE VECTOR---------------------" << endl;
 	this->_outFile << "Size: " << curvesVector.size() << endl;
@@ -635,6 +651,11 @@ void ModelerDataWriterManager::writeShapeCurvesVectorDataToFile(CurveVectorCR cu
 #pragma warning( disable : 4189)
 void ModelerDataWriterManager::writeCurvePrimitiveDataToFile(ICurvePrimitivePtr curvePrimitive)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	
 	/*CurveTopologyId topologyID = curvePrimitive->GetId()->GetCurveTopologyId();
@@ -876,6 +897,11 @@ void ModelerDataWriterManager::writeCurvePrimitiveDataToFile(ICurvePrimitivePtr 
 
 void ModelerDataWriterManager::writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceCR msBsplineSurface)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	bvector<DPoint3d> weightPoles, unWeightPoles, polesToParse;
 	bvector<double> weights;
 	bvector<DPoint3d> polesGrid, gridPoints;
@@ -938,6 +964,11 @@ void ModelerDataWriterManager::writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceC
 
 void ModelerDataWriterManager::writeBodyDataToFile(ISolidKernelEntityCR entity)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
 	this->_outFile << fixed;
 
@@ -999,6 +1030,11 @@ void ModelerDataWriterManager::writeBodyDataToFile(ISolidKernelEntityCR entity)
 
 void ModelerDataWriterManager::writeElementInfoDataToFile(long elementID, WString elDescr)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app);
 	this->_outFile << "===================================================" << endl;
 	this->_outFile << "===================================================" << endl;
@@ -1012,6 +1048,11 @@ void ModelerDataWriterManager::writeElementInfoDataToFile(long elementID, WStrin
 
 void ModelerDataWriterManager::writeInitializationDataToFile(ModelInfoCP modelInfo)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	DPoint3d globalOrigin = modelInfo->GetGlobalOrigin();
 
 	UnitDefinitionCR masterUnit = modelInfo->GetMasterUnit();
@@ -1021,6 +1062,7 @@ void ModelerDataWriterManager::writeInitializationDataToFile(ModelInfoCP modelIn
 	double uorPerUnit = modelInfo->GetUorPerStorage();
 
 	this->_outFile.open(this->_dataOutputFilePath);
+	this->_outFile << "C++ Version: " << __cplusplus << endl;
 	this->_outFile << "------------------------" << endl;
 	this->_outFile << "DgnModelRefP Unit System" << endl;
 	this->_outFile << fixed;
@@ -1069,6 +1111,11 @@ void ModelerDataWriterManager::writeInitializationDataToFile(ModelInfoCP modelIn
 
 void ModelerDataWriterManager::writeTitleProcessDataToFile(string s)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	this->_outFile << "------------------- " << s << " -------------------"<< endl;
 	this->_outFile << endl;
@@ -1077,6 +1124,11 @@ void ModelerDataWriterManager::writeTitleProcessDataToFile(string s)
 
 void ModelerDataWriterManager::writeSinglePointDataToFile(DPoint3d point, int index)
 {
+	
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	if (index == -1)
 	{

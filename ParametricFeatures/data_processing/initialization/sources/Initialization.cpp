@@ -9,7 +9,7 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 	NotificationManager::SetDispatchEvents(true);
 
 	createFilesStructure();
-	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Starting application --!!");
+	Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Starting application --!!");
 
 	string fileName = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
 	SessionManager::getInstance()->setDgnFileName(fileName);
@@ -41,15 +41,15 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 
 		try {
 			InitializationHelper* initializationHelper = new InitializationHelper();
-			initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+			initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);			
 		}
 		catch (exception& ex) {
-			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageModelProcessing);
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
 		
 			createErrorNotificationMessage(errorMessageModelProcessing);
 		}
 		catch (...) {
-			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, errorMessageModelProcessing);
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageModelProcessing);
 
 			createErrorNotificationMessage(errorMessageModelProcessing);
 
@@ -63,12 +63,12 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 			ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
 		}
 		catch (exception& ex) {
-			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageIfcConversion);
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);
 
 			createErrorNotificationMessage(errorMessageIfcConversion);
 		}
 		catch (...) {
-			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __FUNCTION__, errorMessageIfcConversion);
+			Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageIfcConversion);
 
 			createErrorNotificationMessage(errorMessageIfcConversion);
 
@@ -84,14 +84,14 @@ StatusInt GetSmartFeatureTree(WCharCP unparsedP)
 		statusMessage = "End IFC Conversion";
 
 		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
-		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Ended the application process --!!");
+		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Ended the application process --!!");
 	}
 	else {
 		statusMessage = "Declined IFC Conversion";
 
 		NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
 
-		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __FUNCTION__, "!!-- Declined the start of the application --!!");
+		Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Declined the start of the application --!!");
 	}
 
 	return SUCCESS;

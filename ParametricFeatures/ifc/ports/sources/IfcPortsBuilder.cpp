@@ -9,7 +9,7 @@ IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomCo
 
 void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting enhancing the IFC ports -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC ports -!");
 
 	ifcPortsRelationshipList = new IfcPortsRelationshipList();
 
@@ -102,13 +102,13 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 
 	buildIfcReletionshipConnectionPorts(file);
 
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended enhancing the IFC ports -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC ports -!");
 
 }
 
 void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>>& objectDefinition, IfcElementBundle *& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//Create the nested relationship between the element and ports
 	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
@@ -126,7 +126,7 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 
 void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	PortElement* temp = ifcPortsRelationshipList->getHead();
 

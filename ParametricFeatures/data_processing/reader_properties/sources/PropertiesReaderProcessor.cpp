@@ -1,36 +1,34 @@
 #include "../headers/PropertiesReaderProcessor.h"
 
+once_flag PropertiesReaderProcessor::initInstanceFlag;
+PropertiesReaderProcessor* PropertiesReaderProcessor::_PropertiesReaderProcessor = 0;
+
 PropertiesReaderProcessor::PropertiesReaderProcessor()
-{
+{	
 }
 
 ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
-
-	ofstream outfile;
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+		
+	//ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	WString elDescr;
 
 	// Handles persistance of ECInstances
-	DgnECManagerR ecMgr = DgnECManager::GetManager();
+	//DgnECManagerR ecMgr = DgnECManager::GetManager();
 	
 	// Flag for searching the attachments in the scope as well
 	bool includeReferenceAttachments = true;
 
-	//auto some1 = ISessionMgr::GetActiveDgnModelRefP();
-
 	// Create a scope which finds instances in the given element. 
 	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));
-	/*FindInstancesScopePtr scope = FindInstancesScope::CreateScope(*currentElem.GetDgnModelP(), FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));*/
-	//FindInstancesScopePtr scope = FindInstancesScope::CreateScope(some1,
 
 	// Analogous to a SQL query and is used with DgnECManager::FindElementInstances to find ECInstances that satisfy the query's 'where' clause.
 	// Specify ECQUERY_PROCESS_SearchAllClasses for the query to consider instances of all classes
 	ECQueryPtr ecQuery = ECQuery::CreateQuery(ECQUERY_PROCESS_SearchAllClasses);
-	//Queryptr
-	
+
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
 	
@@ -38,14 +36,8 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 
 	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
-	//ecMgr.
-	
-	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
+	if (ecMgr.FindInstances(*scope, *ecQuery).empty())	
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << endl;
-		outfile << "= Properties Not Found =" << endl;
-		outfile.close();*/
 		this->mElemClassName = "SmartFeatureSolid"; 
 
 	}
@@ -72,26 +64,23 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
 			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
-			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
+			//ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 
 			this->mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
 			
-			outfile.open(filePath, ios_base::app);
-			outfile << endl;
-			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
-			outfile.close();
+			//outfile.open(filePath, ios_base::app);
+			//outfile << endl;
+			//outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
+			//outfile.close();
 
 			// get class name
 			string className = StringUtils::getString(elemInst->GetClass().GetName());
 
-			outfile.open(filePath, ios_base::app);
-			outfile << endl;
-			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << endl;
+			//outfile.open(filePath, ios_base::app);
+			//outfile << endl;
+			//outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << endl;
 			//outfile.close();
 
-			// set class name
-			//dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
-			
 			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
@@ -113,9 +102,8 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			return readerPropertiesBundle;
 		}
 	}
-	outfile.close();
 
-	_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"Returning an empty ReaderPropertiesBundle");
+	_logger->logWarning(__FILE__, __LINE__, __func__,"Returning an empty ReaderPropertiesBundle");
 
 	return new ReaderPropertiesBundle("", -1);
 }

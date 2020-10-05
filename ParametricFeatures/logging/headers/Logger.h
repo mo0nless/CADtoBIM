@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include <mutex>
 #include <boost/smart_ptr/shared_ptr.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 
@@ -37,6 +38,14 @@ using boost::shared_ptr;
 using namespace std;
 using namespace logging::trivial;
 
+
+//template<typename ValueType>
+//using exclusive_mc = attrs::mutable_constant<
+//	ValueType,                                        // attribute value type
+//	boost::mutex,                               // synchronization primitive
+//	boost::lock_guard< boost::mutex >           // exclusive lock type
+//>;
+
 namespace Logs {
 
 	class Logger {
@@ -44,27 +53,45 @@ namespace Logs {
 	private:
 		static Logger* _logger;
 
+		static once_flag initInstanceFlag;
+
+		static void initLogger() {
+			_logger = new Logger();
+		}
+
 		// set the severity level filter necessary
 		static const severity_level _severityLevelFilter = debug;
 
-		string _logFolderPath;
 		src::severity_logger<severity_level> _log;
 
 
 		// Private constructor so that no objects can be created.
 		Logger();
 
+		mutable boost::shared_mutex _mutex;
+
+		template<typename ValueType>
+		using shared_mc = attrs::mutable_constant<
+			ValueType,                                  // attribute value type
+			boost::shared_mutex,						// synchronization primitive
+			boost::unique_lock< boost::shared_mutex >,  // exclusive lock type
+			boost::shared_lock< boost::shared_mutex >   // shared lock type
+		>;
 
 	public:
 		static Logger *getLogger() {
-			if (!_logger) {
+			/*if (!_logger) {
 				_logger = new Logger();
-			}
+			}*/
+			call_once(initInstanceFlag, &Logger::initLogger);
 
 			return _logger;
 		}
 
 		void setFileNameLineAndNumber(string fileName, int lineNumber,string functionName) {
+			boost::unique_lock<boost::shared_mutex> guard(_mutex);
+			string threadId = boost::lexical_cast<string>(boost::this_thread::get_id());
+			setLoggingAttributes("Thread", "Thread ID: " + threadId);
 			setLoggingAttributes("File", path_to_filename(fileName));
 			setLoggingAttributes("Line", lineNumber);
 			setLoggingAttributes("Function", functionName);
@@ -73,7 +100,8 @@ namespace Logs {
 		// Set attribute and return the new value
 		template<typename ValueType>
 		void setLoggingAttributes(const char* name, ValueType value) {
-			auto attr = logging::attribute_cast<attrs::mutable_constant<ValueType>>(logging::core::get()->get_thread_attributes()[name]);
+			auto name_attr = logging::core::get()->get_global_attributes()[name];
+			auto attr = logging::attribute_cast<shared_mc<ValueType>>(name_attr);
 			attr.set(value);
 		}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream> 
+#include <mutex>
 
 #include "../../../common/models/headers/SessionManager.h"
 
@@ -68,10 +69,21 @@ private:
 	ofstream _outFile;
 
 	bool _printDataEnabled;
-
-public:
+	
+	static once_flag initInstanceFlag;
+	static ModelerDataWriterManager* _ModelerDataWriterManager;
+	static void initModelerDataWriterManager() {
+		_ModelerDataWriterManager = new ModelerDataWriterManager(true);
+	}
 	ModelerDataWriterManager(bool printDataEnabled);
 	
+public:
+
+	static ModelerDataWriterManager* getInstance() 
+	{
+		call_once(initInstanceFlag, &ModelerDataWriterManager::initModelerDataWriterManager);
+		return _ModelerDataWriterManager;
+	}
 
 #pragma region Primitives
 	void writeGeneralPropertiesToFile(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld);
@@ -125,6 +137,10 @@ public:
 template <class Num>
 void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
 {
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	this->_outFile << s << " = " << data << endl;
 	this->_outFile << endl;
@@ -134,8 +150,11 @@ void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
 template<class Triplet>
 inline void ModelerDataWriterManager::writeTripetXyzDataToFile(string s, Triplet data)
 {
-	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	if (!this->_printDataEnabled) {
+		return;
+	}
 
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	this->_outFile << fixed;
 	this->_outFile << s << " = [" << data.x << ", " << data.y << ", " << data.z << "]" << endl;
 	this->_outFile << endl;

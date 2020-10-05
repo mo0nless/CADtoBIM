@@ -25,13 +25,44 @@ private:
 	IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
 	IfcPortsBuilder* _ifcPortsBuilder;
 	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
+	IfcElementBuilder* _ifcElementBuilder;
 
+	PBAR::DialogCompletionBar* _progressBar;
+
+	mutable boost::shared_mutex _mutex;
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
+	template<typename ValueType>
+	vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);
 	
+	void threadFunction(vector<DictionaryProperties*> dictionaryPropertiesVector, vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
 public:
 	IfcBuilder();
 
 	void buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 	
 };
+
+
+template<typename ValueType>
+vector<vector<ValueType>> IfcBuilder::splitVector(const vector<ValueType>& vec, size_t n)
+{
+	vector<vector<ValueType>> outVec;
+
+	size_t length = vec.size() / n;
+	size_t remain = vec.size() % n;
+
+	size_t begin = 0;
+	size_t end = 0;
+
+	for (size_t i = 0; i < min(n, vec.size()); ++i)
+	{
+		end += (remain > 0) ? (length + !!(remain--)) : length;
+
+		outVec.push_back(vector<ValueType>(vec.begin() + begin, vec.begin() + end));
+
+		begin = end;
+	}
+
+	return outVec;
+}

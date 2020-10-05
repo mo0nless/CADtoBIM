@@ -2,8 +2,6 @@
 
 GraphicsProcessor::GraphicsProcessor()	
 {
-	filePath = SessionManager::getInstance()->getDataOutputFilePath();
-
 	/*WString myString;
 	myString.Sprintf(L"Starting Processig the Graphics Component...");
 	mdlOutput_messageCenter(DgnPlatform::OutputMessagePriority::Debug, myString.c_str(), myString.c_str(), DgnPlatform::OutputMessageAlert::None);*/
@@ -38,7 +36,10 @@ bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
 //! Collect output as text.
 //! @param[in] text The text data.
 //! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return SUCCESS; } // Don't export glyph geometry...
+BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { 
+	//return ERROR;
+	return SUCCESS;
+} // Don't export glyph geometry...
 
 //! Collect output as a single curve component.
 //! @param[in] curve The curve data.
@@ -46,7 +47,9 @@ BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { return 
 //! @param[in] isFilled A closed path or region should have opaque fill.
 //! @remarks All curve geometry can be handled through _ProcessCurveVector.
 //! @see _ProcessCurveVector.
-BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled){	return ERROR; }
+BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled){
+	return ERROR; 
+}
 
 //! Collect output as a CurveVector.
 //! @param[in] curves The curve data.
@@ -58,7 +61,8 @@ BentleyStatus GraphicsProcessor::_ProcessCurvePrimitive(ICurvePrimitiveCR curve,
 #pragma warning( disable : 4189)
 BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool isFilled)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+
 	if(!mGraphicsProcessorHelper.processShapesCurvesVector(curves, isFilled))
 	{
 		WString myString;
@@ -83,7 +87,7 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
 BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//TODO[SB] return ERROR _ProcessSurface
 	return ERROR;
@@ -118,7 +122,7 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 #pragma warning( disable : 4101)
 BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFaceMaterialAttachmentsCP attachments) 
 {	
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//TODO[SB] MESH PROCESSIG NOT ACTIVE
 	bool meshProcessing = false;
@@ -134,6 +138,8 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 //! @return SUCCESS if handled.
 BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool isFilled) 
 {
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+
 	if (!mGraphicsProcessorHelper.processPolyfaceFacets(meshData, isFilled, m_currentTransform))
 	{
 		WString myString;
@@ -159,7 +165,8 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 #pragma warning( disable : 4700)
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+
 	if (!mGraphicsProcessorHelper.processSolidPrimitive(primitive))
 	{
 		WString myString;
@@ -180,7 +187,7 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 
 void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayParams)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 
 	//ElemDisplayParamsCR d = displayParams;
@@ -190,9 +197,9 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	this->mGraphicsProcessorHelper.getElementBundle()->setTransparency(displayParams.GetTransparency());
 
 	//string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	string filepath = SessionManager::getInstance()->getDataOutputFilePath();
-	ofstream outfile;
-	outfile.open(filePath, ios_base::app);
+	//string filepath = SessionManager::getInstance()->getDataOutputFilePath();
+	/*ofstream outfile;
+	outfile.open(filePath, ios_base::app);*/
 
 	UInt32 color;
 
@@ -201,12 +208,12 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	int green1 = (color >> 8) & 0xFF;
 	int red1 = color & 0xFF;
 
-	outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << endl;
+	//outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << endl;
 
 	//outfile.close();
 
 
-	outfile << "transparency =" << displayParams.GetTransparency() << endl;
+	//outfile << "transparency =" << displayParams.GetTransparency() << endl;
 
 	auto level = displayParams.GetLevel();
 
@@ -214,44 +221,44 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 	UInt colorOut;
 	bool ov;
 	mdlLevel_getColor(&colorOut, &ov, model, level);
-	outfile << "level " << level << " , " << &colorOut << endl;
-	outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;
+	/*outfile << "level " << level << " , " << &colorOut << endl;
+	outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;*/
 
 		int blue3 = (colorOut >> 16) & 0xFF;
 		int green3 = (colorOut >> 8) & 0xFF;
 		int red3 = colorOut & 0xFF;
 
-		outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << endl;
+	//	outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << endl;
 
-	outfile << "level  =" << displayParams.GetLevel() << endl;
-	//displayParams.GetMaterial()->
+	//outfile << "level  =" << displayParams.GetLevel() << endl;
+	////displayParams.GetMaterial()->
 
-	//if (!displayParams.IsLineColorTBGR()) {
-	//	color = displayParams.GetLineColorTBGR();
-	//	int blue3 = (color >> 16) & 0xFF;
-	//	int green3 = (color >> 8) & 0xFF;
-	//	int red3 = color & 0xFF;
+	////if (!displayParams.IsLineColorTBGR()) {
+	////	color = displayParams.GetLineColorTBGR();
+	////	int blue3 = (color >> 16) & 0xFF;
+	////	int green3 = (color >> 8) & 0xFF;
+	////	int red3 = color & 0xFF;
 
-	//	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << endl;
-	//}
-	//else {
-	//	color = displayParams.GetLineColor();
-	//	auto rez = ISessionMgr::GetActiveDgnFile()->GetColorMapP();
+	////	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << endl;
+	////}
+	////else {
+	////	color = displayParams.GetLineColor();
+	////	auto rez = ISessionMgr::GetActiveDgnFile()->GetColorMapP();
 
-	//	auto colorDefinition = rez->GetColor(color);
-	//	auto rgbColorDefinition = colorDefinition.m_rgb;
-	//	int blue2 = rgbColorDefinition.blue & 0xFF;
-	//	int green2 = rgbColorDefinition.green & 0xFF;
-	//	int red2 = rgbColorDefinition.red & 0xFF;
+	////	auto colorDefinition = rez->GetColor(color);
+	////	auto rgbColorDefinition = colorDefinition.m_rgb;
+	////	int blue2 = rgbColorDefinition.blue & 0xFF;
+	////	int green2 = rgbColorDefinition.green & 0xFF;
+	////	int red2 = rgbColorDefinition.red & 0xFF;
 
-	//	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << endl;
-	//}
-	outfile.close();
+	////	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << endl;
+	////}
+	//outfile.close();
 }
 
 void GraphicsProcessor::_AnnounceTransform(TransformCP trans)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (trans) {
 		m_currentTransform = *trans;

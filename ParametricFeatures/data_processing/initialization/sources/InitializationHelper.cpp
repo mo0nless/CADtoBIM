@@ -8,13 +8,14 @@ InitializationHelper::InitializationHelper()
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
-	this->_progressBar = DialogCompletionBar();
-	this->_modelerDataWriterManager = new ModelerDataWriterManager(true);
+	this->_progressBar = new PBAR::DialogCompletionBar();
+	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);
+	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
 }
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer(currentElem.GetElementId());
@@ -75,18 +76,23 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 	return smartFeatureContainer;
 }
 
-StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties* dictionaryProperties)
-{
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+#pragma warning( pop ) 
 
-	mutex g_display_mutex;
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning (disable:4311 4302 4312 4100)
+StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties)
+{		
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+
 	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
 	int index = 0;
 
 	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
-		iterateSubElements(child.GetElementRef(), dictionaryProperties);
+		iterateSubElements(child.GetElementRef(), dictionaryProperties);// , propertiesReaderProcessor);
 		++index;
 	}
 	if(index==0){
@@ -94,18 +100,17 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 		ElementBundle* elementBundle = new ElementBundle();
 		elementBundle->setElementHandle(eh);
 
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
-		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
+		ReaderPropertiesBundle* readerPropertiesBundle = _propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
+		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);		
 
-		lock_guard<mutex> guard(g_display_mutex);
-		GraphicsProcessor graphicsProcessor = GraphicsProcessor();
-		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
+		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
+		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
 		graphicsProcessorHelper->setElementHandle(eh);
 		graphicsProcessorHelper->setElementBundle(*elementBundle);
 		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
-		ElementGraphicsOutput::Process(eh, graphicsProcessor);
+				
+		ElementGraphicsOutput::Process(eh, *graphicsProcessor);
 
 		dictionaryProperties->addElementBundle(elementBundle);
 
@@ -115,17 +120,9 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 	return SUCCESS;
 }
 
-#pragma warning( pop ) 
-
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-#pragma warning (disable:4311 4302 4312 4100)
 void InitializationHelper::processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting elements processing -!");
-
-	PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting elements processing -!");
 
 	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
 	ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
@@ -133,63 +130,55 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	this->_modelerDataWriterManager->writeInitializationDataToFile(modelInfo);
 
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
-	
-	WString myString;	
-	
+	int numElements = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements);
+		
 	//Open ProgressBar	
-	this->_progressBar.numGraphicElement = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
-	this->_progressBar.Open(L"Working...");
+	this->_progressBar->numGraphicElement = numElements; //Count the element (this function gets also the deleted ones??)
+	this->_progressBar->Open(L"Working...");
 
-#if false
-	vector<PersistentElementRefP> vecGraphicElements;
+#if false	
+	int numThreads = boost::thread::hardware_concurrency();
+	vector<ElementHandle> elementsVec;
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{
-		vecGraphicElements.push_back(elemRef);
+		ElementHandle currentElem(elemRef);
+		elementsVec.push_back(currentElem);
+	}
+	auto elementsVecSections = splitVector<ElementHandle>(elementsVec, numThreads);
+
+	vector<boost::thread*> bthread;
+	for (int i = 0; i < elementsVecSections.size(); i++)
+	{
+		bthread.push_back(
+			new boost::thread(
+				&InitializationHelper::threadFunction,
+				this,
+				elementsVecSections.at(i),
+				boost::ref(propsDictVec),
+				boost::ref(smartFeatureContainerVector)
+			)
+		);
 	}
 
-	int numThreads = thread::hardware_concurrency();
-	vector<vector<PersistentElementRefP>> elementThreadCollection = splitVector<PersistentElementRefP>(vecGraphicElements, numThreads);
-	ctpl::thread_pool pool(numThreads);
-
-	vector<thread> threadVector;
-	for (auto elmVec : elementThreadCollection)
+	for (auto& t : bthread)
 	{
-		/*pool.push([](int id) {
-			string f = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-			ofstream outfile;
-			outfile.open(f, ios_base::app);
-			outfile << "------------- THREAD ------------- " << id << endl;
-			outfile.close();
-		});*/
-		//for (...) some_threads.push_back(std::thread(&foo::foo_func, this));
-
-		
-		threadVector.push_back(thread (&InitializationHelper::processSubElemVector, this, elmVec, ref(propsDictVec), ref(smartFeatureContainerVector)));
-	}
-
-	for (auto& t : threadVector)
-	{
-		t.join();
+		t->join();
 	}
 #endif
-
 #if true
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
-		DgnModelP c = elemRef->GetDgnModelP();
 		ElementHandle currentElem(elemRef);
 
-		WString elDescr;
+		WString elDescr, myString;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
-		//ProgressBar
-		this->_progressBar.globalIndex += 1;
-		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar.globalIndex, this->_progressBar.numGraphicElement, elDescr);
-		this->_progressBar.Update(myString);		
+		ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 
 		iterateSubElements(elemRef, propertiesDictionary);
 
@@ -199,55 +188,52 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			SmartFeatureNodePtr sFeatNode;
 			T_SmartFeatureVector sFeatVec;
 
-			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+
 			if (smartFeatureContainer != nullptr) {
 				smartFeatureContainerVector.push_back(smartFeatureContainer);
 				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
 
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
-		
 		propsDictVec.push_back(propertiesDictionary);
 
 		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
+		//ProgressBar
+		this->_progressBar->IncrementIndex();
+		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
+		this->_progressBar->Update(myString);
 	}
 #endif
-
 	//Close ProgressBar
-	this->_progressBar.Close();
+	this->_progressBar->Close();
 
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended elements processing -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended elements processing -!");
 }
 
-void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> vecGraphicElement, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
-	WString myString;
-	mutex g_display_mutex;
+	//boost::unique_lock<boost::shared_mutex> guard(_mutex);
 
-	//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-
-	for (PersistentElementRefP elemRef : vecGraphicElement)
+	for (ElementHandle currentElem : vecElemen)
 	{
-		DgnModelP c = elemRef->GetDgnModelP();
-		ElementHandle currentElem(elemRef);
+		//ElementHandle currentElem(elemRef);
 
-		WString elDescr;
+		WString elDescr, myString;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
-		//ProgressBar
-		this->_progressBar.globalIndex += 1;	
-		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar.globalIndex, this->_progressBar.numGraphicElement, elDescr);
-		this->_progressBar.Update(myString);
-		
-		iterateSubElements(elemRef, propertiesDictionary);
+		ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
+		{
+			boost::unique_lock<boost::shared_mutex> guard(_mutex);
+
+			_iteration->iterateSubElements(currentElem, propertiesDictionary);
+		}
 
 		if (SmartFeatureElement::IsSmartFeature(currentElem))
 		{
@@ -255,24 +241,25 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 			SmartFeatureNodePtr sFeatNode;
 			T_SmartFeatureVector sFeatVec;
 
-			smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+
 			if (smartFeatureContainer != nullptr) {
 				smartFeatureContainerVector.push_back(smartFeatureContainer);
 				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 			}
 		}
+
+		{
+			boost::unique_lock<boost::shared_mutex> guard(_mutex);
+			propsDictVec.push_back(propertiesDictionary);
+
+			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+		}
+		//ProgressBar
+		this->_progressBar->IncrementIndex();
+		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
+		this->_progressBar->Update(myString);
 		
-
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
-
-		lock_guard<mutex> guard(g_display_mutex);
-		propsDictVec.push_back(propertiesDictionary);
-
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 	}
 }
 #pragma warning( pop ) 

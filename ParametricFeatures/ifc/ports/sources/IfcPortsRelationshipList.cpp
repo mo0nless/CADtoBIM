@@ -9,7 +9,7 @@ IfcPortsRelationshipList::IfcPortsRelationshipList()
 
 bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElement)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	vector<double> pointCurrent;
 	vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
@@ -83,7 +83,7 @@ PortElement* IfcPortsRelationshipList::getHead()
 
 void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* point, Ifc4::IfcDistributionPort* dPort, IfcElementBundle*& ifcElementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	PortElement* newPortElement = new PortElement;
 		
@@ -109,7 +109,7 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 
 void IfcPortsRelationshipList::display()
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
