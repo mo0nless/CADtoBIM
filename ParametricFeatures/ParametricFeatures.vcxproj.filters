@@ -132,7 +132,6 @@
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessor.h" />
     <ClInclude Include="data_processing\reader_properties\headers\PropertiesReaderProcessor.h" />
-    <ClInclude Include="data_processing\initialization\headers\ParametricFeatures.h" />
     <ClInclude Include="ifc\main\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBundle.h" />

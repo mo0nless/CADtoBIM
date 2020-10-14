@@ -160,7 +160,6 @@
     <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="ifc\main\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
-    <ClInclude Include="data_processing\initialization\headers\ParametricFeatures.h" />
     <ClInclude Include="data_processing\reader_properties\headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
     <ClInclude Include="mapper\properties\headers\CreateSolidsOperationPropertiesReaderMapper.h" />
