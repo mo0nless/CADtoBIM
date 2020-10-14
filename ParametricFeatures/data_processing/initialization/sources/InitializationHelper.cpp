@@ -27,51 +27,21 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 
 	for (size_t i = 0; i < sFeatVec.size(); i++)
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << "start==================" << endl;
-		outfile.close();*/
 		if (sFeatVec.at(i)->GetParent() != nullptr)
 		{
-			/*outfile.open(filePath, ios_base::app);
-			outfile << "Parent Ref Count: " << sFeatVec.at(i)->GetParent()->GetRefCount() << endl;
-			outfile << "Parent ID: " << sFeatVec.at(i)->GetParent()->GetNodeId() << endl;
-			outfile.close();*/
-
 			newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
 		}
 
 		newLocalNodeId = sFeatVec.at(i)->GetNodeId();
-/*
-		outfile.open(filePath, ios_base::app);
-		outfile << "Node ID: " << newLocalNodeId << endl;
-		outfile.close();
-*/
 		sFeatVec.at(i)->GetLeaf(leafNode);
 
 		if (leafNode.IsValid()) {
 
 			newGlobalNodeId = leafNode.GetElementId();
-			
-			/*outfile.open(filePath, ios_base::app);
-			outfile << "Leaf ID:  " << leafNode.GetElementId() << endl;
-			outfile.close();*/
-
 		}
-
-		/*outfile.open(filePath, ios_base::app);
-		outfile << "finish==================" << endl;
-		outfile.close();*/
-
-		
 		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
 
 	}
-
-	/*outfile.open(filePath, ios_base::app);
-	outfile << "Smart Feat Element Node ID: " << sFeatNode->GetNodeId() << endl;
-	outfile << "Number of Child: " << sFeatNode->GetChildCount() << endl;
-	outfile.close();*/
-
 
 	return smartFeatureContainer;
 }
@@ -216,8 +186,12 @@ void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vecto
 {
 	//boost::unique_lock<boost::shared_mutex> guard(_mutex);
 
+	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
+
+
 	for (ElementHandle currentElem : vecElemen)
 	{
+		try {
 		//ElementHandle currentElem(elemRef);
 
 		WString elDescr, myString;
@@ -235,11 +209,11 @@ void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vecto
 			_iteration->iterateSubElements(currentElem, propertiesDictionary);
 		}
 
-		if (SmartFeatureElement::IsSmartFeature(currentElem))
-		{
-			ElementHandle leafNode;
-			SmartFeatureNodePtr sFeatNode;
-			T_SmartFeatureVector sFeatVec;
+			if (SmartFeatureElement::IsSmartFeature(currentElem))
+			{
+				ElementHandle leafNode;
+				SmartFeatureNodePtr sFeatNode;
+				T_SmartFeatureVector sFeatVec;
 
 			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 
@@ -259,7 +233,14 @@ void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vecto
 		this->_progressBar->IncrementIndex();
 		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
 		this->_progressBar->Update(myString);
-		
+		}
+		catch (exception& ex) {
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageAtElementsProcessing);
+		}
+		catch (...) {
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, errorMessageAtElementsProcessing);
+
+		}
 	}
 }
 #pragma warning( pop ) 

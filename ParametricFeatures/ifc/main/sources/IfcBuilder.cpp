@@ -259,47 +259,57 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 				for (auto element : dictionaryProperties.getElementBundle())
 				{
-					SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-					if (solidPrimitiveProperties != nullptr) {
-						_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
-						continue;
+					try {
+						SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+						if (solidPrimitiveProperties != nullptr) {
+							_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
+						if (shapeGraphicProperties != nullptr)
+						{
+							_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+						if (msBsplineSurfaceGraphicProperties != nullptr)
+						{
+							_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
+
+						SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+						if (solidEntityGraphicProperties != nullptr)
+						{
+							_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+							continue;
+						}
 					}
 
-					ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
-					if (shapeGraphicProperties != nullptr)
-					{
-						_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
-						continue;
-					}
-
-					MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
-					if (msBsplineSurfaceGraphicProperties != nullptr)
-					{
-						_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
-						continue;
-					}
-
-					SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-					if (solidEntityGraphicProperties != nullptr)
-					{
-						_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
-						continue;
-					}
+					//ProgressBar
+					_progressBar->IncrementIndex();
+					_progressBar->Update(myString);
 				}
-				
-				//ProgressBar
-				_progressBar->IncrementIndex();
-				_progressBar->Update(myString);
+				catch (exception& ex) {
+					_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+					continue;
+	}
+				catch (...) {
+					_logger->logError(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+					continue;
+				}
 			}
 		}
 #endif
 	}
 	catch (exception& ex) {
-		_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
 		throw ex;
 	}
 	catch (...) {
-		_logger->logFatal(__FILE__, __LINE__, __func__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
 		throw;
 	}
 	

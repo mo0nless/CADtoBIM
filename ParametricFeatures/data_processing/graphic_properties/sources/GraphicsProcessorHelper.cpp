@@ -100,7 +100,6 @@ void GraphicsProcessorHelper::setBoxGraphicProperties(DgnBoxDetail dgnBoxDetail,
 
 		height = sqrt(x*x + y*y + z*z);
 	}
-
 	// set box properties
 	boxGraphicProperties->setLength(dgnBoxDetail.m_topX);
 	boxGraphicProperties->setWidth(dgnBoxDetail.m_topY);
