@@ -38,7 +38,6 @@
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessor.cpp" />
     <ClCompile Include="data_processing\reader_properties\sources\PropertiesReaderProcessor.cpp" />
-    <ClCompile Include="data_processing\initialization\sources\Initialization.cpp" />
     <ClCompile Include="data_processing\initialization\sources\ParametricFeatures.cpp" />
     <ClCompile Include="ifc\main\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
@@ -74,12 +73,13 @@
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
-    <ClCompile Include="interface\MainForm.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
-    <None Include="ParametricFeatures.r" />
+    <None Include="ParametricFeaturesCmd.r" />
+    <None Include="interface_dialog\Dialog.r" />
+    <None Include="interface_dialog\transkit\DialogMsg.r" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -171,18 +171,17 @@
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
     <ClInclude Include="modeler\primitives\headers\SolidPrimitiveProperties.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
-    <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="logging\headers\Logger.h" />
     <ClInclude Include="common\utils\headers\ctpl.h" />
     <ClInclude Include="common\utils\headers\ThreadPool.h" />
+    <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
+    <ClInclude Include="interface_dialog\DialogIds.h" />
+    <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="interface\MainForm.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ParametricFeatures1.rc" />
+    <Xml Include="interface_dialog\transkit\transkit.xml" />
   </ItemGroup>
 </Project>

@@ -11,6 +11,8 @@ DEFAULT_TARGET_PROCESSOR_ARCHITECTURE=x64
 appName     =  ParametricFeatures
 sAppName    =  ParametricFeatures
 
+interfaceDialog = $(baseDir)/interface_dialog/
+
 MDLMKI = $(MSMDE)mki/
 mdlLibs = $(MSMDE)library/
 
@@ -56,17 +58,26 @@ dirToSearch = $(ifcOpenShell)
 #--------------------------------------------------------------------------------------
 baseDir         = $(_MakeFilePath)
 privateInc      = $(baseDir)
-langSpec        = $(baseDir)transkit/
+langSpec        = $(interfaceDialog)transkit/
 
 libRscs = \
-    $(rscObjects)$(sAppName).rsc
+    $(rscObjects)$(appName)Cmd.rsc \
+	$(rscObjects)$(appName).rsc   \
+    $(rscObjects)$(appName)msg.rsc
 
 #--------------------------------------------------------------------------------------
 #    Create object files
 #--------------------------------------------------------------------------------------
-$(rscObjects)$(sAppName).rsc     : $(baseDir)$(sAppName).r
 
-$(o)$(sAppName).h                : $(baseDir)$(sAppName).r
+$(rscObjects)$(appName)Cmd.rsc     : $(baseDir)$(appName)Cmd.r 
+
+$(baseDir)data_processing/initialization/headers/$(appName)Cmd.h                : $(baseDir)$(appName)Cmd.r
+
+
+$(rscObjects)$(appName).rsc     : $(interfaceDialog)Dialog.r $(langSpec)DialogTxt.h $(interfaceDialog)DialogIds.h $(baseDir)data_processing/initialization/headers/$(appName)Cmd.h
+
+
+$(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)DialogIds.h
 
 #--------------------------------------------------------------------------------------
 #    Define the object container files
@@ -74,9 +85,6 @@ $(o)$(sAppName).h                : $(baseDir)$(sAppName).r
 
 loggerObjects = \
 	$(o)Logger$(oext) \
-
-interfaceObjects = \
-	#$(o)MainForm$(oext) \
 
 commonObjects = \
 	$(o)ResultStatus$(oext) \
@@ -90,7 +98,6 @@ commonObjects = \
 
 dataProcessingObjects = \
 	$(o)$(appName)$(oext) \
-	$(o)Initialization$(oext) \
 	$(o)InitializationHelper$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)GraphicsProcessorHelper$(oext) \
@@ -163,7 +170,6 @@ appObjects = \
 	$(ifcObjects) \
 	$(mapperObjects) \
 	$(modelerObjects) \
-	$(interfaceObjects) \
 
 
 #--------------------------------------------------------------------------------------
@@ -240,23 +246,15 @@ LINKER_LIBRARIES + shell32.lib
 #--------------------------------------------------------------------------------------
 $(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/headers/Logger.h 
 
-#--------------------------------------------------------------------------------------
-#     interface
-#--------------------------------------------------------------------------------------
-
-#$(o)MainForm$(oext) : $(baseDir)interface/MainForm.cpp $(baseDir)interface/MainForm.h
 
 #--------------------------------------------------------------------------------------
 #     data_processing
 #--------------------------------------------------------------------------------------
 
 #--- initialization
-$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp $(baseDir)data_processing/initialization/headers/$(appName).h 
-
-$(o)Initialization$(oext) : $(baseDir)data_processing/initialization/sources/Initialization.cpp $(baseDir)data_processing/initialization/headers/$(appName).h
+$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp 
 
 $(o)InitializationHelper$(oext) : $(baseDir)data_processing/initialization/sources/InitializationHelper.cpp $(baseDir)data_processing/initialization/headers/InitializationHelper.h
-
 
 #--- reader_properties
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)data_processing/reader_properties/sources/PropertiesReaderProcessor.cpp $(baseDir)data_processing/reader_properties/headers/PropertiesReaderProcessor.h 

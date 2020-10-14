@@ -23,7 +23,6 @@
     <ClCompile Include="common\models\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
-    <ClCompile Include="interface\MainForm.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
@@ -81,7 +80,6 @@
     <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessor.cpp" />
-    <ClCompile Include="data_processing\initialization\sources\Initialization.cpp" />
     <ClCompile Include="data_processing\initialization\sources\ParametricFeatures.cpp" />
     <ClCompile Include="data_processing\reader_properties\sources\PropertiesReaderProcessor.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessorHelper.cpp" />
@@ -89,8 +87,10 @@
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="interface_dialog\Dialog.r" />
+    <None Include="interface_dialog\transkit\DialogMsg.r" />
     <None Include="ParametricFeatures.mke" />
-    <None Include="ParametricFeatures.r" />
+    <None Include="ParametricFeaturesCmd.r" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
@@ -109,9 +109,9 @@
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\ThreadPool.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
-    <ClInclude Include="interface\MainForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
+    <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
+    <ClInclude Include="interface_dialog\DialogIds.h" />
+    <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
     <ClInclude Include="logging\headers\Logger.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
@@ -210,10 +210,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="interface\MainForm.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ParametricFeatures1.rc" />
+    <Xml Include="interface_dialog\transkit\transkit.xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>
