@@ -38,6 +38,10 @@
 
 #include <../sqlite/sqlite3.h>
 
+//#include <ifcgeom\kernels\opencascade\IfcRegister.h>
+
+//#include <ifcgeom/kernels/opencascade/IfcGeom.h>
+
 
 //#include <boost/any.hpp>
 

@@ -19,3 +19,13 @@ void ComponentsMapping::setIfcComponentName(string ifcComponentName)
 {
 	this->_ifcComponentName = ifcComponentName;
 }
+
+string ComponentsMapping::getIfcComponentTypeName()
+{
+	return this->_ifcTypeComponentName;;
+}
+
+void ComponentsMapping::setIfcComponentTypeName(string ifcComponentTypeName)
+{
+	this->_ifcTypeComponentName = ifcComponentTypeName;
+}

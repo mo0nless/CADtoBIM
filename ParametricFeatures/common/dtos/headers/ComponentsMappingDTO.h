@@ -11,6 +11,8 @@ private:
 
 	string _modelerComponentName;
 	string _ifcComponentName;
+	string _ifcTypeComponentName;
+
 
 public:
 	string getModelerComponentName();
@@ -18,4 +20,7 @@ public:
 
 	string getIfcComponentName();
 	void setIfcComponentName(string ifcComponentName);
+
+	string getIfcComponentTypeName();
+	void setIfcComponentTypeName(string ifcComponentTypeName);
 };

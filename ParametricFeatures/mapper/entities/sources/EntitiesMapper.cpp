@@ -5,6 +5,7 @@ ComponentsMappingDTO * EntitiesMapper::map(ComponentsMapping * componentsMapping
 	ComponentsMappingDTO* componentsMappingDTO =  new ComponentsMappingDTO();
 	componentsMappingDTO->setModelerComponentName(componentsMapping->getModelerComponentName());
 	componentsMappingDTO->setIfcComponentName(componentsMapping->getIfcComponentName());
+	componentsMappingDTO->setIfcComponentTypeName(componentsMapping->getIfcComponentTypeName());
 
 	return componentsMappingDTO;
 }

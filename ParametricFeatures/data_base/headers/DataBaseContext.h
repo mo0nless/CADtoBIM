@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <vector>
+#include <sstream>
 #include "../models/headers/ComponentsMapping.h"
 
 class DataBaseContext {

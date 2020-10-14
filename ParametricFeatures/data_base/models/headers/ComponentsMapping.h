@@ -9,6 +9,7 @@ private:
 	int _id;
 
 	string _modelerComponentName;
+	string _ifcTypeComponentName;
 	string _ifcComponentName;
 
 public:
@@ -17,4 +18,7 @@ public:
 
 	string getIfcComponentName();
 	void setIfcComponentName(string ifcComponentName);
+
+	string getIfcComponentTypeName();
+	void setIfcComponentTypeName(string ifcComponentTypeName);
 };

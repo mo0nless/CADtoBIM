@@ -27,13 +27,31 @@ DataBaseContext::DataBaseContext()
 
 	while (infile >> lineString)
 	{
-		modelerComponent = lineString.substr(0, lineString.find(delimiter));
-		ifcComponent = lineString.substr(lineString.find(delimiter) + 1, lineString.length());
+		//modelerComponent = lineString.substr(0, lineString.find(delimiter));
+		//ifcComponent = lineString.substr(lineString.find(delimiter) + 1, lineString.length());
+
+		//ComponentsMapping* componentsMapping = new ComponentsMapping();
+		//componentsMapping->setModelerComponentName(modelerComponent);
+		//componentsMapping->setIfcComponentName(ifcComponent);
+
+		//_componentsMappingVector.push_back(componentsMapping);
+
+		vector<string> results;
+
+		stringstream  ss(lineString);
+		string str;
+		while (getline(ss, str, ':')) {
+			results.push_back(str);
+		}
 
 		ComponentsMapping* componentsMapping = new ComponentsMapping();
-		componentsMapping->setModelerComponentName(modelerComponent);
-		componentsMapping->setIfcComponentName(ifcComponent);
 
+		if (results.size() == 3) {
+			componentsMapping->setModelerComponentName(results[0]);
+			componentsMapping->setIfcComponentTypeName(results[1]);
+			componentsMapping->setIfcComponentName(results[2]);
+
+		}
 		_componentsMappingVector.push_back(componentsMapping);
 
 	}

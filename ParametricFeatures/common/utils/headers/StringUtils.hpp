@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <sstream>
+#include <vector>
 #include <Bentley/WString.h>
 
 using namespace std;
@@ -51,6 +53,24 @@ struct StringUtils {
 	inline static string getNormalizedString(WString wStringValue) {
 
 		return getNormalizedString(getString(wStringValue));
+	}
+
+
+	inline static string getIfcClassName(string ifcClassName) {
+
+		vector<string> results;
+
+		stringstream ss(ifcClassName);
+		string str;
+		while (getline(ss, str, ':')) {
+			results.push_back(str);
+		}
+
+		if (results.size() == 0) {
+			return  string();
+		}
+
+		return results[results.size() - 1];
 	}
 };
 

@@ -118,6 +118,7 @@
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
+    <ClInclude Include="ifc\mappings\headers\IfcModelerConverter.h" />
     <ClInclude Include="interface\MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -208,10 +209,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.ComponentModel.Composition.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
