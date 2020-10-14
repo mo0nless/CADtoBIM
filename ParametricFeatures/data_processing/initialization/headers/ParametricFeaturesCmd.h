@@ -1,1 +1,1 @@
-#define CMD_CONVERT_IFC                                    0x0101000000000000UI64   /* DIALOGOPEN      */
+#define CMD_PARAMETRICFEATURES                             0x0100000000000000UI64   /* DIALOGOPEN      */

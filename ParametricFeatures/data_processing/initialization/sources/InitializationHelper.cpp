@@ -1,5 +1,9 @@
 #include "../headers/InitializationHelper.h"
 
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning (disable:4311 4302 4312 4100)
 
 InitializationHelper::InitializationHelper()
 {	
@@ -12,6 +16,7 @@ InitializationHelper::InitializationHelper()
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);
 	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
 }
+
 
 SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
 {
@@ -46,12 +51,6 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 	return smartFeatureContainer;
 }
 
-#pragma warning( pop ) 
-
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
-#pragma warning (disable:4311 4302 4312 4100)
 StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties)
 {		
 	_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -100,114 +99,30 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	this->_modelerDataWriterManager->writeInitializationDataToFile(modelInfo);
 
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
-	int numElements = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements);
+	int numElements = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
 		
 	//Open ProgressBar	
-	this->_progressBar->numGraphicElement = numElements; //Count the element (this function gets also the deleted ones??)
+	this->_progressBar->numGraphicElement = numElements; 
 	this->_progressBar->Open(L"Working...");
 
-#if false	
-	int numThreads = boost::thread::hardware_concurrency();
-	vector<ElementHandle> elementsVec;
-	for (PersistentElementRefP elemRef : *pGraElement)
-	{
-		ElementHandle currentElem(elemRef);
-		elementsVec.push_back(currentElem);
-	}
-	auto elementsVecSections = splitVector<ElementHandle>(elementsVec, numThreads);
-
-	vector<boost::thread*> bthread;
-	for (int i = 0; i < elementsVecSections.size(); i++)
-	{
-		bthread.push_back(
-			new boost::thread(
-				&InitializationHelper::threadFunction,
-				this,
-				elementsVecSections.at(i),
-				boost::ref(propsDictVec),
-				boost::ref(smartFeatureContainerVector)
-			)
-		);
-	}
-
-	for (auto& t : bthread)
-	{
-		t->join();
-	}
-#endif
-#if true
+	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
 	for (PersistentElementRefP elemRef : *pGraElement)
 	{	
-		ElementHandle currentElem(elemRef);
-
-		WString elDescr, myString;
-
-		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
-
-		ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
-
-		iterateSubElements(elemRef, propertiesDictionary);
-
-		if (SmartFeatureElement::IsSmartFeature(currentElem))
+		try
 		{
-			ElementHandle leafNode;
-			SmartFeatureNodePtr sFeatNode;
-			T_SmartFeatureVector sFeatVec;
+			ElementHandle currentElem(elemRef);
 
-			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+			WString elDescr, myString;
 
-			if (smartFeatureContainer != nullptr) {
-				smartFeatureContainerVector.push_back(smartFeatureContainer);
-				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
-			}
-		}
+			currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-		propsDictVec.push_back(propertiesDictionary);
+			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+			ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 
-		//ProgressBar
-		this->_progressBar->IncrementIndex();
-		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
-		this->_progressBar->Update(myString);
-	}
-#endif
-	//Close ProgressBar
-	this->_progressBar->Close();
-
-	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended elements processing -!");
-}
-
-void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
-{
-	//boost::unique_lock<boost::shared_mutex> guard(_mutex);
-
-	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
-
-
-	for (ElementHandle currentElem : vecElemen)
-	{
-		try {
-		//ElementHandle currentElem(elemRef);
-
-		WString elDescr, myString;
-
-		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
-
-		ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
-		{
-			boost::unique_lock<boost::shared_mutex> guard(_mutex);
-
-			_iteration->iterateSubElements(currentElem, propertiesDictionary);
-		}
+			iterateSubElements(elemRef, propertiesDictionary);
 
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
@@ -215,24 +130,22 @@ void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vecto
 				SmartFeatureNodePtr sFeatNode;
 				T_SmartFeatureVector sFeatVec;
 
-			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+				SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 
-			if (smartFeatureContainer != nullptr) {
-				smartFeatureContainerVector.push_back(smartFeatureContainer);
-				propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+				if (smartFeatureContainer != nullptr) {
+					smartFeatureContainerVector.push_back(smartFeatureContainer);
+					propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+				}
 			}
-		}
 
-		{
-			boost::unique_lock<boost::shared_mutex> guard(_mutex);
 			propsDictVec.push_back(propertiesDictionary);
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-		}
-		//ProgressBar
-		this->_progressBar->IncrementIndex();
-		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
-		this->_progressBar->Update(myString);
+
+			//ProgressBar
+			this->_progressBar->IncrementIndex();
+			myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
+			this->_progressBar->Update(myString);
 		}
 		catch (exception& ex) {
 			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageAtElementsProcessing);
@@ -242,5 +155,11 @@ void InitializationHelper::threadFunction(vector<ElementHandle> vecElemen, vecto
 
 		}
 	}
+
+	//Close ProgressBar
+	this->_progressBar->Close();
+
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended elements processing -!");
 }
+
 #pragma warning( pop ) 

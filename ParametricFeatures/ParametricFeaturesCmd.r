@@ -5,7 +5,7 @@
 //    $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 //
 //--------------------------------------------------------------------------------------+
-#pragma suppressREQCmds
+//#pragma suppressREQCmds
 
 //--------------------------------------------------------------------------------------
 //    Include Files
@@ -51,10 +51,5 @@ DllMdlApp DLLAPP_ParametricFeatures =
 +----------------------------------------------------------------------*/
 CommandTable   CT_MAIN =
 {
-    { 1,  CT_OPEN,      DIALOGOPEN,     REQ | HID,      "CONVERT" },
-};
-
-CommandTable   CT_OPEN =
-{
-    { 1,  CT_NONE,      INHERIT,        NONE,       "IFC" },
+    { 1,  CT_NONE,      DIALOGOPEN,     REQ | HID,      "PARAMETRICFEATURES" },
 };

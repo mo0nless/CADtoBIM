@@ -18,7 +18,6 @@
 
 #include "../headers/InitializationHelper.h"
 #include "../../../ifc/main/headers/IfcBuilder.h"
-
 #include "../../../interface_dialog/DialogIds.h"
 
 #include "../headers/ParametricFeaturesCmd.h"
@@ -33,6 +32,11 @@ static int dlogdemo_scrollNumber = 500;
 static int dlogdemo_optionbtnNumber1 = 1;
 static int dlogdemo_optionbtnNumber2 = 0;
 
+
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+
 void SetVersionNumber()
 {
 	VersionNumber version = { 10, 7, 6, 1 };
@@ -40,17 +44,6 @@ void SetVersionNumber()
 }
 
 #pragma region INITIALIZATION
-
-/*=================================================================================**//**
-* @description  Unload this application
-* @param[in] unparsed Additional input supplied after command string.
-+===============+===============+===============+===============+===============+======*/
-void UnloadParametricFeatures(WCharCP unparsedP)
-{
-	auto taskID = mdlSystem_getCurrTaskID();
-	mdlDialog_cmdNumberQueue(FALSE, CMD_MDL_UNLOAD, taskID, INPUTQ_HEAD); //INPUTQ_EOQ
-	return;
-}
 
 void createFolder(string folderPath)
 {
@@ -141,9 +134,6 @@ NotificationManager::MessageBoxValue createErrorNotificationMessage(string messa
 		message, NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Critical);
 }
 
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4189)
 StatusInt GetSmartFeatureTree()//(WCharCP unparsedP)
 							   //void GetSmartFeatureTree()
 {
@@ -237,13 +227,11 @@ StatusInt GetSmartFeatureTree()//(WCharCP unparsedP)
 
 	return SUCCESS;
 }
-#pragma warning( pop ) 
 #pragma endregion
 
+#pragma region LOAD/UNLOAD
 
-#pragma region DIALOG
-
-void dialogDemo_command(WCharCP unparsedP) //cmdNumber CMD_DLOGDEMO
+void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_DLOGDEMO
 {
 	/* Open Dialog Box */
 	//mdlDialog_open(NULL, DIALOGID_Dialog);
@@ -264,6 +252,21 @@ void dialogDemo_command(WCharCP unparsedP) //cmdNumber CMD_DLOGDEMO
 		mdlInput_sendKeyin(cmdStr.GetWCharCP(), true, INPUTQ_EOQ, NULL);
 	}
 }
+
+/*=================================================================================**//**
+* @description  Unload this application
+* @param[in] unparsed Additional input supplied after command string.
++===============+===============+===============+===============+===============+======*/
+void unLoadDialogBox(WCharCP unparsedP)
+{
+	auto taskID = mdlSystem_getCurrTaskID();
+	mdlDialog_cmdNumberQueue(FALSE, CMD_MDL_UNLOAD, taskID, INPUTQ_HEAD); //INPUTQ_EOQ
+	return;
+}
+
+#pragma endregion
+
+#pragma region DIALOG
 
 /*---------------------------------------------------------------------------------**//**
 * @bsimethod                                                              Bentley Systems
@@ -344,27 +347,14 @@ static void dialogDemo_listBoxHook(DialogItemMessage *dimP)
 
 		numElements = ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
 
-		/* This list box will have 8 rows and 2 columns, so it needs
-		16 cells created in the string list. */
-		//stringListP = mdlStringList_create(STRINGLIST_NMEMBERS, 1);
+		/* This list box will have numElements rows and 2 columns, so it needs
+		(numElements * 2) cells created in the string list. */
 		int numSpace = (numElements * 2);
 		stringListP = mdlStringList_create(numSpace, 1);
 		mdlDialog_listBoxSetStrListP(listBoxP, stringListP, 1);
 
 		mdlResource_loadWString(formatStr, NULL, STRINGID_Messages, MSGID_ListBox);
 
-		/* Place dummy data in the string list */
-		/*for (iMember = 0; iMember<STRINGLIST_NMEMBERS; iMember++)
-		{
-		WChar   buffer[80];
-		int     line, column;
-
-		line = iMember / 2;
-		column = iMember % 2;
-
-		_swprintf(buffer, formatStr.GetWCharCP(), line, column);
-		mdlStringList_setMember(stringListP, iMember, buffer, NULL);
-		}*/
 		int elementIndex = 0;
 		for (iMember = 0; iMember < numSpace; iMember++)
 		{
@@ -521,10 +511,7 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 
 	MdlCommandNumber    commandNumbers[] = // Map key-in to function
 	{
-		{ (CmdHandler)dialogDemo_command, CMD_CONVERT_IFC },
-		//{ (CmdHandler)dialogDemo_command, CMD_PARAMETRICFEATURES },
-		//{ (CmdHandler)UnloadParametricFeatures, CMD_PARAMETRICFEATURES_EXIT },
-		//{ (CmdHandler)GetSmartFeatureTree, CMD_TREE },
+		{ (CmdHandler)loadDialogBox, CMD_PARAMETRICFEATURES },
 		0
 	};
 
@@ -595,5 +582,7 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 	|   );
 	|
 	+---------------------------------------------------------------*/
-	mdlDialog_cmdNumQueueExt(TRUE, CMD_CONVERT_IFC, L"", INPUTQ_EOQ, FALSE);
+	mdlDialog_cmdNumQueueExt(TRUE, CMD_PARAMETRICFEATURES, L"", INPUTQ_EOQ, FALSE);
 }
+
+#pragma warning( pop ) 
