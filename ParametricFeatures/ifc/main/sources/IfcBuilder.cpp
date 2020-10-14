@@ -217,14 +217,11 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	int numThreads = boost::thread::hardware_concurrency();
 
 	auto dictionaryPropertiesSections = splitVector<DictionaryProperties*>(dictionaryPropertiesVector, numThreads);
-	auto elementBundleSections = splitVector(ifcElementBundleVector, numThreads);
+	auto elementBundleSections = splitVector<IfcElementBundle*>(ifcElementBundleVector, numThreads);
 
 	//Open ProgressBar
 	_progressBar->Open(L"Working...");
 	_progressBar->numGraphicElement = (int)dictionaryPropertiesVector.size();
-
-	/*WString myString;
-	myString.Sprintf(L"Generating IFC file...");*/
 
 	try {
 		vector<boost::thread*> bthread;
@@ -232,7 +229,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		{
 			bthread.push_back(
 				new boost::thread(
-					&IfcBuilder::threadFunction,
+					&IfcBuilder::processElementVector,
 					this,
 					dictionaryPropertiesSections.at(i),
 					elementBundleSections.at(i),
@@ -245,84 +242,20 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		{
 			t->join();
 		}
-#if false
-		if (!dictionaryPropertiesVector.empty())
-		{
-			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
-			{
-				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-				// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-				IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
-
-				//Ifc4::IfcRepresentationItem::list::ptr ifcTemplatedEntityList(new Ifc4::IfcRepresentationItem::list());
-
-				for (auto element : dictionaryProperties.getElementBundle())
-				{
-					try {
-						SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-						if (solidPrimitiveProperties != nullptr) {
-							_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
-							continue;
-						}
-
-						ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
-						if (shapeGraphicProperties != nullptr)
-						{
-							_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
-							continue;
-						}
-
-						MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
-						if (msBsplineSurfaceGraphicProperties != nullptr)
-						{
-							_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
-							continue;
-						}
-
-						SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-						if (solidEntityGraphicProperties != nullptr)
-						{
-							_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
-							continue;
-						}
-					}
-
-					//ProgressBar
-					_progressBar->IncrementIndex();
-					_progressBar->Update(myString);
-				}
-				catch (exception& ex) {
-					_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
-					continue;
-	}
-				catch (...) {
-					_logger->logError(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
-					continue;
-				}
-			}
-		}
-#endif
 	}
 	catch (exception& ex) {
-		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating boost::thread Multithreading");
+		processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
 		throw ex;
 	}
 	catch (...) {
-		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Fatal error at creating IFC primitives/shapes/bsplines/solid entities");
+		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Fatal error at creating boost::thread Multithreading");
+		processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
 		throw;
 	}
 	
-	
-	/*_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
-
-	_ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
-
-	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file);*/
-
 	this->_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
-	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);
-		
+	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
 
 	//Close ProgressBar
 	_progressBar->Close();
@@ -350,7 +283,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	}
 }
 
-void IfcBuilder::threadFunction(vector<DictionaryProperties*> dictionaryPropertiesVector, vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPropertiesVector, vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	WString myString;
 	myString.Sprintf(L"Generating IFC file...");
@@ -364,43 +297,54 @@ void IfcBuilder::threadFunction(vector<DictionaryProperties*> dictionaryProperti
 
 		for (auto element : dictionaryProperties.getElementBundle())
 		{
-			SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
-			if (solidPrimitiveProperties != nullptr) {
-				boost::unique_lock<boost::shared_mutex> guard(_mutex);
-				_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+			try
+			{
+				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+				if (solidPrimitiveProperties != nullptr) {
+					boost::unique_lock<boost::shared_mutex> guard(_mutex);
+					_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+					continue;
+				}
+
+				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
+				if (shapeGraphicProperties != nullptr)
+				{
+					boost::unique_lock<boost::shared_mutex> guard(_mutex);
+					_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
+					continue;
+				}
+
+				MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+				if (msBsplineSurfaceGraphicProperties != nullptr)
+				{
+					boost::unique_lock<boost::shared_mutex> guard(_mutex);
+					_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+					continue;
+				}
+
+				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+				if (solidEntityGraphicProperties != nullptr)
+				{
+					boost::unique_lock<boost::shared_mutex> guard(_mutex);
+					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+					continue;
+				}			
+
+				//ProgressBar
+				_progressBar->IncrementIndex();
+				_progressBar->Update(myString);
+			}
+			catch (exception& ex) {
+				_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC primitives/shapes/bsplines/solid entities");
 				continue;
 			}
-
-			ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
-			if (shapeGraphicProperties != nullptr)
-			{
-				boost::unique_lock<boost::shared_mutex> guard(_mutex);
-				_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
-				continue;
-			}
-
-			MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
-			if (msBsplineSurfaceGraphicProperties != nullptr)
-			{
-				boost::unique_lock<boost::shared_mutex> guard(_mutex);
-				_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
-				continue;
-			}
-
-			SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
-			if (solidEntityGraphicProperties != nullptr)
-			{
-				boost::unique_lock<boost::shared_mutex> guard(_mutex);
-				_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+			catch (...) {
+				_logger->logError(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC primitives/shapes/bsplines/solid entities");
 				continue;
 			}
 		}
-
-		//ProgressBar
-		_progressBar->IncrementIndex();
-		_progressBar->Update(myString);
 	}
-
+	try	
 	{
 		boost::unique_lock<boost::shared_mutex> guard(_mutex);
 		_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
@@ -408,5 +352,11 @@ void IfcBuilder::threadFunction(vector<DictionaryProperties*> dictionaryProperti
 		_ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
 		_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file);
+	}
+	catch (exception& ex) {
+		_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC Element/Property/Material");
+	}
+	catch (...) {
+		_logger->logError(__FILE__, __LINE__, __FUNCTION__, "Error at creating IFC Element/Property/Material");
 	}
 }
