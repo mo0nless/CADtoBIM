@@ -5,7 +5,6 @@
 #include <shlobj.h>
 #include <time.h>
 
-//#include "../../../common/utils/headers/ThreadPool.h"
 #include "../../../logging/headers/Logger.h"
 
 

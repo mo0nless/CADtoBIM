@@ -103,13 +103,14 @@
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\SmartFeatureTypeEnum.h" />
     <ClInclude Include="common\utils\headers\BRepTypeEnumUtils.h" />
-    <ClInclude Include="common\utils\headers\ctpl.h" />
+    <ClInclude Include="common\utils\headers\ExplorerStructure.h" />
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
-    <ClInclude Include="common\utils\headers\ThreadPool.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
+    <ClInclude Include="data_processing\initialization\headers\Initialization.h" />
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
+    <ClInclude Include="interface_dialog\DialogHooks.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
     <ClInclude Include="logging\headers\Logger.h" />

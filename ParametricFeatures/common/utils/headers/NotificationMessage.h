@@ -39,4 +39,15 @@ struct NotificationMessage
 
 		NotificationManager::OutputMessage(message);
 	}
+
+	static NotificationManager::MessageBoxValue createNotificationMessage(NotificationManager::MessageBoxType messageType, string message, NotificationManager::MessageBoxIconType messageBoxIconType)
+	{
+		return NotificationManager::OpenMessageBox(messageType, StringUtils::getWString(message).c_str(), messageBoxIconType);
+	}
+
+	static NotificationManager::MessageBoxValue createErrorNotificationMessage(string message)
+	{
+		return createNotificationMessage(NotificationManager::MessageBoxType::MESSAGEBOX_TYPE_MediumAlert,
+			message, NotificationManager::MessageBoxIconType::MESSAGEBOX_ICON_Critical);
+	}
 };

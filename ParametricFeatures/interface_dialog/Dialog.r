@@ -73,39 +73,6 @@
 #define  Y5     GENY(13)            /* Text Example */
 #define  Y6     GENY(16.2)          /* ListBox Example */
 #define  Y7     GENY(13.5)          /* Scrollbar, Text */
-/*
-#if DONT_USE_LAYOUTMANAGER
-
-DialogBoxRsc DIALOGID_Dialog =
-    {
-    DIALOGATTR_DEFAULT,
-    OVERALLWIDTH, OVERALLHEIGHT,
-    NOHELP, LHELPCMD, HOOKID_Dialog, NOPARENTID,
-    TXT_MainDialogBox,
-{
-{{0, 0, 0, 0},      MenuBar,      MENUBARID_Dialog, ON, 0, "", ""},
-{{XC, GENY(3), 30*XC, GENY(8.5)}, GroupBox, 0, ON, 0,    TXT_ButtonTypes, ""},
-
-{{X3, Y2, BW1, 0},  OptionButton, OPTIONBUTTONID_Dialog1, ON, 0, "", ""},
-{{X3, Y25, BW1, 0}, OptionButton, OPTIONBUTTONID_Dialog2, ON, 0, "", ""},
-{{X3, Y3, 0, 0},    ToggleButton, TOGGLEID_Dialog1, ON, 0, "", ""},
-{{X3, Y35, 0, 0},   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
-{{X3, Y4, 0, 0},    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
-{{X1, Y3, BW2, 0},  PushButton,   PUSHBUTTONID_Dialog1, ON, 0, "", ""},
-{{X1, Y4, BW2, 0},  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
-
-{{X6, Y45, W2, 0},  Text,           TEXTID_DialogColor, ON, 0, "", ""},
-{{X7, Y45, 0, 0},   ColorPicker,    COLORPICKERID_Dialog, ON, 0, "", ""},
-{{X6, Y5, 0, 0},    Text,           TEXTID_Dialog, ON, 0, "", ""},
-{{X1, Y6, 0, 0},    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},
-
-//{{X35, Y1, 0, 0},   LevelMap,       LEVELMAPID_Dialog, ON, 0, "", ""},
-{{X4, Y7, W1, 0},   Text,           TEXTID_DialogScroll, ON, 0, "", ""},
-{{X5, Y7, W3, 0},   ScrollBar,      SCROLLBARID_Dialog, ON, 0, "", ""},
-}
-    };
-
-#else */
 
 DialogBoxRsc DIALOGID_Dialog =
     {
@@ -184,7 +151,6 @@ BEGIN_VSTACK_LAYOUT(0, "")
 END_LAYOUT
 }
     };
-//#endif
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -207,7 +173,7 @@ DItem_ColorPickerRsc COLORPICKERID_Dialog =
     NOHOOK, NOARG,
     TEXTID_DialogColor, NOMASK,
     "",
-    "dlogdemo_colorNumber"
+    "dlog_colorNumber"
     };
 
 /*----------------------------------------------------------------------+
@@ -340,7 +306,7 @@ DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog1 =
     {
     NOSYNONYM, NOHELP, LHELPCMD, NOHOOK, NOARG,
     TXT_OptionButton1,
-    "dlogdemo_optionbtnNumber1",
+    "dlog_optionbtnNumber1",
     {
     {NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option11},
     {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Option12},
@@ -352,7 +318,7 @@ DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog2 =
     {
     NOSYNONYM, NOHELP, LHELPCMD, NOHOOK, NOARG,
     TXT_OptionButton2,
-    "dlogdemo_optionbtnNumber2",
+    "dlog_optionbtnNumber2",
     {
     {NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option21},
     {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Option22},
@@ -386,7 +352,7 @@ DItem_PushButtonRsc PUSHBUTTONID_Dialog2 =
 DItem_ScrollBarRsc SCROLLBARID_Dialog =
     {
     HOOKITEMID_ScrollBar_Dialog, NOARG, 0, 1000, 5, 50, 0.1,
-    "dlogdemo_scrollNumber"
+    "dlog_scrollNumber"
     };
 
 /*----------------------------------------------------------------------+
@@ -408,7 +374,7 @@ DItem_TextRsc TEXTID_DialogColor =
     NOHOOK, NOARG,
     3, "%-ld", "%ld", "0", "253", NOMASK, NOCONCAT,
     TXT_Color,
-    "dlogdemo_colorNumber"
+    "dlog_colorNumber"
     };
 
 DItem_TextRsc TEXTID_DialogScroll =
@@ -417,7 +383,7 @@ DItem_TextRsc TEXTID_DialogScroll =
     NOHOOK, NOARG,
     4, "%-ld", "%ld", "0", "1000", NOMASK, NOCONCAT,
     TXT_ScrollbarValue,
-    "dlogdemo_scrollNumber"
+    "dlog_scrollNumber"
     };
 
 /*----------------------------------------------------------------------+
@@ -503,12 +469,12 @@ DItem_ToolBoxRsc ICONCMDFRAMEID_Dialog =
     {
     NOHELP, LHELPCMD, NOHOOK, NOARG, 0, "",
         {
-        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog1,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
-        {{ 0, 0, 0, 0}, ToolBox,    TOOLBOXID_Dialog1,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
-        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog2,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
-        {{ 0, 0, 0, 0}, ToolBox,    TOOLBOXID_Dialog2,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
-        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog3,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
-        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog4,  ON,  0,  "",  "owner=\"DLOGDEMO\""},
+        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog1,  ON,  0,  "",  "owner=\"dlog\""},
+        {{ 0, 0, 0, 0}, ToolBox,    TOOLBOXID_Dialog1,  ON,  0,  "",  "owner=\"dlog\""},
+        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog2,  ON,  0,  "",  "owner=\"dlog\""},
+        {{ 0, 0, 0, 0}, ToolBox,    TOOLBOXID_Dialog2,  ON,  0,  "",  "owner=\"dlog\""},
+        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog3,  ON,  0,  "",  "owner=\"dlog\""},
+        {{ 0, 0, 0, 0}, IconCmd,    ICONCMDID_Dialog4,  ON,  0,  "",  "owner=\"dlog\""},
         }
     };
 #else
@@ -549,8 +515,8 @@ DItem_ToolBoxRsc	TOOLBOXID_Dialog1 =
     {
     NOHELP, MHELP, NOHOOK, NOARG, 0, TXT_Palette1,
     {
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal1Sub1, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal1Sub2, ON, 0, "", "owner=\"DLOGDEMO\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal1Sub1, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal1Sub2, ON, 0, "", "owner=\"dlog\""},
     }
     };
 
@@ -570,12 +536,12 @@ DItem_ToolBoxRsc    TOOLBOXID_Dialog2 =
     {
     NOHELP, MHELP, NOHOOK, NOARG, 0, TXT_Palette2,
     {
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub1, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub2, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub3, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub4, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub5, ON, 0, "", "owner=\"DLOGDEMO\""},
-    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub6, ON, 0, "", "owner=\"DLOGDEMO\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub1, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub2, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub3, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub4, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub5, ON, 0, "", "owner=\"dlog\""},
+    {{ 0, 0, 0, 0}, IconCmd, ICONCMDID_DialogPal2Sub6, ON, 0, "", "owner=\"dlog\""},
     }
     };
 

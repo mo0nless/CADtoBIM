@@ -174,11 +174,12 @@
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="logging\headers\Logger.h" />
-    <ClInclude Include="common\utils\headers\ctpl.h" />
-    <ClInclude Include="common\utils\headers\ThreadPool.h" />
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
+    <ClInclude Include="interface_dialog\DialogHooks.h" />
+    <ClInclude Include="common\utils\headers\ExplorerStructure.h" />
+    <ClInclude Include="data_processing\initialization\headers\Initialization.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="interface_dialog\transkit\transkit.xml" />

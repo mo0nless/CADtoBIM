@@ -67,20 +67,9 @@ ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderPropertie
 			//ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 
 			this->mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
-			
-			//outfile.open(filePath, ios_base::app);
-			//outfile << endl;
-			//outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
-			//outfile.close();
 
 			// get class name
 			string className = StringUtils::getString(elemInst->GetClass().GetName());
-
-			//outfile.open(filePath, ios_base::app);
-			//outfile << endl;
-			//outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << endl;
-			//outfile.close();
-
 			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 

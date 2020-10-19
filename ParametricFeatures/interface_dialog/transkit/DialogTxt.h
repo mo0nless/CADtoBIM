@@ -24,7 +24,7 @@
 
 #define	TXT_MainDialogBox			"IFC Exporter"
 #define	TXT_ButtonTypes				"Button Types (groupbox)"
-#define	TXT_ListBox				"ListBox"
+#define	TXT_ListBox				"List of Elements"
 #define	TXT_LevelMap				"LevelMap"
 #define	TXT_PullDown				"~PullDown"
 #define	TXT_PulldownColorPicker			"Pulldown~ColorPicker"
