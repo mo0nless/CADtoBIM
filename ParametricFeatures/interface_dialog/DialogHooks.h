@@ -1,36 +1,66 @@
 #pragma once
 
 //#include "../stdafx.h"
-#include "DialogIds.h"
+//#include "DialogIds.h"
+
 //#include "../common/models/headers/SessionManager.h"
 #include "../data_processing/initialization/headers/Initialization.h"
+#include "../common/utils/headers/ExplorerStructure.h"
 
-#include <Mstn/isessionmgr.h>
+#include <string>
+#include <UI\Layout\Margins.h>
+#include <UI\Layout\StackLayout.h>
+
+//#include <DgnPlatform\DgnDocumentManager.h>
+#include <Mstn\DocumentManager.h>
+
+#include <Mstn/ISessionMgr.h>
 #include <Mstn\MdlApi\MdlApi.h>
 #include <Mstn\MdlApi\dlogitem.h>
-#include <Mstn/MdlApi/DialogItem.h>
 #include <Mstn\MdlApi\DialogItems.h>
 #include <Mstn/MdlApi/MSDialog.h>
 #include <Mstn/MdlApi/GuiLayout.h>
-#include <UI\Layout\LayoutManager.h>
-#include <UI\Layout\LayoutControl.h>
-//#include <UI\Layout\GridLayout.h>
-#include <UI\Layout\Margins.h>
-#include <UI\Layout\StackLayout.h>
-#include <UI\UIFramework.h>
+#include <Mstn/MdlApi/GuiLayoutProperties.h>
+
+#include "DialogIds.h"
 
 USING_NAMESPACE_BENTLEY
-USING_NAMESPACE_BENTLEY_DGNPLATFORM
+//USING_NAMESPACE_BENTLEY_DGNPLATFORM
 USING_NAMESPACE_BENTLEY_MSTNPLATFORM
 USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
+USING_NAMESPACE_BENTLEY_UIFRAMEWORK
 
+
+/*----------------------------------------------------------------------+
+|                                                                       |
+|   Public Global variables                                             |
+|                                                                       |
++----------------------------------------------------------------------*/
+/* The following variable is referenced in C expression strings used by
+the text, option button, and toggle button items defined in Dialog.r.
+The initial external state of the Text item and the Browse button
+(they are both looking at the same application variable).*/
+static DlogBrowseFolder dlogBrowseFolder = { L" ", 0 };
+
+static int dlog_colorNumber = 5;
+static int dlog_scrollNumber = 500;
+static int dlog_optionbtnNumber1 = 1;
+static int dlog_optionbtnNumber2 = 0;
+
+using namespace Explorer;
+using namespace Init;
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-
+#pragma warning( disable : 4101)
 namespace DialogHooks 
 {
+	/*----------------------------------------------------------------------+
+	|                                                                       |
+	|   Hooks Handlers														|
+	|                                                                       |
+	+----------------------------------------------------------------------*/
 	class Handler : public DialogHookHandler
 	{
 	public:
@@ -68,12 +98,16 @@ namespace DialogHooks
 
 		virtual bool _OnInit(DialogInitArgsR init) override
 		{
+#if false
 			MSDialogP dbP = this->GetDialog();
 			// Create the GuiLayoutHelper that will hold the top-level layout
 			GuiLayoutHelper *layoutHelper = GuiLayoutHelper::Create(dbP);
+			DialogItem *diP = dbP->GetItemByTypeAndId(RTYPE_MenuBar, MENUBARID_Dialog);
+			
 			// Create a vertical Stack layout, which is the top-level layout
 			//VStackLayout *vStackLayout = VStackLayout::Create();
-			//vStackLayout->SetLayoutMargins(0);
+			
+			//vStackLayout->SetLayoutMargins(m);
 
 			// Get the MenuBar on the dialog and add it to the vertical Stack layout
 			/*DialogItem *diP = dbP->GetItemByTypeAndId(RTYPE_MenuBar, MENUBARID_Dialog);
@@ -98,6 +132,7 @@ namespace DialogHooks
 			// When the dialog size changes or control sizes/properties change, 
 			// the layout manager will automatically be invoked.
 			dbP->SetLayoutHelper(layoutHelper);
+#endif
 			return true;
 		}
 	};
@@ -121,16 +156,15 @@ namespace DialogHooks
 		virtual bool _OnCreate(DialogItemCreateArgsR create) override
 		{			
 			RawItemHdrP listBoxP = this->GetRawItem();
-
+			
 			int          iMember;
 			WString        formatStr;
 
-			auto pGraElement = ISessionMgr::GetActiveDgnModelP()->GetGraphicElementsP();
-			vector<PersistentElementRefP> elements;
+			auto pGraElement = ISessionMgr::GetActiveDgnModelP()->GetGraphicElementsP();			
 
 			for (PersistentElementRefP elemRef : *pGraElement)
 			{
-				elements.push_back(elemRef);
+				Initialization::allGraphicElements.push_back(elemRef);
 			}
 
 			int numElements = ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
@@ -149,7 +183,7 @@ namespace DialogHooks
 				WChar   buffer[80];
 				WString elDescr;
 
-				auto elemRef = elements.at(elementIndex);
+				auto elemRef = Initialization::allGraphicElements.at(elementIndex);
 				ElementHandle currentElem(elemRef);
 
 				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
@@ -178,15 +212,23 @@ namespace DialogHooks
 
 			return true;
 		}
-		virtual bool _OnInit(DialogItemInitArgsR init) override
+		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 		{
+			int* nSelectionP;
+			RawItemHdrP listBoxP = this->GetRawItem();
+			SPoint2d** selectionPP;
+
+			//mdlDialog_listBoxGetSelections(nSelectionP, selectionPP, listBoxP);
+
+			//StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
+
 			return true;
 		}
 
 		StringList  *stringListP;
 	};
 
-	class ButtonHadler : DialogItemHookHandler
+	class StartButtonHadler : DialogItemHookHandler
 	{
 	public:
 		// Dialog Hook replacement function
@@ -194,12 +236,12 @@ namespace DialogHooks
 		{
 			if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
 			{
-				dimP->u.hookResolve.hookHandlerP = new ButtonHadler(dimP->db, dimP->dialogItemP);
+				dimP->u.hookResolve.hookHandlerP = new StartButtonHadler(dimP->db, dimP->dialogItemP);
 				dimP->msgUnderstood = true;
 			}
 		}
 		// Item Hook Handler Constructor
-		ButtonHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+		StartButtonHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
 		// Item Hook Handler Method override
 	private:
 		virtual bool _OnButton(DialogItemButtonArgsR button) override
@@ -208,10 +250,64 @@ namespace DialogHooks
 			myString.Sprintf(L"IFC Converter");
 			mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
 
+			MSDialogP dbP = GetDialog();
 			Initialization::startIfcConverter();
 
 			return true;
 		}
+	};
+
+	class BrowseButtonHadler : DialogItemHookHandler
+	{
+	public:
+		// Dialog Hook replacement function
+		static void HookResolve(DialogItemMessage *dimP)
+		{
+			if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+			{
+				dimP->u.hookResolve.hookHandlerP = new BrowseButtonHadler(dimP->db, dimP->dialogItemP);
+				dimP->msgUnderstood = true;
+			}
+		}
+		// Item Hook Handler Constructor
+		BrowseButtonHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+		// Item Hook Handler Method override
+	private:
+		virtual bool _OnCreate(DialogItemCreateArgsR create) override
+		{
+			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
+			
+			//Copy the NEW path in the TEXT's published variable
+			wcscpy_s(dlogBrowseFolder.fmtStr, path.GetWCharCP());
+
+			//Synch with the TEXT element through the SYNONYMID to notify the change
+			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
+
+			return true;
+		}
+
+		virtual bool _OnButton(DialogItemButtonArgsR button) override
+		{			
+			StructureExp::mainFolderPath = expStruct->BrowseFolder(StructureExp::mainFolderPath);
+
+			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
+			mdlOutput_messageCenter(OutputMessagePriority::Info, path.c_str(), path.c_str(), OutputMessageAlert::None);
+
+			//Copy the NEW path in the TEXT's published variable
+			wcscpy_s(dlogBrowseFolder.fmtStr, path.GetWCharCP());
+
+			//Synch with the TEXT element through the SYNONYMID to notify the change
+			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
+
+			string ifcOutputFileName = StructureExp::mainFolderPath + "\\" + StructureExp::mainFileName + ".ifc";
+
+			SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
+			SessionManager::getInstance()->setOutputFolderPath(StructureExp::mainFolderPath);
+
+			return true;
+		}
+
+		StructureExp* expStruct = new StructureExp();
 	};
 
 	class PullDownMenuHadler : DialogItemHookHandler

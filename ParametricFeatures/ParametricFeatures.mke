@@ -62,22 +62,35 @@ langSpec        = $(interfaceDialog)transkit/
 
 libRscs = \
     $(rscObjects)$(appName)Cmd.rsc \
+    $(rscObjects)$(appName)Type.rsc \
 	$(rscObjects)$(appName).rsc   \
     $(rscObjects)$(appName)msg.rsc
 
 #--------------------------------------------------------------------------------------
-#    Create object files
+# Generate command table include & resource file using rcomp
 #--------------------------------------------------------------------------------------
 
 $(rscObjects)$(appName)Cmd.rsc     : $(baseDir)$(appName)Cmd.r 
 
 $(baseDir)data_processing/initialization/headers/$(appName)Cmd.h                : $(baseDir)$(appName)Cmd.r
 
+#------------------------------------------------------------------------
+# Create & compile the app's type resource using rsctype & rcomp
+#------------------------------------------------------------------------
+$(interfaceDialog)DialogType.r      : $(interfaceDialog)DialogType.mt   \
+                                $(interfaceDialog)DialogIds.h
+
+$(rscObjects)$(appName)Type.rsc    : $(interfaceDialog)DialogType.r
+
+#--------------------------------------------------------------------------------------
+# Generate Dialog resource file using rcomp
+#--------------------------------------------------------------------------------------
 
 $(rscObjects)$(appName).rsc     : $(interfaceDialog)Dialog.r $(langSpec)DialogTxt.h $(interfaceDialog)DialogIds.h $(baseDir)data_processing/initialization/headers/$(appName)Cmd.h
 
 
 $(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)DialogIds.h
+
 
 #--------------------------------------------------------------------------------------
 #    Define the object container files
@@ -234,6 +247,9 @@ LINKER_LIBRARIES + $(mdlLibs)PSolidCore.lib
 LINKER_LIBRARIES + $(mdlLibs)RmgrTools.lib
 LINKER_LIBRARIES + $(mdlLibs)SmartFeature.lib 
 LINKER_LIBRARIES + $(mdlLibs)ECObjects.lib
+LINKER_LIBRARIES + $(mdlLibs)nativewindow.lib
+LINKER_LIBRARIES + $(mdlLibs)nativewinmfc.lib
+LINKER_LIBRARIES + $(mdlLibs)dbpwise.lib
 LINKER_LIBRARIES + shell32.lib
 
 

@@ -1,10 +1,5 @@
 #pragma once
 
-#include <windows.h>
-#include <iostream>
-#include <shlobj.h>
-#include <time.h>
-
 #include "../../../logging/headers/Logger.h"
 
 
@@ -25,10 +20,10 @@ private:
 	
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
 	StatusInt iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties);
+
 	PersistentElementRefList* pGraElement;
-	string filePath;
 	DgnModelP mDgnModel;
-	WString mDgnFileName;
+
 	ModelerDataWriterManager* _modelerDataWriterManager;
 	PropertiesReaderProcessor* _propertiesReaderProcessor;
 

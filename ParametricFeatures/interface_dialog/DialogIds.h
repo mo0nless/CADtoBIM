@@ -20,6 +20,8 @@
 #if !defined (__dlogdidsH__)
 #define __dlogdidsH__
 
+#include <Mstn\MicroStation.r.h>
+
 /*----------------------------------------------------------------------+
 |                                                                       |
 |   Dialog Box IDs                                                      |
@@ -138,6 +140,8 @@ enum CmdItemListId
 #define HOOKITEMID_ListBox_Dialog       (BASEID_Dialog+1)
 #define HOOKITEMID_PullDownMenu_Dialog  (BASEID_Dialog+2)
 #define HOOKITEMID_ScrollBar_Dialog     (BASEID_Dialog+3)
+#define HOOKITEMID_StartButton_Dialog     (BASEID_Dialog+4)
+#define HOOKITEMID_BrowseButton_Dialog     (BASEID_Dialog+5)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -146,6 +150,7 @@ enum CmdItemListId
 +----------------------------------------------------------------------*/
 #define SYNONYMID_DialogColor   1
 #define SYNONYMID_DialogScroll  2
+#define SYNONYMID_DialogBrowse  3
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -196,4 +201,19 @@ enum
 	MSGID_ListBox,
 };
 
+
+/*----------------------------------------------------------------------+
+|                                                                       |
+|   Typedefs for Dialog access strings                                  |
+|                                                                       |
++----------------------------------------------------------------------*/
+#if !defined (resource)
+typedef struct dlogbrowsefolder
+{
+	WChar fmtStr[255];
+	int       flag;
+} DlogBrowseFolder;
+
 #endif
+
+#endif /*(__dlogdidsH__)*/

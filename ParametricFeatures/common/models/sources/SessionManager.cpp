@@ -52,17 +52,7 @@ string SessionManager::getDgnFileName()
 
 void SessionManager::setDgnFileName(string path)
 {
-	// get dgn file name
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char fname[_MAX_FNAME];
-	char ext[_MAX_EXT];
-
-	_splitpath_s(path.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, fname, _MAX_FNAME, ext, _MAX_EXT);
-
-	string s = fname;
-
-	_dgnFileName = StringUtils::getNormalizedString(s);
+	_dgnFileName = path;
 }
 
 string SessionManager::getCurrentDayLogsFolderPath()

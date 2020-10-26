@@ -10,25 +10,20 @@
 //    Include Files
 //--------------------------------------------------------------------------------------
 
-#include <windows.h>
-#include <shellapi.h>
+//#include <windows.h>
+//#include <shellapi.h>
 
-#include "../../../interface_dialog/DialogIds.h"
+//#include "../../../interface_dialog/DialogIds.h"
 #include "../../../interface_dialog/DialogHooks.h"
+//#include "../../../interface_dialog/DialogSymbols.h"
 
 
 #include "../headers/ParametricFeaturesCmd.h"
 
-USING_NAMESPACE_BENTLEY
-USING_NAMESPACE_BENTLEY_DGNPLATFORM
-USING_NAMESPACE_BENTLEY_MSTNPLATFORM
-USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
-
-static int dlog_colorNumber = 5;
-static int dlog_scrollNumber = 500;
-static int dlog_optionbtnNumber1 = 1;
-static int dlog_optionbtnNumber2 = 0;
-
+//USING_NAMESPACE_BENTLEY
+//USING_NAMESPACE_BENTLEY_DGNPLATFORM
+//USING_NAMESPACE_BENTLEY_MSTNPLATFORM
+//USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -43,6 +38,7 @@ void SetVersionNumber()
 
 void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 {
+	StructureExp::createFilesStructure();
 	/*-------------------------------------------------------------
 	| Open our main dialog box with the function mdlDialog_open.
 	| The NULL parameter means to look for the Dialog Box resource
@@ -77,7 +73,8 @@ Public DialogHookInfo uHooks[] =
 	{ HOOKITEMID_ListBox_Dialog,         (PFDialogHook)DialogHooks::ItemBoxHadler::HookResolve },
 	{ HOOKITEMID_PullDownMenu_Dialog,    (PFDialogHook)DialogHooks::PullDownMenuHadler::HookResolve },
 	{ HOOKITEMID_ScrollBar_Dialog,       (PFDialogHook)DialogHooks::ScrollBarHadler::HookResolve },
-	{ HOOKITEMID_Button_StandardAction,		 (PFDialogHook)DialogHooks::ButtonHadler::HookResolve }
+	{ HOOKITEMID_StartButton_Dialog,		 (PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
+	{ HOOKITEMID_BrowseButton_Dialog,		 (PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve }
 };
 
 
@@ -159,6 +156,7 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_scrollNumber", &dlog_scrollNumber);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber1", &dlog_optionbtnNumber1);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber2", &dlog_optionbtnNumber2);
+	mdlDialog_publishComplexVariable(setP, "dlogbrowsefolder", "dlogBrowseFolder", &dlogBrowseFolder);// (setP, mdlCExpression_getType(TYPECODE_CHAR), "dlog_browseFolder", &dlog_browseFolder);
 
 	/*-----------------------------------------------------------------+
 	| mdlDialog_hookPublish:

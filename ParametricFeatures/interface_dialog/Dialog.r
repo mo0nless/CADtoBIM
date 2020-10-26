@@ -43,7 +43,7 @@
 |                                                                       |
 +----------------------------------------------------------------------*/
 #define  OVERALLWIDTH   63*XC
-#define  OVERALLHEIGHT  29*YC
+#define  OVERALLHEIGHT  40*YC/*29*YC*/
 
 #define  X1     3  * XC                         /* 1st column alignment */
 #define  X2     12 * XC                         /* 2nd column of examples */
@@ -84,42 +84,61 @@ DialogBoxRsc DIALOGID_Dialog =
 BEGIN_VSTACK_LAYOUT(0, "")
     {{0, 0, 0, 0},      MenuBar,      MENUBARID_Dialog, ON, 0, "", ""},
     SPACING (SECTION_GAP)
-        BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
-            GRID_ROW(0, "")
+        //BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
+		BEGIN_HSTACK_LAYOUT (0, "")
+            //GRID_ROW(0, "")
             LAYOUT_LABEL_NEXT_RIGHT(0,"")
             {AUTO_XYWH,  OptionButton, OPTIONBUTTONID_Dialog1, ON, 0, "", ""},
-            END_ROW
-            GRID_ROW(0, "")
+            //END_ROW
+            //GRID_ROW(0, "")
+			SPACING (SECTION_GAP)
             LAYOUT_LABEL_NEXT_RIGHT(0,"")
             {AUTO_XYWH, OptionButton, OPTIONBUTTONID_Dialog2, ON, 0, "", ""},
-            END_ROW
+            //END_ROW
+			STRETCH(1)
         END_LAYOUT
+
+    SPACING (SECTION_GAP)	
     SPACING (SECTION_GAP)
+
     BEGIN_HSTACK_LAYOUT (0, "")
-        BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
+        //BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
+           // GRID_ROW(0, "")
+			BEGIN_HSTACK_LAYOUT(0,"")
+				STRETCH(1)
+				LAYOUT_LABEL_NEXT_RIGHT(0,"")
+				//{{AUTO_XY, 0, 0},    Text,           TEXTID_Dialog, ON, 0, "", ""},				
+				{AUTO_XYWH,    Text,           TEXTID_Dialog, ON, TEXT_MASK_LABELABOVE, "", ""},				
+				SPACING (SECTION_GAP)
+				{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
+				STRETCH(1)
+			END_LAYOUT
+            /*END_ROW
             GRID_ROW(0, "")
             {AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog1, ON, 0, "", ""},
-            END_ROW
-            GRID_ROW(0, "")
-            {AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
-            END_ROW
-        END_LAYOUT
-        SPACING (SECTION_GAP)
-        BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
-            GRID_ROW(0, "")
-            {AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog1, ON, 0, "", ""},
-            END_ROW
-            GRID_ROW(0, "")
-            {AUTO_XYWH,   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
-            END_ROW
-            GRID_ROW(0, "")
-            {AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
-            END_ROW
-        END_LAYOUT
+            END_ROW*/
+        //END_LAYOUT        
+    STRETCH(1)
+	END_LAYOUT
+
+	BEGIN_HSTACK_LAYOUT(0,"")
+		SPACING (SECTION_GAP)
+			BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
+				GRID_ROW(0, "")
+				{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog1, ON, 0, "", ""},
+				END_ROW
+				GRID_ROW(0, "")
+				{AUTO_XYWH,   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
+				END_ROW
+				GRID_ROW(0, "")
+				{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
+				END_ROW
+			END_LAYOUT	       
     STRETCH(1)
     END_LAYOUT
 
     SPACING (SECTION_GAP)
+
     BEGIN_HSTACK_LAYOUT (0, "")
         SPACING (SECTION_GAP)
         LAYOUT_LABEL_NEXT_RIGHT(0,"")
@@ -128,26 +147,42 @@ BEGIN_VSTACK_LAYOUT(0, "")
         {AUTO_XYWH,   ColorPicker,    COLORPICKERID_Dialog, ON, 0, "", ""},
         STRETCH(1)
     END_LAYOUT
+
     SPACING (SECTION_GAP)
+
     BEGIN_HSTACK_LAYOUT (0, "")
         SPACING (SECTION_GAP)
-        LAYOUT_LABEL_NEXT_RIGHT(0,"")
+       /* LAYOUT_LABEL_NEXT_RIGHT(0,"")
         {{AUTO_XY, 0, 0},    Text,           TEXTID_Dialog, ON, 0, "", ""},
-        STRETCH(1)
+        STRETCH(1)*/
         LAYOUT_LABEL_NEXT_RIGHT(0,"")
         {{AUTO_XY, W1, 0},   Text,           TEXTID_DialogScroll, ON, 0, "", ""},
         SPACING (SECTION_GAP)
         {{AUTO_XY, W3, 0},   ScrollBar,      SCROLLBARID_Dialog, ON, 0, "", ""},
         STRETCH(1)
     END_LAYOUT
+
     SPACING (SECTION_GAP)
     SPACING (SECTION_GAP)
     SPACING (SECTION_GAP)
     SPACING (SECTION_GAP)
     SPACING (SECTION_GAP)
-    BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
-        {AUTO_XYWH,    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},
+
+	//{AUTO_XYWH, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
+
+    //BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
+    BEGIN_VSTACK_LAYOUT (0, "")
+        {AUTO_XYWH,    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},		
+		//STRETCH(1)
     END_LAYOUT
+
+	SPACING (SECTION_GAP)
+
+	BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
+		STRETCH(1)
+		{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog1, ON, 0, "", ""},
+		STRETCH(1)
+	END_LAYOUT
 END_LAYOUT
 }
     };
@@ -332,14 +367,16 @@ DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog2 =
 +----------------------------------------------------------------------*/
 DItem_PushButtonRsc PUSHBUTTONID_Dialog1 =
     {
-    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, HOOKITEMID_Button_StandardAction,
+    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, //HOOKITEMID_Button_StandardAction,
+	HOOKITEMID_StartButton_Dialog,
     0, NOCMD, LCMD, "",
     TXT_PBut1
     };
 
 DItem_PushButtonRsc PUSHBUTTONID_Dialog2 =
     {
-    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, NOHOOK,
+    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, //NOHOOK,
+	HOOKITEMID_BrowseButton_Dialog,
     1, NOCMD, LCMD, "",
     TXT_PBut2
     };
@@ -362,10 +399,16 @@ DItem_ScrollBarRsc SCROLLBARID_Dialog =
 +----------------------------------------------------------------------*/
 DItem_TextRsc TEXTID_Dialog =
     {
-    NOCMD, LCMD, NOSYNONYM, NOHELP, LHELPCMD, NOHOOK, NOARG,
-    20, "%s", "%s", "", "", NOMASK, NOCONCAT,
+    NOCMD, LCMD, 
+	SYNONYMID_DialogBrowse,
+	//NOSYNONYM, 
+	NOHELP, LHELPCMD, NOHOOK, 
+	NOARG,
+    75, "%s", "%s", "", "", 
+	NOMASK, 
+	NOCONCAT,
     TXT_Text,
-    ""
+    "dlogBrowseFolder.fmtStr"
     };
 
 DItem_TextRsc TEXTID_DialogColor =
@@ -435,6 +478,14 @@ DItem_SynonymsRsc SYNONYMID_DialogScroll =
     {ScrollBar, SCROLLBARID_Dialog},
     }
     };
+
+DItem_SynonymsRsc SYNONYMID_DialogBrowse=
+	{
+	{
+		{Text, TEXTID_Dialog},
+		{PushButton, PUSHBUTTONID_Dialog1}
+	}
+	};
 
 /*----------------------------------------------------------------------+
 |                                                                       |

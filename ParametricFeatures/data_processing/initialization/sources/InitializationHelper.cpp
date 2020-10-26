@@ -7,10 +7,7 @@
 
 InitializationHelper::InitializationHelper()
 {	
-
-	this->filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
-	this->mDgnFileName = ISessionMgr::GetActiveDgnFile()->GetFileName();//.AppendUtf8(".txt");
 	this->pGraElement = mDgnModel->GetGraphicElementsP();
 	this->_progressBar = new PBAR::DialogCompletionBar();
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);

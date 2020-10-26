@@ -80,6 +80,7 @@
     <None Include="ParametricFeaturesCmd.r" />
     <None Include="interface_dialog\Dialog.r" />
     <None Include="interface_dialog\transkit\DialogMsg.r" />
+    <None Include="interface_dialog\DialogType.mt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -183,5 +184,8 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="interface_dialog\transkit\transkit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ParametricFeatures.rc" />
   </ItemGroup>
 </Project>
