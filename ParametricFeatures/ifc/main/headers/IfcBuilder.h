@@ -16,6 +16,8 @@
 #include "../../properties/headers/IfcColorMaterialEnhancer.h"
 #include "../../../common/models/headers/SessionManager.h"
 
+#include "../../smart_feature/headers/SmartFeatureHandler.h"
+
 class IfcBuilder {
 private:
 	IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;

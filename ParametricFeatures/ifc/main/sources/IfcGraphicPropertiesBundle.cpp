@@ -10,6 +10,13 @@ IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGr
 	this->show = true;
 }
 
+IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem)
+{
+	this->graphicProperties = newGraphicProperties;
+	this->ifcRepresentationItem = newIfcRepresentationItem;
+	this->show = true;
+}
+
 GraphicProperties * IfcGraphicPropertiesBundle::getGraphicProperties()
 {
 	return this->graphicProperties;

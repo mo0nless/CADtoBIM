@@ -13,5 +13,8 @@ private:
 	IfcBooleanOperatorHandler() {};
 
 public:
-	static Ifc4::IfcGeometricRepresentationItem* IfcBooleanOperatorHandler::solveBooleanOperation(Ifc4::IfcGeometricRepresentationItem* leftIfcRepresentationItem, Ifc4::IfcGeometricRepresentationItem* rigthIfcRepresentationItem, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle);
+	static Ifc4::IfcGeometricRepresentationItem* solveBooleanOperation(Ifc4::IfcGeometricRepresentationItem* leftIfcRepresentationItem, Ifc4::IfcGeometricRepresentationItem* rigthIfcRepresentationItem, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle);
+
+	//static Ifc4::IfcGeometricRepresentationItem* solveBooleanOperation(Ifc4::IfcElement* leftIfcElement, Ifc4::IfcElement* rightIfcElement, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle);
+
 };

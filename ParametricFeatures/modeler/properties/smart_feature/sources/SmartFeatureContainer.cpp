@@ -24,7 +24,7 @@ void SmartFeatureContainer::insertNodeInTree(long newLocalNodeId, long newParent
 		SmartFeatureTreeNode* parent = searchByElementLocalNodeId(this->root, newParentLocalNodeId);
 		if (parent != nullptr) {
 
-			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode(newGlobalNodeid, newLocalNodeId, newGlobalNodeid);
+			SmartFeatureTreeNode* newNode = new SmartFeatureTreeNode(newGlobalNodeid, newLocalNodeId, newParentLocalNodeId);
 			//newNode->getGeneralProperties()->setElementId(newGlobalNodeid);
 			//newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalNodeId(newLocalNodeId);
 			//newNode->getReaderProperties()->getSmartFeatureGeneralProperties()->setLocalParentNodeId(newParentLocalNodeId);

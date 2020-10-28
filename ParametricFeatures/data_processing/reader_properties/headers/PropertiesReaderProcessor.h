@@ -36,7 +36,7 @@ public:
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
 	//! @param[in] the reference of the SmartFeatureContainer
-	ReaderPropertiesBundle* processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
+	vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle = nullptr);
 
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();

@@ -29,6 +29,9 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 				ifcRepresentationItemList->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
 			}
 		}
+		if (ifcRepresentationItemList->size() == 0) {
+			continue;
+		}
 
 		string representationType = "";
 		string representationIdentifier = "";
@@ -76,15 +79,6 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 		file.addEntity(shape);
 	
 		handleIfcElementCreation(mappedValue,file,shape,ifcElementBundle);
-
-
-		string ifcClassName = typeid(Ifc4::IfcElement).name();
-
-		if (StringUtils::getIfcClassName(ifcClassName)!="") {
-			//do something
-		}
-
-
 
 	}
 }
@@ -146,7 +140,7 @@ Ifc4::IfcElement* IfcElementBuilder::handleIfcElementCreation(ComponentsMappingD
 			ifcElement = buildIfcElement(ifcElementBundle, shape, file);
 		}
 	}
-	file.addBuildingProduct(ifcElement);
+	//file.addBuildingProduct(ifcElement);
 
 	ifcElementBundle->setIfcElement(ifcElement);
 

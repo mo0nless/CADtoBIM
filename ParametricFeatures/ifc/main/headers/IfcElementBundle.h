@@ -32,6 +32,7 @@ private:
 	string representationType;
 
 public:
+
 	IfcElementBundle(long newModelerElementId,string newModelerElementName);
 
 	string getRepresentationType();

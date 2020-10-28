@@ -16,6 +16,21 @@ int ReaderPropertiesBundle::getLocalId()
 	return this->localId;
 }
 
+void ReaderPropertiesBundle::setLocalId(int newLocalId)
+{
+	this->localId = newLocalId;
+}
+
+string ReaderPropertiesBundle::getName()
+{
+	return this->_name;
+}
+
+void ReaderPropertiesBundle::setName(string name)
+{
+	this->_name = name;
+}
+
 vector<ReaderPropertyDefinition*> ReaderPropertiesBundle::getProperties()
 {
 	return this->properties;

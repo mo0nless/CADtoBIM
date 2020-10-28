@@ -1,5 +1,7 @@
 #pragma once
 
+#undef DIFFERENCE
+
 namespace BooleanFunctions {
 
 	/**

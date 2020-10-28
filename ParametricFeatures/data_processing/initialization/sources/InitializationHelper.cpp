@@ -65,10 +65,10 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 		elementBundle->setElementHandle(eh);
 
 		PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
-		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);
+		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
+		elementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
 
-		lock_guard<mutex> guard(g_display_mutex);
+		//lock_guard<mutex> guard(g_display_mutex);
 		GraphicsProcessor graphicsProcessor = GraphicsProcessor();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor.getGraphicsProcessorHelper();
 
@@ -159,15 +159,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		WString elDescr2;
 
 		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-		
-
-		string rez = StringUtils::getString(elDescr2);
-		
-		if (rez == "SP-3" || rez == "SP-2") {
-			//
-			rez.length();
-			cout << rez << endl;
-		}
 
 		SmartFeatureContainer* smartFeatureContainer = nullptr;
 		DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
@@ -194,8 +185,12 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 
 		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-		ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
-		propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
+		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = propertiesReaderProcessor->processElementReaderProperties(currentElem);
+		//if (readerPropertiesBundle != nullptr && readerPropertiesBundle->getLocalId() < 1 && smartFeatureContainer!=nullptr) {
+		//	readerPropertiesBundle->setLocalId(smartFeatureContainer->getRoot()->getLocalNodeId());
+		//}
+		
+		propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 		
 		propsDictVec.push_back(propertiesDictionary);
 
@@ -212,7 +207,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> vecGraphicElement, vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {
 	WString myString;
-	mutex g_display_mutex;
+	//mutex g_display_mutex;
 
 	//PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
 
@@ -240,27 +235,27 @@ void InitializationHelper::processSubElemVector(vector<PersistentElementRefP> ve
 
 			iterateSubElements(elemRef, propertiesDictionary);
 
-			if (SmartFeatureElement::IsSmartFeature(currentElem))
-			{
-				ElementHandle leafNode;
-				SmartFeatureNodePtr sFeatNode;
-				T_SmartFeatureVector sFeatVec;
+			//if (SmartFeatureElement::IsSmartFeature(currentElem))
+			//{
+			//	ElementHandle leafNode;
+			//	SmartFeatureNodePtr sFeatNode;
+			//	T_SmartFeatureVector sFeatVec;
 
-				smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
-				if (smartFeatureContainer != nullptr) {
-					smartFeatureContainerVector.push_back(smartFeatureContainer);
-					propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
-				}
-			}
+			//	smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+			//	if (smartFeatureContainer != nullptr) {
+			//		smartFeatureContainerVector.push_back(smartFeatureContainer);
+			//		propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+			//	}
+			//}
 
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
 			PropertiesReaderProcessor* propertiesReaderProcessor = new PropertiesReaderProcessor();
-			ReaderPropertiesBundle* readerPropertiesBundle = propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
+			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 
-			lock_guard<mutex> guard(g_display_mutex);
+			//lock_guard<mutex> guard(g_display_mutex);
 			propsDictVec.push_back(propertiesDictionary);
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);

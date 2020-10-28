@@ -4,118 +4,115 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {
 }
 
-ReaderPropertiesBundle* PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
+vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
+	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 
 	ofstream outfile;
-	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
-
+	string elemClassName;
 	WString elDescr;
+	//WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
 
 	// Handles persistance of ECInstances
 	DgnECManagerR ecMgr = DgnECManager::GetManager();
-	
+
 	// Flag for searching the attachments in the scope as well
 	bool includeReferenceAttachments = true;
 
-	//auto some1 = ISessionMgr::GetActiveDgnModelRefP();
-
 	// Create a scope which finds instances in the given element. 
-	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));
-	/*FindInstancesScopePtr scope = FindInstancesScope::CreateScope(*currentElem.GetDgnModelP(), FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));*/
-	//FindInstancesScopePtr scope = FindInstancesScope::CreateScope(some1,
+	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::Element, includeReferenceAttachments));
 
 	// Analogous to a SQL query and is used with DgnECManager::FindElementInstances to find ECInstances that satisfy the query's 'where' clause.
 	// Specify ECQUERY_PROCESS_SearchAllClasses for the query to consider instances of all classes
 	ECQueryPtr ecQuery = ECQuery::CreateQuery(ECQUERY_PROCESS_SearchAllClasses);
-	//Queryptr
-	
+
 	//ECQUERY_PROCESS_SearchAllExtrinsic will only search ECXAttr
 	ecQuery->SetSelectProperties(true);
-	
-	//dictionaryProperties.getGeneralProperties()->setIsSmartFeature(SmartFeatureElement::IsSmartFeature(currentElem));
 
-	currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-
-	//ecMgr.
-	
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << endl;
-		outfile << "= Properties Not Found =" << endl;
-		outfile.close();*/
-		this->mElemClassName = "SmartFeatureSolid"; 
-
+		outfile.open(filePath, std::ios_base::app);
+		outfile << std::endl;
+		outfile << "======================== pROPS nOT fOUND ===========================" << std::endl;
+		outfile.close();
+		elemClassName = "SmartFeatureSolid";
 	}
-	else
-	{
-		//ElementECClassInfo  info;
-		//ecMgr.FindECClassesOnElement(currentElem.GetElementRef(), info);
-
-		//outfile.open(filePath, ios_base::app);
-		//outfile << endl;
-		//outfile << "extra" << endl;		
-		//outfile << info.count << endl;
-		//outfile << info.empty() << endl;
-		////outfile << info.leaf_nodes.size() << endl;
-		////outfile << info.nodes.size() << endl;
-		//outfile.close();
-
-
+	else {
 		for (DgnECInstancePtr instance : ecMgr.FindInstances(*scope, *ecQuery))
 		{
-
-			//instance->GetAsElementInstance()->get
-
+			//instance->WriteToXmlFile(outXML, true, true);
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
 			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
 			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
+			/////////////////////////
 
-			this->mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
-			
-			outfile.open(filePath, ios_base::app);
-			outfile << endl;
-			outfile << "------------ Instance Schema full name: " << StringUtils::getString( ecSchemaR.GetFullSchemaName());
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "------------ Instance Schema full name: " << StringUtils::getString(ecSchemaR.GetFullSchemaName());
 			outfile.close();
 
-			// get class name
-			string className = StringUtils::getString(elemInst->GetClass().GetName());
+			outfile.open(filePath, std::ios_base::app);
+			outfile << std::endl;
+			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << ", current element id = " << currentElem.GetElementId() << ", id = " << elemInst->GetLocalId() << " ---------" << std::endl;
+			outfile << "--------- caca = " << StringUtils::getString(elemInst->GetClass().GetName()) << std::endl;
 
-			outfile.open(filePath, ios_base::app);
-			outfile << endl;
-			outfile << "--------- ClassName = " << mElemClassName <<", current element id = "<< currentElem.GetElementId() << ", id = " << elemInst->GetLocalId()<<" ---------" << endl;
-			//outfile.close();
+			outfile.close();
 
-			// set class name
-			//dictionaryProperties.getGeneralProperties()->setElementClassName(mElemClassName);
-			
-			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
+			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(StringUtils::getString(elemInst->GetClass().GetName()), elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
 				if (readerPropertyDefinition->getPropertyName().find("Material") != string::npos) {
 					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
-					if (PropertyTypeEnum::STRING == propertyTypeEnum && elementBundle!=nullptr) {
+					if (PropertyTypeEnum::STRING == propertyTypeEnum && elementBundle != nullptr) {
 						string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
 						if (!val.empty()) {
 							elementBundle->setMaterial(readerPropertyDefinition->getPropertyValueAsString());
 							break;
 						}
-						
+
 					}
-					
+
+				}
+				if (readerPropertyDefinition->getPropertyName() == "Name") {
+					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
+					if (PropertyTypeEnum::STRING == propertyTypeEnum) {
+						string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
+						if (!val.empty()) {
+							readerPropertiesBundle->setName(readerPropertyDefinition->getPropertyValueAsString());
+							break;
+						}
+
+					}
 				}
 			}
-	
-			return readerPropertiesBundle;
+			//elementBundle->getReaderPropertiesBundle()->addProperty(readerPropertiesBundle);
+			//return readerPropertiesBundle; 
+			readerPropertiesBundleVector.push_back(readerPropertiesBundle);
+
+			for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
+			{
+				outfile.open(filePath, std::ios_base::app);
+				outfile << std::endl;
+				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
+				outfile.close();
+			}
+
+
+			outfile.open(filePath, std::ios_base::app);
+			outfile << "is NOT smart feature" << std::endl;
+
+			outfile.close();
+
 		}
 	}
-	outfile.close();
 
-	_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"Returning an empty ReaderPropertiesBundle");
 
-	return new ReaderPropertiesBundle("", -1);
+	/*_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"Returning an empty ReaderPropertiesBundle");*/
+
+	//return new ReaderPropertiesBundle("", -1);
+
+	return readerPropertiesBundleVector;
 }

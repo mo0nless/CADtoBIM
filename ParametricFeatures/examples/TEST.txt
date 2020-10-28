@@ -33,1797 +33,2579 @@ UOR per storage304800.000000
 AnnotationScaleFactor1.000000
 Global Origin [x,y,z]= 0.000000, 0.000000, 0.000000
 ------------------------
+
+======================== pROPS nOT fOUND ===========================
 RGB1 =0,255,0
 transparency =0
-level 4 , 00000020169FB800
-level color0 , 00000020169FB800
+level 64 , 000000B96EFFBD60
+level color0 , 000000B96EFFBD60
 colorOut RGB =0,0,0
-level  =4
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Open --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
-
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
-
-Origin = [0.000000, 0.000000, 0.000000]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 1
-
-Start Point [X]: 3857848.032220
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
-
-End Point [X]: 3857848.032220
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
-
-Curve Line String Length: 0.000000
-
-Control Points: 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ConeElement, current element id = 6703, id = 0 ---------
-Capped[int] = No
-Cylindrical[boolean] = True
-Height[double] = 9' 9.1206"
-Base[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
-Top[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
-Base Radius[double] = 0' 4.3125"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Cylinder (Uncapped)
-Level[int] = S-U-S-1-EX-OPM
-Element ID[long] = 6703
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:42:02 PM
-Size[int] = 104
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Cone
-Color[int] = 4
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 12' 7.8838", 12' 11.6875", 8' 2.5618"
-Range High[point3d] = 22' 5.0044", 13' 8.3125", 8' 11.1868"
-Surface Area[double] = 22.0384 Sq.'
-Rotation-X[double] = 180.0000°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 270.0000°
-Orientation[int] = Right
-RGB1 =255,255,0
-transparency =0
-level 2 , 00000020169FB610
-level color0 , 00000020169FB610
-colorOut RGB =0,0,0
-level  =2
--------- CONE/CYLINDER/TRUNCATED_CONE --------
-Range [XLength] = 2974863.298729
-Range [YLength] = 219075.000000
-Range [ZLength] = 219075.000000
+level  =64
+-------- BOX --------
+Range [XLength] = 4780501.623582
+Range [YLength] = 602210.759566
+Range [ZLength] = 8746681.851038
 
 Quaternion Rotation
-qRotation [X] = 0.707107
+qRotation [X] = 0.000000
 qRotation [Y] = 0.000000
-qRotation [Z] = 0.707107
+qRotation [Z] = 1478.739738
+qRotation [W] = 1478.739400
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.000000
+vRotation [Y] = 0.000000
+vRotation [Z] = 1.000000
+
+Origin [X] = -11834917.910989
+Origin [Y] = -372784.381591
+Origin [Z] = 0.000000
+
+Range High = -11834917.910989
+Range Low = -16615419.534572
+DiagonalDistanceXY = 4818283.259836
+DiagonalDistance = 9986005.055841
+Range Difference = -4780501.623582
+Corner [1] - [X] = -11834917.910989
+Corner [1] - [Y] = -372784.381591
+Corner [1] - [Z] = 0.000000
+
+Corner [2] - [X] = -16615419.534572
+Corner [2] - [Y] = -372784.381591
+Corner [2] - [Z] = 0.000000
+
+Corner [3] - [X] = -11834917.910989
+Corner [3] - [Y] = -974995.141157
+Corner [3] - [Z] = 0.000000
+
+Corner [4] - [X] = -16615419.534572
+Corner [4] - [Y] = -974995.141157
+Corner [4] - [Z] = 0.000000
+
+Corner [5] - [X] = -11834917.910989
+Corner [5] - [Y] = -372784.381591
+Corner [5] - [Z] = 8746681.851038
+
+Corner [6] - [X] = -16615419.534572
+Corner [6] - [Y] = -372784.381591
+Corner [6] - [Z] = 8746681.851038
+
+Corner [7] - [X] = -11834917.910989
+Corner [7] - [Y] = -974995.141157
+Corner [7] - [Z] = 8746681.851038
+
+Corner [8] - [X] = -16615419.534572
+Corner [8] - [Y] = -974995.141157
+Corner [8] - [Z] = 8746681.851038
+
+Vector of BASE plane X [X] = -1.000000
+Vector of BASE plane X [Y] = 0.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = 0.000000
+Vector of BASE plane Y [Y] = -1.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 4780501.623582
+AY top rectangle y size = 602210.759566
+BX top rectangle x size = 4780501.623582
+BY top rectangle y size = 602210.759566
+
+Origin of BASE rectangle [X] = -11834917.910989
+Origin of BASE rectangle [Y] = -372784.381591
+Origin of BASE rectangle [Z] = 0.000000
+
+Origin of TOP rectangle [X] = -11834917.910989
+Origin of TOP rectangle [Y] = -372784.381591
+Origin of TOP rectangle [Z] = 8746681.851038
+
+Size at the BASE [X] = 4780501.623582
+Size at the BASE [Y] = 602210.759566
+
+Size at the TOP [X] = 4780501.623582
+Size at the TOP [Y] = 602210.759566
+
+True if the end cap is enabled = 1
+-------- END OF BOX DATA --------
+Centroid from Area = [-14225168.722780, -673889.761374, 4373340.925519]
+
+Area = 99919484449767.375000
+
+Centroid from Volume = [-14225168.722780, -673889.761374, 4373340.925519]
+
+Volume = 25180555728245542912.000000
+
+===================================================
+===================================================
+Element Description: Slab
+Element ID: 1522
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+===================================================
+===================================================
+Element Description: Slab
+Element ID: 1522
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+RGB1 =0,255,0
+transparency =0
+level 64 , 000000B96EFFBD60
+level color0 , 000000B96EFFBD60
+colorOut RGB =0,0,0
+level  =64
+-------- BOX --------
+Range [XLength] = 936042.275946
+Range [YLength] = 1907000.738626
+Range [ZLength] = 8746681.851038
+
+Quaternion Rotation
+qRotation [X] = 1478.739569
+qRotation [Y] = -1478.739569
+qRotation [Z] = 0.000000
 qRotation [W] = 0.000000
 
 Vector Rotation Axis Local to World
 vRotation [X] = 0.707107
-vRotation [Y] = 0.000000
-vRotation [Z] = 0.707107
+vRotation [Y] = -0.707107
+vRotation [Z] = 0.000000
 
-Origin [X] = 3857848.032220
-Origin [Y] = 4064000.000000
-Origin [Z] = 2613006.960349
+Origin [X] = -11834917.910989
+Origin [Y] = -974995.141157
+Origin [Z] = 8746681.851038
 
-Center of BASE Circle [X] = 3857848.032220
-Center of BASE Circle [Y] = 4064000.000000
-Center of BASE Circle [Z] = 2613006.960349
+Range High = -11834917.910989
+Range Low = -12770960.186935
+DiagonalDistanceXY = 2124341.535506
+DiagonalDistance = 9000959.413460
+Range Difference = -936042.275946
+Corner [1] - [X] = -11834917.910989
+Corner [1] - [Y] = -974995.141157
+Corner [1] - [Z] = 8746681.851038
 
-Center of TOP Circle [X] = 6832711.330948
-Center of TOP Circle [Y] = 4064000.000000
-Center of TOP Circle [Z] = 2613006.960349
+Corner [2] - [X] = -11834917.910989
+Corner [2] - [Y] = -2881995.879783
+Corner [2] - [Z] = 8746681.851038
 
-0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Y] = 0.000000
-0 Degree Vector of BASE circle (vector 0 Degree) [Z] = 1.000000
+Corner [3] - [X] = -12770960.186935
+Corner [3] - [Y] = -974995.141157
+Corner [3] - [Z] = 8746681.851038
 
-0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Y] = -1.000000
-0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.000000
+Corner [4] - [X] = -12770960.186935
+Corner [4] - [Y] = -2881995.879783
+Corner [4] - [Z] = 8746681.851038
 
-Radius at BASE = 109537.500000
-Radius at TOP = 109537.500000
+Corner [5] - [X] = -11834917.910989
+Corner [5] - [Y] = -974995.141157
+Corner [5] - [Z] = 0.000000
 
-True if the end cap is enabled = 0
---------END OF CONE/CYLINDER/TRUNCATED_CONE DATA--------
-Centroid from Area = [5345279.681584, 4064000.000000, 2613006.960349]
+Corner [6] - [X] = -11834917.910989
+Corner [6] - [Y] = -2881995.879783
+Corner [6] - [Z] = 0.000000
 
-Area = 2047433037604.968506
+Corner [7] - [X] = -12770960.186935
+Corner [7] - [Y] = -974995.141157
+Corner [7] - [Z] = 0.000000
 
-Centroid from Volume = [0.000000, 0.000000, 0.000000]
+Corner [8] - [X] = -12770960.186935
+Corner [8] - [Y] = -2881995.879783
+Corner [8] - [Z] = 0.000000
 
-Volume = 0.000000
+Vector of BASE plane X [X] = 0.000000
+Vector of BASE plane X [Y] = -1.000000
+Vector of BASE plane X [Z] = 0.000000
 
-Origin = [3857848.032220, 4064000.000000, 2613006.960349]
+Vector of BASE plane Y [X] = -1.000000
+Vector of BASE plane Y [Y] = 0.000000
+Vector of BASE plane Y [Z] = 0.000000
 
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 1907000.738626
+AY top rectangle y size = 936042.275946
+BX top rectangle x size = 1907000.738626
+BY top rectangle y size = 936042.275946
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = LineElement, current element id = 6704, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Line
-Level[int] = S-U-S-1-EX-OPM
-Element ID[long] = 6704
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:42:02 PM
-Size[int] = 89
-Linkages[int] = 1
-XAttributes[int] = 0
-Type[string] = Line
-Color[int] = 3
-Weight[int] = 1
-Line Style[int] = 4
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
-Range High[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
-Count[int] = 1
-Total Length[double] = 9' 9.1206"
-Elevation[double] = 8' 6.8743"
-RGB1 =255,0,0
-transparency =0
-level 2 , 00000020169FB240
-level color0 , 00000020169FB240
-colorOut RGB =0,0,0
-level  =2
--------------------CURVE VECTOR---------------------
-Size: 1
+Origin of BASE rectangle [X] = -11834917.910989
+Origin of BASE rectangle [Y] = -974995.141157
+Origin of BASE rectangle [Z] = 8746681.851038
 
+Origin of TOP rectangle [X] = -11834917.910989
+Origin of TOP rectangle [Y] = -974995.141157
+Origin of TOP rectangle [Z] = 0.000000
 
-BOUNDARY_TYPE_Open --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
+Size at the BASE [X] = 1907000.738626
+Size at the BASE [Y] = 936042.275946
 
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
+Size at the TOP [X] = 1907000.738626
+Size at the TOP [Y] = 936042.275946
 
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
+True if the end cap is enabled = 1
+-------- END OF BOX DATA --------
+Centroid from Area = [-12302939.048962, -1928495.510470, 4373340.925519]
 
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
+Area = 53304452097778.718750
 
-Origin = [3857848.032220, 4064000.000000, 2613006.960349]
+Centroid from Volume = [-12302939.048962, -1928495.510470, 4373340.925519]
 
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 1
-
-Start Point [X]: 3857848.032220
-Start Point [Y]: 4064000.000000
-Start Point [Z]: 2613006.960349
-
-End Point [X]: 6832711.330948
-End Point [Y]: 4064000.000000
-End Point [Z]: 2613006.960349
-
-Curve Line String Length: 2974863.298729
-
-Control Points: 2974863.298729
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = PointStringElement, current element id = 6706, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Point String
-Level[int] = S-U-S-1-EX-OPM
-Element ID[long] = 6706
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:42:02 PM
-Size[int] = 84
-Linkages[int] = 0
-XAttributes[int] = 3
-Type[string] = Point String
-Color[int] = 3
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
-Range High[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
-Count[int] = 1
-RGB1 =255,0,0
-transparency =0
-level 2 , 00000020169FB290
-level color0 , 00000020169FB290
-colorOut RGB =0,0,0
-level  =2
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_None --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
-
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
-
-Origin = [0.000000, 0.000000, 0.000000]
-
-CURVE_PRIMITIVE_TYPE_PointString --------
-
-Point  [X] = 3857848.032220
-Point  [Y] = 4064000.000000
-Point  [Z] = 2613006.960349
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = PointStringElement, current element id = 6707, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Point String
-Level[int] = S-U-S-1-EX-OPM
-Element ID[long] = 6707
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:42:02 PM
-Size[int] = 84
-Linkages[int] = 0
-XAttributes[int] = 3
-Type[string] = Point String
-Color[int] = 3
-Weight[int] = 0
-Line Style[int] = 0
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = New
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
-Range High[point3d] = 22' 5.0044", 13' 4.0000", 8' 6.8743"
-Count[int] = 1
-RGB1 =255,0,0
-transparency =0
-level 2 , 00000020169FB290
-level color0 , 00000020169FB290
-colorOut RGB =0,0,0
-level  =2
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_None --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
-
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
-
-Origin = [0.000000, 0.000000, 0.000000]
-
-CURVE_PRIMITIVE_TYPE_PointString --------
-
-Point  [X] = 6832711.330948
-Point  [Y] = 4064000.000000
-Point  [Z] = 2613006.960349
+Volume = 15613118470194208768.000000
 
 ===================================================
 ===================================================
-Element Description: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
-Element ID: 6699
+Element Description: Slab
+Element ID: 1529
 ===================================================
 ===================================================
 
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 6699, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
-Element ID[long] = 6699
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:42:02 PM
-Size[int] = 252
-Linkages[int] = 5
-XAttributes[int] = 6
-Type[string] = Linear
-Class[int] = Primary
-Template[long] = (None)
-Modified[boolean] = Modified
-New[boolean] = Not New
-Filled[boolean] = Not Filled
-Complex[boolean] = Not Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 12' 7.8838", 12' 11.6875", 8' 2.5618"
-Range High[point3d] = 22' 5.0044", 13' 8.3125", 8' 11.1868"
-Pattern Name[string] = <null>
-Number of elements[int] = 2
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = 180.0000°
-Rotation-Y[double] = 0.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-Orientation[int] = Bottom
-Origin[point3d] = 12' 7.8838", 13' 4.0000", 8' 6.8743"
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
+======================== pROPS nOT fOUND ===========================
 ===================================================
 ===================================================
-Element Description: Pipe 8 IN U-S-1-EX-OPM ASME - B36.10
-Element ID: 6699
+Element Description: Slab
+Element ID: 1529
 ===================================================
 ===================================================
 
+
+======================== pROPS nOT fOUND ===========================
 RGB1 =0,255,0
 transparency =0
-level 6 , 00000020169FB800
-level color0 , 00000020169FB800
+level 64 , 000000B96EFFBD60
+level color0 , 000000B96EFFBD60
 colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Open --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
-
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
-
-Origin = [0.000000, 0.000000, 0.000000]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 1
-
-Start Point [X]: 5050104.634018
-Start Point [Y]: 4113117.168696
-Start Point [Z]: 2710914.915315
-
-End Point [X]: 5050104.634018
-End Point [Y]: 4113117.168696
-End Point [Z]: 2710914.915315
-
-Curve Line String Length: 0.000000
-
-Control Points: 0.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = RotationalSweepSolidElement, current element id = 12509, id = 0 ---------
-Capped[int] = Yes
-Sweep Angle[double] = 360.0000°
-Minimum Radius[double] = 0' 4.3125"
-Maximum Radius[double] = 0' 4.8125"
-Centroidal Radius[double] = 0' 4.5625"
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Revolved Solid
-Level[int] = Support
-Element ID[long] = 12509
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 60
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Solid
-Color[int] = 3
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 11.1875", 8' 2.0618"
-Range High[point3d] = 16' 9.3230", 13' 8.8125", 8' 11.6868"
-Volume[double] = 0.0415 Cu.'
-Surface Area[double] = 2.1898 Sq.'
-Rotation-X[double] = 153.3586°
-Rotation-Y[double] = 90.0000°
-Rotation-Z[double] = 0.0000°
-Angle[double] = 0.0000°
-RGB1 =255,0,0
-transparency =0
-level 6 , 00000020169FB390
-level color0 , 00000020169FB390
-colorOut RGB =0,0,0
-level  =6
--------- ROTATIONAL_SWEEP --------
-Range [XLength] = 141733.094787
-Range [YLength] = 259208.094787
-Range [ZLength] = 259208.094787
+level  =64
+-------- BOX --------
+Range [XLength] = 3677308.941217
+Range [YLength] = 635666.912875
+Range [ZLength] = 8746681.851038
 
 Quaternion Rotation
-qRotation [X] = 0.688083
-qRotation [Y] = 0.162918
-qRotation [Z] = 0.688083
-qRotation [W] = 0.162918
+qRotation [X] = 1478.739400
+qRotation [Y] = 1478.739738
+qRotation [Z] = 0.000000
+qRotation [W] = 0.000000
 
 Vector Rotation Axis Local to World
-vRotation [X] = 0.697400
-vRotation [Y] = 0.165124
-vRotation [Z] = 0.697400
+vRotation [X] = 0.707107
+vRotation [Y] = 0.707107
+vRotation [Z] = 0.000000
 
-Origin [X] = 4986604.634018
-Origin [Y] = 4064000.000000
-Origin [Z] = 2613006.960349
+Origin [X] = -12770960.186935
+Origin [Y] = -2881995.879783
+Origin [Z] = 8746681.851038
 
-Range High = 5120971.181411
-Range Low = 4979238.086624
-DiagonalDistanceXY = 295426.990238
-DiagonalDistance = 393021.555343
-Range Difference = 141733.094787
-Center Point Rotation [X] = 4986604.634018
-Center Point Rotation [Y] = 4064000.000000
-Center Point Rotation [Z] = 2613006.960349
+Range High = -12770960.186935
+Range Low = -16448269.128153
+DiagonalDistanceXY = 3731845.853365
+DiagonalDistance = 9509527.689457
+Range Difference = -3677308.941217
+Corner [1] - [X] = -12770960.186935
+Corner [1] - [Y] = -2881995.879783
+Corner [1] - [Z] = 8746681.851038
 
-Axes Rotation [X] = 1.000000
-Axes Rotation [Y] = 0.000000
-Axes Rotation [Z] = 0.000000
+Corner [2] - [X] = -16448269.128153
+Corner [2] - [Y] = -2881995.879783
+Corner [2] - [Z] = 8746681.851038
 
-Axes of Rotation Direction (Ray3D) [X] = 1.000000
-Axes of Rotation Direction (Ray3D) [Y] = 0.000000
-Axes of Rotation Direction (Ray3D) [Z] = 0.000000
+Corner [3] - [X] = -12770960.186935
+Corner [3] - [Y] = -2246328.966908
+Corner [3] - [Z] = 8746681.851038
 
-Axes of Rotation Origin (Ray3D) [X] = 4986604.634018
-Axes of Rotation Origin (Ray3D) [Y] = 4064000.000000
-Axes of Rotation Origin (Ray3D) [Z] = 2613006.960349
+Corner [4] - [X] = -16448269.128153
+Corner [4] - [Y] = -2246328.966908
+Corner [4] - [Z] = 8746681.851038
 
-Curve Start Point of Swept [X] = 4986604.634018
-Curve Start Point of Swept [Y] = 4118811.912893
-Curve Start Point of Swept [Z] = 2722266.562267
+Corner [5] - [X] = -12770960.186935
+Corner [5] - [Y] = -2881995.879783
+Corner [5] - [Z] = 0.000000
 
-Curve End Point of Swept [X] = 4986604.634018
-Curve End Point of Swept [Y] = 4118811.912893
-Curve End Point of Swept [Z] = 2722266.562267
+Corner [6] - [X] = -16448269.128153
+Corner [6] - [Y] = -2881995.879783
+Corner [6] - [Z] = 0.000000
 
-Sweep Radians = 6.283185
-Major Circle Sweep Angle = 6.283185
-Number of 'v' Rules (Radial Around) to Display in Wireframe = 1
+Corner [7] - [X] = -12770960.186935
+Corner [7] - [Y] = -2246328.966908
+Corner [7] - [Z] = 0.000000
 
-Is it a closed volume = 1
+Corner [8] - [X] = -16448269.128153
+Corner [8] - [Y] = -2246328.966908
+Corner [8] - [Z] = 0.000000
+
+Vector of BASE plane X [X] = -1.000000
+Vector of BASE plane X [Y] = 0.000000
+Vector of BASE plane X [Z] = 0.000000
+
+Vector of BASE plane Y [X] = 0.000000
+Vector of BASE plane Y [Y] = 1.000000
+Vector of BASE plane Y [Z] = 0.000000
+
+Base Rectangel is from Origin to (ax,ay,0). Top is from (0,0,1) to (ax,ay,1)
+AX base rectangle x size = 3677308.941217
+AY top rectangle y size = 635666.912875
+BX top rectangle x size = 3677308.941217
+BY top rectangle y size = 635666.912875
+
+Origin of BASE rectangle [X] = -12770960.186935
+Origin of BASE rectangle [Y] = -2881995.879783
+Origin of BASE rectangle [Z] = 8746681.851038
+
+Origin of TOP rectangle [X] = -12770960.186935
+Origin of TOP rectangle [Y] = -2881995.879783
+Origin of TOP rectangle [Z] = 0.000000
+
+Size at the BASE [X] = 3677308.941217
+Size at the BASE [Y] = 635666.912875
+
+Size at the TOP [X] = 3677308.941217
+Size at the TOP [Y] = 635666.912875
+
 True if the end cap is enabled = 1
-Radius min= 109537.500000
-Radius max= 122237.500000
-Radius cen= 115887.500000
---------END OF ROTATIONAL_SWEEP DATA--------
-Centroid from Area = [5050104.634018, 4064000.000000, 2613006.960349]
+-------- END OF BOX DATA --------
+Centroid from Area = [-14609614.657544, -2564162.423345, 4373340.925519]
 
-Area = 203443052857.644958
+Area = 80123542498611.968750
 
-Centroid from Volume = [5050104.634018, 4064000.000000, 2613006.960349]
+Centroid from Volume = [-14609614.657544, -2564162.423345, 4373340.925519]
 
-Volume = 1174421259678142.500000
-
-Origin = [4986604.634018, 4064000.000000, 2613006.960349]
-
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 4115964.540795
-Centroid point [Z] = 2716590.738791
-
-Normal [X] = 0.000000
-Normal [Y] = -0.893830
-Normal [Z] = 0.448405
-
-Start Point [X]: 1612899999.999966
-Start Point [Y]: 1612899999.999966
-Start Point [Z]: 1612899999.999966
-
-End Point [X]: 1612899999.999966
-End Point [Y]: 1612899999.999966
-End Point [Z]: 1612899999.999966
-
-Origin = [4986604.634018, 4118811.912893, 2722266.562267]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 4118811.912893
-Start Point [Z]: 2722266.562267
-
-End Point [X]: 4986604.634018
-End Point [Y]: 4118811.912893
-End Point [Z]: 2722266.562267
-
-Curve Line String Length: 12700.000000
-
-Control Points: 12700.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12516, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12516
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 14' 5.7422", 7' 11.7006"
-Range High[point3d] = 16' 9.3230", 14' 5.9665", 8' 0.1475"
-Count[int] = 4
-Total Length[double] = 0' 11.0000"
-Area[double] = 0.0174 Sq.'
-Area[double] = 0.0174 Sq.'
-Perimeter[double] = 0' 11.0000"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 4415901.055528
-Centroid point [Z] = 2436469.890252
-
-Normal [X] = 0.000000
-Normal [Y] = -0.893830
-Normal [Z] = 0.448405
-
-Start Point [X]: 1612899999.999993
-Start Point [Y]: 1612899999.999993
-Start Point [Z]: 1612899999.999993
-
-End Point [X]: 1612899999.999993
-End Point [Y]: 1612899999.999993
-End Point [Z]: 1612899999.999993
-
-Origin = [5113604.634018, 4418748.427626, 2442145.713729]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4418748.427626
-Start Point [Z]: 2442145.713729
-
-End Point [X]: 5113604.634018
-End Point [Y]: 4418748.427626
-End Point [Z]: 2442145.713729
-
-Curve Line String Length: 127000.000000
-
-Control Points: 127000.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12517, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12517
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 13' 8.1894", 8' 4.4929"
-Range High[point3d] = 16' 9.3230", 13' 8.4137", 8' 4.9398"
-Count[int] = 4
-Total Length[double] = 0' 11.0000"
-Area[double] = 0.0174 Sq.'
-Area[double] = 0.0174 Sq.'
-Perimeter[double] = 0' 11.0000"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 4173259.601918
-Centroid point [Z] = 2558195.047456
-
-Normal [X] = 0.000000
-Normal [Y] = -0.893830
-Normal [Z] = 0.448405
-
-Start Point [X]: 1612899999.999993
-Start Point [Y]: 1612899999.999993
-Start Point [Z]: 1612899999.999993
-
-End Point [X]: 1612899999.999993
-End Point [Y]: 1612899999.999993
-End Point [Z]: 1612899999.999993
-
-Origin = [5113604.634018, 4176106.974016, 2563870.870932]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
-
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
-
-Curve Line String Length: 127000.000000
-
-Control Points: 127000.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12518, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12518
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 9.3230", 13' 8.1894", 7' 11.7006"
-Range High[point3d] = 16' 9.3230", 14' 5.9665", 8' 4.9398"
-Count[int] = 4
-Total Length[double] = 1' 10.3750"
-Area[double] = 0.0371 Sq.'
-Area[double] = 0.0371 Sq.'
-Perimeter[double] = 1' 10.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5113604.634018
-Centroid point [Y] = 4294580.328723
-Centroid point [Z] = 2497332.468854
-
-Normal [X] = -1.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 3447573749.999986
-Start Point [Y]: 3447573749.999986
-Start Point [Z]: 3447573749.999986
-
-End Point [X]: 3447573749.999986
-End Point [Y]: 3447573749.999986
-End Point [Z]: 3447573749.999986
-
-Origin = [5113604.634018, 4176106.974016, 2563870.870932]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
-
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12519, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12519
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 13' 8.1894", 7' 11.7006"
-Range High[point3d] = 16' 4.3230", 14' 5.9665", 8' 4.9398"
-Count[int] = 4
-Total Length[double] = 1' 10.3750"
-Area[double] = 0.0371 Sq.'
-Area[double] = 0.0371 Sq.'
-Perimeter[double] = 1' 10.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 4986604.634018
-Centroid point [Y] = 4294580.328723
-Centroid point [Z] = 2497332.468854
-
-Normal [X] = -1.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 3447573749.999986
-Start Point [Y]: 3447573749.999986
-Start Point [Z]: 3447573749.999986
-
-End Point [X]: 3447573749.999986
-End Point [Y]: 3447573749.999986
-End Point [Z]: 3447573749.999986
-
-Origin = [4986604.634018, 4176106.974016, 2563870.870932]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
-
-End Point [X]: 4986604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12520, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12520
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 13' 8.1894", 7' 11.7006"
-Range High[point3d] = 16' 9.3230", 14' 5.7423", 8' 4.4929"
-Count[int] = 4
-Total Length[double] = 2' 7.3750"
-Area[double] = 0.3711 Sq.'
-Area[double] = 0.3711 Sq.'
-Perimeter[double] = 2' 7.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 4291732.956625
-Centroid point [Z] = 2491656.645378
-
-Normal [X] = 0.000000
-Normal [Y] = 0.448405
-Normal [Z] = 0.893830
-
-Start Point [X]: 34475737500.000031
-Start Point [Y]: 34475737500.000031
-Start Point [Z]: 34475737500.000031
-
-End Point [X]: 34475737500.000031
-End Point [Y]: 34475737500.000031
-End Point [Z]: 34475737500.000031
-
-Origin = [5113604.634018, 4170412.229820, 2552519.223980]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4170412.229820
-Start Point [Z]: 2552519.223980
-
-End Point [X]: 5113604.634018
-End Point [Y]: 4170412.229820
-End Point [Z]: 2552519.223980
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12521, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12521
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 13' 8.4136", 8' 0.1474"
-Range High[point3d] = 16' 9.3230", 14' 5.9665", 8' 4.9398"
-Count[int] = 4
-Total Length[double] = 2' 7.3750"
-Area[double] = 0.3711 Sq.'
-Area[double] = 0.3711 Sq.'
-Perimeter[double] = 2' 7.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 4297427.700821
-Centroid point [Z] = 2503008.292330
-
-Normal [X] = 0.000000
-Normal [Y] = 0.448405
-Normal [Z] = 0.893830
-
-Start Point [X]: 34475737500.000031
-Start Point [Y]: 34475737500.000031
-Start Point [Z]: 34475737500.000031
-
-End Point [X]: 34475737500.000031
-End Point [Y]: 34475737500.000031
-End Point [Z]: 34475737500.000031
-
-Origin = [5113604.634018, 4176106.974016, 2563870.870932]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 4176106.974016
-Start Point [Z]: 2563870.870932
-
-End Point [X]: 5113604.634018
-End Point [Y]: 4176106.974016
-End Point [Z]: 2563870.870932
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12522, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12522
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 2.0335", 9' 1.6011"
-Range High[point3d] = 16' 9.3230", 12' 2.2578", 9' 2.0480"
-Count[int] = 4
-Total Length[double] = 0' 11.0000"
-Area[double] = 0.0174 Sq.'
-Area[double] = 0.0174 Sq.'
-Perimeter[double] = 0' 11.0000"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 3712098.944472
-Centroid point [Z] = 2789544.030446
-
-Normal [X] = 0.000000
-Normal [Y] = 0.893830
-Normal [Z] = -0.448405
-
-Start Point [X]: 1612899999.999993
-Start Point [Y]: 1612899999.999993
-Start Point [Z]: 1612899999.999993
-
-End Point [X]: 1612899999.999993
-End Point [Y]: 1612899999.999993
-End Point [Z]: 1612899999.999993
-
-Origin = [4986604.634018, 3714946.316570, 2795219.853922]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3714946.316570
-Start Point [Z]: 2795219.853922
-
-End Point [X]: 4986604.634018
-End Point [Y]: 3714946.316570
-End Point [Z]: 2795219.853922
-
-Curve Line String Length: 127000.000000
-
-Control Points: 127000.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12523, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12523
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 11.5863", 8' 8.8088"
-Range High[point3d] = 16' 9.3230", 12' 11.8106", 8' 9.2557"
-Count[int] = 4
-Total Length[double] = 0' 11.0000"
-Area[double] = 0.0174 Sq.'
-Area[double] = 0.0174 Sq.'
-Perimeter[double] = 0' 11.0000"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 3954740.398082
-Centroid point [Z] = 2667818.873242
-
-Normal [X] = 0.000000
-Normal [Y] = 0.893830
-Normal [Z] = -0.448405
-
-Start Point [X]: 1612899999.999993
-Start Point [Y]: 1612899999.999993
-Start Point [Z]: 1612899999.999993
-
-End Point [X]: 1612899999.999993
-End Point [Y]: 1612899999.999993
-End Point [Z]: 1612899999.999993
-
-Origin = [4986604.634018, 3957587.770180, 2673494.696718]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
-
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
-
-Curve Line String Length: 127000.000000
-
-Control Points: 127000.000000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12524, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12524
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 2.0335", 8' 8.8088"
-Range High[point3d] = 16' 4.3230", 12' 11.8106", 9' 2.0480"
-Count[int] = 4
-Total Length[double] = 1' 10.3750"
-Area[double] = 0.0371 Sq.'
-Area[double] = 0.0371 Sq.'
-Perimeter[double] = 1' 10.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 4986604.634018
-Centroid point [Y] = 3833419.671277
-Centroid point [Z] = 2728681.451844
-
-Normal [X] = 1.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 3447573749.999988
-Start Point [Y]: 3447573749.999988
-Start Point [Z]: 3447573749.999988
-
-End Point [X]: 3447573749.999988
-End Point [Y]: 3447573749.999988
-End Point [Z]: 3447573749.999988
-
-Origin = [4986604.634018, 3957587.770180, 2673494.696718]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
-
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12525, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12525
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 9.3230", 12' 2.0335", 8' 8.8088"
-Range High[point3d] = 16' 9.3230", 12' 11.8106", 9' 2.0480"
-Count[int] = 4
-Total Length[double] = 1' 10.3750"
-Area[double] = 0.0371 Sq.'
-Area[double] = 0.0371 Sq.'
-Perimeter[double] = 1' 10.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5113604.634018
-Centroid point [Y] = 3833419.671277
-Centroid point [Z] = 2728681.451844
-
-Normal [X] = 1.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 3447573749.999988
-Start Point [Y]: 3447573749.999988
-Start Point [Z]: 3447573749.999988
-
-End Point [X]: 3447573749.999988
-End Point [Y]: 3447573749.999988
-End Point [Z]: 3447573749.999988
-
-Origin = [5113604.634018, 3957587.770180, 2673494.696718]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 5113604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
-
-End Point [X]: 5113604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12526, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12526
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 2.0335", 8' 8.8088"
-Range High[point3d] = 16' 9.3230", 12' 11.5864", 9' 1.6011"
-Count[int] = 4
-Total Length[double] = 2' 7.3750"
-Area[double] = 0.3711 Sq.'
-Area[double] = 0.3711 Sq.'
-Perimeter[double] = 2' 7.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 3830572.299179
-Centroid point [Z] = 2723005.628368
-
-Normal [X] = 0.000000
-Normal [Y] = 0.448405
-Normal [Z] = 0.893830
-
-Start Point [X]: 34475737500.000031
-Start Point [Y]: 34475737500.000031
-Start Point [Z]: 34475737500.000031
-
-End Point [X]: 34475737500.000031
-End Point [Y]: 34475737500.000031
-End Point [Z]: 34475737500.000031
-
-Origin = [4986604.634018, 3951893.025984, 2662143.049766]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3951893.025984
-Start Point [Z]: 2662143.049766
-
-End Point [X]: 4986604.634018
-End Point [Y]: 3951893.025984
-End Point [Z]: 2662143.049766
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = ShapeElement, current element id = 12527, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Shape
-Level[int] = Support
-Element ID[long] = 12527
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 116
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Shape
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Solid[boolean] = Solid
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Thickness[double] = 0' 0.0000"
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of 0 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 2.2577", 8' 9.2557"
-Range High[point3d] = 16' 9.3230", 12' 11.8106", 9' 2.0480"
-Count[int] = 4
-Total Length[double] = 2' 7.3750"
-Area[double] = 0.3711 Sq.'
-Area[double] = 0.3711 Sq.'
-Perimeter[double] = 2' 7.3750"
-Fill[binary] = No Fill
-Front Clip Depth[double] = 0' 0.0000"
-Back Clip Depth[double] = 0' 0.0000"
-Front Clip[boolean] = False
-Back Clip[boolean] = False
-Pattern Definition[int] = (None)
-Pattern Name[string] = <null>
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB2F0
-level color0 , 00000020169FB2F0
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_Outer --------
-Centroid point [X] = 5050104.634018
-Centroid point [Y] = 3836267.043375
-Centroid point [Z] = 2734357.275320
-
-Normal [X] = 0.000000
-Normal [Y] = 0.448405
-Normal [Z] = 0.893830
-
-Start Point [X]: 34475737500.000031
-Start Point [Y]: 34475737500.000031
-Start Point [Z]: 34475737500.000031
-
-End Point [X]: 34475737500.000031
-End Point [Y]: 34475737500.000031
-End Point [Z]: 34475737500.000031
-
-Origin = [4986604.634018, 3957587.770180, 2673494.696718]
-
-CURVE_PRIMITIVE_TYPE_LineString --------
-NUMBER OF COMPONENT: 4
-
-Start Point [X]: 4986604.634018
-Start Point [Y]: 3957587.770180
-Start Point [Z]: 2673494.696718
-
-End Point [X]: 4986604.634018
-End Point [Y]: 3957587.770180
-End Point [Z]: 2673494.696718
-
-Curve Line String Length: 271462.500000
-
-Control Points: 271462.500000
-
-
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = PointStringElement, current element id = 12528, id = 0 ---------
-Is3dElement[boolean] = True
-IsGraphicalElement[boolean] = True
-Element Description[string] = Point String
-Level[int] = Support
-Element ID[long] = 12528
-Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 100
-Linkages[int] = 0
-XAttributes[int] = 0
-Type[string] = Point String
-Color[int] = ByLevel (52)
-Weight[int] = ByLevel (0)
-Line Style[int] = ByLevel (0)
-Class[int] = Primary
-Transparency[double] = 0
-Template[long] = (None)
-Modified[boolean] = Not Modified
-New[boolean] = Not New
-Snappable[boolean] = Snappable
-Filled[boolean] = Not Filled
-Complex[boolean] = Complex
-Display Style[int] = (From View Display)
-Locked[boolean] = Unlocked
-Groups[NamedGroupMember] = Member of -1 groups
-Attached Material[string] = (None)
-Range Low[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
-Range High[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
-Count[int] = 1
-RGB1 =42,25,99
-transparency =0
-level 6 , 00000020169FB290
-level color0 , 00000020169FB290
-colorOut RGB =0,0,0
-level  =6
--------------------CURVE VECTOR---------------------
-Size: 1
-
-
-BOUNDARY_TYPE_None --------
-Centroid point [X] = 0.000000
-Centroid point [Y] = 0.000000
-Centroid point [Z] = 0.000000
-
-Normal [X] = 0.000000
-Normal [Y] = 0.000000
-Normal [Z] = 0.000000
-
-Start Point [X]: 0.000000
-Start Point [Y]: 0.000000
-Start Point [Z]: 0.000000
-
-End Point [X]: 0.000000
-End Point [Y]: 0.000000
-End Point [Z]: 0.000000
-
-Origin = [0.000000, 0.000000, 0.000000]
-
-CURVE_PRIMITIVE_TYPE_PointString --------
-
-Point  [X] = 5050104.634018
-Point  [Y] = 4064000.000000
-Point  [Z] = 2613006.960349
+Volume = 20445750377635278848.000000
 
 ===================================================
 ===================================================
-Element Description: Riser Clamp
-Element ID: 11410
+Element Description: Slab
+Element ID: 1536
 ===================================================
 ===================================================
 
 
------------- Instance Schema full name: DgnElementSchema.01.00
---------- ClassName = NormalCellElement, current element id = 11410, id = 0 ---------
+======================== pROPS nOT fOUND ===========================
+===================================================
+===================================================
+Element Description: Slab
+Element ID: 1536
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1544, id = 0 ---------
+--------- caca = SmartFeatureContainer
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Union #5
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+Label[string] = Union #5
+DynamicLabel[string] = Parametric Solid
 Is3dElement[boolean] = True
 IsGraphicalElement[boolean] = True
-Element Description[string] = Riser Clamp
-Element ID[long] = 11410
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1544
 Model[string] = Default
-Last Modified[dateTime] = 9/6/2020 12:41:31 PM
-Size[int] = 230
-Linkages[int] = 5
-XAttributes[int] = 4
-Type[string] = Support
+Last Modified[dateTime] = 5/27/2020 2:41:43 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 9
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
 Class[int] = Primary
+Transparency[double] = 0
 Template[long] = (None)
 Modified[boolean] = Modified
-New[boolean] = Not New
+New[boolean] = New
+Snappable[boolean] = Snappable
 Filled[boolean] = Not Filled
 Complex[boolean] = Not Complex
 Display Style[int] = (From View Display)
 Locked[boolean] = Unlocked
 Groups[NamedGroupMember] = Member of -1 groups
 Attached Material[string] = (None)
-Range Low[point3d] = 16' 4.3230", 12' 2.0335", 7' 11.7006"
-Range High[point3d] = 16' 9.3230", 14' 5.9665", 9' 2.0480"
-Pattern Name[string] = <null>
-Number of elements[int] = 2
-Scale X[double] = 1.00000
-Scale Y[double] = 1.00000
-Scale Z[double] = 1.00000
-Rotation-X[double] = -116.6414°
+Range Low[point3d] = -22' 11.3742", -41' 9.5196", -34' 6.6981"
+Range High[point3d] = -7' 3.1654", -33' 6.7317", -5' 10.3406"
+Volume[double] = 2162.6499 Cu.'
+Surface Area[double] = 2215.7832 Sq.'
+Rotation-X[double] = 0.0000°
 Rotation-Y[double] = 0.0000°
 Rotation-Z[double] = 0.0000°
 Angle[double] = 0.0000°
-Origin[point3d] = 16' 6.8230", 13' 4.0000", 8' 6.8743"
-Cell Type[boolean] = Graphic
-Is Annotation[boolean] = False
-Annotation Purpose[boolean] = False
+Orientation[int] = Top
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1544, id = 5 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 5
+Label[string] = Union #5
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 0
+Name[string] = Union #5
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1544, id = 3 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 3
+Label[string] = Union #3
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 1
+Name[string] = Union #3
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 1 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 1
+Label[string] = Slab #1
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 2
+Name[string] = Slab #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 2 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 2
+Label[string] = Slab #2
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 2
+Name[string] = Slab #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 4 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 4
+Label[string] = Slab #4
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 1
+Name[string] = Slab #4
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+RGB1 =0,255,0
+transparency =0
+level 64 , 000000B96EFFB290
+level color0 , 000000B96EFFB290
+colorOut RGB =0,0,0
+level  =64
+------------------- BRep Processing -------------------
+
+In SolidKernel Entity is: Solid 0
+
+-------------------------------- Processing BREP Entiy --------------------------------
+Entity------------ 
+Edges Entity: 24
+Faces Entity: 10
+Vertices Entity: 16
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 5
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -12770960.186935
+Centroid point [Y] = -1610662.054033
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = -1.000000
+Normal [Y] = 0.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 11119952500301.626953
+Start Point [Y]: 11119952500301.626953
+Start Point [Z]: 11119952500301.626953
+
+End Point [X]: 11119952500301.626953
+End Point [Y]: 11119952500301.626953
+End Point [Z]: 11119952500301.626953
+
+Origin = [-12770960.186935, -2246328.966908, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 1271333.825750
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 1271333.825750
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 3
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -14225168.722780
+Centroid point [Y] = -372784.381591
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = 0.000000
+Normal [Y] = 1.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 41813526789844.062500
+Start Point [Y]: 41813526789844.062500
+Start Point [Z]: 41813526789844.062500
+
+End Point [X]: 41813526789844.062500
+End Point [Y]: 41813526789844.062500
+End Point [Z]: 41813526789844.062500
+
+Origin = [-11834917.910989, -372784.381591, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 4780501.623582
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 4780501.623582
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 4
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -16615419.534572
+Centroid point [Y] = -673889.761374
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = -1.000000
+Normal [Y] = 0.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 5267345921195.507813
+Start Point [Y]: 5267345921195.507813
+Start Point [Z]: 5267345921195.507813
+
+End Point [X]: 5267345921195.507813
+End Point [Y]: 5267345921195.507813
+End Point [Z]: 5267345921195.507813
+
+Origin = [-16615419.534572, -372784.381591, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 602210.759566
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 602210.759566
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 5
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -14693189.860753
+Centroid point [Y] = -974995.141157
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = 0.000000
+Normal [Y] = -1.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 33626262803021.433594
+Start Point [Y]: 33626262803021.433594
+Start Point [Z]: 33626262803021.433594
+
+End Point [X]: 33626262803021.433594
+End Point [Y]: 33626262803021.433594
+End Point [Z]: 33626262803021.433594
+
+Origin = [-16615419.534572, -974995.141157, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 3844459.347636
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 3844459.347636
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 3
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -11834917.910989
+Centroid point [Y] = -1627390.130687
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = 1.000000
+Normal [Y] = -0.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 21947274671647.957031
+Start Point [Y]: 21947274671647.957031
+Start Point [Z]: 21947274671647.957031
+
+End Point [X]: 21947274671647.957031
+End Point [Y]: 21947274671647.957031
+End Point [Z]: 21947274671647.957031
+
+Origin = [-11834917.910989, -2881995.879783, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 2509211.498192
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 2509211.498192
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 4
+
+ID = 8
+
+-------------------CURVE VECTOR---------------------
+Size: 8
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -13863445.630806
+Centroid point [Y] = -1624851.524805
+Centroid point [Z] = 8746681.851038
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 7001446447810.479492
+Start Point [Y]: 7001446447810.479492
+Start Point [Z]: 7001446447810.479492
+
+End Point [X]: 7001446447810.479492
+End Point [Y]: 7001446447810.479492
+End Point [Z]: 7001446447810.479492
+
+Origin = [-11834917.910989, -372784.381591, 8746681.851038]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 4780501.623582
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 602210.759566
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 3844459.347636
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 1271333.825750
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 3677308.941217
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 635666.912875
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 4613351.217163
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 2509211.498192
+
+------------------- FACE -------------------
+
+Entity = 4
+
+ID = 7
+
+-------------------CURVE VECTOR---------------------
+Size: 8
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -13863445.630806
+Centroid point [Y] = -1624851.524805
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = -1.000000
+
+Start Point [X]: 7001446447810.480469
+Start Point [Y]: 7001446447810.480469
+Start Point [Z]: 7001446447810.480469
+
+End Point [X]: 7001446447810.480469
+End Point [Y]: 7001446447810.480469
+End Point [Z]: 7001446447810.480469
+
+Origin = [-16615419.534572, -372784.381591, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 4780501.623582
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -372784.381591
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 2509211.498192
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 4613351.217163
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 635666.912875
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 3677308.941217
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -12770960.186935
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 1271333.825750
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -974995.141157
+End Point [Z]: 0.000000
+
+Curve Line String Length: 3844459.347636
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16615419.534572
+Start Point [Y]: -974995.141157
+Start Point [Z]: 0.000000
+
+End Point [X]: -16615419.534572
+End Point [Y]: -372784.381591
+End Point [Z]: 0.000000
+
+Curve Line String Length: 602210.759566
+
+------------------- FACE -------------------
+
+Entity = 4
+
+ID = 3
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -14141593.519571
+Centroid point [Y] = -2881995.879783
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = 0.000000
+Normal [Y] = -1.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 40351515363625.718750
+Start Point [Y]: 40351515363625.718750
+Start Point [Z]: 40351515363625.718750
+
+End Point [X]: 40351515363625.718750
+End Point [Y]: 40351515363625.718750
+End Point [Z]: 40351515363625.718750
+
+Origin = [-11834917.910989, -2881995.879783, 8746681.851038]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 4613351.217163
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 4613351.217163
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -11834917.910989
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -11834917.910989
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 4
+
+ID = 4
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -16448269.128153
+Centroid point [Y] = -2564162.423345
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = -1.000000
+Normal [Y] = 0.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 5559976250150.820313
+Start Point [Y]: 5559976250150.820313
+Start Point [Z]: 5559976250150.820313
+
+End Point [X]: 5559976250150.820313
+End Point [Y]: 5559976250150.820313
+End Point [Z]: 5559976250150.820313
+
+Origin = [-16448269.128153, -2881995.879783, 8746681.851038]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 635666.912875
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 0.000000
+
+Curve Line String Length: 635666.912875
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2881995.879783
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2881995.879783
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
+------------------- FACE -------------------
+
+Entity = 4
+
+ID = 5
+
+-------------------CURVE VECTOR---------------------
+Size: 4
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = -14609614.657544
+Centroid point [Y] = -2246328.966908
+Centroid point [Z] = 4373340.925519
+
+Normal [X] = 0.000000
+Normal [Y] = 1.000000
+Normal [Z] = 0.000000
+
+Start Point [X]: 32164251376803.101563
+Start Point [Y]: 32164251376803.101563
+Start Point [Z]: 32164251376803.101563
+
+End Point [X]: 32164251376803.101563
+End Point [Y]: 32164251376803.101563
+End Point [Z]: 32164251376803.101563
+
+Origin = [-16448269.128153, -2246328.966908, 8746681.851038]
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 3677308.941217
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 8746681.851038
+
+End Point [X]: -12770960.186935
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 8746681.851038
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -12770960.186935
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 0.000000
+
+Curve Line String Length: 3677308.941217
+
+CURVE_PRIMITIVE_TYPE_Line --------
+
+Start Point [X]: -16448269.128153
+Start Point [Y]: -2246328.966908
+Start Point [Z]: 0.000000
+
+End Point [X]: -16448269.128153
+End Point [Y]: -2246328.966908
+End Point [Z]: 8746681.851038
+
+Curve Line String Length: 8746681.851038
+
 ===================================================
 ===================================================
-Element Description: Riser Clamp
-Element ID: 11410
+Element Description: Parametric Solid/Surface
+Element ID: 1544
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1544, id = 0 ---------
+--------- caca = SmartFeatureContainer
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Union #5
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+Label[string] = Union #5
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1544
+Model[string] = Default
+Last Modified[dateTime] = 5/27/2020 2:41:43 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 9
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = -22' 11.3742", -41' 9.5196", -34' 6.6981"
+Range High[point3d] = -7' 3.1654", -33' 6.7317", -5' 10.3406"
+Volume[double] = 2162.6499 Cu.'
+Surface Area[double] = 2215.7832 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1544, id = 5 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 5
+Label[string] = Union #5
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 0
+Name[string] = Union #5
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1544, id = 3 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 3
+Label[string] = Union #3
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 1
+Name[string] = Union #3
+MoveToTopValid[boolean] = True
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 1 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 1
+Label[string] = Slab #1
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 2
+Name[string] = Slab #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 2 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 2
+Label[string] = Slab #2
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 2
+Name[string] = Slab #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1544, id = 4 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 4
+Label[string] = Slab #4
+Deletable[boolean] = True
+IconName[string] = PlaceSlab
+DepthId[int] = 1
+Name[string] = Slab #4
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1544
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+RGB1 =0,255,0
+transparency =0
+level 64 , 000000B96EFFBFE0
+level color0 , 000000B96EFFBFE0
+colorOut RGB =0,0,0
+level  =64
+-------- CONE/CYLINDER/TRUNCATED_CONE --------
+Range [XLength] = 8852965.810867
+Range [YLength] = 10843701.817201
+Range [ZLength] = 11808633.362313
+
+Quaternion Rotation
+qRotation [X] = -747.362686
+qRotation [Y] = 1191.858117
+qRotation [Z] = 1451.528024
+qRotation [W] = -1451.527735
+
+Vector Rotation Axis Local to World
+vRotation [X] = 0.369727
+vRotation [Y] = -0.589624
+vRotation [Z] = -0.718085
+
+Origin [X] = 25140321.866400
+Origin [Y] = 4334626.416605
+Origin [Z] = 1789205.512300
+
+Center of BASE Circle [X] = 25140321.866400
+Center of BASE Circle [Y] = 4334626.416605
+Center of BASE Circle [Z] = 1789205.512300
+
+Center of TOP Circle [X] = 20801050.565732
+Center of TOP Circle [Y] = 11254687.585100
+Center of TOP Circle [Z] = 10216937.252477
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = -0.925478
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.302251
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.228330
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = 0.082413
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = -0.748992
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = 0.657434
+
+Radius at BASE = 3728200.547566
+Radius at TOP = 1129725.442511
+
+True if the end cap is enabled = 1
+--------END OF CONE/CYLINDER/TRUNCATED_CONE DATA--------
+Centroid from Area = [23649995.264854, 6711327.601927, 4683717.501247]
+
+Area = 231130212101116.312500
+
+Centroid from Volume = [23677007.305131, 6668250.099266, 4631254.722721]
+
+Volume = 238280098511938945024.000000
+
+Origin = [25140321.866400, 4334626.416605, 1789205.512300]
+
+===================================================
+===================================================
+Element Description: Cone
+Element ID: 1582
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+===================================================
+===================================================
+Element Description: Cone
+Element ID: 1582
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+RGB1 =0,255,0
+transparency =0
+level 64 , 000000B96EFFBFE0
+level color0 , 000000B96EFFBFE0
+colorOut RGB =0,0,0
+level  =64
+-------- CONE/CYLINDER/TRUNCATED_CONE --------
+Range [XLength] = 16440666.425223
+Range [YLength] = 7985507.212444
+Range [ZLength] = 7320112.758486
+
+Quaternion Rotation
+qRotation [X] = -1245.815201
+qRotation [Y] = 4339.758534
+qRotation [Z] = -875.304183
+qRotation [W] = 875.304489
+
+Vector Rotation Axis Local to World
+vRotation [X] = -0.270882
+vRotation [Y] = 0.943610
+vRotation [Z] = -0.190321
+
+Origin [X] = 13847388.279866
+Origin [Y] = 4773304.193834
+Origin [Z] = 3704599.089613
+
+Center of BASE Circle [X] = 13847388.279866
+Center of BASE Circle [Y] = 4773304.193834
+Center of BASE Circle [Z] = 3704599.089613
+
+Center of TOP Circle [X] = 29041828.054641
+Center of TOP Circle [Y] = 9135174.087514
+Center of TOP Circle [Z] = 6769228.813314
+
+0 Degree Vector of BASE circle (vector 0 Degree) [X] = 0.320636
+0 Degree Vector of BASE circle (vector 0 Degree) [Y] = -0.604677
+0 Degree Vector of BASE circle (vector 0 Degree) [Z] = -0.729081
+
+0 Degree Vector of BASE circle (vector 90 Degree) [X] = -0.082413
+0 Degree Vector of BASE circle (vector 90 Degree) [Y] = 0.748992
+0 Degree Vector of BASE circle (vector 90 Degree) [Z] = -0.657434
+
+Radius at BASE = 3728200.547566
+Radius at TOP = 36177.646690
+
+True if the end cap is enabled = 1
+--------END OF CONE/CYLINDER/TRUNCATED_CONE DATA--------
+Centroid from Area = [18026954.068439, 5973132.713481, 4547593.088582]
+
+Area = 239041893743146.281250
+
+Centroid from Volume = [17683209.889812, 5874454.025349, 4478261.896199]
+
+Volume = 236675642878834769920.000000
+
+Origin = [13847388.279866, 4773304.193834, 3704599.089613]
+
+===================================================
+===================================================
+Element Description: Cone
+Element ID: 1583
+===================================================
+===================================================
+
+
+======================== pROPS nOT fOUND ===========================
+===================================================
+===================================================
+Element Description: Cone
+Element ID: 1583
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1585, id = 0 ---------
+--------- caca = SmartFeatureContainer
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Union #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+Label[string] = Union #3
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1585
+Model[string] = Default
+Last Modified[dateTime] = 5/27/2020 2:45:33 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 7
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = -106' 8.2074", -64' 0.4042", -61' 5.5260"
+Range High[point3d] = -52' 8.9370", -28' 0.0163", -22' 8.6191"
+Volume[double] = 15598.6981 Cu.'
+Surface Area[double] = 4434.2863 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1585, id = 3 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 3
+Label[string] = Union #3
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 0
+Name[string] = Union #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1585, id = 1 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 1
+Label[string] = Cone #1
+Deletable[boolean] = True
+IconName[string] = PlaceCone
+DepthId[int] = 1
+Name[string] = Cone #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1585, id = 2 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 2
+Label[string] = Cone #2
+Deletable[boolean] = True
+IconName[string] = PlaceCone
+DepthId[int] = 1
+Name[string] = Cone #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+RGB1 =0,255,0
+transparency =0
+level 64 , 000000B96EFFB290
+level color0 , 000000B96EFFB290
+colorOut RGB =0,0,0
+level  =64
+------------------- BRep Processing -------------------
+
+In SolidKernel Entity is: Solid 0
+
+-------------------------------- Processing BREP Entiy --------------------------------
+Entity------------ 
+Edges Entity: 6
+Faces Entity: 7
+Vertices Entity: 0
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 2
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 20801050.565732
+Centroid point [Y] = 11254687.585100
+Centroid point [Z] = 10216937.252477
+
+Normal [X] = -0.369727
+Normal [Y] = 0.589624
+Normal [Z] = 0.718085
+
+Start Point [X]: 4009550538184.229492
+Start Point [Y]: 4009550538184.229492
+Start Point [Z]: 4009550538184.229492
+
+End Point [X]: 4009550538184.229492
+End Point [Y]: 4009550538184.229492
+End Point [Z]: 4009550538184.229492
+
+Origin = [19755514.382383, 10913227.348164, 9958986.537500]
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+Is Ellipse: 1
+
+Start Point [X]: 19755514.382383
+Start Point [Y]: 10913227.348164
+Start Point [Z]: 9958986.537500
+
+End Point [X]: 19755514.382383
+End Point [Y]: 10913227.348164
+End Point [Z]: 9958986.537500
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 1
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 25140321.866400
+Centroid point [Y] = 4334626.416605
+Centroid point [Z] = 1789205.512300
+
+Normal [X] = 0.369727
+Normal [Y] = -0.589624
+Normal [Z] = -0.718085
+
+Start Point [X]: 43666502129461.164063
+Start Point [Y]: 43666502129461.164063
+Start Point [Z]: 43666502129461.164063
+
+End Point [X]: 43666502129461.164063
+End Point [Y]: 43666502129461.164063
+End Point [Z]: 43666502129461.164063
+
+Origin = [21689953.817153, 3207775.418644, 937943.815756]
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+Is Ellipse: 1
+
+Start Point [X]: 21689953.817153
+Start Point [Y]: 3207775.418644
+Start Point [Z]: 937943.815756
+
+End Point [X]: 21689953.817153
+End Point [Y]: 3207775.418644
+End Point [Z]: 937943.815756
+
+------------------- FACE -------------------
+
+Entity = 1
+
+ID = 3
+
+-------- MSBsplineSurfaceCR msBsplineSurface --------Type: 0
+
+Number of Bounds: 2
+Total number of Poles: 14
+U number of Poles: 2
+V number of Poles: 7
+U is Closed: 0
+V is Closed: 0
+Number of UV Poles Get Poles: 14
+Grid Poles Number: 14
+HasValidPoleCounts: 1
+HasValidPoleAllocation: 1
+HasValidWeightAllocation: 1
+HasWeights: 1
+
+POINT Following the m/n parameters
+mParam: 2
+nParam: 14
+nParamCalc: 7
+V_Degree: 3
+U_Degree: 1
+V_Order: 4
+U_Order: 2
+POINT Controls with GET POLES STORED : 
+has weight: 1
+
+Point 0:  = [21689953.817153, 3207775.418644, 937943.815756]
+Weight = 1.000000
+
+Point 2:  = [21075453.014282, 8792557.797841, -3964148.781469]
+Weight = 0.333333
+
+Point 4:  = [27976189.112775, 11046259.793765, -2261625.388380]
+Weight = 0.333333
+
+Point 6:  = [28590689.915647, 5461477.414567, 2640467.208845]
+Weight = 1.000000
+
+Point 8:  = [29205190.718518, -123304.964631, 7542559.806070]
+Weight = 0.333333
+
+Point 10:  = [22304454.620025, -2377006.960554, 5840036.412980]
+Weight = 0.333333
+
+Point 12:  = [21689953.817153, 3207775.418644, 937943.815756]
+Weight = 1.000000
+
+Point 1:  = [19755514.382383, 10913227.348164, 9958986.537500]
+Weight = 1.000000
+
+Point 3:  = [19569307.341589, 12605537.261263, 8473546.401441]
+Weight = 0.333333
+
+Point 5:  = [21660379.708287, 13288457.735135, 8989447.831395]
+Weight = 0.333333
+
+Point 7:  = [21846586.749081, 11596147.822036, 10474887.967454]
+Weight = 1.000000
+
+Point 9:  = [22032793.789874, 9903837.908937, 11960328.103513]
+Weight = 0.333333
+
+Point 11:  = [19941721.423176, 9220917.435065, 11444426.673559]
+Weight = 0.333333
+
+Point 13:  = [19755514.382383, 10913227.348164, 9958986.537500]
+Weight = 1.000000
+
+-------------------CURVE VECTOR---------------------
+Size: 2
+
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 0.504702
+Centroid point [Y] = 0.500001
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.898228
+Start Point [Y]: 0.898228
+Start Point [Z]: 0.898228
+
+End Point [X]: 0.898228
+End Point [Y]: 0.898228
+End Point [Z]: 0.898228
+
+Origin = [0.000000, 1.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 0.503512
+Centroid point [Y] = 0.500001
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.916659
+Start Point [Y]: 0.916659
+Start Point [Z]: 0.916659
+
+End Point [X]: 0.916659
+End Point [Y]: 0.916659
+End Point [Z]: 0.916659
+
+Origin = [0.000000, 1.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_LineString --------
+NUMBER OF COMPONENT: 516
+
+Start Point [X]: 0.000000
+Start Point [Y]: 1.000000
+Start Point [Z]: 0.000000
+
+End Point [X]: -0.000000
+End Point [Y]: 1.000000
+End Point [Z]: 0.000000
+
+Curve Line String Length: 0.004464
+
+Control Points: 0.004464
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 0.445528
+Centroid point [Y] = 0.500000
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = -1.000000
+
+Start Point [X]: 0.018431
+Start Point [Y]: 0.018431
+Start Point [Z]: 0.018431
+
+End Point [X]: 0.018431
+End Point [Y]: 0.018431
+End Point [Z]: 0.018431
+
+Origin = [0.490677, 0.564811, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_LineString --------
+NUMBER OF COMPONENT: 94
+
+Start Point [X]: 0.490677
+Start Point [Y]: 0.564811
+Start Point [Z]: 0.000000
+
+End Point [X]: 0.490677
+End Point [Y]: 0.564811
+End Point [Z]: 0.000000
+
+Curve Line String Length: 0.005017
+
+Control Points: 0.005017
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 2
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 29041828.054641
+Centroid point [Y] = 9135174.087514
+Centroid point [Z] = 6769228.813314
+
+Normal [X] = 0.943610
+Normal [Y] = 0.270882
+Normal [Z] = 0.190321
+
+Start Point [X]: 4111785957.045803
+Start Point [Y]: 4111785957.045803
+Start Point [Z]: 4111785957.045803
+
+End Point [X]: 4111785957.045803
+End Point [Y]: 4111785957.045803
+End Point [Z]: 4111785957.045803
+
+Origin = [29053427.909390, 9113298.299044, 6742852.396412]
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+Is Ellipse: 1
+
+Start Point [X]: 29053427.909390
+Start Point [Y]: 9113298.299044
+Start Point [Z]: 6742852.396412
+
+End Point [X]: 29053427.909390
+End Point [Y]: 9113298.299044
+End Point [Z]: 6742852.396412
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 4
+
+-------- MSBsplineSurfaceCR msBsplineSurface --------Type: 0
+
+Number of Bounds: 1
+Total number of Poles: 14
+U number of Poles: 2
+V number of Poles: 7
+U is Closed: 0
+V is Closed: 0
+Number of UV Poles Get Poles: 14
+Grid Poles Number: 14
+HasValidPoleCounts: 1
+HasValidPoleAllocation: 1
+HasValidWeightAllocation: 1
+HasWeights: 1
+
+POINT Following the m/n parameters
+mParam: 2
+nParam: 14
+nParamCalc: 7
+V_Degree: 3
+U_Degree: 1
+V_Order: 4
+U_Order: 2
+POINT Controls with GET POLES STORED : 
+has weight: 1
+
+Point 0:  = [25647056.770800, 7510031.086401, 5343311.171374]
+Weight = 1.000000
+
+Point 2:  = [25800971.952941, 6111200.046486, 6571147.606161]
+Weight = 0.333333
+
+Point 4:  = [25202146.149999, 7240506.135208, 7932792.158833]
+Weight = 0.333333
+
+Point 6:  = [25048230.967858, 8639337.175123, 6704955.724046]
+Weight = 1.000000
+
+Point 8:  = [24894315.785718, 10038168.215038, 5477119.289259]
+Weight = 0.333333
+
+Point 10:  = [25493141.588660, 8908862.126316, 4115474.736587]
+Weight = 0.333333
+
+Point 12:  = [25647056.770800, 7510031.086401, 5343311.171374]
+Weight = 1.000000
+
+Point 1:  = [29053427.909390, 9113298.299044, 6742852.396412]
+Weight = 1.000000
+
+Point 3:  = [29059390.891438, 9059104.786335, 6790421.236059]
+Weight = 0.333333
+
+Point 5:  = [29036191.181941, 9102856.363277, 6843174.069864]
+Weight = 0.333333
+
+Point 7:  = [29030228.199893, 9157049.875985, 6795605.230216]
+Weight = 1.000000
+
+Point 9:  = [29024265.217845, 9211243.388693, 6748036.390568]
+Weight = 0.333333
+
+Point 11:  = [29047464.927342, 9167491.811752, 6695283.556764]
+Weight = 0.333333
+
+Point 13:  = [29053427.909390, 9113298.299044, 6742852.396412]
+Weight = 1.000000
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 0.526765
+Centroid point [Y] = 0.500006
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.943812
+Start Point [Y]: 0.943812
+Start Point [Z]: 0.943812
+
+End Point [X]: 0.943812
+End Point [Y]: 0.943812
+End Point [Z]: 0.943812
+
+Origin = [1.000000, 0.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 0.526765
+Centroid point [Y] = 0.500006
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.943812
+Start Point [Y]: 0.943812
+Start Point [Z]: 0.943812
+
+End Point [X]: 0.943812
+End Point [Y]: 0.943812
+End Point [Z]: 0.943812
+
+Origin = [1.000000, 0.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_LineString --------
+NUMBER OF COMPONENT: 238
+
+Start Point [X]: 1.000000
+Start Point [Y]: 0.000000
+Start Point [Z]: 0.000000
+
+End Point [X]: 1.000000
+End Point [Y]: 0.000000
+End Point [Z]: 0.000000
+
+Curve Line String Length: 0.027778
+
+Control Points: 0.027778
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 5
+
+-------- MSBsplineSurfaceCR msBsplineSurface --------Type: 0
+
+Number of Bounds: 1
+Total number of Poles: 14
+U number of Poles: 2
+V number of Poles: 7
+U is Closed: 0
+V is Closed: 0
+Number of UV Poles Get Poles: 14
+Grid Poles Number: 14
+HasValidPoleCounts: 1
+HasValidPoleAllocation: 1
+HasValidWeightAllocation: 1
+HasWeights: 1
+
+POINT Following the m/n parameters
+mParam: 2
+nParam: 14
+nParamCalc: 7
+V_Degree: 3
+U_Degree: 1
+V_Order: 4
+U_Order: 2
+POINT Controls with GET POLES STORED : 
+has weight: 1
+
+Point 0:  = [15042783.469510, 2518947.318326, 986440.753295]
+Weight = 1.000000
+
+Point 2:  = [15657284.272381, -3065835.060872, 5888533.350520]
+Weight = 0.333333
+
+Point 4:  = [13266493.893094, 1442878.690146, 11324850.023156]
+Weight = 0.333333
+
+Point 6:  = [12651993.090222, 7027661.069343, 6422757.425931]
+Weight = 1.000000
+
+Point 8:  = [12037492.287350, 12612443.448541, 1520664.828706]
+Weight = 0.333333
+
+Point 10:  = [14428282.666638, 8103729.697523, -3915651.843930]
+Weight = 0.333333
+
+Point 12:  = [15042783.469510, 2518947.318326, 986440.753295]
+Weight = 1.000000
+
+Point 1:  = [22238136.409074, 5905564.038008, 3942722.572834]
+Weight = 1.000000
+
+Point 3:  = [22540114.514172, 3161089.185618, 6351709.878639]
+Weight = 0.333333
+
+Point 5:  = [21365231.836965, 5376762.181649, 9023225.684385]
+Weight = 0.333333
+
+Point 7:  = [21063253.731867, 8121237.034038, 6614238.378580]
+Weight = 1.000000
+
+Point 9:  = [20761275.626769, 10865711.886428, 4205251.072775]
+Weight = 0.333333
+
+Point 11:  = [21936158.303976, 8650038.890398, 1533735.267029]
+Weight = 0.333333
+
+Point 13:  = [22238136.409074, 5905564.038008, 3942722.572834]
+Weight = 1.000000
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_ParityRegion --------
+Centroid point [X] = 0.466943
+Centroid point [Y] = 0.500000
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.931463
+Start Point [Y]: 0.931463
+Start Point [Z]: 0.931463
+
+End Point [X]: 0.931463
+End Point [Y]: 0.931463
+End Point [Z]: 0.931463
+
+Origin = [0.000000, 1.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_CurveVector --------
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 0.466943
+Centroid point [Y] = 0.500000
+Centroid point [Z] = 0.000000
+
+Normal [X] = 0.000000
+Normal [Y] = 0.000000
+Normal [Z] = 1.000000
+
+Start Point [X]: 0.931463
+Start Point [Y]: 0.931463
+Start Point [Z]: 0.931463
+
+End Point [X]: 0.931463
+End Point [Y]: 0.931463
+End Point [Z]: 0.931463
+
+Origin = [0.000000, 1.000000, 0.000000]
+
+CURVE_PRIMITIVE_TYPE_LineString --------
+NUMBER OF COMPONENT: 394
+
+Start Point [X]: 0.000000
+Start Point [Y]: 1.000000
+Start Point [Z]: 0.000000
+
+End Point [X]: -0.000000
+End Point [Y]: 1.000000
+End Point [Z]: 0.000000
+
+Curve Line String Length: 0.004464
+
+Control Points: 0.004464
+
+------------------- FACE -------------------
+
+Entity = 2
+
+ID = 1
+
+-------------------CURVE VECTOR---------------------
+Size: 1
+
+
+BOUNDARY_TYPE_Outer --------
+Centroid point [X] = 13847388.279866
+Centroid point [Y] = 4773304.193834
+Centroid point [Z] = 3704599.089613
+
+Normal [X] = -0.943610
+Normal [Y] = -0.270882
+Normal [Z] = -0.190321
+
+Start Point [X]: 43666502129461.187500
+Start Point [Y]: 43666502129461.187500
+Start Point [Z]: 43666502129461.187500
+
+End Point [X]: 43666502129461.187500
+End Point [Y]: 43666502129461.187500
+End Point [Z]: 43666502129461.187500
+
+Origin = [15042783.469510, 2518947.318326, 986440.753295]
+
+CURVE_PRIMITIVE_TYPE_Arc --------
+
+Is Circular: 1
+Is Ellipse: 1
+
+Start Point [X]: 15042783.469510
+Start Point [Y]: 2518947.318326
+Start Point [Z]: 986440.753295
+
+End Point [X]: 15042783.469510
+End Point [Y]: 2518947.318326
+End Point [Z]: 986440.753295
+
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1585
+===================================================
+===================================================
+
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureContainer, current element id = 1585, id = 0 ---------
+--------- caca = SmartFeatureContainer
+NodeId[int] = 0
+Deletable[boolean] = True
+IconName[string] = ParametricSolid
+DepthId[int] = 0
+Name[string] = Union #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+Label[string] = Union #3
+DynamicLabel[string] = Parametric Solid
+Is3dElement[boolean] = True
+IsGraphicalElement[boolean] = True
+Element Description[string] = Parametric Solid/Surface
+Level[int] = Default
+Element ID[long] = 1585
+Model[string] = Default
+Last Modified[dateTime] = 5/27/2020 2:45:33 PM
+Size[int] = 76
+Linkages[int] = 2
+XAttributes[int] = 7
+Type[string] = Parametric Solid/Surface
+Color[int] = 2
+Weight[int] = 0
+Line Style[int] = 0
+Class[int] = Primary
+Transparency[double] = 0
+Template[long] = (None)
+Modified[boolean] = Modified
+New[boolean] = New
+Snappable[boolean] = Snappable
+Filled[boolean] = Not Filled
+Complex[boolean] = Not Complex
+Display Style[int] = (From View Display)
+Locked[boolean] = Unlocked
+Groups[NamedGroupMember] = Member of -1 groups
+Attached Material[string] = (None)
+Range Low[point3d] = -106' 8.2074", -64' 0.4042", -61' 5.5260"
+Range High[point3d] = -52' 8.9370", -28' 0.0163", -22' 8.6191"
+Volume[double] = 15598.6981 Cu.'
+Surface Area[double] = 4434.2863 Sq.'
+Rotation-X[double] = 0.0000°
+Rotation-Y[double] = 0.0000°
+Rotation-Z[double] = 0.0000°
+Angle[double] = 0.0000°
+Orientation[int] = Top
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureContainerBase
+
+elemInst Full class name: ----- :DgnElementSchema:GraphicalElement
+
+elemInst Full class name: ----- :BaseElementSchema:MstnVolume
+
+elemInst Full class name: ----- :BaseElementSchema:MstnRotation
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = BooleanFeature, current element id = 1585, id = 3 ---------
+--------- caca = BooleanFeature
+NodeId[int] = 3
+Label[string] = Union #3
+Deletable[boolean] = True
+IconName[string] = ParametricUnion
+DepthId[int] = 0
+Name[string] = Union #3
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = True
+BooleanFunction[int] = 1
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeature
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1585, id = 1 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 1
+Label[string] = Cone #1
+Deletable[boolean] = True
+IconName[string] = PlaceCone
+DepthId[int] = 1
+Name[string] = Cone #1
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+
+------------ Instance Schema full name: SmartFeaturesSchema.01.00
+--------- className = SmartFeatureSolid, current element id = 1585, id = 2 ---------
+--------- caca = SmartFeatureSolid
+NodeId[int] = 2
+Label[string] = Cone #2
+Deletable[boolean] = True
+IconName[string] = PlaceCone
+DepthId[int] = 1
+Name[string] = Cone #2
+MoveToTopValid[boolean] = False
+MoveAboveValid[boolean] = False
+ReorderValid[boolean] = False
+IsTop[boolean] = False
+Hidden[boolean] = True
+
+elemInst Full class name: ----- :SmartFeaturesSchema:SmartFeatureLeaf
+is NOT smart feature
+===================================================
+===================================================
+Element Description: Parametric Solid/Surface
+Element ID: 1585
 ===================================================
 ===================================================
 
