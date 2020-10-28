@@ -35,8 +35,7 @@ public:
 
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
-
-
+	
 	Ifc4::IfcCurve* buildIfcCurvePrimitives(CurveGraphicProperties* curveProperties, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle);
 	IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* buildIfcCompositeCurveSegment(vector<Ifc4::IfcCurve*> curveVector);
 	vector<Ifc4::IfcCurve*> ifcShapesCurvesParser(ShapesGraphicProperties* curvesShape, IfcHierarchyHelper<Ifc4>& file, IfcElementBundle*& ifcElementBundle);
@@ -45,5 +44,6 @@ private:
 	vector<BoundTypeIfcCurve*> mShapeBoundTypeCurvesVector;
 	bool mHasSingleShape;
 
+	mutable boost::shared_mutex _mutex;
 };
 

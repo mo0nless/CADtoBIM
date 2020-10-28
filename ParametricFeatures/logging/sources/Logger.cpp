@@ -4,13 +4,15 @@ namespace Logs {
 
 
 	Logger *Logger::_logger = 0;
-
+	once_flag Logger::initInstanceFlag;
+	//boost::shared_mutex Logger::_mutex;
 
 	Logger::Logger()
 	{
 
 		try
 		{
+			this->_log = src::severity_logger<severity_level>();
 
 			string logsOutputFolderPath = SessionManager::getInstance()->getCurrentDayLogsFolderPath();
 			// Create a log file sink
@@ -34,10 +36,11 @@ namespace Logs {
 
 			sink->set_formatter
 			(
-				expr::format("%1%: [%2%]: <%3%> [%4% : %5% : %6%] - %7%")
+				expr::format("%1%: [%2%]: <%3%> [%4% : %5% : %6% : %7%] - %8%")
 				% expr::attr<unsigned int>("RecordID")
 				% expr::attr<boost::posix_time::ptime>("TimeStamp")
 				% severity
+				% expr::attr<string>("Thread")
 				% expr::attr<string>("File")
 				% expr::attr<int>("Line")
 				% expr::attr<string>("Function")
@@ -50,11 +53,11 @@ namespace Logs {
 			// Add some attributes too
 			logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
 			logging::core::get()->add_global_attribute("RecordID", attrs::counter<unsigned int>());
-			// New attributes that hold filename and line number
-			logging::core::get()->add_thread_attribute("File", attrs::mutable_constant<std::string>(""));
-			logging::core::get()->add_thread_attribute("Line", attrs::mutable_constant<int>(0));
-			logging::core::get()->add_thread_attribute("Function", attrs::mutable_constant<std::string>(""));
-
+			
+			logging::core::get()->add_global_attribute("Thread", shared_mc<string>(""));
+			logging::core::get()->add_global_attribute("File", shared_mc<string>(""));
+			logging::core::get()->add_global_attribute("Line", shared_mc<int>(0));
+			logging::core::get()->add_global_attribute("Function", shared_mc<string>(""));
 
 			// set filter
 			logging::core::get()->set_filter
@@ -105,7 +108,6 @@ namespace Logs {
 	{
 		setFileNameLineAndNumber(fileName, lineNumber, functionName);
 		BOOST_LOG_SEV(this->_log, fatal) << "! FATAL ERROR ! - " + fatalMessage;
-
 	}
 
 	void Logger::logFatal(string fileName, int lineNumber, string functionName, exception & ex, string fatalMessage)

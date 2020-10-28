@@ -24,8 +24,7 @@ private:
 	SmartFeatureContainer * smartFeatureContainer;
 
 	vector<ElementBundle*> subElements;
-	
-
+		
 public:
 	DictionaryProperties(long newElementId, string newElementDescriptor);
 

@@ -29,6 +29,7 @@ public:
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
+	mutable boost::shared_mutex _mutex;
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,

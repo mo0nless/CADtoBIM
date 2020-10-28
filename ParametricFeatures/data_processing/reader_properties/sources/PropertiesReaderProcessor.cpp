@@ -1,16 +1,19 @@
 #include "../headers/PropertiesReaderProcessor.h"
 
+once_flag PropertiesReaderProcessor::initInstanceFlag;
+PropertiesReaderProcessor* PropertiesReaderProcessor::_PropertiesReaderProcessor = 0;
+
 PropertiesReaderProcessor::PropertiesReaderProcessor()
-{
+{	
 }
 
 vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
-	vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
-	string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+		
+	//ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
-	ofstream outfile;
-	string elemClassName;
 	WString elDescr;
 	//WCharCP outXML = L"C:/Users/LX5990/Documents/Internal Projects Development/DevOpenPlant/ParametricFeatures/TEST.xml";
 
@@ -21,7 +24,7 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 	bool includeReferenceAttachments = true;
 
 	// Create a scope which finds instances in the given element. 
-	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::Element, includeReferenceAttachments));
+	FindInstancesScopePtr scope = FindInstancesScope::CreateScope(currentElem, FindInstancesScopeOption(DgnECHostType::All, includeReferenceAttachments));
 
 	// Analogous to a SQL query and is used with DgnECManager::FindElementInstances to find ECInstances that satisfy the query's 'where' clause.
 	// Specify ECQUERY_PROCESS_SearchAllClasses for the query to consider instances of all classes

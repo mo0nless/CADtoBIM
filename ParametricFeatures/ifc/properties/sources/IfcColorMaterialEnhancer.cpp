@@ -2,20 +2,20 @@
 
 void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting enhancing the IFC color and material -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC color and material -!");
 
 	for (auto elemntBundle : ifcBundleVector) {
 		for (auto graphicEl : elemntBundle->getIfcGraphicPropertiesBundleVector()) {
 			processColour(*graphicEl,file);
 		}
 	}
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended enhancing the IFC color and material -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC color and material -!");
 
 }
 
 void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
@@ -89,7 +89,7 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 	}
 	else {
 		ifcMaterial = new Ifc4::IfcMaterial("UndefinedMaerial", boost::none, boost::none);
-		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Undefined material");
+		_logger->logWarning(__FILE__, __LINE__, __func__, "Undefined material");
 
 	}
 	
@@ -108,7 +108,7 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 
 Ifc4::IfcColourRgb * IfcColorMaterialEnhancer::buildIfcColor(UInt32 color)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	// another method to get the color
 	//UInt32 color = elemDisplayParamsCP->GetLineColorTBGR();

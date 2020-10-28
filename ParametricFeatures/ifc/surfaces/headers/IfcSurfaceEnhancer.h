@@ -30,7 +30,5 @@ public:
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
-	Ifc4::IfcSurface* buildIfcElementarySurface(MSBsplineSurfaceGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcSurface* buildBoundedSurface(MSBsplineSurfaceGraphicProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		ElementBundle* elementBundle);
+	mutable boost::shared_mutex _mutex;
 };

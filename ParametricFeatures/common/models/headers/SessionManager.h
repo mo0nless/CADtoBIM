@@ -1,5 +1,8 @@
 #pragma once
 
+#include <boost/thread.hpp>
+#include <boost/thread/mutex.hpp>
+
 //#include<string>
 #include "../../utils/headers/StringUtils.hpp"
 
@@ -14,10 +17,9 @@ private:
 	string _outputFolderPath;
 	string _dgnFileName;
 	string _currentDayLogsFolderPath;
-
+	
 	// Private constructor so that no objects can be created.
 	SessionManager();
-
 public:
 	static SessionManager *getInstance() {
 		if (!_instance) {
@@ -26,7 +28,7 @@ public:
 			
 		return _instance;
 	}
-
+	
 	string getDataOutputFilePath();
 	void setDataOutputFilePath(string dataOutputFilePath);
 

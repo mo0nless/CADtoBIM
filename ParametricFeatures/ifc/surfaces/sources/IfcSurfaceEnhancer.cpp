@@ -3,7 +3,8 @@
 void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
 	ElementBundle* elementBundle, bool addToIfcElementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	boost::unique_lock<boost::shared_mutex> guard(_mutex);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (msBsplineSurfaceGraphicProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*msBsplineSurfaceGraphicProperties, file, elementBundle);
@@ -18,14 +19,15 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 			//ifcTemplatedEntityList->push(ifcRepresentationItem);
 		}
 		else {
-			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__,"ifcRepresentationItem is NULL");
+			_logger->logWarning(__FILE__, __LINE__, __func__,"ifcRepresentationItem is NULL");
 		}
 	}
 }
 
 Ifc4::IfcBSplineSurface* IfcSurfaceEnhancer::buildIfcSurface(MSBsplineSurfaceGraphicProperties & msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle * elementBundle)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//Create IfcCartesianPoint List 
 	IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>* tempCartesianPointList = new IfcTemplatedEntityListList<Ifc4::IfcCartesianPoint>();

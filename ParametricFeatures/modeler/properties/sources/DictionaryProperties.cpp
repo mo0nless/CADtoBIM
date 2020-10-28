@@ -9,6 +9,8 @@ DictionaryProperties::DictionaryProperties(long newElementId, string newEmentDes
 	this->isSmartSolid = false;
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 	this->isPrimitiveSolid = false;
+	this->subElements = vector<ElementBundle*>();
+	this->elementReaderPropertiesBundleVector = vector<ReaderPropertiesBundle*>();
 }
 
 //vector<ReaderPropertiesBundle*> DictionaryProperties::getGraphicsReaderPropertiesBundleVector()
@@ -28,6 +30,7 @@ vector<ElementBundle*> DictionaryProperties::getElementBundle()
 
 void DictionaryProperties::addElementBundle(ElementBundle * elementBundle)
 {
+	
 	this->subElements.push_back(elementBundle);
 }
 
@@ -43,6 +46,7 @@ void DictionaryProperties::setElementReaderPropertiesBundleVector(vector<ReaderP
 
 void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
 {
+	
 	this->elementReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 }
 
@@ -58,6 +62,7 @@ void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBund
 
 void DictionaryProperties::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
 {
+	
 	this->smartFeatureContainer = newSmartFeatureContainer;
 }
 
@@ -78,6 +83,7 @@ long DictionaryProperties::getElementId()
 
 void DictionaryProperties::setIsSmartSolid(bool value)
 {
+	
 	this->isSmartSolid = value;
 }
 
@@ -88,6 +94,7 @@ bool DictionaryProperties::getIsSmartSolid()
 
 void DictionaryProperties::setIsPrimitiveSolid(bool value)
 {
+	
 	this->isPrimitiveSolid = value;
 }
 

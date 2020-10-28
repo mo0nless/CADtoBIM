@@ -11,6 +11,8 @@ DEFAULT_TARGET_PROCESSOR_ARCHITECTURE=x64
 appName     =  ParametricFeatures
 sAppName    =  ParametricFeatures
 
+interfaceDialog = $(baseDir)/interface_dialog/
+
 MDLMKI = $(MSMDE)mki/
 mdlLibs = $(MSMDE)library/
 
@@ -57,17 +59,26 @@ dirToSearch = $(ifcOpenShell)
 #--------------------------------------------------------------------------------------
 baseDir         = $(_MakeFilePath)
 privateInc      = $(baseDir)
-langSpec        = $(baseDir)transkit/
+langSpec        = $(interfaceDialog)transkit/
 
 libRscs = \
-    $(rscObjects)$(sAppName).rsc
+    $(rscObjects)$(appName)Cmd.rsc \
+	$(rscObjects)$(appName).rsc   \
+    $(rscObjects)$(appName)msg.rsc
 
 #--------------------------------------------------------------------------------------
 #    Create object files
 #--------------------------------------------------------------------------------------
-$(rscObjects)$(sAppName).rsc     : $(baseDir)$(sAppName).r
 
-$(o)$(sAppName).h                : $(baseDir)$(sAppName).r
+$(rscObjects)$(appName)Cmd.rsc     : $(baseDir)$(appName)Cmd.r 
+
+$(baseDir)data_processing/initialization/headers/$(appName)Cmd.h                : $(baseDir)$(appName)Cmd.r
+
+
+$(rscObjects)$(appName).rsc     : $(interfaceDialog)Dialog.r $(langSpec)DialogTxt.h $(interfaceDialog)DialogIds.h $(baseDir)data_processing/initialization/headers/$(appName)Cmd.h
+
+
+$(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)DialogIds.h
 
 #--------------------------------------------------------------------------------------
 #    Define the object container files
@@ -79,9 +90,6 @@ dataBaseObjects = \
 
 loggerObjects = \
 	$(o)Logger$(oext) \
-
-interfaceObjects = \
-
 
 commonObjects = \
 	$(o)ResultStatus$(oext) \
@@ -96,7 +104,6 @@ commonObjects = \
 
 dataProcessingObjects = \
 	$(o)$(appName)$(oext) \
-	$(o)Initialization$(oext) \
 	$(o)InitializationHelper$(oext) \
 	$(o)PropertiesReaderProcessor$(oext) \
 	$(o)GraphicsProcessorHelper$(oext) \
@@ -277,12 +284,9 @@ $(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/heade
 #--------------------------------------------------------------------------------------
 
 #--- initialization
-$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp $(baseDir)data_processing/initialization/headers/$(appName).h 
-
-$(o)Initialization$(oext) : $(baseDir)data_processing/initialization/sources/Initialization.cpp $(baseDir)data_processing/initialization/headers/$(appName).h
+$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp 
 
 $(o)InitializationHelper$(oext) : $(baseDir)data_processing/initialization/sources/InitializationHelper.cpp $(baseDir)data_processing/initialization/headers/InitializationHelper.h
-
 
 #--- reader_properties
 $(o)PropertiesReaderProcessor$(oext) : $(baseDir)data_processing/reader_properties/sources/PropertiesReaderProcessor.cpp $(baseDir)data_processing/reader_properties/headers/PropertiesReaderProcessor.h 
@@ -327,6 +331,18 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 #    ifc
 #-------------------------------------------------------------------------------------
 
+#--- main
+$(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
+
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
+
+$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
+
+$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
+
+$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
+
+
 #--- boolean_functions
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
 
@@ -341,16 +357,6 @@ $(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelati
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
 
-#--- main
-$(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
-
-$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
-
-$(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
-
-$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
-
-$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
 
 
 #--- operations_helper
@@ -490,6 +496,7 @@ $(o)ComponentsMappingRepository$(oext) : $(baseDir)repositories/components_mappi
 
 #--- components_mapping
 $(o)ComponentsMappingService$(oext) : $(baseDir)services/components_mapping/sources/ComponentsMappingService.cpp $(baseDir)services/components_mapping/headers/ComponentsMappingService.h
+
 
 
 

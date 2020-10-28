@@ -40,11 +40,7 @@ private:
 	//! Supply the current transform that subsequent geometry is displayed through.
 	//! @param[in] trans The transform to apply to subsequent process calls.
 	virtual void _AnnounceTransform(TransformCP trans)  override;
-
-
 	
-	string filePath;
-
 	GraphicsProcessorHelper mGraphicsProcessorHelper;
 	Transform m_currentTransform;
 };

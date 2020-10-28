@@ -2,7 +2,7 @@
 
 void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Starting enhancing the IFC properties -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC properties -!");
 
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
@@ -29,14 +29,14 @@ void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& 
 
 		}
 	}
-	_logger->logInfo(__FILE__, __LINE__, __FUNCTION__, "!- Ended enhancing the IFC properties -!");
+	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC properties -!");
 
 
 }
 
 Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
@@ -57,7 +57,7 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 			ifcPropertyList->push(createIfcComplexProperty(*readerPropertyDefinition));
 		}
 		else {
-			_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Unmapped property");
+			_logger->logWarning(__FILE__, __LINE__, __func__, "Unmapped property");
 			// log unmapped property type
 		}
 
@@ -74,7 +74,7 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 
 Ifc4::IfcProperty* IfcPropertiesEnhancer::createIfcBasicProperty(ReaderPropertyDefinition& readerPropertyDefinition)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	// TODO [MP] look for a binary value and check it should be translated in Ifc(binary->int or simply pur the value as text???)
 	Ifc4::IfcValue* ifcValue;
@@ -100,7 +100,7 @@ Ifc4::IfcProperty* IfcPropertiesEnhancer::createIfcBasicProperty(ReaderPropertyD
 
 Ifc4::IfcProperty * IfcPropertiesEnhancer::createIfcComplexProperty(ReaderPropertyDefinition & readerPropertyDefinition)
 {
-	_logger->logDebug(__FILE__, __LINE__, __FUNCTION__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
 
@@ -143,7 +143,7 @@ Ifc4::IfcProperty * IfcPropertiesEnhancer::createIfcComplexProperty(ReaderProper
 		ifcPropertyList->push(ifcPropertySingleValue);
 	}
 	else {
-		_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "Unhandled propertyTypeEnum");
+		_logger->logWarning(__FILE__, __LINE__, __func__, "Unhandled propertyTypeEnum");
 	}
 
 
