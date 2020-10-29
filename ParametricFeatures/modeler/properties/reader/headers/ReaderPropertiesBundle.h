@@ -11,6 +11,7 @@ class ReaderPropertiesBundle {
 private:
 	string className;
 	int localId;
+	string _name;
 	vector<ReaderPropertyDefinition*> properties;
 
 public:
@@ -18,6 +19,11 @@ public:
 
 	string getCassName();
 	int getLocalId();
+	void setLocalId(int newLocalId);
+
+	string getName();
+	void setName(string name);
+
 
 	vector<ReaderPropertyDefinition*> getProperties();
 	void addProperty(ReaderPropertyDefinition* readerPropertyDefinition);

@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
@@ -22,8 +23,11 @@
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
     <ClCompile Include="common\models\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
+    <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
+    <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
+    <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
@@ -85,6 +89,8 @@
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessorHelper.cpp" />
     <ClCompile Include="data_processing\initialization\sources\InitializationHelper.cpp" />
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
+    <ClCompile Include="repositories\components_mapping\sources\ComponentsMappingRepository.cpp" />
+    <ClCompile Include="services\components_mapping\sources\ComponentsMappingService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="interface_dialog\Dialog.r" />
@@ -94,6 +100,7 @@
     <None Include="ParametricFeaturesCmd.r" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\dtos\headers\ComponentsMappingDTO.h" />
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\utils\headers\Comparator.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
@@ -114,7 +121,12 @@
     <ClInclude Include="interface_dialog\DialogHooks.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
+    <ClInclude Include="ifc\mappings\headers\IfcModelerConverter.h" />
+    <ClInclude Include="interface\MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="logging\headers\Logger.h" />
+    <ClInclude Include="mapper\entities\headers\EntitiesMapper.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
@@ -189,7 +201,9 @@
     <ClInclude Include="modeler\curves\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
+    <ClInclude Include="repositories\components_mapping\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="services\components_mapping\headers\ComponentsMappingService.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessorHelper.h" />
     <ClInclude Include="data_processing\initialization\headers\InitializationHelper.h" />
@@ -211,7 +225,7 @@
     <Xml Include="interface_dialog\transkit\transkit.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ParametricFeatures.rc" />
+    <Text Include="data_base\mappings.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47813e07-7597-46ac-961d-37449d30a01f}</ProjectGuid>

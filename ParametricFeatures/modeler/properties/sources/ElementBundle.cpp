@@ -20,14 +20,19 @@ void ElementBundle::setGraphicProperties(GraphicProperties & newGraphicPropertie
 	this->graphicProperties = &newGraphicProperties;
 }
 
-ReaderPropertiesBundle * ElementBundle::getReaderPropertiesBundle()
+vector<ReaderPropertiesBundle*> ElementBundle::getReaderPropertiesBundleVector()
 {
-	return this->readerPropertiesBundle;
+	return this->readerPropertiesBundleVector;
 }
 
-void ElementBundle::setReaderPropertiesBundle(ReaderPropertiesBundle & newReaderPropertiesBundle)
+void ElementBundle::addReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle)
 {
-	this->readerPropertiesBundle = &newReaderPropertiesBundle;
+	this->readerPropertiesBundleVector.push_back(newReaderPropertiesBundle);
+}
+
+void ElementBundle::setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
+{
+	this->readerPropertiesBundleVector = newReaderPropertiesBundleVector;
 }
 
 UInt32 ElementBundle::getColor()

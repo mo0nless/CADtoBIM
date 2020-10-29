@@ -20,6 +20,7 @@ openCascade = $(IFCO)deps-vs2015-x64-installed/opencascade-7.3.0p3
 boost =  $(IFCO)deps/boost_1_67_0
 ifcLib =  $(IFCO)installed-vs2015-x64/lib
 ifcOpenShell = $(IFCO)src
+sqlite = $(IFCO)deps/sqlite
 
 %include $(MDLMKI)mdl.mki 
 
@@ -96,6 +97,10 @@ $(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)Dialo
 #    Define the object container files
 #--------------------------------------------------------------------------------------
 
+dataBaseObjects = \
+	$(o)DataBaseContext$(oext) \
+	$(o)ComponentsMapping$(oext) \
+
 loggerObjects = \
 	$(o)Logger$(oext) \
 
@@ -108,6 +113,7 @@ commonObjects = \
 	$(o)SmartFeatureTypeEnumUtils$(oext) \
 	$(o)PropertyTypeEnumUtils$(oext) \
 	$(o)CreateSolidFunctionsEnumUtils$(oext) \
+	$(o)ComponentsMappingDTO$(oext) \
 
 dataProcessingObjects = \
 	$(o)$(appName)$(oext) \
@@ -140,6 +146,7 @@ mapperObjects = \
 	$(o)ReaderPropertiesMapper$(oext) \
 	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
 	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
+	$(o)EntitiesMapper$(oext) \
 
 
 modelerObjects = \
@@ -176,6 +183,13 @@ modelerObjects = \
 	$(o)ShapesGraphicProperties$(oext) \
 
 
+repositoriesObjects = \
+	$(o)ComponentsMappingRepository$(oext) \
+
+servicesObjects = \
+	$(o)ComponentsMappingService$(oext) \
+
+
 appObjects = \
 	$(loggerObjects) \
 	$(commonObjects) \
@@ -183,6 +197,10 @@ appObjects = \
 	$(ifcObjects) \
 	$(mapperObjects) \
 	$(modelerObjects) \
+	$(interfaceObjects) \
+	$(dataBaseObjects) \
+	$(servicesObjects) \
+	$(repositoriesObjects) \
 
 
 #--------------------------------------------------------------------------------------
@@ -213,6 +231,8 @@ LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_log_
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_regex-vc141-mt-x64-1_67.lib
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_system-vc141-mt-x64-1_67.lib
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_thread-vc141-mt-x64-1_67.lib
+
+LINKER_LIBRARIES + $(sqlite)/sqlite3.lib
 
 LINKER_LIBRARIES + $(ifcLib)/IfcParse.lib
 
@@ -258,6 +278,18 @@ LINKER_LIBRARIES + shell32.lib
 #--------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------
+#     data base
+#--------------------------------------------------------------------------------------
+$(o)DataBaseContext$(oext) : $(baseDir)data_base/sources/DataBaseContext.cpp $(baseDir)data_base/headers/DataBaseContext.h
+
+#--- models
+
+$(o)ComponentsMapping$(oext) : $(baseDir)data_base/models/sources/ComponentsMapping.cpp $(baseDir)data_base/models/headers/ComponentsMapping.h
+
+
+
+
+#--------------------------------------------------------------------------------------
 #     logger
 #--------------------------------------------------------------------------------------
 $(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/headers/Logger.h 
@@ -284,6 +316,10 @@ $(o)GraphicsProcessor$(oext) : $(baseDir)data_processing/graphic_properties/sour
 #-------------------------------------------------------------------------------------
 #    common
 #-------------------------------------------------------------------------------------
+
+#--- dtos
+$(o)ComponentsMappingDTO$(oext) : $(baseDir)common/dtos/sources/ComponentsMappingDTO.cpp $(baseDir)common/dtos/headers/ComponentsMappingDTO.h
+
 
 #--- models
 $(o)ResultStatus$(oext) : $(baseDir)common/models/sources/ResultStatus.cpp $(baseDir)common/models/headers/ResultStatus.h
@@ -380,6 +416,8 @@ $(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/
 
 $(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
 
+#--- entities
+$(o)EntitiesMapper$(oext) : $(baseDir)mapper/entities/sources/EntitiesMapper.cpp $(baseDir)mapper/entities/headers/EntitiesMapper.h
 
 #-------------------------------------------------------------------------------------
 #    modeler
@@ -459,6 +497,21 @@ $(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/
 
 #--- shapes
 $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
+
+
+#-------------------------------------------------------------------------------------
+#    repositories
+#-------------------------------------------------------------------------------------
+
+#--- components_mapping
+$(o)ComponentsMappingRepository$(oext) : $(baseDir)repositories/components_mapping/sources/ComponentsMappingRepository.cpp $(baseDir)repositories/components_mapping/headers/ComponentsMappingRepository.h
+
+#-------------------------------------------------------------------------------------
+#    services
+#-------------------------------------------------------------------------------------
+
+#--- components_mapping
+$(o)ComponentsMappingService$(oext) : $(baseDir)services/components_mapping/sources/ComponentsMappingService.cpp $(baseDir)services/components_mapping/headers/ComponentsMappingService.h
 
 
 

@@ -6,15 +6,15 @@ void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundl
 	for (auto ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getIsSmartFeature()) {
 			IfcElementBundle* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle,file);
-			// TODO [MP] keep the existing graphic properties and only add the ifc representation item
-			//ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult));
-			//TODO [MP] fix this shit
-			//ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()));
+
+			if (ifcResult != nullptr) {
+				ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(
+					new GraphicProperties(), ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()));
+			}
+			
 		}
 	}
 }
-
-
 
 
 IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<IfcElementBundle*>& ifcBundleVector, IfcElementBundle* smartFeature, IfcHierarchyHelper<Ifc4>& file)
@@ -34,21 +34,24 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 	}
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*smartFeature, root->getLocalNodeId());
-	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && left != nullptr && rigth != nullptr) {
-		Ifc4::IfcGeometricRepresentationItem* result =  IfcBooleanOperatorHandler::solveBooleanOperation(left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
-			rigth->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),*ifcReaderPropertiesBundle);
-		IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
-		//TODO [MP] fix this shit
-		//temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
+	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && 
+		left != nullptr && rigth != nullptr) {
+		Ifc4::IfcGeometricRepresentationItem* result =  IfcBooleanOperatorHandler::solveBooleanOperation(
+			left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
+			rigth->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
+			*ifcReaderPropertiesBundle);
+		IfcElementBundle* temp = new IfcElementBundle(-1, "BooleanFeature");
+
+		temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
 		return temp;
 	}
 	else if (ifcReaderPropertiesBundle != nullptr && 
 		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
 		(left != nullptr || rigth != nullptr)) {
 			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
-			IfcElementBundle* temp = new IfcElementBundle(-1, "temp");
-			//TODO [MP] fix this shit
-			//temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
+			IfcElementBundle* temp = new IfcElementBundle(-1, "CreatedSolid");
+
+			temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));
 			return temp;
 	}
 	
@@ -62,7 +65,7 @@ IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(vector<IfcElementB
 	}
 	for (auto const& ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getModelerElementId() == globalId) {
-			if (!ifcBundle->getIsSmartFeature()) {
+			if (!ifcBundle->getIsSmartFeature() && ifcBundle->getIfcGraphicPropertiesBundleVector().size()>0) {
 				ifcBundle->getIfcGraphicPropertiesBundleVector().at(0)->setShow(false);
 			}
 			return ifcBundle;

@@ -185,6 +185,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
 				for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
 					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
+					readerPropertiesBundle->setName(readerProperty->getName());
+
 					for (auto const& property1 : readerProperty->getProperties()) {
 						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
 							, property1->getPropertyValue(), property1->getPropertyValueAsString());

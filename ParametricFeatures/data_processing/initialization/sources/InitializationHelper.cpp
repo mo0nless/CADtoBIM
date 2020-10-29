@@ -71,8 +71,8 @@ StatusInt InitializationHelper::iterateSubElements(ElementHandle eh, DictionaryP
 		ElementBundle* elementBundle = new ElementBundle();
 		elementBundle->setElementHandle(eh);
 
-		ReaderPropertiesBundle* readerPropertiesBundle = _propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
-		elementBundle->setReaderPropertiesBundle(*readerPropertiesBundle);		
+		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
+		elementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
 
 		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
@@ -144,8 +144,8 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 
 			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
 
-			ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
+			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 
 			iterateSubElements(currentElem, propertiesDictionary);
 
@@ -163,6 +163,13 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 				}
 			}
 
+
+			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
+			//vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			//propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
+
+			//lock_guard<mutex> guard(g_display_mutex);
 			propsDictVec.push_back(propertiesDictionary);
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);

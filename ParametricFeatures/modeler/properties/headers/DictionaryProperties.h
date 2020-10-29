@@ -33,6 +33,7 @@ public:
 	void addElementBundle(ElementBundle* elementBundle);
 
 	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
+	void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
 	void addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle);
 
 

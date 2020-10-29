@@ -10,7 +10,7 @@ class ElementBundle {
 
 private:
 	GraphicProperties* graphicProperties;
-	ReaderPropertiesBundle* readerPropertiesBundle;
+	vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
 
 	ElementHandle elementHandle;
 
@@ -26,8 +26,9 @@ public:
 	GraphicProperties* getGraphicProperties();
 	void setGraphicProperties(GraphicProperties& newGraphicProperties);
 
-	ReaderPropertiesBundle* getReaderPropertiesBundle();
-	void setReaderPropertiesBundle(ReaderPropertiesBundle& newReaderPropertiesBundle);
+	vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
+	void addReaderPropertiesBundle(ReaderPropertiesBundle* newReaderPropertiesBundle);
+	void setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
 
 	UInt32 getColor();
 	void setColor(UInt32 newColor);

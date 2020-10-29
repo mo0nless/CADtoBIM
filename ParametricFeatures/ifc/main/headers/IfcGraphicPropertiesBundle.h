@@ -31,6 +31,7 @@ private:
 public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
 		ElementHandle newElementHandle);
+	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties, Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem);
 
 	GraphicProperties* getGraphicProperties();
 

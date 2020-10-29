@@ -39,6 +39,11 @@ vector<ReaderPropertiesBundle*> DictionaryProperties::getElementReaderProperties
 	return this->elementReaderPropertiesBundleVector;
 }
 
+void DictionaryProperties::setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
+{
+	this->elementReaderPropertiesBundleVector = newReaderPropertiesBundleVector;
+}
+
 void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBundle* readerPropertiesBundle)
 {
 	
