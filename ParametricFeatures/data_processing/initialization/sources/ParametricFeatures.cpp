@@ -39,6 +39,7 @@ void SetVersionNumber()
 void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 {
 	StructureExp::createFilesStructure();
+
 	/*-------------------------------------------------------------
 	| Open our main dialog box with the function mdlDialog_open.
 	| The NULL parameter means to look for the Dialog Box resource
@@ -73,8 +74,9 @@ Public DialogHookInfo uHooks[] =
 	{ HOOKITEMID_ListBox_Dialog,         (PFDialogHook)DialogHooks::ItemBoxHadler::HookResolve },
 	{ HOOKITEMID_PullDownMenu_Dialog,    (PFDialogHook)DialogHooks::PullDownMenuHadler::HookResolve },
 	{ HOOKITEMID_ScrollBar_Dialog,       (PFDialogHook)DialogHooks::ScrollBarHadler::HookResolve },
-	{ HOOKITEMID_StartButton_Dialog,		 (PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
-	{ HOOKITEMID_BrowseButton_Dialog,		 (PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve }
+	{ HOOKITEMID_StartButton_Dialog,	 (PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
+	{ HOOKITEMID_BrowseButton_Dialog,	 (PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve },
+	{ HOOKITEMID_ToggleSelection_Dialog,	 (PFDialogHook)DialogHooks::ToggleBtnHadler::HookResolve }
 };
 
 
@@ -156,7 +158,8 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_scrollNumber", &dlog_scrollNumber);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber1", &dlog_optionbtnNumber1);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber2", &dlog_optionbtnNumber2);
-	mdlDialog_publishComplexVariable(setP, "dlogbrowsefolder", "dlogBrowseFolder", &dlogBrowseFolder);// (setP, mdlCExpression_getType(TYPECODE_CHAR), "dlog_browseFolder", &dlog_browseFolder);
+	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_BOOL), "dlogToggleElementButton", &dlogToggleElementButton);
+	mdlDialog_publishComplexVariable(setP, "dlogbrowsefolder", "dlogBrowseFolder", &dlogBrowseFolder);
 
 	/*-----------------------------------------------------------------+
 	| mdlDialog_hookPublish:

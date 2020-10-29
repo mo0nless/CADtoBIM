@@ -102,23 +102,17 @@ BEGIN_VSTACK_LAYOUT(0, "")
     SPACING (SECTION_GAP)
 
     BEGIN_HSTACK_LAYOUT (0, "")
-        //BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
-           // GRID_ROW(0, "")
-			BEGIN_HSTACK_LAYOUT(0,"")
-				STRETCH(1)
-				LAYOUT_LABEL_NEXT_RIGHT(0,"")
-				//{{AUTO_XY, 0, 0},    Text,           TEXTID_Dialog, ON, 0, "", ""},				
-				{AUTO_XYWH,    Text,           TEXTID_Dialog, ON, TEXT_MASK_LABELABOVE, "", ""},				
-				SPACING (SECTION_GAP)
-				{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
-				STRETCH(1)
-			END_LAYOUT
-            /*END_ROW
-            GRID_ROW(0, "")
-            {AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog1, ON, 0, "", ""},
-            END_ROW*/
-        //END_LAYOUT        
-    STRETCH(1)
+		STRETCH(1)
+		SPACING (SECTION_GAP)
+		BEGIN_HSTACK_LAYOUT(0,"")
+			STRETCH(1)
+			LAYOUT_LABEL_NEXT_RIGHT(0,"")		
+			{AUTO_XYWH,    Text,       TEXTID_Dialog, ON, TEXT_MASK_LABELABOVE, "", ""},				
+			SPACING (SECTION_GAP)
+			{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
+			STRETCH(1)
+		END_LAYOUT    
+		STRETCH(1)
 	END_LAYOUT
 
 	BEGIN_HSTACK_LAYOUT(0,"")
@@ -172,6 +166,7 @@ BEGIN_VSTACK_LAYOUT(0, "")
 
     //BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
     BEGIN_VSTACK_LAYOUT (0, "")
+		SPACING (SECTION_GAP)
         {AUTO_XYWH,    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},		
 		//STRETCH(1)
     END_LAYOUT
@@ -436,10 +431,12 @@ DItem_TextRsc TEXTID_DialogScroll =
 +----------------------------------------------------------------------*/
 DItem_ToggleButtonRsc TOGGLEID_Dialog1 =
     {
-    NOCMD, LCMD, NOSYNONYM, NOHELP, LHELPCMD, NOHOOK,
+    NOCMD, LCMD, 
+	SYNONYMID_ToggleSelection,//NOSYNONYM, 
+	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
     TXT_ToggleButton1,
-    ""
+    "dlogToggleElementButton"
     };
 
 DItem_ToggleButtonRsc TOGGLEID_Dialog2 =
@@ -483,6 +480,15 @@ DItem_SynonymsRsc SYNONYMID_DialogBrowse=
 	{
 	{
 		{Text, TEXTID_Dialog},
+		{PushButton, PUSHBUTTONID_Dialog2}
+	}
+	};
+
+DItem_SynonymsRsc SYNONYMID_ToggleSelection=
+	{
+	{
+		{ToggleButton, TOGGLEID_Dialog1},
+		{ListBox, LISTBOXID_Dialog},
 		{PushButton, PUSHBUTTONID_Dialog1}
 	}
 	};

@@ -5,10 +5,12 @@
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100)
 
-InitializationHelper::InitializationHelper()
+InitializationHelper::InitializationHelper(vector<ElementHandle> pGraElement, bool onlySelected)
 {	
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
-	this->pGraElement = mDgnModel->GetGraphicElementsP();
+	//this->pGraElement = mDgnModel->GetGraphicElementsP();
+	this->pGraElement = pGraElement;
+	this->onlySelected = onlySelected;
 	this->_progressBar = new PBAR::DialogCompletionBar();
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);
 	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
@@ -48,17 +50,20 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 	return smartFeatureContainer;
 }
 
-StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties)
+StatusInt InitializationHelper::iterateSubElements(ElementHandle eh, DictionaryProperties*& dictionaryProperties)
 {		
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
+	//ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
 	int index = 0;
 
+	//TODO[SB] if (el->GetElementType() == MSElementTypes::CELL_HEADER_ELM) MSElementTypes:: https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/202544/net-sdk-get-selected-elements
+
 	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
 	{
-		iterateSubElements(child.GetElementRef(), dictionaryProperties);// , propertiesReaderProcessor);
+		ElementHandle elm(child.GetElementRef());
+		iterateSubElements(elm, dictionaryProperties);// , propertiesReaderProcessor);
 		++index;
 	}
 	if(index==0){
@@ -102,12 +107,35 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	this->_progressBar->numGraphicElement = numElements; 
 	this->_progressBar->Open(L"Working...");
 
+	//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
+	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();
+	for (auto a : rCollection)
+	{
+		
+	}*/
+	if (onlySelected)
+	{
+		size_t numSelected = SelectionSetManager::GetManager().NumSelected();
+
+		for (size_t i = 0; i < numSelected; i++)
+		{
+			ElementRefP elemRef = NULL;
+			StatusInt status = SelectionSetManager::GetManager().GetElement(i, &elemRef, &dgnModelRef);
+
+			ElementHandle currentElem(elemRef);
+
+			pGraElement.clear();
+			pGraElement.push_back(currentElem);
+		}
+	}
+
 	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
-	for (PersistentElementRefP elemRef : *pGraElement)
+	//for (PersistentElementRefP elemRef : *pGraElement)
+	for (ElementHandle currentElem : pGraElement)
 	{	
 		try
 		{
-			ElementHandle currentElem(elemRef);
+			//ElementHandle currentElem(elemRef);
 
 			WString elDescr, myString;
 
@@ -119,7 +147,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			ReaderPropertiesBundle* readerPropertiesBundle = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
 			propertiesDictionary->addElementReaderPropertiesBundle(readerPropertiesBundle);
 
-			iterateSubElements(elemRef, propertiesDictionary);
+			iterateSubElements(currentElem, propertiesDictionary);
 
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{

@@ -51,7 +51,7 @@
 #define	TXT_Text				"Folder Path:"
 #define	TXT_Color				"Color #:"
 #define	TXT_ScrollbarValue			"Scrollbar Value:"
-#define TXT_ToggleButton1			"ToggleButton1"
+#define TXT_ToggleButton1			"Export ONLY selected Element"
 #define TXT_ToggleButton2			"ToggleButton2"
 #define TXT_ToggleButton3			"ToggleButton3"
 #define	TXT_Frame				"Frame"

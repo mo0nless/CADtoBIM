@@ -77,6 +77,7 @@
 
 #include <DgnView/DgnElementSetTool.h>
 #include <DgnView/LocateSubEntityTool.h>   
+#include <DgnView/SelectionSetManager.h>   
 #include <DgnPlatform/DgnPlatformApi.h>
 #include <DgnPlatform\ViewContext.h>
 

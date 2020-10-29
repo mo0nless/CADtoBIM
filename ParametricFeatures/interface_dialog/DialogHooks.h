@@ -41,6 +41,7 @@ the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
 static DlogBrowseFolder dlogBrowseFolder = { L" ", 0 };
+static bool dlogToggleElementButton = false;
 
 static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;
@@ -160,12 +161,7 @@ namespace DialogHooks
 			int          iMember;
 			WString        formatStr;
 
-			auto pGraElement = ISessionMgr::GetActiveDgnModelP()->GetGraphicElementsP();			
-
-			for (PersistentElementRefP elemRef : *pGraElement)
-			{
-				Initialization::allGraphicElements.push_back(elemRef);
-			}
+			Initialization::collectsAllElements();
 
 			int numElements = ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
 
@@ -183,8 +179,8 @@ namespace DialogHooks
 				WChar   buffer[80];
 				WString elDescr;
 
-				auto elemRef = Initialization::allGraphicElements.at(elementIndex);
-				ElementHandle currentElem(elemRef);
+				ElementHandle currentElem = Initialization::allGraphicElements.at(elementIndex);
+				
 
 				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
@@ -214,16 +210,42 @@ namespace DialogHooks
 		}
 		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 		{
-			int* nSelectionP;
+			int rowIndex = -1;
+			int colIndex = -1;
+			bool found = FALSE;
+
+			WCharP nameID;
+			InfoField *infoFieldsP;
+
 			RawItemHdrP listBoxP = this->GetRawItem();
-			SPoint2d** selectionPP;
+			StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
 
-			//mdlDialog_listBoxGetSelections(nSelectionP, selectionPP, listBoxP);
+			do
+			{
+				if (SUCCESS == mdlDialog_listBoxGetNextSelection(&found, &rowIndex, &colIndex, listBoxP))
+				{
+					mdlStringList_getMember(const_cast<WCharCP*>(&nameID), &infoFieldsP, strListP, (rowIndex * 2));
 
-			//StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
+					WString myString, keyIn;
+					myString.Sprintf(L"%s ... [%d-%d]", nameID, rowIndex, colIndex);
+					mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
+
+
+					keyIn.Sprintf(L"select byelemid %s", nameID);
+					mdlInput_sendSynchronizedKeyin(keyIn.c_str(), FALSE, INPUTQ_EOQ, NULL);
+				}
+
+			} while (found == TRUE);
+			
 
 			return true;
 		}
+
+		/*virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
+		{
+
+			return true;
+		}*/
 
 		StringList  *stringListP;
 	};
@@ -251,7 +273,7 @@ namespace DialogHooks
 			mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
 
 			MSDialogP dbP = GetDialog();
-			Initialization::startIfcConverter();
+			Initialization::startIfcConverter(dlogToggleElementButton);
 
 			return true;
 		}
@@ -355,6 +377,42 @@ namespace DialogHooks
 		{
 			if(stateChanged.reallyChanged)
 				mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogScroll, NULL);
+			return true;
+		}
+	};
+
+	class ToggleBtnHadler : DialogItemHookHandler
+	{
+	public:
+		// Dialog Hook replacement function
+		static void HookResolve(DialogItemMessage *dimP)
+		{
+			if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+			{
+				dimP->u.hookResolve.hookHandlerP = new ToggleBtnHadler(dimP->db, dimP->dialogItemP);
+				dimP->msgUnderstood = true;
+			}
+		}
+		// Item Hook Handler Constructor
+		ToggleBtnHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+		// Item Hook Handler Method override
+	private:
+		virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
+		{
+			/* set the enabled state of the toggle button */
+			//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), dlogToggleElementButton, FALSE);
+			GetDialogItem()->SetEnabled(dlogToggleElementButton);
+
+			return true;
+		}
+		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
+		{
+			dlogToggleElementButton = !dlogToggleElementButton;
+
+			GetDialogItem()->SetEnabled(dlogToggleElementButton);
+
+			mdlDialog_synonymsSynch(NULL, SYNONYMID_ToggleSelection, NULL);
+
 			return true;
 		}
 	};

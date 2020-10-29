@@ -142,6 +142,7 @@ enum CmdItemListId
 #define HOOKITEMID_ScrollBar_Dialog     (BASEID_Dialog+3)
 #define HOOKITEMID_StartButton_Dialog     (BASEID_Dialog+4)
 #define HOOKITEMID_BrowseButton_Dialog     (BASEID_Dialog+5)
+#define HOOKITEMID_ToggleSelection_Dialog     (BASEID_Dialog+6)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -151,6 +152,7 @@ enum CmdItemListId
 #define SYNONYMID_DialogColor   1
 #define SYNONYMID_DialogScroll  2
 #define SYNONYMID_DialogBrowse  3
+#define SYNONYMID_ToggleSelection 4
 
 /*----------------------------------------------------------------------+
 |                                                                       |

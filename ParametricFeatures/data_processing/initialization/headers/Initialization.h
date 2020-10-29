@@ -9,10 +9,10 @@ namespace Init
 {
 	struct Initialization
 	{
-		static vector<PersistentElementRefP> allGraphicElements;
-		static vector<PersistentElementRefP> selectedGraphicElements;
+		static vector<ElementHandle> allGraphicElements;
+		//static vector<PersistentElementRefP> selectedGraphicElements;
 
-		static StatusInt startIfcConverter()
+		static StatusInt startIfcConverter(bool onlySelectedElm = false)
 		{
 			NotificationManager::SetDispatchEvents(true);
 
@@ -32,7 +32,7 @@ namespace Init
 				string errorMessageModelProcessing = "Error at processing the dgn model";
 
 				try {
-					InitializationHelper* initializationHelper = new InitializationHelper();
+					InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements, onlySelectedElm);
 					initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
 				}
 				catch (exception& ex) {
@@ -88,8 +88,19 @@ namespace Init
 
 			return SUCCESS;
 		}
-	};
 
-	vector<PersistentElementRefP> Initialization::allGraphicElements;
-	vector<PersistentElementRefP> Initialization::selectedGraphicElements;
+		static void collectsAllElements()
+		{
+			auto pGraElement = ISessionMgr::GetActiveDgnModelP()->GetGraphicElementsP();
+
+			for (PersistentElementRefP elemRef : *pGraElement)
+			{
+				ElementHandle currentElem(elemRef);
+				allGraphicElements.push_back(currentElem);
+			}
+		};
+
+	};	
+
+	vector<ElementHandle> Initialization::allGraphicElements;
 }
