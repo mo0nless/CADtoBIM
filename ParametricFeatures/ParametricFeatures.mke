@@ -128,6 +128,7 @@ ifcObjects = \
 	$(o)IfcBRepRelationship$(oext) \
 	$(o)IfcCreateSolidsOperationBuilder$(oext) \
 	$(o)IfcBuilder$(oext) \
+	$(o)IfcGeneralInformation$(oext) \
 	$(o)IfcElementBundle$(oext) \
 	$(o)IfcElementBuilder$(oext) \
 	$(o)IfcPortsBuilder$(oext) \
@@ -232,7 +233,7 @@ LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_rege
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_system-vc141-mt-x64-1_67.lib
 LINKER_LIBRARIES + $(boost)/stage/vs2015-x64/lib/precompiled_boost/libboost_thread-vc141-mt-x64-1_67.lib
 
-LINKER_LIBRARIES + $(sqlite)/sqlite3.lib
+#LINKER_LIBRARIES + $(sqlite)/sqlite3.lib
 
 LINKER_LIBRARIES + $(ifcLib)/IfcParse.lib
 
@@ -347,6 +348,9 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 #    ifc
 #-------------------------------------------------------------------------------------
 
+#--- general_information
+$(o)IfcGeneralInformation$(oext) : $(baseDir)ifc/general_information/sources/IfcGeneralInformation.cpp $(baseDir)ifc/general_information/headers/IfcGeneralInformation.h
+
 #--- main
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
 
@@ -357,7 +361,6 @@ $(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp 
 $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
 
 $(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
-
 
 #--- boolean_functions
 $(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h

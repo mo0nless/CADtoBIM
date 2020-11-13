@@ -10,11 +10,12 @@
 class IfcColorMaterialEnhancer {
 
 public:
-	void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
 
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
-
+	Ifc4::IfcOwnerHistory* _ownerHistory;
+	
 	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);

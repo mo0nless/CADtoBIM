@@ -80,106 +80,108 @@ DialogBoxRsc DIALOGID_Dialog =
     OVERALLWIDTH, OVERALLHEIGHT,
     NOHELP, LHELPCMD, HOOKID_Dialog, NOPARENTID,
     TXT_MainDialogBox,
-{
-BEGIN_VSTACK_LAYOUT(0, "")
-    {{0, 0, 0, 0},      MenuBar,      MENUBARID_Dialog, ON, 0, "", ""},
-    SPACING (SECTION_GAP)
-        //BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
-		BEGIN_HSTACK_LAYOUT (0, "")
-            //GRID_ROW(0, "")
-            LAYOUT_LABEL_NEXT_RIGHT(0,"")
-            {AUTO_XYWH,  OptionButton, OPTIONBUTTONID_Dialog1, ON, 0, "", ""},
-            //END_ROW
-            //GRID_ROW(0, "")
-			SPACING (SECTION_GAP)
-            LAYOUT_LABEL_NEXT_RIGHT(0,"")
-            {AUTO_XYWH, OptionButton, OPTIONBUTTONID_Dialog2, ON, 0, "", ""},
-            //END_ROW
-			STRETCH(1)
-        END_LAYOUT
-
-    SPACING (SECTION_GAP)	
-    SPACING (SECTION_GAP)
-
-    BEGIN_HSTACK_LAYOUT (0, "")
-		STRETCH(1)
+	{
+	BEGIN_VSTACK_LAYOUT(0, "")
+		//{{0, 0, 0, 0},      MenuBar,      MENUBARID_Dialog, ON, 0, "", ""},
 		SPACING (SECTION_GAP)
-		BEGIN_HSTACK_LAYOUT(0,"")
-			STRETCH(1)
-			LAYOUT_LABEL_NEXT_RIGHT(0,"")		
-			{AUTO_XYWH,    Text,       TEXTID_Dialog, ON, TEXT_MASK_LABELABOVE, "", ""},				
-			SPACING (SECTION_GAP)
-			{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog2, ON, 0, "", ""},
-			STRETCH(1)
-		END_LAYOUT    
-		STRETCH(1)
-	END_LAYOUT
 
-	BEGIN_HSTACK_LAYOUT(0,"")
+		//{{0, 5*YC, 0, 0}, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
+		
+		BEGIN_GRID_LAYOUT(GRIDLAYOUTID_3ColumnsOuter, "")
+			GRID_ROW(0, "")	
+				LAYOUT_LABEL_NEXT_RIGHT(0,"")		
+				{AUTO_XYWH,    Text,       PATHTEXTID_Dialog, ON, TEXT_MASK_LABELABOVE, "", ""},	//{AUTO_XY, 0, 0}
+				{AUTO_XYWH,  PushButton,   BROWSEBUTTONID_Dialog, ON, 0, "", ""}, 
+			END_ROW
+		END_LAYOUT
+
+		SPACING (SECTION_GAP)	
+		{{0, 3*YC, 0, 0}, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
 		SPACING (SECTION_GAP)
-			BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
-				GRID_ROW(0, "")
-				{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog1, ON, 0, "", ""},
-				END_ROW
-				GRID_ROW(0, "")
-				{AUTO_XYWH,   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
-				END_ROW
-				GRID_ROW(0, "")
-				{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
-				END_ROW
-			END_LAYOUT	       
-    STRETCH(1)
-    END_LAYOUT
 
-    SPACING (SECTION_GAP)
+		//{{0, 0, 30*XC,15*YC}, GroupBox, 0, ON, 0, "Properties", ""},
+		BEGIN_GRID_LAYOUT(GRIDLAYOUTID_4ColumnsOuter, "")			
+			GRID_ROW(0, "")
+				LAYOUT_LABEL_NEXT_LEFT(0,"")		
+				{{AUTO_XY, 0, 0},    Text, ACTORNAMETEXTID_Dialog, ON, 0, "", ""},	
+				LAYOUT_LABEL_NEXT_LEFT(0,"")
+				{AUTO_XYWH,  OptionButton, OPTIONROLEACTORID_Dialog, ON, 0, "", ""},
+			END_ROW
+			GRID_ROW(0,"")
+				LAYOUT_LABEL_NEXT_LEFT(0,"")
+				{{AUTO_XY, 0, 0},    Text, ACTORSURNAMETEXTID_Dialog, ON, 0, "", ""},	
+				LAYOUT_LABEL_NEXT_LEFT(0,"")
+				{{AUTO_XY, 0, 0},    Text, ACTOREMAILTEXTID_Dialog, ON, 0, "", ""},	
+				//{AUTO_XYWH, OptionButton, OPTIONBUTTONID_Dialog2, ON, 0, "", ""},
+			END_ROW
+		END_LAYOUT	
 
-    BEGIN_HSTACK_LAYOUT (0, "")
-        SPACING (SECTION_GAP)
-        LAYOUT_LABEL_NEXT_RIGHT(0,"")
-        {{AUTO_XY, W2, 0},  Text,           TEXTID_DialogColor, ON, 0, "", ""},
-        SPACING (SECTION_GAP)
-        {AUTO_XYWH,   ColorPicker,    COLORPICKERID_Dialog, ON, 0, "", ""},
-        STRETCH(1)
-    END_LAYOUT
-
-    SPACING (SECTION_GAP)
-
-    BEGIN_HSTACK_LAYOUT (0, "")
-        SPACING (SECTION_GAP)
-       /* LAYOUT_LABEL_NEXT_RIGHT(0,"")
-        {{AUTO_XY, 0, 0},    Text,           TEXTID_Dialog, ON, 0, "", ""},
-        STRETCH(1)*/
-        LAYOUT_LABEL_NEXT_RIGHT(0,"")
-        {{AUTO_XY, W1, 0},   Text,           TEXTID_DialogScroll, ON, 0, "", ""},
-        SPACING (SECTION_GAP)
-        {{AUTO_XY, W3, 0},   ScrollBar,      SCROLLBARID_Dialog, ON, 0, "", ""},
-        STRETCH(1)
-    END_LAYOUT
-
-    SPACING (SECTION_GAP)
-    SPACING (SECTION_GAP)
-    SPACING (SECTION_GAP)
-    SPACING (SECTION_GAP)
-    SPACING (SECTION_GAP)
-
-	//{AUTO_XYWH, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
-
-    //BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
-    BEGIN_VSTACK_LAYOUT (0, "")
 		SPACING (SECTION_GAP)
-        {AUTO_XYWH,    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},		
+
+		/* //DEBUG PURPOSE
+		//BEGIN_HSTACK_LAYOUT(0,"")
+			//SPACING (SECTION_GAP)
+				BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
+					GRID_ROW(0, "")
+					{AUTO_XYWH,    ToggleButton, ELEMENT_S_TOGGLEID_Dialog, ON, 0, "", ""},
+					END_ROW
+					GRID_ROW(0, "")
+					{AUTO_XYWH,   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
+					END_ROW
+					GRID_ROW(0, "")
+					{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
+					END_ROW
+				END_LAYOUT	       
 		//STRETCH(1)
-    END_LAYOUT
+		//END_LAYOUT
+	
+		SPACING (SECTION_GAP)
 
-	SPACING (SECTION_GAP)
+		BEGIN_HSTACK_LAYOUT (0, "")
+			SPACING (SECTION_GAP)
+			LAYOUT_LABEL_NEXT_RIGHT(0,"")
+			{{AUTO_XY, W2, 0},  Text,           TEXTID_DialogColor, ON, 0, "", ""},
+			SPACING (SECTION_GAP)
+			{AUTO_XYWH,   ColorPicker,    COLORPICKERID_Dialog, ON, 0, "", ""},
+			STRETCH(1)
+		END_LAYOUT
 
-	BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
-		STRETCH(1)
-		{AUTO_XYWH,  PushButton,   PUSHBUTTONID_Dialog1, ON, 0, "", ""},
-		STRETCH(1)
+		SPACING (SECTION_GAP)
+
+		BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_Standard, "")
+			//SPACING (SECTION_GAP)
+			LAYOUT_LABEL_NEXT_RIGHT(0,"")
+			{{AUTO_XY, W1, 0},   Text,           TEXTID_DialogScroll, ON, 0, "", ""},
+			SPACING (SECTION_GAP)
+			STRETCH(1)
+			{{AUTO_XY, W3, 0},   ScrollBar,      SCROLLBARID_Dialog, ON, 0, "", ""},
+			STRETCH(1)
+		END_LAYOUT
+		*/
+
+		SPACING (SECTION_GAP)
+		SPACING (SECTION_GAP)
+		//{{0, 3*YC, 0, 0}, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
+		SPACING (SECTION_GAP)
+		SPACING (SECTION_GAP)
+		SPACING (SECTION_GAP)
+
+		//{AUTO_XYWH, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
+
+		BEGIN_VSTACK_LAYOUT (VSTACKLAYOUTID_SmallMargin, "") //0
+			//SPACING (SECTION_GAP)
+			{AUTO_XYWH,    ListBox,        LISTBOXID_Dialog, ON, 0,"", ""},		
+		END_LAYOUT
+
+		SPACING (SECTION_GAP)
+
+		BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
+			STRETCH(1)
+			{AUTO_XYWH,  PushButton,   STARTBUTTONID_Dialog, ON, 0, "", ""},
+			STRETCH(1)
+		END_LAYOUT
 	END_LAYOUT
-END_LAYOUT
-}
+	}
     };
 
 /*----------------------------------------------------------------------+
@@ -332,15 +334,15 @@ DItem_PulldownOptionMenuRsc PULLDOWNOPTIONMENUID_Dialog =
 |   Option Button Item Resources                                        |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog1 =
+DItem_OptionButtonRsc  OPTIONROLEACTORID_Dialog =
     {
-    NOSYNONYM, NOHELP, LHELPCMD, NOHOOK, NOARG,
-    TXT_OptionButton1,
-    "dlog_optionbtnNumber1",
+    SYNONYMID_ActorInfo, NOHELP, LHELPCMD, HOOKITEMID_ActorOption_Dialog, NOARG,
+    TXT_OptionRoleActor,
+    "ifcGeneralInfo.actorRole",
     {
-    {NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option11},
+    /*{NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option11},
     {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Option12},
-    {NOTYPE, NOICON, NOCMD, LCMD, 2, NOMASK, ON, TXT_Option13},
+    {NOTYPE, NOICON, NOCMD, LCMD, 2, NOMASK, ON, TXT_Option13},*/
     }
     };
 
@@ -360,20 +362,20 @@ DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog2 =
 |   PushButton Item Resources                                           |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_PushButtonRsc PUSHBUTTONID_Dialog1 =
+DItem_PushButtonRsc STARTBUTTONID_Dialog =
     {
     NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, //HOOKITEMID_Button_StandardAction,
 	HOOKITEMID_StartButton_Dialog,
     0, NOCMD, LCMD, "",
-    TXT_PBut1
+    TXT_StartButton
     };
 
-DItem_PushButtonRsc PUSHBUTTONID_Dialog2 =
+DItem_PushButtonRsc BROWSEBUTTONID_Dialog =
     {
     NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, //NOHOOK,
 	HOOKITEMID_BrowseButton_Dialog,
     1, NOCMD, LCMD, "",
-    TXT_PBut2
+    TXT_BrowseButton
     };
 
 /*----------------------------------------------------------------------+
@@ -392,18 +394,48 @@ DItem_ScrollBarRsc SCROLLBARID_Dialog =
 |   Text Item Resources                                                 |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_TextRsc TEXTID_Dialog =
+DItem_TextRsc PATHTEXTID_Dialog =
     {
-    NOCMD, LCMD, 
-	SYNONYMID_DialogBrowse,
-	//NOSYNONYM, 
-	NOHELP, LHELPCMD, NOHOOK, 
-	NOARG,
-    75, "%s", "%s", "", "", 
+    NOCMD, LCMD, SYNONYMID_DialogBrowse, NOHELP, LHELPCMD, 
+	NOHOOK, NOARG,
+    72, "%s", "%s", "", "", 
 	NOMASK, 
 	NOCONCAT,
-    TXT_Text,
-    "dlogBrowseFolder.fmtStr"
+    TXT_PathText,
+    "ifcGeneralInfo.browsedFolder"
+    };
+
+DItem_TextRsc ACTORNAMETEXTID_Dialog =
+    {
+    NOCMD, LCMD, SYNONYMID_ActorInfo, NOHELP, LHELPCMD, 
+	NOHOOK, NOARG,
+    30, "%s", "%s", "", "", 
+	NOMASK, 
+	NOCONCAT,
+    TXT_NameText,
+    "ifcGeneralInfo.actorName"
+    };
+
+DItem_TextRsc ACTORSURNAMETEXTID_Dialog =
+    {
+    NOCMD, LCMD, SYNONYMID_ActorInfo, NOHELP, LHELPCMD, 
+	NOHOOK, NOARG,
+    30, "%s", "%s", "", "", 
+	NOMASK, 
+	NOCONCAT,
+    TXT_SurNameText,
+    "ifcGeneralInfo.actorSurName"
+    };
+
+DItem_TextRsc ACTOREMAILTEXTID_Dialog =
+    {
+    NOCMD, LCMD, SYNONYMID_ActorInfo, NOHELP, LHELPCMD, 
+	NOHOOK, NOARG,
+    45, "%s", "%s", "", "", 
+	NOMASK, 
+	NOCONCAT,
+    TXT_EmailText,
+    "ifcGeneralInfo.actorEmail"
     };
 
 DItem_TextRsc TEXTID_DialogColor =
@@ -429,14 +461,14 @@ DItem_TextRsc TEXTID_DialogScroll =
 |   Toggle Button Item Resources                                        |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_ToggleButtonRsc TOGGLEID_Dialog1 =
+DItem_ToggleButtonRsc ELEMENT_S_TOGGLEID_Dialog =
     {
     NOCMD, LCMD, 
 	SYNONYMID_ToggleSelection,//NOSYNONYM, 
 	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
-    TXT_ToggleButton1,
-    "dlogToggleElementButton"
+    TXT_ToggleSingleElementButton,
+    "dlog_ToggleSingleElementButton"
     };
 
 DItem_ToggleButtonRsc TOGGLEID_Dialog2 =
@@ -479,17 +511,27 @@ DItem_SynonymsRsc SYNONYMID_DialogScroll =
 DItem_SynonymsRsc SYNONYMID_DialogBrowse=
 	{
 	{
-		{Text, TEXTID_Dialog},
-		{PushButton, PUSHBUTTONID_Dialog2}
+		{Text, PATHTEXTID_Dialog},
+		{PushButton, BROWSEBUTTONID_Dialog}
 	}
 	};
 
 DItem_SynonymsRsc SYNONYMID_ToggleSelection=
 	{
 	{
-		{ToggleButton, TOGGLEID_Dialog1},
+		{ToggleButton, ELEMENT_S_TOGGLEID_Dialog},
 		{ListBox, LISTBOXID_Dialog},
-		{PushButton, PUSHBUTTONID_Dialog1}
+		{PushButton, STARTBUTTONID_Dialog}
+	}
+	};
+
+DItem_SynonymsRsc SYNONYMID_ActorInfo=
+	{
+	{
+		{Text, ACTORNAMETEXTID_Dialog},
+		{Text, ACTORSURNAMETEXTID_Dialog},
+		{Text, ACTOREMAILTEXTID_Dialog},
+		{OptionButton, PATHTEXTID_Dialog},
 	}
 	};
 

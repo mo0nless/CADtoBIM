@@ -2,6 +2,7 @@
 
 #include <ctime>
 
+#include "../../general_information/headers/IfcGeneralInformation.h"
 #include "../../ports/headers/IfcPortsBuilder.h"
 
 
@@ -28,6 +29,7 @@ private:
 	IfcPortsBuilder* _ifcPortsBuilder;
 	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
 	IfcElementBuilder* _ifcElementBuilder;
+	SmartFeatureHandler* _smartFeatureHandler;
 
 	PBAR::DialogCompletionBar* _progressBar;
 

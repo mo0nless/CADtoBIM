@@ -16,6 +16,7 @@
 
 #include <Mstn/ISessionMgr.h>
 #include <Mstn\MdlApi\MdlApi.h>
+#include <Mstn\MdlApi\dlogbox.r.h>
 #include <Mstn\MdlApi\dlogitem.h>
 #include <Mstn\MdlApi\DialogItems.h>
 #include <Mstn/MdlApi/MSDialog.h>
@@ -40,12 +41,12 @@ USING_NAMESPACE_BENTLEY_UIFRAMEWORK
 the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
-static DlogBrowseFolder dlogBrowseFolder = { L" ", 0 };
-static bool dlogToggleElementButton = false;
+static IfcGeneralInfo ifcGeneralInfo = { L" " , L" ", L" ", 14, L" "};
+static bool dlog_ToggleSingleElementButton = false;
 
 static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;
-static int dlog_optionbtnNumber1 = 1;
+//static int dlog_optionbtnNumber1 = 0;
 static int dlog_optionbtnNumber2 = 0;
 
 using namespace Explorer;
@@ -92,7 +93,7 @@ namespace DialogHooks
 			create.interests.keystrokes = TRUE;
 			create.interests.dialogFocuses = TRUE;
 			create.interests.itemFocuses = TRUE;
-			create.interests.resizes = TRUE;
+			create.interests.resizes = TRUE;	
 
 			return true;
 		}
@@ -163,7 +164,7 @@ namespace DialogHooks
 
 			Initialization::collectsAllElements();
 
-			int numElements = ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
+			int numElements = (int)Initialization::allGraphicElements.size();//ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
 
 			/* This list box will have numElements rows and 2 columns, so it needs
 			(numElements * 2) cells created in the string list. */
@@ -179,8 +180,7 @@ namespace DialogHooks
 				WChar   buffer[80];
 				WString elDescr;
 
-				ElementHandle currentElem = Initialization::allGraphicElements.at(elementIndex);
-				
+				ElementHandle currentElem (Initialization::allGraphicElements.at(elementIndex));				
 
 				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 
@@ -220,22 +220,23 @@ namespace DialogHooks
 			RawItemHdrP listBoxP = this->GetRawItem();
 			StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
 
-			do
-			{
-				if (SUCCESS == mdlDialog_listBoxGetNextSelection(&found, &rowIndex, &colIndex, listBoxP))
+			if(dlog_ToggleSingleElementButton)
+				do
 				{
-					mdlStringList_getMember(const_cast<WCharCP*>(&nameID), &infoFieldsP, strListP, (rowIndex * 2));
+					if (SUCCESS == mdlDialog_listBoxGetNextSelection(&found, &rowIndex, &colIndex, listBoxP))
+					{
+						mdlStringList_getMember(const_cast<WCharCP*>(&nameID), &infoFieldsP, strListP, (rowIndex * 2));
 
-					WString myString, keyIn;
-					myString.Sprintf(L"%s ... [%d-%d]", nameID, rowIndex, colIndex);
-					mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
+						WString myString, keyIn;
+						myString.Sprintf(L"%s ... [%d-%d]", nameID, rowIndex, colIndex);
+						mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
 
 
-					keyIn.Sprintf(L"select byelemid %s", nameID);
-					mdlInput_sendSynchronizedKeyin(keyIn.c_str(), FALSE, INPUTQ_EOQ, NULL);
-				}
+						keyIn.Sprintf(L"select byelemid %s", nameID);
+						mdlInput_sendSynchronizedKeyin(keyIn.c_str(), FALSE, INPUTQ_EOQ, NULL);
+					}
 
-			} while (found == TRUE);
+				} while (found == TRUE);
 			
 
 			return true;
@@ -268,12 +269,21 @@ namespace DialogHooks
 	private:
 		virtual bool _OnButton(DialogItemButtonArgsR button) override
 		{
-			WString myString;
-			myString.Sprintf(L"IFC Converter");
-			mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
+			//Synch with all the TEXT elements through the SYNONYMID to notify the change
+			mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
 
-			MSDialogP dbP = GetDialog();
-			Initialization::startIfcConverter(dlogToggleElementButton);
+			WString name, sname, email;
+			name = ifcGeneralInfo.actorName;
+			sname = ifcGeneralInfo.actorSurName;
+			email = ifcGeneralInfo.actorEmail;
+
+			IfcGeneralInformation* ifcGInfo = IfcGeneralInformation::getInstance();
+			ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+			ifcGInfo->setActorName(StringUtils::getString(name));
+			ifcGInfo->setActorSurName(StringUtils::getString(sname));
+			ifcGInfo->setActorEmail(StringUtils::getString(email));
+
+			Initialization::startIfcConverter(dlog_ToggleSingleElementButton);
 
 			return true;
 		}
@@ -300,7 +310,7 @@ namespace DialogHooks
 			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
 			
 			//Copy the NEW path in the TEXT's published variable
-			wcscpy_s(dlogBrowseFolder.fmtStr, path.GetWCharCP());
+			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
 
 			//Synch with the TEXT element through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
@@ -311,12 +321,10 @@ namespace DialogHooks
 		virtual bool _OnButton(DialogItemButtonArgsR button) override
 		{			
 			StructureExp::mainFolderPath = expStruct->BrowseFolder(StructureExp::mainFolderPath);
-
-			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
-			mdlOutput_messageCenter(OutputMessagePriority::Info, path.c_str(), path.c_str(), OutputMessageAlert::None);
-
+			
 			//Copy the NEW path in the TEXT's published variable
-			wcscpy_s(dlogBrowseFolder.fmtStr, path.GetWCharCP());
+			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
+			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
 
 			//Synch with the TEXT element through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
@@ -330,6 +338,87 @@ namespace DialogHooks
 		}
 
 		StructureExp* expStruct = new StructureExp();
+	};
+
+	class ActorOptionHadler : DialogItemHookHandler
+	{
+	public:
+		// Dialog Hook replacement function
+		static void HookResolve(DialogItemMessage *dimP)
+		{
+			if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+			{
+				dimP->u.hookResolve.hookHandlerP = new ActorOptionHadler(dimP->db, dimP->dialogItemP);
+				dimP->msgUnderstood = true;
+			}
+		}
+		// Item Hook Handler Constructor
+		ActorOptionHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+		// Item Hook Handler Method override
+	private:
+		bool created = false;
+		virtual bool _OnCreate(DialogItemCreateArgsR create) override
+		{
+			if (!created)
+			{
+				int MAX = (int)Ifc4::IfcRoleEnum::IfcRole_USERDEFINED;
+				for (int index = 0; index < (MAX + 1); index++)
+				{
+					Ifc4::IfcRoleEnum::Value valEnum = Ifc4::IfcRoleEnum::Value(index);
+					string v = Ifc4::IfcRoleEnum::ToString(valEnum);
+					bool bPtr = true;
+					UInt32 value = index;
+					int commandSource = LCMD;
+
+					mdlDialog_optionButtonInsSubItem(
+						StringUtils::getWString(v).c_str(),	NULL, NULL,	NULL,
+						&commandSource,
+						&value, NULL,
+						&bPtr,	NULL,
+						GetDialogItem()->rawItemP,
+						index
+					);
+				}		
+
+				IfcGeneralInformation* ifcGInfo = IfcGeneralInformation::getInstance();
+
+				WString name, sname, email;
+
+				name = StringUtils::getWString(ifcGInfo->getActorName());
+				sname = StringUtils::getWString(ifcGInfo->getActorSurName());
+				email = StringUtils::getWString(ifcGInfo->getActorEmail());
+
+				//Copy the NEW path in the TEXT's published variable
+				wcscpy_s(ifcGeneralInfo.actorName, name.GetWCharCP());
+				wcscpy_s(ifcGeneralInfo.actorSurName, sname.GetWCharCP());
+				wcscpy_s(ifcGeneralInfo.actorEmail, email.GetWCharCP());
+
+				//Synch with all the TEXT elements through the SYNONYMID to notify the change
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
+				ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+
+				created = true;
+			}
+
+			return true;
+		}
+
+		virtual bool _OnDestroy() override
+		{
+			//mdlDialog_optionButtonDeleteAll(GetDialogItem()->rawItemP);
+
+			return true;
+		}
+
+		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged) override
+		{
+			//Synch with all the TEXT elements through the SYNONYMID to notify the change
+			mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
+
+			IfcGeneralInformation::getInstance()->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+
+			return true;
+		}
 	};
 
 	class PullDownMenuHadler : DialogItemHookHandler
@@ -381,7 +470,7 @@ namespace DialogHooks
 		}
 	};
 
-	class ToggleBtnHadler : DialogItemHookHandler
+	class ExportToggleHadler : DialogItemHookHandler
 	{
 	public:
 		// Dialog Hook replacement function
@@ -389,27 +478,27 @@ namespace DialogHooks
 		{
 			if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
 			{
-				dimP->u.hookResolve.hookHandlerP = new ToggleBtnHadler(dimP->db, dimP->dialogItemP);
+				dimP->u.hookResolve.hookHandlerP = new ExportToggleHadler(dimP->db, dimP->dialogItemP);
 				dimP->msgUnderstood = true;
 			}
 		}
 		// Item Hook Handler Constructor
-		ToggleBtnHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+		ExportToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
 		// Item Hook Handler Method override
 	private:
 		virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
 		{
 			/* set the enabled state of the toggle button */
-			//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), dlogToggleElementButton, FALSE);
-			GetDialogItem()->SetEnabled(dlogToggleElementButton);
+			//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), dlog_ToggleSingleElementButton, FALSE);
+			GetDialogItem()->SetEnabled(dlog_ToggleSingleElementButton);
 
 			return true;
 		}
 		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 		{
-			dlogToggleElementButton = !dlogToggleElementButton;
+			dlog_ToggleSingleElementButton = !dlog_ToggleSingleElementButton;
 
-			GetDialogItem()->SetEnabled(dlogToggleElementButton);
+			GetDialogItem()->SetEnabled(dlog_ToggleSingleElementButton);
 
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_ToggleSelection, NULL);
 

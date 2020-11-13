@@ -25,6 +25,7 @@
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
+    <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
@@ -115,6 +116,8 @@
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="common\utils\headers\ProgressBar.hpp" />
     <ClInclude Include="common\utils\headers\PropertyTypeEnumUtils.h" />
+    <ClInclude Include="data_base\headers\DataBaseContext.h" />
+    <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="data_processing\initialization\headers\Initialization.h" />
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

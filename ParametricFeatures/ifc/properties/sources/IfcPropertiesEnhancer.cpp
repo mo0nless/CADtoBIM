@@ -1,11 +1,12 @@
 #include "../headers/IfcPropertiesEnhancer.h"
 
-void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC properties -!");
 
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
+	this->_ownerHistory = ownerHistory;
 
 	if (!dictionaryPropertiesVector.empty())
 	{
@@ -22,8 +23,15 @@ void IfcPropertiesEnhancer::enhanceIfcProperties(vector<DictionaryProperties*>& 
 			for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
 				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
-				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName()),
-					file.getSingle<Ifc4::IfcOwnerHistory>(), ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName(), boost::none, ifcObjectDefinitionList, ifcPropertySet);
+				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
+					guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName()),
+					//file.getSingle<Ifc4::IfcOwnerHistory>(), 
+					this->_ownerHistory,
+					ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName(), 
+					boost::none, 
+					ifcObjectDefinitionList, 
+					ifcPropertySet
+				);
 				file.addEntity(ifcRelDefinesByProperties);
 			}
 
@@ -42,7 +50,8 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
 
-	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) {
+	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) 
+	{
 		PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
 
 		// TODO [MP] to be reviews if possible to extract and add unit/context
@@ -65,8 +74,15 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 		ifcPropertyList->push(new Ifc4::IfcProperty(readerPropertyDefinition->getPropertyName(), normalized_value));*/		
 	}
 
-	Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(guid::IfcGloballyUniqueId(readerPropertiesBundle.getCassName()), file.getSingle<Ifc4::IfcOwnerHistory>(),
-		readerPropertiesBundle.getCassName(), boost::none, ifcPropertyList);
+	Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(
+		guid::IfcGloballyUniqueId(readerPropertiesBundle.getCassName()), 
+		//file.getSingle<Ifc4::IfcOwnerHistory>(),
+		this->_ownerHistory,
+		readerPropertiesBundle.getCassName(), 
+		boost::none, 
+		ifcPropertyList
+	);
+
 	file.addEntity(ifcPropertySet);
 
 	return ifcPropertySet;

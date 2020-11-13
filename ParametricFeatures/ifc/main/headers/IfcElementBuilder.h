@@ -50,4 +50,6 @@ private:
 	Ifc4::IfcObjectPlacement* objectPlacement = nullptr;
 
 	ComponentsMappingService* _componentsMappingService;
+
+	Logs::Logger* _logger = Logs::Logger::getLogger();
 };

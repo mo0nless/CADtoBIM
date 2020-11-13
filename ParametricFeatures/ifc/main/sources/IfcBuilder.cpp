@@ -10,6 +10,7 @@ IfcBuilder::IfcBuilder()
 	this->_IfcColorMaterialEnhancer = new IfcColorMaterialEnhancer();
 	this->_ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
 	this->_progressBar = new PBAR::DialogCompletionBar();
+	this->_smartFeatureHandler = new SmartFeatureHandler();
 }
 
 void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
@@ -210,10 +211,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		throw;
 	}
 
-	//TODO [MP] solve the issue
-	//SmartFeatureHandler* smartFeatureHandler = new SmartFeatureHandler();
-	//smartFeatureHandler->handleSmartFeature(ifcElementBundleVector,file);	
-
+	_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	_ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 
 	int numThreads = boost::thread::hardware_concurrency();
@@ -256,7 +254,15 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		throw;
 	}
 	
-	this->_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
+
+	_smartFeatureHandler->handleSmartFeature(ifcElementBundleVector, file);
+
+	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
+
+	_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
+
+	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
+
 	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
 
 	//Close ProgressBar
@@ -348,12 +354,13 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 	}
 	try	
 	{
-		boost::unique_lock<boost::shared_mutex> guard(_mutex);
+		/*boost::unique_lock<boost::shared_mutex> guard(_mutex);
+
 		_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
 
 		_ifcPropertiesEnhancer->enhanceIfcProperties(dictionaryPropertiesVector, ifcElementBundleVector, file);
 
-		_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file);
+		_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file);*/
 	}
 	catch (exception& ex) {
 		_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error at creating IFC Element/Property/Material");

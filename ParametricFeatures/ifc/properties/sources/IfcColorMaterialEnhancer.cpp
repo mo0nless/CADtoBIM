@@ -1,8 +1,10 @@
 #include "../headers/IfcColorMaterialEnhancer.h"
 
-void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC color and material -!");
+
+	this->_ownerHistory = ownerHistory;
 
 	for (auto elemntBundle : ifcBundleVector) {
 		for (auto graphicEl : elemntBundle->getIfcGraphicPropertiesBundleVector()) {
@@ -44,10 +46,18 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 		file.addEntity(curveStyle);
 	}
 	else {
-		Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(ifcColour,
-			ifcGraphicPropertiesBundle.getTransparency(), new Ifc4::IfcNormalisedRatioMeasure(1),
-			new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1),
-			new Ifc4::IfcNormalisedRatioMeasure(1), new Ifc4::IfcNormalisedRatioMeasure(1), Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN);
+		Ifc4::IfcSurfaceStyleRendering* ifcSurfaceStyleRendering = new Ifc4::IfcSurfaceStyleRendering(
+			ifcColour,
+			ifcGraphicPropertiesBundle.getTransparency(), 
+			new Ifc4::IfcNormalisedRatioMeasure(1),
+			new Ifc4::IfcNormalisedRatioMeasure(1), 
+			new Ifc4::IfcNormalisedRatioMeasure(1), 
+			new Ifc4::IfcNormalisedRatioMeasure(1),
+			new Ifc4::IfcNormalisedRatioMeasure(1), 
+			new Ifc4::IfcNormalisedRatioMeasure(1), 
+			Ifc4::IfcReflectanceMethodEnum::IfcReflectanceMethod_BLINN
+		);
+
 		file.addEntity(ifcSurfaceStyleRendering);
 
 		IfcEntityList* entityList3 = new IfcEntityList();
@@ -69,13 +79,22 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 	boost::shared_ptr<IfcEntityList> ifcPresentationStyleAssignmentList(entityIfcPresentationStyleAssignmentList);
 	Ifc4::IfcRepresentationItem::list::ptr styledItemList(new Ifc4::IfcRepresentationItem::list());
 
-	Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(ifcGraphicPropertiesBundle.getIfcRepresentationItem(), ifcPresentationStyleAssignmentList,
-		boost::none);
+	Ifc4::IfcStyledItem* ifcStyledItem = new Ifc4::IfcStyledItem(
+		ifcGraphicPropertiesBundle.getIfcRepresentationItem(), 
+		ifcPresentationStyleAssignmentList,
+		boost::none
+	);
+
 	file.addEntity(ifcStyledItem);
 	styledItemList->push(ifcStyledItem);
 
-	Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(file.getSingle<Ifc4::IfcRepresentationContext>(), boost::none,
-		boost::none, styledItemList);
+	Ifc4::IfcStyledRepresentation* ifcStyledRepresentation = new Ifc4::IfcStyledRepresentation(
+		file.getSingle<Ifc4::IfcRepresentationContext>(), 
+		//geometricContext,
+		boost::none,
+		boost::none, styledItemList
+	);
+
 	file.addEntity(ifcStyledRepresentation);
 
 
@@ -94,15 +113,29 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 	}
 	
 
-	Ifc4::IfcMaterialDefinitionRepresentation* ifcMaterialDefinitionRepresentation = new Ifc4::IfcMaterialDefinitionRepresentation(boost::none, boost::none,
-		unitEntity7, ifcMaterial);
+	Ifc4::IfcMaterialDefinitionRepresentation* ifcMaterialDefinitionRepresentation = new Ifc4::IfcMaterialDefinitionRepresentation(
+		boost::none, 
+		boost::none,
+		unitEntity7, 
+		ifcMaterial
+	);
+
 	file.addEntity(ifcMaterialDefinitionRepresentation);
 
 	IfcEntityList* entityList8 = new IfcEntityList();
 	entityList8->push(ifcGraphicPropertiesBundle.getIfcRepresentationItem());
 	boost::shared_ptr<IfcEntityList> unitEntity8(entityList8);
-	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(guid::IfcGloballyUniqueId("ElementAssociatesMaterial"), file.getSingle<Ifc4::IfcOwnerHistory>(),
-		boost::none, boost::none, unitEntity8, ifcMaterial);
+
+	Ifc4::IfcRelAssociatesMaterial* ifcRelAssociatesMaterial = new Ifc4::IfcRelAssociatesMaterial(
+		guid::IfcGloballyUniqueId("ElementAssociatesMaterial"), 
+		//file.getSingle<Ifc4::IfcOwnerHistory>(),
+		this->_ownerHistory,
+		boost::none, 
+		boost::none, 
+		unitEntity8, 
+		ifcMaterial
+	);
+
 	file.addEntity(ifcRelAssociatesMaterial);
 }
 

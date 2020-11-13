@@ -9,6 +9,9 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 
 vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
+	string mElemClassName;
+	vector<ReaderPropertiesBundle*>	readerPropertiesBundleVector;
+
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 		
 	//ofstream outfile;
@@ -34,7 +37,7 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 
 	if (ecMgr.FindInstances(*scope, *ecQuery).empty())
 	{
-		this->mElemClassName = "SmartFeatureSolid"; 
+		mElemClassName = "SmartFeatureSolid"; 
 
 	}
 	else {
@@ -44,10 +47,10 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 			DgnElementECInstanceP elemInst = instance->GetAsElementInstance();
 			/////// CHECK THIS ONE FOR OBTAINING THE SCHEMA AS SUGGESTED FROM THE GUY IN BENTLEY FORUM 
 			//https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/192201/connect-c-list-with-all-the-class-name-types-of-an-element
-			ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
+			//ECSchemaCR ecSchemaR = instance->GetClass().GetSchema();
 			/////////////////////////
 
-			outfile.open(filePath, std::ios_base::app);
+			/*outfile.open(filePath, std::ios_base::app);
 			outfile << std::endl;
 			outfile << "------------ Instance Schema full name: " << StringUtils::getString(ecSchemaR.GetFullSchemaName());
 			outfile.close();
@@ -57,9 +60,10 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << ", current element id = " << currentElem.GetElementId() << ", id = " << elemInst->GetLocalId() << " ---------" << std::endl;
 			outfile << "--------- caca = " << StringUtils::getString(elemInst->GetClass().GetName()) << std::endl;
 
-			outfile.close();
+			outfile.close();*/
 
-			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(StringUtils::getString(elemInst->GetClass().GetName()), elemInst->GetLocalId());
+			mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
@@ -93,17 +97,17 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 
 			for (size_t i = 0; i <elemInst->GetClass().GetBaseClasses().size(); i++)
 			{
-				outfile.open(filePath, std::ios_base::app);
+				/*outfile.open(filePath, std::ios_base::app);
 				outfile << std::endl;
 				outfile << "elemInst Full class name: ----- :" << StringUtils::getString(elemInst->GetClass().GetBaseClasses().at(i)->GetFullName()) << std::endl;
-				outfile.close();
+				outfile.close();*/
 			}
 
 
-			outfile.open(filePath, std::ios_base::app);
+			/*outfile.open(filePath, std::ios_base::app);
 			outfile << "is NOT smart feature" << std::endl;
 
-			outfile.close();
+			outfile.close();*/
 
 		}
 	}

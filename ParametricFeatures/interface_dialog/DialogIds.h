@@ -55,7 +55,7 @@ enum CmdItemListId
 |   Option Button IDs                                                   |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define OPTIONBUTTONID_Dialog1  1
+#define OPTIONROLEACTORID_Dialog  1
 #define OPTIONBUTTONID_Dialog2  2
 
 /*----------------------------------------------------------------------+
@@ -63,7 +63,7 @@ enum CmdItemListId
 |   Toggle Button IDs                                                   |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define TOGGLEID_Dialog1        1
+#define ELEMENT_S_TOGGLEID_Dialog        1
 #define TOGGLEID_Dialog2        2
 #define TOGGLEID_Dialog3        3
 
@@ -72,8 +72,8 @@ enum CmdItemListId
 |   Push Button IDs                                                     |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define PUSHBUTTONID_Dialog1    1
-#define PUSHBUTTONID_Dialog2    2
+#define STARTBUTTONID_Dialog    1
+#define BROWSEBUTTONID_Dialog    2
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -94,9 +94,12 @@ enum CmdItemListId
 |   Text IDs                                                            |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define TEXTID_Dialog           1
-#define TEXTID_DialogColor      2
-#define TEXTID_DialogScroll     3
+#define PATHTEXTID_Dialog			1
+#define TEXTID_DialogColor			2
+#define TEXTID_DialogScroll			3
+#define ACTORNAMETEXTID_Dialog		4
+#define ACTORSURNAMETEXTID_Dialog	5
+#define ACTOREMAILTEXTID_Dialog		6
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -137,22 +140,24 @@ enum CmdItemListId
 +----------------------------------------------------------------------*/
 #define HOOKID_Dialog           1
 
-#define HOOKITEMID_ListBox_Dialog       (BASEID_Dialog+1)
-#define HOOKITEMID_PullDownMenu_Dialog  (BASEID_Dialog+2)
-#define HOOKITEMID_ScrollBar_Dialog     (BASEID_Dialog+3)
-#define HOOKITEMID_StartButton_Dialog     (BASEID_Dialog+4)
-#define HOOKITEMID_BrowseButton_Dialog     (BASEID_Dialog+5)
-#define HOOKITEMID_ToggleSelection_Dialog     (BASEID_Dialog+6)
+#define HOOKITEMID_ListBox_Dialog			(BASEID_Dialog+1)
+#define HOOKITEMID_PullDownMenu_Dialog		(BASEID_Dialog+2)
+#define HOOKITEMID_ScrollBar_Dialog			(BASEID_Dialog+3)
+#define HOOKITEMID_StartButton_Dialog		(BASEID_Dialog+4)
+#define HOOKITEMID_BrowseButton_Dialog		(BASEID_Dialog+5)
+#define HOOKITEMID_ExportSelection_Dialog   (BASEID_Dialog+6)
+#define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+7)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
 |   Synonym Id's                                                        |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define SYNONYMID_DialogColor   1
-#define SYNONYMID_DialogScroll  2
-#define SYNONYMID_DialogBrowse  3
-#define SYNONYMID_ToggleSelection 4
+#define SYNONYMID_DialogColor		1
+#define SYNONYMID_DialogScroll		2
+#define SYNONYMID_DialogBrowse		3
+#define SYNONYMID_ToggleSelection	4
+#define SYNONYMID_ActorInfo			5
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -210,11 +215,20 @@ enum
 |                                                                       |
 +----------------------------------------------------------------------*/
 #if !defined (resource)
-typedef struct dlogbrowsefolder
+//typedef struct dlogbrowsefolder
+//{
+//	WChar fmtStr[255];
+//	int       flag;
+//} DlogBrowseFolder;
+
+typedef struct ifcgeneralinfo
 {
-	WChar fmtStr[255];
-	int       flag;
-} DlogBrowseFolder;
+	WChar actorName[255];
+	WChar actorSurName[255];
+	WChar actorEmail[255];
+	int actorRole;
+	WChar browsedFolder[255];
+} IfcGeneralInfo;
 
 #endif
 

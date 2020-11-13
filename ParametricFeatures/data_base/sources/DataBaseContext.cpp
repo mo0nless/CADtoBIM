@@ -21,7 +21,8 @@ DataBaseContext::DataBaseContext()
 	//}
 	//sqlite3_close(db);
 	
-	ifstream infile("C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/data_base/mappings.txt");
+	ifstream infile("C:/Users/LX5990/source/repos/cadtobim/ParametricFeatures/data_base/mappings.txt");
+	
 	string delimiter = ":";
 	string lineString, modelerComponent, ifcComponent;
 

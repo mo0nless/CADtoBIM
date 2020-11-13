@@ -3,6 +3,8 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <Windows.h>
+
 #include "../models/headers/ComponentsMapping.h"
 
 class DataBaseContext {

@@ -1,5 +1,12 @@
 #include "..\headers\ComponentsMappingDTO.h"
 
+ComponentsMappingDTO::ComponentsMappingDTO()
+{
+	this->_modelerComponentName = "";
+	this->_ifcComponentName = "";
+	this->_ifcTypeComponentName = "";
+}
+
 string ComponentsMappingDTO::getModelerComponentName()
 {
 	return _modelerComponentName;

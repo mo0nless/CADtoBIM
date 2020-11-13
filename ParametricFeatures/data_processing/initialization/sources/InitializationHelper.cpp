@@ -5,7 +5,7 @@
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100)
 
-InitializationHelper::InitializationHelper(vector<ElementHandle> pGraElement, bool onlySelected)
+InitializationHelper::InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected)
 {	
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	//this->pGraElement = mDgnModel->GetGraphicElementsP();
@@ -21,6 +21,8 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
+	ofstream outfile;
+	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer(currentElem.GetElementId());
 	long newLocalNodeId = -1, newParentLocalNodeId = -1, newGlobalNodeId = -1;
@@ -29,59 +31,75 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 
 	sFeatNode->GetAllChildrenRecursively(sFeatVec);
 
+	outfile.open(filePath, std::ios_base::app);
+	outfile << std::endl;	
+	outfile << "----- SMART FEATURE -----" << endl;
+
+
 	for (size_t i = 0; i < sFeatVec.size(); i++)
 	{
+		outfile << std::endl;
+		outfile << "*** Tree Nodes ***" << endl;
 		if (sFeatVec.at(i)->GetParent() != nullptr)
 		{
 			newParentLocalNodeId = sFeatVec.at(i)->GetParent()->GetNodeId();
+			outfile << "Parent Node ID: " << newParentLocalNodeId << endl;
 		}
 
 		newLocalNodeId = sFeatVec.at(i)->GetNodeId();
 		sFeatVec.at(i)->GetLeaf(leafNode);
 
+		outfile << "Local Node ID: " << newLocalNodeId << endl;
+
 		if (leafNode.IsValid()) {
 
 			newGlobalNodeId = leafNode.GetElementId();
+
+			outfile << "Global Node ID: " << newGlobalNodeId << endl;
 		}
 		smartFeatureContainer->insertNodeInTree(newLocalNodeId, newParentLocalNodeId, newGlobalNodeId);
 
 	}
 
+	outfile << std::endl;
+	outfile << "----- END SMART FEATURE -----" << endl;
+	outfile.close();
+
 	return smartFeatureContainer;
 }
 
-StatusInt InitializationHelper::iterateSubElements(ElementHandle eh, DictionaryProperties*& dictionaryProperties)
+StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties)
 {		
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	//ElementHandle eh(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
+	ElementHandle elementHandle(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 
 	int index = 0;
 
 	//TODO[SB] if (el->GetElementType() == MSElementTypes::CELL_HEADER_ELM) MSElementTypes:: https://communities.bentley.com/products/programming/microstation_programming/f/microstation-programming---forum/202544/net-sdk-get-selected-elements
 
-	for (ChildElemIter child(eh); child.IsValid(); child = child.ToNext())
+	for (ChildElemIter child(elementHandle); child.IsValid(); child = child.ToNext())
 	{
-		ElementHandle elm(child.GetElementRef());
-		iterateSubElements(elm, dictionaryProperties);// , propertiesReaderProcessor);
+		//ElementHandle elm(child.GetElementRef());
+		iterateSubElements(child.GetElementRef(), dictionaryProperties);// , propertiesReaderProcessor);
 		++index;
 	}
 	if(index==0){
 
 		ElementBundle* elementBundle = new ElementBundle();
-		elementBundle->setElementHandle(eh);
+		elementBundle->setElementHandle(elementHandle);
 
-		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(eh, elementBundle);
+		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(elementHandle, elementBundle);
 		elementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
 
 		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
-		graphicsProcessorHelper->setElementHandle(eh);
+		graphicsProcessorHelper->setElementHandle(elementHandle);
 		graphicsProcessorHelper->setElementBundle(*elementBundle);
 		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
 				
-		ElementGraphicsOutput::Process(eh, *graphicsProcessor);
+		ElementGraphicsOutput::Process(elementHandle, *graphicsProcessor);
 
 		dictionaryProperties->addElementBundle(elementBundle);
 
@@ -121,21 +139,21 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		{
 			ElementRefP elemRef = NULL;
 			StatusInt status = SelectionSetManager::GetManager().GetElement(i, &elemRef, &dgnModelRef);
-
-			ElementHandle currentElem(elemRef);
+			
+			//ElementHandle currentElem(elemRef);
 
 			pGraElement.clear();
-			pGraElement.push_back(currentElem);
+			pGraElement.push_back(PersistentElementRefP(elemRef));
 		}
 	}
 
 	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
 	//for (PersistentElementRefP elemRef : *pGraElement)
-	for (ElementHandle currentElem : pGraElement)
+	for (PersistentElementRefP elemRef : pGraElement)
 	{	
 		try
 		{
-			//ElementHandle currentElem(elemRef);
+			ElementHandle currentElem(elemRef);
 
 			WString elDescr, myString;
 
@@ -147,7 +165,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
 			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 
-			iterateSubElements(currentElem, propertiesDictionary);
+			//iterateSubElements(elemRef, propertiesDictionary);
 
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
@@ -162,9 +180,13 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 					propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
 				}
 			}
+			else
+			{
+				iterateSubElements(elemRef, propertiesDictionary);
+			}
 
 
-			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+			//this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
 			//vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
 			//propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);

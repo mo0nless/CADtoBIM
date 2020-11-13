@@ -2,6 +2,7 @@
 
 #include "../headers/InitializationHelper.h"
 #include "../../../ifc/main/headers/IfcBuilder.h"
+#include "../../../ifc/general_information/headers/IfcGeneralInformation.h"
 #include "../../../common/utils/headers/ExplorerStructure.h"
 #include "../../../common/utils/headers/NotificationMessage.h"
 
@@ -9,7 +10,7 @@ namespace Init
 {
 	struct Initialization
 	{
-		static vector<ElementHandle> allGraphicElements;
+		static vector<PersistentElementRefP> allGraphicElements;
 		//static vector<PersistentElementRefP> selectedGraphicElements;
 
 		static StatusInt startIfcConverter(bool onlySelectedElm = false)
@@ -91,16 +92,18 @@ namespace Init
 
 		static void collectsAllElements()
 		{
+			allGraphicElements.clear();
+
 			auto pGraElement = ISessionMgr::GetActiveDgnModelP()->GetGraphicElementsP();
 
 			for (PersistentElementRefP elemRef : *pGraElement)
 			{
-				ElementHandle currentElem(elemRef);
-				allGraphicElements.push_back(currentElem);
+				//ElementHandle currentElem(elemRef);
+				allGraphicElements.push_back(elemRef);
 			}
 		};
 
 	};	
 
-	vector<ElementHandle> Initialization::allGraphicElements;
+	vector<PersistentElementRefP> Initialization::allGraphicElements;
 }

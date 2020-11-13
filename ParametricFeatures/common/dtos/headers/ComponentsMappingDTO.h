@@ -12,9 +12,10 @@ private:
 	string _modelerComponentName;
 	string _ifcComponentName;
 	string _ifcTypeComponentName;
-
-
+	
 public:
+	ComponentsMappingDTO();
+
 	string getModelerComponentName();
 	void setModelerComponentName(string modelerComponentName);
 

@@ -25,20 +25,20 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 	if (root->getLeftNode() == nullptr && root->getRightNode() == nullptr) {
 		return getIfcBundleByGlobalId(ifcBundleVector, root->getGlobalNodeId());
 	}
-	IfcElementBundle *left = nullptr, *rigth = nullptr;
+	IfcElementBundle *left = nullptr, *right = nullptr;
 	if (root->getLeftNode() != nullptr) {
 		left = eval(root->getLeftNode(), ifcBundleVector, smartFeature,file);
 	}
 	if (root->getRightNode() != nullptr) {
-		rigth = eval(root->getRightNode(), ifcBundleVector, smartFeature,file);
+		right = eval(root->getRightNode(), ifcBundleVector, smartFeature,file);
 	}
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*smartFeature, root->getLocalNodeId());
 	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && 
-		left != nullptr && rigth != nullptr) {
+		left != nullptr && right != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* result =  IfcBooleanOperatorHandler::solveBooleanOperation(
 			left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
-			rigth->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
+			right->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
 			*ifcReaderPropertiesBundle);
 		IfcElementBundle* temp = new IfcElementBundle(-1, "BooleanFeature");
 
@@ -47,8 +47,8 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 	}
 	else if (ifcReaderPropertiesBundle != nullptr && 
 		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
-		(left != nullptr || rigth != nullptr)) {
-			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, rigth, *ifcReaderPropertiesBundle,file);
+		(left != nullptr || right != nullptr)) {
+			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, right, *ifcReaderPropertiesBundle,file);
 			IfcElementBundle* temp = new IfcElementBundle(-1, "CreatedSolid");
 
 			temp->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(new GraphicProperties(), result));

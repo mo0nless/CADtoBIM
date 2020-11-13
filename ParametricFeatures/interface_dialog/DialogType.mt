@@ -10,4 +10,4 @@
 +----------------------------------------------------------------------*/
 #include "DialogIds.h"
 
-publishStructures (dlogbrowsefolder);
+publishStructures (ifcgeneralinfo);

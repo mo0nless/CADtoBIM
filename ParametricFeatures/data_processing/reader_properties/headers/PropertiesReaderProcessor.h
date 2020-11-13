@@ -43,8 +43,6 @@ public:
 		return _PropertiesReaderProcessor;
 	};
 private:
-	string mElemClassName;
-
 	PropertiesReaderProcessor();
 
 	Logs::Logger* _logger = Logs::Logger::getLogger();		

@@ -55,7 +55,7 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			geometricRepresentationContext,
 			boost::none,
 			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-			string("$")
+			boost::none
 		);
 
 				
@@ -71,8 +71,8 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 		ifcRepresentationList->push(ifcRepresentation);
 
 		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(
-			string("$"),
-			string("$"),
+			boost::none,
+			boost::none,
 			ifcRepresentationList
 		);
 
@@ -890,16 +890,13 @@ Ifc4::IfcElement * IfcElementBuilder::buildIfcElement(IfcElementBundle *& ifcEle
 {
 	Ifc4::IfcElement* ifcElement = new Ifc4::IfcElement(
 		guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor()),
-		//file.getSingle<Ifc4::IfcOwnerHistory>(),
 		ownerHistory,
 		ifcElementBundle->getModelerElementDescriptor(),
 		ifcElementBundle->getModelerElementDescriptor(),
-		//boost::none,
-		string("$"),
+		boost::none,
 		file.addLocalPlacement(),
 		elemShape, 
-		//boost::none
-		string("$")
+		boost::none
 	);
 
 	return ifcElement;

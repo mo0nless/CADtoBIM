@@ -11,7 +11,7 @@
 class InitializationHelper
 {
 public:
-	InitializationHelper(vector<ElementHandle> pGraElement, bool onlySelected);
+	InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected);
 
 	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
 
@@ -19,7 +19,7 @@ private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 	
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
-	StatusInt iterateSubElements(ElementHandle elementRefP, DictionaryProperties*& dictionaryProperties);
+	StatusInt iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties);
 
 	//PersistentElementRefList* pGraElement;
 	DgnModelP mDgnModel;
@@ -29,6 +29,6 @@ private:
 
 	PBAR::DialogCompletionBar* _progressBar;
 
-	vector<ElementHandle> pGraElement;
+	vector<PersistentElementRefP> pGraElement;
 	bool onlySelected;
 };

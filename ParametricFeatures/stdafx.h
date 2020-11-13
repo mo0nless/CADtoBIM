@@ -36,7 +36,7 @@
 
 #include "logging\headers\Logger.h"
 
-#include <../sqlite/sqlite3.h>
+//#include <../sqlite/sqlite3.h>
 
 //#include <ifcgeom\kernels\opencascade\IfcRegister.h>
 
@@ -73,6 +73,7 @@
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
 //#include <DgnPlatform/ElementGeometry.h>
+#include <DgnPlatform/Tools/ConfigurationManager.h>
 #include <DgnPlatform/DgnFileIO/ModelInfo.h>
 #include <DgnPlatform/DgnFileIO/UnitDefinition.h>
 
