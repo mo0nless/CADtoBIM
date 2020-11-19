@@ -161,12 +161,10 @@ DialogBoxRsc DIALOGID_Dialog =
 
 		SPACING (SECTION_GAP)
 		SPACING (SECTION_GAP)
-		//{{0, 3*YC, 0, 0}, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
 		SPACING (SECTION_GAP)
 		SPACING (SECTION_GAP)
 		SPACING (SECTION_GAP)
 
-		//{AUTO_XYWH, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
 
 		BEGIN_VSTACK_LAYOUT (VSTACKLAYOUTID_SmallMargin, "") //0
 			//SPACING (SECTION_GAP)
@@ -175,10 +173,12 @@ DialogBoxRsc DIALOGID_Dialog =
 
 		SPACING (SECTION_GAP)
 
+		{{0, 3*YC, 0, 0}, Separator, 0, ON, SEPARATOR_HORIZONTAL, "", ""},
+
 		BEGIN_HSTACK_LAYOUT (HSTACKLAYOUTID_MyStack, "")
-			STRETCH(1)
+			SPACING (SECTION_GAP)//STRETCH(1)
 			{AUTO_XYWH,  PushButton,   STARTBUTTONID_Dialog, ON, 0, "", ""},
-			STRETCH(1)
+			SPACING (SECTION_GAP)//STRETCH(1)
 		END_LAYOUT
 	END_LAYOUT
 	}
@@ -372,11 +372,12 @@ DItem_PushButtonRsc STARTBUTTONID_Dialog =
 
 DItem_PushButtonRsc BROWSEBUTTONID_Dialog =
     {
-    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, //NOHOOK,
+    NOT_DEFAULT_BUTTON, NOHELP, LHELPCMD, 
 	HOOKITEMID_BrowseButton_Dialog,
     1, NOCMD, LCMD, "",
     TXT_BrowseButton
     };
+
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -524,6 +525,7 @@ DItem_SynonymsRsc SYNONYMID_ToggleSelection=
 		{PushButton, STARTBUTTONID_Dialog}
 	}
 	};
+
 
 DItem_SynonymsRsc SYNONYMID_ActorInfo=
 	{

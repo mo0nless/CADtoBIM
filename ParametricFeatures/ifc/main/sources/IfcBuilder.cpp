@@ -17,11 +17,14 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 {	
 
 	_logger->logInfo(__FILE__, __LINE__, __func__,"!- Starting IFC conversion -!");
+
+	string filename = SessionManager::getInstance()->getIfcOutputFilePath();
+
+#if false
 	typedef Ifc4::IfcGloballyUniqueId guid;
 	
 	//string name = "Test-" + dictionaryPropertiesVector[0]->getElementDescriptor();
 	IfcHierarchyHelper<Ifc4> file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
-	string filename = SessionManager::getInstance()->getIfcOutputFilePath();
 	
 	//DEV CREDIT
 	Ifc4::IfcActorRole* appActorRole1 = new Ifc4::IfcActorRole(
@@ -149,6 +152,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		unitAssigment
 	);
 
+
 	Ifc4::IfcObjectPlacement* objectPlacement = file.addLocalPlacement();
 
 	/*Ifc4::IfcBuildingStorey* buildingStorey = new Ifc4::IfcBuildingStorey(
@@ -164,6 +168,13 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	//Ifc4::IfcBuilding* building = new Ifc4::IfcBuilding()
 
 	file.addEntity(project);
+#endif
+
+	IfcGeneralInformation::getInstance()->buildIfcGeneralInfo();
+	Ifc4::IfcGeometricRepresentationContext* geometricContext = IfcGeneralInformation::getInstance()->getGeometricContext();
+	Ifc4::IfcOwnerHistory* ownerHistory = IfcGeneralInformation::getInstance()->getOwnerHistory();
+	Ifc4::IfcObjectPlacement* objectPlacement = IfcGeneralInformation::getInstance()->getObjectPlacement();
+	IfcHierarchyHelper<Ifc4>& file = IfcGeneralInformation::getInstance()->getIfcHierarchyHelper();
 
 	// initialize ifc bundle vector
 	vector<IfcElementBundle*>ifcElementBundleVector;
@@ -223,6 +234,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	_progressBar->Open(L"Working...");
 	_progressBar->numGraphicElement = (int)dictionaryPropertiesVector.size();
 
+
 	try {
 		vector<boost::thread*> bthread;
 		for (int i = 0; i < dictionaryPropertiesSections.size(); i++)
@@ -253,7 +265,6 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
 		throw;
 	}
-	
 
 	_smartFeatureHandler->handleSmartFeature(ifcElementBundleVector, file);
 
@@ -274,10 +285,15 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	try {
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting writing to the IFC file -!");
 
-		ofstream f;
+		/*ofstream f;
 		f.open(filename);
 		f << file;
-		f.close();
+		f.close();*/
+
+		auto myfile = std::fstream(filename, std::ios::out);// | std::ios::binary);
+		myfile << file;
+		myfile.flush();
+		myfile.close();
 
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended writing to the IFC file -!");
 	}

@@ -7,6 +7,7 @@
 #include "../data_processing/initialization/headers/Initialization.h"
 #include "../common/utils/headers/ExplorerStructure.h"
 
+
 #include <string>
 #include <UI\Layout\Margins.h>
 #include <UI\Layout\StackLayout.h>
@@ -14,11 +15,12 @@
 //#include <DgnPlatform\DgnDocumentManager.h>
 #include <Mstn\DocumentManager.h>
 
+#include "ListModelManager.h"
 #include <Mstn/ISessionMgr.h>
-#include <Mstn\MdlApi\MdlApi.h>
-#include <Mstn\MdlApi\dlogbox.r.h>
-#include <Mstn\MdlApi\dlogitem.h>
-#include <Mstn\MdlApi\DialogItems.h>
+//#include <Mstn\MdlApi\MdlApi.h>
+//#include <Mstn\MdlApi\dlogbox.r.h>
+//#include <Mstn\MdlApi\dlogitem.h>
+//#include <Mstn\MdlApi\DialogItems.h>
 #include <Mstn/MdlApi/MSDialog.h>
 #include <Mstn/MdlApi/GuiLayout.h>
 #include <Mstn/MdlApi/GuiLayoutProperties.h>
@@ -97,49 +99,9 @@ namespace DialogHooks
 
 			return true;
 		}
-
-		virtual bool _OnInit(DialogInitArgsR init) override
-		{
-#if false
-			MSDialogP dbP = this->GetDialog();
-			// Create the GuiLayoutHelper that will hold the top-level layout
-			GuiLayoutHelper *layoutHelper = GuiLayoutHelper::Create(dbP);
-			DialogItem *diP = dbP->GetItemByTypeAndId(RTYPE_MenuBar, MENUBARID_Dialog);
-			
-			// Create a vertical Stack layout, which is the top-level layout
-			//VStackLayout *vStackLayout = VStackLayout::Create();
-			
-			//vStackLayout->SetLayoutMargins(m);
-
-			// Get the MenuBar on the dialog and add it to the vertical Stack layout
-			/*DialogItem *diP = dbP->GetItemByTypeAndId(RTYPE_MenuBar, MENUBARID_Dialog);
-			if (NULL != diP)
-				vStackLayout->AddControl(GuiLayoutControl::Create(layoutHelper, diP,
-					SizePolicy(SizePolicyType::SP_Preferred, SizePolicyType::SP_Fixed)));*/
-			//// Create a horizontal stack layout, which will hold a ListBox on the left
-			//// and a ContainerPanel to the right of it.
-			//HStackLayout *hStackLayout1 = HStackLayout::Create();
-			//hStackLayout1->AddSpacing(XC);
-			//diP = dbP->GetItemByTypeAndId(RTYPE_ListBox, LISTBOXID_Dialog);
-			//if (NULL != diP)
-			//	hStackLayout1->AddControl(GuiLayoutControl::Create(layoutHelper, diP,
-			//		SizePolicy(SizePolicyType::SP_Fixed, SizePolicyType::SP_Preferred)));
-
-			//// Add the horizontal stack layout to the top-level vertical stack layout
-			//vStackLayout->AddLayout(hStackLayout1);
-
-			//// Set the vertical stack layout as the top-level layout
-			//layoutHelper->SetLayout(vStackLayout);
-			// Set the GuiLayoutHelper as the layout helper for the dialog.
-			// When the dialog size changes or control sizes/properties change, 
-			// the layout manager will automatically be invoked.
-			dbP->SetLayoutHelper(layoutHelper);
-#endif
-			return true;
-		}
 	};
 
-	class ItemBoxHadler : DialogItemHookHandler
+	class ItemBoxHadler : ListModelManager<RTYPE_ListBox>
 	{
 	public:
 		// Dialog Hook replacement function
@@ -152,64 +114,24 @@ namespace DialogHooks
 			}
 		}
 		// Item Hook Handler Constructor
-		ItemBoxHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-		// Item Hook Handler Method override
+		ItemBoxHadler(MSDialogP dbP, DialogItemP diP) : ListModelManager<RTYPE_ListBox>(dbP, diP) { this->dbP = dbP; this->diP = diP; }
+		// Item Hook Handler Method override		
+
 	private:
+		MSDialogP dbP; 
+		DialogItemP diP;
+
 		virtual bool _OnCreate(DialogItemCreateArgsR create) override
-		{			
-			RawItemHdrP listBoxP = this->GetRawItem();
-			
-			int          iMember;
-			WString        formatStr;
+		{				
+			refreshListBoxList();
 
-			Initialization::collectsAllElements();
-
-			int numElements = (int)Initialization::allGraphicElements.size();//ISessionMgr::GetActiveDgnModelP()->GetElementCount(DgnModelSections::GraphicElements);
-
-			/* This list box will have numElements rows and 2 columns, so it needs
-			(numElements * 2) cells created in the string list. */
-			int numSpace = (numElements * 2);
-			stringListP = mdlStringList_create(numSpace, 1);
-
-			mdlDialog_listBoxSetStrListP(listBoxP, stringListP, 1);
-			mdlResource_loadWString(formatStr, NULL, STRINGID_Messages, MSGID_ListBox);
-
-			int elementIndex = 0;
-			for (iMember = 0; iMember < numSpace; iMember++)
-			{
-				WChar   buffer[80];
-				WString elDescr;
-
-				ElementHandle currentElem (Initialization::allGraphicElements.at(elementIndex));				
-
-				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-
-				_swprintf(buffer, formatStr.GetWCharCP(), currentElem.GetElementId());
-
-				mdlStringList_setMember(stringListP, iMember, buffer, NULL);
-
-				iMember += 1;
-				mdlStringList_setMember(stringListP, iMember, elDescr.GetWCharCP(), NULL);
-				elementIndex++;
-			}
 			// OnCreate processing 
 			return true;
 		}
-		virtual bool _OnDestroy() override
-		{
-			RawItemHdrP listBoxP = this->GetRawItem();
-			StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
 
-			/* free the string list if it is allocated */
-			if (NULL != strListP)
-			{
-				mdlStringList_destroy(strListP);
-			}
-
-			return true;
-		}
 		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 		{
+#if false
 			int rowIndex = -1;
 			int colIndex = -1;
 			bool found = FALSE;
@@ -237,20 +159,113 @@ namespace DialogHooks
 					}
 
 				} while (found == TRUE);
-			
+#endif
+			return true;
+		}
+
+		virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
+		{
+			refreshListBoxList();
 
 			return true;
 		}
 
-		/*virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
+		void refreshListBoxList()
+		{
+			Initialization::collectsAllElements();
+
+			ListModelP listModel = this->GetListModel();
+			if (NULL == listModel)
+				listModel = mdlListModel_create(2);
+			else
+				mdlListModel_empty(listModel, TRUE);
+
+
+			for (auto elemRef : Initialization::allGraphicElements)
+			{
+				ListRowP pRow = mdlListRow_create(listModel);				
+				ListCellP pCell;
+				WChar buffer[80];
+				WString elDescr, elemID;
+
+				ElementHandle currentElem(elemRef);
+				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+				elemID.Sprintf(L"%d", currentElem.GetElementId());
+
+				if (NULL != (pCell = mdlListRow_getCellAtIndex(pRow, 0)))
+				{
+					mdlListCell_setStringValue(pCell, elemID.c_str(), true);
+					//mdlListCell_setPointerValue(pCell, elemRef);
+				}
+				if (NULL != (pCell = mdlListRow_getCellAtIndex(pRow, 1)))
+				{
+					mdlListCell_setStringValue(pCell, elDescr.c_str(), true);
+				}
+
+				/*-----------------------------------------------------------------------
+				* @return Index of new row or MDLERR_ADDRNOTVALID if pModel is invalid, *
+				* MDLERR_INSFMEMORY if there was not enough memory to insert the row.	*
+				* -1 is append after the last row										*
+				-----------------------------------------------------------------------*/
+				if (0 > mdlListModel_insertRow(listModel, pRow, -1))
+					BeAssert(0);
+			}
+
+			this->AssignListModel(listModel);
+		
+		}
+
+#if false
+		bool fillStringItemList()
 		{
 
-			return true;
-		}*/
+			/* free the string list if it is allocated */
+			if (NULL != stringListP)
+			{
+				mdlStringList_destroy(stringListP);
+			}
 
-		StringList  *stringListP;
+			int          iMember;
+			WString        formatStr;
+			RawItemHdrP listBoxP = this->GetRawItem();
+
+			int numElements = (int)Initialization::allGraphicElements.size();
+
+			/* This list box will have numElements rows and 2 columns, so it needs
+			(numElements * 2) cells created in the string list. */
+			int numSpace = (numElements * 2);
+			stringListP = mdlStringList_create(numSpace, 1);
+
+			mdlDialog_listBoxSetStrListP(listBoxP, stringListP, 1);
+			
+			mdlResource_loadWString(formatStr, NULL, STRINGID_Messages, MSGID_ListBox);
+
+			int elementIndex = 0;
+			for (iMember = 0; iMember < numSpace; iMember++)
+			{
+				WChar   buffer[80];
+				WString elDescr;
+
+				ElementHandle currentElem(Initialization::allGraphicElements.at(elementIndex));
+
+				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+
+				_swprintf(buffer, formatStr.GetWCharCP(), currentElem.GetElementId());
+
+				mdlStringList_setMember(stringListP, iMember, buffer, NULL);
+
+				iMember += 1;
+				mdlStringList_setMember(stringListP, iMember, elDescr.GetWCharCP(), NULL);
+				elementIndex++;
+			}
+			// OnCreate processing 
+			return true;
+		}
+#endif
+
 	};
 
+#pragma region BUTTONS
 	class StartButtonHadler : DialogItemHookHandler
 	{
 	public:
@@ -271,6 +286,9 @@ namespace DialogHooks
 		{
 			//Synch with all the TEXT elements through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
+
+			//Get the latest update before start conversion
+			StructureExp::getInstance()->updateFileNameFilePath();
 
 			WString name, sname, email;
 			name = ifcGeneralInfo.actorName;
@@ -320,7 +338,7 @@ namespace DialogHooks
 
 		virtual bool _OnButton(DialogItemButtonArgsR button) override
 		{			
-			StructureExp::mainFolderPath = expStruct->BrowseFolder(StructureExp::mainFolderPath);
+			StructureExp::mainFolderPath = StructureExp::getInstance()->BrowseFolder(StructureExp::mainFolderPath);
 			
 			//Copy the NEW path in the TEXT's published variable
 			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
@@ -329,16 +347,11 @@ namespace DialogHooks
 			//Synch with the TEXT element through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
 
-			string ifcOutputFileName = StructureExp::mainFolderPath + "\\" + StructureExp::mainFileName + ".ifc";
-
-			SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
-			SessionManager::getInstance()->setOutputFolderPath(StructureExp::mainFolderPath);
-
 			return true;
 		}
-
-		StructureExp* expStruct = new StructureExp();
 	};
+
+#pragma endregion
 
 	class ActorOptionHadler : DialogItemHookHandler
 	{

@@ -34,14 +34,15 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 				string representationType = "Point";
 				string representationIdentifier = "Reference";
 
-				//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
+				//NOTE: The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. 
+				//Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
 				Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
 					representationIdentifier,
 					geometricRepresentationContext->ContextType(),
 					geometricRepresentationContext,
 					boost::none,
 					Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-					string("$")
+					boost::none
 				);
 				
 				Ifc4::IfcShapeRepresentation* ifcPortsRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
@@ -53,8 +54,8 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 				ifcPortsRepList->push(ifcPortsRepresentation);
 
 				Ifc4::IfcProductDefinitionShape* portShape = new Ifc4::IfcProductDefinitionShape(
-					string("$"),
-					string("$"), 
+					boost::none,
+					boost::none,
 					ifcPortsRepList
 				);
 
@@ -68,8 +69,8 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 					string("Port ") + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
 					ifcElementBundle->getModelerElementDescriptor(),
 					string("PORT"),
-					ifcElementBundle->getIfcElement()->ObjectPlacement(),
-					//file.getSingle<Ifc4::IfcObjectPlacement>(),
+					//ifcElementBundle->getIfcElement()->ObjectPlacement(),
+					file.getSingle<Ifc4::IfcObjectPlacement>(),
 					portShape,
 					Ifc4::IfcFlowDirectionEnum::Value(portSequence), //TODO [SB] Handle in case of multiple ports on element
 					Ifc4::IfcDistributionPortTypeEnum::IfcDistributionPortType_PIPE,
@@ -89,7 +90,8 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 				//Insert the port to the list
 				ifcPortsRelationshipList->insertIfcPortElement(point, port, ifcElementBundle);
 
-				portSequence++;
+				if (portSequence <= 2)
+					portSequence++;
 			}
 
 			//create the shared_ptr with the object definition list
@@ -100,7 +102,7 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 		}
 	}
 
-	buildIfcReletionshipConnectionPorts(file);
+	//buildIfcReletionshipConnectionPorts(file);
 
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC ports -!");
 
@@ -110,18 +112,21 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	//Create the nested relationship between the element and ports
-	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
-		guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
-		//file.getSingle<Ifc4::IfcOwnerHistory>(),
-		ownerHistory,
-		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
-		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
-		ifcElementBundle->getIfcElement(),
-		objectDefinition
-	);
-	
-	file.addEntity(relNests);
+	if (ifcElementBundle->getIfcElement() != nullptr)
+	{
+		//Create the nested relationship between the element and ports
+		Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
+			guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
+			//file.getSingle<Ifc4::IfcOwnerHistory>(),
+			ownerHistory,
+			string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
+			string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
+			ifcElementBundle->getIfcElement(),
+			objectDefinition
+		);
+
+		file.addEntity(relNests);
+	}
 }
 
 void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file)
@@ -130,10 +135,18 @@ void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc
 
 	PortElement* temp = ifcPortsRelationshipList->getHead();
 
+	string _dataOutputFilePath = SessionManager::getInstance()->getDataOutputFilePath();
+	ofstream _outFile;
+
 	while(temp != NULL)
 	{
-		if (temp->isElementConnected)
+		if (temp->isElementConnected && temp->ifcDistributionElement != nullptr)
 		{
+
+			_outFile.open(_dataOutputFilePath, ios_base::app, sizeof(string));
+			_outFile << "------------------- " << temp->elementIdNumber << " -------------------" << temp->elementName << endl;
+			_outFile.close();
+
 			Ifc4::IfcRelConnectsPorts* connectsPorts = new Ifc4::IfcRelConnectsPorts(
 				guid::IfcGloballyUniqueId("Element: " + temp->ifcDistributionElement->Name() + " Connection Port: " + to_string(temp->distributionPort->FlowDirection())),
 				//file.getSingle<Ifc4::IfcOwnerHistory>(),
@@ -153,5 +166,5 @@ void IfcPortsBuilder::buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc
 			temp = temp->nextPortElement;
 	}
 
-	ifcPortsRelationshipList->display();
+	//ifcPortsRelationshipList->display();
 }

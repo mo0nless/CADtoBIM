@@ -12,7 +12,7 @@ struct PortElement
 	Ifc4::IfcDistributionPort* distributionPort;
 	Ifc4::IfcDistributionElement* ifcDistributionElement;
 	long elementIdNumber ;
-
+	string elementName;
 	//Next port
 	PortElement* nextPortElement;
 	//Previous Port

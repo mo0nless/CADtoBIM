@@ -190,6 +190,7 @@
     <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
+    <ClInclude Include="interface_dialog\ListModelManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

@@ -38,7 +38,7 @@ void SetVersionNumber()
 
 void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 {
-	StructureExp::createFilesStructure();
+	StructureExp::getInstance()->createDefaultFilesStructure();
 
 	/*-------------------------------------------------------------
 	| Open our main dialog box with the function mdlDialog_open.

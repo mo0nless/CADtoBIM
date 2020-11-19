@@ -20,6 +20,12 @@ namespace Explorer
 		static string mainFolderPath;
 		static string mainFileName;
 
+		static StructureExp* getInstance()
+		{
+			call_once(initInstanceFlag, &StructureExp::initStructureExp);
+			return _StructureExp;
+		};
+
 		static void createFolder(string folderPath)
 		{
 
@@ -35,11 +41,10 @@ namespace Explorer
 			}
 		}
 
-		static void createFilesStructure()
+		static void createDefaultFilesStructure()
 		{
 			//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 			string filePath = "C:/Users/LX5990/source/repos/CADtoBIM/ParametricFeatures/examples/TEST.txt";
-
 			SessionManager::getInstance()->setDataOutputFilePath(filePath);
 
 
@@ -53,7 +58,7 @@ namespace Explorer
 				cout << "Path: " << my_documents << "\n";
 			}
 
-			string documentsPath = my_documents;
+			string documentsPath(my_documents);
 
 			mainFolderPath = documentsPath + "\\IfcModels";
 			// create main folder
@@ -78,6 +83,12 @@ namespace Explorer
 			createFolder(currentDayLogFolderPath);
 			SessionManager::getInstance()->setCurrentDayLogsFolderPath(currentDayLogFolderPath);
 
+			updateFileNameFilePath();
+
+		}
+
+		static void updateFileNameFilePath()
+		{
 			string fNamePath = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
 
 			// get dgn file name
@@ -96,7 +107,6 @@ namespace Explorer
 			string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
 
 			SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
-
 		}
 
 		static string BrowseFolder(string saved_path)
@@ -133,6 +143,15 @@ namespace Explorer
 		}
 
 	private:
+		StructureExp() {};
+
+		static StructureExp* _StructureExp;
+		static once_flag initInstanceFlag;
+		static void initStructureExp()
+		{
+			_StructureExp = new StructureExp();
+		}
+
 		static int CALLBACK BrowseFolderCallback(HWND hwnd, UINT uMsg, LPARAM lParam, LPARAM lpData)
 		{
 
@@ -152,4 +171,7 @@ namespace Explorer
 
 	string StructureExp::mainFolderPath = "";
 	string StructureExp::mainFileName = "";
+
+	once_flag StructureExp::initInstanceFlag;
+	StructureExp* StructureExp::_StructureExp = 0;
 }

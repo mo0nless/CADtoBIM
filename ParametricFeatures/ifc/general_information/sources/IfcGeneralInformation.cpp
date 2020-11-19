@@ -4,8 +4,13 @@ once_flag IfcGeneralInformation::initInstanceFlag;
 IfcGeneralInformation* IfcGeneralInformation::_IfcGeneralInformation = 0;
 
 IfcGeneralInformation::IfcGeneralInformation()
-{
+{	
 	ConfigurationManager::GetVariable(_orgaization, L"CONNECTUSER_ORGANIZATION");
+	setDefaultValues();
+}
+
+bool IfcGeneralInformation::setDefaultValues()
+{
 	ConfigurationManager::GetVariable(_fullName, L"CONNECTUSER_NAME");
 	_actorEmail = StringUtils::getString(_fullName);
 
@@ -13,10 +18,12 @@ IfcGeneralInformation::IfcGeneralInformation()
 	size_t atSep = _fullName.find(L"@");
 
 	_actorName = StringUtils::getString(_fullName.substr(0, pSep));
-	_actorSurName = StringUtils::getString(_fullName.substr(pSep + 1, atSep - pSep -1));
+	_actorSurName = StringUtils::getString(_fullName.substr(pSep + 1, atSep - pSep - 1));
 
 	_actorName[0] = toupper(_actorName[0]);
 	_actorSurName[0] = toupper(_actorSurName[0]);
+
+	return true;
 }
 
 void IfcGeneralInformation::setActorName(string name)
@@ -159,6 +166,11 @@ Ifc4::IfcOwnerHistory* IfcGeneralInformation::getOwnerHistory()
 	return _ownerHistory;
 }
 
+Ifc4::IfcObjectPlacement* IfcGeneralInformation::getObjectPlacement()
+{
+	return _objectPlacement;
+}
+
 void IfcGeneralInformation::buildIfcGeneralInfo()
 {
 	typedef Ifc4::IfcGloballyUniqueId guid;
@@ -242,6 +254,8 @@ void IfcGeneralInformation::buildIfcGeneralInfo()
 		representationContextList,
 		unitAssigment
 	);
+
+	_objectPlacement = _file.addLocalPlacement();
 
 	_file.addEntity(project);
 }

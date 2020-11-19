@@ -24,11 +24,11 @@ public:
 	string getActorSurName();
 	string getActorEmail();
 
-	Ifc4::IfcRoleEnum::Value getActorRole();
+	bool setDefaultValues();
 	IfcHierarchyHelper<Ifc4>& getIfcHierarchyHelper();
 	Ifc4::IfcGeometricRepresentationContext* getGeometricContext();
 	Ifc4::IfcOwnerHistory* getOwnerHistory();
-
+	Ifc4::IfcObjectPlacement* getObjectPlacement();
 private:
 	IfcGeneralInformation();
 
@@ -52,9 +52,10 @@ private:
 	Ifc4::IfcRoleEnum::Value _actorRole = Ifc4::IfcRoleEnum::Value(0);
 	Ifc4::IfcGeometricRepresentationContext* _geometricContext;
 	Ifc4::IfcOwnerHistory* _ownerHistory;
+	Ifc4::IfcObjectPlacement* _objectPlacement;
 
 	Ifc4::IfcUnitAssignment* ifcUnitAssignment;
 	Ifc4::IfcActorRole::list::ptr appListOfActor;
 	Ifc4::IfcGeometricRepresentationContext* ifcGeometricRepresentationContext;
-	IfcHierarchyHelper<Ifc4> _file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
+	IfcHierarchyHelper<Ifc4> _file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));;
 };

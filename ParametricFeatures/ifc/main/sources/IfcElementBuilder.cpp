@@ -13,8 +13,7 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 {
 
 	vector<ComponentsMappingDTO*> componentsMappings = this->_componentsMappingService->getAll();
-
-	
+			
 	//Create the vector for the distribution element 
 	//vector<IfcElementBundle*>ifcDistributionBundleVector;
 	for (auto& ifcElementBundle : ifcBundleVector) //const& removed

@@ -145,8 +145,8 @@ enum CmdItemListId
 #define HOOKITEMID_ScrollBar_Dialog			(BASEID_Dialog+3)
 #define HOOKITEMID_StartButton_Dialog		(BASEID_Dialog+4)
 #define HOOKITEMID_BrowseButton_Dialog		(BASEID_Dialog+5)
-#define HOOKITEMID_ExportSelection_Dialog   (BASEID_Dialog+6)
-#define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+7)
+#define HOOKITEMID_ExportSelection_Dialog   (BASEID_Dialog+7)
+#define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+8)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -158,6 +158,8 @@ enum CmdItemListId
 #define SYNONYMID_DialogBrowse		3
 #define SYNONYMID_ToggleSelection	4
 #define SYNONYMID_ActorInfo			5
+#define SYNONYMID_RefreshList		6
+
 
 /*----------------------------------------------------------------------+
 |                                                                       |
