@@ -57,5 +57,5 @@ private:
 	Ifc4::IfcUnitAssignment* ifcUnitAssignment;
 	Ifc4::IfcActorRole::list::ptr appListOfActor;
 	Ifc4::IfcGeometricRepresentationContext* ifcGeometricRepresentationContext;
-	IfcHierarchyHelper<Ifc4> _file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));;
+	IfcHierarchyHelper<Ifc4> _file = IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 };

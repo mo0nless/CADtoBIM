@@ -125,7 +125,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//TODO[SB] MESH PROCESSIG NOT ACTIVE
-	bool meshProcessing = false;
+	bool meshProcessing = true;
 	mGraphicsProcessorHelper.processBodySolid(entity, meshProcessing);
 
 	return SUCCESS;

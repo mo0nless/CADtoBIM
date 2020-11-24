@@ -511,7 +511,7 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 
 			columnVectorZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
 			columnVectorZ = boxDetails.ParameterizationSign() * columnVectorZ;
-
+			
 			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
 			setBoxGraphicProperties(boxDetails, (BoxGraphicProperties*&)primitiveGraphicProperties);
 

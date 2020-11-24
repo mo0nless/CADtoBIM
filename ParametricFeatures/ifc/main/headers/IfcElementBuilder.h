@@ -37,7 +37,7 @@ private:
 
 	Ifc4::IfcVirtualElement* handleIfcVirtualElement(string ifcElement, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
 
-
+	//Ifc4::IfcDistributionElement * buildIfcDistributionElement(IfcElementBundle *& ifcElementBundle, Ifc4::IfcProductDefinitionShape * elemShape, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcElement* buildIfcElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file);
 

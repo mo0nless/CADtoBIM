@@ -63,14 +63,14 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 
 				//Need to be used the subtype because otherwise the flow , distribution type, distribution system cqnnot be specified
 				Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
-					guid::IfcGloballyUniqueId("Port: " + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor()),
+					guid::IfcGloballyUniqueId("Port: " + to_string(portSequence) + string(" Element: ") + to_string(ifcElementBundle->getModelerElementId())),
 					//file.getSingle<Ifc4::IfcOwnerHistory>(),
 					ownerHistory,
 					string("Port ") + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
 					ifcElementBundle->getModelerElementDescriptor(),
 					string("PORT"),
-					//ifcElementBundle->getIfcElement()->ObjectPlacement(),
-					file.getSingle<Ifc4::IfcObjectPlacement>(),
+					ifcElementBundle->getIfcElement()->ObjectPlacement(),
+					//file.getSingle<Ifc4::IfcObjectPlacement>(),
 					portShape,
 					Ifc4::IfcFlowDirectionEnum::Value(portSequence), //TODO [SB] Handle in case of multiple ports on element
 					Ifc4::IfcDistributionPortTypeEnum::IfcDistributionPortType_PIPE,
@@ -102,7 +102,7 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 		}
 	}
 
-	//buildIfcReletionshipConnectionPorts(file);
+	buildIfcReletionshipConnectionPorts(file);
 
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC ports -!");
 
@@ -116,7 +116,7 @@ void IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<
 	{
 		//Create the nested relationship between the element and ports
 		Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
-			guid::IfcGloballyUniqueId("RelNests: " + ifcElementBundle->getModelerElementDescriptor() + " Ports"),
+			guid::IfcGloballyUniqueId(string("RelNests: ") + to_string(ifcElementBundle->getModelerElementId()) + string(" Ports")),
 			//file.getSingle<Ifc4::IfcOwnerHistory>(),
 			ownerHistory,
 			string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),

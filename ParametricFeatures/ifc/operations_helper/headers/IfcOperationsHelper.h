@@ -30,9 +30,9 @@ public:
 	static Ifc4::IfcVector* buildIfcVectorFromDirectionPoint3D(Triplet3D newVector);
 
 	static void adjustShapeGlobalPlacement(ShapesGraphicProperties* shape, DVec3d position, bool rotatePoint);
+	static DPoint3d rotateAlongAxis(string axis, DPoint3d oldPoint);
 	
 private:
-	static DPoint3d rotateAlongAxis(string axis, DPoint3d oldPoint);
 	template<class Triplet3D>
 	static vector<double> buildDoubleVectorFromTriplet(Triplet3D newTriplet);
 	template<class Tuple2D>

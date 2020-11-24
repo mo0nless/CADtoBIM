@@ -74,8 +74,23 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 
 			BoxGraphicProperties& boxGraphicProperties = dynamic_cast<BoxGraphicProperties&>(primitiveGraphicProperties);
 
-			ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
-			NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()));
+			/*if (abs(boxGraphicProperties.getVectorAxisY().z) == 1.0)
+			{
+				DVec3d centerRot;
+				centerRot.Init(IfcOperationsHelper::rotateAlongAxis("Y", boxGraphicProperties.getCentroid()));
+				placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
+					centerRot,
+					primitiveGraphicProperties.getVectorAxisY(),
+					primitiveGraphicProperties.getVectorAxisX()
+				);
+				ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
+					NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()));
+			}
+			else*/
+			{
+				ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
+				NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()));
+			}
 
 		} else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
 			CylinderGraphicProperties& cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties&>(primitiveGraphicProperties);
