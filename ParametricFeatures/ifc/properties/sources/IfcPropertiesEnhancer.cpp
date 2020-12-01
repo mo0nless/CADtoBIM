@@ -1,5 +1,9 @@
 #include "../headers/IfcPropertiesEnhancer.h"
 
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning (disable:4311 4302 4312 4100 )
 void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC properties -!");
@@ -17,6 +21,12 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
+			if (ifcElementBundle->getIfcElement() == nullptr)
+			{
+				_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + "IFC Element is Nullptr");
+				continue;
+			}
+
 			Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
 			ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
 
@@ -24,8 +34,7 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
-					guid::IfcGloballyUniqueId(ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName()),
-					//file.getSingle<Ifc4::IfcOwnerHistory>(), 
+					guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getCassName()),
 					this->_ownerHistory,
 					ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName(), 
 					boost::none, 
@@ -76,7 +85,6 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 
 	Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(
 		guid::IfcGloballyUniqueId(readerPropertiesBundle.getCassName()), 
-		//file.getSingle<Ifc4::IfcOwnerHistory>(),
 		this->_ownerHistory,
 		readerPropertiesBundle.getCassName(), 
 		boost::none, 
@@ -163,7 +171,11 @@ Ifc4::IfcProperty * IfcPropertiesEnhancer::createIfcComplexProperty(ReaderProper
 	}
 
 
-	return new Ifc4::IfcComplexProperty(readerPropertyDefinition.getPropertyName(), readerPropertyDefinition.getPropertyName(),
-		readerPropertyDefinition.getPropertyTypeName(), ifcPropertyList);
+	return new Ifc4::IfcComplexProperty(
+		readerPropertyDefinition.getPropertyName(), 
+		readerPropertyDefinition.getPropertyName(),
+		readerPropertyDefinition.getPropertyTypeName(), 
+		ifcPropertyList
+	);
 
 }

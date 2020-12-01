@@ -17,6 +17,16 @@ void IfcElementBundle::setRepresentationType(string type)
 	this->representationType = type;
 }
 
+void IfcElementBundle::setBadIfcClassBuild(bool value)
+{
+	badIfcElemetBuild = value;
+}
+
+bool IfcElementBundle::getBadIfcClassBuild()
+{
+	return badIfcElemetBuild;
+}
+
 void IfcElementBundle::addIfcDistributionPorts(Ifc4::IfcDistributionPort * newDistPort)
 {
 	this->ifcDistributionPortVector.push_back(newDistPort);

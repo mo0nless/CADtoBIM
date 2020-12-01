@@ -12,13 +12,14 @@ public:
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
-	void buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>>& objectDefinition, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
+	Ifc4::IfcRelNests* buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinition, IfcElementBundle*& ifcElementBundle);
 	void buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file);
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	IfcPortsRelationshipList* ifcPortsRelationshipList;
 	Ifc4::IfcGeometricRepresentationContext* geometricRepresentationContext = nullptr;
 	Ifc4::IfcOwnerHistory* ownerHistory = nullptr;
+
 };
 
 

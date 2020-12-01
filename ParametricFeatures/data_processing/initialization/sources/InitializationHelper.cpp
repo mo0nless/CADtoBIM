@@ -3,7 +3,7 @@
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-#pragma warning (disable:4311 4302 4312 4100)
+#pragma warning (disable:4311 4302 4312 4100 )
 
 InitializationHelper::InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected)
 {	
@@ -147,7 +147,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 		}
 	}
 
-	string errorMessageAtElementsProcessing = "An error occured while iterating and processing pGraElement";
 	//for (PersistentElementRefP elemRef : *pGraElement)
 	for (PersistentElementRefP elemRef : pGraElement)
 	{	
@@ -202,10 +201,10 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			this->_progressBar->Update(myString);
 		}
 		catch (exception& ex) {
-			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, errorMessageAtElementsProcessing);
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "An error occured while iterating and processing pGraElement");
 		}
 		catch (...) {
-			_logger->logError(__FILE__, __LINE__, __FUNCTION__, errorMessageAtElementsProcessing);
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, "An error occured while iterating and processing pGraElement");
 
 		}
 	}

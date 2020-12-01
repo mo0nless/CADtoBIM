@@ -27,6 +27,7 @@ private:
 
 	bool hasConnections;
 	bool isSmartSolid;
+	bool badIfcElemetBuild = false;
 
 	SmartFeatureContainer* smartFeatureContainer;
 	string representationType;
@@ -37,6 +38,9 @@ public:
 
 	string getRepresentationType();
 	void setRepresentationType(string type);
+
+	void setBadIfcClassBuild(bool value);
+	bool getBadIfcClassBuild();
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);

@@ -198,17 +198,20 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		{
 			vector<Ifc4::IfcCurve*> curveVector = ifcShapesCurvesParser(shapeGraphicProperties, file, ifcElementBundle);
 
-			BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
-			boundCurveVec->vecIfcCurves = curveVector;
-			boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
+			if (!curveVector.empty())
+			{
+				BoundTypeIfcCurve* boundCurveVec = new BoundTypeIfcCurve();
+				boundCurveVec->vecIfcCurves = curveVector;
+				boundCurveVec->vecPrimitivesCurves = shapeGraphicProperties->getCurvesPrimitivesContainerVector();
 
-			boundCurveVec->boundary = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
-			boundCurveVec->ifcCurve = curveVector.front();
-			this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
+				boundCurveVec->boundary = CurvesBoundaryTypeEnum::NONE_BOUNDARY;
+				boundCurveVec->ifcCurve = curveVector.front();
+				this->mShapeBoundTypeCurvesVector.push_back(boundCurveVec);
 
-			mSingleShapeRepresentation = curveVector.front();
+				mSingleShapeRepresentation = curveVector.front();
 
-			this->mHasSingleShape = true;
+				this->mHasSingleShape = true;
+			}
 		}
 		break;
 		default:
@@ -240,6 +243,10 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 
 		this->mSingleShapeRepresentation = nullptr;
+	}
+	else if (this->mSingleShapeRepresentation == nullptr && shapeGraphicProperties->getBoundaryTypeCurvesContainer() != CurvesBoundaryTypeEnum::NONE_BOUNDARY)
+	{
+		_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem is NULL");
 	}
 }
 
@@ -493,10 +500,6 @@ Ifc4::IfcCurve* IfcShapesEnhancer::buildIfcCurvePrimitives(CurveGraphicPropertie
 
 			break;
 	}	
-	//Ifc4::IfcColourRgb* ifcColour = new Ifc4::IfcColourRgb(string("Color"), 1,0,0);
-	//Ifc4::IfcDescriptiveMeasure* ss = new Ifc4::IfcDescriptiveMeasure(string("ss"));
-	//Ifc4::IfcPreDefinedCurveFont* csfs = new Ifc4::IfcPreDefinedCurveFont(string("red"));
-	//Ifc4::IfcCurveStyle* curveStyle = new Ifc4::IfcCurveStyle(string("style"), csfs, ss, ifcColour, boost::none);
 
 	return curveRepresentationItem;
 }
@@ -510,7 +513,14 @@ vector<Ifc4::IfcCurve*> IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGraphicPr
 	{
 		Ifc4::IfcCurve* curveRepresentationItem = buildIfcCurvePrimitives(curveProperties, file, ifcElementBundle);
 
-		curveVector.push_back(curveRepresentationItem);
+		if (curveRepresentationItem == nullptr && curveProperties->getCurvesTypeEnum() != CurvesPrimitivesTypeEnum::POINT_STRING)
+		{
+			_logger->logWarning(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + "IFC Curve is Nullptr");
+			continue;
+		}
+
+		if (curveProperties->getCurvesTypeEnum() != CurvesPrimitivesTypeEnum::POINT_STRING)
+			curveVector.push_back(curveRepresentationItem);
 	}
 
 	return curveVector;
@@ -524,17 +534,11 @@ IfcTemplatedEntityList<Ifc4::IfcCompositeCurveSegment>* IfcShapesEnhancer::build
 
 	for each (auto curve in curveVector)
 	{
-		Ifc4::IfcCompositeCurveSegment* item = nullptr;
-		item = new Ifc4::IfcCompositeCurveSegment(
+		Ifc4::IfcCompositeCurveSegment* item = new Ifc4::IfcCompositeCurveSegment(
 			Ifc4::IfcTransitionCode::IfcTransitionCode_CONTINUOUS,
 			true,
 			curve
 		);
-
-		if (item == nullptr) {
-			_logger->logWarning(__FILE__, __LINE__, __func__, "item is NULL");
-			continue;
-		}
 
 		tempEntityList->push(item);
 	}

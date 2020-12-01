@@ -13,6 +13,12 @@ public:
 		return _IfcGeneralInformation;
 	};
 
+	static void resetInstance()
+	{
+		delete _IfcGeneralInformation;
+		_IfcGeneralInformation = new IfcGeneralInformation();
+	}
+
 	void setActorName(string name);
 	void setActorSurName(string sName);
 	void setActorEmail(string mail);

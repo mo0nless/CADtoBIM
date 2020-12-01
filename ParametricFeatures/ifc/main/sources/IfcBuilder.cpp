@@ -236,6 +236,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 
 	try {
+
+#if true
 		vector<boost::thread*> bthread;
 		for (int i = 0; i < dictionaryPropertiesSections.size(); i++)
 		{
@@ -254,6 +256,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 		{
 			t->join();
 		}
+#endif
+		//processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
 	}
 	catch (exception& ex) {
 		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating boost::thread Multithreading");
@@ -270,11 +274,11 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
 
-	_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
+	//_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
 
-	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
+	//_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
 
-	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
+	//_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
 
 	//Close ProgressBar
 	_progressBar->Close();
@@ -285,15 +289,15 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	try {
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting writing to the IFC file -!");
 
-		/*ofstream f;
+		ofstream f;
 		f.open(filename);
 		f << file;
-		f.close();*/
+		f.close();
 
-		auto myfile = std::fstream(filename, std::ios::out);// | std::ios::binary);
-		myfile << file;
-		myfile.flush();
-		myfile.close();
+		//auto myfile = std::fstream(filename, std::ios::out);// | std::ios::binary);
+		//myfile << file;
+		//myfile.flush();
+		//myfile.close();
 
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended writing to the IFC file -!");
 	}
@@ -318,6 +322,9 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 
 		// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 		IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
+
+		//if (ifcElementBundle->getModelerElementId() == 60897)
+		//	_logger->logError(__FILE__, __LINE__, __func__, "!- BAD elements processing -!");
 
 		for (auto element : dictionaryProperties.getElementBundle())
 		{

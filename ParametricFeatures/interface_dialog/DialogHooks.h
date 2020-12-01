@@ -165,6 +165,7 @@ namespace DialogHooks
 
 		virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
 		{
+			IfcGeneralInformation::resetInstance();
 			refreshListBoxList();
 
 			return true;

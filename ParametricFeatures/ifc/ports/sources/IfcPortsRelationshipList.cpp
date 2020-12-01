@@ -9,71 +9,75 @@ IfcPortsRelationshipList::IfcPortsRelationshipList()
 
 bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElement)
 {
-	_logger->logDebug(__FILE__, __LINE__, __func__);
+	_logger->logDebug(__FILE__, __LINE__, __func__, "START " + newPortElement->elementName + " " + to_string(newPortElement->elementIdNumber));
 
-	vector<double> pointCurrent;
-	vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
-	
-	PortElement *temp;
-	PortElement *tempLast = NULL;
-	bool connected = false;
-	
-	// Point temp to start 
-	temp = mHead;
-		
-	// Iterate till the loc 
-	while (temp != NULL)
-	{
-		//check if the temp element is connected to the current one
-		pointCurrent = temp->cartesianPointPort->Coordinates();
-		//Check the equality of the ports
-		connected = Comparator::isEqual(pointCurrent, pointNew);
+		vector<double> pointCurrent;
+		vector<double> pointNew = newPortElement->cartesianPointPort->Coordinates();
 
-		if (connected) {
-			temp->isElementConnected = connected;
-			break;
-		}
-		else {
-			tempLast = temp;
-			temp = temp->nextPortElement;
-		}
-			
-	}
+		PortElement *temp;
+		PortElement *tempLast = NULL;
+		bool connected = false;
 
-	if (connected)
-	{
-		//Check if it's in between the list the connection
-		if (temp->nextPortElement != NULL)
+		// Point temp to start 
+		temp = mHead;
+
+		// Iterate till the loc 
+		while (temp != NULL)
 		{
-			newPortElement->nextPortElement = temp->nextPortElement;
-			(temp->nextPortElement)->previousPortElement = newPortElement;
-			temp->nextPortElement = newPortElement;
-			newPortElement->previousPortElement = temp;
+			//check if the temp element is connected to the current one
+			pointCurrent = temp->cartesianPointPort->Coordinates();
+			//Check the equality of the ports
+			connected = Comparator::isEqual(pointCurrent, pointNew);
+
+			if (connected) {
+				temp->isElementConnected = connected;
+				break;
+			}
+			else {
+				tempLast = temp;
+				temp = temp->nextPortElement;
+			}
+
 		}
+
+		if (connected)
+		{
+			//Check if it's in between the list the connection
+			if (temp->nextPortElement != NULL)
+			{
+				newPortElement->nextPortElement = temp->nextPortElement;
+				(temp->nextPortElement)->previousPortElement = newPortElement;
+				temp->nextPortElement = newPortElement;
+				newPortElement->previousPortElement = temp;
+			}
+			else
+			{
+				newPortElement->previousPortElement = temp;
+				temp->nextPortElement = newPortElement;
+
+				//flag that the last element is the connection
+				temp->isElementConnected = connected;
+			}
+
+			_logger->logDebug(__FILE__, __LINE__, __func__, "END " + to_string(newPortElement->elementIdNumber));
+
+			return true;
+		}
+		//If it's not connected added last
 		else
 		{
-			newPortElement->previousPortElement = temp;
-			temp->nextPortElement = newPortElement;
+			newPortElement->previousPortElement = tempLast;
+			tempLast->nextPortElement = newPortElement;
 
-			//flag that the last element is the connection
-			temp->isElementConnected = connected;
+			_logger->logDebug(__FILE__, __LINE__, __func__, "END " + to_string(newPortElement->elementIdNumber));
+
+			return true;
 		}
-		
 
-		return true;
-	}
-	//If it's not connected added last
-	else
-	{
-		newPortElement->previousPortElement = tempLast;
-		tempLast->nextPortElement = newPortElement;
-		
-		return true;
-	}
-	
-	
+		_logger->logDebug(__FILE__, __LINE__, __func__, "END but NOT CONNECTED" + to_string(newPortElement->elementIdNumber));
 
-	return false;
+		return false;
+	
 }
 
 PortElement* IfcPortsRelationshipList::getHead()
@@ -104,7 +108,13 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 	}
 	else
 	{
-		connectPortAtLocation(newPortElement);
+		try {
+			if (!connectPortAtLocation(newPortElement))
+				_logger->logWarning(__FILE__, __LINE__, __FUNCTION__, "NOT Connected Port at Location");
+		}
+		catch (exception& ex) {
+			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "Error Connecting Port at Location");
+		}
 	}
 }
 
