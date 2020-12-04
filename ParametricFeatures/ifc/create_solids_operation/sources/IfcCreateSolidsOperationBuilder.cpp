@@ -50,7 +50,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcCreateSolidsOperationBuilder::buildIfcC
 		NumberUtils::convertCurrentUnitToMeters(centroid.y), NumberUtils::convertCurrentUnitToMeters(centroid.z)),
 		file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y,zAxis.z), file.addTriplet<Ifc4::IfcDirection>(xAxis.x, xAxis.y, xAxis.z));
 
-	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getCassName()))
+	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getClassName()))
 	{
 	case CreateSolidFunctionsEnum::REVOLVE:
 	{

@@ -6,7 +6,7 @@ ReaderPropertiesBundle::ReaderPropertiesBundle(string newClassName, int newLocal
 	this->localId = newLocalId;
 }
 
-string ReaderPropertiesBundle::getCassName()
+string ReaderPropertiesBundle::getClassName()
 {
 	return this->className;
 }

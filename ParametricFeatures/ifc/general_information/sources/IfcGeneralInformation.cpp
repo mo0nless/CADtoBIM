@@ -255,7 +255,44 @@ void IfcGeneralInformation::buildIfcGeneralInfo()
 		unitAssigment
 	);
 
-	_objectPlacement = _file.addLocalPlacement();
+	/*IfcTemplatedEntityList<Ifc4::IfcRepresentation>* tempListRep = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> listRep(tempListRep);
 
+	Ifc4::IfcProductRepresentation* productRepresentation = new Ifc4::IfcProductRepresentation(boost::none, boost::none, listRep);
+
+	Ifc4::IfcPostalAddress* postalAddress = new Ifc4::IfcPostalAddress(
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none
+	);
+
+	Ifc4::IfcBuilding* building = new Ifc4::IfcBuilding(
+		guid::IfcGloballyUniqueId(""),
+		_ownerHistory,
+		SessionManager::getInstance()->getDgnFileName(),
+		boost::none,
+		boost::none,
+		_file.addLocalPlacement(),
+		productRepresentation,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		postalAddress
+		);*/
+	
+	
 	_file.addEntity(project);
+
+	_file.addBuildingStorey(0, _ownerHistory);
+
+	//_objectPlacement = _file.addLocalPlacement();
+	_objectPlacement = _file.getSingle<Ifc4::IfcBuildingStorey>()->ObjectPlacement();
 }

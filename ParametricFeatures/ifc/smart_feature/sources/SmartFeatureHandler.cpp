@@ -34,7 +34,7 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 	}
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*smartFeature, root->getLocalNodeId());
-	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName() == "BooleanFeature" && 
+	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getClassName() == "BooleanFeature" && 
 		left != nullptr && right != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* result =  IfcBooleanOperatorHandler::solveBooleanOperation(
 			left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
@@ -46,7 +46,7 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 		return temp;
 	}
 	else if (ifcReaderPropertiesBundle != nullptr && 
-		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getCassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
+		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getClassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
 		(left != nullptr || right != nullptr)) {
 			Ifc4::IfcGeometricRepresentationItem* result = IfcCreateSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, right, *ifcReaderPropertiesBundle,file);
 			IfcElementBundle* temp = new IfcElementBundle(-1, "CreatedSolid");

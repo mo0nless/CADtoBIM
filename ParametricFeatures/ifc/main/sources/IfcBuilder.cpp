@@ -1,5 +1,9 @@
 #include "../headers/IfcBuilder.h"
 
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning( disable : 4101)
 
 IfcBuilder::IfcBuilder()
 {
@@ -170,6 +174,8 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	file.addEntity(project);
 #endif
 
+	typedef IfcParse::IfcGlobalId guid;
+
 	IfcGeneralInformation::getInstance()->buildIfcGeneralInfo();
 	Ifc4::IfcGeometricRepresentationContext* geometricContext = IfcGeneralInformation::getInstance()->getGeometricContext();
 	Ifc4::IfcOwnerHistory* ownerHistory = IfcGeneralInformation::getInstance()->getOwnerHistory();
@@ -186,6 +192,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
+				ifcElementBundle->setElementClassName(dictionaryProperties.getElementClassName());
 
 				ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
 
@@ -196,7 +203,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 				ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
 				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
 				for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
-					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getCassName(), readerProperty->getLocalId());
+					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getClassName(), readerProperty->getLocalId());
 					readerPropertiesBundle->setName(readerProperty->getName());
 
 					for (auto const& property1 : readerProperty->getProperties()) {
@@ -257,7 +264,6 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 			t->join();
 		}
 #endif
-		//processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
 	}
 	catch (exception& ex) {
 		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating boost::thread Multithreading");
@@ -274,11 +280,11 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
 
-	//_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
+	_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
 
-	//_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
+	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
 
-	//_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
+	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
 
 	//Close ProgressBar
 	_progressBar->Close();
@@ -288,6 +294,9 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	try {
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting writing to the IFC file -!");
+
+		bool g = file.good();
+		bool d = file.parsing_complete();
 
 		ofstream f;
 		f.open(filename);

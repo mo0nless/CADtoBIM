@@ -1,6 +1,9 @@
 #include "..\headers\DataBaseContext.h"
 
-
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4189)
+#pragma warning( disable : 4238)
 DataBaseContext *DataBaseContext::_dataBaseContext = 0;
 
 
@@ -20,8 +23,41 @@ DataBaseContext::DataBaseContext()
 	//	fprintf(stderr, "Opened database successfully\n");
 	//}
 	//sqlite3_close(db);
+	_logger = Logs::Logger::getLogger();
+
+	string fileName = "mappings.txt";
+	//string pathName = "C:/Users/LX5990/source/repos/cadtobim/ParametricFeatures/data_base/mappings.txt";
+	string pathName = " ";
+
+	try {
+		char path[MAX_PATH];
+		HMODULE hm = NULL;
+
+		if (GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+			GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+			(LPCSTR)&DataBaseContext::getComponentsMappingVector(), &hm) == 0)
+		{
+			int ret = GetLastError();
+			fprintf(stderr, "GetModuleHandle failed, error = %d\n", ret);
+			// Return or however you want to handle an error.
+		}
+		if (GetModuleFileName(hm, path, sizeof(path)) == 0)
+		{
+			int ret = GetLastError();
+			fprintf(stderr, "GetModuleFileName failed, error = %d\n", ret);
+			// Return or however you want to handle an error.
+		}
+
+		string dPath(path);
+
+		pathName = dPath + "\\" + fileName;
+	}
+	catch (exception& ex) {
+		_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error at initializing the ifcElementBundleVector");
+		throw ex;
+	}
 	
-	ifstream infile("C:/Users/LX5990/source/repos/cadtobim/ParametricFeatures/data_base/mappings.txt");
+	ifstream infile(pathName);
 	
 	string delimiter = ":";
 	string lineString, modelerComponent, ifcComponent;

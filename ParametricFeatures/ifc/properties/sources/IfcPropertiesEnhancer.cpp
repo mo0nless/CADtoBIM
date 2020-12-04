@@ -34,10 +34,10 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
-					guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getCassName()),
+					guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getClassName()),
 					this->_ownerHistory,
-					ifcElementBundle->getModelerElementDescriptor() + readerPropertyBundle->getCassName(), 
-					boost::none, 
+					readerPropertyBundle->getClassName(), 
+					ifcElementBundle->getModelerElementDescriptor(),
 					ifcObjectDefinitionList, 
 					ifcPropertySet
 				);
@@ -84,9 +84,9 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderProperti
 	}
 
 	Ifc4::IfcPropertySet* ifcPropertySet = new Ifc4::IfcPropertySet(
-		guid::IfcGloballyUniqueId(readerPropertiesBundle.getCassName()), 
+		guid::IfcGloballyUniqueId(readerPropertiesBundle.getClassName()), 
 		this->_ownerHistory,
-		readerPropertiesBundle.getCassName(), 
+		readerPropertiesBundle.getClassName(), 
 		boost::none, 
 		ifcPropertyList
 	);

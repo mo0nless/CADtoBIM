@@ -42,3 +42,4 @@ StairFlight:IfcBuildingElement:IfcStairFlight
 Wall:IfcBuildingElement:IfcWall
 Window:IfcBuildingElement:IfcWindow
 Flow:IfcDistributionElement:IfcDistributionFlowElement
+Valve:IfcDistributionElement:IfcValve

@@ -538,6 +538,10 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 	{
 		DgnExtrusionDetail extrusionDetails;
 
+		//TODO[SB] review the extrusion creation
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Extrusion not handle it, processed as Solid -!");
+		return nullptr;
+
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
 		{
 			Transform localToWorld, worldToLocal;
@@ -550,6 +554,7 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
 			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
 		}
+
 	}
 	break;
 
@@ -573,6 +578,10 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 	case SolidPrimitiveType::SolidPrimitiveType_DgnRuledSweep:
 	{
 		DgnRuledSweepDetail ruledSweepDetails;
+
+		//TODO[SB] review the ruled sweep creation
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Ruled Sweep not handle it, processed as Solid -!");
+		return nullptr;
 
 		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))
 		{

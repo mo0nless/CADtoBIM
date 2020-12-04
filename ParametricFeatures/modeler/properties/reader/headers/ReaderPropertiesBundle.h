@@ -17,7 +17,7 @@ private:
 public:
 	ReaderPropertiesBundle(string newClassName, int newLocalId);
 
-	string getCassName();
+	string getClassName();
 	int getLocalId();
 	void setLocalId(int newLocalId);
 

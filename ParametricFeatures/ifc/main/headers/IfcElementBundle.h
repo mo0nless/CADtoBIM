@@ -31,13 +31,16 @@ private:
 
 	SmartFeatureContainer* smartFeatureContainer;
 	string representationType;
-
+	string mElemClassName;
 public:
 
 	IfcElementBundle(long newModelerElementId,string newModelerElementName);
 
 	string getRepresentationType();
 	void setRepresentationType(string type);
+
+	string getElementClassName();
+	void setElementClassName(string name);
 
 	void setBadIfcClassBuild(bool value);
 	bool getBadIfcClassBuild();

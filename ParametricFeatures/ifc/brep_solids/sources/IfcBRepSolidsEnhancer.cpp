@@ -22,6 +22,9 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			bundle->setMaterial(elementBundle->getMaterial());
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 			//ifcTemplatedEntityList->push(ifcRepresentationItem);
+
+			//new add
+			//file.addEntity(ifcRepresentationItem);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");

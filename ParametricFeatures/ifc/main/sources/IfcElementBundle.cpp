@@ -130,4 +130,12 @@ vector<SolidEdge*> IfcElementBundle::getSolidEdgesCollection()
 	return this->smartSolidEdgesCollection;
 }
 
+string IfcElementBundle::getElementClassName()
+{
+	return this->mElemClassName;
+}
 
+void IfcElementBundle::setElementClassName(string name)
+{
+	this->mElemClassName = name;
+}

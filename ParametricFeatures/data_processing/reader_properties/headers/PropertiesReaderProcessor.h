@@ -42,8 +42,11 @@ public:
 		call_once(initInstanceFlag, &PropertiesReaderProcessor::initPropertiesReaderProcessor);		
 		return _PropertiesReaderProcessor;
 	};
+	string getElementClassName();
 private:
 	PropertiesReaderProcessor();
+
+	string mElemClassName;
 
 	Logs::Logger* _logger = Logs::Logger::getLogger();		
 

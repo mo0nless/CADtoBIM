@@ -9,7 +9,6 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 
 vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
 {
-	string mElemClassName;
 	vector<ReaderPropertiesBundle*>	readerPropertiesBundleVector;
 
 	_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -62,7 +61,7 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 
 			outfile.close();*/
 
-			mElemClassName = StringUtils::getString(elemInst->GetClass().GetName());
+			mElemClassName = StringUtils::getNormalizedString(elemInst->GetClass().GetName());
 			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
 			ReaderPropertiesMapper::mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
@@ -118,4 +117,9 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 	//return new ReaderPropertiesBundle("", -1);
 
 	return readerPropertiesBundleVector;
+}
+
+string PropertiesReaderProcessor::getElementClassName()
+{
+	return this->mElemClassName;
 }

@@ -37,8 +37,9 @@ bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
 //! @param[in] text The text data.
 //! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
 BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { 
-	//return ERROR;
-	return SUCCESS;
+	//text.GetProperties().
+	return ERROR;
+	//return SUCCESS;
 } // Don't export glyph geometry...
 
 //! Collect output as a single curve component.
@@ -68,13 +69,15 @@ BentleyStatus GraphicsProcessor::_ProcessCurveVector(CurveVectorCR curves, bool 
 		WString myString;
 		myString.Sprintf(L"_ProcessCurveVector");
 
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Curve Vector not processed through Graphic Processor -!");
+
 		NotificationMessage::send(
 			mGraphicsProcessorHelper.getCurrentElementHandle(),
 			myString,
 			OutputMessagePriority::Warning
 		);
 
-		return SUCCESS;
+		return ERROR;
 	}
 		
 	return SUCCESS;
@@ -96,6 +99,8 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 	{
 		WString myString;
 		myString.Sprintf(L"_ProcessSurface");
+
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Surface not processed through Graphic Processor -!");
 
 		NotificationMessage::send(
 			mGraphicsProcessorHelper.getCurrentElementHandle(),
@@ -126,6 +131,9 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 
 	//TODO[SB] MESH PROCESSIG NOT ACTIVE
 	bool meshProcessing = true;
+	if(meshProcessing)
+		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Triangulated Mesh Graphic Processor -!");
+
 	mGraphicsProcessorHelper.processBodySolid(entity, meshProcessing);
 
 	return SUCCESS;
@@ -144,6 +152,8 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 	{
 		WString myString;
 		myString.Sprintf(L"_ProcessFacets");
+
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Polyface not processed through Graphic Processor -!");
 
 		NotificationMessage::send(
 			mGraphicsProcessorHelper.getCurrentElementHandle(),
@@ -172,13 +182,15 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 		WString myString;
 		myString.Sprintf(L"_ProcessSolidPrimitive");
 
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- primitive not processed through Graphic Processor -!");
+		
 		NotificationMessage::send(
 			mGraphicsProcessorHelper.getCurrentElementHandle(),
 			myString,
 			OutputMessagePriority::Warning
 		);
 
-		return SUCCESS;
+		return ERROR;
 	}
 
 

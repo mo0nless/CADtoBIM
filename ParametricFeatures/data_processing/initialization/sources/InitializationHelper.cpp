@@ -159,11 +159,11 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getString(elDescr.GetWCharCP()));
+			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
 
 			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
 			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
-
+			propertiesDictionary->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
 			//iterateSubElements(elemRef, propertiesDictionary);
 
 			if (SmartFeatureElement::IsSmartFeature(currentElem))

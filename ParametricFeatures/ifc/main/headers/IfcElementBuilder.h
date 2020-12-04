@@ -15,31 +15,31 @@ public:
 
 	void processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 private:
-	Ifc4::IfcElement* handleIfcElementCreation(ComponentsMappingDTO* mappedValue,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcElement* handleIfcElementCreation(ComponentsMappingDTO* mappedValue,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcBuildingElement* handleIfcBuildingElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcBuildingElement* handleIfcBuildingElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcCivilElement* handleIfcCivilElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcCivilElement* handleIfcCivilElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcDistributionElement* handleIfcDistributionElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcDistributionElement* handleIfcDistributionElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcElementAssembly* handleIfcElementAssembly(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcElementAssembly* handleIfcElementAssembly(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcElementComponent* handleIfcElementComponent(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcElementComponent* handleIfcElementComponent(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcFeatureElement* handleIfcFeatureElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcFeatureElement* handleIfcFeatureElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcFurnishingElement* handleIfcFurnishingElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcFurnishingElement* handleIfcFurnishingElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcGeographicElement* handleIfcGeographicElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcGeographicElement* handleIfcGeographicElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcTransportElement* handleIfcTransportElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcTransportElement* handleIfcTransportElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcVirtualElement* handleIfcVirtualElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle);
+	Ifc4::IfcVirtualElement* handleIfcVirtualElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	//Ifc4::IfcDistributionElement * buildIfcDistributionElement(IfcElementBundle *& ifcElementBundle, Ifc4::IfcProductDefinitionShape * elemShape, IfcHierarchyHelper<Ifc4>& file);
 
-	Ifc4::IfcElement* buildIfcElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape);
+	Ifc4::IfcElement* buildIfcElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file);
 
 	ComponentsMappingDTO* getIfcElement(vector<ComponentsMappingDTO*>componentsMapping, string elementDescription);
 

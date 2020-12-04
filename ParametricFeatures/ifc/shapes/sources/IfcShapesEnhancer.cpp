@@ -241,6 +241,8 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 		ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 
+		//new add
+		//file.addEntity(mSingleShapeRepresentation);
 
 		this->mSingleShapeRepresentation = nullptr;
 	}

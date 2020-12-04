@@ -50,15 +50,15 @@ void DictionaryProperties::addElementReaderPropertiesBundle(ReaderPropertiesBund
 	this->elementReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 }
 
-//vector<GraphicProperties*> DictionaryProperties::getGraphicPropertiesVector()
-//{
-//	return this->graphicPropertiesVector;
-//}
-//
-//void DictionaryProperties::addGraphicProperties(GraphicProperties * graphicProperties)
-//{
-//	this->graphicPropertiesVector.push_back(graphicProperties);
-//}
+string DictionaryProperties::getElementClassName()
+{
+	return this->mElemClassName;
+}
+
+void DictionaryProperties::setElementClassName(string name)
+{
+	this->mElemClassName = name;
+}
 
 void DictionaryProperties::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
 {

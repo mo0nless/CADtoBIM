@@ -24,10 +24,12 @@ private:
 	SmartFeatureContainer * smartFeatureContainer;
 
 	vector<ElementBundle*> subElements;
-		
+	string mElemClassName;
 public:
 	DictionaryProperties(long newElementId, string newElementDescriptor);
 
+	string getElementClassName();
+	void setElementClassName(string name);
 
 	vector<ElementBundle*> getElementBundle();
 	void addElementBundle(ElementBundle* elementBundle);

@@ -17,6 +17,9 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 			bundle->setMaterial(elementBundle->getMaterial());
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 						//ifcTemplatedEntityList->push(ifcRepresentationItem);
+
+			//new add
+			//file.addEntity(ifcRepresentationItem);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -146,13 +149,9 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	SessionManager* sm = sm->getInstance();
-	sm->getDataOutputFilePath();
-	sm->getIfcOutputFilePath();
 
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 	ofstream outfile;
-	//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
