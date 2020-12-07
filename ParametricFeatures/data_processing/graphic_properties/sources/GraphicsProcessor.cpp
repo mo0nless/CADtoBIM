@@ -93,6 +93,7 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	//TODO[SB] return ERROR _ProcessSurface
+	_logger->logWarning(__FILE__, __LINE__, __func__, "!- Surface not processed through Graphic Processor -!");
 	return ERROR;
 
 	if(!mGraphicsProcessorHelper.processMSBsplineSurface(surface))

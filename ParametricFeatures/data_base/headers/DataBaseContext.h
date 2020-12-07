@@ -7,6 +7,7 @@
 
 #include "../models/headers/ComponentsMapping.h"
 #include "../../logging/headers/Logger.h"
+#include "../../common/models/headers/SessionManager.h"
 
 class DataBaseContext {
 

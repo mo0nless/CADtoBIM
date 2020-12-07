@@ -41,23 +41,6 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			continue;
 		}
 
-#if false
-		Ifc4::IfcRepresentation* ifcRepresentation = new Ifc4::IfcRepresentation(
-			file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
-			boost::none,
-			boost::none,
-			//to_string(ifcElementBundle->getModelerElementId()), 
-			//elementDescription, 
-			ifcRepresentationItemList
-		);
-
-		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
-		ifcRepresentationList->push(ifcRepresentation);
-
-		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(boost::none, boost::none, ifcRepresentationList);
-#endif
-
-#if true
 		string representationType = "";
 		string representationIdentifier = "";
 		//TODO: Needs to be set up correctly the 3rd input parameter following:
@@ -79,15 +62,13 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			geometricRepresentationContext->ContextType(),
 			geometricRepresentationContext,
 			boost::none,
-			//Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_NOTDEFINED,
+			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
 			boost::none
 		);
 
 
 		Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
 			geometricSubContext,
-			//file.getSingle<Ifc4::IfcGeometricRepresentationContext>(),
 			representationIdentifier,
 			representationType,
 			ifcRepresentationItemList
@@ -101,13 +82,13 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			boost::none,
 			ifcRepresentationList
 		);
-#endif
+
 		Ifc4::IfcElement* ifcElement = handleIfcElementCreation(mappedValue, shape, ifcElementBundle, file);
 
 		if (ifcElement == nullptr)
 		{
 			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr, ElementBundle bad flag");
-			//ifcElement = buildIfcElement(ifcElementBundle, shape, file);
+			
 			ifcElementBundle->setBadIfcClassBuild(true);
 			ifcElementBundle->setIfcElement(ifcElement);
 		}
@@ -116,7 +97,7 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			file.addEntity(shape);
 
 			file.addEntity(ifcElement);
-			//file.addBuildingProduct(ifcElement);
+
 			ifcElementBundle->setIfcElement(ifcElement);
 		}
 	}

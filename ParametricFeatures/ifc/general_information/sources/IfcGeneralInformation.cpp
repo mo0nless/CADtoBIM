@@ -127,7 +127,7 @@ IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>* IfcGeneralInformation::g
 
 	//http://standards.buildingsmart.org/MVD/RELEASE/IFC4/ADD2_TC1/RV1_2/HTML/schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm
 	_geometricContext = new Ifc4::IfcGeometricRepresentationContext(
-		representationIdentifier,
+		boost::none,
 		representationContextType,
 		3,
 		1.0E-03,
@@ -255,39 +255,6 @@ void IfcGeneralInformation::buildIfcGeneralInfo()
 		unitAssigment
 	);
 
-	/*IfcTemplatedEntityList<Ifc4::IfcRepresentation>* tempListRep = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
-	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> listRep(tempListRep);
-
-	Ifc4::IfcProductRepresentation* productRepresentation = new Ifc4::IfcProductRepresentation(boost::none, boost::none, listRep);
-
-	Ifc4::IfcPostalAddress* postalAddress = new Ifc4::IfcPostalAddress(
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none
-	);
-
-	Ifc4::IfcBuilding* building = new Ifc4::IfcBuilding(
-		guid::IfcGloballyUniqueId(""),
-		_ownerHistory,
-		SessionManager::getInstance()->getDgnFileName(),
-		boost::none,
-		boost::none,
-		_file.addLocalPlacement(),
-		productRepresentation,
-		boost::none,
-		boost::none,
-		boost::none,
-		boost::none,
-		postalAddress
-		);*/
-	
 	
 	_file.addEntity(project);
 

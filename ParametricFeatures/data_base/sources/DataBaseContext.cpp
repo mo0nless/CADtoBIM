@@ -25,7 +25,10 @@ DataBaseContext::DataBaseContext()
 	//sqlite3_close(db);
 	_logger = Logs::Logger::getLogger();
 
+	string outputFile = SessionManager::getInstance()->getDataOutputFilePath();
 	string fileName = "mappings.txt";
+	string applicationFolder = "Mdlapps";
+
 	//string pathName = "C:/Users/LX5990/source/repos/cadtobim/ParametricFeatures/data_base/mappings.txt";
 	string pathName = " ";
 
@@ -40,20 +43,31 @@ DataBaseContext::DataBaseContext()
 			int ret = GetLastError();
 			fprintf(stderr, "GetModuleHandle failed, error = %d\n", ret);
 			// Return or however you want to handle an error.
+			_logger->logError(__FILE__, __LINE__, __func__, "GetModuleHandle failed, error ");
 		}
 		if (GetModuleFileName(hm, path, sizeof(path)) == 0)
 		{
 			int ret = GetLastError();
 			fprintf(stderr, "GetModuleFileName failed, error = %d\n", ret);
 			// Return or however you want to handle an error.
+			_logger->logError(__FILE__, __LINE__, __func__, "GetModuleFileName failed, error ");
 		}
 
 		string dPath(path);
 
-		pathName = dPath + "\\" + fileName;
+		dPath = dPath.substr(0, dPath.find_last_of("\\/"));
+
+		pathName = dPath + "\\" + applicationFolder + "\\" + fileName;
+
+		auto myfile = std::fstream(outputFile, std::ios::app);// | std::ios::binary);
+		myfile << "DATABASE:" << std::endl;
+		myfile << "Full: " << pathName << std::endl;
+		myfile << "Original: " << dPath << std::endl;
+		myfile.flush();
+		myfile.close();
 	}
 	catch (exception& ex) {
-		_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error at initializing the ifcElementBundleVector");
+		_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error while retrieving Database Path");
 		throw ex;
 	}
 	
