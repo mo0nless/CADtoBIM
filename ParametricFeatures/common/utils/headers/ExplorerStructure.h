@@ -64,8 +64,6 @@ namespace Explorer
 			// create main folder
 			createFolder(mainFolderPath);
 
-			SessionManager::getInstance()->setOutputFolderPath(mainFolderPath);
-
 			string logFolderPath = mainFolderPath + "\\logs";
 			// create logs folder
 			createFolder(logFolderPath);
@@ -103,6 +101,7 @@ namespace Explorer
 			mainFileName = StringUtils::getNormalizedString(strName);
 
 			SessionManager::getInstance()->setDgnFileName(mainFileName);
+			SessionManager::getInstance()->setOutputFolderPath(mainFolderPath);
 
 			string ifcOutputFileName = mainFolderPath + "\\" + fname + ".ifc";
 

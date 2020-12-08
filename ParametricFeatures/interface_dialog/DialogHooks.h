@@ -304,6 +304,8 @@ namespace DialogHooks
 
 			Initialization::startIfcConverter(dlog_ToggleSingleElementButton);
 
+			IfcGeneralInformation::resetInstance();
+
 			return true;
 		}
 	};

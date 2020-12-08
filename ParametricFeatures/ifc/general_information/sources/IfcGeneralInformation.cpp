@@ -7,6 +7,7 @@ IfcGeneralInformation::IfcGeneralInformation()
 {	
 	ConfigurationManager::GetVariable(_orgaization, L"CONNECTUSER_ORGANIZATION");
 	setDefaultValues();
+	this->_file = new IfcHierarchyHelper<Ifc4>(IfcParse::schema_by_name("IFC4"));
 }
 
 bool IfcGeneralInformation::setDefaultValues()
@@ -64,7 +65,7 @@ string IfcGeneralInformation::getActorEmail()
 
 IfcHierarchyHelper<Ifc4>& IfcGeneralInformation::getIfcHierarchyHelper()
 {
-	return _file;
+	return *_file;
 }
 
 IfcTemplatedEntityList<Ifc4::IfcActorRole>* IfcGeneralInformation::getDeveloperRole()
@@ -120,9 +121,9 @@ IfcTemplatedEntityList<Ifc4::IfcRepresentationContext>* IfcGeneralInformation::g
 	Ifc4::IfcDirection* trueNorthDirection = new Ifc4::IfcDirection(vector<double>{ 0.0, 1.0}); //This describe a plane and is 2D
 
 	Ifc4::IfcAxis2Placement3D* originAndAxisPlacement = new Ifc4::IfcAxis2Placement3D(
-		_file.addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
-		_file.addTriplet<Ifc4::IfcDirection>(0, 0, 1), // Z direction
-		_file.addTriplet<Ifc4::IfcDirection>(1, 0, 0)
+		_file->addTriplet<Ifc4::IfcCartesianPoint>(0, 0, 0),
+		_file->addTriplet<Ifc4::IfcDirection>(0, 0, 1), // Z direction
+		_file->addTriplet<Ifc4::IfcDirection>(1, 0, 0)
 	);
 
 	//http://standards.buildingsmart.org/MVD/RELEASE/IFC4/ADD2_TC1/RV1_2/HTML/schema/ifcrepresentationresource/lexical/ifcgeometricrepresentationcontext.htm
@@ -255,11 +256,44 @@ void IfcGeneralInformation::buildIfcGeneralInfo()
 		unitAssigment
 	);
 
+	/*IfcTemplatedEntityList<Ifc4::IfcRepresentation>* tempListRep = new IfcTemplatedEntityList<Ifc4::IfcRepresentation>();
+	boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcRepresentation>> listRep(tempListRep);
+
+	Ifc4::IfcProductRepresentation* productRepresentation = new Ifc4::IfcProductRepresentation(boost::none, boost::none, listRep);
+
+	Ifc4::IfcPostalAddress* postalAddress = new Ifc4::IfcPostalAddress(
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none
+	);
+
+	Ifc4::IfcBuilding* building = new Ifc4::IfcBuilding(
+		guid::IfcGloballyUniqueId(""),
+		_ownerHistory,
+		SessionManager::getInstance()->getDgnFileName(),
+		boost::none,
+		boost::none,
+		_file->addLocalPlacement(),
+		productRepresentation,
+		boost::none,
+		boost::none,
+		boost::none,
+		boost::none,
+		postalAddress
+		);*/
 	
-	_file.addEntity(project);
+	
+	_file->addEntity(project);
 
-	_file.addBuildingStorey(0, _ownerHistory);
+	_file->addBuildingStorey(0, _ownerHistory);
 
-	//_objectPlacement = _file.addLocalPlacement();
-	_objectPlacement = _file.getSingle<Ifc4::IfcBuildingStorey>()->ObjectPlacement();
+	//_objectPlacement = _file->addLocalPlacement();
+	_objectPlacement = _file->getSingle<Ifc4::IfcBuildingStorey>()->ObjectPlacement();
 }
