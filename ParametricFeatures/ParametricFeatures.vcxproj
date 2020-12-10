@@ -76,7 +76,7 @@
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicGeomBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
@@ -195,7 +195,7 @@
     <ClInclude Include="modeler\curves\sources\LineGraphicProperties.cpp">
       <FileType>CppCode</FileType>
     </ClInclude>
-    <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicGeomBundle.h" />
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />

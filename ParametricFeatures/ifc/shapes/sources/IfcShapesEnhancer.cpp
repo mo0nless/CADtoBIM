@@ -24,7 +24,7 @@ vector<BoundTypeIfcCurve*> IfcShapesEnhancer::getCurvesShapeRepresentationVector
 }
 
 void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties, IfcElementBundle*& ifcElementBundle,
-	ElementBundle* elementBundle, bool addToIfcElementBundle)
+	GraphicGeomBundle* elementBundle, bool addToIfcElementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -238,6 +238,7 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		bundle->setColor(elementBundle->getColor());
 		bundle->setTransparency(elementBundle->getTransparency());
 		bundle->setMaterial(elementBundle->getMaterial());
+		bundle->setLevelHandle(elementBundle->getLevelHandle());
 
 		ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 

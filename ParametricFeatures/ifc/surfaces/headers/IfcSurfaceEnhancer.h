@@ -24,9 +24,9 @@ class IfcSurfaceEnhancer
 
 public:
 	void enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		ElementBundle* elementBundle, bool addToIfcElementBundle = true);
+		GraphicGeomBundle* elementBundle, bool addToIfcElementBundle = true);
 
-	Ifc4::IfcBSplineSurface* buildIfcSurface(MSBsplineSurfaceGraphicProperties& msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle);
+	Ifc4::IfcBSplineSurface* buildIfcSurface(MSBsplineSurfaceGraphicProperties& msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle* elementBundle);
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 

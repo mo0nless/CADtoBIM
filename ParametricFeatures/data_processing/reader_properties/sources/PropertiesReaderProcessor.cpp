@@ -7,7 +7,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {	
 }
 
-vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, ElementBundle* elementBundle)
+vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, GraphicGeomBundle* elementBundle)
 {
 	vector<ReaderPropertiesBundle*>	readerPropertiesBundleVector;
 

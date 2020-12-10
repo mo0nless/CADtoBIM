@@ -69,7 +69,7 @@
 #include <Mstn/PSolid/mssolid.fdf>
 #include <Mstn/cmdlist.r.h>
 
-
+#include <DgnPlatform/LevelCache.h>
 #include <DgnPlatform/DisplayHandler.h>
 #include <DgnPlatform/ElementGraphics.h>
 //#include <DgnPlatform/ElementGeometry.h>

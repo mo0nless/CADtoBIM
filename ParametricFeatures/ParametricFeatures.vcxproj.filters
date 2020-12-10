@@ -23,7 +23,6 @@
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
-    <ClCompile Include="modeler\properties\sources\ElementBundle.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
@@ -81,6 +80,7 @@
     <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
     <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
+    <ClCompile Include="modeler\properties\sources\GraphicGeomBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -111,7 +111,6 @@
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
-    <ClInclude Include="modeler\properties\headers\ElementBundle.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />
@@ -191,6 +190,7 @@
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
+    <ClInclude Include="modeler\properties\headers\GraphicGeomBundle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

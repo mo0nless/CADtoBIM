@@ -64,6 +64,16 @@ void IfcGraphicPropertiesBundle::setColor(UInt32 newColor)
 	this->color = newColor;
 }
 
+LevelHandle IfcGraphicPropertiesBundle::getLevelHandle()
+{
+	return _levelHandle;
+}
+
+void IfcGraphicPropertiesBundle::setLevelHandle(LevelHandle newlevelID)
+{
+	_levelHandle = newlevelID;
+}
+
 double IfcGraphicPropertiesBundle::getTransparency()
 {
 	return this->transparency;

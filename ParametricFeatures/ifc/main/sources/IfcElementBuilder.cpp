@@ -10,7 +10,7 @@ IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* ge
 	this->_componentsMappingService = new ComponentsMappingService(Logs::Logger::getLogger());
 }
 
-void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, map<LevelId, IfcEntityList*> levelFileEntities)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -32,6 +32,15 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 		for (auto const& ifcGraphicPropertiesBundle : ifcElementBundle->getIfcGraphicPropertiesBundleVector()) {
 
 			if (ifcGraphicPropertiesBundle->getIfcRepresentationItem() != nullptr && ifcGraphicPropertiesBundle->getShow()) {
+				try
+				{
+					IfcEntityList* entityLevel = levelFileEntities.at(ifcGraphicPropertiesBundle->getLevelHandle()->GetLevelId());
+
+					entityLevel->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
+				}
+				catch (exception& ex) {
+					_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Layer Entity " + string(ex.what()));
+				}
 				ifcRepresentationItemList->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
 			}
 		}
@@ -73,6 +82,7 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			representationType,
 			ifcRepresentationItemList
 		);
+			
 
 		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 		ifcRepresentationList->push(ifcRepresentation);

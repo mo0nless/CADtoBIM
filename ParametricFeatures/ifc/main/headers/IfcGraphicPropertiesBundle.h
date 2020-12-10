@@ -7,7 +7,7 @@
 #include <ifcparse\Ifc4x1.h>
 #include <ifcparse\utils.h>
 #include <ifcparse\IfcHierarchyHelper.h>
-#include "../../../modeler/properties/headers/ElementBundle.h"
+#include "../../../modeler/properties/headers/GraphicGeomBundle.h"
 #include "../../../common/models/headers/SessionManager.h"
 
 
@@ -27,6 +27,7 @@ private:
 	UInt32 color;
 	double transparency;
 	string _material;
+	LevelHandle _levelHandle;
 
 public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
@@ -47,6 +48,9 @@ public:
 
 	UInt32 getColor();
 	void setColor(UInt32 newColor);
+
+	LevelHandle getLevelHandle();
+	void setLevelHandle(LevelHandle newlevelID);
 
 	double getTransparency();
 	void setTransparency(double newTransparency);

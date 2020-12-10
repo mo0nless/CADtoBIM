@@ -27,7 +27,7 @@ class GraphicsProcessorHelper
 {
 
 private:
-	ElementBundle* elementBundle;
+	GraphicGeomBundle* elementBundle;
 	string filePath;
 	DictionaryProperties* pDictionaryProperties;
 
@@ -81,10 +81,10 @@ public:
 #pragma endregion
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
-	void setElementBundle(ElementBundle& newElementBundle);
+	void setElementBundle(GraphicGeomBundle& newElementBundle);
 	void setElementHandle(ElementHandle elementHandle);
 
-	ElementBundle* getElementBundle();
+	GraphicGeomBundle* getElementBundle();
 	DictionaryProperties* getDictionaryProperties();
 	ElementHandle getCurrentElementHandle();
 };

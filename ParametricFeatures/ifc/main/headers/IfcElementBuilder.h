@@ -13,7 +13,7 @@ class IfcElementBuilder
 public:
 	IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory, Ifc4::IfcObjectPlacement* objectPlacement);
 
-	void processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, map<LevelId, IfcEntityList*> levelFileEntities);
 private:
 	Ifc4::IfcElement* handleIfcElementCreation(ComponentsMappingDTO* mappedValue,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 

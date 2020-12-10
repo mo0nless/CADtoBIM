@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "../headers/ElementBundle.h"
+#include "../headers/GraphicGeomBundle.h"
 #include "../smart_feature/headers/SmartFeatureContainer.h"
 #include "../../../common/models/headers/SessionManager.h"
 
@@ -23,7 +23,7 @@ private:
 
 	SmartFeatureContainer * smartFeatureContainer;
 
-	vector<ElementBundle*> subElements;
+	vector<GraphicGeomBundle*> subElements;
 	string mElemClassName;
 public:
 	DictionaryProperties(long newElementId, string newElementDescriptor);
@@ -31,8 +31,8 @@ public:
 	string getElementClassName();
 	void setElementClassName(string name);
 
-	vector<ElementBundle*> getElementBundle();
-	void addElementBundle(ElementBundle* elementBundle);
+	vector<GraphicGeomBundle*> getGraphicGeomBundle();
+	void addGraphicGeomBundle(GraphicGeomBundle* elementBundle);
 
 	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
 	void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);

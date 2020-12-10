@@ -105,9 +105,13 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 
 			file.addEntity(relNests);
 		}
-		else
+		else if (ifcElementBundle->getBadIfcClassBuild())
 		{
 			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr, ElementBundle bad flag");
+		}
+		else
+		{
+			_logger->logWarning(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element has no connection");
 		}
 	}
 

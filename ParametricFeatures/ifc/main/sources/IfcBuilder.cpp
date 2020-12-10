@@ -17,6 +17,41 @@ IfcBuilder::IfcBuilder()
 	this->_smartFeatureHandler = new SmartFeatureHandler();
 }
 
+map<LevelId, IfcEntityList*> IfcBuilder::getLevelFileCache()
+{
+	if (!_levelFileEntities.empty())
+		return _levelFileEntities;
+
+	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+	FileLevelCache* fileLevelCache = dgnModelRef->GetFileLevelCacheP();
+
+	for (LevelHandle lHndl : *fileLevelCache)
+	{
+		_levelFileEntities.insert(pair<LevelId, IfcEntityList*>{lHndl.GetLevelId(),new IfcEntityList()});
+		_fileLevelHandle.push_back(lHndl);
+	}
+
+	return _levelFileEntities;
+}
+
+void IfcBuilder::generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file)
+{
+	for (auto lHdl : _fileLevelHandle)
+	{
+		IfcEntityList* entList = getLevelFileCache().at(lHdl->GetLevelId());
+		boost::shared_ptr<IfcEntityList> layer(entList);
+
+		Ifc4::IfcPresentationLayerAssignment* presLayer = new Ifc4::IfcPresentationLayerAssignment(
+			StringUtils::getNormalizedString(lHdl->GetName()),
+			StringUtils::getNormalizedString(lHdl->GetDescription()),
+			layer,
+			to_string(lHdl->GetLevelId())
+		);
+		
+		file.addEntity(presLayer);
+	}
+}
+
 void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
 {	
 
@@ -41,6 +76,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
 				ifcElementBundle->setElementClassName(dictionaryProperties.getElementClassName());
+				ifcElementBundle->setGraphicGeomBundle(dictionaryProperties.getGraphicGeomBundle());
 
 				ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
 
@@ -124,13 +160,15 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	_smartFeatureHandler->handleSmartFeature(ifcElementBundleVector, file);
 
-	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file);
+	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file, getLevelFileCache());
 
 	_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
 
 	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
 
 	_ifcPortsBuilder->processIfcPorts(ifcElementBundleVector, file);		
+
+	this->generateIfcLevelsCache(file);
 
 	//Close ProgressBar
 	_progressBar->Close();
@@ -171,14 +209,14 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 	WString myString;
 	myString.Sprintf(L"Generating IFC file...");
 
-	for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+	for (int i = 0; i < ifcElementBundleVector.size(); i++)
 	{
-		DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
+		//DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
 
 		// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 		IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
 		
-		for (auto element : dictionaryProperties.getElementBundle())
+		for (GraphicGeomBundle* element : ifcElementBundle->getGraphicGeomBundle())
 		{
 			try
 			{

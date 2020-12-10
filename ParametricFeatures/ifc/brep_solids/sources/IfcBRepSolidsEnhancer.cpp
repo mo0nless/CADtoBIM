@@ -4,7 +4,7 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
 
-void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, ElementBundle * elementBundle)
+void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, GraphicGeomBundle * elementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -20,11 +20,8 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			bundle->setColor(elementBundle->getColor());
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
+			bundle->setLevelHandle(elementBundle->getLevelHandle());
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
-			//ifcTemplatedEntityList->push(ifcRepresentationItem);
-
-			//new add
-			//file.addEntity(ifcRepresentationItem);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -416,7 +413,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle* elementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -780,7 +777,7 @@ void IfcBRepSolidsEnhancer::processPolyfaceMesh(MeshTriangles* meshTriangles, If
 	}	
 }
 
-void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, GraphicGeomBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
@@ -1099,7 +1096,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 	outfile.close();
 }
 
-void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, ElementBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
+void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, GraphicGeomBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
 	IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcAdvancedFaceList)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);

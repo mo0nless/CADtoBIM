@@ -30,7 +30,11 @@ private:
 	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
 	IfcElementBuilder* _ifcElementBuilder;
 	SmartFeatureHandler* _smartFeatureHandler;
+	map<LevelId, IfcEntityList*> _levelFileEntities;
+	vector<LevelHandle> _fileLevelHandle;
+	map<LevelId, IfcEntityList*> getLevelFileCache();
 
+	void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
 	PBAR::DialogCompletionBar* _progressBar;
 
 	mutable boost::shared_mutex _mutex;

@@ -15,12 +15,12 @@ void GraphicsProcessorHelper::setDictionaryProperties(DictionaryProperties& newD
 	this->pDictionaryProperties = &newDictionaryProperties;
 }
 
-void GraphicsProcessorHelper::setElementBundle(ElementBundle & newElementBundle)
+void GraphicsProcessorHelper::setElementBundle(GraphicGeomBundle & newElementBundle)
 {
 	this->elementBundle = &newElementBundle;
 }
 
-ElementBundle * GraphicsProcessorHelper::getElementBundle()
+GraphicGeomBundle * GraphicsProcessorHelper::getElementBundle()
 {
 	return this->elementBundle;
 }

@@ -24,7 +24,7 @@ class IfcShapesEnhancer
 public:
 	IfcShapesEnhancer();
 	void enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties,  IfcElementBundle*& ifcElementBundle,
-		ElementBundle* elementBundle,bool addToIfcElementBundle = true);
+		GraphicGeomBundle* elementBundle,bool addToIfcElementBundle = true);
 	
 	bool hasSingleShapeItem();
 	Ifc4::IfcGeometricRepresentationItem* getSingleShapeRepresentation();

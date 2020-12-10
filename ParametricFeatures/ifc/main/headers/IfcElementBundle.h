@@ -21,6 +21,8 @@ private:
 	vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
 	vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
 
+	vector<GraphicGeomBundle*> subGraphicGeom;
+
 	vector<SolidEdge*> smartSolidEdgesCollection;
 
 	Ifc4::IfcElement* ifcElement;
@@ -51,6 +53,9 @@ public:
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
 	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
+
+	vector<GraphicGeomBundle*> getGraphicGeomBundle();
+	void setGraphicGeomBundle(vector<GraphicGeomBundle*> newBundle);
 
 	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 

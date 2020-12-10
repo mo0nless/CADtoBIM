@@ -73,6 +73,9 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	ElementHandle elementHandle(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
+	
+	// Since we have an elementRef from the DgnModel, we know that FileLevelCache is never NULL.
+	FileLevelCache* fileLevelCache = mDgnModel->GetFileLevelCacheP();
 
 	int index = 0;
 
@@ -86,22 +89,25 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 	}
 	if(index==0){
 
-		ElementBundle* elementBundle = new ElementBundle();
-		elementBundle->setElementHandle(elementHandle);
+		LevelHandle level = fileLevelCache->GetLevel(elementRefP->GetLevel());
 
-		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(elementHandle, elementBundle);
-		elementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
+		GraphicGeomBundle* geomElementBundle = new GraphicGeomBundle();
+		geomElementBundle->setElementHandle(elementHandle);
+		geomElementBundle->setLevelHandle(level);
+
+		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(elementHandle, geomElementBundle);
+		geomElementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
 
 		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
-		graphicsProcessorHelper->setElementBundle(*elementBundle);
+		graphicsProcessorHelper->setElementBundle(*geomElementBundle);
 		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
 				
 		ElementGraphicsOutput::Process(elementHandle, *graphicsProcessor);
 
-		dictionaryProperties->addElementBundle(elementBundle);
+		dictionaryProperties->addGraphicGeomBundle(geomElementBundle);
 
 		return SUCCESS;
 	}
@@ -126,26 +132,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	this->_progressBar->Open(L"Working...");
 
 	//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
-	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();
-	for (auto a : rCollection)
-	{
-		
-	}*/
-	if (onlySelected)
-	{
-		size_t numSelected = SelectionSetManager::GetManager().NumSelected();
-
-		for (size_t i = 0; i < numSelected; i++)
-		{
-			ElementRefP elemRef = NULL;
-			StatusInt status = SelectionSetManager::GetManager().GetElement(i, &elemRef, &dgnModelRef);
-			
-			//ElementHandle currentElem(elemRef);
-
-			pGraElement.clear();
-			pGraElement.push_back(PersistentElementRefP(elemRef));
-		}
-	}
+	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();*/
 
 	//for (PersistentElementRefP elemRef : *pGraElement)
 	for (PersistentElementRefP elemRef : pGraElement)
@@ -164,8 +151,7 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
 			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 			propertiesDictionary->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
-			//iterateSubElements(elemRef, propertiesDictionary);
-
+			
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
 				ElementHandle leafNode;

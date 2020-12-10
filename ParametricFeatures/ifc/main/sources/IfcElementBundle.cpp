@@ -53,6 +53,16 @@ void IfcElementBundle::addSolidEdgesCollection(vector<SolidEdge*> solidEdges)
 	this->smartSolidEdgesCollection = solidEdges;
 }
 
+vector<GraphicGeomBundle*> IfcElementBundle::getGraphicGeomBundle()
+{
+	return this->subGraphicGeom;
+}
+
+void IfcElementBundle::setGraphicGeomBundle(vector<GraphicGeomBundle*> newBundle)
+{
+	this->subGraphicGeom = newBundle;
+}
+
 
 Ifc4::IfcElement * IfcElementBundle::getIfcElement()
 {

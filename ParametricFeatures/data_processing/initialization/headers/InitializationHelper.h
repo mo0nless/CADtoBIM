@@ -14,14 +14,13 @@ public:
 	InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected);
 
 	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
-
+	
 private:	
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 	
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
 	StatusInt iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties);
 
-	//PersistentElementRefList* pGraElement;
 	DgnModelP mDgnModel;
 
 	ModelerDataWriterManager* _modelerDataWriterManager;

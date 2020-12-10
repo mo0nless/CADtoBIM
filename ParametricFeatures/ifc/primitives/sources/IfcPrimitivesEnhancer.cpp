@@ -2,7 +2,7 @@
 
 
 void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
-	ElementBundle* elementBundle)
+	GraphicGeomBundle* elementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -15,11 +15,8 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 			bundle->setColor(elementBundle->getColor());
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
+			bundle->setLevelHandle(elementBundle->getLevelHandle());
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
-						//ifcTemplatedEntityList->push(ifcRepresentationItem);
-
-			//new add
-			//file.addEntity(ifcRepresentationItem);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -29,7 +26,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	ElementBundle* elementBundle)
+	GraphicGeomBundle* elementBundle)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__);
 
@@ -145,7 +142,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
-	IfcHierarchyHelper<Ifc4>& file, ElementBundle* elementBundle)
+	IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle* elementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
