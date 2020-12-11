@@ -9,6 +9,7 @@
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
+#include "../../text/headers/IfcTextEnhancer.h"
 
 
 #include "IfcElementBuilder.h"
@@ -29,6 +30,7 @@ private:
 	IfcPortsBuilder* _ifcPortsBuilder;
 	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
 	IfcElementBuilder* _ifcElementBuilder;
+	IfcTextEnhancer* _ifcTextEnhancer;
 	SmartFeatureHandler* _smartFeatureHandler;
 	map<LevelId, IfcEntityList*> _levelFileEntities;
 	vector<LevelHandle> _fileLevelHandle;

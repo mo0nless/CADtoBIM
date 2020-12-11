@@ -34,9 +34,14 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			if (ifcGraphicPropertiesBundle->getIfcRepresentationItem() != nullptr && ifcGraphicPropertiesBundle->getShow()) {
 				try
 				{
-					IfcEntityList* entityLevel = levelFileEntities.at(ifcGraphicPropertiesBundle->getLevelHandle()->GetLevelId());
+					if (ifcGraphicPropertiesBundle->getLevelHandle().IsValid())
+					{
+						IfcEntityList* entityLevel = levelFileEntities.at(ifcGraphicPropertiesBundle->getLevelHandle()->GetLevelId());
 
-					entityLevel->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
+						entityLevel->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
+					}
+					else
+						_logger->logInfo(__FILE__, __LINE__, __func__, "Level Not Valid");
 				}
 				catch (exception& ex) {
 					_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Layer Entity " + string(ex.what()));

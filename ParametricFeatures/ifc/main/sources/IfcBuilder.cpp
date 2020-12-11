@@ -15,6 +15,7 @@ IfcBuilder::IfcBuilder()
 	this->_ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
 	this->_progressBar = new PBAR::DialogCompletionBar();
 	this->_smartFeatureHandler = new SmartFeatureHandler();
+	this->_ifcTextEnhancer = new IfcTextEnhancer();
 }
 
 map<LevelId, IfcEntityList*> IfcBuilder::getLevelFileCache()
@@ -249,7 +250,15 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
 					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
 					continue;
-				}			
+				}	
+
+				TextGraphicProperties* textGraphicProperties = dynamic_cast<TextGraphicProperties*>(element->getGraphicProperties());
+				if (textGraphicProperties != nullptr)
+				{
+					boost::unique_lock<boost::shared_mutex> guard(_mutex);
+					_ifcTextEnhancer->enhance(file, textGraphicProperties, ifcElementBundle, element);
+					continue;
+				}
 
 				//ProgressBar
 				_progressBar->IncrementIndex();

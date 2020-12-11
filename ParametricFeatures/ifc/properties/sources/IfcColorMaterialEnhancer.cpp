@@ -6,10 +6,18 @@ void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVecto
 
 	this->_ownerHistory = ownerHistory;
 
-	for (auto elemntBundle : ifcBundleVector) {
-		for (auto graphicEl : elemntBundle->getIfcGraphicPropertiesBundleVector()) {
-			processColour(*graphicEl,file);
+	for (auto ifcElementBundle : ifcBundleVector) {
+		if (ifcElementBundle->getIfcElement() != nullptr && !ifcElementBundle->getBadIfcClassBuild())
+		{
+			for (auto graphicEl : ifcElementBundle->getIfcGraphicPropertiesBundleVector()) {
+				processColour(*graphicEl, file);
+			}
 		}
+		else
+		{
+			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
+		}
+
 	}
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC color and material -!");
 

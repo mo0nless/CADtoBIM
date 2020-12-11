@@ -3,10 +3,8 @@
 #include "../../../stdafx.h"
 #include "../../main/headers/IfcElementBundle.h"
 #include "../../../modeler/properties/headers/DictionaryProperties.h"
-#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h" //curveshape..
-//#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
-//#include "../../brep_solids/headers/IfcBRepRelationship.h"
 #include <vector>
 
 struct BoundTypeIfcCurve 

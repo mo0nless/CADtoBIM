@@ -27,6 +27,7 @@
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
+    <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessorHelper.cpp" />
     <ClCompile Include="data_processing\initialization\sources\InitializationHelper.cpp" />
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
+    <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="repositories\components_mapping\sources\ComponentsMappingRepository.cpp" />
     <ClCompile Include="services\components_mapping\sources\ComponentsMappingService.cpp" />
   </ItemGroup>
@@ -121,6 +123,7 @@
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="data_processing\initialization\headers\Initialization.h" />
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
+    <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
     <ClInclude Include="interface_dialog\DialogHooks.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="modeler\curves\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
+    <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="repositories\components_mapping\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="services\components_mapping\headers\ComponentsMappingService.h" />

@@ -81,6 +81,8 @@
     <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicGeomBundle.cpp" />
+    <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
+    <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -191,6 +193,8 @@
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
     <ClInclude Include="modeler\properties\headers\GraphicGeomBundle.h" />
+    <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
+    <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

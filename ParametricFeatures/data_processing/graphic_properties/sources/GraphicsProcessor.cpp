@@ -37,9 +37,26 @@ bool GraphicsProcessor::_ProcessAsBody(bool isCurved) const { return true; }
 //! @param[in] text The text data.
 //! @return SUCCESS if handled, ERROR to output glyph graphics through _ProcessCurveVector.
 BentleyStatus GraphicsProcessor::_ProcessTextString(TextStringCR text) { 
-	//text.GetProperties().
-	return ERROR;
-	//return SUCCESS;
+
+	_logger->logDebug(__FILE__, __LINE__, __func__);
+
+	if (!mGraphicsProcessorHelper.processTextString(text))
+	{
+		WString myString;
+		myString.Sprintf(L"_ProcessTextString");
+
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- TextString not processed through Graphic Processor -!");
+
+		NotificationMessage::send(
+			mGraphicsProcessorHelper.getCurrentElementHandle(),
+			myString,
+			OutputMessagePriority::Warning
+		);
+
+		return ERROR;
+	}
+
+	return SUCCESS;
 } // Don't export glyph geometry...
 
 //! Collect output as a single curve component.

@@ -141,6 +141,7 @@ ifcObjects = \
 	$(o)IfcColorMaterialEnhancer$(oext) \
 	$(o)IfcShapesEnhancer$(oext) \
 	$(o)IfcSurfaceEnhancer$(oext) \
+	$(o)IfcTextEnhancer$(oext) \
 	$(o)SmartFeatureHandler$(oext) \
 
 mapperObjects = \
@@ -182,6 +183,7 @@ modelerObjects = \
 	$(o)ReaderPropertyDefinition$(oext) \
 	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)ShapesGraphicProperties$(oext) \
+	$(o)TextGraphicProperties$(oext) \
 
 
 repositoriesObjects = \
@@ -375,7 +377,8 @@ $(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelati
 #--- create_solids_operation
 $(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
 
-
+#--- text
+$(o)IfcTextEnhancer$(oext) : $(baseDir)ifc/text/sources/IfcTextEnhancer.cpp $(baseDir)ifc/text/headers/IfcTextEnhancer.h
 
 
 #--- operations_helper
@@ -501,6 +504,8 @@ $(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/
 #--- shapes
 $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
 
+#--- text
+$(o)TextGraphicProperties$(oext) : $(baseDir)modeler/text/sources/TextGraphicProperties.cpp $(baseDir)modeler/text/headers/TextGraphicProperties.h
 
 #-------------------------------------------------------------------------------------
 #    repositories

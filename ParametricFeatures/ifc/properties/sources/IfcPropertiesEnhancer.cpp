@@ -21,29 +21,29 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
 
-			if (ifcElementBundle->getIfcElement() == nullptr)
+			if (ifcElementBundle->getIfcElement() != nullptr && !ifcElementBundle->getBadIfcClassBuild())
 			{
-				_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + "IFC Element is Nullptr");
-				continue;
+				Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
+				ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
+
+				for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
+					Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
+
+					Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
+						guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getClassName()),
+						this->_ownerHistory,
+						readerPropertyBundle->getClassName(), 
+						ifcElementBundle->getModelerElementDescriptor(),
+						ifcObjectDefinitionList, 
+						ifcPropertySet
+					);
+					file.addEntity(ifcRelDefinesByProperties);
+				}
 			}
-
-			Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
-			ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
-
-			for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
-				Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
-
-				Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
-					guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getClassName()),
-					this->_ownerHistory,
-					readerPropertyBundle->getClassName(), 
-					ifcElementBundle->getModelerElementDescriptor(),
-					ifcObjectDefinitionList, 
-					ifcPropertySet
-				);
-				file.addEntity(ifcRelDefinesByProperties);
+			else
+			{
+				_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
 			}
-
 		}
 	}
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended enhancing the IFC properties -!");

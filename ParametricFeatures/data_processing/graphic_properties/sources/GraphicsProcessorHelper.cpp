@@ -328,6 +328,33 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 
 #pragma region PROCESSORS SETUP CALL
 
+bool GraphicsProcessorHelper::processTextString(TextStringCR text)
+{
+	//text.GetProperties()
+	TextGraphicProperties* textGraphicProperties = new TextGraphicProperties();
+
+	textGraphicProperties->setTextString(StringUtils::getString(text.GetString()));
+	textGraphicProperties->setHeightWidth(text.GetHeight(), text.GetWidth());
+	textGraphicProperties->setOrigin(text.GetOrigin());
+
+	DVec3d columnVectorX, columnVectorY, columnVectorZ;
+	auto localToWorld = text.GetRotMatrix();
+
+	localToWorld.GetColumn(columnVectorX, 0);
+	localToWorld.GetColumn(columnVectorY, 1);
+	localToWorld.GetColumn(columnVectorZ, 2);
+
+	textGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+
+	this->elementBundle->setGraphicProperties(*textGraphicProperties);
+	
+	this->_modelerDataWriterManager->writeTupleDataToFile("TEXT TEXT TEXT", StringUtils::getString(text.GetString()));
+	this->_modelerDataWriterManager->writeTupleDataToFile("Height", text.GetHeight());
+	this->_modelerDataWriterManager->writeTupleDataToFile("Width", text.GetWidth());
+
+	return true;
+}
+
 bool GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface)
 {
 	//TODO[SB] Handle false operation

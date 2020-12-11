@@ -5,6 +5,7 @@
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../modeler/text/headers/TextGraphicProperties.h"
 
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
@@ -59,6 +60,7 @@ public:
 #pragma endregion
 
 #pragma region PROCESSORS SETUP CALL
+	bool processTextString(TextStringCR text);
 	bool processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface);
 	bool processShapesCurvesVector(CurveVectorCR& curvesVector, bool isFilled);	
 	bool processSolidPrimitive(ISolidPrimitiveCR& primitive);
