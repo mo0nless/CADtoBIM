@@ -240,6 +240,13 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		bundle->setMaterial(elementBundle->getMaterial());
 		bundle->setLevelHandle(elementBundle->getLevelHandle());
 
+		if(shapeGraphicProperties->getIsFilled())
+			bundle->setRepresentationTypeIdentifier("Surface", "Surface");
+		else
+			bundle->setRepresentationTypeIdentifier("Curve", "Axis");
+
+
+
 		ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 
 		//new add

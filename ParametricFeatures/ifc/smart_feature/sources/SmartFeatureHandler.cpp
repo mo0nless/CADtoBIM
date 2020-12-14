@@ -8,8 +8,12 @@ void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundl
 			IfcElementBundle* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle,file);
 
 			if (ifcResult != nullptr) {
-				ifcBundle->addIfcGraphicPropertiesBundle(new IfcGraphicPropertiesBundle(
-					new GraphicProperties(), ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()));
+				auto bundle = new IfcGraphicPropertiesBundle(
+					new GraphicProperties(),
+					ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()
+				);
+				bundle->setRepresentationTypeIdentifier("CSG", "Body");
+				ifcBundle->addIfcGraphicPropertiesBundle(bundle);
 			}
 			
 		}

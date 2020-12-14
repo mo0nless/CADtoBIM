@@ -26,10 +26,12 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			continue;
 		}
 		ComponentsMappingDTO* mappedValue = getIfcElement(componentsMappings, ifcElementBundle->getModelerElementDescriptor());
-
-		Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
+		
+		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
 
 		for (auto const& ifcGraphicPropertiesBundle : ifcElementBundle->getIfcGraphicPropertiesBundleVector()) {
+
+			Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
 
 			if (ifcGraphicPropertiesBundle->getIfcRepresentationItem() != nullptr && ifcGraphicPropertiesBundle->getShow()) {
 				try
@@ -47,50 +49,39 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 					_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Layer Entity " + string(ex.what()));
 				}
 				ifcRepresentationItemList->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
+
+				//TODO: Needs to be set up correctly the 3rd input parameter following:
+				//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
+				string representationType = ifcGraphicPropertiesBundle->getRepresentationType();
+				string representationIdentifier = ifcGraphicPropertiesBundle->getRepresentationIdentifier();
+				
+				//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
+				Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
+					representationIdentifier,
+					geometricRepresentationContext->ContextType(),
+					geometricRepresentationContext,
+					boost::none,
+					Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
+					boost::none
+				);
+
+
+				Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
+					geometricSubContext,
+					representationIdentifier,
+					representationType,
+					ifcRepresentationItemList
+				);
+
+				ifcRepresentationList->push(ifcRepresentation);
 			}
 		}
-		if (ifcRepresentationItemList->size() == 0) {
-			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC ifcRepresentationItemList is Empty, ElementBundle bad flag");
+		if (ifcRepresentationList->size() == 0) {
+			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC ifcRepresentationList is Empty, ElementBundle bad flag");
 			ifcElementBundle->setBadIfcClassBuild(true);
 			continue;
 		}
-
-		string representationType = "";
-		string representationIdentifier = "";
-		//TODO: Needs to be set up correctly the 3rd input parameter following:
-		//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
-		if (ifcElementBundle->solidModel)
-		{
-			representationType = "SolidModel";
-			representationIdentifier = "Body";
-		}
-		else
-		{
-			representationType = "Axis";
-			representationIdentifier = "Curve";
-		}
-
-		//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
-		Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(
-			representationIdentifier,
-			geometricRepresentationContext->ContextType(),
-			geometricRepresentationContext,
-			boost::none,
-			Ifc4::IfcGeometricProjectionEnum::IfcGeometricProjection_MODEL_VIEW,
-			boost::none
-		);
-
-
-		Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
-			geometricSubContext,
-			representationIdentifier,
-			representationType,
-			ifcRepresentationItemList
-		);
 			
-
-		Ifc4::IfcRepresentation::list::ptr ifcRepresentationList(new Ifc4::IfcRepresentation::list());
-		ifcRepresentationList->push(ifcRepresentation);
 
 		Ifc4::IfcProductDefinitionShape* shape = new Ifc4::IfcProductDefinitionShape(
 			boost::none,

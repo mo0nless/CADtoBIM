@@ -790,6 +790,3 @@ Element ID: 1381
 ===================================================
 ===================================================
 
-DATABASE:
-Full: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler\Mdlapps\mappings.txt
-Original: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler

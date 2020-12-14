@@ -21,6 +21,12 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
 			bundle->setLevelHandle(elementBundle->getLevelHandle());
+			
+			if (solidEntityGraphicProperties->meshProcessing)
+				bundle->setRepresentationTypeIdentifier("Brep", "Body");
+			else
+				bundle->setRepresentationTypeIdentifier("AdvanceBrep", "Body");
+
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 		}
 		else {

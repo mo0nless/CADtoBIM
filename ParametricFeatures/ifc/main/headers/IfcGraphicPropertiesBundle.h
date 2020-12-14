@@ -29,6 +29,9 @@ private:
 	string _material;
 	LevelHandle _levelHandle;
 
+	string representationType = "";
+	string representationIdentifier = "";
+
 public:
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
 		ElementHandle newElementHandle);
@@ -43,6 +46,10 @@ public:
 	
 	bool getShow();
 	void setShow(bool newShow);
+
+	void setRepresentationTypeIdentifier(string rType,	string rIdentifier);
+	string getRepresentationType();
+	string getRepresentationIdentifier();
 
 	ElemDisplayParamsCP getElemDisplayParamsCP();
 

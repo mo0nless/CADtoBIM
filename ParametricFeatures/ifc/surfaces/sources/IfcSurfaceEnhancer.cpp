@@ -16,6 +16,7 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
 			bundle->setLevelHandle(elementBundle->getLevelHandle());
+			bundle->setRepresentationTypeIdentifier("AdvancedSurface", "Body");
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 		}
 		else {

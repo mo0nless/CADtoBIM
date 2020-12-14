@@ -1,5 +1,4 @@
 #include "../headers/IfcGraphicPropertiesBundle.h"
-#include "..\headers\IfcGraphicPropertiesBundle.h"
 
 IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem,
 	ElementHandle newElementHandle)
@@ -22,13 +21,11 @@ GraphicProperties * IfcGraphicPropertiesBundle::getGraphicProperties()
 	return this->graphicProperties;
 }
 
-//void IfcGraphicPropertiesBundle::setIfcRepresentationItem(Ifc4::IfcRepresentationItem * ifcRepresentationItemValue)
 void IfcGraphicPropertiesBundle::setIfcRepresentationItem(Ifc4::IfcGeometricRepresentationItem * ifcRepresentationItemValue)
 {
 	this->ifcRepresentationItem = ifcRepresentationItemValue;
 }
 
-//Ifc4::IfcRepresentationItem * IfcGraphicPropertiesBundle::getIfcRepresentationItem()
 Ifc4::IfcGeometricRepresentationItem* IfcGraphicPropertiesBundle::getIfcRepresentationItem()
 {
 	return this->ifcRepresentationItem;
@@ -47,6 +44,22 @@ bool IfcGraphicPropertiesBundle::getShow()
 void IfcGraphicPropertiesBundle::setShow(bool newShow)
 {
 	this->show = newShow;
+}
+
+void IfcGraphicPropertiesBundle::setRepresentationTypeIdentifier(string rType, string rIdentifier)
+{
+	representationType = rType;
+	representationIdentifier = rIdentifier;
+}
+
+string IfcGraphicPropertiesBundle::getRepresentationType()
+{
+	return representationType;
+}
+
+string IfcGraphicPropertiesBundle::getRepresentationIdentifier()
+{
+	return representationIdentifier;
 }
 
 ElemDisplayParamsCP IfcGraphicPropertiesBundle::getElemDisplayParamsCP()

@@ -16,6 +16,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
 			bundle->setLevelHandle(elementBundle->getLevelHandle());
+			bundle->setRepresentationTypeIdentifier("CSG", "Body");
 			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 		}
 		else {

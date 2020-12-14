@@ -19,6 +19,8 @@ void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicPropert
 				bundle->setTransparency(elementBundle->getTransparency());
 				bundle->setMaterial(elementBundle->getMaterial());
 				bundle->setLevelHandle(elementBundle->getLevelHandle());
+				bundle->setRepresentationTypeIdentifier("Text", "Annotation");
+
 				ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 			}
 			else {
