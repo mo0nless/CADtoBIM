@@ -330,27 +330,12 @@ void GraphicsProcessorHelper::setExtrusionGraphicProperties(DgnExtrusionDetail e
 
 bool GraphicsProcessorHelper::processTextString(TextStringCR text)
 {
-	//text.GetProperties()
+
 	TextGraphicProperties* textGraphicProperties = new TextGraphicProperties();
 
-	textGraphicProperties->setTextString(StringUtils::getString(text.GetString()));
-	textGraphicProperties->setHeightWidth(text.GetHeight(), text.GetWidth());
-	textGraphicProperties->setOrigin(text.GetOrigin());
-
-	DVec3d columnVectorX, columnVectorY, columnVectorZ;
-	auto localToWorld = text.GetRotMatrix();
-
-	localToWorld.GetColumn(columnVectorX, 0);
-	localToWorld.GetColumn(columnVectorY, 1);
-	localToWorld.GetColumn(columnVectorZ, 2);
-
-	textGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+	processTextString(text, textGraphicProperties);
 
 	this->elementBundle->setGraphicProperties(*textGraphicProperties);
-	
-	this->_modelerDataWriterManager->writeTupleDataToFile("TEXT TEXT TEXT", StringUtils::getString(text.GetString()));
-	this->_modelerDataWriterManager->writeTupleDataToFile("Height", text.GetHeight());
-	this->_modelerDataWriterManager->writeTupleDataToFile("Width", text.GetWidth());
 
 	return true;
 }
@@ -698,10 +683,55 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 	}
 
 	return primitiveGraphicProperties;
-	/*if (primitiveGraphicProperties != nullptr)
-	return *&primitiveGraphicProperties;
-	else
-	return nullptr;*/
+}
+
+bool GraphicsProcessorHelper::processTextString(TextStringCR text, TextGraphicProperties * textGraphicProperties)
+{
+	UInt32 fillColor, borderColor, borderWeight, textColor;
+	Int32 borderLineStyle;
+	DPoint2d borderPadding;
+	double spacingValue;
+
+
+	TextStringPropertiesCR textProps = text.GetProperties();
+	textProps.HasColor();
+	textProps.GetBackgroundStyle(&fillColor, &borderColor, &borderLineStyle, &borderWeight, &borderPadding);
+	spacingValue = textProps.GetCharacterSpacingValue();
+	textColor = textProps.GetColor();
+	DgnFontCR fontCR = textProps.GetFont();
+	TextElementJustification just = textProps.GetJustification();
+	textProps.IsUnderlined();
+
+
+	textGraphicProperties->setTextString(StringUtils::getString(text.GetString()));
+	textGraphicProperties->setHeightWidth(text.GetHeight(), text.GetWidth());
+	textGraphicProperties->setOrigin(text.GetOrigin());
+	textGraphicProperties->setTextColor(textColor);
+	textGraphicProperties->setBackgroundColor(fillColor);
+	textGraphicProperties->setFontSize(textProps.GetFontSize().Magnitude());
+	textGraphicProperties->setFontName(StringUtils::getString(fontCR.GetName()));
+
+	DVec3d columnVectorX, columnVectorY, columnVectorZ;
+	auto localToWorld = text.GetRotMatrix();
+
+	localToWorld.GetColumn(columnVectorX, 0);
+	localToWorld.GetColumn(columnVectorY, 1);
+	localToWorld.GetColumn(columnVectorZ, 2);
+
+	textGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+
+	this->elementBundle->setGraphicProperties(*textGraphicProperties);
+
+	this->_modelerDataWriterManager->writeTupleDataToFile("--------------- TEXT String TEXT ------------------", StringUtils::getString(text.GetString()));
+	this->_modelerDataWriterManager->writeTupleDataToFile("Height", text.GetHeight());
+	this->_modelerDataWriterManager->writeTupleDataToFile("Width", text.GetWidth());
+	this->_modelerDataWriterManager->writeTupleDataToFile("Spacing Value", textProps.GetCharacterSpacingValue());
+	this->_modelerDataWriterManager->writeTupleDataToFile("Font Name", StringUtils::getString(fontCR.GetName()));
+	this->_modelerDataWriterManager->writeTupleDataToFile("Font Size Magnitude", textProps.GetFontSize().Magnitude());
+	this->_modelerDataWriterManager->writeTupleXyDataToFile("Font Size Point 2D", textProps.GetFontSize());
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile("Origin", text.GetOrigin());
+
+	return true;
 }
 
 

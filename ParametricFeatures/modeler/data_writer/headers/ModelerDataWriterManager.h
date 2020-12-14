@@ -130,6 +130,9 @@ public:
 	template <class Triplet>
 	void writeTripetXyzDataToFile(string s, Triplet data);
 
+	template <class Tuple>
+	void writeTupleXyDataToFile(string s, Tuple data);
+
 #pragma endregion
 
 };
@@ -157,6 +160,21 @@ inline void ModelerDataWriterManager::writeTripetXyzDataToFile(string s, Triplet
 	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
 	this->_outFile << fixed;
 	this->_outFile << s << " = [" << data.x << ", " << data.y << ", " << data.z << "]" << endl;
+	this->_outFile << endl;
+	this->_outFile.close();
+	
+}
+
+template<class Tuple>
+inline void ModelerDataWriterManager::writeTupleXyDataToFile(string s, Tuple data)
+{
+	if (!this->_printDataEnabled) {
+		return;
+	}
+
+	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+	this->_outFile << fixed;
+	this->_outFile << s << " = [" << data.x << ", " << data.y << "]" << endl;
 	this->_outFile << endl;
 	this->_outFile.close();
 }

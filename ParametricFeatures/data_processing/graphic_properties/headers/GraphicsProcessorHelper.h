@@ -71,6 +71,8 @@ public:
 	GraphicProperties* processConeAndCylinder(ISolidPrimitiveCR& primitive);
 	GraphicProperties* processPrimitives(ISolidPrimitiveCR& primitive);
 
+	bool processTextString(TextStringCR text, TextGraphicProperties* textGraphicProperties);
+
 	void processMSBsplineSurface(MSBsplineSurfaceCR msBsplineSurface, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties);
 	void evaluateUVShapesCurvesVector(MSBsplineSurfaceCR msBsplineSurface, ShapesGraphicProperties*& shapesGraphicProperties, MSBsplineSurfaceGraphicProperties*& msBsplineSurfaceGraphicProperties);
 

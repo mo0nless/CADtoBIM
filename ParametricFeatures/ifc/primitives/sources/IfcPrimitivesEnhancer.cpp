@@ -28,7 +28,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 	GraphicGeomBundle* elementBundle)
 {
-	_logger->logInfo(__FILE__, __LINE__, __func__);
+	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
