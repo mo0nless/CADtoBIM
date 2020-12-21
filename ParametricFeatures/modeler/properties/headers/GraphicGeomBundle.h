@@ -3,6 +3,7 @@
 #include "../reader/headers/ReaderPropertiesBundle.h"
 #include "GraphicProperties.h"
 #include <fstream>
+#include <DgnPlatform\ColorUtil.h>
 
 using namespace std;
 
@@ -18,7 +19,8 @@ private:
 	double _transparency;
 	string _material;
 	LevelHandle _levelID;
-
+	IntColorDef lineColorDef;
+	RgbFactor fillColorDef;
 
 public:
 
@@ -34,6 +36,12 @@ public:
 
 	UInt32 getColor();
 	void setColor(UInt32 newColor);
+
+	RgbFactor getFillColor();
+	void setFillColor(RgbFactor newColor);
+
+	IntColorDef getLineColor();
+	void setLineColor(IntColorDef newColor);
 
 	LevelHandle getLevelHandle();
 	void setLevelHandle(LevelHandle level);

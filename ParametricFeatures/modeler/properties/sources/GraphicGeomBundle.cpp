@@ -45,6 +45,26 @@ void GraphicGeomBundle::setColor(UInt32 newColor)
 	this->_color = newColor;
 }
 
+RgbFactor GraphicGeomBundle::getFillColor()
+{
+	return fillColorDef;
+}
+
+void GraphicGeomBundle::setFillColor(RgbFactor newColor)
+{
+	fillColorDef = newColor;
+}
+
+IntColorDef GraphicGeomBundle::getLineColor()
+{
+	return lineColorDef;
+}
+
+void GraphicGeomBundle::setLineColor(IntColorDef newColor)
+{
+	lineColorDef = newColor;
+}
+
 LevelHandle GraphicGeomBundle::getLevelHandle()
 {
 	return _levelID;

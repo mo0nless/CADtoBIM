@@ -218,72 +218,122 @@ BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primit
 void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayParams)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
+	
+	UInt32 lineColor, fillColor;
+	IntColorDef fillColorDef, lineColorDef;
+	WString message;
 
+	DgnColorMapP colorMap = ISessionMgr::GetActiveDgnFile()->GetColorMapP();
+	
+	if (!displayParams.IsFillColorTBGR())
+	{
+		fillColor = displayParams.GetFillColorTBGR();
+		fillColorDef = colorMap->GetColor(fillColor);
 
-	//ElemDisplayParamsCR d = displayParams;
-	//ElemDisplayParamsCP d = &displayParams;
+		message.Sprintf(L"Successfull Fill Color TBGR: -- R: %f G: %f B: %f A: %f", fillColorDef.m_rgba.red, fillColorDef.m_rgba.green, fillColorDef.m_rgba.blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
 
-	this->mGraphicsProcessorHelper.getElementBundle()->setColor(displayParams.GetLineColorTBGR());
-	this->mGraphicsProcessorHelper.getElementBundle()->setTransparency(displayParams.GetTransparency());
+		int blue = (fillColor >> 16) & 0xFF;
+		int green = (fillColor >> 8) & 0xFF;
+		int red = fillColor & 0xFF;
 
-	//string filepath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
-	//string filepath = SessionManager::getInstance()->getDataOutputFilePath();
-	/*ofstream outfile;
-	outfile.open(filePath, ios_base::app);*/
+		message.Sprintf(L"Calculated: -- R: %f G: %f B: %f A: %f", red, green, blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
+	}
+	else
+	{
+		fillColor = displayParams.GetFillColor();
+		fillColorDef = colorMap->GetColor(fillColor);
 
-	UInt32 color;
+		message.Sprintf(L"Successfull Fill Color: -- R: %f G: %f B: %f A: %f", fillColorDef.m_rgba.red, fillColorDef.m_rgba.green, fillColorDef.m_rgba.blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
 
-	color = displayParams.GetLineColorTBGR();
-	int blue1 = (color >> 16) & 0xFF;
-	int green1 = (color >> 8) & 0xFF;
-	int red1 = color & 0xFF;
+		int blue = (fillColor >> 16) & 0xFF;
+		int green = (fillColor >> 8) & 0xFF;
+		int red = fillColor & 0xFF;
 
-	//outfile << "RGB1 =" << red1 << "," << green1 << "," << blue1 << endl;
+		message.Sprintf(L"Calculated: -- R: %f G: %f B: %f A: %f", red, green, blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
+	}
 
-	//outfile.close();
+	if (!displayParams.IsLineColorTBGR())
+	{
+		lineColor = displayParams.GetLineColorTBGR();
+		lineColorDef = colorMap->GetColor(fillColor);
 
+		message.Sprintf(L"Successfull Line Color TBGR: -- R: %f G: %f B: %f A: %f", lineColorDef.m_rgba.red, lineColorDef.m_rgba.green, lineColorDef.m_rgba.blue, lineColorDef.m_rgba.alpha);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
 
-	//outfile << "transparency =" << displayParams.GetTransparency() << endl;
+		int blue = (lineColor >> 16) & 0xFF;
+		int green = (lineColor >> 8) & 0xFF;
+		int red = lineColor & 0xFF;
 
-	auto level = displayParams.GetLevel();
+		message.Sprintf(L"Calculated: -- R: %f G: %f B: %f", red, green, blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
+	}
+	else
+	{
+		lineColor = displayParams.GetLineColor();
+		lineColorDef = colorMap->GetColor(fillColor);
 
-	auto model = ISessionMgr::GetActiveDgnModelRefP();
-	UInt colorOut;
-	bool ov;
-	mdlLevel_getColor(&colorOut, &ov, model, level);
-	/*outfile << "level " << level << " , " << &colorOut << endl;
-	outfile << "level color"<< colorOut<<" , "<<& colorOut << endl;*/
+		message.Sprintf(L"Successfull Line Color: -- R: %f G: %f B: %f A: %f", lineColorDef.m_rgba.red, lineColorDef.m_rgba.green, lineColorDef.m_rgba.blue, lineColorDef.m_rgba.alpha);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
 
-		int blue3 = (colorOut >> 16) & 0xFF;
-		int green3 = (colorOut >> 8) & 0xFF;
-		int red3 = colorOut & 0xFF;
+		int blue = (lineColor >> 16) & 0xFF;
+		int green = (lineColor >> 8) & 0xFF;
+		int red = lineColor & 0xFF;
 
-	//	outfile << "colorOut RGB =" << red3 << "," << green3 << "," << blue3 << endl;
+		message.Sprintf(L"Calculated: -- R: %f G: %f B: %f", red, green, blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
+	}
+	
+	/*try
+	{
+		displayParams.GetElementClass();
+		MaterialCP material = displayParams.GetMaterial();
+		MaterialSettingsCR mSettings = material->GetSettings();
+		RgbFactor rgbFactor;
+		if (mSettings.HasBaseColor())
+			rgbFactor = mSettings.GetBaseColor();
 
-	//outfile << "level  =" << displayParams.GetLevel() << endl;
-	////displayParams.GetMaterial()->
+		WCharP matName;
+		material->GetName(matName);
 
-	////if (!displayParams.IsLineColorTBGR()) {
-	////	color = displayParams.GetLineColorTBGR();
-	////	int blue3 = (color >> 16) & 0xFF;
-	////	int green3 = (color >> 8) & 0xFF;
-	////	int red3 = color & 0xFF;
+		this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setMaterial(
+			StringUtils::getNormalizedString(matName)
+		);
 
-	////	outfile << "RGB3 =" << red3 << "," << green3 << "," << blue3 << endl;
-	////}
-	////else {
-	////	color = displayParams.GetLineColor();
-	////	auto rez = ISessionMgr::GetActiveDgnFile()->GetColorMapP();
+		this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setFillColor(rgbFactor);
+		this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setLineColor(lineColorDef);
 
-	////	auto colorDefinition = rez->GetColor(color);
-	////	auto rgbColorDefinition = colorDefinition.m_rgb;
-	////	int blue2 = rgbColorDefinition.blue & 0xFF;
-	////	int green2 = rgbColorDefinition.green & 0xFF;
-	////	int red2 = rgbColorDefinition.red & 0xFF;
+		message.Sprintf(L"Successfull get Material: %s -- R: %f G: %f B: %f A: %f", matName, rgbFactor.red, rgbFactor.green, rgbFactor.blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));		
+		
+	}
+	catch (exception& ex) {
+		_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Getting Material " + string(ex.what()));
+	}*/
+	
+	// Since we have an elementRef from the DgnModel, we know that FileLevelCache is never NULL.
+	FileLevelCache* fileLevelCache = ISessionMgr::GetActiveDgnModelRefP()->GetFileLevelCacheP();
+	LevelHandle level = fileLevelCache->GetLevel(displayParams.GetLevel());
 
-	////	outfile << "RGB2 =" << red2 << "," << green2 << "," << blue2 << endl;
-	////}
-	//outfile.close();
+	if (level.IsValid())
+	{
+		UInt32 color = level.GetByLevelColor().GetColor();
+		//this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setColor(color);
+
+		int blue = (color >> 16) & 0xFF;
+		int green = (color >> 8) & 0xFF;
+		int red = color & 0xFF;
+
+		message.Sprintf(L"Level Color Valid Calculated: -- R: %f G: %f B: %f", red, green, blue);
+		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
+	}
+
+	this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setColor(displayParams.GetLineColorTBGR());
+	this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setTransparency(displayParams.GetTransparency());
+	
 }
 
 void GraphicsProcessor::_AnnounceTransform(TransformCP trans)

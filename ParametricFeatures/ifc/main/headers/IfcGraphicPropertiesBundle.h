@@ -28,6 +28,8 @@ private:
 	double transparency;
 	string _material;
 	LevelHandle _levelHandle;
+	IntColorDef lineColorDef;
+	RgbFactor fillColorDef;
 
 	string representationType = "";
 	string representationIdentifier = "";
@@ -55,6 +57,12 @@ public:
 
 	UInt32 getColor();
 	void setColor(UInt32 newColor);
+
+	RgbFactor getFillColor();
+	void setFillColor(RgbFactor newColor);
+
+	IntColorDef getLineColor();
+	void setLineColor(IntColorDef newColor);
 
 	LevelHandle getLevelHandle();
 	void setLevelHandle(LevelHandle newlevelID);

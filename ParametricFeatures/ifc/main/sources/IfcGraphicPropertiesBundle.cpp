@@ -77,6 +77,26 @@ void IfcGraphicPropertiesBundle::setColor(UInt32 newColor)
 	this->color = newColor;
 }
 
+RgbFactor IfcGraphicPropertiesBundle::getFillColor()
+{
+	return fillColorDef;
+}
+
+void IfcGraphicPropertiesBundle::setFillColor(RgbFactor newColor)
+{
+	fillColorDef = newColor;
+}
+
+IntColorDef IfcGraphicPropertiesBundle::getLineColor()
+{
+	return lineColorDef;
+}
+
+void IfcGraphicPropertiesBundle::setLineColor(IntColorDef newColor)
+{
+	lineColorDef = newColor;
+}
+
 LevelHandle IfcGraphicPropertiesBundle::getLevelHandle()
 {
 	return _levelHandle;

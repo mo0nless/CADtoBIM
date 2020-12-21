@@ -34,20 +34,7 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			Ifc4::IfcRepresentationItem::list::ptr ifcRepresentationItemList(new Ifc4::IfcRepresentationItem::list());
 
 			if (ifcGraphicPropertiesBundle->getIfcRepresentationItem() != nullptr && ifcGraphicPropertiesBundle->getShow()) {
-				try
-				{
-					if (ifcGraphicPropertiesBundle->getLevelHandle().IsValid())
-					{
-						IfcEntityList* entityLevel = levelFileEntities.at(ifcGraphicPropertiesBundle->getLevelHandle()->GetLevelId());
-
-						entityLevel->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
-					}
-					else
-						_logger->logInfo(__FILE__, __LINE__, __func__, "Level Not Valid");
-				}
-				catch (exception& ex) {
-					_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Layer Entity " + string(ex.what()));
-				}
+				
 				ifcRepresentationItemList->push(ifcGraphicPropertiesBundle->getIfcRepresentationItem());
 
 				//TODO: Needs to be set up correctly the 3rd input parameter following:
@@ -66,14 +53,29 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 				);
 
 
-				Ifc4::IfcShapeRepresentation* ifcRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
+				Ifc4::IfcShapeRepresentation* ifcShapeRepresentation = new Ifc4::Ifc4::IfcShapeRepresentation(
 					geometricSubContext,
 					representationIdentifier,
 					representationType,
 					ifcRepresentationItemList
 				);
 
-				ifcRepresentationList->push(ifcRepresentation);
+				ifcRepresentationList->push(ifcShapeRepresentation);
+
+				try
+				{
+					if (ifcGraphicPropertiesBundle->getLevelHandle().IsValid())
+					{
+						IfcEntityList* entityLevel = levelFileEntities.at(ifcGraphicPropertiesBundle->getLevelHandle()->GetLevelId());
+
+						entityLevel->push(ifcShapeRepresentation);
+					}
+					else
+						_logger->logInfo(__FILE__, __LINE__, __func__, "Level Not Valid");
+				}
+				catch (exception& ex) {
+					_logger->logError(__FILE__, __LINE__, __func__, ex, "Error Layer Entity " + string(ex.what()));
+				}
 			}
 		}
 		if (ifcRepresentationList->size() == 0) {

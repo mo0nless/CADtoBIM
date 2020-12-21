@@ -88,7 +88,7 @@ public:
 	void setElementBundle(GraphicGeomBundle& newElementBundle);
 	void setElementHandle(ElementHandle elementHandle);
 
-	GraphicGeomBundle* getElementBundle();
+	GraphicGeomBundle* getGraphicGeomBundle();
 	DictionaryProperties* getDictionaryProperties();
 	ElementHandle getCurrentElementHandle();
 };

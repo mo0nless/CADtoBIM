@@ -16,6 +16,8 @@ void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicPropert
 				auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
 					ifcRepresentationItem, elementBundle->getElementHandle());
 				bundle->setColor(elementBundle->getColor());
+				bundle->setFillColor(elementBundle->getFillColor());
+				bundle->setLineColor(elementBundle->getLineColor());
 				bundle->setTransparency(elementBundle->getTransparency());
 				bundle->setMaterial(elementBundle->getMaterial());
 				bundle->setLevelHandle(elementBundle->getLevelHandle());

@@ -19,6 +19,6 @@ private:
 	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);
-
+	Ifc4::IfcColourRgb * buildIfcColor(RgbFactor color);
 
 };

@@ -236,6 +236,8 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		auto bundle = new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
 			elementBundle->getElementHandle());
 		bundle->setColor(elementBundle->getColor());
+		bundle->setFillColor(elementBundle->getFillColor());
+		bundle->setLineColor(elementBundle->getLineColor());
 		bundle->setTransparency(elementBundle->getTransparency());
 		bundle->setMaterial(elementBundle->getMaterial());
 		bundle->setLevelHandle(elementBundle->getLevelHandle());

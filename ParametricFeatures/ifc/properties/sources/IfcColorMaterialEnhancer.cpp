@@ -30,6 +30,7 @@ void IfcColorMaterialEnhancer::processColour(IfcGraphicPropertiesBundle& ifcGrap
 	typedef Ifc4::IfcGloballyUniqueId guid;
 
 	Ifc4::IfcColourRgb* ifcColour = buildIfcColor(ifcGraphicPropertiesBundle.getColor());
+	//Ifc4::IfcColourRgb* ifcColour = buildIfcColor(ifcGraphicPropertiesBundle.getFillColor());
 
 	IfcEntityList* ifcSurfaceStyleList = new IfcEntityList();
 
@@ -166,4 +167,9 @@ Ifc4::IfcColourRgb * IfcColorMaterialEnhancer::buildIfcColor(UInt32 color)
 
 
 	return new Ifc4::IfcColourRgb(string("Color"), red / 255.0, green / 255.0, blue / 255.0);
+}
+
+Ifc4::IfcColourRgb * IfcColorMaterialEnhancer::buildIfcColor(RgbFactor color)
+{
+	return new Ifc4::IfcColourRgb(string("Color"), color.red / 255.0, color.green / 255.0, color.blue / 255.0);;
 }

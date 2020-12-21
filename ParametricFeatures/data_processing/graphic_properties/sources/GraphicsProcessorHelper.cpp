@@ -20,7 +20,7 @@ void GraphicsProcessorHelper::setElementBundle(GraphicGeomBundle & newElementBun
 	this->elementBundle = &newElementBundle;
 }
 
-GraphicGeomBundle * GraphicsProcessorHelper::getElementBundle()
+GraphicGeomBundle * GraphicsProcessorHelper::getGraphicGeomBundle()
 {
 	return this->elementBundle;
 }
@@ -400,7 +400,7 @@ bool GraphicsProcessorHelper::processPolyfaceFacets(PolyfaceQueryCR meshData, bo
 		return elementProcessed = false;
 
 	elementProcessed = processElementAsMesh(*&solidKernelEntity, meshes);
-	this->getElementBundle()->setGraphicProperties(*solidKernelEntity);
+	this->getGraphicGeomBundle()->setGraphicProperties(*solidKernelEntity);
 
 	return elementProcessed;
 }
@@ -2193,7 +2193,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 
 #pragma endregion
 
-	this->getElementBundle()->setGraphicProperties(*solidKernelEntity);	
+	this->getGraphicGeomBundle()->setGraphicProperties(*solidKernelEntity);	
 }
 
 bool GraphicsProcessorHelper::processElementAsMesh(SolidEntityGraphicProperties*& solidKernelEntity, bvector<PolyfaceHeaderPtr> meshes)
