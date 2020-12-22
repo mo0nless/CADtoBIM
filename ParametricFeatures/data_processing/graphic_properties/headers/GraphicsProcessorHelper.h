@@ -4,6 +4,7 @@
 #include "../../../logging/headers/Logger.h"
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
+
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 
@@ -28,18 +29,16 @@ class GraphicsProcessorHelper
 {
 
 private:
-	GraphicGeomBundle* elementBundle;
-	string filePath;
+	IfcGraphicPropertiesBundle* _ifcGraphicPropertiesBundle;
+	ElementHandle _currentElementHandle;
 	DictionaryProperties* pDictionaryProperties;
 
 	ModelerDataWriterManager* _modelerDataWriterManager;
 
-	template <class T, class U>
-	T searchOnMap(map<U, T>, U key);
-
-	ElementHandle _currentElementHandle;
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
+	template <class T, class U>
+	T searchOnMap(map<U, T>, U key);
 public:
 	GraphicsProcessorHelper();
 
@@ -85,10 +84,10 @@ public:
 #pragma endregion
 
 	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
-	void setElementBundle(GraphicGeomBundle& newElementBundle);
+	void setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle& newElementBundle);
 	void setElementHandle(ElementHandle elementHandle);
 
-	GraphicGeomBundle* getGraphicGeomBundle();
+	IfcGraphicPropertiesBundle* getIfcGraphicPropertiesBundle();
 	DictionaryProperties* getDictionaryProperties();
 	ElementHandle getCurrentElementHandle();
 };

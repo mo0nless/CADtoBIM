@@ -1,7 +1,7 @@
 #include "..\headers\IfcSurfaceEnhancer.h"
 
 void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
-	GraphicGeomBundle* elementBundle, bool addToIfcElementBundle)
+	IfcGraphicPropertiesBundle* elementBundle, bool addToIfcElementBundle)
 {
 	boost::unique_lock<boost::shared_mutex> guard(_mutex);
 	_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -10,16 +10,17 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*msBsplineSurfaceGraphicProperties, file, elementBundle);
 		if (ifcRepresentationItem != nullptr)
 		{
-			auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+			/*auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
 				ifcRepresentationItem, elementBundle->getElementHandle());
 			bundle->setColor(elementBundle->getColor());
 			bundle->setFillColor(elementBundle->getFillColor());
 			bundle->setLineColor(elementBundle->getLineColor());
 			bundle->setTransparency(elementBundle->getTransparency());
 			bundle->setMaterial(elementBundle->getMaterial());
-			bundle->setLevelHandle(elementBundle->getLevelHandle());
-			bundle->setRepresentationTypeIdentifier("AdvancedSurface", "Body");
-			ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			bundle->setLevelHandle(elementBundle->getLevelHandle());*/
+			elementBundle->setRepresentationTypeIdentifier("AdvancedSurface", "Body");
+			elementBundle->setIfcRepresentationItem(ifcRepresentationItem);
+			//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__,"ifcRepresentationItem is NULL");
@@ -27,7 +28,7 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 	}
 }
 
-Ifc4::IfcBSplineSurface* IfcSurfaceEnhancer::buildIfcSurface(MSBsplineSurfaceGraphicProperties & msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle * elementBundle)
+Ifc4::IfcBSplineSurface* IfcSurfaceEnhancer::buildIfcSurface(MSBsplineSurfaceGraphicProperties & msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * elementBundle)
 {
 	
 	_logger->logDebug(__FILE__, __LINE__, __func__);

@@ -3,11 +3,9 @@
 
 GraphicsProcessorHelper::GraphicsProcessorHelper()
 {
-
-	this->filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance();//new ModelerDataWriterManager(true);
 	this->pDictionaryProperties = nullptr;
-	this->elementBundle = nullptr;
+	this->_ifcGraphicPropertiesBundle = nullptr;
 }
 
 void GraphicsProcessorHelper::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
@@ -15,14 +13,14 @@ void GraphicsProcessorHelper::setDictionaryProperties(DictionaryProperties& newD
 	this->pDictionaryProperties = &newDictionaryProperties;
 }
 
-void GraphicsProcessorHelper::setElementBundle(GraphicGeomBundle & newElementBundle)
+void GraphicsProcessorHelper::setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle & newElementBundle)
 {
-	this->elementBundle = &newElementBundle;
+	this->_ifcGraphicPropertiesBundle = &newElementBundle;
 }
 
-GraphicGeomBundle * GraphicsProcessorHelper::getGraphicGeomBundle()
+IfcGraphicPropertiesBundle * GraphicsProcessorHelper::getIfcGraphicPropertiesBundle()
 {
-	return this->elementBundle;
+	return this->_ifcGraphicPropertiesBundle;
 }
 
 DictionaryProperties* GraphicsProcessorHelper::getDictionaryProperties()
@@ -335,7 +333,7 @@ bool GraphicsProcessorHelper::processTextString(TextStringCR text)
 
 	processTextString(text, textGraphicProperties);
 
-	this->elementBundle->setGraphicProperties(*textGraphicProperties);
+	this->_ifcGraphicPropertiesBundle->setGraphicProperties(*textGraphicProperties);
 
 	return true;
 }
@@ -348,7 +346,7 @@ bool GraphicsProcessorHelper::processMSBsplineSurface(MSBsplineSurfaceCR msBspli
 
 	processMSBsplineSurface(msBsplineSurface, msBsplineSurfaceGraphicProperties);
 
-	this->elementBundle->setGraphicProperties(*msBsplineSurfaceGraphicProperties);
+	this->_ifcGraphicPropertiesBundle->setGraphicProperties(*msBsplineSurfaceGraphicProperties);
 
 	return true;
 }
@@ -361,7 +359,7 @@ bool GraphicsProcessorHelper::processShapesCurvesVector(CurveVectorCR & curvesVe
 
 	if (!shapesGraphicProperties->getCurvesPrimitivesContainerVector().empty() || !shapesGraphicProperties->getShapesGraphicsContainer().empty())
 	{
-		this->elementBundle->setGraphicProperties(*shapesGraphicProperties);
+		this->_ifcGraphicPropertiesBundle->setGraphicProperties(*shapesGraphicProperties);
 		return true;
 	}
 
@@ -375,7 +373,7 @@ bool GraphicsProcessorHelper::processSolidPrimitive(ISolidPrimitiveCR & primitiv
 	if (primitiveGraphicProperties == nullptr)
 		return false;
 
-	this->elementBundle->setGraphicProperties(*primitiveGraphicProperties);
+	this->_ifcGraphicPropertiesBundle->setGraphicProperties(*primitiveGraphicProperties);
 
 	return true;
 }
@@ -400,7 +398,7 @@ bool GraphicsProcessorHelper::processPolyfaceFacets(PolyfaceQueryCR meshData, bo
 		return elementProcessed = false;
 
 	elementProcessed = processElementAsMesh(*&solidKernelEntity, meshes);
-	this->getGraphicGeomBundle()->setGraphicProperties(*solidKernelEntity);
+	this->_ifcGraphicPropertiesBundle->setGraphicProperties(*solidKernelEntity);
 
 	return elementProcessed;
 }
@@ -719,9 +717,7 @@ bool GraphicsProcessorHelper::processTextString(TextStringCR text, TextGraphicPr
 	localToWorld.GetColumn(columnVectorZ, 2);
 
 	textGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
-
-	this->elementBundle->setGraphicProperties(*textGraphicProperties);
-
+	
 	this->_modelerDataWriterManager->writeTupleDataToFile("--------------- TEXT String TEXT ------------------", StringUtils::getString(text.GetString()));
 	this->_modelerDataWriterManager->writeTupleDataToFile("Height", text.GetHeight());
 	this->_modelerDataWriterManager->writeTupleDataToFile("Width", text.GetWidth());
@@ -2193,7 +2189,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 
 #pragma endregion
 
-	this->getGraphicGeomBundle()->setGraphicProperties(*solidKernelEntity);	
+	this->getIfcGraphicPropertiesBundle()->setGraphicProperties(*solidKernelEntity);	
 }
 
 bool GraphicsProcessorHelper::processElementAsMesh(SolidEntityGraphicProperties*& solidKernelEntity, bvector<PolyfaceHeaderPtr> meshes)

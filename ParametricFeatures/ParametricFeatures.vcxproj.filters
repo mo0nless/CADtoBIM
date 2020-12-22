@@ -131,7 +131,6 @@
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
-    <ClInclude Include="ifc\general_information\headers\GeneralInformationEnhancer.h" />
     <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
     <ClInclude Include="modeler\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />

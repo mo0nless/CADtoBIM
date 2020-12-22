@@ -68,7 +68,7 @@ IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(vector<IfcElementB
 		return nullptr;
 	}
 	for (auto const& ifcBundle : ifcBundleVector) {
-		if (ifcBundle->getModelerElementId() == globalId) {
+		if (ifcBundle->getElementId() == globalId) {
 			if (!ifcBundle->getIsSmartFeature() && ifcBundle->getIfcGraphicPropertiesBundleVector().size()>0) {
 				//Flag as not displayable object
 				ifcBundle->getIfcGraphicPropertiesBundleVector().at(0)->setShow(false);

@@ -24,7 +24,7 @@ vector<BoundTypeIfcCurve*> IfcShapesEnhancer::getCurvesShapeRepresentationVector
 }
 
 void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties, IfcElementBundle*& ifcElementBundle,
-	GraphicGeomBundle* elementBundle, bool addToIfcElementBundle)
+	IfcGraphicPropertiesBundle* elementBundle, bool addToIfcElementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -233,23 +233,24 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 			this->mSingleShapeRepresentation = shape;
 		}
-		auto bundle = new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
+		/*auto bundle = new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
 			elementBundle->getElementHandle());
 		bundle->setColor(elementBundle->getColor());
 		bundle->setFillColor(elementBundle->getFillColor());
 		bundle->setLineColor(elementBundle->getLineColor());
 		bundle->setTransparency(elementBundle->getTransparency());
 		bundle->setMaterial(elementBundle->getMaterial());
-		bundle->setLevelHandle(elementBundle->getLevelHandle());
+		bundle->setLevelHandle(elementBundle->getLevelHandle());*/
+		elementBundle->setIfcRepresentationItem(mSingleShapeRepresentation);
 
 		if(shapeGraphicProperties->getIsFilled())
-			bundle->setRepresentationTypeIdentifier("Surface", "Surface");
+			elementBundle->setRepresentationTypeIdentifier("Surface", "Surface");
 		else
-			bundle->setRepresentationTypeIdentifier("Curve", "Axis");
+			elementBundle->setRepresentationTypeIdentifier("Curve", "Axis");
 
 
 
-		ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+		//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 
 		//new add
 		//file.addEntity(mSingleShapeRepresentation);
@@ -527,7 +528,7 @@ vector<Ifc4::IfcCurve*> IfcShapesEnhancer::ifcShapesCurvesParser(ShapesGraphicPr
 
 		if (curveRepresentationItem == nullptr && curveProperties->getCurvesTypeEnum() != CurvesPrimitivesTypeEnum::POINT_STRING)
 		{
-			_logger->logWarning(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + "IFC Curve is Nullptr");
+			_logger->logWarning(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + "IFC Curve is Nullptr");
 			continue;
 		}
 

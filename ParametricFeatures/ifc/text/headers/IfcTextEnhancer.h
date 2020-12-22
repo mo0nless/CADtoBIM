@@ -11,10 +11,10 @@ class IfcTextEnhancer
 public:
 	IfcTextEnhancer();
 	void enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicProperties* textGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		GraphicGeomBundle* elementBundle);
+		IfcGraphicPropertiesBundle* elementBundle);
 
 private:
-	Ifc4::IfcTextLiteralWithExtent* buildTextString(TextGraphicProperties* textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle * elementBundle);
+	Ifc4::IfcTextLiteralWithExtent* buildTextString(TextGraphicProperties* textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * elementBundle);
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 	Ifc4::IfcColourRgb * buildIfcColor(UInt32 color);
 	Ifc4::IfcTextStyleTextModel* buildIfcTextStyleTextModel();

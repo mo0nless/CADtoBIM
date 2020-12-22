@@ -23,9 +23,9 @@ class IfcPrimitivesEnhancer {
 
 public:
 	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties, IfcElementBundle* ifcElementBundle,
-		GraphicGeomBundle* elementBundle);
+		IfcGraphicPropertiesBundle* elementBundle);
 	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		GraphicGeomBundle* elementBundle);
+		IfcGraphicPropertiesBundle* elementBundle);
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
@@ -33,5 +33,5 @@ private:
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		GraphicGeomBundle* elementBundle);
+		IfcGraphicPropertiesBundle* elementBundle);
 };

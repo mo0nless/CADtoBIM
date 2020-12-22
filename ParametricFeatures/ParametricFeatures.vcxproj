@@ -138,7 +138,6 @@
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
-    <ClInclude Include="ifc\general_information\headers\GeneralInformationEnhancer.h" />
     <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBundle.h" />

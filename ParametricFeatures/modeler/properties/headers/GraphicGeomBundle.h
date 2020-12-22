@@ -11,7 +11,7 @@ class GraphicGeomBundle {
 
 private:
 	GraphicProperties* graphicProperties;
-	vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
+	//vector<ReaderPropertiesBundle*> readerPropertiesBundleVector;
 
 	ElementHandle elementHandle;
 
@@ -30,9 +30,9 @@ public:
 	GraphicProperties* getGraphicProperties();
 	void setGraphicProperties(GraphicProperties& newGraphicProperties);
 
-	vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
+	/*vector<ReaderPropertiesBundle*> getReaderPropertiesBundleVector();
 	void addReaderPropertiesBundle(ReaderPropertiesBundle* newReaderPropertiesBundle);
-	void setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
+	void setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);*/
 
 	UInt32 getColor();
 	void setColor(UInt32 newColor);

@@ -331,8 +331,8 @@ void GraphicsProcessor::_AnnounceElemDisplayParams(ElemDisplayParamsCR displayPa
 		_logger->logDebug(__FILE__, __LINE__, __func__, StringUtils::getNormalizedString(message));
 	}
 
-	this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setColor(displayParams.GetLineColorTBGR());
-	this->mGraphicsProcessorHelper.getGraphicGeomBundle()->setTransparency(displayParams.GetTransparency());
+	this->mGraphicsProcessorHelper.getIfcGraphicPropertiesBundle()->setColor(displayParams.GetLineColorTBGR());
+	this->mGraphicsProcessorHelper.getIfcGraphicPropertiesBundle()->setTransparency(displayParams.GetTransparency());
 	
 }
 

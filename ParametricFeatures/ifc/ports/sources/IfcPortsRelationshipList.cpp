@@ -94,9 +94,9 @@ void IfcPortsRelationshipList::insertIfcPortElement(Ifc4::IfcCartesianPoint* poi
 	//Data filling for the new element
 	newPortElement->cartesianPointPort = point;
 	newPortElement->distributionPort = dPort;
-	newPortElement->elementIdNumber = ifcElementBundle->getModelerElementId();
+	newPortElement->elementIdNumber = ifcElementBundle->getElementId();
 	newPortElement->ifcDistributionElement = (Ifc4::IfcDistributionElement*)ifcElementBundle->getIfcElement();
-	newPortElement->elementName = ifcElementBundle->getModelerElementDescriptor();
+	newPortElement->elementName = ifcElementBundle->getElementDescriptor();
 
 	newPortElement->nextPortElement = NULL;
 	newPortElement->previousPortElement = NULL;

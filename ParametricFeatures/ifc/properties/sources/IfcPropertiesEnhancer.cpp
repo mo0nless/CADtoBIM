@@ -30,10 +30,10 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 					Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 					Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
-						guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getModelerElementId()) + " " + readerPropertyBundle->getClassName()),
+						guid::IfcGloballyUniqueId(to_string(ifcElementBundle->getElementId()) + " " + readerPropertyBundle->getClassName()),
 						this->_ownerHistory,
 						readerPropertyBundle->getClassName(), 
-						ifcElementBundle->getModelerElementDescriptor(),
+						ifcElementBundle->getElementDescriptor(),
 						ifcObjectDefinitionList, 
 						ifcPropertySet
 					);
@@ -42,7 +42,7 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 			}
 			else
 			{
-				_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
+				_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
 			}
 		}
 	}

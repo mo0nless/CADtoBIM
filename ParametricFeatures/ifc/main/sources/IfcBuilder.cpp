@@ -77,13 +77,13 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
 				ifcElementBundle->setElementClassName(dictionaryProperties.getElementClassName());
-				ifcElementBundle->setGraphicGeomBundle(dictionaryProperties.getGraphicGeomBundle());
+				ifcElementBundle->setGraphicGeomBundle(dictionaryProperties.getIfcGraphicPropertiesBundleVector());
 
-				ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
+				//ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
 
-				if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
+				/*if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
 					ifcElementBundle->solidModel = true;
-				}
+				}*/
 
 				ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
 				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
@@ -217,7 +217,7 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 		// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 		IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
 		
-		for (GraphicGeomBundle* element : ifcElementBundle->getGraphicGeomBundle())
+		for (IfcGraphicPropertiesBundle* element : ifcElementBundle->getIfcGraphicPropertiesBundleVector())
 		{
 			try
 			{

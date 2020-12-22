@@ -91,23 +91,18 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 
 		LevelHandle level = fileLevelCache->GetLevel(elementRefP->GetLevel());
 
-		GraphicGeomBundle* geomElementBundle = new GraphicGeomBundle();
-		geomElementBundle->setElementHandle(elementHandle);
-		geomElementBundle->setLevelHandle(level);
-
-		vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(elementHandle, geomElementBundle);
-		geomElementBundle->setReaderPropertiesBundle(readerPropertiesBundleVector);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = new IfcGraphicPropertiesBundle(elementHandle, level);
 
 		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
-		graphicsProcessorHelper->setElementBundle(*geomElementBundle);
+		graphicsProcessorHelper->setIfcGraphicPropertiesBundle(*ifcGraphicPropertiesBundle);
 		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
 				
 		ElementGraphicsOutput::Process(elementHandle, *graphicsProcessor);
 
-		dictionaryProperties->addGraphicGeomBundle(geomElementBundle);
+		dictionaryProperties->addGraphicGeomBundle(ifcGraphicPropertiesBundle);
 
 		return SUCCESS;
 	}
@@ -171,12 +166,6 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			}
 
 
-			//this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-			//vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			//propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
-
-			//lock_guard<mutex> guard(g_display_mutex);
 			propsDictVec.push_back(propertiesDictionary);
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);

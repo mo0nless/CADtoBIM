@@ -9,7 +9,7 @@ DictionaryProperties::DictionaryProperties(long newElementId, string newEmentDes
 	this->isSmartSolid = false;
 	this->smartFeatureContainer = new SmartFeatureContainer(newElementId);
 	this->isPrimitiveSolid = false;
-	this->subElements = vector<GraphicGeomBundle*>();
+	this->subElements = vector<IfcGraphicPropertiesBundle*>();
 	this->elementReaderPropertiesBundleVector = vector<ReaderPropertiesBundle*>();
 }
 
@@ -23,12 +23,12 @@ DictionaryProperties::DictionaryProperties(long newElementId, string newEmentDes
 //	this->graphicsReaderPropertiesBundleVector.push_back(readerPropertiesBundle);
 //}
 
-vector<GraphicGeomBundle*> DictionaryProperties::getGraphicGeomBundle()
+vector<IfcGraphicPropertiesBundle*> DictionaryProperties::getIfcGraphicPropertiesBundleVector()
 {
 	return this->subElements;
 }
 
-void DictionaryProperties::addGraphicGeomBundle(GraphicGeomBundle * elementBundle)
+void DictionaryProperties::addGraphicGeomBundle(IfcGraphicPropertiesBundle * elementBundle)
 {
 	
 	this->subElements.push_back(elementBundle);

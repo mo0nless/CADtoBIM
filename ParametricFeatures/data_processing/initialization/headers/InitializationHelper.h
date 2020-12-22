@@ -14,6 +14,7 @@ public:
 	InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected);
 
 	void processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
+
 	
 private:	
 	Logs::Logger* _logger = Logs::Logger::getLogger();

@@ -53,14 +53,14 @@ void IfcElementBundle::addSolidEdgesCollection(vector<SolidEdge*> solidEdges)
 	this->smartSolidEdgesCollection = solidEdges;
 }
 
-vector<GraphicGeomBundle*> IfcElementBundle::getGraphicGeomBundle()
-{
-	return this->subGraphicGeom;
-}
+//vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getGraphicGeomBundle()
+//{
+//	return this->ifcGraphicPropertiesBundleVector;
+//}
 
-void IfcElementBundle::setGraphicGeomBundle(vector<GraphicGeomBundle*> newBundle)
+void IfcElementBundle::setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle)
 {
-	this->subGraphicGeom = newBundle;
+	this->ifcGraphicPropertiesBundleVector = newBundle;
 }
 
 
@@ -79,12 +79,12 @@ bool IfcElementBundle::getHasElementConnection()
 	return this->hasConnections;
 }
 
-long IfcElementBundle::getModelerElementId()
+long IfcElementBundle::getElementId()
 {
 	return this->modelerElementId;
 }
 
-string IfcElementBundle::getModelerElementDescriptor()
+string IfcElementBundle::getElementDescriptor()
 {
 	return this->modelerElementDescriptor;
 }
@@ -104,15 +104,25 @@ SmartFeatureContainer * IfcElementBundle::getSmartFeatureContainer()
 	return this->smartFeatureContainer;
 }
 
-void IfcElementBundle::setIsSmartSolid(bool value)
+vector<ReaderPropertiesBundle*> IfcElementBundle::getElementReaderPropertiesBundleVector()
 {
-	this->isSmartSolid = value;
+	return this->elementReaderPropertiesBundleVector;
 }
 
-bool IfcElementBundle::getIsSmartSolid()
+void IfcElementBundle::setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
 {
-	return this->isSmartSolid;
+	this->elementReaderPropertiesBundleVector = newReaderPropertiesBundleVector;
 }
+
+//void IfcElementBundle::setIsSmartSolid(bool value)
+//{
+//	this->isSmartSolid = value;
+//}
+//
+//bool IfcElementBundle::getIsSmartSolid()
+//{
+//	return this->isSmartSolid;
+//}
 
 
 vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()

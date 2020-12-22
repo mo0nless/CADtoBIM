@@ -4,7 +4,7 @@ IfcTextEnhancer::IfcTextEnhancer()
 {
 }
 
-void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicProperties* textGraphicProperties, IfcElementBundle *& ifcElementBundle, GraphicGeomBundle * elementBundle)
+void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicProperties* textGraphicProperties, IfcElementBundle *& ifcElementBundle, IfcGraphicPropertiesBundle * elementBundle)
 {
 	{
 		_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -13,17 +13,18 @@ void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicPropert
 			Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildTextString(textGraphicProperties, file, elementBundle);
 			if (ifcRepresentationItem != nullptr)
 			{
-				auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
+				/*auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
 					ifcRepresentationItem, elementBundle->getElementHandle());
 				bundle->setColor(elementBundle->getColor());
 				bundle->setFillColor(elementBundle->getFillColor());
 				bundle->setLineColor(elementBundle->getLineColor());
 				bundle->setTransparency(elementBundle->getTransparency());
 				bundle->setMaterial(elementBundle->getMaterial());
-				bundle->setLevelHandle(elementBundle->getLevelHandle());
-				bundle->setRepresentationTypeIdentifier("Text", "Annotation");
+				bundle->setLevelHandle(elementBundle->getLevelHandle());*/
+				elementBundle->setIfcRepresentationItem(ifcRepresentationItem);
+				elementBundle->setRepresentationTypeIdentifier("Text", "Annotation");
 
-				ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+				//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
 			}
 			else {
 				_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -33,7 +34,7 @@ void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicPropert
 	}
 }
 
-Ifc4::IfcTextLiteralWithExtent * IfcTextEnhancer::buildTextString(TextGraphicProperties * textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, GraphicGeomBundle * elementBundle)
+Ifc4::IfcTextLiteralWithExtent * IfcTextEnhancer::buildTextString(TextGraphicProperties * textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * elementBundle)
 {
 	Ifc4::IfcPlanarExtent* planarExtent = new Ifc4::IfcPlanarExtent(
 		NumberUtils::convertCurrentUnitToMeters(textGraphicProperties->getHeight()),

@@ -65,11 +65,11 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 
 				//Need to be used the subtype because otherwise the flow , distribution type, distribution system cqnnot be specified
 				Ifc4::IfcDistributionPort* port = new Ifc4::IfcDistributionPort(
-					guid::IfcGloballyUniqueId("Port: " + to_string(portSequence) + string(" Element: ") + to_string(ifcElementBundle->getModelerElementId())),
+					guid::IfcGloballyUniqueId("Port: " + to_string(portSequence) + string(" Element: ") + to_string(ifcElementBundle->getElementId())),
 					//file.getSingle<Ifc4::IfcOwnerHistory>(),
 					ownerHistory,
-					string("Port ") + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getModelerElementDescriptor(),
-					ifcElementBundle->getModelerElementDescriptor(),
+					string("Port ") + to_string(portSequence) + string(" Element: ") + ifcElementBundle->getElementDescriptor(),
+					ifcElementBundle->getElementDescriptor(),
 					string("PORT"),
 					objPlacement,
 					//ifcElementBundle->getIfcElement()->ObjectPlacement(),
@@ -107,7 +107,7 @@ void IfcPortsBuilder::processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector
 		}
 		else if (ifcElementBundle->getBadIfcClassBuild())
 		{
-			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr, ElementBundle bad flag");
+			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + " IFC Element is Nullptr, ElementBundle bad flag");
 		}
 		//else
 		//{
@@ -127,11 +127,11 @@ Ifc4::IfcRelNests* IfcPortsBuilder::buildIfcRelNests(boost::shared_ptr<IfcTempla
 
 	//Create the nested relationship between the element and ports
 	Ifc4::IfcRelNests * relNests = new Ifc4::IfcRelNests(
-		guid::IfcGloballyUniqueId(string("RelNests: ") + to_string(ifcElementBundle->getModelerElementId()) + string(" Ports")),
+		guid::IfcGloballyUniqueId(string("RelNests: ") + to_string(ifcElementBundle->getElementId()) + string(" Ports")),
 		//file.getSingle<Ifc4::IfcOwnerHistory>(),
 		ownerHistory,
-		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
-		string("RelNests: ") + ifcElementBundle->getModelerElementDescriptor() + string(" Ports"),
+		string("RelNests: ") + ifcElementBundle->getElementDescriptor() + string(" Ports"),
+		string("RelNests: ") + ifcElementBundle->getElementDescriptor() + string(" Ports"),
 		ifcElementBundle->getIfcElement(),
 		objectDefinition
 	);

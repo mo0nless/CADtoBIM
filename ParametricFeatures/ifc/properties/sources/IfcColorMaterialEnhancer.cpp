@@ -15,7 +15,7 @@ void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVecto
 		}
 		else
 		{
-			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getModelerElementDescriptor() + " " + to_string(ifcElementBundle->getModelerElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
+			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + " IFC Element is Nullptr or && Bad IfcClassBuild");
 		}
 
 	}

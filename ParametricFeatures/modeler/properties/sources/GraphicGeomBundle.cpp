@@ -20,20 +20,20 @@ void GraphicGeomBundle::setGraphicProperties(GraphicProperties & newGraphicPrope
 	this->graphicProperties = &newGraphicProperties;
 }
 
-vector<ReaderPropertiesBundle*> GraphicGeomBundle::getReaderPropertiesBundleVector()
-{
-	return this->readerPropertiesBundleVector;
-}
-
-void GraphicGeomBundle::addReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle)
-{
-	this->readerPropertiesBundleVector.push_back(newReaderPropertiesBundle);
-}
-
-void GraphicGeomBundle::setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
-{
-	this->readerPropertiesBundleVector = newReaderPropertiesBundleVector;
-}
+//vector<ReaderPropertiesBundle*> GraphicGeomBundle::getReaderPropertiesBundleVector()
+//{
+//	return this->readerPropertiesBundleVector;
+//}
+//
+//void GraphicGeomBundle::addReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle)
+//{
+//	this->readerPropertiesBundleVector.push_back(newReaderPropertiesBundle);
+//}
+//
+//void GraphicGeomBundle::setReaderPropertiesBundle(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
+//{
+//	this->readerPropertiesBundleVector = newReaderPropertiesBundleVector;
+//}
 
 UInt32 GraphicGeomBundle::getColor()
 {

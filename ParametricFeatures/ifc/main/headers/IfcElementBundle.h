@@ -6,7 +6,9 @@
 #include "IfcGraphicPropertiesBundle.h"
 #include "IfcReaderPropertiesBundle.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
+#include "../../../common/models/headers/SessionManager.h"
 
 
 class IfcElementBundle {
@@ -15,20 +17,20 @@ private:
 	long modelerElementId;
 	string modelerElementDescriptor;
 
+	vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
+
 	vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
 	vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
 	vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
 	vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
 
-	vector<GraphicGeomBundle*> subGraphicGeom;
-
 	vector<SolidEdge*> smartSolidEdgesCollection;
 
 	Ifc4::IfcElement* ifcElement;
 
 	bool hasConnections;
-	bool isSmartSolid;
+	//bool isSmartSolid;
 	bool badIfcElemetBuild = false;
 
 	SmartFeatureContainer* smartFeatureContainer;
@@ -37,7 +39,7 @@ private:
 public:
 
 	IfcElementBundle(long newModelerElementId,string newModelerElementName);
-
+	
 	string getRepresentationType();
 	void setRepresentationType(string type);
 
@@ -54,8 +56,8 @@ public:
 
 	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
 
-	vector<GraphicGeomBundle*> getGraphicGeomBundle();
-	void setGraphicGeomBundle(vector<GraphicGeomBundle*> newBundle);
+	//vector<GraphicGeomBundle*> getGraphicGeomBundle();
+	void setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle);
 
 	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
@@ -70,15 +72,20 @@ public:
 	void setIfcElement(Ifc4::IfcElement* newIfcElement);
 
 	bool getHasElementConnection();
-	long getModelerElementId();
-	string getModelerElementDescriptor();
+	long getElementId();
+	string getElementDescriptor();
 
 	bool getIsSmartFeature();
+
 	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();
 
-	void setIsSmartSolid(bool value);
-	bool getIsSmartSolid();
+
+	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
+	void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
+
+	/*void setIsSmartSolid(bool value);
+	bool getIsSmartSolid();*/
 
 	bool solidModel = false;
 };
