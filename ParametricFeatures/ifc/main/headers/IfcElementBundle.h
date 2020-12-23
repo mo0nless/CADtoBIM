@@ -57,7 +57,7 @@ public:
 	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
 
 	//vector<GraphicGeomBundle*> getGraphicGeomBundle();
-	void setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle);
+	//void setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle);
 
 	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
@@ -77,7 +77,7 @@ public:
 
 	bool getIsSmartFeature();
 
-	void setSmartFeatureContainer(SmartFeatureContainer* newSmartFeatureContainer);
+	void setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer);
 	SmartFeatureContainer* getSmartFeatureContainer();
 
 

@@ -5,6 +5,9 @@ IfcElementBundle::IfcElementBundle(long newModelerElementId, string newModelerEl
 	this->modelerElementId = newModelerElementId;
 	this->modelerElementDescriptor = newModelerElementDescriptor;
 	this->hasConnections = false;
+	this->smartFeatureContainer = new SmartFeatureContainer(newModelerElementId);
+	this->ifcGraphicPropertiesBundleVector = vector<IfcGraphicPropertiesBundle*>();
+	this->elementReaderPropertiesBundleVector = vector<ReaderPropertiesBundle*>();
 }
 
 string IfcElementBundle::getRepresentationType()
@@ -58,10 +61,10 @@ void IfcElementBundle::addSolidEdgesCollection(vector<SolidEdge*> solidEdges)
 //	return this->ifcGraphicPropertiesBundleVector;
 //}
 
-void IfcElementBundle::setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle)
-{
-	this->ifcGraphicPropertiesBundleVector = newBundle;
-}
+//void IfcElementBundle::setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle)
+//{
+//	this->ifcGraphicPropertiesBundleVector = newBundle;
+//}
 
 
 Ifc4::IfcElement * IfcElementBundle::getIfcElement()
@@ -94,7 +97,7 @@ bool IfcElementBundle::getIsSmartFeature()
 	return this->smartFeatureContainer->getRoot()!=nullptr;
 }
 
-void IfcElementBundle::setSmartFeatureContainer(SmartFeatureContainer * newSmartFeatureContainer)
+void IfcElementBundle::setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer)
 {
 	this->smartFeatureContainer = newSmartFeatureContainer;
 }

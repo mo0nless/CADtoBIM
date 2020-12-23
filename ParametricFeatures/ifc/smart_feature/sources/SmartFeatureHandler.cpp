@@ -5,7 +5,8 @@ void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundl
 {
 	for (auto ifcBundle : ifcBundleVector) {
 		if (ifcBundle->getIsSmartFeature()) {
-			IfcElementBundle* ifcResult = eval(ifcBundle->getSmartFeatureContainer()->getRoot(), ifcBundleVector, ifcBundle,file);
+			SmartFeatureContainer* container = ifcBundle->getSmartFeatureContainer();
+			IfcElementBundle* ifcResult = eval(container->getRoot(), ifcBundleVector, ifcBundle,file);
 
 			if (ifcResult != nullptr) {
 				auto bundle = new IfcGraphicPropertiesBundle(

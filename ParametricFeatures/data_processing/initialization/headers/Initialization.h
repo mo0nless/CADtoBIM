@@ -28,14 +28,15 @@ namespace Init
 				statusMessage = "Start IFC Conversion";
 				NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
 
-				vector<DictionaryProperties*> propsDictVec;
-				vector<SmartFeatureContainer*> smartFeatureContainerVector;
+				/*vector<DictionaryProperties*> propsDictVec;
+				vector<SmartFeatureContainer*> smartFeatureContainerVector;*/
 
 				string errorMessageModelProcessing = "Error at processing the dgn model";
 
+				InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements);
+
 				try {
-					InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements, onlySelectedElm);
-					initializationHelper->processDgnGraphicsElements(propsDictVec, smartFeatureContainerVector);
+					initializationHelper->processDgnGraphicsElements();
 				}
 				catch (exception& ex) {
 					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
@@ -54,7 +55,7 @@ namespace Init
 
 				try {
 					IfcBuilder* ifcBuilder = new IfcBuilder();
-					ifcBuilder->buildIfc(propsDictVec, smartFeatureContainerVector);
+					ifcBuilder->buildIfc(initializationHelper->getIfcElementBundleVector());
 				}
 				catch (exception& ex) {
 					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);

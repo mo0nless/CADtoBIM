@@ -9,6 +9,8 @@ void ReaderPropertiesMapper::mapECPropertiesToReaderProperties(DgnElementECInsta
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
 	outfile.open(filePath, ios_base::app);
 
+	outfile << "Class Name: " << readerPropertiesBundle->getClassName() << endl;
+
 	for (ECPropertyP ecProp : dgnElementECInstanceP->GetClass().GetProperties())
 	{
 		WString wStr;

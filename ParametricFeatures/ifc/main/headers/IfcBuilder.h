@@ -45,11 +45,11 @@ private:
 	template<typename ValueType>
 	vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);
 	
-	void processElementVector(vector<DictionaryProperties*> dictionaryPropertiesVector, vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
+	void processElementVector(vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
 public:
 	IfcBuilder();
 
-	void buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector);
+	void buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector);
 	
 };
 

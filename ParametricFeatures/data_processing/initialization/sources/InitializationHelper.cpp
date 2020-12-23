@@ -5,12 +5,11 @@
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100 )
 
-InitializationHelper::InitializationHelper(vector<PersistentElementRefP> pGraElement, bool onlySelected)
+InitializationHelper::InitializationHelper(vector<PersistentElementRefP> pGraElement)
 {	
 	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
 	//this->pGraElement = mDgnModel->GetGraphicElementsP();
 	this->pGraElement = pGraElement;
-	this->onlySelected = onlySelected;
 	this->_progressBar = new PBAR::DialogCompletionBar();
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);
 	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
@@ -68,7 +67,7 @@ SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(Elemen
 	return smartFeatureContainer;
 }
 
-StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, DictionaryProperties*& dictionaryProperties)
+StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle)
 {		
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -84,7 +83,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 	for (ChildElemIter child(elementHandle); child.IsValid(); child = child.ToNext())
 	{
 		//ElementHandle elm(child.GetElementRef());
-		iterateSubElements(child.GetElementRef(), dictionaryProperties);// , propertiesReaderProcessor);
+		iterateSubElements(child.GetElementRef(), ifcElementBundle);// , propertiesReaderProcessor);
 		++index;
 	}
 	if(index==0){
@@ -98,11 +97,11 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
 		graphicsProcessorHelper->setIfcGraphicPropertiesBundle(*ifcGraphicPropertiesBundle);
-		graphicsProcessorHelper->setDictionaryProperties(*dictionaryProperties);
+		graphicsProcessorHelper->setDictionaryProperties(*ifcElementBundle);
 				
 		ElementGraphicsOutput::Process(elementHandle, *graphicsProcessor);
 
-		dictionaryProperties->addGraphicGeomBundle(ifcGraphicPropertiesBundle);
+		ifcElementBundle->addIfcGraphicPropertiesBundle(ifcGraphicPropertiesBundle);
 
 		return SUCCESS;
 	}
@@ -110,7 +109,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, Dict
 	return SUCCESS;
 }
 
-void InitializationHelper::processDgnGraphicsElements(vector<DictionaryProperties*>& propsDictVec, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+void InitializationHelper::processDgnGraphicsElements()
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting elements processing -!");
 
@@ -141,11 +140,11 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 			currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
-			DictionaryProperties* propertiesDictionary = new DictionaryProperties(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
+			IfcElementBundle* ifcElementBundle = new IfcElementBundle(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
 
 			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			propertiesDictionary->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
-			propertiesDictionary->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
+			ifcElementBundle->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
+			ifcElementBundle->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
@@ -156,17 +155,16 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 				SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
 
 				if (smartFeatureContainer != nullptr) {
-					smartFeatureContainerVector.push_back(smartFeatureContainer);
-					propertiesDictionary->setSmartFeatureContainer(smartFeatureContainer);
+					ifcElementBundle->setSmartFeatureContainer(*&smartFeatureContainer);
 				}
 			}
 			else
 			{
-				iterateSubElements(elemRef, propertiesDictionary);
+				iterateSubElements(elemRef, ifcElementBundle);
 			}
 
 
-			propsDictVec.push_back(propertiesDictionary);
+			_ifcElementBundleVector.push_back(ifcElementBundle);
 
 			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
 
@@ -190,4 +188,8 @@ void InitializationHelper::processDgnGraphicsElements(vector<DictionaryPropertie
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Ended elements processing -!");
 }
 
+vector<IfcElementBundle*>& InitializationHelper::getIfcElementBundleVector()
+{
+	return this->_ifcElementBundleVector;
+}
 #pragma warning( pop ) 

@@ -53,7 +53,7 @@ void IfcBuilder::generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file)
 	}
 }
 
-void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<SmartFeatureContainer*>& smartFeatureContainerVector)
+void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 {	
 
 	_logger->logInfo(__FILE__, __LINE__, __func__,"!- Starting IFC conversion -!");
@@ -66,9 +66,12 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	Ifc4::IfcObjectPlacement* objectPlacement = IfcGeneralInformation::getInstance()->getObjectPlacement();
 	IfcHierarchyHelper<Ifc4>& file = IfcGeneralInformation::getInstance()->getIfcHierarchyHelper();
 
-	// initialize ifc bundle vector
-	vector<IfcElementBundle*>ifcElementBundleVector;
+	
 	try {
+
+#if false
+		// initialize ifc bundle vector
+		vector<IfcElementBundle*>ifcElementBundleVector;
 		if (!dictionaryPropertiesVector.empty())
 		{
 			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
@@ -104,6 +107,25 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 				ifcElementBundleVector.push_back(ifcElementBundle);
 			}
 		}
+#endif
+		if (!ifcElementBundleVector.empty())
+		{
+			for (auto const& ifcElementBundle : ifcElementBundleVector)
+			{
+				for (auto const& readerProperty : ifcElementBundle->getElementReaderPropertiesBundleVector()) {
+					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getClassName(), readerProperty->getLocalId());
+					readerPropertiesBundle->setName(readerProperty->getName());
+
+					for (auto const& property1 : readerProperty->getProperties()) {
+						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
+							, property1->getPropertyValue(), property1->getPropertyValueAsString());
+						readerPropertiesBundle->addProperty(readerPropertyDefinition);
+
+					}
+					ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+				}
+			}
+		}
 	}
 	catch (exception& ex) {
 		_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error at initializing the ifcElementBundleVector");
@@ -119,24 +141,23 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	int numThreads = boost::thread::hardware_concurrency();
 
-	auto dictionaryPropertiesSections = splitVector<DictionaryProperties*>(dictionaryPropertiesVector, numThreads);
+	//auto dictionaryPropertiesSections = splitVector<DictionaryProperties*>(dictionaryPropertiesVector, numThreads);
 	auto elementBundleSections = splitVector<IfcElementBundle*>(ifcElementBundleVector, numThreads);
 
 	//Open ProgressBar
 	_progressBar->Open(L"Working...");
-	_progressBar->numGraphicElement = (int)dictionaryPropertiesVector.size();
+	_progressBar->numGraphicElement = (int)ifcElementBundleVector.size();
 
 
 	try {
 
 		vector<boost::thread*> bthread;
-		for (int i = 0; i < dictionaryPropertiesSections.size(); i++)
+		for (int i = 0; i < elementBundleSections.size(); i++)
 		{
 			bthread.push_back(
 				new boost::thread(
 					&IfcBuilder::processElementVector,
 					this,
-					dictionaryPropertiesSections.at(i),
 					elementBundleSections.at(i),
 					boost::ref(file)
 				)
@@ -150,12 +171,12 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	}
 	catch (exception& ex) {
 		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, ex, "Fatal error at creating boost::thread Multithreading");
-		processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
+		processElementVector(ifcElementBundleVector, file);
 		throw ex;
 	}
 	catch (...) {
 		_logger->logFatal(__FILE__, __LINE__, __FUNCTION__, "Fatal error at creating boost::thread Multithreading");
-		processElementVector(dictionaryPropertiesVector, ifcElementBundleVector, file);
+		processElementVector(ifcElementBundleVector, file);
 		throw;
 	}
 
@@ -163,7 +184,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 
 	_ifcElementBuilder->processIfcElement(ifcElementBundleVector, file, getLevelFileCache());
 
-	_ifcPropertiesEnhancer->enhance(dictionaryPropertiesVector, ifcElementBundleVector, file, ownerHistory);
+	_ifcPropertiesEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
 
 	_IfcColorMaterialEnhancer->enhance(ifcElementBundleVector, file, ownerHistory);
 
@@ -205,7 +226,7 @@ void IfcBuilder::buildIfc(vector<DictionaryProperties*>& dictionaryPropertiesVec
 	}
 }
 
-void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPropertiesVector, vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file)
+void IfcBuilder::processElementVector(vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
 	WString myString;
 	myString.Sprintf(L"Generating IFC file...");
@@ -217,46 +238,46 @@ void IfcBuilder::processElementVector(vector<DictionaryProperties*> dictionaryPr
 		// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 		IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
 		
-		for (IfcGraphicPropertiesBundle* element : ifcElementBundle->getIfcGraphicPropertiesBundleVector())
+		for (IfcGraphicPropertiesBundle* graphicPropertiesBundle : ifcElementBundle->getIfcGraphicPropertiesBundleVector())
 		{
 			try
 			{
-				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(element->getGraphicProperties());
+				SolidPrimitiveProperties* solidPrimitiveProperties = dynamic_cast<SolidPrimitiveProperties*>(graphicPropertiesBundle->getGraphicProperties());
 				if (solidPrimitiveProperties != nullptr) {
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
-					_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, element);
+					_ifcPrimitivesEnhancer->enhance(file, solidPrimitiveProperties, ifcElementBundle, graphicPropertiesBundle);
 					continue;
 				}
 
-				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(element->getGraphicProperties());
+				ShapesGraphicProperties* shapeGraphicProperties = dynamic_cast<ShapesGraphicProperties*>(graphicPropertiesBundle->getGraphicProperties());
 				if (shapeGraphicProperties != nullptr)
 				{
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
-					_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, element);
+					_ifcShapesEnhancer->enhance(file, shapeGraphicProperties, ifcElementBundle, graphicPropertiesBundle);
 					continue;
 				}
 
-				MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(element->getGraphicProperties());
+				MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = dynamic_cast<MSBsplineSurfaceGraphicProperties*>(graphicPropertiesBundle->getGraphicProperties());
 				if (msBsplineSurfaceGraphicProperties != nullptr)
 				{
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
-					_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, element);
+					_ifcSurfaceEnhancer->enhance(file, msBsplineSurfaceGraphicProperties, ifcElementBundle, graphicPropertiesBundle);
 					continue;
 				}
 
-				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(element->getGraphicProperties());
+				SolidEntityGraphicProperties* solidEntityGraphicProperties = dynamic_cast<SolidEntityGraphicProperties*>(graphicPropertiesBundle->getGraphicProperties());
 				if (solidEntityGraphicProperties != nullptr)
 				{
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
-					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, element);
+					_ifcBRepSolidsEnhancer->enhance(file, solidEntityGraphicProperties, ifcElementBundle, graphicPropertiesBundle);
 					continue;
 				}	
 
-				TextGraphicProperties* textGraphicProperties = dynamic_cast<TextGraphicProperties*>(element->getGraphicProperties());
+				TextGraphicProperties* textGraphicProperties = dynamic_cast<TextGraphicProperties*>(graphicPropertiesBundle->getGraphicProperties());
 				if (textGraphicProperties != nullptr)
 				{
 					boost::unique_lock<boost::shared_mutex> guard(_mutex);
-					_ifcTextEnhancer->enhance(file, textGraphicProperties, ifcElementBundle, element);
+					_ifcTextEnhancer->enhance(file, textGraphicProperties, ifcElementBundle, graphicPropertiesBundle);
 					continue;
 				}
 

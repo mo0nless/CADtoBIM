@@ -4,7 +4,7 @@
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100 )
-void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
+void IfcPropertiesEnhancer::enhance(vector<IfcElementBundle*>& ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC properties -!");
 
@@ -12,21 +12,16 @@ void IfcPropertiesEnhancer::enhance(vector<DictionaryProperties*>& dictionaryPro
 	vector<Ifc4::IfcRepresentation*> ifcRepresentationVector;
 	this->_ownerHistory = ownerHistory;
 
-	if (!dictionaryPropertiesVector.empty())
+	if (!ifcElementBundleVector.empty())
 	{
-		for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
+		for (auto const& ifcElementBundle : ifcElementBundleVector)
 		{
-			DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-			// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
-			IfcElementBundle*& ifcElementBundle = ifcBundleVector.at(i);
-
 			if (ifcElementBundle->getIfcElement() != nullptr && !ifcElementBundle->getBadIfcClassBuild())
 			{
 				Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
 				ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
 
-				for (auto const& readerPropertyBundle : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
+				for (auto const& readerPropertyBundle : ifcElementBundle->getElementReaderPropertiesBundleVector()) {
 					Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 					Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(

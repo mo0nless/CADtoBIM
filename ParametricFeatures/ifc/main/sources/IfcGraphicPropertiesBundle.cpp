@@ -22,7 +22,6 @@ IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(ElementHandle newElementH
 	this->_levelHandle = level;
 	this->ifcRepresentationItem = nullptr;
 	this->show = true;
-
 }
 
 void IfcGraphicPropertiesBundle::setGraphicProperties(GraphicProperties & newGraphicProperties)
@@ -38,9 +37,6 @@ GraphicProperties * IfcGraphicPropertiesBundle::getGraphicProperties()
 void IfcGraphicPropertiesBundle::setIfcRepresentationItem(Ifc4::IfcGeometricRepresentationItem * ifcRepresentationItemValue)
 {
 	this->ifcRepresentationItem = ifcRepresentationItemValue;
-
-	if (this->ifcRepresentationItem != nullptr)
-		this->valid = true;
 }
 
 Ifc4::IfcGeometricRepresentationItem* IfcGraphicPropertiesBundle::getIfcRepresentationItem()
@@ -50,7 +46,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcGraphicPropertiesBundle::getIfcRepresen
 
 ElementHandle IfcGraphicPropertiesBundle::getElementHandle()
 {
-	return  this->elementHandle;
+	return this->elementHandle;
 }
 
 void IfcGraphicPropertiesBundle::setElementHandle(ElementHandle newElementHandle)
@@ -151,5 +147,5 @@ void IfcGraphicPropertiesBundle::setMaterial(string material)
 
 bool IfcGraphicPropertiesBundle::isValid()
 {
-	return this->valid;
+	return this->ifcRepresentationItem != nullptr;
 }

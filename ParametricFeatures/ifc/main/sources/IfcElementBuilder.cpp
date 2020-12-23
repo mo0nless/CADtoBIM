@@ -86,9 +86,9 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 			}
 		}
 		if (ifcShapeRepresentationList->size() == 0) {
-			_logger->logError(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + " IFC ifcShapeRepresentationList is Empty, ElementBundle bad flag");
-			ifcElementBundle->setBadIfcClassBuild(true);
-			continue;
+			_logger->logWarning(__FILE__, __LINE__, __func__, ifcElementBundle->getElementDescriptor() + " " + to_string(ifcElementBundle->getElementId()) + " IFC ifcShapeRepresentationList is Empty, ElementBundle bad flag");
+			//ifcElementBundle->setBadIfcClassBuild(true);
+			//continue;
 		}
 			
 

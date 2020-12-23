@@ -3,7 +3,7 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../../modeler/properties/headers/DictionaryProperties.h"
+//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../modeler/primitives/headers/SolidPrimitiveProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"

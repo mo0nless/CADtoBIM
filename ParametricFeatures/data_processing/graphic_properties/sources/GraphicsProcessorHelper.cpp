@@ -4,13 +4,13 @@
 GraphicsProcessorHelper::GraphicsProcessorHelper()
 {
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance();//new ModelerDataWriterManager(true);
-	this->pDictionaryProperties = nullptr;
+	this->_ifcElementBundle = nullptr;
 	this->_ifcGraphicPropertiesBundle = nullptr;
 }
 
-void GraphicsProcessorHelper::setDictionaryProperties(DictionaryProperties& newDictionaryProperties)
+void GraphicsProcessorHelper::setDictionaryProperties(IfcElementBundle& newDictionaryProperties)
 {
-	this->pDictionaryProperties = &newDictionaryProperties;
+	this->_ifcElementBundle = &newDictionaryProperties;
 }
 
 void GraphicsProcessorHelper::setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle & newElementBundle)
@@ -23,9 +23,9 @@ IfcGraphicPropertiesBundle * GraphicsProcessorHelper::getIfcGraphicPropertiesBun
 	return this->_ifcGraphicPropertiesBundle;
 }
 
-DictionaryProperties* GraphicsProcessorHelper::getDictionaryProperties()
+IfcElementBundle* GraphicsProcessorHelper::getDictionaryProperties()
 {
-	return this->pDictionaryProperties;
+	return this->_ifcElementBundle;
 }
 
 
@@ -490,7 +490,6 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	pDictionaryProperties->setIsPrimitiveSolid(true);
 	GraphicProperties* primitiveGraphicProperties = nullptr;
 
 	switch (primitive.GetSolidPrimitiveType())
@@ -1357,9 +1356,7 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	this->_modelerDataWriterManager->writeTitleProcessDataToFile("BRep Processing");
-
-	pDictionaryProperties->setIsSmartSolid(true);
-
+	
 	this->_modelerDataWriterManager->writeBodyDataToFile(entity);
 
 	//SolidUtil::Debug::DumpEntity(entity, L"DumpEntity");

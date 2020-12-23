@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../../modeler/properties/headers/DictionaryProperties.h"
+//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../main/headers/IfcElementBundle.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/NumberUtils.h"
@@ -10,7 +10,7 @@
 class IfcPropertiesEnhancer {
 
 public:
-	void enhance(vector<DictionaryProperties*>& dictionaryPropertiesVector, vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
+	void enhance(vector<IfcElementBundle*>& ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
 
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();

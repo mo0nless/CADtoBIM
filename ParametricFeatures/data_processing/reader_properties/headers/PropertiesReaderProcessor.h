@@ -7,8 +7,8 @@
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 
-#include "../../../modeler/properties/headers/DictionaryProperties.h"
-
+//#include "../../../modeler/properties/headers/DictionaryProperties.h"
+#include "../../../ifc/main/headers/IfcElementBundle.h"
 #include "../../../mapper/properties/headers/ReaderPropertiesMapper.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 

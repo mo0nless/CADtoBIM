@@ -4,8 +4,8 @@
 #include "../../../logging/headers/Logger.h"
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
+//#include "../../../ifc/main/headers/IfcElementBundle.h"
 
-#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
@@ -17,6 +17,8 @@
 #include "../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ExtrusionGraphicProperties.h"
 #include "../../../modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
+
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 #include "PolyfaceConvertTool.h"
 #include <math.h>
@@ -31,7 +33,7 @@ class GraphicsProcessorHelper
 private:
 	IfcGraphicPropertiesBundle* _ifcGraphicPropertiesBundle;
 	ElementHandle _currentElementHandle;
-	DictionaryProperties* pDictionaryProperties;
+	IfcElementBundle* _ifcElementBundle;
 
 	ModelerDataWriterManager* _modelerDataWriterManager;
 
@@ -83,12 +85,12 @@ public:
 	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
 #pragma endregion
 
-	void setDictionaryProperties(DictionaryProperties& newDictionaryProperties);
+	void setDictionaryProperties(IfcElementBundle& newDictionaryProperties);
 	void setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle& newElementBundle);
 	void setElementHandle(ElementHandle elementHandle);
 
 	IfcGraphicPropertiesBundle* getIfcGraphicPropertiesBundle();
-	DictionaryProperties* getDictionaryProperties();
+	IfcElementBundle* getDictionaryProperties();
 	ElementHandle getCurrentElementHandle();
 };
 

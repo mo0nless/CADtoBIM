@@ -12,7 +12,7 @@
 //#include "../reader/headers/ReaderPropertiesBundle.h"
 
 #include "../../../modeler/properties/headers/GraphicProperties.h"
-//#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include <fstream>
 #include <DgnPlatform\ColorUtil.h>
 #include "../../../common/models/headers/SessionManager.h"
@@ -29,8 +29,6 @@ private:
 
 	// if the graphic element is included in another operation/object (ex BooleanResult), it should not be showed(show=false)
 	bool show = true;
-	// representation Item
-	bool valid = false;
 
 	UInt32 color;
 	double transparency;
