@@ -56,17 +56,6 @@ void IfcElementBundle::addSolidEdgesCollection(vector<SolidEdge*> solidEdges)
 	this->smartSolidEdgesCollection = solidEdges;
 }
 
-//vector<IfcGraphicPropertiesBundle*> IfcElementBundle::getGraphicGeomBundle()
-//{
-//	return this->ifcGraphicPropertiesBundleVector;
-//}
-
-//void IfcElementBundle::setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle)
-//{
-//	this->ifcGraphicPropertiesBundleVector = newBundle;
-//}
-
-
 Ifc4::IfcElement * IfcElementBundle::getIfcElement()
 {
 	return this->ifcElement;
@@ -116,17 +105,6 @@ void IfcElementBundle::setElementReaderPropertiesBundleVector(vector<ReaderPrope
 {
 	this->elementReaderPropertiesBundleVector = newReaderPropertiesBundleVector;
 }
-
-//void IfcElementBundle::setIsSmartSolid(bool value)
-//{
-//	this->isSmartSolid = value;
-//}
-//
-//bool IfcElementBundle::getIsSmartSolid()
-//{
-//	return this->isSmartSolid;
-//}
-
 
 vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()
 {

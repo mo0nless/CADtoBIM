@@ -174,9 +174,6 @@ modelerObjects = \
 	$(o)ExtrusionGraphicProperties$(oext) \
 	$(o)PrimitiveGraphicProperties$(oext) \
 	$(o)SolidPrimitiveProperties$(oext) \
-	$(o)DictionaryProperties$(oext) \
-	$(o)GraphicGeomBundle$(oext) \
-	$(o)GeneralProperties$(oext) \
 	$(o)GraphicProperties$(oext) \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
@@ -484,11 +481,6 @@ $(o)SolidPrimitiveProperties$(oext) : $(baseDir)modeler/primitives/sources/Solid
 
 
 #--- properties
-$(o)DictionaryProperties$(oext) : $(baseDir)modeler/properties/sources/DictionaryProperties.cpp $(baseDir)modeler/properties/headers/DictionaryProperties.h
-
-$(o)GraphicGeomBundle$(oext) : $(baseDir)modeler/properties/sources/GraphicGeomBundle.cpp $(baseDir)modeler/properties/headers/GraphicGeomBundle.h
-
-$(o)GeneralProperties$(oext) : $(baseDir)modeler/properties/sources/GeneralProperties.cpp $(baseDir)modeler/properties/headers/GeneralProperties.h
 
 $(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
 

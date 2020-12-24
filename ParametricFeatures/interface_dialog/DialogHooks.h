@@ -302,7 +302,7 @@ namespace DialogHooks
 			ifcGInfo->setActorSurName(StringUtils::getString(sname));
 			ifcGInfo->setActorEmail(StringUtils::getString(email));
 
-			Initialization::startIfcConverter(dlog_ToggleSingleElementButton);
+			Initialization::startIfcConverter();
 
 			IfcGeneralInformation::resetInstance();
 

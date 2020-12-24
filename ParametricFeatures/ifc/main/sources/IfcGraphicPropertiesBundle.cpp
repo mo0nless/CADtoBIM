@@ -1,14 +1,5 @@
 #include "../headers/IfcGraphicPropertiesBundle.h"
 
-IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem,
-	ElementHandle newElementHandle)
-{
-	this->graphicProperties = newGraphicProperties;
-	this->ifcRepresentationItem = newIfcRepresentationItem;
-	this->elementHandle = newElementHandle;
-	this->show = true;
-}
-
 IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem)
 {
 	this->graphicProperties = newGraphicProperties;

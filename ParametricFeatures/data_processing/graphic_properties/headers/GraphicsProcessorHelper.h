@@ -4,7 +4,7 @@
 #include "../../../logging/headers/Logger.h"
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
-//#include "../../../ifc/main/headers/IfcElementBundle.h"
+#include "../../../ifc/main/headers/IfcElementBundle.h"
 
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 

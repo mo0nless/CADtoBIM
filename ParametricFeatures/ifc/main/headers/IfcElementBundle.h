@@ -30,7 +30,7 @@ private:
 	Ifc4::IfcElement* ifcElement;
 
 	bool hasConnections;
-	//bool isSmartSolid;
+
 	bool badIfcElemetBuild = false;
 
 	SmartFeatureContainer* smartFeatureContainer;
@@ -51,14 +51,12 @@ public:
 
 	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
+
 	void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
 	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
 	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
-
-	//vector<GraphicGeomBundle*> getGraphicGeomBundle();
-	//void setGraphicGeomBundle(vector<IfcGraphicPropertiesBundle*> newBundle);
-
+	
 	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
 	vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
@@ -83,9 +81,4 @@ public:
 
 	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
 	void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
-
-	/*void setIsSmartSolid(bool value);
-	bool getIsSmartSolid();*/
-
-	bool solidModel = false;
 };

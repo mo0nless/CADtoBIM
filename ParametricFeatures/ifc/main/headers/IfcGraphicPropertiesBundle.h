@@ -1,16 +1,6 @@
 #pragma once
 
 #include "../../../stdafx.h"
-//#include <ifcparse\IfcSchema.h>
-//#include <ifcparse\Ifc2x3.h>
-//#include <ifcparse\Ifc4.h>
-//#include <ifcparse\Ifc4x1.h>
-//#include <ifcparse\utils.h>
-//#include <ifcparse\IfcHierarchyHelper.h>
-//#include "../../../modeler/properties/headers/GraphicGeomBundle.h"
-
-//#include "../reader/headers/ReaderPropertiesBundle.h"
-
 #include "../../../modeler/properties/headers/GraphicProperties.h"
 #include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include <fstream>
@@ -42,8 +32,6 @@ private:
 
 public:
 	IfcGraphicPropertiesBundle(ElementHandle newElementHandle, LevelHandle level);
-	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties,Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem,
-		ElementHandle newElementHandle);
 	IfcGraphicPropertiesBundle(GraphicProperties* newGraphicProperties, Ifc4::IfcGeometricRepresentationItem* newIfcRepresentationItem);
 	
 	void setGraphicProperties(GraphicProperties& newGraphicProperties);

@@ -12,82 +12,67 @@ namespace Init
 	struct Initialization
 	{
 		static vector<PersistentElementRefP> allGraphicElements;
-		//static vector<PersistentElementRefP> selectedGraphicElements;
 
-		static StatusInt startIfcConverter(bool onlySelectedElm = false)
+		static StatusInt startIfcConverter()
 		{
 			NotificationManager::SetDispatchEvents(true);
 
 			Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Starting application --!!");
 
-			string statusMessage;
+			string statusMessage = "Start IFC Conversion";
 
-			if (true)//(NotificationManager::MessageBoxValue::MESSAGEBOX_VALUE_Yes == mainNotification)
-			{
+			NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
 
-				statusMessage = "Start IFC Conversion";
-				NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+			string errorMessageModelProcessing = "Error at processing the dgn model";
 
-				/*vector<DictionaryProperties*> propsDictVec;
-				vector<SmartFeatureContainer*> smartFeatureContainerVector;*/
+			InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements);
 
-				string errorMessageModelProcessing = "Error at processing the dgn model";
-
-				InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements);
-
-				try {
-					initializationHelper->processDgnGraphicsElements();
-				}
-				catch (exception& ex) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
-
-					NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
-				}
-				catch (...) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageModelProcessing);
-
-					NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
-
-				}
-
-
-				string errorMessageIfcConversion = "Error at creating the IFC file";
-
-				try {
-					IfcBuilder* ifcBuilder = new IfcBuilder();
-					ifcBuilder->buildIfc(initializationHelper->getIfcElementBundleVector());
-				}
-				catch (exception& ex) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);
-
-					NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
-				}
-				catch (...) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageIfcConversion);
-
-					NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
-
-				}
-
-				string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
-
-				char myDocPath[MAX_PATH];
-				strcpy(myDocPath, outputFolderPath.c_str());
-
-				ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
-
-				statusMessage = "End IFC Conversion";
-
-				NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
-				Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Ended the application process --!!");
+			try {
+				initializationHelper->processDgnGraphicsElements();
 			}
-			else {
-				statusMessage = "Declined IFC Conversion";
+			catch (exception& ex) {
+				Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
 
-				NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
-
-				Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Declined the start of the application --!!");
+				NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
 			}
+			catch (...) {
+				Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageModelProcessing);
+
+				NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
+
+			}
+
+
+			string errorMessageIfcConversion = "Error at creating the IFC file";
+
+			try {
+				IfcBuilder* ifcBuilder = new IfcBuilder();
+				ifcBuilder->buildIfc(initializationHelper->getIfcElementBundleVector());
+			}
+			catch (exception& ex) {
+				Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);
+
+				NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
+			}
+			catch (...) {
+				Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageIfcConversion);
+
+				NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
+
+			}
+
+			string outputFolderPath = SessionManager::getInstance()->getOutputFolderPath();
+
+			char myDocPath[MAX_PATH];
+			strcpy(myDocPath, outputFolderPath.c_str());
+
+			ShellExecute(NULL, "open", myDocPath, NULL, NULL, SW_SHOW);
+
+			statusMessage = "End IFC Conversion";
+
+			NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
+			Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Ended the application process --!!");
+			
 
 			return SUCCESS;
 		}

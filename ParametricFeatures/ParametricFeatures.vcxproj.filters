@@ -3,9 +3,7 @@
   <ItemGroup>
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
-    <ClCompile Include="modeler\properties\sources\DictionaryProperties.cpp" />
     <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
-    <ClCompile Include="modeler\properties\sources\GeneralProperties.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
@@ -80,7 +78,6 @@
     <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
     <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
-    <ClCompile Include="modeler\properties\sources\GraphicGeomBundle.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
   </ItemGroup>
@@ -93,11 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="modeler\properties\headers\DictionaryProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
-    <ClInclude Include="modeler\properties\headers\GeneralProperties.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
@@ -191,7 +186,6 @@
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
-    <ClInclude Include="modeler\properties\headers\GraphicGeomBundle.h" />
     <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
   </ItemGroup>

@@ -67,62 +67,14 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	IfcHierarchyHelper<Ifc4>& file = IfcGeneralInformation::getInstance()->getIfcHierarchyHelper();
 
 	
-	try {
-
-#if false
-		// initialize ifc bundle vector
-		vector<IfcElementBundle*>ifcElementBundleVector;
-		if (!dictionaryPropertiesVector.empty())
-		{
-			for (int i = 0; i < dictionaryPropertiesVector.size(); i++)
-			{
-				DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-				IfcElementBundle* ifcElementBundle = new IfcElementBundle(dictionaryProperties.getElementId(), dictionaryProperties.getElementDescriptor());
-				ifcElementBundle->setElementClassName(dictionaryProperties.getElementClassName());
-				ifcElementBundle->setGraphicGeomBundle(dictionaryProperties.getIfcGraphicPropertiesBundleVector());
-
-				//ifcElementBundle->setIsSmartSolid(dictionaryProperties.getIsSmartSolid());
-
-				/*if (dictionaryProperties.getIsSmartSolid() || dictionaryProperties.getIsPrimitiveSolid()) {
-					ifcElementBundle->solidModel = true;
-				}*/
-
-				ifcElementBundle->setSmartFeatureContainer(dictionaryProperties.getSmartFeatureContainer());
-				// TODO [MP] to be replaced with a copy contructor or delete dicionary properties and only keep ifc element bundle
-				for (auto const& readerProperty : dictionaryProperties.getElementReaderPropertiesBundleVector()) {
-					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getClassName(), readerProperty->getLocalId());
-					readerPropertiesBundle->setName(readerProperty->getName());
-
-					for (auto const& property1 : readerProperty->getProperties()) {
-						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
-							, property1->getPropertyValue(), property1->getPropertyValueAsString());
-						readerPropertiesBundle->addProperty(readerPropertyDefinition);
-
-					}
-					ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
-
-
-				}
-				ifcElementBundleVector.push_back(ifcElementBundle);
-			}
-		}
-#endif
+	try 
+	{
 		if (!ifcElementBundleVector.empty())
 		{
 			for (auto const& ifcElementBundle : ifcElementBundleVector)
 			{
 				for (auto const& readerProperty : ifcElementBundle->getElementReaderPropertiesBundleVector()) {
-					ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(readerProperty->getClassName(), readerProperty->getLocalId());
-					readerPropertiesBundle->setName(readerProperty->getName());
-
-					for (auto const& property1 : readerProperty->getProperties()) {
-						ReaderPropertyDefinition* readerPropertyDefinition = new ReaderPropertyDefinition(property1->getPropertyName(), property1->getPropertyTypeName()
-							, property1->getPropertyValue(), property1->getPropertyValueAsString());
-						readerPropertiesBundle->addProperty(readerPropertyDefinition);
-
-					}
-					ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerPropertiesBundle));
+					ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerProperty));
 				}
 			}
 		}
@@ -140,8 +92,6 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	_ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 
 	int numThreads = boost::thread::hardware_concurrency();
-
-	//auto dictionaryPropertiesSections = splitVector<DictionaryProperties*>(dictionaryPropertiesVector, numThreads);
 	auto elementBundleSections = splitVector<IfcElementBundle*>(ifcElementBundleVector, numThreads);
 
 	//Open ProgressBar
@@ -201,14 +151,6 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	try {
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting writing to the IFC file -!");
 
-		bool g = file.good();
-		bool d = file.parsing_complete();
-
-		/*ofstream f;
-		f.open(filename);
-		f << file;
-		f.close();*/
-
 		auto myfile = std::fstream(filename, std::ios::out);// | std::ios::binary);
 		myfile << file;
 		myfile.flush();
@@ -233,9 +175,6 @@ void IfcBuilder::processElementVector(vector<IfcElementBundle*> ifcElementBundle
 
 	for (int i = 0; i < ifcElementBundleVector.size(); i++)
 	{
-		//DictionaryProperties& dictionaryProperties = *dictionaryPropertiesVector.at(i);
-
-		// TODO [MP] to be replaced with method to check by id. order doesnt guarantee that it's the correct element
 		IfcElementBundle*& ifcElementBundle = ifcElementBundleVector.at(i);
 		
 		for (IfcGraphicPropertiesBundle* graphicPropertiesBundle : ifcElementBundle->getIfcGraphicPropertiesBundleVector())
