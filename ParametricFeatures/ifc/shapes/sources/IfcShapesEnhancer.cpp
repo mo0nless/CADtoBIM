@@ -24,7 +24,7 @@ vector<BoundTypeIfcCurve*> IfcShapesEnhancer::getCurvesShapeRepresentationVector
 }
 
 void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties, IfcElementBundle*& ifcElementBundle,
-	IfcGraphicPropertiesBundle* elementBundle, bool addToIfcElementBundle)
+	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, bool addToIfcElementBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -168,7 +168,7 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
 					addToIfcElementBundle = false;
-					enhance(file, shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
+					enhance(file, shape, ifcElementBundle,ifcGraphicPropertiesBundle, addToIfcElementBundle);
 				}
 			}
 
@@ -185,7 +185,7 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 				for (auto shape : shapeGraphicProperties->getShapesGraphicsContainer())
 				{
 					addToIfcElementBundle = false;
-					enhance(file, shape, ifcElementBundle, elementBundle,  addToIfcElementBundle);
+					enhance(file, shape, ifcElementBundle, ifcGraphicPropertiesBundle,  addToIfcElementBundle);
 				}
 			}
 
@@ -233,27 +233,13 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 			this->mSingleShapeRepresentation = shape;
 		}
-		/*auto bundle = new IfcGraphicPropertiesBundle(shapeGraphicProperties, mSingleShapeRepresentation,
-			elementBundle->getElementHandle());
-		bundle->setColor(elementBundle->getColor());
-		bundle->setFillColor(elementBundle->getFillColor());
-		bundle->setLineColor(elementBundle->getLineColor());
-		bundle->setTransparency(elementBundle->getTransparency());
-		bundle->setMaterial(elementBundle->getMaterial());
-		bundle->setLevelHandle(elementBundle->getLevelHandle());*/
-		elementBundle->setIfcRepresentationItem(mSingleShapeRepresentation);
+
+		ifcGraphicPropertiesBundle->setIfcRepresentationItem(mSingleShapeRepresentation);
 
 		if(shapeGraphicProperties->getIsFilled())
-			elementBundle->setRepresentationTypeIdentifier("Surface", "Surface");
+			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Surface", "Surface");
 		else
-			elementBundle->setRepresentationTypeIdentifier("Curve", "Axis");
-
-
-
-		//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
-
-		//new add
-		//file.addEntity(mSingleShapeRepresentation);
+			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Curve", "Axis");
 
 		this->mSingleShapeRepresentation = nullptr;
 	}

@@ -70,13 +70,13 @@
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
-    <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
     <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
     <ClCompile Include="data_base\repositories\sources\ComponentsMappingRepository.cpp" />
     <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
+    <ClCompile Include="data_base\dtos\sources\ComponentsMappingDTO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -171,7 +171,6 @@
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="logging\headers\Logger.h" />
-    <ClInclude Include="common\dtos\headers\ComponentsMappingDTO.h" />
     <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
@@ -181,6 +180,7 @@
     <ClInclude Include="data_base\mapper\headers\EntitiesMapper.h" />
     <ClInclude Include="data_base\repositories\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
+    <ClInclude Include="data_base\dtos\headers\ComponentsMappingDTO.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

@@ -3,18 +3,18 @@
 #pragma warning (disable:4311 4302 4312 4189)
 void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file)
 {
-	for (auto ifcBundle : ifcBundleVector) {
-		if (ifcBundle->getIsSmartFeature()) {
-			SmartFeatureContainer* container = ifcBundle->getSmartFeatureContainer();
-			IfcElementBundle* ifcResult = eval(container->getRoot(), ifcBundleVector, ifcBundle,file);
+	for (auto ifcElementBundle : ifcBundleVector) {
+		if (ifcElementBundle->getIsSmartFeature()) {
+			SmartFeatureContainer* container = ifcElementBundle->getSmartFeatureContainer();
+			IfcElementBundle* ifcResult = eval(container->getRoot(), ifcBundleVector, ifcElementBundle,file);
 
 			if (ifcResult != nullptr) {
-				auto bundle = new IfcGraphicPropertiesBundle(
+				auto ifcGraphicPropertiesBundle = new IfcGraphicPropertiesBundle(
 					new GraphicProperties(),
 					ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()
 				);
-				bundle->setRepresentationTypeIdentifier("CSG", "Body");
-				ifcBundle->addIfcGraphicPropertiesBundle(bundle);
+				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("CSG", "Body");
+				ifcElementBundle->addIfcGraphicPropertiesBundle(ifcGraphicPropertiesBundle);
 			}
 			
 		}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../../stdafx.h"
-//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../modeler/primitives/headers/SolidPrimitiveProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
@@ -23,9 +22,9 @@ class IfcPrimitivesEnhancer {
 
 public:
 	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties, IfcElementBundle* ifcElementBundle,
-		IfcGraphicPropertiesBundle* elementBundle);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		IfcGraphicPropertiesBundle* elementBundle);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
@@ -33,5 +32,5 @@ private:
 
 	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		IfcGraphicPropertiesBundle* elementBundle);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 };

@@ -22,7 +22,7 @@ class IfcShapesEnhancer
 public:
 	IfcShapesEnhancer();
 	void enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicProperties* shapeGraphicProperties,  IfcElementBundle*& ifcElementBundle,
-		IfcGraphicPropertiesBundle* elementBundle,bool addToIfcElementBundle = true);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle,bool addToIfcElementBundle = true);
 	
 	bool hasSingleShapeItem();
 	Ifc4::IfcGeometricRepresentationItem* getSingleShapeRepresentation();

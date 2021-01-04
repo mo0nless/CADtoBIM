@@ -7,7 +7,7 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {	
 }
 
-vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* elementBundle)
+vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	vector<ReaderPropertiesBundle*>	readerPropertiesBundleVector;
 
@@ -62,10 +62,10 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
 				if (readerPropertyDefinition->getPropertyName().find("Material") != string::npos) {
 					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
-					if (PropertyTypeEnum::STRING == propertyTypeEnum && elementBundle != nullptr) {
+					if (PropertyTypeEnum::STRING == propertyTypeEnum && ifcGraphicPropertiesBundle != nullptr) {
 						string val = StringUtils::getNormalizedString(readerPropertyDefinition->getPropertyValue().GetString());
 						if (!val.empty()) {
-							elementBundle->setMaterial(readerPropertyDefinition->getPropertyValueAsString());
+							ifcGraphicPropertiesBundle->setMaterial(readerPropertyDefinition->getPropertyValueAsString());
 							break;
 						}
 

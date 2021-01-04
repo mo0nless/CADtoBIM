@@ -2,25 +2,16 @@
 
 
 void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
-	IfcGraphicPropertiesBundle* elementBundle)
+	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (solidPrimitiveProperties != nullptr) {
-		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, elementBundle);
+		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, ifcGraphicPropertiesBundle);
 		if (ifcRepresentationItem != nullptr)
 		{
-			/*auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
-				ifcRepresentationItem, elementBundle->getElementHandle());
-			bundle->setColor(elementBundle->getColor());
-			bundle->setFillColor(elementBundle->getFillColor());
-			bundle->setLineColor(elementBundle->getLineColor());
-			bundle->setTransparency(elementBundle->getTransparency());
-			bundle->setMaterial(elementBundle->getMaterial());
-			bundle->setLevelHandle(elementBundle->getLevelHandle());*/
-			elementBundle->setRepresentationTypeIdentifier("CSG", "Body");
-			elementBundle->setIfcRepresentationItem(ifcRepresentationItem);
-			//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("CSG", "Body");
+			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -30,7 +21,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 }
 
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-	IfcGraphicPropertiesBundle* elementBundle)
+	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -46,7 +37,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 		primitiveType == PrimitiveTypeEnum::ROTATIONAL_SWEEP || primitiveType == PrimitiveTypeEnum::EXTRUSION ||
 		primitiveType == PrimitiveTypeEnum::RULED_SWEEP)
 	{
-		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, elementBundle);
+		ifcRepresentationItem = buildComplexPrimitive(primitiveGraphicProperties, file, ifcGraphicPropertiesBundle);
 	}
 	else {
 		_logger->logWarning(__FILE__, __LINE__, __func__,"primitiveType case is NOT handled");
@@ -146,7 +137,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
-	IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* elementBundle)
+	IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -244,7 +235,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					IfcOperationsHelper::adjustShapeGlobalPlacement(bound, sweepCenterOfRotation, true);
 			}
 
-			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 			if (ifcShapesEnhancer->hasSingleShapeItem())
 				result = ifcShapesEnhancer->getSingleShapeRepresentation();
@@ -333,7 +324,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 					
 			}
 
-			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,shape, ifcElementBundle,ifcGraphicPropertiesBundle, addToIfcElementBundle);
 			
 			if (curveBoundary != CurvesBoundaryTypeEnum::PARITY_REGION && curveBoundary != CurvesBoundaryTypeEnum::UNION_REGION)
 			{
@@ -460,7 +451,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimit
 			for (ShapesGraphicProperties* shape : ruledSweepGraphicProperties.getSectionCurvesVector()) 
 			{
 				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-				ifcShapesEnhancer->enhance(file, shape, ifcElementBundle, elementBundle, addToIfcElementBundle);
+				ifcShapesEnhancer->enhance(file, shape, ifcElementBundle, ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 				Ifc4::IfcGeometricRepresentationItem* result = nullptr;
 				if (ifcShapesEnhancer->hasSingleShapeItem())

@@ -31,7 +31,7 @@ public:
 	//! @param[in] the current element
 	//! @param[in] the reference of the PropertiesDictionary
 	//! @param[in] the reference of the SmartFeatureContainer
-	vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* elementBundle = nullptr);
+	vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
 
 	static PropertiesReaderProcessor* getInstance() 
 	{

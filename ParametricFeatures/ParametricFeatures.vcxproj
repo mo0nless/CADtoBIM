@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
+    <ClCompile Include="data_base\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
@@ -97,7 +97,7 @@
     <None Include="ParametricFeaturesCmd.r" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\dtos\headers\ComponentsMappingDTO.h" />
+    <ClInclude Include="data_base\dtos\headers\ComponentsMappingDTO.h" />
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
     <ClInclude Include="common\utils\headers\Comparator.h" />
     <ClInclude Include="common\enums\headers\CreateSolidFunctionsEnum.h" />

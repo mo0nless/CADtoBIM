@@ -4,33 +4,23 @@ IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
 
-void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, IfcGraphicPropertiesBundle * elementBundle)
+void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcElementBundle *& ifcElementBundle, IfcGraphicPropertiesBundle * ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (solidEntityGraphicProperties != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
 
-		ifcRepresentationItem = buildBRepSolid(solidEntityGraphicProperties, file, elementBundle);
+		ifcRepresentationItem = buildBRepSolid(solidEntityGraphicProperties, file, ifcGraphicPropertiesBundle);
 
 		if (ifcRepresentationItem != nullptr)
 		{
-			/*auto bundle = new IfcGraphicPropertiesBundle(elementBundle->getGraphicProperties(),
-				ifcRepresentationItem, elementBundle->getElementHandle());
-			bundle->setColor(elementBundle->getColor());
-			bundle->setFillColor(elementBundle->getFillColor());
-			bundle->setLineColor(elementBundle->getLineColor());
-			bundle->setTransparency(elementBundle->getTransparency());
-			bundle->setMaterial(elementBundle->getMaterial());
-			bundle->setLevelHandle(elementBundle->getLevelHandle());*/
-			elementBundle->setIfcRepresentationItem(ifcRepresentationItem);
+			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 
 			if (solidEntityGraphicProperties->meshProcessing)
-				elementBundle->setRepresentationTypeIdentifier("Brep", "Body");
+				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Brep", "Body");
 			else
-				elementBundle->setRepresentationTypeIdentifier("AdvanceBrep", "Body");
-
-			//ifcElementBundle->addIfcGraphicPropertiesBundle(bundle);
+				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("AdvanceBrep", "Body");
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -422,7 +412,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* elementBundle)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -433,7 +423,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 		IfcEntityList* entityList = new IfcEntityList();
 		IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
-		buildIfcFaceSurface(brepSolidsKernelEntity->getSurfaceFacesVector(), elementBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
+		buildIfcFaceSurface(brepSolidsKernelEntity->getSurfaceFacesVector(), ifcGraphicPropertiesBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
 
 		//buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
 
@@ -514,7 +504,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 				bool addToIfcElementBundle = false;
 				auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
-				ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, elementBundle, addToIfcElementBundle);
+				ifcShapesEnhancer->buildGeometricRepresentationShapes(curveShape, file, elm, ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 				for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
 				{
@@ -786,7 +776,7 @@ void IfcBRepSolidsEnhancer::processPolyfaceMesh(MeshTriangles* meshTriangles, If
 	}	
 }
 
-void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, IfcGraphicPropertiesBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
@@ -815,7 +805,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 
 		IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 		//ifcShapesEnhancer->dimension = IfcDimensionEnum::dim_2D;
-		ifcShapesEnhancer->enhance(file, bound, elm, elementBundle, addToIfcElementBundle);
+		ifcShapesEnhancer->enhance(file, bound, elm, ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 		//Pick the first and only one
 		BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
@@ -946,7 +936,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 				isShared = true;			
 
 			IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
-			ifcShapesEnhancer->enhance(file,bound, elm, elementBundle, addToIfcElementBundle);
+			ifcShapesEnhancer->enhance(file,bound, elm, ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 			//Pick the first and only one
 			BoundTypeIfcCurve* boundTypeIfcCurve = ifcShapesEnhancer->getCurvesShapeRepresentationVector().front();
@@ -1105,7 +1095,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 	outfile.close();
 }
 
-void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcGraphicPropertiesBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, 
+void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, 
 	IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcAdvancedFaceList)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -1124,12 +1114,12 @@ void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfa
 				IfcTemplatedEntityList<Ifc4::IfcFaceBound>* tempIfcFaceBoundList = new IfcTemplatedEntityList<Ifc4::IfcFaceBound>();
 
 				IfcSurfaceEnhancer* ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
-				Ifc4::IfcBSplineSurface* bSplineSurface = ifcSurfaceEnhancer->buildIfcSurface(*msBsplineGraphicProperties, file, elementBundle);
+				Ifc4::IfcBSplineSurface* bSplineSurface = ifcSurfaceEnhancer->buildIfcSurface(*msBsplineGraphicProperties, file, ifcGraphicPropertiesBundle);
 
 				IfcShapesEnhancer* ifcShapesEnhancer = new IfcShapesEnhancer();
 				bool addToIfcElementBundle = false;
 				auto curveShape = msBsplineGraphicProperties->getSurfaceBoundaryShape();
-				ifcShapesEnhancer->enhance(file,curveShape, elm, elementBundle, addToIfcElementBundle);
+				ifcShapesEnhancer->enhance(file,curveShape, elm, ifcGraphicPropertiesBundle, addToIfcElementBundle);
 
 				for (auto boundTypeIfcCurve : ifcShapesEnhancer->getCurvesShapeRepresentationVector())
 				{
@@ -1205,7 +1195,7 @@ void IfcBRepSolidsEnhancer::buildIfcFaceSurface(vector<GraphicProperties*> surfa
 
 				IfcPrimitivesEnhancer* ifcPrimitivesEnhancer = new IfcPrimitivesEnhancer();
 
-				entityList->push(ifcPrimitivesEnhancer->buildIfcPrimitive(*primitiveGraphicProperties, file, elementBundle));				
+				entityList->push(ifcPrimitivesEnhancer->buildIfcPrimitive(*primitiveGraphicProperties, file, ifcGraphicPropertiesBundle));				
 			}
 			else if (surfaceGraphic->geometryType == IGeometry::GeometryType::Polyface)
 			{

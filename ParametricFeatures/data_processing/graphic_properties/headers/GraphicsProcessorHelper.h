@@ -85,8 +85,8 @@ public:
 	bool ElementToApproximateFacets(ElementHandleCR source, bvector<PolyfaceHeaderPtr> &output, IFacetOptionsP options);
 #pragma endregion
 
-	void setIfcElementBundle(IfcElementBundle& newDictionaryProperties);
-	void setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle& newElementBundle);
+	void setIfcElementBundle(IfcElementBundle& newIfcElementBundle);
+	void setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle& newIfcGraphicPropertiesBundle);
 	void setElementHandle(ElementHandle elementHandle);
 
 	IfcGraphicPropertiesBundle* getIfcGraphicPropertiesBundle();

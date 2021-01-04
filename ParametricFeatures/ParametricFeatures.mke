@@ -270,20 +270,19 @@ LINKER_LIBRARIES + shell32.lib
 $(o)DataBaseContext$(oext) : $(baseDir)data_base/sources/DataBaseContext.cpp $(baseDir)data_base/headers/DataBaseContext.h
 
 #--- models
-
 $(o)ComponentsMapping$(oext) : $(baseDir)data_base/models/sources/ComponentsMapping.cpp $(baseDir)data_base/models/headers/ComponentsMapping.h
 
 #--- entities_mapper
-
 $(o)EntitiesMapper$(oext) : $(baseDir)data_base/mapper/sources/EntitiesMapper.cpp $(baseDir)data_base/mapper/headers/EntitiesMapper.h
 
 #--- repositories
-
 $(o)ComponentsMappingRepository$(oext) : $(baseDir)data_base/repositories/sources/ComponentsMappingRepository.cpp $(baseDir)data_base/repositories/headers/ComponentsMappingRepository.h
 
 #--- services
-
 $(o)ComponentsMappingService$(oext) : $(baseDir)data_base/services/sources/ComponentsMappingService.cpp $(baseDir)data_base/services/headers/ComponentsMappingService.h
+
+#--- dtos
+$(o)ComponentsMappingDTO$(oext) : $(baseDir)data_base/dtos/sources/ComponentsMappingDTO.cpp $(baseDir)data_base/dtos/headers/ComponentsMappingDTO.h
 
 #--------------------------------------------------------------------------------------
 #     logger
@@ -312,10 +311,6 @@ $(o)GraphicsProcessor$(oext) : $(baseDir)data_processing/graphic_properties/sour
 #-------------------------------------------------------------------------------------
 #    common
 #-------------------------------------------------------------------------------------
-
-#--- dtos
-$(o)ComponentsMappingDTO$(oext) : $(baseDir)common/dtos/sources/ComponentsMappingDTO.cpp $(baseDir)common/dtos/headers/ComponentsMappingDTO.h
-
 
 #--- models
 $(o)ResultStatus$(oext) : $(baseDir)common/models/sources/ResultStatus.cpp $(baseDir)common/models/headers/ResultStatus.h

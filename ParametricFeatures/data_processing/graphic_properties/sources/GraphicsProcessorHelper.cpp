@@ -8,14 +8,14 @@ GraphicsProcessorHelper::GraphicsProcessorHelper()
 	this->_ifcGraphicPropertiesBundle = nullptr;
 }
 
-void GraphicsProcessorHelper::setIfcElementBundle(IfcElementBundle& newDictionaryProperties)
+void GraphicsProcessorHelper::setIfcElementBundle(IfcElementBundle& newIfcElementBundle)
 {
-	this->_ifcElementBundle = &newDictionaryProperties;
+	this->_ifcElementBundle = &newIfcElementBundle;
 }
 
-void GraphicsProcessorHelper::setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle & newElementBundle)
+void GraphicsProcessorHelper::setIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle & newIfcGraphicPropertiesBundle)
 {
-	this->_ifcGraphicPropertiesBundle = &newElementBundle;
+	this->_ifcGraphicPropertiesBundle = &newIfcGraphicPropertiesBundle;
 }
 
 IfcGraphicPropertiesBundle * GraphicsProcessorHelper::getIfcGraphicPropertiesBundle()

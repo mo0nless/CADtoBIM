@@ -39,18 +39,18 @@ public:
 	IfcBRepSolidsEnhancer();
 
 	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		IfcGraphicPropertiesBundle* elementBundle);
+		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 	
 private:
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
-	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* elementBundle);
+	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 
 	void processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList);
 
-	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcGraphicPropertiesBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file);
+	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	void buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties,	IfcGraphicPropertiesBundle* elementBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
+	void buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties,	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
 
 	template<class T>
 	T searchOnMap(map<int, T>, int key);

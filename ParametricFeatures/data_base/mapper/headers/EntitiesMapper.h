@@ -2,7 +2,7 @@
 
 
 #include "../../../data_base/models/headers/ComponentsMapping.h"
-#include "../../../common/dtos/headers/ComponentsMappingDTO.h"
+#include "../../../data_base/dtos/headers/ComponentsMappingDTO.h"
 
 class EntitiesMapper {
 

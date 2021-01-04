@@ -92,7 +92,7 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	_ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 
 	int numThreads = boost::thread::hardware_concurrency();
-	auto elementBundleSections = splitVector<IfcElementBundle*>(ifcElementBundleVector, numThreads);
+	auto ifcElementBundleSections = splitVector<IfcElementBundle*>(ifcElementBundleVector, numThreads);
 
 	//Open ProgressBar
 	_progressBar->Open(L"Working...");
@@ -102,13 +102,13 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	try {
 
 		vector<boost::thread*> bthread;
-		for (int i = 0; i < elementBundleSections.size(); i++)
+		for (int i = 0; i < ifcElementBundleSections.size(); i++)
 		{
 			bthread.push_back(
 				new boost::thread(
 					&IfcBuilder::processElementVector,
 					this,
-					elementBundleSections.at(i),
+					ifcElementBundleSections.at(i),
 					boost::ref(file)
 				)
 			);
