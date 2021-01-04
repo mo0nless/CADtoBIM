@@ -29,7 +29,7 @@
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
-    <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
+    <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
@@ -86,8 +86,8 @@
     <ClCompile Include="data_processing\initialization\sources\InitializationHelper.cpp" />
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
-    <ClCompile Include="repositories\components_mapping\sources\ComponentsMappingRepository.cpp" />
-    <ClCompile Include="services\components_mapping\sources\ComponentsMappingService.cpp" />
+    <ClCompile Include="data_base\repositories\sources\ComponentsMappingRepository.cpp" />
+    <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="interface_dialog\Dialog.r" />
@@ -126,7 +126,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="logging\headers\Logger.h" />
-    <ClInclude Include="mapper\entities\headers\EntitiesMapper.h" />
+    <ClInclude Include="data_base\mapper\headers\EntitiesMapper.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
     <ClInclude Include="common\models\headers\SessionManager.h" />
     <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
@@ -195,9 +195,9 @@
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
-    <ClInclude Include="repositories\components_mapping\headers\ComponentsMappingRepository.h" />
+    <ClInclude Include="data_base\repositories\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="services\components_mapping\headers\ComponentsMappingService.h" />
+    <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessorHelper.h" />
     <ClInclude Include="data_processing\initialization\headers\InitializationHelper.h" />

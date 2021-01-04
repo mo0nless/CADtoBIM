@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../mapper/entities/headers/EntitiesMapper.h"
-#include "../../../repositories/components_mapping/headers/ComponentsMappingRepository.h"
+#include "../../../data_base/mapper/headers/EntitiesMapper.h"
+#include "../../../data_base/repositories/headers/ComponentsMappingRepository.h"
 
 class ComponentsMappingService {
 

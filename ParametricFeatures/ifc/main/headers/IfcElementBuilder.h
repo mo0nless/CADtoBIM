@@ -1,8 +1,6 @@
 #pragma once
 
-//#include "../../enhancer/headers/IfcOperationsHelper.h"
-
-#include "../../../services/components_mapping/headers/ComponentsMappingService.h"
+#include "../../../data_base/services/headers/ComponentsMappingService.h"
 #include "../headers/IfcElementBundle.h"
 
 
@@ -36,9 +34,7 @@ private:
 	Ifc4::IfcTransportElement* handleIfcTransportElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
 
 	Ifc4::IfcVirtualElement* handleIfcVirtualElement(string ifcElement,Ifc4::IfcProductDefinitionShape* shape, IfcElementBundle* ifcElementBundle, IfcHierarchyHelper<Ifc4>& file);
-
-	//Ifc4::IfcDistributionElement * buildIfcDistributionElement(IfcElementBundle *& ifcElementBundle, Ifc4::IfcProductDefinitionShape * elemShape, IfcHierarchyHelper<Ifc4>& file);
-
+	
 	Ifc4::IfcElement* buildIfcElement(IfcElementBundle*& ifcElementBundle, Ifc4::IfcProductDefinitionShape* elemShape, IfcHierarchyHelper<Ifc4>& file);
 
 	ComponentsMappingDTO* getIfcElement(vector<ComponentsMappingDTO*>componentsMapping, string elementDescription);

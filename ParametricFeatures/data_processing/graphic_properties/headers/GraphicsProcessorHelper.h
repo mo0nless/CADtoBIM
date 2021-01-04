@@ -1,5 +1,9 @@
 #pragma once
 
+#include <math.h>
+
+
+#include "PolyfaceConvertTool.h"
 
 #include "../../../logging/headers/Logger.h"
 
@@ -7,7 +11,6 @@
 #include "../../../ifc/main/headers/IfcElementBundle.h"
 
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
-
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
 #include "../../../modeler/primitives/headers/BoxGraphicProperties.h"
@@ -17,11 +20,8 @@
 #include "../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ExtrusionGraphicProperties.h"
 #include "../../../modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
-
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
-#include "PolyfaceConvertTool.h"
-#include <math.h>
 
 #include "../../../modeler/data_writer/headers/ModelerDataWriterManager.h"
 

@@ -100,6 +100,9 @@ $(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)Dialo
 dataBaseObjects = \
 	$(o)DataBaseContext$(oext) \
 	$(o)ComponentsMapping$(oext) \
+	$(o)ComponentsMappingRepository$(oext) \
+	$(o)ComponentsMappingService$(oext) \
+	$(o)EntitiesMapper$(oext) \
 
 loggerObjects = \
 	$(o)Logger$(oext) \
@@ -144,10 +147,6 @@ ifcObjects = \
 	$(o)IfcTextEnhancer$(oext) \
 	$(o)SmartFeatureHandler$(oext) \
 
-mapperObjects = \
-	$(o)EntitiesMapper$(oext) \
-
-
 modelerObjects = \
 	$(o)BooleanOperationProperties$(oext) \
 	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
@@ -180,24 +179,15 @@ modelerObjects = \
 	$(o)TextGraphicProperties$(oext) \
 
 
-repositoriesObjects = \
-	$(o)ComponentsMappingRepository$(oext) \
-
-servicesObjects = \
-	$(o)ComponentsMappingService$(oext) \
-
 
 appObjects = \
 	$(loggerObjects) \
 	$(commonObjects) \
 	$(dataProcessingObjects) \
 	$(ifcObjects) \
-	$(mapperObjects) \
 	$(modelerObjects) \
 	$(interfaceObjects) \
 	$(dataBaseObjects) \
-	$(servicesObjects) \
-	$(repositoriesObjects) \
 
 
 #--------------------------------------------------------------------------------------
@@ -283,8 +273,17 @@ $(o)DataBaseContext$(oext) : $(baseDir)data_base/sources/DataBaseContext.cpp $(b
 
 $(o)ComponentsMapping$(oext) : $(baseDir)data_base/models/sources/ComponentsMapping.cpp $(baseDir)data_base/models/headers/ComponentsMapping.h
 
+#--- entities_mapper
 
+$(o)EntitiesMapper$(oext) : $(baseDir)data_base/mapper/sources/EntitiesMapper.cpp $(baseDir)data_base/mapper/headers/EntitiesMapper.h
 
+#--- repositories
+
+$(o)ComponentsMappingRepository$(oext) : $(baseDir)data_base/repositories/sources/ComponentsMappingRepository.cpp $(baseDir)data_base/repositories/headers/ComponentsMappingRepository.h
+
+#--- services
+
+$(o)ComponentsMappingService$(oext) : $(baseDir)data_base/services/sources/ComponentsMappingService.cpp $(baseDir)data_base/services/headers/ComponentsMappingService.h
 
 #--------------------------------------------------------------------------------------
 #     logger
@@ -406,13 +405,6 @@ $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatur
 
 
 #-------------------------------------------------------------------------------------
-#    mapper
-#-------------------------------------------------------------------------------------
-
-#--- entities
-$(o)EntitiesMapper$(oext) : $(baseDir)mapper/entities/sources/EntitiesMapper.cpp $(baseDir)mapper/entities/headers/EntitiesMapper.h
-
-#-------------------------------------------------------------------------------------
 #    modeler
 #-------------------------------------------------------------------------------------
 
@@ -488,20 +480,6 @@ $(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGrap
 
 #--- text
 $(o)TextGraphicProperties$(oext) : $(baseDir)modeler/text/sources/TextGraphicProperties.cpp $(baseDir)modeler/text/headers/TextGraphicProperties.h
-
-#-------------------------------------------------------------------------------------
-#    repositories
-#-------------------------------------------------------------------------------------
-
-#--- components_mapping
-$(o)ComponentsMappingRepository$(oext) : $(baseDir)repositories/components_mapping/sources/ComponentsMappingRepository.cpp $(baseDir)repositories/components_mapping/headers/ComponentsMappingRepository.h
-
-#-------------------------------------------------------------------------------------
-#    services
-#-------------------------------------------------------------------------------------
-
-#--- components_mapping
-$(o)ComponentsMappingService$(oext) : $(baseDir)services/components_mapping/sources/ComponentsMappingService.cpp $(baseDir)services/components_mapping/headers/ComponentsMappingService.h
 
 
 

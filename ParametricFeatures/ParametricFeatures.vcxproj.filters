@@ -70,13 +70,13 @@
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
-    <ClCompile Include="repositories\components_mapping\sources\ComponentsMappingRepository.cpp" />
-    <ClCompile Include="services\components_mapping\sources\ComponentsMappingService.cpp" />
-    <ClCompile Include="mapper\entities\sources\EntitiesMapper.cpp" />
     <ClCompile Include="common\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
+    <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
+    <ClCompile Include="data_base\repositories\sources\ComponentsMappingRepository.cpp" />
+    <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -171,9 +171,6 @@
     <ClInclude Include="common\utils\headers\NotificationMessage.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="logging\headers\Logger.h" />
-    <ClInclude Include="repositories\components_mapping\headers\ComponentsMappingRepository.h" />
-    <ClInclude Include="services\components_mapping\headers\ComponentsMappingService.h" />
-    <ClInclude Include="mapper\entities\headers\EntitiesMapper.h" />
     <ClInclude Include="common\dtos\headers\ComponentsMappingDTO.h" />
     <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
@@ -181,6 +178,9 @@
     <ClInclude Include="interface_dialog\ListModelManager.h" />
     <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
+    <ClInclude Include="data_base\mapper\headers\EntitiesMapper.h" />
+    <ClInclude Include="data_base\repositories\headers\ComponentsMappingRepository.h" />
+    <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
