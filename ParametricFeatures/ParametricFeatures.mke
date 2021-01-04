@@ -145,9 +145,6 @@ ifcObjects = \
 	$(o)SmartFeatureHandler$(oext) \
 
 mapperObjects = \
-	$(o)ReaderPropertiesMapper$(oext) \
-	$(o)BooleanOperationReaderPropertiesMapper$(oext) \
-	$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) \
 	$(o)EntitiesMapper$(oext) \
 
 
@@ -411,13 +408,6 @@ $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatur
 #-------------------------------------------------------------------------------------
 #    mapper
 #-------------------------------------------------------------------------------------
-
-#--- properties
-$(o)ReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/ReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/ReaderPropertiesMapper.h
-
-$(o)BooleanOperationReaderPropertiesMapper$(oext) : $(baseDir)mapper/properties/sources/BooleanOperationReaderPropertiesMapper.cpp $(baseDir)mapper/properties/headers/BooleanOperationReaderPropertiesMapper.h
-
-$(o)CreateSolidsOperationPropertiesReaderMapper$(oext) : $(baseDir)mapper/properties/sources/CreateSolidsOperationPropertiesReaderMapper.cpp $(baseDir)mapper/properties/headers/CreateSolidsOperationPropertiesReaderMapper.h
 
 #--- entities
 $(o)EntitiesMapper$(oext) : $(baseDir)mapper/entities/sources/EntitiesMapper.cpp $(baseDir)mapper/entities/headers/EntitiesMapper.h

@@ -3,12 +3,9 @@
   <ItemGroup>
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
-    <ClCompile Include="mapper\properties\sources\ReaderPropertiesMapper.cpp" />
     <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
-    <ClCompile Include="mapper\properties\sources\BooleanOperationReaderPropertiesMapper.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="mapper\properties\sources\CreateSolidsOperationPropertiesReaderMapper.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -91,12 +88,9 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
-    <ClInclude Include="mapper\properties\headers\ReaderPropertiesMapper.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
     <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
     <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
-    <ClInclude Include="mapper\properties\headers\BooleanOperationReaderPropertiesMapper.h" />
-    <ClInclude Include="mapper\properties\headers\CreateSolidsOperationPropertiesReaderMapper.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />

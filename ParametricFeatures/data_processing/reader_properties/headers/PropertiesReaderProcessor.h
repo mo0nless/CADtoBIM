@@ -8,11 +8,12 @@
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 
 #include "../../../ifc/main/headers/IfcElementBundle.h"
-#include "../../../mapper/properties/headers/ReaderPropertiesMapper.h"
+//#include "../../../mapper/properties/headers/ReaderPropertiesMapper.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
+#include "../../../common/models/headers/SessionManager.h"
 
 
 #include <regex>
@@ -58,6 +59,8 @@ private:
 	{
 		_PropertiesReaderProcessor = new PropertiesReaderProcessor();
 	}
+
+	void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle *&ReaderPropertiesBundle);
 };
 
 /// @endGroup
