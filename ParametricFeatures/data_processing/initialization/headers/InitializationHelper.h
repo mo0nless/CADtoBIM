@@ -11,12 +11,11 @@
 class InitializationHelper
 {
 public:
-	InitializationHelper(vector<PersistentElementRefP> pGraElement);
+	InitializationHelper(vector<PersistentElementRefP> allGraphicElements);
 
 	void processDgnGraphicsElements();
 
 	vector<IfcElementBundle*>& getIfcElementBundleVector();
-	vector<SmartFeatureContainer*>& getSmartFeatureContainerVector();
 
 private:	
 	Logs::Logger* _logger = Logs::Logger::getLogger();
@@ -24,14 +23,14 @@ private:
 	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
 	StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
 
-	DgnModelP mDgnModel;
+	DgnModelP _dgnModel;
 
 	ModelerDataWriterManager* _modelerDataWriterManager;
 	PropertiesReaderProcessor* _propertiesReaderProcessor;
 
 	PBAR::DialogCompletionBar* _progressBar;
 
-	vector<PersistentElementRefP> pGraElement;
+	vector<PersistentElementRefP> _allGraphicElements;
 
 	vector<IfcElementBundle*> _ifcElementBundleVector;
 };

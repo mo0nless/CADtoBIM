@@ -97678,6 +97678,9 @@ Element ID: 12294
 ===================================================
 ===================================================
 
+DATABASE:
+Full: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler\Mdlapps\mappings.txt
+Original: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler
 ------------------- GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL
 ------------------- 2221
 ------------------- GATE VALVE 8 IN U-S-1-EX-OPM HAND_WHEEL

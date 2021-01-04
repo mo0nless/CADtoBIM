@@ -5,7 +5,6 @@
 #include "../../../ifc/general_information/headers/IfcGeneralInformation.h"
 #include "../../../common/utils/headers/ExplorerStructure.h"
 #include "../../../common/utils/headers/NotificationMessage.h"
-//#include "../../../interface_dialog/ListModelManager.h"
 
 namespace Init
 {

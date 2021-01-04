@@ -5,13 +5,12 @@
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100 )
 
-InitializationHelper::InitializationHelper(vector<PersistentElementRefP> pGraElement)
+InitializationHelper::InitializationHelper(vector<PersistentElementRefP> allGraphicElements)
 {	
-	this->mDgnModel = ISessionMgr::GetActiveDgnModelP();
-	//this->pGraElement = mDgnModel->GetGraphicElementsP();
-	this->pGraElement = pGraElement;
+	this->_dgnModel = ISessionMgr::GetActiveDgnModelP();
+	this->_allGraphicElements = allGraphicElements;
 	this->_progressBar = new PBAR::DialogCompletionBar();
-	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance(); //new ModelerDataWriterManager(true);
+	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance();
 	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
 }
 
@@ -74,7 +73,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 	ElementHandle elementHandle(elementRefP);	 //	Can also construct an ElemHandle from an MSElementDescr*
 	
 	// Since we have an elementRef from the DgnModel, we know that FileLevelCache is never NULL.
-	FileLevelCache* fileLevelCache = mDgnModel->GetFileLevelCacheP();
+	FileLevelCache* fileLevelCache = _dgnModel->GetFileLevelCacheP();
 
 	int index = 0;
 
@@ -82,8 +81,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 
 	for (ChildElemIter child(elementHandle); child.IsValid(); child = child.ToNext())
 	{
-		//ElementHandle elm(child.GetElementRef());
-		iterateSubElements(child.GetElementRef(), ifcElementBundle);// , propertiesReaderProcessor);
+		iterateSubElements(child.GetElementRef(), ifcElementBundle);
 		++index;
 	}
 	if(index==0){
@@ -97,7 +95,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
 		graphicsProcessorHelper->setIfcGraphicPropertiesBundle(*ifcGraphicPropertiesBundle);
-		graphicsProcessorHelper->setDictionaryProperties(*ifcElementBundle);
+		graphicsProcessorHelper->setIfcElementBundle(*ifcElementBundle);
 				
 		ElementGraphicsOutput::Process(elementHandle, *graphicsProcessor);
 
@@ -128,8 +126,7 @@ void InitializationHelper::processDgnGraphicsElements()
 	//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
 	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();*/
 
-	//for (PersistentElementRefP elemRef : *pGraElement)
-	for (PersistentElementRefP elemRef : pGraElement)
+	for (PersistentElementRefP elemRef : _allGraphicElements)
 	{	
 		try
 		{

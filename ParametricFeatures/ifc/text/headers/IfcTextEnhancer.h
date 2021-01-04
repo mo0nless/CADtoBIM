@@ -2,7 +2,6 @@
 
 #include "../../../stdafx.h"
 #include "../../main/headers/IfcElementBundle.h"
-//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 #include <vector>
 

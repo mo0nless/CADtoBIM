@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../../../stdafx.h"
+
 #include "../../main/headers/IfcElementBundle.h"
-//#include "../../../modeler/properties/headers/DictionaryProperties.h"
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include <vector>

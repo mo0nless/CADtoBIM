@@ -181,7 +181,6 @@
     <ClInclude Include="services\components_mapping\headers\ComponentsMappingService.h" />
     <ClInclude Include="mapper\entities\headers\EntitiesMapper.h" />
     <ClInclude Include="common\dtos\headers\ComponentsMappingDTO.h" />
-    <ClInclude Include="ifc\mappings\headers\IfcModelerConverter.h" />
     <ClInclude Include="interface\MainForm.h" />
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />

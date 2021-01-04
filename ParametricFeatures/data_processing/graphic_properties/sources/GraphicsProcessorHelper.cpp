@@ -8,7 +8,7 @@ GraphicsProcessorHelper::GraphicsProcessorHelper()
 	this->_ifcGraphicPropertiesBundle = nullptr;
 }
 
-void GraphicsProcessorHelper::setDictionaryProperties(IfcElementBundle& newDictionaryProperties)
+void GraphicsProcessorHelper::setIfcElementBundle(IfcElementBundle& newDictionaryProperties)
 {
 	this->_ifcElementBundle = &newDictionaryProperties;
 }
@@ -23,7 +23,7 @@ IfcGraphicPropertiesBundle * GraphicsProcessorHelper::getIfcGraphicPropertiesBun
 	return this->_ifcGraphicPropertiesBundle;
 }
 
-IfcElementBundle* GraphicsProcessorHelper::getDictionaryProperties()
+IfcElementBundle* GraphicsProcessorHelper::getIfcElementBundle()
 {
 	return this->_ifcElementBundle;
 }
@@ -424,27 +424,10 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	//Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!!
 	centerOfTheConeInB = dgnConeDetail.GetTransforms(localToWorld, worldToLocal, rA, rB);
 
-	/*outfile.open(filePath, ios_base::app);
-	outfile << endl;
-	outfile << endl;
-	outfile << "THIS IS A CONE: " << endl;
-	outfile << "Try to set up a nonsingular coordinate frame. Returns false if centerB is in base plane !!!! " << endl;
-	outfile << "CenterB is in base plane: " << centerOfTheConeInB << endl;
-	outfile << endl;
-	outfile << endl;
-	outfile.close();*/
-
 	GraphicProperties* primitiveGraphicProperties = nullptr;
 
 	if (Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB) && dgnConeDetail.m_radiusA > 0)
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << fixed;
-		outfile << endl;
-		outfile << " Cylinder " << endl;
-		outfile << endl;
-		outfile.close();*/
-
 		primitiveGraphicProperties = new CylinderGraphicProperties();
 
 		setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
@@ -454,13 +437,6 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	}
 	else if (dgnConeDetail.m_radiusB == 0)
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << fixed;
-		outfile << endl;
-		outfile << " Cone " << endl;
-		outfile << endl;
-		outfile.close();*/
-
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::CONE);
 
 		setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
@@ -469,13 +445,6 @@ GraphicProperties* GraphicsProcessorHelper::processConeAndCylinder(ISolidPrimiti
 	}
 	else if (dgnConeDetail.m_radiusB > 0 && !Comparator::isEqual(dgnConeDetail.m_radiusA, dgnConeDetail.m_radiusB))
 	{
-		/*outfile.open(filePath, ios_base::app);
-		outfile << fixed;
-		outfile << endl;
-		outfile << " Truncated cone " << endl;
-		outfile << endl;
-		outfile.close();*/
-
 		primitiveGraphicProperties = new ConeGraphicProperties(PrimitiveTypeEnum::TRUNCATED_CONE);
 
 		setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
@@ -1385,6 +1354,101 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 		size_t nEdges = SolidUtil::GetBodyEdges(&subEntitiesEdges, entity);
 		size_t nVertices = SolidUtil::GetBodyVertices(&subEntitiesVertices, entity);
 
+
+		//Faces start dependences BSpline Surface WORKS
+#if true
+		for (auto face : subEntitiesFaces)
+		{
+			if (face == NULL)
+				continue;
+
+			ISubEntityCR faceRef = *face;
+			FaceId faceID;
+			SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
+
+			this->_modelerDataWriterManager->writeTitleProcessDataToFile("FACE");
+			this->_modelerDataWriterManager->writeTupleDataToFile<uint32_t>("Entity", faceID.nodeId);
+			this->_modelerDataWriterManager->writeTupleDataToFile<uint32_t>("ID", faceID.entityId);
+
+			if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
+			{
+				switch (geomFacesEval->GetGeometryType())
+				{
+				case IGeometry::GeometryType::BsplineSurface:
+				{
+					MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
+					MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
+
+					msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
+					msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
+					msBsplineSurfaceGraphicProperties->geometryType = IGeometry::GeometryType::BsplineSurface;
+
+					processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties);
+
+					//Add the face to the solidKernelEntity
+					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)msBsplineSurfaceGraphicProperties);
+				}
+				break;
+				case IGeometry::GeometryType::SolidPrimitive:
+				{
+					ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
+
+					//Add the face to the solidKernelEntity					
+					GraphicProperties* primitiveGraphicProperties = processPrimitives(prim);
+
+					if (primitiveGraphicProperties != nullptr)
+					{
+						primitiveGraphicProperties->geometryType = IGeometry::GeometryType::SolidPrimitive;
+
+						solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)primitiveGraphicProperties);
+					}
+					else {
+						_logger->logWarning(__FILE__, __LINE__, __func__, "primitiveGraphicProperties is NULL");
+
+					}
+				}
+				break;
+				case IGeometry::GeometryType::Polyface:
+				{
+					PolyfaceHeaderPtr polyF = geomFacesEval->GetAsPolyfaceHeader();
+					bvector<PolyfaceHeaderPtr> meshes;
+					meshes.push_back(polyF);
+
+					SolidEntityGraphicProperties* solidTriangles = new SolidEntityGraphicProperties();
+					solidTriangles->meshProcessing = true;
+					solidTriangles->setBRepTypeEnum(0);
+
+					solidTriangles->geometryType = IGeometry::GeometryType::Polyface;
+
+					processElementAsMesh(solidTriangles, meshes);
+
+					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)solidTriangles);
+				}
+				break;
+
+				case IGeometry::GeometryType::CurveVector:
+				{
+					ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
+
+					shapesGraphicProperties->geometryType = IGeometry::GeometryType::CurveVector;
+
+					CurveVectorPtr curveVec = geomFacesEval->GetAsCurveVector();
+
+					processShapesCurvesVector(*curveVec, false, &*shapesGraphicProperties);
+
+					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)shapesGraphicProperties);
+				}
+				break;
+
+				default:
+					_logger->logWarning(__FILE__, __LINE__, __func__, "GeometryType case is not handled");
+
+					break;
+				}
+			}
+		}
+#endif
+		
 		//Vertices start dependences BSpline Surface
 #if false 
 		vector<vector<ShapesGraphicProperties*>> subShapesLoopVec = vector<vector<ShapesGraphicProperties*>>();
@@ -1641,100 +1705,6 @@ void GraphicsProcessorHelper::processBodySolid(ISolidKernelEntityCR entity, bool
 			}
 		}
 
-#endif
-
-		//Faces start dependences BSpline Surface WORKS
-#if true
-		for (auto face : subEntitiesFaces)
-		{
-			if (face == NULL)
-				continue;
-
-			ISubEntityCR faceRef = *face;
-			FaceId faceID;
-			SolidUtil::TopologyID::IdFromFace(faceID, faceRef, true);
-
-			this->_modelerDataWriterManager->writeTitleProcessDataToFile("FACE");
-			this->_modelerDataWriterManager->writeTupleDataToFile<uint32_t>("Entity", faceID.nodeId);
-			this->_modelerDataWriterManager->writeTupleDataToFile<uint32_t>("ID", faceID.entityId);
-
-			if (SolidUtil::Convert::SubEntityToGeometry(geomFacesEval, faceRef, *dgnModelRef) == SUCCESS)
-			{
-				switch (geomFacesEval->GetGeometryType())
-				{
-				case IGeometry::GeometryType::BsplineSurface:
-				{
-					MSBsplineSurfaceCR msBspline = *geomFacesEval->GetAsMSBsplineSurface();
-					MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties = new MSBsplineSurfaceGraphicProperties();
-
-					msBsplineSurfaceGraphicProperties->setFaceId(faceID.entityId);
-					msBsplineSurfaceGraphicProperties->setNodeId(faceID.nodeId);
-					msBsplineSurfaceGraphicProperties->geometryType = IGeometry::GeometryType::BsplineSurface;
-
-					processMSBsplineSurface(msBspline, *&msBsplineSurfaceGraphicProperties);
-
-					//Add the face to the solidKernelEntity
-					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)msBsplineSurfaceGraphicProperties);
-				}
-				break;
-				case IGeometry::GeometryType::SolidPrimitive:
-				{
-					ISolidPrimitiveR  prim = *geomFacesEval->GetAsISolidPrimitive();
-
-					//Add the face to the solidKernelEntity					
-					GraphicProperties* primitiveGraphicProperties = processPrimitives(prim);
-
-					if (primitiveGraphicProperties != nullptr)
-					{
-						primitiveGraphicProperties->geometryType = IGeometry::GeometryType::SolidPrimitive;
-
-						solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)primitiveGraphicProperties);
-					}
-					else {
-						_logger->logWarning(__FILE__, __LINE__, __func__, "primitiveGraphicProperties is NULL");
-
-					}
-				}
-				break;
-				case IGeometry::GeometryType::Polyface:
-				{
-					PolyfaceHeaderPtr polyF = geomFacesEval->GetAsPolyfaceHeader();
-					bvector<PolyfaceHeaderPtr> meshes;
-					meshes.push_back(polyF);
-
-					SolidEntityGraphicProperties* solidTriangles = new SolidEntityGraphicProperties();
-					solidTriangles->meshProcessing = true;
-					solidTriangles->setBRepTypeEnum(0);
-
-					solidTriangles->geometryType = IGeometry::GeometryType::Polyface;
-
-					processElementAsMesh(solidTriangles, meshes);
-
-					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)solidTriangles);
-				}
-				break;
-				
-				case IGeometry::GeometryType::CurveVector:
-				{
-					ShapesGraphicProperties* shapesGraphicProperties = new ShapesGraphicProperties();
-					
-					shapesGraphicProperties->geometryType = IGeometry::GeometryType::CurveVector;
-
-					CurveVectorPtr curveVec = geomFacesEval->GetAsCurveVector();
-					
-					processShapesCurvesVector(*curveVec, false, &*shapesGraphicProperties);
-
-					solidKernelEntity->addSolidOrSurfaceFace((GraphicProperties*&)shapesGraphicProperties);
-				}
-				break;
-				
-				default:
-					_logger->logWarning(__FILE__, __LINE__, __func__, "GeometryType case is not handled");
-
-					break;
-				}
-			}
-		}
 #endif
 
 		//Edges start dependences BSpline Surface 

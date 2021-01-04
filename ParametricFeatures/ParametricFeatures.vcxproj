@@ -125,7 +125,6 @@
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
     <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
-    <ClInclude Include="ifc\mappings\headers\IfcModelerConverter.h" />
     <ClInclude Include="interface\MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
