@@ -13,12 +13,19 @@
 +===============+===============+===============+===============+===============+======*/
 class GraphicsProcessor : public IElementGraphicsProcessor
 {
-public:
+public:	
+	static GraphicsProcessor* getInstance()
+	{
+		call_once(initInstanceFlag, &GraphicsProcessor::initGraphicsProcessor);
+		return _GraphicsProcessor;
+	};
+
+	GraphicsProcessorHelper* getGraphicsProcessorHelper();
+private:
 	//! Default constructor of the class
 	//! @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
 	GraphicsProcessor();
-	GraphicsProcessorHelper* getGraphicsProcessorHelper();
-private:
+
 	Logs::Logger* _logger = Logs::Logger::getLogger();
 
 	virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
@@ -41,6 +48,13 @@ private:
 	//! @param[in] trans The transform to apply to subsequent process calls.
 	virtual void _AnnounceTransform(TransformCP trans)  override;
 	
+	static GraphicsProcessor* _GraphicsProcessor;
+	static once_flag initInstanceFlag;
+	static void initGraphicsProcessor()
+	{
+		_GraphicsProcessor = new GraphicsProcessor();
+	}
+
 	GraphicsProcessorHelper mGraphicsProcessorHelper;
 	Transform m_currentTransform;
 };

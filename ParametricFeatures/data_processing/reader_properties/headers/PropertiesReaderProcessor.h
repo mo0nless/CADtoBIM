@@ -1,8 +1,5 @@
 #pragma once
 
-#include <boost/thread.hpp>
-#include <boost/thread/mutex.hpp>
-
 #include "../../../stdafx.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"

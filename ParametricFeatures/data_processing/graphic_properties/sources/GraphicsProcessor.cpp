@@ -1,5 +1,8 @@
 #include "../headers/GraphicsProcessor.h"
 
+once_flag GraphicsProcessor::initInstanceFlag;
+GraphicsProcessor* GraphicsProcessor::_GraphicsProcessor = 0;
+
 GraphicsProcessor::GraphicsProcessor()	
 {
 	/*WString myString;

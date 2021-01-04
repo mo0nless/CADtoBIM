@@ -90,7 +90,7 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 
 		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = new IfcGraphicPropertiesBundle(elementHandle, level);
 
-		GraphicsProcessor* graphicsProcessor = new GraphicsProcessor();
+		GraphicsProcessor* graphicsProcessor = GraphicsProcessor::getInstance();
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
