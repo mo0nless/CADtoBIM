@@ -217,11 +217,6 @@ enum
 |                                                                       |
 +----------------------------------------------------------------------*/
 #if !defined (resource)
-//typedef struct dlogbrowsefolder
-//{
-//	WChar fmtStr[255];
-//	int       flag;
-//} DlogBrowseFolder;
 
 typedef struct ifcgeneralinfo
 {

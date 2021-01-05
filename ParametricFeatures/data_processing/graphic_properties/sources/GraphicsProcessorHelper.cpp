@@ -76,6 +76,10 @@ void GraphicsProcessorHelper::setGraphicPropertiesAxes(GraphicProperties*& graph
 	graphicProperties->setOrigin(origin);
 
 	this->_modelerDataWriterManager->writeTripetXyzDataToFile<DPoint3d>("Origin", origin);
+
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile("columnVectorX", columnVectorX);
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile("columnVectorY", columnVectorY);
+	this->_modelerDataWriterManager->writeTripetXyzDataToFile("columnVectorZ", columnVectorZ);
 }
 
 #pragma endregion
@@ -470,27 +474,20 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 		if (primitive.TryGetDgnBoxDetail(boxDetails))
 		{
 			Transform localToWorld, worldToLocal;
+			double ax, ay, bx, by;
 
 			this->_modelerDataWriterManager->writeBoxDataToFile(boxDetails);
 
 			// get local to world class to get the X,Y,Z axes 
-			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			//boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
 			primitiveGraphicProperties = new BoxGraphicProperties();
 
 			// set centroid, area and volume
 			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-
-			// set X,Y,Z axes
-			DVec3d columnVectorX, columnVectorY, columnVectorZ;
-
-			columnVectorX = boxDetails.ParameterizationSign() * boxDetails.m_vectorX;
-			columnVectorY = boxDetails.ParameterizationSign() * boxDetails.m_vectorY;
-
-			columnVectorZ.CrossProduct(boxDetails.m_vectorX, boxDetails.m_vectorY);
-			columnVectorZ = boxDetails.ParameterizationSign() * columnVectorZ;
 			
-			primitiveGraphicProperties->setVectorAxis(columnVectorX, columnVectorY, columnVectorZ);
+			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
 			setBoxGraphicProperties(boxDetails, (BoxGraphicProperties*&)primitiveGraphicProperties);
 
 		}
@@ -565,6 +562,10 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 		{
 			Transform localToWorld, worldToLocal;
 			ruledSweepDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
+
+			//TO BE TESTED
+			ruledSweepDetails.TransformInPlace(localToWorld);
+
 			this->_modelerDataWriterManager->writeRuledSweepDataToFile(ruledSweepDetails);
 
 			primitiveGraphicProperties = new RuledSweepGraphicProperties();

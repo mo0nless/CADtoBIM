@@ -1,6 +1,11 @@
 #include "../headers/IfcPrimitivesEnhancer.h"
 
 
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+
 void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties,IfcElementBundle* ifcElementBundle,
 	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
@@ -63,36 +68,44 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 		if (primitiveTypeEnum == PrimitiveTypeEnum::SPHERE) {
 
 			SphereGraphicProperties& sphereGraphicProperties = dynamic_cast<SphereGraphicProperties&>(primitiveGraphicProperties);
-			ifcRepresentationItem = new Ifc4::IfcSphere(placement, NumberUtils::convertCurrentUnitToMeters(sphereGraphicProperties.getRadius()));
 
-		} else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX) {
+			ifcRepresentationItem = new Ifc4::IfcSphere(
+				placement, 
+				NumberUtils::convertCurrentUnitToMeters(sphereGraphicProperties.getRadius())
+			);
+
+		} 
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::BOX) {
 
 			BoxGraphicProperties& boxGraphicProperties = dynamic_cast<BoxGraphicProperties&>(primitiveGraphicProperties);
 
-			/*if (abs(boxGraphicProperties.getVectorAxisY().z) == 1.0)
-			{
-				DVec3d centerRot;
-				centerRot.Init(IfcOperationsHelper::rotateAlongAxis("Y", boxGraphicProperties.getCentroid()));
-				placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
-					centerRot,
-					primitiveGraphicProperties.getVectorAxisY(),
-					primitiveGraphicProperties.getVectorAxisX()
-				);
-				ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
-					NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()));
-			}
-			else*/
-			{
-				ifcRepresentationItem = new Ifc4::IfcBlock(placement, NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
-				NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()), NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight()));
-			}
+			DVec3d centerRot;
+			centerRot.Init(primitiveGraphicProperties.getOrigin());
+			
+			//IfcCsgPrimitive3D.Position.Location: The block has one vertex at location and the edges are aligned with the placement axes in the positive sense.
+			//Origin of the bottom 1st corner needs to be taken
+			placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
+				centerRot,
+				primitiveGraphicProperties.getVectorAxisZ(),
+				primitiveGraphicProperties.getVectorAxisX()
+			);
 
-		} else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
+			ifcRepresentationItem = new Ifc4::IfcBlock(
+				placement,
+				NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getLength()),
+				NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getWidth()),
+				NumberUtils::convertCurrentUnitToMeters(boxGraphicProperties.getHeight())
+			);
+			
+		} 
+		else if (primitiveTypeEnum == PrimitiveTypeEnum::CYLINDER) {
+
 			CylinderGraphicProperties& cylinderGraphicProperties = dynamic_cast<CylinderGraphicProperties&>(primitiveGraphicProperties);
 
 			// the cylinder point of placement is the base origin, not the centroid
 			DVec3d cylinderPlacement;
 			cylinderPlacement.Init(cylinderGraphicProperties.getBaseOrigin());
+
 			// overwrite the placement value
 			placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
 				cylinderPlacement,
@@ -100,8 +113,11 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 				cylinderGraphicProperties.getVectorAxisX()
 			);
 
-			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(placement, NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getHeight()),
-			NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getRadius()));
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCylinder(
+				placement, 
+				NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getHeight()),
+				NumberUtils::convertCurrentUnitToMeters(cylinderGraphicProperties.getRadius())
+			);
 
 		}
 		else if (primitiveTypeEnum == PrimitiveTypeEnum::CONE)
@@ -118,8 +134,11 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 				coneGraphicProperties.getVectorAxisX()
 			);
 
-			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(placement, NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getHeight()),
-			NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getBaseRadius()));
+			ifcRepresentationItem = new Ifc4::IfcRightCircularCone(
+				placement, 
+				NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getHeight()),
+				NumberUtils::convertCurrentUnitToMeters(coneGraphicProperties.getBaseRadius())
+			);
 		}
 	
 	if (ifcRepresentationItem != nullptr) {
@@ -131,11 +150,6 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 	return nullptr;
 }
 
-
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, 
 	IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {

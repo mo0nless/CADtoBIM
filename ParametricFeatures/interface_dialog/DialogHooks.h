@@ -1,26 +1,18 @@
 #pragma once
 
-//#include "../stdafx.h"
-//#include "DialogIds.h"
-
-//#include "../common/models/headers/SessionManager.h"
 #include "../data_processing/initialization/headers/Initialization.h"
 #include "../common/utils/headers/ExplorerStructure.h"
+#include "../ifc/general_information/headers/IfcGeneralInformation.h"
 
 
 #include <string>
 #include <UI\Layout\Margins.h>
 #include <UI\Layout\StackLayout.h>
 
-//#include <DgnPlatform\DgnDocumentManager.h>
 #include <Mstn\DocumentManager.h>
 
 #include "ListModelManager.h"
 #include <Mstn/ISessionMgr.h>
-//#include <Mstn\MdlApi\MdlApi.h>
-//#include <Mstn\MdlApi\dlogbox.r.h>
-//#include <Mstn\MdlApi\dlogitem.h>
-//#include <Mstn\MdlApi\DialogItems.h>
 #include <Mstn/MdlApi/MSDialog.h>
 #include <Mstn/MdlApi/GuiLayout.h>
 #include <Mstn/MdlApi/GuiLayoutProperties.h>
@@ -28,7 +20,6 @@
 #include "DialogIds.h"
 
 USING_NAMESPACE_BENTLEY
-//USING_NAMESPACE_BENTLEY_DGNPLATFORM
 USING_NAMESPACE_BENTLEY_MSTNPLATFORM
 USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
 USING_NAMESPACE_BENTLEY_UIFRAMEWORK
@@ -131,41 +122,11 @@ namespace DialogHooks
 
 		virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 		{
-#if false
-			int rowIndex = -1;
-			int colIndex = -1;
-			bool found = FALSE;
-
-			WCharP nameID;
-			InfoField *infoFieldsP;
-
-			RawItemHdrP listBoxP = this->GetRawItem();
-			StringList	*strListP = mdlDialog_listBoxGetStrListP(listBoxP);
-
-			if(dlog_ToggleSingleElementButton)
-				do
-				{
-					if (SUCCESS == mdlDialog_listBoxGetNextSelection(&found, &rowIndex, &colIndex, listBoxP))
-					{
-						mdlStringList_getMember(const_cast<WCharCP*>(&nameID), &infoFieldsP, strListP, (rowIndex * 2));
-
-						WString myString, keyIn;
-						myString.Sprintf(L"%s ... [%d-%d]", nameID, rowIndex, colIndex);
-						mdlOutput_messageCenter(OutputMessagePriority::Info, myString.c_str(), myString.c_str(), OutputMessageAlert::None);
-
-
-						keyIn.Sprintf(L"select byelemid %s", nameID);
-						mdlInput_sendSynchronizedKeyin(keyIn.c_str(), FALSE, INPUTQ_EOQ, NULL);
-					}
-
-				} while (found == TRUE);
-#endif
 			return true;
 		}
 
 		virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
 		{
-			IfcGeneralInformation::resetInstance();
 			refreshListBoxList();
 
 			return true;
@@ -173,6 +134,7 @@ namespace DialogHooks
 
 		void refreshListBoxList()
 		{
+			IfcGeneralInformation::resetInstance();
 			Initialization::collectsAllElements();
 
 			ListModelP listModel = this->GetListModel();
@@ -215,55 +177,6 @@ namespace DialogHooks
 			this->AssignListModel(listModel);
 		
 		}
-
-#if false
-		bool fillStringItemList()
-		{
-
-			/* free the string list if it is allocated */
-			if (NULL != stringListP)
-			{
-				mdlStringList_destroy(stringListP);
-			}
-
-			int          iMember;
-			WString        formatStr;
-			RawItemHdrP listBoxP = this->GetRawItem();
-
-			int numElements = (int)Initialization::allGraphicElements.size();
-
-			/* This list box will have numElements rows and 2 columns, so it needs
-			(numElements * 2) cells created in the string list. */
-			int numSpace = (numElements * 2);
-			stringListP = mdlStringList_create(numSpace, 1);
-
-			mdlDialog_listBoxSetStrListP(listBoxP, stringListP, 1);
-			
-			mdlResource_loadWString(formatStr, NULL, STRINGID_Messages, MSGID_ListBox);
-
-			int elementIndex = 0;
-			for (iMember = 0; iMember < numSpace; iMember++)
-			{
-				WChar   buffer[80];
-				WString elDescr;
-
-				ElementHandle currentElem(Initialization::allGraphicElements.at(elementIndex));
-
-				currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-
-				_swprintf(buffer, formatStr.GetWCharCP(), currentElem.GetElementId());
-
-				mdlStringList_setMember(stringListP, iMember, buffer, NULL);
-
-				iMember += 1;
-				mdlStringList_setMember(stringListP, iMember, elDescr.GetWCharCP(), NULL);
-				elementIndex++;
-			}
-			// OnCreate processing 
-			return true;
-		}
-#endif
-
 	};
 
 #pragma region BUTTONS
@@ -437,6 +350,8 @@ namespace DialogHooks
 		}
 	};
 
+#pragma region UNUSED HOOKS FUNCTION
+
 	class PullDownMenuHadler : DialogItemHookHandler
 	{
 	public:
@@ -521,4 +436,6 @@ namespace DialogHooks
 			return true;
 		}
 	};
+#pragma endregion
+
 }

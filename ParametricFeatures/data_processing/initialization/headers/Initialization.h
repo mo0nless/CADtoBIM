@@ -2,7 +2,7 @@
 
 #include "../headers/InitializationHelper.h"
 #include "../../../ifc/main/headers/IfcBuilder.h"
-#include "../../../ifc/general_information/headers/IfcGeneralInformation.h"
+//#include "../../../ifc/general_information/headers/IfcGeneralInformation.h"
 #include "../../../common/utils/headers/ExplorerStructure.h"
 #include "../../../common/utils/headers/NotificationMessage.h"
 
