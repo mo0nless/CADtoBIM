@@ -479,17 +479,24 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 			this->_modelerDataWriterManager->writeBoxDataToFile(boxDetails);
 
 			// get local to world class to get the X,Y,Z axes 
-			//boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
-			boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
+			boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
 			primitiveGraphicProperties = new BoxGraphicProperties();
 
 			// set centroid, area and volume
 			setSolidPrimCentroidAreaVolume(primitive, primitiveGraphicProperties);
-			
 			setGraphicPropertiesAxes(primitiveGraphicProperties, localToWorld);
 			setBoxGraphicProperties(boxDetails, (BoxGraphicProperties*&)primitiveGraphicProperties);
+			
+			
+			// set box properties
+			BoxGraphicProperties* boxGraphicProperties = (BoxGraphicProperties*&)primitiveGraphicProperties;
 
+			//Check if the TopOrigin needs to be considered as a starting drawing points
+			if (boxDetails.ParameterizationSign() == -1)
+			{
+				boxGraphicProperties->setOrigin(boxDetails.m_topOrigin);
+			}
 		}
 
 	}

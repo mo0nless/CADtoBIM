@@ -55,7 +55,7 @@ void ModelerDataWriterManager::writeBoxDataToFile(DgnBoxDetail boxDetails)
 		return;
 	}
 	bvector<DPoint3d> corners;
-	Transform localToWorld, locTWor, worldToLocal;
+	Transform localToWorld, worldToLocal;
 	DRange3d range;
 	DVec3d vectorRotation;
 	DPoint4d qRotation;
@@ -70,7 +70,7 @@ void ModelerDataWriterManager::writeBoxDataToFile(DgnBoxDetail boxDetails)
 	boxDetails.GetRange(range);
 	boxDetails.GetNonUniformTransform(localToWorld, ax, ay, bx, by);
 
-	boxDetails.TryGetConstructiveFrame(locTWor, worldToLocal);
+	boxDetails.TryGetConstructiveFrame(localToWorld, worldToLocal);
 
 	localToWorld.Matrix().GetRotationAngleAndVector(vectorRotation);
 	localToWorld.Matrix().GetQuaternion(qRotation, false);
