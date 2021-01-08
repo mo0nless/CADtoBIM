@@ -13,7 +13,7 @@ IfcBuilder::IfcBuilder()
 	this->_ifcPropertiesEnhancer = new IfcPropertiesEnhancer();
 	this->_IfcColorMaterialEnhancer = new IfcColorMaterialEnhancer();
 	this->_ifcSurfaceEnhancer = new IfcSurfaceEnhancer();
-	this->_progressBar = new PBAR::DialogCompletionBar();
+	this->_progressBar = new Utilities::DialogCompletionBar();
 	this->_smartFeatureHandler = new SmartFeatureHandler();
 	this->_ifcTextEnhancer = new IfcTextEnhancer();
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <ctime>
-//#include "../../main/headers/IfcBuilder.h"
 #include "../../../stdafx.h"
 
 class IfcGeneralInformation 

@@ -8,29 +8,45 @@
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../modeler\data_writer\headers\ModelerDataWriterManager.h"
 
-class InitializationHelper
+/** @ingroup data_processing Data Processing
+*  @{
+*/
+
+using namespace DataProcessing::GraphicsProperties;
+using namespace DataProcessing::ReaderProperties;
+using namespace Common;
+using namespace std;
+
+namespace DataProcessing
 {
-public:
-	InitializationHelper(vector<PersistentElementRefP> allGraphicElements);
+	namespace Initialization
+	{
+		class InitializationHelper
+		{
+		public:
+			InitializationHelper(vector<PersistentElementRefP> allGraphicElements);
 
-	void processDgnGraphicsElements();
+			void processDgnGraphicsElements();
 
-	vector<IfcElementBundle*>& getIfcElementBundleVector();
+			vector<IfcElementBundle*>& getIfcElementBundleVector();
 
-private:	
-	Logs::Logger* _logger = Logs::Logger::getLogger();
-	
-	SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
-	StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
+		private:
+			Logs::Logger* _logger = Logs::Logger::getLogger();
 
-	DgnModelP _dgnModel;
+			SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
+			StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
 
-	ModelerDataWriterManager* _modelerDataWriterManager;
-	PropertiesReaderProcessor* _propertiesReaderProcessor;
+			DgnModelP _dgnModel;
 
-	PBAR::DialogCompletionBar* _progressBar;
+			ModelerDataWriterManager* _modelerDataWriterManager;
+			PropertiesReaderProcessor* _propertiesReaderProcessor;
 
-	vector<PersistentElementRefP> _allGraphicElements;
+			Utilities::DialogCompletionBar* _progressBar;
 
-	vector<IfcElementBundle*> _ifcElementBundleVector;
-};
+			vector<PersistentElementRefP> _allGraphicElements;
+
+			vector<IfcElementBundle*> _ifcElementBundleVector;
+		};
+	}
+}
+/** @} */ // end of Data Processing

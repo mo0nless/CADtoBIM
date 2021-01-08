@@ -1,5 +1,6 @@
 #include "../headers/GraphicsProcessorHelper.h"
 
+using namespace DataProcessing::GraphicsProperties;
 
 GraphicsProcessorHelper::GraphicsProcessorHelper()
 {
@@ -248,6 +249,10 @@ void GraphicsProcessorHelper::setRotationalSweepGraphicProperties(DgnRotationalS
 	
 	if (shapesGraphicProperties != nullptr) {
 		rotationalSweepGraphicProperties->setShapesGraphicProperties(shapesGraphicProperties);
+	}
+	else
+	{
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- RotationalSweepDetail, curve profile is nullptr -! Element ID: " + to_string(_currentElementHandle.GetElementId()));
 	}
 }
 
@@ -521,7 +526,7 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 		DgnExtrusionDetail extrusionDetails;
 
 		//TODO[SB] review the extrusion creation
-		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Extrusion not handle it, processed as Solid -!");
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Extrusion not handle it, processed as Solid -! Element ID: " + to_string(_currentElementHandle.GetElementId()));
 		return nullptr;
 
 		if (primitive.TryGetDgnExtrusionDetail(extrusionDetails))
@@ -544,6 +549,10 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 	{
 		DgnRotationalSweepDetail rotSweepDetails;
 
+		//TODO[SB] review the RotationalSweep creation
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- RotationalSweep not handle it, processed as Solid -! Element ID: " + to_string(_currentElementHandle.GetElementId()));
+		return nullptr;
+
 		if (primitive.TryGetDgnRotationalSweepDetail(rotSweepDetails))
 		{
 
@@ -562,7 +571,7 @@ GraphicProperties* GraphicsProcessorHelper::processPrimitives(ISolidPrimitiveCR 
 		DgnRuledSweepDetail ruledSweepDetails;
 
 		//TODO[SB] review the ruled sweep creation
-		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Ruled Sweep not handle it, processed as Solid -!");
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Ruled Sweep not handle it, processed as Solid -! Element ID: " + to_string(_currentElementHandle.GetElementId()));
 		return nullptr;
 
 		if (primitive.TryGetDgnRuledSweepDetail(ruledSweepDetails))

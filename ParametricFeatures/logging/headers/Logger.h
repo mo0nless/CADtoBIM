@@ -1,11 +1,13 @@
 #pragma once
 
-//#include "../../stdafx.h"
 
 #include <stdexcept>
 #include <string>
 #include <iostream>
 #include <mutex>
+
+#include <boost/thread.hpp>
+#include <boost/thread/mutex.hpp>
 #include <boost/smart_ptr/shared_ptr.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 
@@ -38,13 +40,6 @@ using boost::shared_ptr;
 using namespace std;
 using namespace logging::trivial;
 
-
-//template<typename ValueType>
-//using exclusive_mc = attrs::mutable_constant<
-//	ValueType,                                        // attribute value type
-//	boost::mutex,                               // synchronization primitive
-//	boost::lock_guard< boost::mutex >           // exclusive lock type
-//>;
 
 namespace Logs {
 
@@ -80,9 +75,6 @@ namespace Logs {
 
 	public:
 		static Logger *getLogger() {
-			/*if (!_logger) {
-				_logger = new Logger();
-			}*/
 			call_once(initInstanceFlag, &Logger::initLogger);
 
 			return _logger;

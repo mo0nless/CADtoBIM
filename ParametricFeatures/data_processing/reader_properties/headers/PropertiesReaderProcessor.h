@@ -14,49 +14,58 @@
 
 #include <regex>
 
-/// @addtogroup ElementProperties
-/// @beginGroup
+/** @ingroup data_processing Data Processing
+*  @{
+*/
 
-/*=================================================================================**//**
-* Class for collecting the non-graphical properties of an element.
-* This class use the ECquery system for retreiving information from the Bentley manager
-* and store them in a dictionary.
-* @see PropertiesDictionary 
-* @bsiclass
-+===============+===============+===============+===============+===============+======*/
-class PropertiesReaderProcessor
+namespace DataProcessing
 {
-public:
-	//! The public constructor available.
-	//! @param[in] the current element
-	//! @param[in] the reference of the PropertiesDictionary
-	//! @param[in] the reference of the SmartFeatureContainer
-	vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
-
-	static PropertiesReaderProcessor* getInstance() 
+	namespace ReaderProperties
 	{
-		call_once(initInstanceFlag, &PropertiesReaderProcessor::initPropertiesReaderProcessor);		
-		return _PropertiesReaderProcessor;
-	};
-	string getElementClassName();
-private:
-	PropertiesReaderProcessor();
+		/*====================================================================================+
+		* Class for collecting the non-graphical properties of an element.
+		* This class use the ECquery system for retreiving information from the Bentley manager
+		* and store them in a vector of ReaderPropertiesBundle.
+		* @see ReaderPropertiesBundle
+		+===============+===============+===============+===============+===============+======*/
+		class PropertiesReaderProcessor
+		{
+		public:
+			//! The public method for Processing Element Properties finding ECInstances.
+			//! @param[in] the current element
+			//! @param[in] the pointer to the ifcGraphicPropertiesBundle
+			//! @return a vector of ReaderPropertiesBundle pointers
+			vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
 
-	string mElemClassName;
+			static PropertiesReaderProcessor* getInstance()
+			{
+				call_once(initInstanceFlag, &PropertiesReaderProcessor::initPropertiesReaderProcessor);
+				return _PropertiesReaderProcessor;
+			};
+			string getElementClassName();
+		private:
+			PropertiesReaderProcessor();
 
-	Logs::Logger* _logger = Logs::Logger::getLogger();		
+			//! Element Class Name
+			string _elemClassName;
 
-	// Handles persistance of ECInstances
-	DgnECManagerR ecMgr = DgnECManager::GetManager();
-	
-	static PropertiesReaderProcessor* _PropertiesReaderProcessor;
-	static once_flag initInstanceFlag;
-	static void initPropertiesReaderProcessor()
-	{
-		_PropertiesReaderProcessor = new PropertiesReaderProcessor();
+			Logs::Logger* _logger = Logs::Logger::getLogger();
+
+			//! Handles persistance of ECInstances
+			DgnECManagerR ecMgr = DgnECManager::GetManager();
+
+			static PropertiesReaderProcessor* _PropertiesReaderProcessor;
+			static once_flag initInstanceFlag;
+
+			//! Instance creator
+			static void initPropertiesReaderProcessor()
+			{
+				_PropertiesReaderProcessor = new PropertiesReaderProcessor();
+			}
+
+			//! Mapper of properties for each ECInstance inside the ReaderPropertiesBundle
+			void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle *&ReaderPropertiesBundle);
+		};
 	}
-
-	void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle *&ReaderPropertiesBundle);
-};
-
-/// @endGroup
+}
+/** @} */ // end of Data Processing

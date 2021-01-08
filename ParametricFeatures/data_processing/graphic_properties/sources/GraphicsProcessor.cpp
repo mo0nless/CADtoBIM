@@ -1,8 +1,13 @@
 #include "../headers/GraphicsProcessor.h"
 
+using namespace DataProcessing::GraphicsProperties;
+
 once_flag GraphicsProcessor::initInstanceFlag;
 GraphicsProcessor* GraphicsProcessor::_GraphicsProcessor = 0;
 
+#pragma warning( push )
+#pragma warning( disable : 4267)
+#pragma warning( disable : 4700)
 GraphicsProcessor::GraphicsProcessor()	
 {
 	/*WString myString;
@@ -150,7 +155,7 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 {	
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	//TODO[SB] MESH PROCESSIG NOT ACTIVE
+	//TODO[SB] MESH PROCESSIG ACTIVE
 	bool meshProcessing = true;
 	if(meshProcessing)
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Triangulated Mesh Graphic Processor -!");
@@ -191,9 +196,6 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 //! Collect output as a solid primitive.
 //! @param[in] primitive The solid primitive data.
 //! @return SUCCESS if handled, return ERROR to output according to _ProcessBody, _ProcessFacets, and _ProcessCurveVector rules.
-#pragma warning( push )
-#pragma warning( disable : 4267)
-#pragma warning( disable : 4700)
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);

@@ -21,7 +21,7 @@ private:
 	int mNumCPoints;
 	vector<DPoint3d> _controlPoints;
 	vector<DPoint3d> _UVcontrolPoints;
-	CurvesPrimitivesTypeEnum mCurvesTypeEnum;
+	CurvesPrimitivesTypeEnum _curvesTypeEnum;
 
 public:
 	CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType);

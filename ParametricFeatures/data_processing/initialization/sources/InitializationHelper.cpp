@@ -5,11 +5,13 @@
 #pragma warning( disable : 4189)
 #pragma warning (disable:4311 4302 4312 4100 )
 
+using namespace DataProcessing::Initialization;
+
 InitializationHelper::InitializationHelper(vector<PersistentElementRefP> allGraphicElements)
 {	
 	this->_dgnModel = ISessionMgr::GetActiveDgnModelP();
 	this->_allGraphicElements = allGraphicElements;
-	this->_progressBar = new PBAR::DialogCompletionBar();
+	this->_progressBar = new Utilities::DialogCompletionBar();
 	this->_modelerDataWriterManager = ModelerDataWriterManager::getInstance();
 	this->_propertiesReaderProcessor = PropertiesReaderProcessor::getInstance();
 }

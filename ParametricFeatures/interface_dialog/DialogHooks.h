@@ -24,6 +24,8 @@ USING_NAMESPACE_BENTLEY_MSTNPLATFORM
 USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
 USING_NAMESPACE_BENTLEY_UIFRAMEWORK
 
+using namespace Common::Utilities;
+using namespace DataProcessing::Initialization;
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -41,9 +43,6 @@ static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;
 //static int dlog_optionbtnNumber1 = 0;
 static int dlog_optionbtnNumber2 = 0;
-
-using namespace Explorer;
-using namespace Init;
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -202,7 +201,7 @@ namespace DialogHooks
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
 
 			//Get the latest update before start conversion
-			StructureExp::getInstance()->updateFileNameFilePath();
+			ExplorerStructure::getInstance()->updateFileNameFilePath();
 
 			WString name, sname, email;
 			name = ifcGeneralInfo.actorName;
@@ -241,7 +240,7 @@ namespace DialogHooks
 	private:
 		virtual bool _OnCreate(DialogItemCreateArgsR create) override
 		{
-			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
+			WString path = StringUtils::getWString(ExplorerStructure::mainFolderPath);
 			
 			//Copy the NEW path in the TEXT's published variable
 			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
@@ -254,10 +253,10 @@ namespace DialogHooks
 
 		virtual bool _OnButton(DialogItemButtonArgsR button) override
 		{			
-			StructureExp::mainFolderPath = StructureExp::getInstance()->BrowseFolder(StructureExp::mainFolderPath);
+			ExplorerStructure::mainFolderPath = ExplorerStructure::getInstance()->BrowseFolder(ExplorerStructure::mainFolderPath);
 			
 			//Copy the NEW path in the TEXT's published variable
-			WString path = StringUtils::getWString(StructureExp::mainFolderPath);
+			WString path = StringUtils::getWString(ExplorerStructure::mainFolderPath);
 			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
 
 			//Synch with the TEXT element through the SYNONYMID to notify the change

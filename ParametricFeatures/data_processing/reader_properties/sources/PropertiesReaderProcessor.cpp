@@ -1,5 +1,7 @@
 #include "../headers/PropertiesReaderProcessor.h"
 
+using namespace DataProcessing::ReaderProperties;
+
 once_flag PropertiesReaderProcessor::initInstanceFlag;
 PropertiesReaderProcessor* PropertiesReaderProcessor::_PropertiesReaderProcessor = 0;
 
@@ -55,8 +57,8 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 			outfile << "--------- className = " << static_cast<Utf8String>(elemInst->GetClass().GetName()) << ", current element id = " << currentElem.GetElementId() << ", id = " << elemInst->GetLocalId() << " ---------" << std::endl;
 			outfile.close();
 
-			mElemClassName = StringUtils::getNormalizedString(elemInst->GetClass().GetName());
-			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(mElemClassName, elemInst->GetLocalId());
+			_elemClassName = StringUtils::getNormalizedString(elemInst->GetClass().GetName());
+			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(_elemClassName, elemInst->GetLocalId());
 			mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
@@ -134,5 +136,5 @@ void PropertiesReaderProcessor::mapECPropertiesToReaderProperties(DgnElementECIn
 
 string PropertiesReaderProcessor::getElementClassName()
 {
-	return this->mElemClassName;
+	return this->_elemClassName;
 }

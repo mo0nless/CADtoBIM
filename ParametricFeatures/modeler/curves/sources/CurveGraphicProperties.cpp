@@ -2,7 +2,7 @@
 
 CurveGraphicProperties::CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType)
 {
-	this->mCurvesTypeEnum = newCurveType;
+	this->_curvesTypeEnum = newCurveType;
 	this->_controlPoints = vector<DPoint3d>();
 	this->_UVcontrolPoints = vector<DPoint3d>();
 	this->_startPoint = DPoint3d();
@@ -41,7 +41,7 @@ vector<DPoint3d> CurveGraphicProperties::getUVcontrolPoints()
 
 CurvesPrimitivesTypeEnum CurveGraphicProperties::getCurvesTypeEnum() 
 { 
-	return mCurvesTypeEnum; 
+	return _curvesTypeEnum; 
 }
 
 void CurveGraphicProperties::setStartEndPoints(DPoint3d sPoint, DPoint3d ePoint)

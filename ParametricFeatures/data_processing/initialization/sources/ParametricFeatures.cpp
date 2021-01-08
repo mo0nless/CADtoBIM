@@ -10,20 +10,8 @@
 //    Include Files
 //--------------------------------------------------------------------------------------
 
-//#include <windows.h>
-//#include <shellapi.h>
-
-//#include "../../../interface_dialog/DialogIds.h"
 #include "../../../interface_dialog/DialogHooks.h"
-//#include "../../../interface_dialog/DialogSymbols.h"
-
-
 #include "../headers/ParametricFeaturesCmd.h"
-
-//USING_NAMESPACE_BENTLEY
-//USING_NAMESPACE_BENTLEY_DGNPLATFORM
-//USING_NAMESPACE_BENTLEY_MSTNPLATFORM
-//USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -38,7 +26,7 @@ void SetVersionNumber()
 
 void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 {
-	StructureExp::getInstance()->createDefaultFilesStructure();
+	ExplorerStructure::getInstance()->createDefaultFilesStructure();
 
 	/*-------------------------------------------------------------
 	| Open our main dialog box with the function mdlDialog_open.

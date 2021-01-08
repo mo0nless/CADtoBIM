@@ -20,6 +20,8 @@
 
 #include "../../smart_feature/headers/SmartFeatureHandler.h"
 
+using namespace Common;
+
 class IfcBuilder {
 private:
 	IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;
@@ -37,7 +39,7 @@ private:
 	map<LevelId, IfcEntityList*> getLevelFileCache();
 
 	void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
-	PBAR::DialogCompletionBar* _progressBar;
+	Utilities::DialogCompletionBar* _progressBar;
 
 	mutable boost::shared_mutex _mutex;
 	Logs::Logger* _logger = Logs::Logger::getLogger();

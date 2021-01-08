@@ -1,9 +1,5 @@
 #pragma once
 
-#include <boost/thread.hpp>
-#include <boost/thread/mutex.hpp>
-
-//#include<string>
 #include "../../utils/headers/StringUtils.hpp"
 
 using namespace std;
