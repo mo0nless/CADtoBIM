@@ -5,6 +5,8 @@
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 #include <vector>
 
+using namespace Ifc::Main;
+
 class IfcTextEnhancer
 {
 public:

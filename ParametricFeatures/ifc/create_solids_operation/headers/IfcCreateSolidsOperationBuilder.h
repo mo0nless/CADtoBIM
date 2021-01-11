@@ -5,8 +5,8 @@
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../main/headers/IfcElementBundle.h"
-//#include "../../../enhancer/headers/IfcOperationsHelper.h"
-//#include "../../../modeler/properties/create_solids_operations/reader/headers/CreateSolidsOperationProperties.h"
+
+using namespace Ifc::Main;
 
 class IfcCreateSolidsOperationBuilder {
 

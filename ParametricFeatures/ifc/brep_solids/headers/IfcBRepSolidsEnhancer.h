@@ -16,6 +16,8 @@
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
+using namespace Ifc::Main;
+
 struct EdgeIfcCurve
 {
 	Ifc4::IfcVertex* startVertex;

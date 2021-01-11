@@ -10,75 +10,83 @@
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
 
+using namespace Ifc::Main;
 
-class IfcElementBundle {
+namespace Ifc
+{
+	namespace Main
+	{
 
-private:
-	long modelerElementId;
-	string modelerElementDescriptor;
+		class IfcElementBundle {
 
-	vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
+		private:
+			long modelerElementId;
+			string modelerElementDescriptor;
 
-	vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
-	vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
+			vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
 
-	vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
-	vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
+			vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
+			vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
 
-	vector<SolidEdge*> smartSolidEdgesCollection;
+			vector<Ifc4::IfcCartesianPoint*> ifcPointsPortsVector;
+			vector<Ifc4::IfcDistributionPort*> ifcDistributionPortVector;
 
-	Ifc4::IfcElement* ifcElement;
+			vector<SolidEdge*> smartSolidEdgesCollection;
 
-	bool hasConnections;
+			Ifc4::IfcElement* ifcElement;
 
-	bool badIfcElemetBuild = false;
+			bool hasConnections;
 
-	SmartFeatureContainer* smartFeatureContainer;
-	string representationType;
-	string mElemClassName;
-public:
+			bool badIfcElemetBuild = false;
 
-	IfcElementBundle(long newModelerElementId,string newModelerElementName);
-	
-	string getRepresentationType();
-	void setRepresentationType(string type);
+			SmartFeatureContainer* smartFeatureContainer;
+			string representationType;
+			string mElemClassName;
+		public:
 
-	string getElementClassName();
-	void setElementClassName(string name);
+			IfcElementBundle(long newModelerElementId, string newModelerElementName);
 
-	void setBadIfcClassBuild(bool value);
-	bool getBadIfcClassBuild();
+			string getRepresentationType();
+			void setRepresentationType(string type);
 
-	void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
-	void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
+			string getElementClassName();
+			void setElementClassName(string name);
 
-	void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
-	void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
+			void setBadIfcClassBuild(bool value);
+			bool getBadIfcClassBuild();
 
-	void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
-	
-	vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
+			void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
+			void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
 
-	vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
+			void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+			void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
 
-	vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
-	vector<Ifc4::IfcDistributionPort*> getIfcDistributionPortsVector();
+			void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
 
-	vector<SolidEdge*> getSolidEdgesCollection();
+			vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
 
-	Ifc4::IfcElement* getIfcElement();
-	void setIfcElement(Ifc4::IfcElement* newIfcElement);
+			vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
-	bool getHasElementConnection();
-	long getElementId();
-	string getElementDescriptor();
+			vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
+			vector<Ifc4::IfcDistributionPort*> getIfcDistributionPortsVector();
 
-	bool getIsSmartFeature();
+			vector<SolidEdge*> getSolidEdgesCollection();
 
-	void setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer);
-	SmartFeatureContainer* getSmartFeatureContainer();
+			Ifc4::IfcElement* getIfcElement();
+			void setIfcElement(Ifc4::IfcElement* newIfcElement);
+
+			bool getHasElementConnection();
+			long getElementId();
+			string getElementDescriptor();
+
+			bool getIsSmartFeature();
+
+			void setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer);
+			SmartFeatureContainer* getSmartFeatureContainer();
 
 
-	vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
-	void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
-};
+			vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
+			void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
+		};
+	}
+}

@@ -1,5 +1,7 @@
 #include "../headers/IfcGraphicPropertiesBundle.h"
 
+using namespace Ifc::Main;
+
 IfcGraphicPropertiesBundle::IfcGraphicPropertiesBundle(GraphicProperties * newGraphicProperties, Ifc4::IfcGeometricRepresentationItem * newIfcRepresentationItem)
 {
 	this->graphicProperties = newGraphicProperties;

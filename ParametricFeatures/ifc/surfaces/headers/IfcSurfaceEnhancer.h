@@ -18,6 +18,7 @@
 
 
 using namespace std;
+using namespace Ifc::Main;
 
 class IfcSurfaceEnhancer 
 {

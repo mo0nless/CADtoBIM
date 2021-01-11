@@ -26,6 +26,7 @@ USING_NAMESPACE_BENTLEY_UIFRAMEWORK
 
 using namespace Common::Utilities;
 using namespace DataProcessing::Initialization;
+using namespace Ifc::GeneralInformation;
 
 /*----------------------------------------------------------------------+
 |                                                                       |

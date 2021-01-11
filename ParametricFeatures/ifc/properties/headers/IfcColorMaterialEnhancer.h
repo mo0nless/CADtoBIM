@@ -7,6 +7,8 @@
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
 
+using namespace Ifc::Main;
+
 class IfcColorMaterialEnhancer {
 
 public:

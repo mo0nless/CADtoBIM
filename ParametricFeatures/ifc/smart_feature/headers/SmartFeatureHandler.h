@@ -1,12 +1,12 @@
 #pragma once
 
-//#include "../../../stdafx.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-//#include "../../headers/IfcElementBundle.h"
+#include "../../../ifc/main/headers/IfcReaderPropertiesBundle.h"
 #include "../../boolean_functions/headers/IfcBooleanOperatorHandler.h"
 #include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 #include "../../create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h"
 
+using namespace Ifc::Main;
 
 class SmartFeatureHandler {
 

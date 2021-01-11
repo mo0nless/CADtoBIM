@@ -5,6 +5,8 @@
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../common/utils/headers/Comparator.h"
 
+using namespace Ifc::Main;
+
 struct PortElement
 {
 	//Data 

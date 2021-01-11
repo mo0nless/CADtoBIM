@@ -8,6 +8,8 @@
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 //#include <vector>
 
+using namespace Ifc::Main;
+
 class IfcBRepRelationship
 {
 public:

@@ -11,6 +11,8 @@
 *  @{
 */
 
+using namespace Ifc::Main;
+
 namespace DataProcessing
 {
 	namespace Initialization

@@ -1,6 +1,7 @@
 #include "../headers/IfcElementBuilder.h"
 
-#if true
+using namespace Ifc::Main;
+
 IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory, Ifc4::IfcObjectPlacement* objectPlacement)
 {
 	this->geometricRepresentationContext = geomContext;
@@ -1010,4 +1011,3 @@ ComponentsMappingDTO* IfcElementBuilder::getIfcElement(vector<ComponentsMappingD
 	}
 	return new ComponentsMappingDTO();
 }
-#endif

@@ -17,6 +17,7 @@
 
 #include "../../../common/models/headers/SessionManager.h"
 
+using namespace Ifc::Main;
 
 class IfcPrimitivesEnhancer {
 

@@ -7,6 +7,8 @@
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include <vector>
 
+using namespace Ifc::Main;
+
 struct BoundTypeIfcCurve 
 {
 	CurvesBoundaryTypeEnum boundary;

@@ -21,43 +21,50 @@
 #include "../../smart_feature/headers/SmartFeatureHandler.h"
 
 using namespace Common;
+using namespace Ifc::Main;
+using namespace Ifc::GeneralInformation;
 
-class IfcBuilder {
-private:
-	IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;
-	IfcShapesEnhancer* _ifcShapesEnhancer;
-	IfcBRepSolidsEnhancer* _ifcBRepSolidsEnhancer;
-	IfcPropertiesEnhancer* _ifcPropertiesEnhancer;
-	IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
-	IfcPortsBuilder* _ifcPortsBuilder;
-	IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
-	IfcElementBuilder* _ifcElementBuilder;
-	IfcTextEnhancer* _ifcTextEnhancer;
-	SmartFeatureHandler* _smartFeatureHandler;
-	map<LevelId, IfcEntityList*> _levelFileEntities;
-	vector<LevelHandle> _fileLevelHandle;
-	map<LevelId, IfcEntityList*> getLevelFileCache();
+namespace Ifc
+{
+	namespace Main
+	{
+		class IfcBuilder {
+		private:
+			IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;
+			IfcShapesEnhancer* _ifcShapesEnhancer;
+			IfcBRepSolidsEnhancer* _ifcBRepSolidsEnhancer;
+			IfcPropertiesEnhancer* _ifcPropertiesEnhancer;
+			IfcColorMaterialEnhancer* _IfcColorMaterialEnhancer;
+			IfcPortsBuilder* _ifcPortsBuilder;
+			IfcSurfaceEnhancer* _ifcSurfaceEnhancer;
+			IfcElementBuilder* _ifcElementBuilder;
+			IfcTextEnhancer* _ifcTextEnhancer;
+			SmartFeatureHandler* _smartFeatureHandler;
+			map<LevelId, IfcEntityList*> _levelFileEntities;
+			vector<LevelHandle> _fileLevelHandle;
+			map<LevelId, IfcEntityList*> getLevelFileCache();
 
-	void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
-	Utilities::DialogCompletionBar* _progressBar;
+			void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
+			Utilities::DialogCompletionBar* _progressBar;
 
-	mutable boost::shared_mutex _mutex;
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+			mutable boost::shared_mutex _mutex;
+			Logs::Logger* _logger = Logs::Logger::getLogger();
 
-	template<typename ValueType>
-	vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);
-	
-	void processElementVector(vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
-public:
-	IfcBuilder();
+			template<typename ValueType>
+			vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);
 
-	void buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector);
-	
-};
+			void processElementVector(vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
+		public:
+			IfcBuilder();
 
+			void buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector);
+
+		};
+	}
+}
 
 template<typename ValueType>
-vector<vector<ValueType>> IfcBuilder::splitVector(const vector<ValueType>& vec, size_t n)
+vector<vector<ValueType>> Ifc::Main::IfcBuilder::splitVector(const vector<ValueType>& vec, size_t n)
 {
 	vector<vector<ValueType>> outVec;
 

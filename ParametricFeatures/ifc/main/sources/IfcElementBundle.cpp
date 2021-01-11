@@ -1,5 +1,7 @@
 #include "../headers/IfcElementBundle.h"
 
+using namespace Ifc::Main;
+
 IfcElementBundle::IfcElementBundle(long newModelerElementId, string newModelerElementDescriptor)
 {
 	this->modelerElementId = newModelerElementId;
