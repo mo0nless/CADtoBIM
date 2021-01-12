@@ -31,10 +31,9 @@
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
-    <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
-    <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
+    <ClCompile Include="ifc\solids_operation\sources\IfcSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
@@ -168,8 +167,7 @@
     <ClInclude Include="ifc\operations_helper\headers\IfcOperationsHelper.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessor.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
-    <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
-    <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
+    <ClInclude Include="ifc\solids_operation\headers\IfcSolidsOperationBuilder.h" />
     <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="ifc\main\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />

@@ -126,10 +126,9 @@ dataProcessingObjects = \
 	$(o)GraphicsProcessor$(oext) \
 
 ifcObjects = \
-	$(o)IfcBooleanOperatorHandler$(oext) \
 	$(o)IfcBRepSolidsEnhancer$(oext) \
 	$(o)IfcBRepRelationship$(oext) \
-	$(o)IfcCreateSolidsOperationBuilder$(oext) \
+	$(o)IfcSolidsOperationBuilder$(oext) \
 	$(o)IfcBuilder$(oext) \
 	$(o)IfcGeneralInformation$(oext) \
 	$(o)IfcElementBundle$(oext) \
@@ -352,18 +351,14 @@ $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPro
 
 $(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
 
-#--- boolean_functions
-$(o)IfcBooleanOperatorHandler$(oext) : $(baseDir)ifc/boolean_functions/sources/IfcBooleanOperatorHandler.cpp $(baseDir)ifc/boolean_functions/headers/IfcBooleanOperatorHandler.h
-
-
 #--- brep_solids
 $(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h
 
 $(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepRelationship.h
 
 
-#--- create_solids_operation
-$(o)IfcCreateSolidsOperationBuilder$(oext) : $(baseDir)ifc/create_solids_operation/sources/IfcCreateSolidsOperationBuilder.cpp $(baseDir)ifc/create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h
+#--- solids_operation
+$(o)IfcSolidsOperationBuilder$(oext) : $(baseDir)ifc/solids_operation/sources/IfcSolidsOperationBuilder.cpp $(baseDir)ifc/solids_operation/headers/IfcSolidsOperationBuilder.h
 
 #--- text
 $(o)IfcTextEnhancer$(oext) : $(baseDir)ifc/text/sources/IfcTextEnhancer.cpp $(baseDir)ifc/text/headers/IfcTextEnhancer.h

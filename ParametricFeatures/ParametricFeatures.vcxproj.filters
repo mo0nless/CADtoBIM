@@ -3,8 +3,6 @@
   <ItemGroup>
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
-    <ClCompile Include="ifc\boolean_functions\sources\IfcBooleanOperatorHandler.cpp" />
-    <ClCompile Include="ifc\create_solids_operation\sources\IfcCreateSolidsOperationBuilder.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\sources\GraphicProperties.cpp" />
@@ -77,6 +75,7 @@
     <ClCompile Include="data_base\repositories\sources\ComponentsMappingRepository.cpp" />
     <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
     <ClCompile Include="data_base\dtos\sources\ComponentsMappingDTO.cpp" />
+    <ClCompile Include="ifc\solids_operation\sources\IfcSolidsOperationBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -89,8 +88,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
-    <ClInclude Include="ifc\boolean_functions\headers\IfcBooleanOperatorHandler.h" />
-    <ClInclude Include="ifc\create_solids_operation\headers\IfcCreateSolidsOperationBuilder.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
@@ -181,6 +178,7 @@
     <ClInclude Include="data_base\repositories\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
     <ClInclude Include="data_base\dtos\headers\ComponentsMappingDTO.h" />
+    <ClInclude Include="ifc\solids_operation\headers\IfcSolidsOperationBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

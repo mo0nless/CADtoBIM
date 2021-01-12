@@ -2,9 +2,8 @@
 
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../../ifc/main/headers/IfcReaderPropertiesBundle.h"
-#include "../../boolean_functions/headers/IfcBooleanOperatorHandler.h"
 #include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
-#include "../../create_solids_operation/headers/IfcCreateSolidsOperationBuilder.h"
+#include "../../solids_operation/headers/IfcSolidsOperationBuilder.h"
 
 using namespace Ifc::Main;
 
