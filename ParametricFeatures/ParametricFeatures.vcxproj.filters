@@ -34,9 +34,6 @@
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
-    <ClCompile Include="modeler\create_solids_operations\sources\CreateSolidsOperationProperties.cpp" />
-    <ClCompile Include="modeler\create_solids_operations\sources\ExtrusionReaderProperties.cpp" />
-    <ClCompile Include="modeler\create_solids_operations\sources\RevolveReaderProperties.cpp" />
     <ClCompile Include="modeler\curves\sources\AkimaGraphicProperties.cpp" />
     <ClCompile Include="modeler\curves\sources\ArcGraphicProperties.cpp" />
     <ClCompile Include="modeler\curves\sources\BsplineGraphicProperties.cpp" />
@@ -127,9 +124,6 @@
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
     <ClInclude Include="ifc\operations_helper\headers\IfcOperationsHelper.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
-    <ClInclude Include="modeler\create_solids_operations\headers\CreateSolidsOperationProperties.h" />
-    <ClInclude Include="modeler\create_solids_operations\headers\ExtrusionReaderProperties.h" />
-    <ClInclude Include="modeler\create_solids_operations\headers\RevolveReaderProperties.h" />
     <ClInclude Include="modeler\curves\headers\AkimaGraphicProperties.h" />
     <ClInclude Include="modeler\curves\headers\ArcGraphicProperties.h" />
     <ClInclude Include="modeler\curves\headers\BsplineGraphicProperties.h" />
