@@ -33,9 +33,6 @@
     <ClCompile Include="data_processing\initialization\sources\ParametricFeatures.cpp" />
     <ClCompile Include="ifc\main\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcElementBundle.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcGraphicPropertiesBundle.cpp" />
-    <ClCompile Include="ifc\main\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="modeler\data_writer\sources\ModelerDataWriterManager.cpp" />
     <ClCompile Include="modeler\create_solids_operations\sources\CreateSolidsOperationProperties.cpp" />
@@ -68,7 +65,6 @@
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
-    <ClCompile Include="ifc\general_information\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
     <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
@@ -76,6 +72,10 @@
     <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
     <ClCompile Include="data_base\dtos\sources\ComponentsMappingDTO.cpp" />
     <ClCompile Include="ifc\solids_operation\sources\IfcSolidsOperationBuilder.cpp" />
+    <ClCompile Include="ifc\main\sources\IfcGeneralInformation.cpp" />
+    <ClCompile Include="ifc\bundle\sources\IfcElementBundle.cpp" />
+    <ClCompile Include="ifc\bundle\sources\IfcGraphicPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\bundle\sources\IfcReaderPropertiesBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -117,7 +117,6 @@
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
-    <ClInclude Include="ifc\general_information\headers\IfcGeneralInformation.h" />
     <ClInclude Include="modeler\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\SolidEntityGraphicProperties.h" />
@@ -128,9 +127,6 @@
     <ClInclude Include="data_processing\reader_properties\headers\PropertiesReaderProcessor.h" />
     <ClInclude Include="ifc\main\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcElementBuilder.h" />
-    <ClInclude Include="ifc\main\headers\IfcElementBundle.h" />
-    <ClInclude Include="ifc\main\headers\IfcGraphicPropertiesBundle.h" />
-    <ClInclude Include="ifc\main\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\operations_helper\headers\IfcOperationsHelper.h" />
     <ClInclude Include="modeler\data_writer\headers\ModelerDataWriterManager.h" />
     <ClInclude Include="modeler\create_solids_operations\headers\CreateSolidsOperationProperties.h" />
@@ -179,6 +175,10 @@
     <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
     <ClInclude Include="data_base\dtos\headers\ComponentsMappingDTO.h" />
     <ClInclude Include="ifc\solids_operation\headers\IfcSolidsOperationBuilder.h" />
+    <ClInclude Include="ifc\main\headers\IfcGeneralInformation.h" />
+    <ClInclude Include="ifc\bundle\headers\IfcElementBundle.h" />
+    <ClInclude Include="ifc\bundle\headers\IfcGraphicPropertiesBundle.h" />
+    <ClInclude Include="ifc\bundle\headers\IfcReaderPropertiesBundle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

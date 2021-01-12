@@ -1,6 +1,6 @@
 #include "../headers/IfcReaderPropertiesBundle.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 IfcReaderPropertiesBundle::IfcReaderPropertiesBundle(ReaderPropertiesBundle * newReaderPropertiesBundle)
 {

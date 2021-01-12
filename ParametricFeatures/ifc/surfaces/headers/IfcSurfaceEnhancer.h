@@ -13,12 +13,12 @@
 #include "../../../modeler/primitives/headers/TorusGraphicProperties.h"
 #include "../../../modeler/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 
 
 using namespace std;
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 class IfcSurfaceEnhancer 
 {

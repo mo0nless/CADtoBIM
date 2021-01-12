@@ -2,12 +2,12 @@
 
 #include "../../../stdafx.h"
 
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include <vector>
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 struct BoundTypeIfcCurve 
 {

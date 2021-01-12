@@ -1,6 +1,6 @@
 #include "../headers/IfcGeneralInformation.h"
 
-using namespace Ifc::GeneralInformation;
+using namespace Ifc::Main;
 
 once_flag IfcGeneralInformation::initInstanceFlag;
 IfcGeneralInformation* IfcGeneralInformation::_IfcGeneralInformation = 0;

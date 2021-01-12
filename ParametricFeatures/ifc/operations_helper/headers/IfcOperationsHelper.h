@@ -1,11 +1,10 @@
 #pragma once
 
+
+#include "../../../stdafx.h"
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/enums/headers/IfcDimensionEnum.h"
 #include "../../../common/utils/headers/Comparator.h"
-
-#include "../../../stdafx.h"
-
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 class IfcOperationsHelper

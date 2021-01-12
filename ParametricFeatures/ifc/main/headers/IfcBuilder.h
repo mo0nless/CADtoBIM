@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-#include "../../general_information/headers/IfcGeneralInformation.h"
+#include "../../main/headers/IfcGeneralInformation.h"
 #include "../../ports/headers/IfcPortsBuilder.h"
 
 
@@ -22,7 +22,6 @@
 
 using namespace Common;
 using namespace Ifc::Main;
-using namespace Ifc::GeneralInformation;
 
 namespace Ifc
 {

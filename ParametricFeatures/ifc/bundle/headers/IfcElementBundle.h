@@ -10,11 +10,11 @@
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 namespace Ifc
 {
-	namespace Main
+	namespace Bundle
 	{
 
 		class IfcElementBundle {

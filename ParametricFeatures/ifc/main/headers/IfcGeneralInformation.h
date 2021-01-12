@@ -6,7 +6,7 @@
 
 namespace Ifc
 {
-	namespace GeneralInformation
+	namespace Main
 	{
 		class IfcGeneralInformation
 		{

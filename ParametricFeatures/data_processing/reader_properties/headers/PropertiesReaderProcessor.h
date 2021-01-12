@@ -4,7 +4,7 @@
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 
-#include "../../../ifc/main/headers/IfcGraphicPropertiesBundle.h"
+#include "../../../ifc/bundle/headers/IfcGraphicPropertiesBundle.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
@@ -18,7 +18,7 @@
 *  @{
 */
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 namespace DataProcessing
 {

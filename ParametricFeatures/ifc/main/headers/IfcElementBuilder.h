@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../../../data_base/services/headers/ComponentsMappingService.h"
-#include "../headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 namespace Ifc
 {

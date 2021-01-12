@@ -2,12 +2,12 @@
 
 #include "../../../stdafx.h"
 
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 class IfcPropertiesEnhancer {
 

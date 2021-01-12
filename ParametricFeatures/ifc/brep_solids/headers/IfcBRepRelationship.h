@@ -2,13 +2,11 @@
 
 
 #include "../../../stdafx.h"
-#include "../../main/headers/IfcElementBundle.h"
-//#include "../../../enhancer/headers/IfcOperationsHelper.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
-//#include <vector>
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 class IfcBRepRelationship
 {

@@ -6,9 +6,9 @@
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 class IfcSolidsOperationBuilder {
 

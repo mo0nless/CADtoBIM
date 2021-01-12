@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../common/utils/headers/Comparator.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 struct PortElement
 {

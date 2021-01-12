@@ -2,7 +2,7 @@
 
 #include "../data_processing/initialization/headers/Initialization.h"
 #include "../common/utils/headers/ExplorerStructure.h"
-#include "../ifc/general_information/headers/IfcGeneralInformation.h"
+#include "../ifc/main/headers/IfcGeneralInformation.h"
 
 
 #include <string>
@@ -26,7 +26,7 @@ USING_NAMESPACE_BENTLEY_UIFRAMEWORK
 
 using namespace Common::Utilities;
 using namespace DataProcessing::Initialization;
-using namespace Ifc::GeneralInformation;
+using namespace Ifc::Main;
 
 /*----------------------------------------------------------------------+
 |                                                                       |

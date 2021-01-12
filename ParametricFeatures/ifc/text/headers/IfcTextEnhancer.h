@@ -1,11 +1,11 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 #include <vector>
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 class IfcTextEnhancer
 {

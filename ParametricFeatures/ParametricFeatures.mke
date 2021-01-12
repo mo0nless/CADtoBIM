@@ -338,18 +338,18 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 #-------------------------------------------------------------------------------------
 
 #--- general_information
-$(o)IfcGeneralInformation$(oext) : $(baseDir)ifc/general_information/sources/IfcGeneralInformation.cpp $(baseDir)ifc/general_information/headers/IfcGeneralInformation.h
+$(o)IfcGeneralInformation$(oext) : $(baseDir)ifc/main/sources/IfcGeneralInformation.cpp $(baseDir)ifc/main/headers/IfcGeneralInformation.h
 
 #--- main
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
 
-$(o)IfcElementBundle$(oext) : $(baseDir)ifc/main/sources/IfcElementBundle.cpp $(baseDir)ifc/main/headers/IfcElementBundle.h
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcElementBundle.cpp $(baseDir)ifc/bundle/headers/IfcElementBundle.h
 
 $(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
 
-$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcGraphicPropertiesBundle.h
+$(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/bundle/headers/IfcGraphicPropertiesBundle.h
 
-$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/main/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/main/headers/IfcReaderPropertiesBundle.h
+$(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/bundle/headers/IfcReaderPropertiesBundle.h
 
 #--- brep_solids
 $(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h

@@ -5,7 +5,7 @@
 #include "../../../logging/headers/Logger.h"
 
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
-#include "../../../ifc/main/headers/IfcElementBundle.h"
+#include "../../../ifc/bundle/headers/IfcElementBundle.h"
 
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
@@ -31,7 +31,7 @@
 *  @{
 */
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 namespace DataProcessing
 {

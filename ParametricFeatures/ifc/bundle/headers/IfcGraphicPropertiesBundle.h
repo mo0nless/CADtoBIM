@@ -8,7 +8,7 @@
 
 namespace Ifc
 {
-	namespace Main
+	namespace Bundle
 	{
 		class IfcGraphicPropertiesBundle {
 

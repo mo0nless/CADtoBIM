@@ -3,7 +3,7 @@
 #include<tuple> // for tuple 
 #include "../../../stdafx.h"
 
-#include "../../main/headers/IfcElementBundle.h"
+#include "../../bundle/headers/IfcElementBundle.h"
 #include "../../../modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
 #include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
@@ -16,7 +16,7 @@
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
-using namespace Ifc::Main;
+using namespace Ifc::Bundle;
 
 struct EdgeIfcCurve
 {
