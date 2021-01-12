@@ -41,7 +41,8 @@ using namespace std;
 using namespace logging::trivial;
 
 
-namespace Logs {
+namespace Logging 
+{
 
 	class Logger {
 

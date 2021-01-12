@@ -49,7 +49,6 @@
     <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
     <ClCompile Include="ifc\main\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\surfaces\sources\IfcSurfaceEnhancer.cpp" />
-    <ClCompile Include="modeler\boolean_operations\sources\BooleanOperationProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\create_solids_operations\sources\CreateSolidsOperationProperties.cpp" />
@@ -172,7 +171,6 @@
     <ClInclude Include="ifc\main\headers\IfcBuilder.h" />
     <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
     <ClInclude Include="data_processing\reader_properties\headers\PropertiesReaderProcessor.h" />
-    <ClInclude Include="modeler\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\create_solids_operations\headers\CreateSolidsOperationProperties.h" />
     <ClInclude Include="modeler\create_solids_operations\headers\RevolveReaderProperties.h" />
     <ClInclude Include="modeler\create_solids_operations\headers\ExtrusionReaderProperties.h" />

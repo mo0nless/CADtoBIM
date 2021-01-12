@@ -16,7 +16,7 @@ public:
 
 private:
 	Ifc4::IfcTextLiteralWithExtent* buildTextString(TextGraphicProperties* textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * ifcGraphicPropertiesBundle);
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 	Ifc4::IfcColourRgb * buildIfcColor(UInt32 color);
 	Ifc4::IfcTextStyleTextModel* buildIfcTextStyleTextModel();
 	vector<string> buildFamilyFont();

@@ -47,7 +47,7 @@ namespace Ifc
 			Utilities::DialogCompletionBar* _progressBar;
 
 			mutable boost::shared_mutex _mutex;
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
 			template<typename ValueType>
 			vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);

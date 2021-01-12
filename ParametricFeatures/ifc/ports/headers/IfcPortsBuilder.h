@@ -10,7 +10,7 @@ public:
 
 	void processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 
 	Ifc4::IfcRelNests* buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinition, IfcElementBundle*& ifcElementBundle);
 	void buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file);

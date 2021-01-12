@@ -51,7 +51,7 @@ namespace DataProcessing
 			//! Element Class Name
 			string _elemClassName;
 
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
 			//! Handles persistance of ECInstances
 			DgnECManagerR ecMgr = DgnECManager::GetManager();

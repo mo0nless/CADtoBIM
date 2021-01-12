@@ -15,7 +15,7 @@ private:
 	static DataBaseContext* _dataBaseContext;
 	DataBaseContext();
 	vector<ComponentsMapping*> _componentsMappingVector;
-	Logs::Logger* _logger;
+	Logging::Logger* _logger;
 public:
 	static DataBaseContext *getDataBaseContext() {
 		if (!_dataBaseContext) {

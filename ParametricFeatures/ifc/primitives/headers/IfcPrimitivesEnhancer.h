@@ -27,7 +27,7 @@ public:
 	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
 		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 
 	mutable boost::shared_mutex _mutex;
 

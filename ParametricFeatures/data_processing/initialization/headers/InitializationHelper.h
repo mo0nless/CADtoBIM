@@ -31,7 +31,7 @@ namespace DataProcessing
 			vector<IfcElementBundle*>& getIfcElementBundleVector();
 
 		private:
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
 			SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
 			StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);

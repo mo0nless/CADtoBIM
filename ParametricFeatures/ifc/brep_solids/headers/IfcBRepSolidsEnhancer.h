@@ -44,7 +44,7 @@ public:
 		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 	
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 
 	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 

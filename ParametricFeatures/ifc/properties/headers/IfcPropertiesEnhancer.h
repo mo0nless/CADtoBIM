@@ -15,7 +15,7 @@ public:
 	void enhance(vector<IfcElementBundle*>& ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
 
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 
 	Ifc4::IfcOwnerHistory* _ownerHistory;
 

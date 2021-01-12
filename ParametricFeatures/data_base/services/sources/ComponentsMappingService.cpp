@@ -1,6 +1,6 @@
 #include "..\headers\ComponentsMappingService.h"
 
-ComponentsMappingService::ComponentsMappingService(Logs::Logger * logger)
+ComponentsMappingService::ComponentsMappingService(Logging::Logger * logger)
 {
 	this->_logger = logger;
 	this->_componentsMappingRepository = new ComponentsMappingRepository(logger);

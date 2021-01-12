@@ -29,7 +29,7 @@ namespace DataProcessing
 		private:
 			GraphicsProcessor();
 
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
 			virtual BentleyStatus _ProcessTextString(TextStringCR text) override;
 			virtual BentleyStatus _ProcessCurvePrimitive(ICurvePrimitiveCR curve, bool isClosed, bool isFilled) override;

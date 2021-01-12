@@ -6,10 +6,10 @@
 class ComponentsMappingRepository {
 
 private:
-	Logs::Logger* _logger;
+	Logging::Logger* _logger;
 
 public:
-	ComponentsMappingRepository(Logs::Logger* logger);
+	ComponentsMappingRepository(Logging::Logger* logger);
 
 	vector<ComponentsMapping*> getAll();
 

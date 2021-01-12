@@ -8,7 +8,7 @@ IfcElementBuilder::IfcElementBuilder(Ifc4::IfcGeometricRepresentationContext* ge
 	this->ownerHistory = ownerHistory;
 	this->objectPlacement = objectPlacement;
 
-	this->_componentsMappingService = new ComponentsMappingService(Logs::Logger::getLogger());
+	this->_componentsMappingService = new ComponentsMappingService(Logging::Logger::getLogger());
 }
 
 void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, map<LevelId, IfcEntityList*> levelFileEntities)

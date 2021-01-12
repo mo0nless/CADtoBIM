@@ -6,12 +6,12 @@
 class ComponentsMappingService {
 
 private:
-	Logs::Logger* _logger;
+	Logging::Logger* _logger;
 	ComponentsMappingRepository* _componentsMappingRepository;
 	EntitiesMapper* _entitiesMapper;
 
 public:
-	ComponentsMappingService(Logs::Logger* logger);
+	ComponentsMappingService(Logging::Logger* logger);
 
 	vector<ComponentsMappingDTO*> getAll();
 

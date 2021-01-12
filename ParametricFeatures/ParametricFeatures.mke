@@ -147,7 +147,6 @@ ifcObjects = \
 	$(o)SmartFeatureHandler$(oext) \
 
 modelerObjects = \
-	$(o)BooleanOperationProperties$(oext) \
 	$(o)MSBsplineSurfaceGraphicProperties$(oext) \
 	$(o)SolidEntityGraphicProperties$(oext) \
 	$(o)BsplineGraphicProperties$(oext) \
@@ -397,10 +396,6 @@ $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatur
 #-------------------------------------------------------------------------------------
 #    modeler
 #-------------------------------------------------------------------------------------
-
-#--- boolean_operations
-$(o)BooleanOperationProperties$(oext) : $(baseDir)modeler/boolean_operations/sources/BooleanOperationProperties.cpp $(baseDir)modeler/boolean_operations/headers/BooleanOperationProperties.h
-
 
 #--- brep_solids
 $(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/MSBsplineSurfaceGraphicProperties.h

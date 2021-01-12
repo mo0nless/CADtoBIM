@@ -26,7 +26,7 @@ struct PortElement
 class IfcPortsRelationshipList
 {
 private:
-	Logs::Logger* _logger = Logs::Logger::getLogger();
+	Logging::Logger* _logger = Logging::Logger::getLogger();
 
 	PortElement *mHead;
 	bool connectPortAtLocation(PortElement*& newPortElement);

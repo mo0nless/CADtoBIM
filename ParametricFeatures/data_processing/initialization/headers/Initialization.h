@@ -25,7 +25,7 @@ namespace DataProcessing
 			{
 				NotificationManager::SetDispatchEvents(true);
 
-				Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Starting application --!!");
+				Logging::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Starting application --!!");
 
 				string statusMessage = "Start IFC Conversion";
 
@@ -39,12 +39,12 @@ namespace DataProcessing
 					initializationHelper->processDgnGraphicsElements();
 				}
 				catch (exception& ex) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
+					Logging::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageModelProcessing);
 
 					NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
 				}
 				catch (...) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageModelProcessing);
+					Logging::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageModelProcessing);
 
 					NotificationMessage::createErrorNotificationMessage(errorMessageModelProcessing);
 
@@ -58,12 +58,12 @@ namespace DataProcessing
 					ifcBuilder->buildIfc(initializationHelper->getIfcElementBundleVector());
 				}
 				catch (exception& ex) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);
+					Logging::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, ex, errorMessageIfcConversion);
 
 					NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
 				}
 				catch (...) {
-					Logs::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageIfcConversion);
+					Logging::Logger::getLogger()->logFatal(__FILE__, __LINE__, __func__, errorMessageIfcConversion);
 
 					NotificationMessage::createErrorNotificationMessage(errorMessageIfcConversion);
 
@@ -79,7 +79,7 @@ namespace DataProcessing
 				statusMessage = "End IFC Conversion";
 
 				NotificationMessage::send(StringUtils::getWString(statusMessage), OutputMessagePriority::Debug);
-				Logs::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Ended the application process --!!");
+				Logging::Logger::getLogger()->logInfo(__FILE__, __LINE__, __func__, "!!-- Ended the application process --!!");
 
 
 				return SUCCESS;

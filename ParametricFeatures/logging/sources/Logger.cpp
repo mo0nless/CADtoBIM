@@ -1,6 +1,6 @@
 #include "..\headers\Logger.h"
 
-namespace Logs {
+namespace Logging {
 
 
 	Logger *Logger::_logger = 0;

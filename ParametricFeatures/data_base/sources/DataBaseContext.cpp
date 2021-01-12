@@ -23,7 +23,7 @@ DataBaseContext::DataBaseContext()
 	//	fprintf(stderr, "Opened database successfully\n");
 	//}
 	//sqlite3_close(db);
-	_logger = Logs::Logger::getLogger();
+	_logger = Logging::Logger::getLogger();
 
 	string outputFile = SessionManager::getInstance()->getDataOutputFilePath();
 	string fileName = "mappings.txt";

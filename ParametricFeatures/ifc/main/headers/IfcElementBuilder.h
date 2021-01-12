@@ -50,7 +50,7 @@ namespace Ifc
 
 			ComponentsMappingService* _componentsMappingService;
 
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 		};
 	}
 }

@@ -47,7 +47,7 @@ namespace DataProcessing
 
 			ModelerDataWriterManager* _modelerDataWriterManager;
 
-			Logs::Logger* _logger = Logs::Logger::getLogger();
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
 			template <class T, class U>
 			T searchOnMap(map<U, T>, U key);

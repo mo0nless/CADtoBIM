@@ -22,7 +22,6 @@
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="modeler\boolean_operations\sources\BooleanOperationProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\brep_solids\sources\SolidEntityGraphicProperties.cpp" />
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
@@ -117,7 +116,6 @@
     <ClInclude Include="common\utils\headers\ShapesTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\SmartFeatureTypeEnumUtils.h" />
     <ClInclude Include="common\utils\headers\StringUtils.hpp" />
-    <ClInclude Include="modeler\boolean_operations\headers\BooleanOperationProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\brep_solids\headers\SolidEntityGraphicProperties.h" />
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
