@@ -8,22 +8,27 @@
 
 using namespace Ifc::Bundle;
 
-class IfcBRepRelationship
+namespace Ifc
 {
-public:
-	IfcBRepRelationship();
+	namespace GeometricRepresentation
+	{
+		class IfcBRepRelationship
+		{
+		public:
+			IfcBRepRelationship();
 
-	void processBRepEntityEdge(ShapesGraphicProperties* shapeGraphicProperties, vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType);
-	void connectContinuosEdges();
+			void processBRepEntityEdge(ShapesGraphicProperties* shapeGraphicProperties, vector<Ifc4::IfcCurve*> curveRepresentationVec, int boundType);
+			void connectContinuosEdges();
 
-	vector<SolidEdge*> getSmartSolidEdgesCollection();
+			vector<SolidEdge*> getSmartSolidEdgesCollection();
 
-private:	
-	Logging::Logger* _logger = Logging::Logger::getLogger();
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-	bool processContinuosEdges(ContinuosEdge*& head, ContinuosEdge*& currentEdge);
-	vector<SolidEdge*> mSmartSolidEdgesCollection;
-	vector<ContinuosEdge*> mContinuosEdgeList;
-};
-
+			bool processContinuosEdges(ContinuosEdge*& head, ContinuosEdge*& currentEdge);
+			vector<SolidEdge*> mSmartSolidEdgesCollection;
+			vector<ContinuosEdge*> mContinuosEdgeList;
+		};
+	}
+}
 

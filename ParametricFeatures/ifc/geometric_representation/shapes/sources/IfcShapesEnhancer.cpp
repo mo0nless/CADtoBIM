@@ -1,5 +1,6 @@
 #include "../headers/IfcShapesEnhancer.h"
 
+using namespace Ifc::GeometricRepresentation;
 
 IfcShapesEnhancer::IfcShapesEnhancer()
 {

@@ -1,5 +1,6 @@
 #include "../headers/IfcBRepRelationship.h"
 
+using namespace Ifc::GeometricRepresentation;
 
 IfcBRepRelationship::IfcBRepRelationship()
 {

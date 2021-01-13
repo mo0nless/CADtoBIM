@@ -6,7 +6,9 @@
 #include <vector>
 #include "../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
-using namespace std;
+using namespace std; 
+using namespace Common;
+using namespace Common::Enums;
 using namespace Common::Utilities;
 
 class CurveGraphicProperties 

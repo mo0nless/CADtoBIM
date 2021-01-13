@@ -22,19 +22,25 @@ using namespace Common::Utilities;
 using namespace Common::Models;
 using namespace Common::Enums;
 
-class IfcPrimitivesEnhancer {
+namespace Ifc
+{
+	namespace GeometricRepresentation
+	{
+		class IfcPrimitivesEnhancer {
 
-public:
-	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties, IfcElementBundle* ifcElementBundle,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-	Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
+		public:
+			void enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimitiveProperties* solidPrimitiveProperties, IfcElementBundle* ifcElementBundle,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+			Ifc4::IfcGeometricRepresentationItem* buildIfcPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-	mutable boost::shared_mutex _mutex;
+			mutable boost::shared_mutex _mutex;
 
-	Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-};
+			Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
+			Ifc4::IfcGeometricRepresentationItem* buildComplexPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+		};
+	}
+}

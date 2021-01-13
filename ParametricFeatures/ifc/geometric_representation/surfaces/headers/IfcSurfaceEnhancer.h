@@ -19,19 +19,26 @@
 
 using namespace std;
 using namespace Ifc::Bundle;
+using namespace Ifc::GeometricRepresentation;
 using namespace Common::Utilities;
 using namespace Common::Enums;
 
-class IfcSurfaceEnhancer 
+namespace Ifc
 {
+	namespace GeometricRepresentation
+	{
+		class IfcSurfaceEnhancer
+		{
 
-public:
-	void enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, bool addToIfcElementBundle = true);
+		public:
+			void enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, bool addToIfcElementBundle = true);
 
-	Ifc4::IfcBSplineSurface* buildIfcSurface(MSBsplineSurfaceGraphicProperties& msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
+			Ifc4::IfcBSplineSurface* buildIfcSurface(MSBsplineSurfaceGraphicProperties& msBsplineSurfaceGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-	mutable boost::shared_mutex _mutex;
-};
+			mutable boost::shared_mutex _mutex;
+		};
+	}
+}

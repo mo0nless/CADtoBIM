@@ -28,6 +28,7 @@ using namespace Ifc;
 using namespace Ifc::Main;
 using namespace Ifc::Ports;
 using namespace Ifc::Properties;
+using namespace Ifc::GeometricRepresentation;
 
 namespace Ifc
 {

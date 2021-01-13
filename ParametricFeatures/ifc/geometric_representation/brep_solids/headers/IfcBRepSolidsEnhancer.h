@@ -36,42 +36,48 @@ struct EdgeIfcCurve
 	DPoint3d startD3p, endD3p;
 };
 
-class IfcBRepSolidsEnhancer
+namespace Ifc
 {
-public:
-	IfcBRepSolidsEnhancer();
-
-	void enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-	
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
-
-	Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
-
-	void processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList);
-
-	void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
-
-	void buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties,	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
-
-	template<class T>
-	T searchOnMap(map<int, T>, int key);
-
-	vector<EdgeIfcCurve*> solidEdges;
-
-	mutable boost::shared_mutex _mutex;
-};
-
-template<class T>
-inline T IfcBRepSolidsEnhancer::searchOnMap(map<int, T> mappedValues, int key)
-{
-	for (auto const& element : mappedValues)
+	namespace GeometricRepresentation
 	{
-		if (element.first == key)
+		class IfcBRepSolidsEnhancer
 		{
-			return element.second;
+		public:
+			IfcBRepSolidsEnhancer();
+
+			void enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcElementBundle*& ifcElementBundle,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
+
+			Ifc4::IfcGeometricRepresentationItem* buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+
+			void processPolyfaceMesh(MeshTriangles* meshTriangles, IfcTemplatedEntityList<Ifc4::IfcFace>*& ifcFaceList);
+
+			void buildSolidEntityEdgeLoop(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+
+			void buildIfcFaceSurface(vector<GraphicProperties*> surfaceVectorGraphicProperties, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file, IfcEntityList*& entityList, IfcTemplatedEntityList<Ifc4::IfcFace>*& faceEntityList);
+
+			template<class T>
+			T searchOnMap(map<int, T>, int key);
+
+			vector<EdgeIfcCurve*> solidEdges;
+
+			mutable boost::shared_mutex _mutex;
+		};
+
+		template<class T>
+		inline T IfcBRepSolidsEnhancer::searchOnMap(map<int, T> mappedValues, int key)
+		{
+			for (auto const& element : mappedValues)
+			{
+				if (element.first == key)
+				{
+					return element.second;
+				}
+			}
+			return NULL;
 		}
 	}
-	return NULL;
 }

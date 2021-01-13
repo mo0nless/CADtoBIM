@@ -1,5 +1,6 @@
 #include "../headers/IfcPrimitivesEnhancer.h"
 
+using namespace Ifc::GeometricRepresentation;
 
 #pragma warning( push )
 #pragma warning( disable : 4700)

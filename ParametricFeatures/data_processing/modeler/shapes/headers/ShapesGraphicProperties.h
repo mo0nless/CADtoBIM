@@ -12,6 +12,9 @@
 #include <vector>
 
 using namespace std;
+using namespace Common;
+using namespace Common::Enums;
+using namespace Common::Utilities;
 
 class ShapesGraphicProperties: public GraphicProperties
 {

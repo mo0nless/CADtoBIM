@@ -7,18 +7,24 @@
 
 using namespace Ifc::Bundle;
 
-class IfcTextEnhancer
+namespace Ifc
 {
-public:
-	IfcTextEnhancer();
-	void enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicProperties* textGraphicProperties, IfcElementBundle*& ifcElementBundle,
-		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
+	namespace GeometricRepresentation
+	{
+		class IfcTextEnhancer
+		{
+		public:
+			IfcTextEnhancer();
+			void enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicProperties* textGraphicProperties, IfcElementBundle*& ifcElementBundle,
+				IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle);
 
-private:
-	Ifc4::IfcTextLiteralWithExtent* buildTextString(TextGraphicProperties* textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * ifcGraphicPropertiesBundle);
-	Logging::Logger* _logger = Logging::Logger::getLogger();
-	Ifc4::IfcColourRgb * buildIfcColor(UInt32 color);
-	Ifc4::IfcTextStyleTextModel* buildIfcTextStyleTextModel();
-	vector<string> buildFamilyFont();
-	vector<string> buildFontStyle();
-};
+		private:
+			Ifc4::IfcTextLiteralWithExtent* buildTextString(TextGraphicProperties* textGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle * ifcGraphicPropertiesBundle);
+			Logging::Logger* _logger = Logging::Logger::getLogger();
+			Ifc4::IfcColourRgb * buildIfcColor(UInt32 color);
+			Ifc4::IfcTextStyleTextModel* buildIfcTextStyleTextModel();
+			vector<string> buildFamilyFont();
+			vector<string> buildFontStyle();
+		};
+	}
+}

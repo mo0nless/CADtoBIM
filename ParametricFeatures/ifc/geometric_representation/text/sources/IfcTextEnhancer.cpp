@@ -1,5 +1,7 @@
 #include "..\headers\IfcTextEnhancer.h"
 
+using namespace Ifc::GeometricRepresentation;
+
 IfcTextEnhancer::IfcTextEnhancer()
 {
 }

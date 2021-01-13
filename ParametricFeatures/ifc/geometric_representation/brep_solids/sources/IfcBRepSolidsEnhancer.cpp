@@ -1,5 +1,7 @@
 #include "../headers/IfcBRepSolidsEnhancer.h"
 
+using namespace Ifc::GeometricRepresentation;
+
 IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }

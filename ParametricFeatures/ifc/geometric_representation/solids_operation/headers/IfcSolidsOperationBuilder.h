@@ -9,16 +9,23 @@
 #include "../../../bundle/headers/IfcElementBundle.h"
 
 using namespace Ifc::Bundle;
+using namespace Ifc::GeometricRepresentation;
 using namespace Common::Utilities;
 using namespace Common::Enums;
 using namespace Common;
 
-class IfcSolidsOperationBuilder {
+namespace Ifc
+{
+	namespace GeometricRepresentation
+	{
+		class IfcSolidsOperationBuilder {
 
-public:
-	static Ifc4::IfcGeometricRepresentationItem* buildIfcCreateSolidsOperation(IfcElementBundle* leftIfcRepresentationItem, IfcElementBundle* rigthIfcRepresentationItem,
-		IfcReaderPropertiesBundle& ifcReaderPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+		public:
+			static Ifc4::IfcGeometricRepresentationItem* buildIfcCreateSolidsOperation(IfcElementBundle* leftIfcRepresentationItem, IfcElementBundle* rigthIfcRepresentationItem,
+				IfcReaderPropertiesBundle& ifcReaderPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
-	static Ifc4::IfcGeometricRepresentationItem* solveBooleanOperation(Ifc4::IfcGeometricRepresentationItem* leftIfcRepresentationItem, 
-		Ifc4::IfcGeometricRepresentationItem* rigthIfcRepresentationItem, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle);
-};
+			static Ifc4::IfcGeometricRepresentationItem* solveBooleanOperation(Ifc4::IfcGeometricRepresentationItem* leftIfcRepresentationItem,
+				Ifc4::IfcGeometricRepresentationItem* rigthIfcRepresentationItem, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle);
+		};
+	}
+}
