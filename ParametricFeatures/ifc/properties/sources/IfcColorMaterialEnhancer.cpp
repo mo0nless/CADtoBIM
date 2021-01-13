@@ -1,5 +1,7 @@
 #include "../headers/IfcColorMaterialEnhancer.h"
 
+using namespace Ifc::Properties;
+
 void IfcColorMaterialEnhancer::enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory)
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting enhancing the IFC color and material -!");

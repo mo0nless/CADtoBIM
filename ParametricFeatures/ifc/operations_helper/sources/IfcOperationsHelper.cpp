@@ -1,5 +1,7 @@
 #include "../headers/IfcOperationsHelper.h"
 
+using namespace Ifc::Helper;
+
 IfcOperationsHelper::IfcOperationsHelper()
 {
 }

@@ -1,5 +1,6 @@
 #include "../headers/IfcPortsBuilder.h"
 
+using namespace Ifc::Ports;
 
 IfcPortsBuilder::IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory)
 {

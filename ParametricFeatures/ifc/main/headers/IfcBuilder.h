@@ -24,7 +24,10 @@
 
 using namespace Common;
 using namespace Common::Models;
+using namespace Ifc;
 using namespace Ifc::Main;
+using namespace Ifc::Ports;
+using namespace Ifc::Properties;
 
 namespace Ifc
 {

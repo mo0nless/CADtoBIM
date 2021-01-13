@@ -1,5 +1,7 @@
 #include "../headers/IfcPropertiesEnhancer.h"
 
+using namespace Ifc::Properties;
+
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)

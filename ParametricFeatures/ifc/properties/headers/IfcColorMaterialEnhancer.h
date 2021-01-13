@@ -10,18 +10,24 @@
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 
-class IfcColorMaterialEnhancer {
+namespace Ifc
+{
+	namespace Properties
+	{
+		class IfcColorMaterialEnhancer {
 
-public:
-	void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
+		public:
+			void enhance(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
 
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
-	Ifc4::IfcOwnerHistory* _ownerHistory;
-	
-	void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
+			Ifc4::IfcOwnerHistory* _ownerHistory;
 
-	Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);
-	Ifc4::IfcColourRgb * buildIfcColor(RgbFactor color);
+			void processColour(IfcGraphicPropertiesBundle& ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 
-};
+			Ifc4::IfcColourRgb* buildIfcColor(UInt32 color);
+			Ifc4::IfcColourRgb * buildIfcColor(RgbFactor color);
+
+		};
+	}
+}

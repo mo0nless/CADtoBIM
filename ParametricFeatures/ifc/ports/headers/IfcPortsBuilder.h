@@ -3,23 +3,27 @@
 
 #include "IfcPortsRelationshipList.h"
 
-class IfcPortsBuilder
+namespace Ifc
 {
-public:
-	IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory);
+	namespace Ports
+	{
+		class IfcPortsBuilder
+		{
+		public:
+			IfcPortsBuilder(Ifc4::IfcGeometricRepresentationContext* geomContext, Ifc4::IfcOwnerHistory* ownerHistory);
 
-	void processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
+			void processIfcPorts(vector<IfcElementBundle*>& ifcBundleVector, IfcHierarchyHelper<Ifc4>& file);
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-	Ifc4::IfcRelNests* buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinition, IfcElementBundle*& ifcElementBundle);
-	void buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file);
-	typedef Ifc4::IfcGloballyUniqueId guid;
+			Ifc4::IfcRelNests* buildIfcRelNests(boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcObjectDefinition>> objectDefinition, IfcElementBundle*& ifcElementBundle);
+			void buildIfcReletionshipConnectionPorts(IfcHierarchyHelper<Ifc4>& file);
+			typedef Ifc4::IfcGloballyUniqueId guid;
 
-	IfcPortsRelationshipList* ifcPortsRelationshipList;
-	Ifc4::IfcGeometricRepresentationContext* geometricRepresentationContext = nullptr;
-	Ifc4::IfcOwnerHistory* ownerHistory = nullptr;
+			IfcPortsRelationshipList* ifcPortsRelationshipList;
+			Ifc4::IfcGeometricRepresentationContext* geometricRepresentationContext = nullptr;
+			Ifc4::IfcOwnerHistory* ownerHistory = nullptr;
 
-};
-
-
+		};
+	}
+}

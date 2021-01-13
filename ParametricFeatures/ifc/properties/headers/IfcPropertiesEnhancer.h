@@ -10,17 +10,23 @@
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 
-class IfcPropertiesEnhancer {
+namespace Ifc
+{
+	namespace Properties
+	{
+		class IfcPropertiesEnhancer {
 
-public:
-	void enhance(vector<IfcElementBundle*>& ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
+		public:
+			void enhance(vector<IfcElementBundle*>& ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file, Ifc4::IfcOwnerHistory* ownerHistory);
 
-private:
-	Logging::Logger* _logger = Logging::Logger::getLogger();
+		private:
+			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-	Ifc4::IfcOwnerHistory* _ownerHistory;
+			Ifc4::IfcOwnerHistory* _ownerHistory;
 
-	Ifc4::IfcPropertySet* createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
-	Ifc4::IfcProperty* createIfcBasicProperty(ReaderPropertyDefinition& readerPropertyDefinition);
-	Ifc4::IfcProperty* createIfcComplexProperty(ReaderPropertyDefinition& readerPropertyDefinition);
-};
+			Ifc4::IfcPropertySet* createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+			Ifc4::IfcProperty* createIfcBasicProperty(ReaderPropertyDefinition& readerPropertyDefinition);
+			Ifc4::IfcProperty* createIfcComplexProperty(ReaderPropertyDefinition& readerPropertyDefinition);
+		};
+	}
+}

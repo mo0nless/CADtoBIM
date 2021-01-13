@@ -1,11 +1,11 @@
 #include "../headers/IfcPortsRelationshipList.h"
 
+using namespace Ifc::Ports;
+
 IfcPortsRelationshipList::IfcPortsRelationshipList()
 {
 	mHead = NULL;
 }
-
-
 
 bool IfcPortsRelationshipList::connectPortAtLocation(PortElement*& newPortElement)
 {
