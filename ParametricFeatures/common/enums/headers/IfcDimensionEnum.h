@@ -1,8 +1,13 @@
 #pragma once
 
-
-enum IfcDimensionEnum
+namespace Common
 {
-	dim_2D,
-	dim_3D
-};
+	namespace Enums
+	{
+		enum IfcDimensionEnum
+		{
+			dim_2D,
+			dim_3D
+		};
+	}
+}

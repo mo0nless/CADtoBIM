@@ -6,6 +6,7 @@
 #include "../../solids_operation/headers/IfcSolidsOperationBuilder.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
 
 class SmartFeatureHandler {
 

@@ -11,6 +11,7 @@
 #include "../../../common/models/headers/SessionManager.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Models;
 
 namespace Ifc
 {

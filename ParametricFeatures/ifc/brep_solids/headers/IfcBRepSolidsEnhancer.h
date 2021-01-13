@@ -16,7 +16,8 @@
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 
-using namespace Ifc::Bundle;
+using namespace Ifc::Bundle; 
+using namespace Common::Enums;
 
 struct EdgeIfcCurve
 {

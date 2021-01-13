@@ -6,14 +6,21 @@
 #include <vector>
 
 using namespace std;
+using namespace Common::Enums;
 
-class SmartFeatureTypeEnumUtils {
-public:
+namespace Common
+{
+	namespace Utilities
+	{
+		class SmartFeatureTypeEnumUtils {
+		public:
 
-	static SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(string classNameValue);
+			static SmartFeatureTypeEnum getSmartFeatureTypeEnumByClassName(string classNameValue);
 
-private:
+		private:
 
-	SmartFeatureTypeEnumUtils() {};
-	static map<SmartFeatureTypeEnum, vector<string>> mappedValues;
-};
+			SmartFeatureTypeEnumUtils() {};
+			static map<SmartFeatureTypeEnum, vector<string>> mappedValues;
+		};
+	}
+}

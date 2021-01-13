@@ -3,16 +3,21 @@
 #include "../../../stdafx.h"
 #include <math.h>
 
-struct NumberUtils
+namespace Common
 {
-
-	static double NumberUtils::convertCurrentUnitToMeters(double valueInMicroMeters)
+	namespace Utilities
 	{
-		DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
-		ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
+		struct NumberUtils
+		{
+			static double NumberUtils::convertCurrentUnitToMeters(double valueInMicroMeters)
+			{
+				DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+				ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
 
-		double uorPerStorage = modelInfo->GetUorPerStorage();
+				double uorPerStorage = modelInfo->GetUorPerStorage();
 
-		return valueInMicroMeters / uorPerStorage;
+				return valueInMicroMeters / uorPerStorage;
+			}
+		};
 	}
-};
+}

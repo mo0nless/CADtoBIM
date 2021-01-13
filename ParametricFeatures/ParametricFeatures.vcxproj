@@ -21,7 +21,6 @@
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
-    <ClCompile Include="common\models\sources\ResultStatus.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
@@ -112,6 +111,7 @@
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="data_processing\initialization\headers\Initialization.h" />
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
+    <ClInclude Include="data_processing\modeler\brep_solids\headers\TopologyStructures.h" />
     <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
     <ClInclude Include="interface_dialog\DialogHooks.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
@@ -144,7 +144,6 @@
     <ClInclude Include="data_processing\modeler\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\ExtrusionGraphicProperties.h" />
-    <ClInclude Include="data_processing\modeler\primitives\headers\PrimitiveGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\RotationalSweepGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\RuledSweepGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\SolidPrimitiveProperties.h" />

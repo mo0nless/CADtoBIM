@@ -7,6 +7,9 @@
 #include "../../../common/utils/headers/Comparator.h"
 #include "../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
 
+using namespace Common::Utilities;
+using namespace Common::Enums;
+
 class IfcOperationsHelper
 {
 public:

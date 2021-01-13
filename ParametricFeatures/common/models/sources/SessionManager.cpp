@@ -1,5 +1,7 @@
 #include "../headers/SessionManager.h"
 
+using namespace Common::Models;
+
 SessionManager *SessionManager::_instance = 0;
 
 

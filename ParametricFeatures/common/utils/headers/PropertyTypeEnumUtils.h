@@ -6,14 +6,21 @@
 #include "../../enums/headers/PropertyTypeEnum.h"
 
 using namespace std;
+using namespace Common::Enums;
 
-class PropertyTypeEnumUtils {
+namespace Common
+{
+	namespace Utilities
+	{
+		class PropertyTypeEnumUtils {
 
-private:
-	static const map<PropertyTypeEnum, string> mappedValues;
-	PropertyTypeEnumUtils() {}
+		private:
+			static const map<PropertyTypeEnum, string> mappedValues;
+			PropertyTypeEnumUtils() {}
 
-public:
-	static PropertyTypeEnum getEnumByStringValue(string stringValue);
+		public:
+			static PropertyTypeEnum getEnumByStringValue(string stringValue);
 
-};
+		};
+	}
+}

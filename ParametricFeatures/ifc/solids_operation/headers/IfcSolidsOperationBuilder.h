@@ -9,6 +9,9 @@
 #include "../../bundle/headers/IfcElementBundle.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
+using namespace Common::Enums;
+using namespace Common;
 
 class IfcSolidsOperationBuilder {
 

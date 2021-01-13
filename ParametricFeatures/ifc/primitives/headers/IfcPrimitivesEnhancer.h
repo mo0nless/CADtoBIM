@@ -18,6 +18,9 @@
 #include "../../../common/models/headers/SessionManager.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
+using namespace Common::Models;
+using namespace Common::Enums;
 
 class IfcPrimitivesEnhancer {
 

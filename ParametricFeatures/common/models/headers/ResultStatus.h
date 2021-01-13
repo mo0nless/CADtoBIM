@@ -3,6 +3,7 @@
 #include "../../enums/headers/ResultStatusEnum.h"
 
 using namespace std;
+using namespace Common::Enums;
 
 /**
  *  Class used to return status and message after an execution
@@ -11,40 +12,40 @@ template <class T>
 class ResultStatus {
 
 private:
-	ResultStatusEnum::ResultStatusEnum mResultStatusEnum;
+	Enums::ResultStatusEnum mResultStatusEnum;
 	string mErrorText;
 public:
 	ResultStatus<T>();
-	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum);
-	ResultStatus<T>(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, string newErrorText);
+	ResultStatus<T>(Enums::ResultStatusEnum newResultStatusEnum);
+	ResultStatus<T>(Enums::ResultStatusEnum newResultStatusEnum, string newErrorText);
 
-	ResultStatusEnum::ResultStatusEnum getResultStatusEnum();
+	Enums::ResultStatusEnum getResultStatusEnum();
 	string getErrorText();
 };
 
 template<class T>
 inline ResultStatus<T>::ResultStatus()
 {
-	this->mResultStatusEnum = ResultStatusEnum::ResultStatusEnum::SUCCESS;
+	this->mResultStatusEnum = Enums::ResultStatusEnum::SUCCESS;
 	this->mErrorText = string();
 }
 
 template<class T>
-inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum)
+inline ResultStatus<T>::ResultStatus(Enums::ResultStatusEnum newResultStatusEnum)
 {
 	this->mResultStatusEnum = newResultStatusEnum;
 	this->mErrorText = string();
 }
 
 template<class T>
-inline ResultStatus<T>::ResultStatus(ResultStatusEnum::ResultStatusEnum newResultStatusEnum, string newErrorText)
+inline ResultStatus<T>::ResultStatus(Enums::ResultStatusEnum newResultStatusEnum, string newErrorText)
 {
 	this->mResultStatusEnum = newResultStatusEnum;
 	this->mErrorText = newErrorText;
 }
 
 template<class T>
-inline ResultStatusEnum::ResultStatusEnum ResultStatus<T>::getResultStatusEnum()
+inline Enums::ResultStatusEnum ResultStatus<T>::getResultStatusEnum()
 {
 	return this->mResultStatusEnum;
 }

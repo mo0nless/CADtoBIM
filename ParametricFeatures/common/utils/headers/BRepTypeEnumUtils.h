@@ -2,13 +2,20 @@
 
 #include "../../enums/headers/BRepTypeEnum.h"
 
-struct BRepTypeEnumUtils
+using namespace Common::Enums;
+
+namespace Common
 {
-	static BRepTypeEnum BRepTypeEnumUtils::getBRepTypeEnumByInt(int boundaryBentleyInt)
+	namespace Utilities
 	{
-		return BRepTypeEnum(boundaryBentleyInt);
+		struct BRepTypeEnumUtils
+		{
+			static BRepTypeEnum BRepTypeEnumUtils::getBRepTypeEnumByInt(int boundaryBentleyInt)
+			{
+				return BRepTypeEnum(boundaryBentleyInt);
+			}
+		};
+
 	}
-};
-
-
+}
 

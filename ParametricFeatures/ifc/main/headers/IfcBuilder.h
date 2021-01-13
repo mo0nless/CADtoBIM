@@ -21,6 +21,7 @@
 #include "../../smart_feature/headers/SmartFeatureHandler.h"
 
 using namespace Common;
+using namespace Common::Models;
 using namespace Ifc::Main;
 
 namespace Ifc

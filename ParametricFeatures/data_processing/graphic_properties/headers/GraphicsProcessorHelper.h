@@ -33,6 +33,7 @@
 */
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
 
 namespace DataProcessing
 {

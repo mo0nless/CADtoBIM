@@ -1,6 +1,6 @@
 #include "../headers/SmartFeatureTypeEnumUtils.h"
 
-
+using namespace Common::Utilities;
 
 map<SmartFeatureTypeEnum, vector<string>> SmartFeatureTypeEnumUtils::mappedValues = {
 	{ SmartFeatureTypeEnum::BOOLEAN_FEATURE,{ "BooleanFeature" } },

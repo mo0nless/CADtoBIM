@@ -1,30 +1,33 @@
 #pragma once
 
-#include "../../properties/headers/GraphicProperties.h"
-#include <vector>
+//#include "../../properties/headers/GraphicProperties.h"
+//#include <vector>
+
+#include "TopologyStructures.h"
 #include "../../surfaces/headers/MSBsplineSurfaceGraphicProperties.h"
 #include "../../../../common/utils/headers/BRepTypeEnumUtils.h"
 
 using namespace std;
+using namespace Common::Utilities;
 
-struct BoundPoints
-{
-	int boundID;
-	bool isClosed = false;
-	bool isCreated = false;
-	bool isShared;
-	vector<int> faceID;
-	int nodeID;
-	int boundType;
-
-	vector<DPoint3d> pointsVector;
-	vector<int> connectedBoundIDs;
-};
-
-struct MeshTriangles 
-{
-	vector<vector<DPoint3d>> facesTriangulatedVector;
-};
+//struct BoundPoints
+//{
+//	int boundID;
+//	bool isClosed = false;
+//	bool isCreated = false;
+//	bool isShared;
+//	vector<int> faceID;
+//	int nodeID;
+//	int boundType;
+//
+//	vector<DPoint3d> pointsVector;
+//	vector<int> connectedBoundIDs;
+//};
+//
+//struct MeshTriangles 
+//{
+//	vector<vector<DPoint3d>> facesTriangulatedVector;
+//};
 
 class SolidEntityGraphicProperties: public GraphicProperties
 {

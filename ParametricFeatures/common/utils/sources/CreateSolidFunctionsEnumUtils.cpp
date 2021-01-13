@@ -1,5 +1,6 @@
 #include "../headers/CreateSolidFunctionsEnumUtils.h"
 
+using namespace Common::Utilities;
 
 map<CreateSolidFunctionsEnum, string> CreateSolidFunctionsEnumUtils::mappedValues = {
 	{ CreateSolidFunctionsEnum::REVOLVE, "Revolve" },

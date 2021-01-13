@@ -6,6 +6,8 @@
 #include <fstream>
 #include "../../../common/models/headers/SessionManager.h"
 
+using namespace Common::Models;
+
 namespace Ifc
 {
 	namespace Bundle

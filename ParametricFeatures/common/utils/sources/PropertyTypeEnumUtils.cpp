@@ -1,5 +1,7 @@
 #include "../headers/PropertyTypeEnumUtils.h"
 
+using namespace Common::Utilities;
+
 const map<PropertyTypeEnum, string> PropertyTypeEnumUtils::mappedValues =
 {
 	{ PropertyTypeEnum::BINARY,"binary" },

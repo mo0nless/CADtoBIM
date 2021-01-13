@@ -18,7 +18,6 @@
     <ClCompile Include="common\utils\sources\PropertyTypeEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\ReaderPropertiesEnumUtils.cpp" />
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="common\models\sources\ResultStatus.cpp" />
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessor.cpp" />
     <ClCompile Include="data_processing\reader_properties\sources\PropertiesReaderProcessor.cpp" />
@@ -157,7 +156,6 @@
     <ClInclude Include="data_processing\modeler\primitives\headers\ConeGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\CylinderGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\ExtrusionGraphicProperties.h" />
-    <ClInclude Include="data_processing\modeler\primitives\headers\PrimitiveGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\RotationalSweepGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\RuledSweepGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\primitives\headers\SolidPrimitiveProperties.h" />
@@ -171,6 +169,7 @@
     <ClInclude Include="data_processing\modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\surfaces\headers\MSBsplineSurfaceGraphicProperties.h" />
+    <ClInclude Include="data_processing\modeler\brep_solids\headers\TopologyStructures.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

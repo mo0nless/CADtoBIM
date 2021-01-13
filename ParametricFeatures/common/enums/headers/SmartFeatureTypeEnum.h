@@ -1,9 +1,14 @@
 #pragma once
 
-
-enum class SmartFeatureTypeEnum {
-	BOOLEAN_FEATURE,
-	CREATE_SOLIDS,
-	PIPES,
-	UNDEFINED
-};
+namespace Common
+{
+	namespace Enums
+	{
+		enum class SmartFeatureTypeEnum {
+			BOOLEAN_FEATURE,
+			CREATE_SOLIDS,
+			PIPES,
+			UNDEFINED
+		};
+	}
+}

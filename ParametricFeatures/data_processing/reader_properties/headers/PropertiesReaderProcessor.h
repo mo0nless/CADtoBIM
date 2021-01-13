@@ -7,7 +7,6 @@
 #include "../../../ifc/bundle/headers/IfcGraphicPropertiesBundle.h"
 #include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
-#include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
 #include "../../../common/models/headers/SessionManager.h"
 
@@ -19,6 +18,8 @@
 */
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
+using namespace Common::Models;
 
 namespace DataProcessing
 {

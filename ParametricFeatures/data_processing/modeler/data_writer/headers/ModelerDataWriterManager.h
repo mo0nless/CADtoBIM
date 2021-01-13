@@ -61,6 +61,7 @@ USING_NAMESPACE_BENTLEY_MSTNPLATFORM_ELEMENT;
 USING_NAMESPACE_SMARTFEATURE;
 
 using namespace std;
+using namespace Common::Models;
 
 class ModelerDataWriterManager{
 

@@ -9,6 +9,8 @@
 #include "../../logging/headers/Logger.h"
 #include "../../common/models/headers/SessionManager.h"
 
+using namespace Common::Models;
+
 class DataBaseContext {
 
 private:

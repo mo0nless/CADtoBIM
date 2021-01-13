@@ -1,6 +1,6 @@
 #include "../headers/ReaderPropertiesEnumUtils.h"
 
-
+using namespace Common::Utilities;
 
 map<ReaderPropertiesEnum, string> ReaderPropertiesEnumUtils::mappedValues =
 {

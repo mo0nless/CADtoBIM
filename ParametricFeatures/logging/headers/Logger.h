@@ -39,6 +39,7 @@ using boost::shared_ptr;
 
 using namespace std;
 using namespace logging::trivial;
+using namespace Common::Models;
 
 
 namespace Logging 

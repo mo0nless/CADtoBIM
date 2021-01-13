@@ -19,6 +19,8 @@
 
 using namespace std;
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
+using namespace Common::Enums;
 
 class IfcSurfaceEnhancer 
 {

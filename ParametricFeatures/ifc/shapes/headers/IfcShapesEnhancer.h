@@ -8,6 +8,7 @@
 #include <vector>
 
 using namespace Ifc::Bundle;
+using namespace Common::Enums;
 
 struct BoundTypeIfcCurve 
 {

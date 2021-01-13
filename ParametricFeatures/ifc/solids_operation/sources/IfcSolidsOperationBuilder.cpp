@@ -172,22 +172,22 @@ Ifc4::IfcGeometricRepresentationItem* IfcSolidsOperationBuilder::solveBooleanOpe
 	Ifc4::IfcGeometricRepresentationItem* rigthIfcRepresentationItem, IfcReaderPropertiesBundle& ifcReaderPropertiesBundle)
 {
 
-	BooleanFunctions::BooleanFunctionsEnum booleanFunctionsEnum;
+	Enums::BooleanFunctionsEnum booleanFunctionsEnum;
 	for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
 		if (modelerProperty->getPropertyName() == "BooleanFunction") {
-			booleanFunctionsEnum = BooleanFunctions::getBooleanFunctionsEnumByIntValue(stoi(modelerProperty->getPropertyValueAsString()));
+			booleanFunctionsEnum = Enums::getBooleanFunctionsEnumByIntValue(stoi(modelerProperty->getPropertyValueAsString()));
 		}
 	}
 
 	Ifc4::IfcBooleanOperator::Value ifcOperatorBool;
 
-	if (booleanFunctionsEnum == BooleanFunctions::BooleanFunctionsEnum::UNION) {
+	if (booleanFunctionsEnum == Enums::BooleanFunctionsEnum::UNION) {
 		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_UNION;
 	}
-	else if (booleanFunctionsEnum == BooleanFunctions::BooleanFunctionsEnum::DIFFERENCE) {
+	else if (booleanFunctionsEnum == Enums::BooleanFunctionsEnum::DIFFERENCE) {
 		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_DIFFERENCE;
 	}
-	else if (booleanFunctionsEnum == BooleanFunctions::BooleanFunctionsEnum::INTERSECTION) {
+	else if (booleanFunctionsEnum == Enums::BooleanFunctionsEnum::INTERSECTION) {
 		ifcOperatorBool = Ifc4::IfcBooleanOperator::IfcBooleanOperator_INTERSECTION;
 	}
 	else {

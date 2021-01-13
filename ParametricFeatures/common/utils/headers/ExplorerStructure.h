@@ -12,6 +12,8 @@
 
 USING_NAMESPACE_BENTLEY
 
+using namespace Common::Models;
+
 namespace Common
 {
 	namespace Utilities

@@ -9,6 +9,8 @@
 USING_NAMESPACE_BENTLEY_ECOBJECT;
 USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
+using namespace Common::Utilities;
+
 struct NotificationMessage
 {
 	static void send(ElementHandle element, WString functionName, OutputMessagePriority messagePriority)

@@ -3,13 +3,20 @@
 
 #include "../../enums/headers/ShapesTypeEnum.h"
 
-struct ShapesTypeEnumUtils
-{
-	static CurvesBoundaryTypeEnum getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt)
-	{
-		return CurvesBoundaryTypeEnum(boundaryBentleyInt);
-	};
-};
+using namespace Common::Enums;
 
+namespace Common
+{
+	namespace Utilities
+	{
+		struct ShapesTypeEnumUtils
+		{
+			static CurvesBoundaryTypeEnum getCurvesBoundaryTypeEnumByInt(int boundaryBentleyInt)
+			{
+				return CurvesBoundaryTypeEnum(boundaryBentleyInt);
+			};
+		};
+	}
+}
 
 

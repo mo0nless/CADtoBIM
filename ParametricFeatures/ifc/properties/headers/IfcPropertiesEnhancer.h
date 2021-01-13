@@ -8,6 +8,7 @@
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
 
 class IfcPropertiesEnhancer {
 

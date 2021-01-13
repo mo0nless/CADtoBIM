@@ -1,24 +1,24 @@
 #include "../headers/ResultStatusEnum.h"
 
-namespace ResultStatusEnum 
+using namespace Common::Enums;
+
+const map<ResultStatusEnum, string> mappedValues =
 {
-	const map<ResultStatusEnum, string> mappedValues =
-	{
-		{ ResultStatusEnum::SUCCESS,"Success" },
-		{ ResultStatusEnum::NO_RESULT,"NoResult" },
-		{ ResultStatusEnum::ERROR,"Error" },
+	{ ResultStatusEnum::SUCCESS,"Success" },
+	{ ResultStatusEnum::NO_RESULT,"NoResult" },
+	{ ResultStatusEnum::ERROR,"Error" },
 
-	};
+};
 
-	string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) 
-	{
-		for (auto const& element : mappedValues) {
-			if (element.first == resultStatusEnum) {
-				return element.second;
-			}
+string getStringValueOfResultStatusEnum(ResultStatusEnum resultStatusEnum) 
+{
+	for (auto const& element : mappedValues) {
+		if (element.first == resultStatusEnum) {
+			return element.second;
 		}
-
-		return string();
 	}
 
+	return string();
 }
+
+

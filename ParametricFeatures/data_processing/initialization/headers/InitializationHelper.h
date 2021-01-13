@@ -14,6 +14,8 @@
 
 using namespace DataProcessing::GraphicsProperties;
 using namespace DataProcessing::ReaderProperties;
+using namespace Common::Utilities;
+using namespace Common::Models;
 using namespace Common;
 using namespace std;
 

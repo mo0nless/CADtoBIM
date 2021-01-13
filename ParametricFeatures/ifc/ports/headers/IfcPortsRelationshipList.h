@@ -6,6 +6,8 @@
 #include "../../../common/utils/headers/Comparator.h"
 
 using namespace Ifc::Bundle;
+using namespace Common::Utilities;
+using namespace Common::Models;
 
 struct PortElement
 {

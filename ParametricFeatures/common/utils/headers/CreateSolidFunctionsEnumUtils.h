@@ -6,15 +6,22 @@
 #include "../../enums/headers/CreateSolidFunctionsEnum.h"
 
 using namespace std;
+using namespace Common::Enums;
 
-class CreateSolidFunctionsEnumUtils {
+namespace Common
+{
+	namespace Utilities
+	{
+		class CreateSolidFunctionsEnumUtils {
 
-private:
-	CreateSolidFunctionsEnumUtils() {};
-	static map<CreateSolidFunctionsEnum, string> mappedValues;
-	static map<CreateSolidPropertiesEnum, string> mappedValuesProps;
+		private:
+			CreateSolidFunctionsEnumUtils() {};
+			static map<CreateSolidFunctionsEnum, string> mappedValues;
+			static map<CreateSolidPropertiesEnum, string> mappedValuesProps;
 
-public:
-	static CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(string className);
-	static CreateSolidPropertiesEnum getSolidPropertiesEnumByClassName(string className);
-};
+		public:
+			static CreateSolidFunctionsEnum getCreateSolidFunctionsEnumByClassName(string className);
+			static CreateSolidPropertiesEnum getSolidPropertiesEnumByClassName(string className);
+		};
+	}
+}

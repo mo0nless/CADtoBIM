@@ -311,7 +311,6 @@ $(o)GraphicsProcessor$(oext) : $(baseDir)data_processing/graphic_properties/sour
 #-------------------------------------------------------------------------------------
 
 #--- models
-$(o)ResultStatus$(oext) : $(baseDir)common/models/sources/ResultStatus.cpp $(baseDir)common/models/headers/ResultStatus.h
 
 $(o)SessionManager$(oext) : $(baseDir)common/models/sources/SessionManager.cpp $(baseDir)common/models/headers/SessionManager.h
 
@@ -441,8 +440,6 @@ $(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)data_processing/modeler/
 $(o)RuledSweepGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/RuledSweepGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/RuledSweepGraphicProperties.h
 
 $(o)ExtrusionGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/ExtrusionGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/ExtrusionGraphicProperties.h
-
-$(o)PrimitiveGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/PrimitiveGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/PrimitiveGraphicProperties.h
 
 $(o)SolidPrimitiveProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/SolidPrimitiveProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/SolidPrimitiveProperties.h
 
