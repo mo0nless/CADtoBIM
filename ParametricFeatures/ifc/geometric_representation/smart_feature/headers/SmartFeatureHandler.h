@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../../ifc/bundle/headers/IfcReaderPropertiesBundle.h"
-#include "../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
+#include "../../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../bundle/headers/IfcReaderPropertiesBundle.h"
+#include "../../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 #include "../../solids_operation/headers/IfcSolidsOperationBuilder.h"
 
 using namespace Ifc::Bundle;

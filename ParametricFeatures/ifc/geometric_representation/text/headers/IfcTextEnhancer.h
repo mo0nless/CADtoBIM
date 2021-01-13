@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../stdafx.h"
-#include "../../bundle/headers/IfcElementBundle.h"
-#include "../../../data_processing/modeler/text/headers/TextGraphicProperties.h"
+#include "../../../../stdafx.h"
+#include "../../../bundle/headers/IfcElementBundle.h"
+#include "../../../../data_processing/modeler/text/headers/TextGraphicProperties.h"
 #include <vector>
 
 using namespace Ifc::Bundle;

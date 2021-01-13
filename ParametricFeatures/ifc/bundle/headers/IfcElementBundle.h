@@ -10,6 +10,7 @@
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
 
+using namespace Ifc;
 using namespace Ifc::Bundle;
 using namespace Common::Models;
 

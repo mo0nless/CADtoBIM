@@ -2,14 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="common\utils\sources\SmartFeatureTypeEnumUtils.cpp" />
-    <ClCompile Include="ifc\primitives\sources\IfcPrimitivesEnhancer.cpp" />
-    <ClCompile Include="ifc\shapes\sources\IfcShapesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
-    <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
-    <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
-    <ClCompile Include="ifc\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
@@ -27,19 +22,16 @@
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessorHelper.cpp" />
     <ClCompile Include="data_processing\initialization\sources\InitializationHelper.cpp" />
-    <ClCompile Include="ifc\surfaces\sources\IfcSurfaceEnhancer.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcColorMaterialEnhancer.cpp" />
     <ClCompile Include="logging\sources\Logger.cpp" />
     <ClCompile Include="data_base\sources\DataBaseContext.cpp" />
     <ClCompile Include="data_base\models\sources\ComponentsMapping.cpp" />
-    <ClCompile Include="ifc\text\sources\IfcTextEnhancer.cpp" />
     <ClCompile Include="data_base\mapper\sources\EntitiesMapper.cpp" />
     <ClCompile Include="data_base\repositories\sources\ComponentsMappingRepository.cpp" />
     <ClCompile Include="data_base\services\sources\ComponentsMappingService.cpp" />
     <ClCompile Include="data_base\dtos\sources\ComponentsMappingDTO.cpp" />
-    <ClCompile Include="ifc\solids_operation\sources\IfcSolidsOperationBuilder.cpp" />
     <ClCompile Include="ifc\main\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="ifc\bundle\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\bundle\sources\IfcGraphicPropertiesBundle.cpp" />
@@ -71,6 +63,14 @@
     <ClCompile Include="data_processing\modeler\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="data_processing\modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="data_processing\modeler\surfaces\sources\MSBsplineSurfaceGraphicProperties.cpp" />
+    <ClCompile Include="ifc\geometric_representation\brep_solids\sources\IfcBRepRelationship.cpp" />
+    <ClCompile Include="ifc\geometric_representation\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
+    <ClCompile Include="ifc\geometric_representation\primitives\sources\IfcPrimitivesEnhancer.cpp" />
+    <ClCompile Include="ifc\geometric_representation\shapes\sources\IfcShapesEnhancer.cpp" />
+    <ClCompile Include="ifc\geometric_representation\smart_feature\sources\SmartFeatureHandler.cpp" />
+    <ClCompile Include="ifc\geometric_representation\solids_operation\sources\IfcSolidsOperationBuilder.cpp" />
+    <ClCompile Include="ifc\geometric_representation\surfaces\sources\IfcSurfaceEnhancer.cpp" />
+    <ClCompile Include="ifc\geometric_representation\text\sources\IfcTextEnhancer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -82,13 +82,8 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ifc\headers\IfcProductBundle.h" />
-    <ClInclude Include="ifc\primitives\headers\IfcPrimitivesEnhancer.h" />
-    <ClInclude Include="ifc\shapes\headers\IfcShapesEnhancer.h" />
     <ClInclude Include="common\enums\headers\PropertyTypeEnum.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
-    <ClInclude Include="ifc\smart_feature\headers\SmartFeatureHandler.h" />
-    <ClInclude Include="ifc\brep_solids\headers\IfcBRepRelationship.h" />
-    <ClInclude Include="ifc\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="modeler\properties\curves\graphic\headers\ICurvesGraphicsProperties.h" />
     <ClInclude Include="common\enums\headers\BooleanFunctionsEnum.h" />
     <ClInclude Include="common\enums\headers\BRepTypeEnum.h" />
@@ -117,7 +112,6 @@
     <ClInclude Include="ifc\operations_helper\headers\IfcOperationsHelper.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\GraphicsProcessorHelper.h" />
     <ClInclude Include="data_processing\initialization\headers\InitializationHelper.h" />
-    <ClInclude Include="ifc\surfaces\headers\IfcSurfaceEnhancer.h" />
     <ClInclude Include="data_processing\graphic_properties\headers\PolyfaceConvertTool.h" />
     <ClInclude Include="common\utils\headers\Comparator.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
@@ -131,12 +125,10 @@
     <ClInclude Include="data_base\models\headers\ComponentsMapping.h" />
     <ClInclude Include="data_base\headers\DataBaseContext.h" />
     <ClInclude Include="interface_dialog\ListModelManager.h" />
-    <ClInclude Include="ifc\text\headers\IfcTextEnhancer.h" />
     <ClInclude Include="data_base\mapper\headers\EntitiesMapper.h" />
     <ClInclude Include="data_base\repositories\headers\ComponentsMappingRepository.h" />
     <ClInclude Include="data_base\services\headers\ComponentsMappingService.h" />
     <ClInclude Include="data_base\dtos\headers\ComponentsMappingDTO.h" />
-    <ClInclude Include="ifc\solids_operation\headers\IfcSolidsOperationBuilder.h" />
     <ClInclude Include="ifc\main\headers\IfcGeneralInformation.h" />
     <ClInclude Include="ifc\bundle\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\bundle\headers\IfcGraphicPropertiesBundle.h" />
@@ -170,6 +162,14 @@
     <ClInclude Include="data_processing\modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\surfaces\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="data_processing\modeler\brep_solids\headers\TopologyStructures.h" />
+    <ClInclude Include="ifc\geometric_representation\brep_solids\headers\IfcBRepRelationship.h" />
+    <ClInclude Include="ifc\geometric_representation\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
+    <ClInclude Include="ifc\geometric_representation\primitives\headers\IfcPrimitivesEnhancer.h" />
+    <ClInclude Include="ifc\geometric_representation\shapes\headers\IfcShapesEnhancer.h" />
+    <ClInclude Include="ifc\geometric_representation\smart_feature\headers\SmartFeatureHandler.h" />
+    <ClInclude Include="ifc\geometric_representation\solids_operation\headers\IfcSolidsOperationBuilder.h" />
+    <ClInclude Include="ifc\geometric_representation\surfaces\headers\IfcSurfaceEnhancer.h" />
+    <ClInclude Include="ifc\geometric_representation\text\headers\IfcTextEnhancer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />

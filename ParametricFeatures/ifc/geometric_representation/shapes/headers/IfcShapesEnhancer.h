@@ -1,14 +1,17 @@
 #pragma once
 
-#include "../../../stdafx.h"
+#include "../../../../stdafx.h"
 
-#include "../../bundle/headers/IfcElementBundle.h"
-#include "../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
-#include "../../../common/enums/headers/ShapesTypeEnum.h"
+#include "../../../bundle/headers/IfcElementBundle.h"
+#include "../../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../../data_processing/modeler/curves/headers/CurveGraphicProperties.h"
+#include "../../../../common/utils/headers/ShapesTypeEnumUtils.h"
+#include "../../../../common/enums/headers/ShapesTypeEnum.h"
 #include <vector>
 
 using namespace Ifc::Bundle;
 using namespace Common::Enums;
+using namespace Common::Utilities;
 
 struct BoundTypeIfcCurve 
 {

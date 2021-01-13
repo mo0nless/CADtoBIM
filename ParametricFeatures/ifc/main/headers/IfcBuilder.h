@@ -2,23 +2,25 @@
 
 #include <ctime>
 
+#include "IfcElementBuilder.h"
+
 #include "../../main/headers/IfcGeneralInformation.h"
 #include "../../ports/headers/IfcPortsBuilder.h"
 
 
 #include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../shapes/headers/IfcShapesEnhancer.h"
-#include "../../surfaces/headers/IfcSurfaceEnhancer.h"
-#include "../../text/headers/IfcTextEnhancer.h"
+#include "../../geometric_representation/shapes/headers/IfcShapesEnhancer.h"
+#include "../../geometric_representation/surfaces/headers/IfcSurfaceEnhancer.h"
+#include "../../geometric_representation/text/headers/IfcTextEnhancer.h"
+#include "../../geometric_representation/brep_solids/headers/IfcBRepSolidsEnhancer.h"
+#include "../../geometric_representation/primitives/headers/IfcPrimitivesEnhancer.h"
+#include "../../geometric_representation/smart_feature/headers/SmartFeatureHandler.h"
 
 
-#include "IfcElementBuilder.h"
 #include "../../properties/headers/IfcPropertiesEnhancer.h"
-#include "../../brep_solids/headers/IfcBRepSolidsEnhancer.h"
 #include "../../properties/headers/IfcColorMaterialEnhancer.h"
 #include "../../../common/models/headers/SessionManager.h"
 
-#include "../../smart_feature/headers/SmartFeatureHandler.h"
 
 using namespace Common;
 using namespace Common::Models;

@@ -4,7 +4,7 @@ namespace Common
 {
 	namespace Enums
 	{
-		enum IfcDimensionEnum
+		enum class IfcDimensionEnum
 		{
 			dim_2D,
 			dim_3D

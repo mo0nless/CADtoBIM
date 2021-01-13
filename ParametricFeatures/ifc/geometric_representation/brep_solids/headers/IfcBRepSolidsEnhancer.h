@@ -1,17 +1,17 @@
 #pragma once
 
 #include<tuple> // for tuple 
-#include "../../../stdafx.h"
+#include "../../../../stdafx.h"
 
-#include "../../bundle/headers/IfcElementBundle.h"
-#include "../../../data_processing/modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/CylinderGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/ConeGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/BoxGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/SphereGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/TorusGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/RuledSweepGraphicProperties.h"
-#include "../../../common/enums/headers/ShapesTypeEnum.h"
+#include "../../../bundle/headers/IfcElementBundle.h"
+#include "../../../../data_processing/modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/CylinderGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/ConeGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/BoxGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/SphereGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/TorusGraphicProperties.h"
+#include "../../../../data_processing/modeler/primitives/headers/RuledSweepGraphicProperties.h"
+#include "../../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"

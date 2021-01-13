@@ -350,16 +350,16 @@ $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcGraphicP
 $(o)IfcReaderPropertiesBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcReaderPropertiesBundle.cpp $(baseDir)ifc/bundle/headers/IfcReaderPropertiesBundle.h
 
 #--- brep_solids
-$(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepSolidsEnhancer.h
+$(o)IfcBRepSolidsEnhancer$(oext) : $(baseDir)ifc/geometric_representation/brep_solids/sources/IfcBRepSolidsEnhancer.cpp $(baseDir)ifc/geometric_representation/brep_solids/headers/IfcBRepSolidsEnhancer.h
 
-$(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/brep_solids/headers/IfcBRepRelationship.h
+$(o)IfcBRepRelationship$(oext) : $(baseDir)ifc/geometric_representation/brep_solids/sources/IfcBRepRelationship.cpp $(baseDir)ifc/geometric_representation/brep_solids/headers/IfcBRepRelationship.h
 
 
 #--- solids_operation
-$(o)IfcSolidsOperationBuilder$(oext) : $(baseDir)ifc/solids_operation/sources/IfcSolidsOperationBuilder.cpp $(baseDir)ifc/solids_operation/headers/IfcSolidsOperationBuilder.h
+$(o)IfcSolidsOperationBuilder$(oext) : $(baseDir)ifc/geometric_representation/solids_operation/sources/IfcSolidsOperationBuilder.cpp $(baseDir)ifc/geometric_representation/solids_operation/headers/IfcSolidsOperationBuilder.h
 
 #--- text
-$(o)IfcTextEnhancer$(oext) : $(baseDir)ifc/text/sources/IfcTextEnhancer.cpp $(baseDir)ifc/text/headers/IfcTextEnhancer.h
+$(o)IfcTextEnhancer$(oext) : $(baseDir)ifc/geometric_representation/text/sources/IfcTextEnhancer.cpp $(baseDir)ifc/geometric_representation/text/headers/IfcTextEnhancer.h
 
 
 #--- operations_helper
@@ -373,7 +373,7 @@ $(o)IfcPortsRelationshipList$(oext) : $(baseDir)ifc/ports/sources/IfcPortsRelati
 
 
 #--- primitives
-$(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/primitives/headers/IfcPrimitivesEnhancer.h
+$(o)IfcPrimitivesEnhancer$(oext) : $(baseDir)ifc/geometric_representation/primitives/sources/IfcPrimitivesEnhancer.cpp $(baseDir)ifc/geometric_representation/primitives/headers/IfcPrimitivesEnhancer.h
 
 
 #--- properties
@@ -383,13 +383,13 @@ $(o)IfcColorMaterialEnhancer$(oext) : $(baseDir)ifc/properties/sources/IfcColorM
 
 
 #--- shapes
-$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/shapes/headers/IfcShapesEnhancer.h
+$(o)IfcShapesEnhancer$(oext) : $(baseDir)ifc/geometric_representation/shapes/sources/IfcShapesEnhancer.cpp $(baseDir)ifc/geometric_representation/shapes/headers/IfcShapesEnhancer.h
 
 #--- surfaces
-$(o)IfcSurfaceEnhancer$(oext) : $(baseDir)ifc/surfaces/sources/IfcSurfaceEnhancer.cpp $(baseDir)ifc/surfaces/headers/IfcSurfaceEnhancer.h
+$(o)IfcSurfaceEnhancer$(oext) : $(baseDir)ifc/geometric_representation/surfaces/sources/IfcSurfaceEnhancer.cpp $(baseDir)ifc/geometric_representation/surfaces/headers/IfcSurfaceEnhancer.h
 
 #--- smart_feature
-$(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/smart_feature/headers/SmartFeatureHandler.h
+$(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/geometric_representation/smart_feature/sources/SmartFeatureHandler.cpp $(baseDir)ifc/geometric_representation/smart_feature/headers/SmartFeatureHandler.h
 
 
 #-------------------------------------------------------------------------------------
