@@ -5,7 +5,7 @@
 #include "../../../common/utils/headers/NumberUtils.h"
 #include "../../../common/enums/headers/IfcDimensionEnum.h"
 #include "../../../common/utils/headers/Comparator.h"
-#include "../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 using namespace Common::Utilities;
 using namespace Common::Enums;

@@ -7,24 +7,24 @@
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
 #include "../../../ifc/bundle/headers/IfcElementBundle.h"
 
-#include "../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
-#include "../../../data_processing/modeler/text/headers/TextGraphicProperties.h"
+#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../modeler/text/headers/TextGraphicProperties.h"
 
-#include "../../../data_processing/modeler/primitives/headers/ConeGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/CylinderGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/BoxGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/SphereGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/TorusGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/RotationalSweepGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/RuledSweepGraphicProperties.h"
-#include "../../../data_processing/modeler/primitives/headers/ExtrusionGraphicProperties.h"
-#include "../../../data_processing/modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
-#include "../../../data_processing/modeler/surfaces/headers/MSBsplineSurfaceGraphicProperties.h"
+#include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
+#include "../../../modeler/primitives/headers/CylinderGraphicProperties.h"
+#include "../../../modeler/primitives/headers/BoxGraphicProperties.h"
+#include "../../../modeler/primitives/headers/SphereGraphicProperties.h"
+#include "../../../modeler/primitives/headers/TorusGraphicProperties.h"
+#include "../../../modeler/primitives/headers/RotationalSweepGraphicProperties.h"
+#include "../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
+#include "../../../modeler/primitives/headers/ExtrusionGraphicProperties.h"
+#include "../../../modeler/brep_solids/headers/SolidEntityGraphicProperties.h"
+#include "../../../modeler/surfaces/headers/MSBsplineSurfaceGraphicProperties.h"
 
 
 #include "PolyfaceConvertTool.h"
 
-#include "../../../data_processing/modeler/data_writer/headers/ModelerDataWriterManager.h"
+#include "../../../modeler/data_writer/headers/ModelerDataWriterManager.h"
 
 #include "../../../common/utils/headers/Comparator.h"
 
@@ -34,6 +34,8 @@
 
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
+using namespace Modeler;
+using namespace Modeler::BRepSolids;
 
 namespace DataProcessing
 {

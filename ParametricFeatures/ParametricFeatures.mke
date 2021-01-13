@@ -397,71 +397,71 @@ $(o)SmartFeatureHandler$(oext) : $(baseDir)ifc/geometric_representation/smart_fe
 #-------------------------------------------------------------------------------------
 
 #--- brep_solids
-$(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)data_processing/modeler/surfaces/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)data_processing/modeler/surfaces/headers/MSBsplineSurfaceGraphicProperties.h
+$(o)MSBsplineSurfaceGraphicProperties$(oext) : $(baseDir)modeler/surfaces/sources/MSBsplineSurfaceGraphicProperties.cpp $(baseDir)modeler/surfaces/headers/MSBsplineSurfaceGraphicProperties.h
 
-$(o)SolidEntityGraphicProperties$(oext) : $(baseDir)data_processing/modeler/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)data_processing/modeler/brep_solids/headers/SolidEntityGraphicProperties.h
+$(o)SolidEntityGraphicProperties$(oext) : $(baseDir)modeler/brep_solids/sources/SolidEntityGraphicProperties.cpp $(baseDir)modeler/brep_solids/headers/SolidEntityGraphicProperties.h
 
 
 #--- curves
-$(o)BsplineGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/BsplineGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/BsplineGraphicProperties.h
+$(o)BsplineGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/BsplineGraphicProperties.cpp $(baseDir)modeler/curves/headers/BsplineGraphicProperties.h
 
-$(o)ArcGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/ArcGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/ArcGraphicProperties.h
+$(o)ArcGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/ArcGraphicProperties.cpp $(baseDir)modeler/curves/headers/ArcGraphicProperties.h
 
-$(o)InterpolationGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/InterpolationGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/InterpolationGraphicProperties.h
+$(o)InterpolationGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/InterpolationGraphicProperties.cpp $(baseDir)modeler/curves/headers/InterpolationGraphicProperties.h
 
-$(o)LineGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/LineGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/LineGraphicProperties.h
+$(o)LineGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/LineGraphicProperties.cpp $(baseDir)modeler/curves/headers/LineGraphicProperties.h
 
-$(o)LineStringGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/LineStringGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/LineStringGraphicProperties.h
+$(o)LineStringGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/LineStringGraphicProperties.cpp $(baseDir)modeler/curves/headers/LineStringGraphicProperties.h
 
-$(o)PointStringGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/PointStringGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/PointStringGraphicProperties.h
+$(o)PointStringGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/PointStringGraphicProperties.cpp $(baseDir)modeler/curves/headers/PointStringGraphicProperties.h
 
-$(o)AkimaGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/AkimaGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/AkimaGraphicProperties.h
+$(o)AkimaGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/AkimaGraphicProperties.cpp $(baseDir)modeler/curves/headers/AkimaGraphicProperties.h
 
-$(o)CurveGraphicProperties$(oext) : $(baseDir)data_processing/modeler/curves/sources/CurveGraphicProperties.cpp $(baseDir)data_processing/modeler/curves/headers/CurveGraphicProperties.h
+$(o)CurveGraphicProperties$(oext) : $(baseDir)modeler/curves/sources/CurveGraphicProperties.cpp $(baseDir)modeler/curves/headers/CurveGraphicProperties.h
 
 
 #--- data_writer
-$(o)ModelerDataWriterManager$(oext) : $(baseDir)data_processing/modeler/data_writer/sources/ModelerDataWriterManager.cpp $(baseDir)data_processing/modeler/data_writer/headers/ModelerDataWriterManager.h
+$(o)ModelerDataWriterManager$(oext) : $(baseDir)modeler/data_writer/sources/ModelerDataWriterManager.cpp $(baseDir)modeler/data_writer/headers/ModelerDataWriterManager.h
 
 
 #--- primitives
-$(o)BoxGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/BoxGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/BoxGraphicProperties.h
+$(o)BoxGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/BoxGraphicProperties.cpp $(baseDir)modeler/primitives/headers/BoxGraphicProperties.h
 
-$(o)ConeGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/ConeGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/ConeGraphicProperties.h
+$(o)ConeGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/ConeGraphicProperties.cpp $(baseDir)modeler/primitives/headers/ConeGraphicProperties.h
 
-$(o)SphereGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/SphereGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/SphereGraphicProperties.h
+$(o)SphereGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/SphereGraphicProperties.cpp $(baseDir)modeler/primitives/headers/SphereGraphicProperties.h
 
-$(o)CylinderGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/CylinderGraphicProperties.h
+$(o)CylinderGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/CylinderGraphicProperties.cpp $(baseDir)modeler/primitives/headers/CylinderGraphicProperties.h
 
-$(o)TorusGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/TorusGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/TorusGraphicProperties.h
+$(o)TorusGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/TorusGraphicProperties.cpp $(baseDir)modeler/primitives/headers/TorusGraphicProperties.h
 
-$(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/RotationalSweepGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/RotationalSweepGraphicProperties.h
+$(o)RotationalSweepGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/RotationalSweepGraphicProperties.cpp $(baseDir)modeler/primitives/headers/RotationalSweepGraphicProperties.h
 
-$(o)RuledSweepGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/RuledSweepGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/RuledSweepGraphicProperties.h
+$(o)RuledSweepGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/RuledSweepGraphicProperties.cpp $(baseDir)modeler/primitives/headers/RuledSweepGraphicProperties.h
 
-$(o)ExtrusionGraphicProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/ExtrusionGraphicProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/ExtrusionGraphicProperties.h
+$(o)ExtrusionGraphicProperties$(oext) : $(baseDir)modeler/primitives/sources/ExtrusionGraphicProperties.cpp $(baseDir)modeler/primitives/headers/ExtrusionGraphicProperties.h
 
-$(o)SolidPrimitiveProperties$(oext) : $(baseDir)data_processing/modeler/primitives/sources/SolidPrimitiveProperties.cpp $(baseDir)data_processing/modeler/primitives/headers/SolidPrimitiveProperties.h
+$(o)SolidPrimitiveProperties$(oext) : $(baseDir)modeler/primitives/sources/SolidPrimitiveProperties.cpp $(baseDir)modeler/primitives/headers/SolidPrimitiveProperties.h
 
 
 #--- properties
 
-$(o)GraphicProperties$(oext) : $(baseDir)data_processing/modeler/properties/sources/GraphicProperties.cpp $(baseDir)data_processing/modeler/properties/headers/GraphicProperties.h
+$(o)GraphicProperties$(oext) : $(baseDir)modeler/properties/sources/GraphicProperties.cpp $(baseDir)modeler/properties/headers/GraphicProperties.h
 
-$(o)SmartFeatureContainer$(oext) : $(baseDir)data_processing/modeler/properties/smart_feature/sources/SmartFeatureContainer.cpp $(baseDir)data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h
+$(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureContainer.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureContainer.h
 
-$(o)SmartFeatureTreeNode$(oext) : $(baseDir)data_processing/modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)data_processing/modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
+$(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 
-$(o)ReaderPropertyDefinition$(oext) : $(baseDir)data_processing/modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)data_processing/modeler/properties/reader/headers/ReaderPropertyDefinition.h
+$(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
 
-$(o)ReaderPropertiesBundle$(oext) : $(baseDir)data_processing/modeler/properties/reader/sources/ReaderPropertiesBundle.cpp $(baseDir)data_processing/modeler/properties/reader/headers/ReaderPropertiesBundle.h
+$(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertiesBundle.h
 
 
 #--- shapes
-$(o)ShapesGraphicProperties$(oext) : $(baseDir)data_processing/modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)data_processing/modeler/shapes/headers/ShapesGraphicProperties.h
+$(o)ShapesGraphicProperties$(oext) : $(baseDir)modeler/shapes/sources/ShapesGraphicProperties.cpp $(baseDir)modeler/shapes/headers/ShapesGraphicProperties.h
 
 #--- text
-$(o)TextGraphicProperties$(oext) : $(baseDir)data_processing/modeler/text/sources/TextGraphicProperties.cpp $(baseDir)data_processing/modeler/text/headers/TextGraphicProperties.h
+$(o)TextGraphicProperties$(oext) : $(baseDir)modeler/text/sources/TextGraphicProperties.cpp $(baseDir)modeler/text/headers/TextGraphicProperties.h
 
 
 

@@ -2,8 +2,8 @@
 
 #include "../../../../stdafx.h"
 
-#include "../../../../data_processing/modeler/curves/headers/CurveGraphicProperties.h"
-#include "../../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../../modeler/curves/headers/CurveGraphicProperties.h"
+#include "../../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 #include "../../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../../bundle/headers/IfcElementBundle.h"

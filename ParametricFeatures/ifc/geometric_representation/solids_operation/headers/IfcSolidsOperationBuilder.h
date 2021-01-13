@@ -3,7 +3,7 @@
 #include "../../../../stdafx.h"
 #include "../../../../common/utils/headers/CreateSolidFunctionsEnumUtils.h"
 #include "../../../../common/enums/headers/BooleanFunctionsEnum.h"
-#include "../../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../primitives/headers/IfcPrimitivesEnhancer.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../../bundle/headers/IfcElementBundle.h"

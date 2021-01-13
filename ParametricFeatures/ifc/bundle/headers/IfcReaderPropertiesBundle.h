@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../../stdafx.h"
-#include "../../../data_processing/modeler/properties/reader/headers/ReaderPropertiesBundle.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 
 namespace Ifc
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../common/enums/headers/PrimitiveTypeEnum.h"
+#include "../../../common/enums/headers/PrimitiveTypeEnum.h"
 #include "../../properties/headers/GraphicProperties.h"
 
 using namespace Common::Enums;

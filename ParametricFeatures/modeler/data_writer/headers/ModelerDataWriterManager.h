@@ -3,7 +3,7 @@
 #include <fstream> 
 #include <mutex>
 
-#include "../../../../common/models/headers/SessionManager.h"
+#include "../../../common/models/headers/SessionManager.h"
 
 #include <PSolid/PSolidCoreAPI.h>
 #include <Bentley/WString.h>

@@ -1,5 +1,7 @@
 #include "../headers/SolidEntityGraphicProperties.h"
 
+using namespace Modeler::BRepSolids;
+
 SolidEntityGraphicProperties::SolidEntityGraphicProperties()
 {
 }

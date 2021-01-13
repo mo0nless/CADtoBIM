@@ -8,7 +8,7 @@
 #include "../../ports/headers/IfcPortsBuilder.h"
 
 
-#include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../geometric_representation/shapes/headers/IfcShapesEnhancer.h"
 #include "../../geometric_representation/surfaces/headers/IfcSurfaceEnhancer.h"
 #include "../../geometric_representation/text/headers/IfcTextEnhancer.h"
