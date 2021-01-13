@@ -6,7 +6,7 @@
 #include "../../graphic_properties/headers/GraphicsProcessor.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/models/headers/SessionManager.h"
-#include "../../../modeler\data_writer\headers\ModelerDataWriterManager.h"
+#include "../../modeler/data_writer/headers/ModelerDataWriterManager.h"
 
 /** @ingroup data_processing Data Processing
 *  @{

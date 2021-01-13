@@ -5,7 +5,7 @@
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 
 #include "../../../ifc/bundle/headers/IfcGraphicPropertiesBundle.h"
-#include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"

@@ -4,7 +4,7 @@
 
 #include <DgnPlatform/ElementGeometry.h>
 #include <vector>
-#include "../../../common/utils/headers/ShapesTypeEnumUtils.h"
+#include "../../../../common/utils/headers/ShapesTypeEnumUtils.h"
 
 using namespace std;
 

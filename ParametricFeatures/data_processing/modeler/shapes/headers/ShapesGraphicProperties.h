@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../curves/headers/CurveGraphicProperties.h"
 #include "../../curves/headers/BsplineGraphicProperties.h"
 #include "../../curves/headers/ArcGraphicProperties.h"
 #include "../../curves/headers/InterpolationGraphicProperties.h"

@@ -3,7 +3,7 @@
 #include "../../../stdafx.h"
 
 #include "../../bundle/headers/IfcElementBundle.h"
-#include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../data_processing/modeler/shapes/headers/ShapesGraphicProperties.h"
 #include "../../../common/enums/headers/ShapesTypeEnum.h"
 #include <vector>
 

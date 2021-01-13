@@ -5,8 +5,8 @@
 #include <string>
 #include "IfcGraphicPropertiesBundle.h"
 #include "IfcReaderPropertiesBundle.h"
-#include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
+#include "../../../data_processing/modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
+#include "../../../data_processing/modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
 

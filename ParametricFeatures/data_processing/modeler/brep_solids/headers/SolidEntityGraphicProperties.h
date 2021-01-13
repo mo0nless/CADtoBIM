@@ -2,8 +2,8 @@
 
 #include "../../properties/headers/GraphicProperties.h"
 #include <vector>
-#include "MSBsplineSurfaceGraphicProperties.h"
-#include "../../../common/utils/headers/BRepTypeEnumUtils.h"
+#include "../../surfaces/headers/MSBsplineSurfaceGraphicProperties.h"
+#include "../../../../common/utils/headers/BRepTypeEnumUtils.h"
 
 using namespace std;
 
