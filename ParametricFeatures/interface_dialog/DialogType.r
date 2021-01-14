@@ -3,7 +3,7 @@
 #include <RmgrTools\Tools\cexprrsc.r.h>
 
 
-CexprName 0 = {"ifcgeneralinfo"};
+CexprName 0 = {"usergeneralinfo"};
 CexprName 1 = {"actorName"};
 CexprName 2 = {"actorSurName"};
 CexprName 3 = {"actorEmail"};
@@ -13,10 +13,10 @@ CexprName 5 = {"browsedFolder"};
 
 CexprNamedStructures 1 =
     {{
-    {0,  	0,	337237019},	/*  ifcgeneralinfo  */
+    {0,  	0,	1765325851},	/*  usergeneralinfo  */
     }};
 
-/*    struct ifcgeneralinfo    */
+/*    struct usergeneralinfo    */
 CexprType 0 = {18,	2048,	0,	0,	0};
 CexprType 1 = {4,	4,	0,	65535,	0};
 

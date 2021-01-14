@@ -218,14 +218,14 @@ enum
 +----------------------------------------------------------------------*/
 #if !defined (resource)
 
-typedef struct ifcgeneralinfo
+typedef struct usergeneralinfo
 {
 	WChar actorName[255];
 	WChar actorSurName[255];
 	WChar actorEmail[255];
 	int actorRole;
 	WChar browsedFolder[255];
-} IfcGeneralInfo;
+} UserGeneralInfo;
 
 #endif
 

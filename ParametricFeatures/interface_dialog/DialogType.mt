@@ -10,4 +10,4 @@
 +----------------------------------------------------------------------*/
 #include "DialogIds.h"
 
-publishStructures (ifcgeneralinfo);
+publishStructures (usergeneralinfo);

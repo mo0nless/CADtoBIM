@@ -148,7 +148,7 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 	//mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber1", &dlog_optionbtnNumber1);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber2", &dlog_optionbtnNumber2);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_BOOL), "dlog_ToggleSingleElementButton", &dlog_ToggleSingleElementButton);
-	mdlDialog_publishComplexVariable(setP, "ifcgeneralinfo", "ifcGeneralInfo", &ifcGeneralInfo);
+	mdlDialog_publishComplexVariable(setP, "usergeneralinfo", "userGeneralInfo", &userGeneralInfo);
 
 	/*-----------------------------------------------------------------+
 	| mdlDialog_hookPublish:

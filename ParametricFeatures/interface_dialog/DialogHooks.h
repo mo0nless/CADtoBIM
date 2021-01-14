@@ -37,7 +37,7 @@ using namespace Ifc::Main;
 the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
-static IfcGeneralInfo ifcGeneralInfo = { L" " , L" ", L" ", 14, L" "};
+static UserGeneralInfo userGeneralInfo = { L" " , L" ", L" ", 14, L" "};
 static bool dlog_ToggleSingleElementButton = false;
 
 static int dlog_colorNumber = 5;
@@ -205,12 +205,12 @@ namespace DialogHooks
 			ExplorerStructure::getInstance()->updateFileNameFilePath();
 
 			WString name, sname, email;
-			name = ifcGeneralInfo.actorName;
-			sname = ifcGeneralInfo.actorSurName;
-			email = ifcGeneralInfo.actorEmail;
+			name = userGeneralInfo.actorName;
+			sname = userGeneralInfo.actorSurName;
+			email = userGeneralInfo.actorEmail;
 
 			IfcGeneralInformation* ifcGInfo = IfcGeneralInformation::getInstance();
-			ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+			ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(userGeneralInfo.actorRole));
 			ifcGInfo->setActorName(StringUtils::getString(name));
 			ifcGInfo->setActorSurName(StringUtils::getString(sname));
 			ifcGInfo->setActorEmail(StringUtils::getString(email));
@@ -244,7 +244,7 @@ namespace DialogHooks
 			WString path = StringUtils::getWString(ExplorerStructure::mainFolderPath);
 			
 			//Copy the NEW path in the TEXT's published variable
-			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
+			wcscpy_s(userGeneralInfo.browsedFolder, path.GetWCharCP());
 
 			//Synch with the TEXT element through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
@@ -258,7 +258,7 @@ namespace DialogHooks
 			
 			//Copy the NEW path in the TEXT's published variable
 			WString path = StringUtils::getWString(ExplorerStructure::mainFolderPath);
-			wcscpy_s(ifcGeneralInfo.browsedFolder, path.GetWCharCP());
+			wcscpy_s(userGeneralInfo.browsedFolder, path.GetWCharCP());
 
 			//Synch with the TEXT element through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogBrowse, NULL);
@@ -318,13 +318,13 @@ namespace DialogHooks
 				email = StringUtils::getWString(ifcGInfo->getActorEmail());
 
 				//Copy the NEW path in the TEXT's published variable
-				wcscpy_s(ifcGeneralInfo.actorName, name.GetWCharCP());
-				wcscpy_s(ifcGeneralInfo.actorSurName, sname.GetWCharCP());
-				wcscpy_s(ifcGeneralInfo.actorEmail, email.GetWCharCP());
+				wcscpy_s(userGeneralInfo.actorName, name.GetWCharCP());
+				wcscpy_s(userGeneralInfo.actorSurName, sname.GetWCharCP());
+				wcscpy_s(userGeneralInfo.actorEmail, email.GetWCharCP());
 
 				//Synch with all the TEXT elements through the SYNONYMID to notify the change
 				mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
-				ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+				ifcGInfo->setActorRole(Ifc4::IfcRoleEnum::Value(userGeneralInfo.actorRole));
 
 				created = true;
 			}
@@ -344,7 +344,7 @@ namespace DialogHooks
 			//Synch with all the TEXT elements through the SYNONYMID to notify the change
 			mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
 
-			IfcGeneralInformation::getInstance()->setActorRole(Ifc4::IfcRoleEnum::Value(ifcGeneralInfo.actorRole));
+			IfcGeneralInformation::getInstance()->setActorRole(Ifc4::IfcRoleEnum::Value(userGeneralInfo.actorRole));
 
 			return true;
 		}

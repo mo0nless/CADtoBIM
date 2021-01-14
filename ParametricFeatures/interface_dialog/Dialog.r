@@ -338,7 +338,7 @@ DItem_OptionButtonRsc  OPTIONROLEACTORID_Dialog =
     {
     SYNONYMID_ActorInfo, NOHELP, LHELPCMD, HOOKITEMID_ActorOption_Dialog, NOARG,
     TXT_OptionRoleActor,
-    "ifcGeneralInfo.actorRole",
+    "userGeneralInfo.actorRole",
     {
     /*{NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option11},
     {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Option12},
@@ -403,7 +403,7 @@ DItem_TextRsc PATHTEXTID_Dialog =
 	NOMASK, 
 	NOCONCAT,
     TXT_PathText,
-    "ifcGeneralInfo.browsedFolder"
+    "userGeneralInfo.browsedFolder"
     };
 
 DItem_TextRsc ACTORNAMETEXTID_Dialog =
@@ -414,7 +414,7 @@ DItem_TextRsc ACTORNAMETEXTID_Dialog =
 	NOMASK, 
 	NOCONCAT,
     TXT_NameText,
-    "ifcGeneralInfo.actorName"
+    "userGeneralInfo.actorName"
     };
 
 DItem_TextRsc ACTORSURNAMETEXTID_Dialog =
@@ -425,7 +425,7 @@ DItem_TextRsc ACTORSURNAMETEXTID_Dialog =
 	NOMASK, 
 	NOCONCAT,
     TXT_SurNameText,
-    "ifcGeneralInfo.actorSurName"
+    "userGeneralInfo.actorSurName"
     };
 
 DItem_TextRsc ACTOREMAILTEXTID_Dialog =
@@ -436,7 +436,7 @@ DItem_TextRsc ACTOREMAILTEXTID_Dialog =
 	NOMASK, 
 	NOCONCAT,
     TXT_EmailText,
-    "ifcGeneralInfo.actorEmail"
+    "userGeneralInfo.actorEmail"
     };
 
 DItem_TextRsc TEXTID_DialogColor =
