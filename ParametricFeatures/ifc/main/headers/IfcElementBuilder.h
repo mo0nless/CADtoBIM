@@ -4,6 +4,7 @@
 #include "../../bundle/headers/IfcElementBundle.h"
 
 using namespace Ifc::Bundle;
+using namespace DataBase::Services;
 
 namespace Ifc
 {

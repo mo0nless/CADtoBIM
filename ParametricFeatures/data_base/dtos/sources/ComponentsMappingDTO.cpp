@@ -1,5 +1,7 @@
 #include "..\headers\ComponentsMappingDTO.h"
 
+using namespace DataBase::DTOs;
+
 ComponentsMappingDTO::ComponentsMappingDTO()
 {
 	this->_modelerComponentName = "";

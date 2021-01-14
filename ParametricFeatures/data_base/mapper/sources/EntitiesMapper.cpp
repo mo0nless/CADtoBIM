@@ -1,5 +1,7 @@
 #include "..\headers\EntitiesMapper.h"
 
+using namespace DataBase::Mapper;
+
 ComponentsMappingDTO * EntitiesMapper::map(ComponentsMapping * componentsMapping)
 {
 	ComponentsMappingDTO* componentsMappingDTO =  new ComponentsMappingDTO();

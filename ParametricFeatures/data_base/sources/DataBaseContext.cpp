@@ -1,5 +1,7 @@
 #include "..\headers\DataBaseContext.h"
 
+using namespace DataBase;
+
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)

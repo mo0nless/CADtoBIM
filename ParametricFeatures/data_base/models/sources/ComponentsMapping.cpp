@@ -1,5 +1,7 @@
 #include "..\headers\ComponentsMapping.h"
 
+using namespace DataBase::Models;
+
 string ComponentsMapping::getModelerComponentName()
 {
 	return _modelerComponentName;

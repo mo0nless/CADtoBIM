@@ -1,5 +1,7 @@
 #include "..\headers\ComponentsMappingService.h"
 
+using namespace DataBase::Services;
+
 ComponentsMappingService::ComponentsMappingService(Logging::Logger * logger)
 {
 	this->_logger = logger;

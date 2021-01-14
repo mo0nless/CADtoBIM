@@ -5,23 +5,29 @@
 
 using namespace std;
 
-class ComponentsMappingDTO {
-private:
-	int _id;
+namespace DataBase
+{
+	namespace DTOs
+	{
+		class ComponentsMappingDTO {
+		private:
+			int _id;
 
-	string _modelerComponentName;
-	string _ifcComponentName;
-	string _ifcTypeComponentName;
-	
-public:
-	ComponentsMappingDTO();
+			string _modelerComponentName;
+			string _ifcComponentName;
+			string _ifcTypeComponentName;
 
-	string getModelerComponentName();
-	void setModelerComponentName(string modelerComponentName);
+		public:
+			ComponentsMappingDTO();
 
-	string getIfcComponentName();
-	void setIfcComponentName(string ifcComponentName);
+			string getModelerComponentName();
+			void setModelerComponentName(string modelerComponentName);
 
-	string getIfcComponentTypeName();
-	void setIfcComponentTypeName(string ifcComponentTypeName);
-};
+			string getIfcComponentName();
+			void setIfcComponentName(string ifcComponentName);
+
+			string getIfcComponentTypeName();
+			void setIfcComponentTypeName(string ifcComponentTypeName);
+		};
+	}
+}

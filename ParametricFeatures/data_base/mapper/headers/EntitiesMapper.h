@@ -4,10 +4,19 @@
 #include "../../../data_base/models/headers/ComponentsMapping.h"
 #include "../../../data_base/dtos/headers/ComponentsMappingDTO.h"
 
-class EntitiesMapper {
+using namespace DataBase::DTOs;
+using namespace DataBase::Models;
 
-public:
-	ComponentsMappingDTO* map(ComponentsMapping* componentsMapping);
+namespace DataBase
+{
+	namespace Mapper
+	{
+		class EntitiesMapper {
 
-	vector<ComponentsMappingDTO*> map(vector<ComponentsMapping*> componentsMappings);
- };
+		public:
+			ComponentsMappingDTO* map(ComponentsMapping* componentsMapping);
+
+			vector<ComponentsMappingDTO*> map(vector<ComponentsMapping*> componentsMappings);
+		};
+	}
+}

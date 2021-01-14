@@ -3,22 +3,28 @@
 
 using namespace std;
 
-class ComponentsMapping {
+namespace DataBase
+{
+	namespace Models
+	{
+		class ComponentsMapping {
 
-private:
-	int _id;
+		private:
+			int _id;
 
-	string _modelerComponentName;
-	string _ifcTypeComponentName;
-	string _ifcComponentName;
+			string _modelerComponentName;
+			string _ifcTypeComponentName;
+			string _ifcComponentName;
 
-public:
-	string getModelerComponentName();
-	void setModelerComponentName(string modelerComponentName);
+		public:
+			string getModelerComponentName();
+			void setModelerComponentName(string modelerComponentName);
 
-	string getIfcComponentName();
-	void setIfcComponentName(string ifcComponentName);
+			string getIfcComponentName();
+			void setIfcComponentName(string ifcComponentName);
 
-	string getIfcComponentTypeName();
-	void setIfcComponentTypeName(string ifcComponentTypeName);
-};
+			string getIfcComponentTypeName();
+			void setIfcComponentTypeName(string ifcComponentTypeName);
+		};
+	}
+}

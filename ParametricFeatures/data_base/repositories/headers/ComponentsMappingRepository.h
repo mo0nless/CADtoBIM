@@ -3,14 +3,22 @@
 #include "../../../data_base/headers/DataBaseContext.h"
 #include "../../../logging/headers/Logger.h"
 
-class ComponentsMappingRepository {
+using namespace DataBase;
 
-private:
-	Logging::Logger* _logger;
+namespace DataBase
+{
+	namespace Repositories
+	{
+		class ComponentsMappingRepository {
 
-public:
-	ComponentsMappingRepository(Logging::Logger* logger);
+		private:
+			Logging::Logger* _logger;
 
-	vector<ComponentsMapping*> getAll();
+		public:
+			ComponentsMappingRepository(Logging::Logger* logger);
 
-};
+			vector<ComponentsMapping*> getAll();
+
+		};
+	}
+}
