@@ -1,5 +1,7 @@
 #include "../headers/MSBsplineSurfaceGraphicProperties.h"
 
+using namespace Modeler::Surfaces;
+
 MSBsplineSurfaceGraphicProperties::MSBsplineSurfaceGraphicProperties()
 {
 	this->mUDegree = 0;

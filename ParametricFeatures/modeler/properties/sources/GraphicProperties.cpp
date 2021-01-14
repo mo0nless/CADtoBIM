@@ -1,5 +1,7 @@
 #include "../headers/GraphicProperties.h"
 
+using namespace Modeler::Properties;
+	
 GraphicProperties::GraphicProperties()
 {
 	this->volume = 0;

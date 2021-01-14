@@ -3,20 +3,30 @@
 #include "SolidPrimitiveProperties.h"
 #include "../../shapes/headers/ShapesGraphicProperties.h"
 
-class RuledSweepGraphicProperties : public SolidPrimitiveProperties {
+using namespace Modeler::Shapes; 
+using namespace Modeler::Primitives;
 
-private:
-	vector<ShapesGraphicProperties*> mSectionCurvesVector;
+namespace Modeler
+{
+	namespace Primitives
+	{
 
-public:
-	RuledSweepGraphicProperties();
+		class RuledSweepGraphicProperties : public SolidPrimitiveProperties {
 
-	vector<ShapesGraphicProperties*> getSectionCurvesVector();
-	void addSectionCurve(ShapesGraphicProperties* newSectionCurve);
+		private:
+			vector<ShapesGraphicProperties*> mSectionCurvesVector;
 
-	double getWidth();
-	void setWidth(double newWidth);
+		public:
+			RuledSweepGraphicProperties();
 
-	double getHeight();
-	void setHeight(double newHeight);
-};
+			vector<ShapesGraphicProperties*> getSectionCurvesVector();
+			void addSectionCurve(ShapesGraphicProperties* newSectionCurve);
+
+			double getWidth();
+			void setWidth(double newWidth);
+
+			double getHeight();
+			void setHeight(double newHeight);
+		};
+	}
+}

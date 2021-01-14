@@ -4,6 +4,7 @@
 
 
 #include "../../graphic_properties/headers/GraphicsProcessor.h"
+#include "../../reader_properties/headers/PropertiesReaderProcessor.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../modeler/data_writer/headers/ModelerDataWriterManager.h"
@@ -17,6 +18,7 @@ using namespace DataProcessing::ReaderProperties;
 using namespace Common::Utilities;
 using namespace Common::Models;
 using namespace Common;
+using namespace Modeler::DataWriter;
 using namespace std;
 
 namespace DataProcessing

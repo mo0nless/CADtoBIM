@@ -6,7 +6,8 @@
 #include <fstream>
 #include "../../../common/models/headers/SessionManager.h"
 
-using namespace Common::Models;
+using namespace Common::Models; 
+using namespace Modeler::Properties;
 
 namespace Ifc
 {

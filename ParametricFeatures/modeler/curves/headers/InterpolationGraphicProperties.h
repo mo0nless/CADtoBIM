@@ -2,24 +2,30 @@
 
 #include "CurveGraphicProperties.h"
 
-class InterpolationGraphicProperties : public CurveGraphicProperties
+using namespace Modeler::Curves;
+
+namespace Modeler
 {
+	namespace Curves
+	{
+		class InterpolationGraphicProperties : public CurveGraphicProperties
+		{
 
-private:
-	int mDegree;
-	int mOrder;
-	bool mIsPeriodic;
+		private:
+			int mDegree;
+			int mOrder;
+			bool mIsPeriodic;
 
-public:
-	InterpolationGraphicProperties();
+		public:
+			InterpolationGraphicProperties();
 
-	void setOrder(size_t newOrder);
-	int getOrder();
+			void setOrder(size_t newOrder);
+			int getOrder();
 
-	int getDegree();
+			int getDegree();
 
-	void setIsPeriodic(bool newIsPeriodic);
-	bool getIsPeriodic();
-
-
-};
+			void setIsPeriodic(bool newIsPeriodic);
+			bool getIsPeriodic();
+		};
+	}
+}

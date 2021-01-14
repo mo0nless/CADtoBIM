@@ -13,6 +13,7 @@ using namespace Ifc::GeometricRepresentation;
 using namespace Common::Utilities;
 using namespace Common::Enums;
 using namespace Common;
+using namespace Modeler::Properties;
 
 namespace Ifc
 {

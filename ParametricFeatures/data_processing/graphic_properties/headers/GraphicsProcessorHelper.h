@@ -8,6 +8,7 @@
 #include "../../../ifc/bundle/headers/IfcElementBundle.h"
 
 #include "../../../modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../modeler/curves/headers/CurveGraphicProperties.h"
 #include "../../../modeler/text/headers/TextGraphicProperties.h"
 
 #include "../../../modeler/primitives/headers/ConeGraphicProperties.h"
@@ -36,6 +37,11 @@ using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 using namespace Modeler;
 using namespace Modeler::BRepSolids;
+using namespace Modeler::Curves;
+using namespace Modeler::Shapes;
+using namespace Modeler::Surfaces;
+using namespace Modeler::TextString;
+using namespace Modeler::DataWriter;
 
 namespace DataProcessing
 {

@@ -1,5 +1,6 @@
 #include "../headers/SmartFeatureTreeNode.h"
 
+using namespace Modeler::Properties;
 
 SmartFeatureTreeNode::SmartFeatureTreeNode(long newGlobalNodeId, long newLocalNodeId, long newLocalParentNodeId)
 {

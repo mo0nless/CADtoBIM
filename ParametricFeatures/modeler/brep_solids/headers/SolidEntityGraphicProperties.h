@@ -3,9 +3,13 @@
 #include "TopologyStructures.h"
 #include "../../surfaces/headers/MSBsplineSurfaceGraphicProperties.h"
 #include "../../../common/utils/headers/BRepTypeEnumUtils.h"
+#include "../../../common/enums/headers/BRepTypeEnum.h"
 
 using namespace std;
 using namespace Common::Utilities;
+using namespace Common::Enums; 
+using namespace Modeler::Surfaces;
+using namespace Modeler::Properties;
 
 namespace Modeler
 {

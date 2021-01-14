@@ -3,24 +3,32 @@
 
 #include "SolidPrimitiveProperties.h"
 
-class CylinderGraphicProperties:public SolidPrimitiveProperties {
+using namespace Modeler::Primitives;
 
-private:
-	double _radius;
-	double _height;
-	DPoint3d _baseOrigin;
+namespace Modeler
+{
+	namespace Primitives
+	{
+		class CylinderGraphicProperties :public SolidPrimitiveProperties {
 
-public:
-	CylinderGraphicProperties();
+		private:
+			double _radius;
+			double _height;
+			DPoint3d _baseOrigin;
 
-	double getRadius();
-	void setRadius(double newRadius);
+		public:
+			CylinderGraphicProperties();
 
-	double getHeight();
-	void setHeight(double newHeight);
+			double getRadius();
+			void setRadius(double newRadius);
 
-	DPoint3d getBaseOrigin();
-	void setBaseOrigin(DPoint3d newBaseOrigin);
+			double getHeight();
+			void setHeight(double newHeight);
 
-	string toString();
-};
+			DPoint3d getBaseOrigin();
+			void setBaseOrigin(DPoint3d newBaseOrigin);
+
+			string toString();
+		};
+	}
+}

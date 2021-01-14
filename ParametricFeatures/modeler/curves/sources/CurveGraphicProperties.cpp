@@ -1,5 +1,7 @@
 #include "../headers/CurveGraphicProperties.h"
 
+using namespace Modeler::Curves;
+
 CurveGraphicProperties::CurveGraphicProperties(CurvesPrimitivesTypeEnum newCurveType)
 {
 	this->_curvesTypeEnum = newCurveType;

@@ -1,6 +1,6 @@
 #include "../headers/SmartFeatureContainer.h"
 
-
+using namespace Modeler::Properties;
 
 SmartFeatureContainer::SmartFeatureContainer(long newElementId)
 {

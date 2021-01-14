@@ -2,18 +2,25 @@
 
 #include "CurveGraphicProperties.h"
 
-class LineStringGraphicProperties : public CurveGraphicProperties
+using namespace Modeler::Curves;
+
+namespace Modeler
 {
+	namespace Curves
+	{
+		class LineStringGraphicProperties : public CurveGraphicProperties
+		{
 
-private:
-	DPoint3d mDirectionTangent;
-	int mNumSegment;
+		private:
+			DPoint3d mDirectionTangent;
+			int mNumSegment;
 
-public:
-	LineStringGraphicProperties();
+		public:
+			LineStringGraphicProperties();
 
-	void setDirectionTanget(DPoint3d newDirTanget);
-	DPoint3d getDirectionTangent();
+			void setDirectionTanget(DPoint3d newDirTanget);
+			DPoint3d getDirectionTangent();
 
-
-};
+		};
+	}
+}

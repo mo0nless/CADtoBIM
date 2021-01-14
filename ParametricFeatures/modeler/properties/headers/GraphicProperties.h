@@ -8,42 +8,49 @@
 
 using namespace std;
 
-class GraphicProperties {
+namespace Modeler
+{
+	namespace Properties
+	{
 
-private:
+		class GraphicProperties {
 
-	double volume;
-	double area;
+		private:
 
-	DPoint3d origin;
-	DVec3d centroid; 
+			double volume;
+			double area;
 
-	DVec3d vectorAxisX;
-	DVec3d vectorAxisY;
-	DVec3d vectorAxisZ;
+			DPoint3d origin;
+			DVec3d centroid;
+
+			DVec3d vectorAxisX;
+			DVec3d vectorAxisY;
+			DVec3d vectorAxisZ;
 
 
 
-public:
-	GraphicProperties();
-	virtual ~GraphicProperties() {}
+		public:
+			GraphicProperties();
+			virtual ~GraphicProperties() {}
 
-	double getArea();
-	void setArea(double newArea);
+			double getArea();
+			void setArea(double newArea);
 
-	double getVolume();
-	void setVolume(double newVolume);
-	
-	DVec3d getCentroid();
-	void setCentroid(DVec3d newCentroid);
+			double getVolume();
+			void setVolume(double newVolume);
 
-	DPoint3d getOrigin();
-	void setOrigin(DPoint3d newOrigin);
-	
-	void setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ);
-	DVec3d getVectorAxisX();
-	DVec3d getVectorAxisY();
-	DVec3d getVectorAxisZ();
+			DVec3d getCentroid();
+			void setCentroid(DVec3d newCentroid);
 
-	IGeometry::GeometryType geometryType;
-};
+			DPoint3d getOrigin();
+			void setOrigin(DPoint3d newOrigin);
+
+			void setVectorAxis(DVec3d newVectorAxisX, DVec3d newVectorAxisY, DVec3d newVectorAxisZ);
+			DVec3d getVectorAxisX();
+			DVec3d getVectorAxisY();
+			DVec3d getVectorAxisZ();
+
+			IGeometry::GeometryType geometryType;
+		};
+	}
+}

@@ -3,28 +3,39 @@
 #include "SolidPrimitiveProperties.h"
 #include "../../shapes/headers/ShapesGraphicProperties.h"
 
-class ExtrusionGraphicProperties : public SolidPrimitiveProperties {
+using namespace Modeler::Shapes;
 
-private:
-	DVec3d _directionExtrusion;
-	ShapesGraphicProperties* _shapesGraphicProperties;
+using namespace Modeler::Primitives;
 
-	bool _isSolid;
+namespace Modeler
+{
+	namespace Primitives
+	{
 
-public:
-	ExtrusionGraphicProperties();
+		class ExtrusionGraphicProperties : public SolidPrimitiveProperties {
 
-	void setDirectionOfExtrusion(DVec3d newDirection);
-	DVec3d getDirectionOfExtrusion();
-	
-	void setIsSolid(bool value);
-	bool getIsSolid();	
+		private:
+			DVec3d _directionExtrusion;
+			ShapesGraphicProperties* _shapesGraphicProperties;
 
-	double getLegnthOfExtrusion();
+			bool _isSolid;
 
-	ShapesGraphicProperties* getShapesGraphicProperties();
-	void setShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
+		public:
+			ExtrusionGraphicProperties();
 
-	string toString();
+			void setDirectionOfExtrusion(DVec3d newDirection);
+			DVec3d getDirectionOfExtrusion();
 
-};
+			void setIsSolid(bool value);
+			bool getIsSolid();
+
+			double getLegnthOfExtrusion();
+
+			ShapesGraphicProperties* getShapesGraphicProperties();
+			void setShapesGraphicProperties(ShapesGraphicProperties* newShapesGraphicProperties);
+
+			string toString();
+
+		};
+	}
+}

@@ -1,5 +1,7 @@
 #include "../headers/ReaderPropertiesBundle.h"
 
+using namespace Modeler::Properties;
+
 ReaderPropertiesBundle::ReaderPropertiesBundle(string newClassName, int newLocalId)
 {
 	this->className = newClassName;

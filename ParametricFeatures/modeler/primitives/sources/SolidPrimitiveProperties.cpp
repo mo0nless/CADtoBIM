@@ -1,5 +1,7 @@
 #include "../headers/SolidPrimitiveProperties.h"
 
+using namespace Modeler::Primitives;
+
 SolidPrimitiveProperties::SolidPrimitiveProperties(PrimitiveTypeEnum newPrimitiveTypeEnum)
 {
 	this->primitiveTypeEnum = newPrimitiveTypeEnum;

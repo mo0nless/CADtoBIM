@@ -6,6 +6,7 @@
 #include <vector>
 
 using namespace Ifc::Bundle;
+using namespace Modeler::TextString;
 
 namespace Ifc
 {

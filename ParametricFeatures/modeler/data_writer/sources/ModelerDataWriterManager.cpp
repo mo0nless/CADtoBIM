@@ -1,5 +1,7 @@
 #include "../headers/ModelerDataWriterManager.h"
 
+using namespace Modeler::DataWriter;
+
 once_flag ModelerDataWriterManager::initInstanceFlag;
 ModelerDataWriterManager* ModelerDataWriterManager::_ModelerDataWriterManager = 0;
 

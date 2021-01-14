@@ -1,5 +1,6 @@
 #include "../headers/ShapesGraphicProperties.h"
 
+using namespace Modeler::Shapes;
 
 ShapesGraphicProperties::ShapesGraphicProperties()
 {

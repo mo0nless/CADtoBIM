@@ -2,44 +2,50 @@
 
 #include "CurveGraphicProperties.h"
 
-class BsplineGraphicProperties : public CurveGraphicProperties
+using namespace Modeler::Curves;
+
+namespace Modeler
 {
+	namespace Curves
+	{
+		class BsplineGraphicProperties : public CurveGraphicProperties
+		{
 
-private:
-	vector<double> mKnots;
-	vector<int> mKnotsMultiplicity;
+		private:
+			vector<double> mKnots;
+			vector<int> mKnotsMultiplicity;
 
-	int mNumberKnots;
-	int mDegree;
-	int mOrder;
+			int mNumberKnots;
+			int mDegree;
+			int mOrder;
 
-	bool mIsClosed;
-	bool mIsSelfIntersect;
-	bool mKnotsValid;
+			bool mIsClosed;
+			bool mIsSelfIntersect;
+			bool mKnotsValid;
 
-public:
-	BsplineGraphicProperties();
+		public:
+			BsplineGraphicProperties();
 
-	void setOrder(size_t newOrder);
-	int getOrder();
+			void setOrder(size_t newOrder);
+			int getOrder();
 
-	int getDegree();
+			int getDegree();
 
-	void setIsClosed(bool newIsClosed);
-	bool getIsCLosed();
+			void setIsClosed(bool newIsClosed);
+			bool getIsCLosed();
 
-	void setIsSelfIntersect(bool newIsSelfIntersect);
-	bool getIsSelfIntersect();
-	
-	void setKnots(bvector<double> newKnots);
-	vector<double> getKnots();
-	int getNumberKnots();
+			void setIsSelfIntersect(bool newIsSelfIntersect);
+			bool getIsSelfIntersect();
 
-	void setAreKnotsValid(bool value);
-	bool getAreKnotsValid();
+			void setKnots(bvector<double> newKnots);
+			vector<double> getKnots();
+			int getNumberKnots();
 
-	void setKnotsMultiplicity(bvector<size_t> newMultiplicity);
-	vector<int> getKnotsMultiplicity();
+			void setAreKnotsValid(bool value);
+			bool getAreKnotsValid();
 
-
-};
+			void setKnotsMultiplicity(bvector<size_t> newMultiplicity);
+			vector<int> getKnotsMultiplicity();
+		};
+	}
+}

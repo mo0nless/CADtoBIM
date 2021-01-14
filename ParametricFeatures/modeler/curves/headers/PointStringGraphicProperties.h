@@ -1,17 +1,23 @@
 #pragma once
 #include "CurveGraphicProperties.h"
 
-class PointStringGraphicProperties: public CurveGraphicProperties
+using namespace Modeler::Curves;
+
+namespace Modeler
 {
+	namespace Curves
+	{
+		class PointStringGraphicProperties : public CurveGraphicProperties
+		{
 
-private:
-	bool mIsPort = true;
+		private:
+			bool mIsPort = true;
 
-public:
-	PointStringGraphicProperties();
-	
-	bool getIsPort();
-	void setIsPort(bool value);
+		public:
+			PointStringGraphicProperties();
 
-};
-
+			bool getIsPort();
+			void setIsPort(bool value);
+		};
+	}
+}

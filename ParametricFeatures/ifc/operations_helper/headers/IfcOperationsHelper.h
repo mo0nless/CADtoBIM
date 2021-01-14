@@ -9,6 +9,7 @@
 
 using namespace Common::Utilities;
 using namespace Common::Enums;
+using namespace Modeler::Shapes;
 
 namespace Ifc
 {

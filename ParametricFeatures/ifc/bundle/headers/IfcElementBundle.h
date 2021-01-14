@@ -13,6 +13,7 @@
 using namespace Ifc::Helper;
 using namespace Ifc::Bundle;
 using namespace Common::Models;
+using namespace Modeler::Properties;
 
 namespace Ifc
 {

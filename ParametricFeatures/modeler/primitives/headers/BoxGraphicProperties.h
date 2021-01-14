@@ -2,24 +2,32 @@
 
 #include"SolidPrimitiveProperties.h"
 
-class BoxGraphicProperties : public SolidPrimitiveProperties {
+using namespace Modeler::Primitives;
 
-private:
-	double _length;
-	double _width;
-	double _height;
+namespace Modeler
+{
+	namespace Primitives
+	{
+		class BoxGraphicProperties : public SolidPrimitiveProperties {
 
-public:
-	BoxGraphicProperties();
+		private:
+			double _length;
+			double _width;
+			double _height;
 
-	double getLength();
-	void setLength(double newLength);
+		public:
+			BoxGraphicProperties();
 
-	double getWidth();
-	void setWidth(double newWidth);
+			double getLength();
+			void setLength(double newLength);
 
-	double getHeight();
-	void setHeight(double newHeight);
+			double getWidth();
+			void setWidth(double newWidth);
 
-	string toString();
-};
+			double getHeight();
+			void setHeight(double newHeight);
+
+			string toString();
+		};
+	}
+}

@@ -7,6 +7,7 @@
 #include "../../../../modeler/shapes/headers/ShapesGraphicProperties.h"
 
 using namespace Ifc::Bundle;
+using namespace Modeler::Shapes;
 
 namespace Ifc
 {

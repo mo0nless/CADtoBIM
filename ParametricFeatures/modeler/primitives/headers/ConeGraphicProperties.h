@@ -2,32 +2,40 @@
 
 #include "SolidPrimitiveProperties.h"
 
-class ConeGraphicProperties : public SolidPrimitiveProperties {
+using namespace Modeler::Primitives;
 
-private:
-	double _baseRadius;
-	double _topRadius;
-	double _height;
-	DPoint3d _topOrigin;
-	DPoint3d _baseOrigin;
+namespace Modeler
+{
+	namespace Primitives
+	{
+		class ConeGraphicProperties : public SolidPrimitiveProperties {
 
-public:
-	ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum);
+		private:
+			double _baseRadius;
+			double _topRadius;
+			double _height;
+			DPoint3d _topOrigin;
+			DPoint3d _baseOrigin;
 
-	double getBaseRadius();
-	void setBaseRadius(double newBaseRadius);
+		public:
+			ConeGraphicProperties(PrimitiveTypeEnum primitiveTypeEnum);
 
-	double getTopRadius();
-	void setTopRadius(double newTopRadius);
+			double getBaseRadius();
+			void setBaseRadius(double newBaseRadius);
 
-	double getHeight();
-	void setHeight(double newHeight);
+			double getTopRadius();
+			void setTopRadius(double newTopRadius);
 
-	DPoint3d getTopOrigin();
-	void setTopOrigin(DPoint3d newTopOrigin);
+			double getHeight();
+			void setHeight(double newHeight);
 
-	DPoint3d getBaseOrigin();
-	void setBaseOrigin(DPoint3d newBaseOrigin);
+			DPoint3d getTopOrigin();
+			void setTopOrigin(DPoint3d newTopOrigin);
 
-	string toString();
-};
+			DPoint3d getBaseOrigin();
+			void setBaseOrigin(DPoint3d newBaseOrigin);
+
+			string toString();
+		};
+	}
+}

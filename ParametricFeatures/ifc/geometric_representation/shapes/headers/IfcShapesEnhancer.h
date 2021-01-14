@@ -13,6 +13,8 @@ using namespace Ifc::Bundle;
 using namespace Common;
 using namespace Common::Enums;
 using namespace Common::Utilities;
+using namespace Modeler::Curves;
+using namespace Modeler::Shapes;
 
 namespace Ifc
 {

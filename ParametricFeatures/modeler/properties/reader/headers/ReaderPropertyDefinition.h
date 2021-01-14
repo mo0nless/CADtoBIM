@@ -12,20 +12,26 @@ USING_NAMESPACE_BENTLEY_DGNPLATFORM;
 
 using namespace std;
 
-class ReaderPropertyDefinition {
+namespace Modeler
+{
+	namespace Properties
+	{
+		class ReaderPropertyDefinition {
 
-private:
-	string propertyName;
-	string propertyTypeName;
-	ECValue propertyValue;
-	string propertyValueAsString;
+		private:
+			string propertyName;
+			string propertyTypeName;
+			ECValue propertyValue;
+			string propertyValueAsString;
 
-public:
-	ReaderPropertyDefinition(string newPropertyName,string newPropertyTypeName,ECValue newPropertyValue, string newPropertyValueAsString);
+		public:
+			ReaderPropertyDefinition(string newPropertyName, string newPropertyTypeName, ECValue newPropertyValue, string newPropertyValueAsString);
 
-	string getPropertyName();
-	string getPropertyTypeName();
-	ECValue getPropertyValue();
-	string getPropertyValueAsString();
+			string getPropertyName();
+			string getPropertyTypeName();
+			ECValue getPropertyValue();
+			string getPropertyValueAsString();
 
-};
+		};
+	}
+}

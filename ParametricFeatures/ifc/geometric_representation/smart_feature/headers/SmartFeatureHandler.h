@@ -8,6 +8,7 @@
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 using namespace Ifc::GeometricRepresentation;
+using namespace Modeler::Properties;
 
 namespace Ifc
 {

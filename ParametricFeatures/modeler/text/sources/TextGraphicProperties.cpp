@@ -1,5 +1,6 @@
 #include "../headers/TextGraphicProperties.h"
 
+using namespace Modeler::TextString;
 
 TextGraphicProperties::TextGraphicProperties()
 {

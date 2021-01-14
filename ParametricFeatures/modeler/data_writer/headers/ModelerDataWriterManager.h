@@ -63,119 +63,125 @@ USING_NAMESPACE_SMARTFEATURE;
 using namespace std;
 using namespace Common::Models;
 
-class ModelerDataWriterManager{
-
-private:
-	string _dataOutputFilePath;
-	ofstream _outFile;
-
-	bool _printDataEnabled;
-	
-	static once_flag initInstanceFlag;
-	static ModelerDataWriterManager* _ModelerDataWriterManager;
-	static void initModelerDataWriterManager() {
-		_ModelerDataWriterManager = new ModelerDataWriterManager(true);
-	}
-	ModelerDataWriterManager(bool printDataEnabled);
-	
-public:
-
-	static ModelerDataWriterManager* getInstance() 
+namespace Modeler
+{
+	namespace DataWriter
 	{
-		call_once(initInstanceFlag, &ModelerDataWriterManager::initModelerDataWriterManager);
-		return _ModelerDataWriterManager;
-	}
+		class ModelerDataWriterManager {
+
+		private:
+			string _dataOutputFilePath;
+			ofstream _outFile;
+
+			bool _printDataEnabled;
+
+			static once_flag initInstanceFlag;
+			static ModelerDataWriterManager* _ModelerDataWriterManager;
+			static void initModelerDataWriterManager() {
+				_ModelerDataWriterManager = new ModelerDataWriterManager(true);
+			}
+			ModelerDataWriterManager(bool printDataEnabled);
+
+		public:
+
+			static ModelerDataWriterManager* getInstance()
+			{
+				call_once(initInstanceFlag, &ModelerDataWriterManager::initModelerDataWriterManager);
+				return _ModelerDataWriterManager;
+			}
 
 #pragma region Primitives
-	void writeGeneralPropertiesToFile(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld);
+			void writeGeneralPropertiesToFile(DRange3d& range, DVec3d& vectorRotation, DPoint4d& qRotation, Transform& localToWorld);
 
-	void writeBoxDataToFile(DgnBoxDetail boxDetails);
+			void writeBoxDataToFile(DgnBoxDetail boxDetails);
 
-	void writeConeDataToFile(DgnConeDetail coneDetails);
+			void writeConeDataToFile(DgnConeDetail coneDetails);
 
-	void writeExtrusionDataToFile(DgnExtrusionDetail extrusionDetails);
+			void writeExtrusionDataToFile(DgnExtrusionDetail extrusionDetails);
 
-	void writeRotationalSweepDataToFile(DgnRotationalSweepDetail rotSweepDetails);
+			void writeRotationalSweepDataToFile(DgnRotationalSweepDetail rotSweepDetails);
 
-	void writeRuledSweepDataToFile(DgnRuledSweepDetail ruledSweepDetails);
+			void writeRuledSweepDataToFile(DgnRuledSweepDetail ruledSweepDetails);
 
-	void writeSphereDataToFile(DgnSphereDetail sphereDetails);
+			void writeSphereDataToFile(DgnSphereDetail sphereDetails);
 
-	void writeTorusDataToFile(DgnTorusPipeDetail torusDetails);
+			void writeTorusDataToFile(DgnTorusPipeDetail torusDetails);
 #pragma endregion
 
 #pragma region Shapes
-	void writeShapeCurvesVectorDataToFile(CurveVectorCR curvesVector);
+			void writeShapeCurvesVectorDataToFile(CurveVectorCR curvesVector);
 
-	void writeCurvePrimitiveDataToFile(ICurvePrimitivePtr curvePrimitive);	
+			void writeCurvePrimitiveDataToFile(ICurvePrimitivePtr curvePrimitive);
 #pragma endregion
 
 #pragma region Surface & Solid
-	void writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceCR msBsplineSurface);
+			void writeMSBsplineSurfaceDataToFile(MSBsplineSurfaceCR msBsplineSurface);
 
-	void writeBodyDataToFile(ISolidKernelEntityCR entity);
+			void writeBodyDataToFile(ISolidKernelEntityCR entity);
 #pragma endregion
 
 #pragma region General Data
-	void writeElementInfoDataToFile(long elementID, WString elDescr);
+			void writeElementInfoDataToFile(long elementID, WString elDescr);
 
-	void writeInitializationDataToFile(ModelInfoCP modelInfo);
+			void writeInitializationDataToFile(ModelInfoCP modelInfo);
 
-	void writeTitleProcessDataToFile(string s);
+			void writeTitleProcessDataToFile(string s);
 
-	void writeSinglePointDataToFile(DPoint3d point, int index = -1);
+			void writeSinglePointDataToFile(DPoint3d point, int index = -1);
 
-	template <class Num> 
-	void writeTupleDataToFile(string s, Num data);	
-	
-	template <class Triplet>
-	void writeTripetXyzDataToFile(string s, Triplet data);
+			template <class Num>
+			void writeTupleDataToFile(string s, Num data);
 
-	template <class Tuple>
-	void writeTupleXyDataToFile(string s, Tuple data);
+			template <class Triplet>
+			void writeTripetXyzDataToFile(string s, Triplet data);
+
+			template <class Tuple>
+			void writeTupleXyDataToFile(string s, Tuple data);
 
 #pragma endregion
 
-};
+		};
 
-template <class Num>
-void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
-{
-	if (!this->_printDataEnabled) {
-		return;
+		template <class Num>
+		void ModelerDataWriterManager::writeTupleDataToFile(string s, Num data)
+		{
+			if (!this->_printDataEnabled) {
+				return;
+			}
+
+			this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+			this->_outFile << s << " = " << data << endl;
+			this->_outFile << endl;
+			this->_outFile.close();
+		}
+
+		template<class Triplet>
+		inline void ModelerDataWriterManager::writeTripetXyzDataToFile(string s, Triplet data)
+		{
+			if (!this->_printDataEnabled) {
+				return;
+			}
+
+			this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+			this->_outFile << fixed;
+			this->_outFile << s << " = [" << data.x << ", " << data.y << ", " << data.z << "]" << endl;
+			this->_outFile << endl;
+			this->_outFile.close();
+
+		}
+
+		template<class Tuple>
+		inline void ModelerDataWriterManager::writeTupleXyDataToFile(string s, Tuple data)
+		{
+			if (!this->_printDataEnabled) {
+				return;
+			}
+
+			this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
+			this->_outFile << fixed;
+			this->_outFile << s << " = [" << data.x << ", " << data.y << "]" << endl;
+			this->_outFile << endl;
+			this->_outFile.close();
+		}
 	}
-
-	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
-	this->_outFile << s << " = " << data << endl;
-	this->_outFile << endl;
-	this->_outFile.close();
-}
-
-template<class Triplet>
-inline void ModelerDataWriterManager::writeTripetXyzDataToFile(string s, Triplet data)
-{
-	if (!this->_printDataEnabled) {
-		return;
-	}
-
-	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
-	this->_outFile << fixed;
-	this->_outFile << s << " = [" << data.x << ", " << data.y << ", " << data.z << "]" << endl;
-	this->_outFile << endl;
-	this->_outFile.close();
-	
-}
-
-template<class Tuple>
-inline void ModelerDataWriterManager::writeTupleXyDataToFile(string s, Tuple data)
-{
-	if (!this->_printDataEnabled) {
-		return;
-	}
-
-	this->_outFile.open(this->_dataOutputFilePath, ios_base::app, sizeof(string));
-	this->_outFile << fixed;
-	this->_outFile << s << " = [" << data.x << ", " << data.y << "]" << endl;
-	this->_outFile << endl;
-	this->_outFile.close();
 }

@@ -20,7 +20,8 @@
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 using namespace Common::Models;
-using namespace Common::Enums;
+using namespace Common::Enums; 
+using namespace Modeler::Primitives;
 
 namespace Ifc
 {

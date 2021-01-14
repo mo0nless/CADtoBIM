@@ -2,12 +2,19 @@
 
 #include "CurveGraphicProperties.h"
 
-class AkimaGraphicProperties: public CurveGraphicProperties
+using namespace Modeler::Curves;
+
+namespace Modeler
 {
-public:
-	AkimaGraphicProperties();
+	namespace Curves
+	{
+		class AkimaGraphicProperties : public CurveGraphicProperties
+		{
+		public:
+			AkimaGraphicProperties();
 
-private:
+		private:
 
-};
-
+		};
+	}
+}

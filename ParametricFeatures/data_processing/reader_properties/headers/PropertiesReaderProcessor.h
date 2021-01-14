@@ -20,6 +20,7 @@
 using namespace Ifc::Bundle;
 using namespace Common::Utilities;
 using namespace Common::Models;
+using namespace Modeler::Properties;
 
 namespace DataProcessing
 {

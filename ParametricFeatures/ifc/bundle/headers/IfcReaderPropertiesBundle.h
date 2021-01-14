@@ -3,6 +3,8 @@
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 
+using namespace Modeler::Properties;
+
 namespace Ifc
 {
 	namespace Bundle

@@ -2,16 +2,25 @@
 
 #include "SolidPrimitiveProperties.h"
 
-class SphereGraphicProperties : public SolidPrimitiveProperties {
+using namespace Modeler::Primitives;
 
-private:
-	double _radius;
+namespace Modeler
+{
+	namespace Primitives
+	{
 
-public:
-	SphereGraphicProperties();
+		class SphereGraphicProperties : public SolidPrimitiveProperties {
 
-	double getRadius();
-	void setRadius(double newadius);
+		private:
+			double _radius;
 
-	string toString();
-};
+		public:
+			SphereGraphicProperties();
+
+			double getRadius();
+			void setRadius(double newadius);
+
+			string toString();
+		};
+	}
+}

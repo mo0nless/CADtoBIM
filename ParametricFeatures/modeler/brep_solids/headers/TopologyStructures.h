@@ -3,6 +3,8 @@
 #include "../../properties/headers/GraphicProperties.h"
 #include <vector>
 
+using namespace Modeler::Properties;
+
 namespace Modeler
 {
 	namespace BRepSolids

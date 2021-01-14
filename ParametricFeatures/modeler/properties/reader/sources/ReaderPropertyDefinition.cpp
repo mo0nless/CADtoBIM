@@ -1,5 +1,7 @@
 #include "../headers/ReaderPropertyDefinition.h"
 
+using namespace Modeler::Properties;
+
 ReaderPropertyDefinition::ReaderPropertyDefinition(string newPropertyName, string newPropertyTypeName, ECValue newPropertyValue, string newPropertyValueAsString)
 {
 	this->propertyName = newPropertyName;

@@ -4,14 +4,21 @@
 #include "../../properties/headers/GraphicProperties.h"
 
 using namespace Common::Enums;
+using namespace Modeler::Properties;
 
-class SolidPrimitiveProperties : public GraphicProperties  {
+namespace Modeler
+{
+	namespace Primitives
+	{
+		class SolidPrimitiveProperties : public GraphicProperties {
 
-private:
-	PrimitiveTypeEnum primitiveTypeEnum;
-public:
-	SolidPrimitiveProperties(PrimitiveTypeEnum newPrimitiveTypeEnum);
-	virtual ~SolidPrimitiveProperties() {}
+		private:
+			PrimitiveTypeEnum primitiveTypeEnum;
+		public:
+			SolidPrimitiveProperties(PrimitiveTypeEnum newPrimitiveTypeEnum);
+			virtual ~SolidPrimitiveProperties() {}
 
-	PrimitiveTypeEnum getPrimitiveTypeEnum();
-};
+			PrimitiveTypeEnum getPrimitiveTypeEnum();
+		};
+	}
+}
