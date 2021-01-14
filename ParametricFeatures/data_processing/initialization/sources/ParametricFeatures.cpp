@@ -13,6 +13,8 @@
 #include "../../../interface_dialog/DialogHooks.h"
 #include "../headers/ParametricFeaturesCmd.h"
 
+using namespace DialogInterface;
+
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)

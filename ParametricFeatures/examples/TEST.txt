@@ -662,3 +662,6 @@ Element ID: 1485
 ===================================================
 ===================================================
 
+DATABASE:
+Full: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler\Mdlapps\mappings.txt
+Original: C:\Program Files\Bentley\OpenPlant CONNECT Edition\OpenPlantModeler

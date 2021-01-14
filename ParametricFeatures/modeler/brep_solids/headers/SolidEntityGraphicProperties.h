@@ -10,6 +10,7 @@ using namespace Common::Utilities;
 using namespace Common::Enums; 
 using namespace Modeler::Surfaces;
 using namespace Modeler::Properties;
+using namespace Modeler::Topology;
 
 namespace Modeler
 {

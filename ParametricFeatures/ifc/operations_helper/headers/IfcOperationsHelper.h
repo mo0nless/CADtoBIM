@@ -99,27 +99,4 @@ namespace Ifc
 }
 
 
-struct SolidEdge {
-	Ifc4::IfcCurve* ifcCurve;
-	vector<int> faceID;
-	Ifc4::IfcOrientedEdge* edge = nullptr;
-	
-	int type;
-	int nodeID;
-	bool isClosed = false;	
-};
-
-struct ContinuosEdge : public SolidEdge
-{
-	DPoint3d startDPoint3d;
-	DPoint3d endDPoint3d;
-
-	Ifc4::IfcVertex* startVertex = nullptr;
-	Ifc4::IfcVertex* endVertex = nullptr;
-
-	Ifc4::IfcEdgeLoop* edgeLoop = NULL;
-
-	ContinuosEdge* next = NULL;
-};
-
 

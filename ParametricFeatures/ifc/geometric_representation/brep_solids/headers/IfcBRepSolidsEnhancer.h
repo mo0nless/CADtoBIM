@@ -11,6 +11,7 @@
 #include "../../../../modeler/primitives/headers/SphereGraphicProperties.h"
 #include "../../../../modeler/primitives/headers/TorusGraphicProperties.h"
 #include "../../../../modeler/primitives/headers/RuledSweepGraphicProperties.h"
+#include "../../../../modeler/brep_solids/headers/TopologyStructures.h"
 #include "../../../../common/enums/headers/ShapesTypeEnum.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../surfaces/headers/IfcSurfaceEnhancer.h"
@@ -19,23 +20,7 @@
 using namespace Ifc::Bundle; 
 using namespace Common::Enums;
 using namespace Modeler::BRepSolids;
-
-struct EdgeIfcCurve
-{
-	Ifc4::IfcVertex* startVertex;
-	Ifc4::IfcVertex* endVertex;
-	Ifc4::IfcCartesianPoint* start;
-	Ifc4::IfcCartesianPoint* end;
-	Ifc4::IfcEdgeCurve* ifcEdgeCurve;
-	Ifc4::IfcOrientedEdge* orientedEdge;
-	vector<Ifc4::IfcOrientedEdge*> continuosOrientedEdges;
-	bool isShared = false;
-	vector<int> faceIDs;
-	Ifc4::IfcEdgeLoop* edgeLoop;
-	bool isSingleCurveClosedPath = false;
-
-	DPoint3d startD3p, endD3p;
-};
+using namespace Modeler::Topology;
 
 namespace Ifc
 {

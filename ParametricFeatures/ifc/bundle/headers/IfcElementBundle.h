@@ -7,6 +7,7 @@
 #include "IfcReaderPropertiesBundle.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
+#include "../../../modeler/brep_solids/headers/TopologyStructures.h"
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
 
@@ -14,6 +15,7 @@ using namespace Ifc::Helper;
 using namespace Ifc::Bundle;
 using namespace Common::Models;
 using namespace Modeler::Properties;
+using namespace Modeler::Topology;
 
 namespace Ifc
 {

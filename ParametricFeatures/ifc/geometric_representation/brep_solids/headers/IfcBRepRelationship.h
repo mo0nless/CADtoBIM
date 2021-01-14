@@ -5,9 +5,11 @@
 #include "../../../bundle/headers/IfcElementBundle.h"
 #include "../../shapes/headers/IfcShapesEnhancer.h"
 #include "../../../../modeler/shapes/headers/ShapesGraphicProperties.h"
+#include "../../../../modeler/brep_solids/headers/TopologyStructures.h"
 
 using namespace Ifc::Bundle;
 using namespace Modeler::Shapes;
+using namespace Modeler::Topology;
 
 namespace Ifc
 {
