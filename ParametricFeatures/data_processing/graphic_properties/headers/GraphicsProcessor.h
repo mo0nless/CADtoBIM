@@ -1,4 +1,14 @@
 #pragma once
+/**
+ * @file GraphicsProcessor.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #include "../headers/GraphicsProcessorHelper.h"
 
@@ -10,21 +20,32 @@ namespace DataProcessing
 {
 	namespace GraphicsProperties
 	{
-		/*=================================================================================**//**
-		* Class for collecting graphical output of an element's Draw method.
-		* This class inherits and implement the Bentley IElementGraphicsProcessor Interface
-		* @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
-		* @see IElementGraphicsProcessor
-		+===============+===============+===============+===============+===============+======*/
+		/**
+		 * @brief Class for collecting graphical output of an element's Draw method.
+		 * This class inherits and implement the Bentley IElementGraphicsProcessor Interface
+		 * 
+		 * @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
+	     * @see IElementGraphicsProcessor
+		 */
 		class GraphicsProcessor : public IElementGraphicsProcessor
 		{
 		public:
+			/**
+			 * @brief Get the Instance object
+			 * 
+			 * @return GraphicsProcessor* 
+			 */
 			static GraphicsProcessor* getInstance()
 			{
 				call_once(initInstanceFlag, &GraphicsProcessor::initGraphicsProcessor);
 				return _GraphicsProcessor;
 			};
 
+			/**
+			 * @brief Get the Graphics Processor Helper object
+			 * 
+			 * @return GraphicsProcessorHelper* 
+			 */
 			GraphicsProcessorHelper* getGraphicsProcessorHelper();
 		private:
 			GraphicsProcessor();

@@ -1,8 +1,17 @@
 #pragma once
 
+/**
+ * @file InitializationHelper.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../../../logging/headers/Logger.h"
-
-
 #include "../../graphic_properties/headers/GraphicsProcessor.h"
 #include "../../reader_properties/headers/PropertiesReaderProcessor.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
@@ -25,19 +34,51 @@ namespace DataProcessing
 {
 	namespace Initialization
 	{
+		/**
+		 * @brief Initialization Helper class to parse the geometry of the elements collected
+		 * 
+		 */
 		class InitializationHelper
 		{
 		public:
+			/**
+			 * @brief Construct a new Initialization Helper object
+			 * 
+			 * @param allGraphicElements 
+			 */
 			InitializationHelper(vector<PersistentElementRefP> allGraphicElements);
 
+			/**
+			 * @brief Process elements collected
+			 * 
+			 */
 			void processDgnGraphicsElements();
 
+			/**
+			 * @brief Get the Ifc Element Bundle Vector object containing the geometry and properties
+			 * 
+			 * @return vector<IfcElementBundle*>& 
+			 */
 			vector<IfcElementBundle*>& getIfcElementBundleVector();
 
 		private:
 			Logging::Logger* _logger = Logging::Logger::getLogger();
 
-			SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec);
+			/**
+			 * @brief Create a Smart Feature Container object
+			 * 
+			 * @param currentElem the element
+			 * @return SmartFeatureContainer* 
+			 */
+			SmartFeatureContainer* createSmartFeatureContainer(ElementHandle currentElem);
+
+			/**
+			 * @brief Iterates to all sub-geometry that belongs to the ElementRef
+			 * 
+			 * @param elementRefP the element ref pointer
+			 * @param ifcElementBundle the Element bundle where to store all the sub-geometry
+			 * @return StatusInt 
+			 */
 			StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
 
 			DgnModelP _dgnModel;

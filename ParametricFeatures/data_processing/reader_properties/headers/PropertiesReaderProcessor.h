@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file PropertiesReaderProcessor.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../../../stdafx.h"
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
@@ -26,26 +37,41 @@ namespace DataProcessing
 {
 	namespace ReaderProperties
 	{
-		/*====================================================================================+
-		* Class for collecting the non-graphical properties of an element.
-		* This class use the ECquery system for retreiving information from the Bentley manager
-		* and store them in a vector of ReaderPropertiesBundle.
-		* @see ReaderPropertiesBundle
-		+===============+===============+===============+===============+===============+======*/
+		/**
+		 * @brief Class for collecting the non-graphical properties of an element.
+		 * This class use the ECquery system for retreiving information from the Bentley manager
+		 * and store them in a vector of ReaderPropertiesBundle.
+		 * 
+		 * @see ReaderPropertiesBundle
+		 */
 		class PropertiesReaderProcessor
 		{
 		public:
-			//! The public method for Processing Element Properties finding ECInstances.
-			//! @param[in] the current element
-			//! @param[in] the pointer to the ifcGraphicPropertiesBundle
-			//! @return a vector of ReaderPropertiesBundle pointers
+			/**
+			 * @brief 
+			 * 
+			 * @param currentElem the current element
+			 * @param ifcGraphicPropertiesBundle the pointer to the ifcGraphicPropertiesBundle
+			 * @return vector<ReaderPropertiesBundle*> 
+			 */
 			vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
 
+			/**
+			 * @brief Get the Instance object
+			 * 
+			 * @return PropertiesReaderProcessor* 
+			 */
 			static PropertiesReaderProcessor* getInstance()
 			{
 				call_once(initInstanceFlag, &PropertiesReaderProcessor::initPropertiesReaderProcessor);
 				return _PropertiesReaderProcessor;
 			};
+
+			/**
+			 * @brief Get the Element Class Name 
+			 * 
+			 * @return string 
+			 */
 			string getElementClassName();
 		private:
 			PropertiesReaderProcessor();

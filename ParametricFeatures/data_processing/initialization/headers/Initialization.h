@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file Initialization.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-14
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../headers/InitializationHelper.h"
 #include "../../../ifc/main/headers/IfcBuilder.h"
 #include "../../../common/utils/headers/ExplorerStructure.h"
@@ -17,10 +28,19 @@ namespace DataProcessing
 {
 	namespace Initialization
 	{
+		/**
+		 * @brief Intialiazation class that collect element and start the process of conversion
+		 * 
+		 */
 		struct Initialization
 		{
 			static vector<PersistentElementRefP> allGraphicElements;
 
+			/**
+			 * @brief Method that start the process of conversion
+			 * 
+			 * @return StatusInt 
+			 */
 			static StatusInt startIfcConverter()
 			{
 				NotificationManager::SetDispatchEvents(true);
@@ -85,6 +105,10 @@ namespace DataProcessing
 				return SUCCESS;
 			}
 
+			/**
+			 * @brief Method to collect all elements 
+			 * 
+			 */
 			static void collectsAllElements()
 			{
 				allGraphicElements.clear();

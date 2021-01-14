@@ -17,12 +17,16 @@ InitializationHelper::InitializationHelper(vector<PersistentElementRefP> allGrap
 }
 
 
-SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem, SmartFeatureNodePtr sFeatNode, ElementHandle leafNode, T_SmartFeatureVector sFeatVec)
+SmartFeatureContainer * InitializationHelper::createSmartFeatureContainer(ElementHandle currentElem)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
+
+	ElementHandle leafNode;
+	SmartFeatureNodePtr sFeatNode;
+	T_SmartFeatureVector sFeatVec;
 
 	SmartFeatureContainer* smartFeatureContainer = new SmartFeatureContainer(currentElem.GetElementId());
 	long newLocalNodeId = -1, newParentLocalNodeId = -1, newGlobalNodeId = -1;
@@ -147,11 +151,7 @@ void InitializationHelper::processDgnGraphicsElements()
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem))
 			{
-				ElementHandle leafNode;
-				SmartFeatureNodePtr sFeatNode;
-				T_SmartFeatureVector sFeatVec;
-
-				SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem, sFeatNode, leafNode, sFeatVec);
+				SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem);
 
 				if (smartFeatureContainer != nullptr) {
 					ifcElementBundle->setSmartFeatureContainer(*&smartFeatureContainer);

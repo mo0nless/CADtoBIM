@@ -20,11 +20,12 @@ namespace DataProcessing
 {
 	namespace GraphicsProperties
 	{
-		/*=================================================================================**/ /**
-		* Example showing how to use IElementGraphicsProcessor.
-		*
-		* @bsiclass                                                               Bentley Systems
-		+===============+===============+===============+===============+===============+======*/
+		/**
+		 * @brief Class for forcing collecting graphical output of an element's Draw as Mesh Element
+		 * 
+		 * @remark This class inherits and implement the Bentley IElementGraphicsProcessor Interface
+	     * @see IElementGraphicsProcessor
+		 */
 		struct MeshProcessor : public IElementGraphicsProcessor
 		{
 			bvector<PolyfaceHeaderPtr> &m_output;
