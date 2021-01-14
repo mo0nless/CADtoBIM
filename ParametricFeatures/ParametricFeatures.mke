@@ -73,7 +73,7 @@ libRscs = \
 
 $(rscObjects)$(appName)Cmd.rsc     : $(baseDir)$(appName)Cmd.r 
 
-$(baseDir)data_processing/initialization/headers/$(appName)Cmd.h                : $(baseDir)$(appName)Cmd.r
+$(baseDir)$(appName)Cmd.h                : $(baseDir)$(appName)Cmd.r
 
 #------------------------------------------------------------------------
 # Create & compile the app's type resource using rsctype & rcomp
@@ -87,7 +87,7 @@ $(rscObjects)$(appName)Type.rsc    : $(interfaceDialog)DialogType.r
 # Generate Dialog resource file using rcomp
 #--------------------------------------------------------------------------------------
 
-$(rscObjects)$(appName).rsc     : $(interfaceDialog)Dialog.r $(langSpec)DialogTxt.h $(interfaceDialog)DialogIds.h $(baseDir)data_processing/initialization/headers/$(appName)Cmd.h
+$(rscObjects)$(appName).rsc     : $(interfaceDialog)Dialog.r $(langSpec)DialogTxt.h $(interfaceDialog)DialogIds.h $(baseDir)$(appName)Cmd.h
 
 
 $(rscObjects)$(appName)msg.rsc	 : $(langSpec)DialogMsg.r $(interfaceDialog)DialogIds.h
@@ -293,7 +293,7 @@ $(o)Logger$(oext) : $(baseDir)logging/sources/Logger.cpp $(baseDir)logging/heade
 #--------------------------------------------------------------------------------------
 
 #--- initialization
-$(o)$(appName)$(oext) : $(baseDir)data_processing/initialization/sources/$(appName).cpp 
+$(o)$(appName)$(oext) : $(baseDir)$(appName).cpp 
 
 $(o)InitializationHelper$(oext) : $(baseDir)data_processing/initialization/sources/InitializationHelper.cpp $(baseDir)data_processing/initialization/headers/InitializationHelper.h
 

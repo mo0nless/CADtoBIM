@@ -16,6 +16,8 @@
 *  @{
 */
 
+using namespace DataProcessing::GraphicsProperties;
+
 namespace DataProcessing
 {
 	namespace GraphicsProperties

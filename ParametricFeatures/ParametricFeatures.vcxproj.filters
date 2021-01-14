@@ -5,8 +5,6 @@
     <ClCompile Include="ifc\curves\sources\IfcCurvesPrimitivesBuilder.cpp" />
     <ClCompile Include="ifc\properties\sources\IfcPropertiesEnhancer.cpp" />
     <ClCompile Include="ifc\curves\sources\IfcShapesEnhancer.cpp" />
-    <ClCompile Include="ifc\brep_solids\sources\IfcBRepRelationship.cpp" />
-    <ClCompile Include="ifc\smart_feature\sources\SmartFeatureHandler.cpp" />
     <ClCompile Include="common\enums\sources\BooleanFunctionsEnum.cpp" />
     <ClCompile Include="common\enums\sources\ResultStatusEnum.cpp" />
     <ClCompile Include="common\utils\sources\CreateSolidFunctionsEnumUtils.cpp" />
@@ -16,7 +14,6 @@
     <ClCompile Include="common\models\sources\SessionManager.cpp" />
     <ClCompile Include="data_processing\graphic_properties\sources\GraphicsProcessor.cpp" />
     <ClCompile Include="data_processing\reader_properties\sources\PropertiesReaderProcessor.cpp" />
-    <ClCompile Include="data_processing\initialization\sources\ParametricFeatures.cpp" />
     <ClCompile Include="ifc\main\sources\IfcBuilder.cpp" />
     <ClCompile Include="ifc\main\sources\IfcElementBuilder.cpp" />
     <ClCompile Include="ifc\operations_helper\sources\IfcOperationsHelper.cpp" />
@@ -71,6 +68,7 @@
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
     <ClCompile Include="modeler\surfaces\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
+    <ClCompile Include="ParametricFeatures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -170,9 +168,9 @@
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\surfaces\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
+    <ClInclude Include="ParametricFeaturesCmd.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="data_processing\initialization\headers\ParametricFeaturesCmd.h" />
     <ClInclude Include="interface_dialog\DialogIds.h" />
     <ClInclude Include="interface_dialog\transkit\DialogTxt.h" />
     <ClInclude Include="interface_dialog\DialogHooks.h" />

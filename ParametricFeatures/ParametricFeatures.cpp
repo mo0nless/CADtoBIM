@@ -10,8 +10,8 @@
 //    Include Files
 //--------------------------------------------------------------------------------------
 
-#include "../../../interface_dialog/DialogHooks.h"
-#include "../headers/ParametricFeaturesCmd.h"
+#include "interface_dialog/DialogHooks.h"
+#include "ParametricFeaturesCmd.h"
 
 using namespace DialogInterface;
 
