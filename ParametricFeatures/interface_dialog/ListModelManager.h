@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file ListModelManager.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief http://www.la-solutions.co.uk/content/CONNECT/MicroStationAPI/MicroStationAPI-ListModelHook.htm
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <Mstn\MdlApi\MdlApi.h>
 #include <Mstn\MdlApi\dlogbox.r.h>
 #include <Mstn\MdlApi\dlogitem.h>
@@ -9,6 +20,13 @@
 
 namespace DialogInterface
 {
+	/**
+	 * @brief Class Handler. Specialise instantiated class by the non-type template parameter  RType (resource type)
+	 * 
+	 * @tparam RType 
+	 * @remark This class inherits and implement the Bentley DialogHookHandler Interface
+	 * @see DialogHookHandler
+	 */
 	template <int RType>
 	struct ListModelManager : DialogItemHookHandler
 	{
@@ -17,14 +35,37 @@ namespace DialogInterface
 		{
 		}
 		virtual ~ListModelManager() {}
-		/// Deallocate a ListModel assigned to this dialog item.
+		/**
+		 * @brief Deallocate a ListModel assigned to this dialog item.
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
+
 		virtual bool _OnDestroy() override;
-		/// Assign a ListModel to this dialog item.
+		/**
+		 * @brief Assign a ListModel to this dialog item.
+		 * 
+		 * @param listModel 
+		 * @return true 
+		 * @return false 
+		 */
+
 		bool AssignListModel(ListModelP listModel);
-		/// Get the ListModel assigned to this dialog item.
+		/**
+		 * @brief Get the List Model object. Get the ListModel assigned to this dialog item.
+		 * 
+		 * @return ListModelP 
+		 */
 		ListModelP  GetListModel();
 
-		///  DestroyListModel is a utility function that destroys any ListModel
+		/**
+		 * @brief DestroyListModel is a utility function that destroys any ListModel
+		 * 
+		 * @param listModel 
+		 * @return true 
+		 * @return false 
+		 */
 		bool DestroyListModel(ListModelP listModel)
 		{
 			if (listModel)
@@ -36,7 +77,7 @@ namespace DialogInterface
 			return false;
 		}
 	};
-
+	
 	ListModelP ListModelManager<RTYPE_ComboBox>::GetListModel()
 	{
 		/// GetRawItem() is a member of the base class DialogItemHookHandler

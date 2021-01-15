@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file ExplorerStructure.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <windows.h>
 #include <shellapi.h>
 #include <string>
@@ -18,18 +29,32 @@ namespace Common
 {
 	namespace Utilities
 	{
+		/**
+		 * @brief Class to handle the creation of folder and path of logs and ifc extraction 
+		 * 
+		 */
 		struct ExplorerStructure
 		{
 		public:
 			static string mainFolderPath;
 			static string mainFileName;
 
+			/**
+			 * @brief Get the Instance object
+			 * 
+			 * @return ExplorerStructure* 
+			 */
 			static ExplorerStructure* getInstance()
 			{
 				call_once(initInstanceFlag, &ExplorerStructure::initStructureExp);
 				return _StructureExp;
 			};
 
+			/**
+			 * @brief Create a Folder
+			 * 
+			 * @param folderPath 
+			 */
 			static void createFolder(string folderPath)
 			{
 
@@ -45,6 +70,10 @@ namespace Common
 				}
 			}
 
+			/**
+			 * @brief Create a Default Files Structure for export and logs
+			 * 
+			 */
 			static void createDefaultFilesStructure()
 			{
 				//string filePath = "C:/Users/FX6021/source/repos/cadtobim/ParametricFeatures/examples/TEST.txt";
@@ -89,6 +118,11 @@ namespace Common
 
 			}
 
+			/**
+			 * @brief Update the file Name and file Path 
+			 * 
+			 * @remark This function is getting called while pressing start button
+			 */
 			static void updateFileNameFilePath()
 			{
 				string fNamePath = StringUtils::getNormalizedString(ISessionMgr::GetActiveDgnFile()->GetFileName());
@@ -112,6 +146,12 @@ namespace Common
 				SessionManager::getInstance()->setIfcOutputFilePath(ifcOutputFileName);
 			}
 
+			/**
+			 * @brief Browse folder function
+			 * 
+			 * @param saved_path 
+			 * @return string 
+			 */
 			static string BrowseFolder(string saved_path)
 			{
 				TCHAR path[MAX_PATH];

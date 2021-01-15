@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+ * @file PropertyTypeEnumUtils.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #include<map>
 #include<string>
@@ -12,6 +22,10 @@ namespace Common
 {
 	namespace Utilities
 	{
+		/**
+		 * @brief Class for Propertoies Enumeration
+		 * 
+		 */
 		class PropertyTypeEnumUtils {
 
 		private:
@@ -19,6 +33,12 @@ namespace Common
 			PropertyTypeEnumUtils() {}
 
 		public:
+			/**
+			 * @brief Get the Enum By String Value
+			 * 
+			 * @param stringValue 
+			 * @return PropertyTypeEnum 
+			 */
 			static PropertyTypeEnum getEnumByStringValue(string stringValue);
 
 		};

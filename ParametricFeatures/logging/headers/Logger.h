@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+ * @file Logger.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 #include <stdexcept>
 #include <string>
@@ -44,7 +54,10 @@ using namespace Common::Models;
 
 namespace Logging 
 {
-
+	/**
+	 * @brief Class that manage the creation of log files
+	 * 
+	 */
 	class Logger {
 
 	private:
@@ -76,12 +89,24 @@ namespace Logging
 		>;
 
 	public:
+		/**
+		 * @brief Get the Logger object
+		 * 
+		 * @return Logger* 
+		 */
 		static Logger *getLogger() {
 			call_once(initInstanceFlag, &Logger::initLogger);
 
 			return _logger;
 		}
 
+		/**
+		 * @brief Set the File Name Line And Number object
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 */
 		void setFileNameLineAndNumber(string fileName, int lineNumber,string functionName) {
 			boost::unique_lock<boost::shared_mutex> guard(_mutex);
 			string threadId = boost::lexical_cast<string>(boost::this_thread::get_id());
@@ -91,7 +116,13 @@ namespace Logging
 			setLoggingAttributes("Function", functionName);
 		}
 
-		// Set attribute and return the new value
+		/**
+		 * @brief Set the Logging Attributes and return the new value
+		 * 
+		 * @tparam ValueType 
+		 * @param name 
+		 * @param value 
+		 */
 		template<typename ValueType>
 		void setLoggingAttributes(const char* name, ValueType value) {
 			auto name_attr = logging::core::get()->get_global_attributes()[name];
@@ -99,23 +130,86 @@ namespace Logging
 			attr.set(value);
 		}
 
-		// Convert file path to only the filename
+		/**
+		 * @brief Convert file path to only the filename
+		 * 
+		 * @param path 
+		 * @return std::string 
+		 */
 		std::string path_to_filename(std::string path) {
 			return path.substr(path.find_last_of("/\\") + 1);
 		}
 
+		/**
+		 * @brief Log Info display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param infoMessage 
+		 */
 		void logInfo(string fileName, int lineNumber,string functionName, string infoMessage = "");
 
+		/**
+		 * @brief Log Debug display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param debugMessage 
+		 */
 		void logDebug(string fileName, int lineNumber, string functionName, string debugMessage = "");
 
+		/**
+		 * @brief Log Warning display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param warningMessage 
+		 */
 		void logWarning(string fileName, int lineNumber, string functionName, string warningMessage = "");
 
+		/**
+		 * @brief Log Error display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param errorMessage 
+		 */
 		void logError(string fileName, int lineNumber, string functionName, string errorMessage = "");
 
+		/**
+		 * @brief Log Error display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param ex 
+		 * @param errorMessage 
+		 */
 		void logError(string fileName, int lineNumber, string functionName,exception& ex, string errorMessage = "");
 
+		/**
+		 * @brief Log Fatal display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param fatalMessage 
+		 */
 		void logFatal(string fileName, int lineNumber, string functionName, string fatalMessage = "");
 
+		/**
+		 * @brief Log Fatal display
+		 * 
+		 * @param fileName 
+		 * @param lineNumber 
+		 * @param functionName 
+		 * @param ex 
+		 * @param fatalMessage 
+		 */
 		void logFatal(string fileName, int lineNumber, string functionName, exception& ex, string fatalMessage = "");
 
 	};

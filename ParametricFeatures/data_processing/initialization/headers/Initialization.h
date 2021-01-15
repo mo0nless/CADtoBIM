@@ -23,6 +23,7 @@
 */
 
 using namespace Ifc::Main;
+using namespace Common::Utilities;
 
 namespace DataProcessing
 {

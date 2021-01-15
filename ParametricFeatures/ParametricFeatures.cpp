@@ -1,10 +1,13 @@
-//--------------------------------------------------------------------------------------+
-//
-//    $Source: ParametricFeatures.cpp $
-// 
-//    $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
-//
-//---------------------------------------------------------------------------------------+
+/**
+ * @file ParametricFeatures.cpp
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
 //--------------------------------------------------------------------------------------
 //    Include Files
@@ -19,6 +22,10 @@ using namespace DialogInterface;
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
 
+/**
+ * @brief Set the Version Number of the Application
+ * 
+ */
 void SetVersionNumber()
 {
 	VersionNumber version = { 1, 0, 0, 0 };
@@ -26,6 +33,11 @@ void SetVersionNumber()
 	mdlSystem_setMdlAppVersionNumber(mdlSystem_getCurrMdlDesc(), &version);
 }
 
+/**
+ * @brief Load the Dialog Box
+ * 
+ * @param unparsedP 
+ */
 void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 {
 	ExplorerStructure::getInstance()->createDefaultFilesStructure();
@@ -47,10 +59,11 @@ void loadDialogBox(WCharCP unparsedP) //cmdNumber CMD_dlog
 	}
 }
 
-/*=================================================================================**//**
-* @description  Unload this application
-* @param[in] unparsed Additional input supplied after command string.
-+===============+===============+===============+===============+===============+======*/
+/**
+ * @brief Unload this application
+ * 
+ * @param unparsedP Additional input supplied after command string.
+ */
 void unLoadDialogBox(WCharCP unparsedP)
 {
 	auto taskID = mdlSystem_getCurrTaskID();
@@ -58,6 +71,10 @@ void unLoadDialogBox(WCharCP unparsedP)
 	return;
 }
 
+/**
+ * @brief Dialog Hooks ID and HookResolve
+ * 
+ */
 Public DialogHookInfo uHooks[] =
 {
 	{ HOOKID_Dialog,                     (PFDialogHook)DialogHooks::Handler::HookResolve },
@@ -70,13 +87,12 @@ Public DialogHookInfo uHooks[] =
 	{ HOOKITEMID_ActorOption_Dialog,	 (PFDialogHook)DialogHooks::ActorOptionHadler::HookResolve }
 };
 
-
-/*---------------------------------------------------------------------------------**//**
-* @description  MdlMain
-* @param        argc      The number of command line parameters sent to the application.
-* @param        argv[]    The array of strings sent to the application on the command line.
-* @bsimethod                                                              Bentley Systems
-+---------------+---------------+---------------+---------------+---------------+------*/
+/**
+ * @brief MdlMain function called from bentley. Bentley Systems
+ * 
+ * @param argc The number of command line parameters sent to the application.
+ * @param argv[] The array of strings sent to the application on the command line.
+ */
 extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[]) 
 {
 	RscFileHandle   rscFileH;   /* a resource file handle */

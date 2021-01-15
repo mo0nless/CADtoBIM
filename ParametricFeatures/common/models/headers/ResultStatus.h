@@ -1,12 +1,27 @@
 #pragma once
 
+/**
+ * @file ResultStatus.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../../enums/headers/ResultStatusEnum.h"
 
 using namespace std;
 using namespace Common::Enums;
 
 /**
- *  Class used to return status and message after an execution
+ * @brief Class used to return status and message after an execution
+ * 
+ * @tparam T 
+ * 
+ * @remark At the moment is not used in the project
  */
 template <class T>
 class ResultStatus {

@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file DialogHooks.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../data_processing/initialization/headers/Initialization.h"
 #include "../common/utils/headers/ExplorerStructure.h"
 #include "../ifc/main/headers/IfcGeneralInformation.h"
@@ -52,27 +63,31 @@ static int dlog_optionbtnNumber2 = 0;
 
 namespace DialogInterface
 {
+	/*----------------------------------------------------------------------+
+	|                                                                       |
+	|   Hooks Handlers														|
+	|                                                                       |
+	+----------------------------------------------------------------------*/
 	namespace DialogHooks
 	{
-		/*----------------------------------------------------------------------+
-		|                                                                       |
-		|   Hooks Handlers														|
-		|                                                                       |
-		+----------------------------------------------------------------------*/
+		/**
+		 * @brief Class Handler for the main Dialog Box
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogHookHandler Interface
+	     * @see DialogHookHandler
+		 */
 		class Handler : public DialogHookHandler
 		{
 		public:
 			Handler::Handler(MSDialogP dbP) : DialogHookHandler(dbP) {};
 
+			/**
+			 * @brief Dialog Hook replacement function
+			 * 
+			 * @param dmP 
+			 */
 			static void Handler::HookResolve(DialogMessage * dmP)
 			{
-				/* Handle the create message and say we are interested in:  */
-				/*  1) Item draw messages (Updates)                         */
-				/*  2) Mouse events                                         */
-				/*  3) Keystroke events                                     */
-				/*  4) Dialog box focus changes                             */
-				/*  5) Dialig item focus changes                            */
-				/*  6) Dialog box resize events                             */
 				if (DITEM_MESSAGE_HOOKRESOLVE == dmP->messageType)
 				{
 					dmP->u.hookResolve.hookHandlerP = new Handler(dmP->db);
@@ -80,9 +95,24 @@ namespace DialogInterface
 				}
 			}
 		private:
-			// Dialog Hook Handler Method override
+			/**
+			 * @brief Dialog Hook Handler Method override
+			 * 
+			 * @param create 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnCreate(DialogCreateArgsR create) override
 			{
+				
+				/* Handle the create message and say we are interested in:  */
+				/*  1) Item draw messages (Updates)                         */
+				/*  2) Mouse events                                         */
+				/*  3) Keystroke events                                     */
+				/*  4) Dialog box focus changes                             */
+				/*  5) Dialig item focus changes                            */
+				/*  6) Dialog box resize events                             */
+
 				// OnCreate processing
 				create.interests.updates = TRUE;
 				create.interests.mouses = TRUE;
@@ -95,10 +125,20 @@ namespace DialogInterface
 			}
 		};
 
+		/**
+		 * @brief Class Handler for the Item Box
+		 * 
+		 * @remark This class inherits and implement the Bentley ListModelManager Interface
+	     * @see ListModelManager
+		 */
 		class ItemBoxHadler : ListModelManager<RTYPE_ListBox>
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Item Box replacement function
+			 * 
+			 * @param dimP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -107,14 +147,25 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
-			ItemBoxHadler(MSDialogP dbP, DialogItemP diP) : ListModelManager<RTYPE_ListBox>(dbP, diP) { this->dbP = dbP; this->diP = diP; }
-			// Item Hook Handler Method override		
+			/**
+			 * @brief Construct a new Item Box Hadler object. 
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
+			ItemBoxHadler(MSDialogP dbP, DialogItemP diP) : ListModelManager<RTYPE_ListBox>(dbP, diP) { this->dbP = dbP; this->diP = diP; }		
 
 		private:
 			MSDialogP dbP;
 			DialogItemP diP;
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param create 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnCreate(DialogItemCreateArgsR create) override
 			{
 				refreshListBoxList();
@@ -123,11 +174,26 @@ namespace DialogInterface
 				return true;
 			}
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param stateChanged 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 			{
+				//TODO[SB] Add selection by element
 				return true;
 			}
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param synchronize 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnSynchronize(DialogItemSynchronizeArgsR synchronize)
 			{
 				refreshListBoxList();
@@ -135,6 +201,11 @@ namespace DialogInterface
 				return true;
 			}
 
+
+			/**
+			 * @brief Refresh the List Box entries
+			 * 
+			 */
 			void refreshListBoxList()
 			{
 				IfcGeneralInformation::resetInstance();
@@ -183,10 +254,21 @@ namespace DialogInterface
 		};
 
 #pragma region BUTTONS
+
+		/**
+		 * @brief Class Handler for the Start Button
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class StartButtonHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Start Button Hook replacement function
+			 * 
+			 * @param dmP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -195,10 +277,23 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+
+			/**
+			 * @brief Construct a new Start Button Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			StartButtonHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param button 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnButton(DialogItemButtonArgsR button) override
 			{
 				//Synch with all the TEXT elements through the SYNONYMID to notify the change
@@ -218,6 +313,7 @@ namespace DialogInterface
 				ifcGInfo->setActorSurName(StringUtils::getString(sname));
 				ifcGInfo->setActorEmail(StringUtils::getString(email));
 
+				//Start Ifc process conversion 
 				Initialization::startIfcConverter();
 
 				IfcGeneralInformation::resetInstance();
@@ -226,10 +322,20 @@ namespace DialogInterface
 			}
 		};
 
+		/**
+		 * @brief Class Handler for the Browse Button
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class BrowseButtonHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Browse Button Hook replacement function
+			 * 
+			 * @param dmP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -238,10 +344,22 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+			/**
+			 * @brief Construct a new Browse Button Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			BrowseButtonHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param create 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnCreate(DialogItemCreateArgsR create) override
 			{
 				WString path = StringUtils::getWString(ExplorerStructure::mainFolderPath);
@@ -255,6 +373,13 @@ namespace DialogInterface
 				return true;
 			}
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param button 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnButton(DialogItemButtonArgsR button) override
 			{
 				ExplorerStructure::mainFolderPath = ExplorerStructure::getInstance()->BrowseFolder(ExplorerStructure::mainFolderPath);
@@ -272,10 +397,20 @@ namespace DialogInterface
 
 #pragma endregion
 
+		/**
+		 * @brief Class Handler for the Actor Option Button
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class ActorOptionHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Actor Option Button Hook replacement function
+			 * 
+			 * @param dmP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -284,11 +419,25 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+			/**
+			 * @brief Construct a new Actor Option Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			ActorOptionHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
+			//Creation flag
 			bool created = false;
+
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param create 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnCreate(DialogItemCreateArgsR create) override
 			{
 				if (!created)
@@ -335,6 +484,12 @@ namespace DialogInterface
 				return true;
 			}
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnDestroy() override
 			{
 				//mdlDialog_optionButtonDeleteAll(GetDialogItem()->rawItemP);
@@ -342,6 +497,13 @@ namespace DialogInterface
 				return true;
 			}
 
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param stateChanged 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged) override
 			{
 				//Synch with all the TEXT elements through the SYNONYMID to notify the change
@@ -355,10 +517,20 @@ namespace DialogInterface
 
 #pragma region UNUSED HOOKS FUNCTION
 
+		/**
+		 * @brief Class Handler for the Pull Down menu Button
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class PullDownMenuHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Pull Down menu Button Hook replacement function
+			 * 
+			 * @param dmP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -367,20 +539,42 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+			/**
+			 * @brief Construct a new Pull Down Menu Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			PullDownMenuHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param button 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnButton(DialogItemButtonArgsR button) override
 			{
 				return true;
 			}
 		};
 
+		/**
+		 * @brief Class Handler for the Scroll Bar
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class ScrollBarHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Scroll Bar Hook replacement function
+			 * 
+			 * @param dimP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -389,25 +583,47 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+			/**
+			 * @brief Construct a new Scroll Bar Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			ScrollBarHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
-			/* Handle state changed message and synchronize all scroll bar	*/
-			/* related items if the value of the scroll bar access string	*/
-			/* really did change                                            */
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param stateChanged 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 			{
+				/* Handle state changed message and synchronize all scroll bar	*/
+				/* related items if the value of the scroll bar access string	*/
+				/* really did change                                            */
 				if (stateChanged.reallyChanged)
 					mdlDialog_synonymsSynch(NULL, SYNONYMID_DialogScroll, NULL);
 				return true;
 			}
 		};
 
+		/**
+		 * @brief Class Handler for the Export Toggle Button
+		 * 
+		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+	     * @see DialogItemHookHandler
+		 */
 		class ExportToggleHadler : DialogItemHookHandler
 		{
 		public:
-			// Dialog Hook replacement function
+			/**
+			 * @brief Export Toggle Button Hook replacement function
+			 * 
+			 * @param dimP 
+			 */
 			static void HookResolve(DialogItemMessage *dimP)
 			{
 				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
@@ -416,10 +632,22 @@ namespace DialogInterface
 					dimP->msgUnderstood = true;
 				}
 			}
-			// Item Hook Handler Constructor
+			/**
+			 * @brief Construct a new Export Toggle Hadler object
+			 * 
+			 * @param dbP 
+			 * @param diP 
+			 */
 			ExportToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			// Item Hook Handler Method override
+			
 		private:
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param allCreated 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
 			{
 				/* set the enabled state of the toggle button */
@@ -428,6 +656,14 @@ namespace DialogInterface
 
 				return true;
 			}
+
+			/**
+			 * @brief Item Hook Handler Method override
+			 * 
+			 * @param stateChanged 
+			 * @return true 
+			 * @return false 
+			 */
 			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
 			{
 				dlog_ToggleSingleElementButton = !dlog_ToggleSingleElementButton;

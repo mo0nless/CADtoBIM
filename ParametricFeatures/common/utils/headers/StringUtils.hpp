@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file StringUtils.hpp
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <string>
 #include <sstream>
 #include <vector>
@@ -13,11 +24,11 @@ namespace Common
 	{
 
 		/**
-		 *  Utility class for string operations
+		 *  @brief Utility class for string operations
 		 */
 		struct StringUtils {
 			/**
-			*  Convert WString to string
+			*  @brief Convert WString to string
 			*  @param wStringValue[in]
 			*  @return std:string
 			*/
@@ -30,7 +41,7 @@ namespace Common
 			}
 
 			/**
-			*  Convert WString to string
+			*  @brief Convert WString to string
 			*  @param wStringValue[in]
 			*  @return std:string
 			*/
@@ -43,7 +54,7 @@ namespace Common
 			}
 
 			/**
-			*  Normalize string, remove special characters, otherwise exception thrown in IfcParse
+			*  @brief Normalize string, remove special characters, otherwise exception thrown in IfcParse
 			*  @param stringValue[in]
 			*  @return std:string
 			*/
@@ -55,12 +66,22 @@ namespace Common
 				return stringValue;
 			}
 
+			/**
+			*  @brief Normalize WString, remove special characters, otherwise exception thrown in IfcParse
+			*  @param stringValue[in]
+			*  @return std:string
+			*/
 			inline static string getNormalizedString(WString wStringValue) {
 
 				return getNormalizedString(getString(wStringValue));
 			}
 
-
+			/**
+			 * @brief Get the Ifc Class Name 
+			 * 
+			 * @param ifcClassName 
+			 * @return string 
+			 */
 			inline static string getIfcClassName(string ifcClassName) {
 
 				vector<string> results;
