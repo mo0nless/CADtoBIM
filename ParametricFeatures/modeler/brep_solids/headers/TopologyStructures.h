@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file TopologyStructures.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-15
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "../../properties/headers/GraphicProperties.h"
 #include <ifcparse\Ifc4.h>
 #include <vector>
@@ -10,6 +21,10 @@ namespace Modeler
 {
 	namespace Topology
 	{
+		/**
+		 * @brief Edge Curve collection structure
+		 * 
+		 */
 		struct EdgeIfcCurve
 		{
 			Ifc4::IfcVertex* startVertex;
@@ -27,6 +42,10 @@ namespace Modeler
 			DPoint3d startD3p, endD3p;
 		};
 
+		/**
+		 * @brief Boundary points collection structure
+		 * 
+		 */
 		struct BoundPoints
 		{
 			int boundID;
@@ -41,12 +60,19 @@ namespace Modeler
 			vector<int> connectedBoundIDs;
 		};
 
+		/**
+		 * @brief Triangulated mesh collection structure
+		 * 
+		 */
 		struct MeshTriangles
 		{
 			vector<vector<DPoint3d>> facesTriangulatedVector;
 		};
 
-
+		/**
+		 * @brief Edge collection structure
+		 * 
+		 */
 		struct SolidEdge {
 			Ifc4::IfcCurve* ifcCurve;
 			vector<int> faceID;
@@ -57,6 +83,12 @@ namespace Modeler
 			bool isClosed = false;
 		};
 
+		/**
+		 * @brief Continuos Edge collection structure
+		 * 
+		 * @remark This class inherits the SolidEdge structure
+		 * @see SolidEdge
+		 */
 		struct ContinuosEdge : public SolidEdge
 		{
 			DPoint3d startDPoint3d;

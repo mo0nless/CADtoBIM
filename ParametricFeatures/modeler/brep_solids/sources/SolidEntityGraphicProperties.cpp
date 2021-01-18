@@ -11,7 +11,7 @@ void SolidEntityGraphicProperties::addSolidOrSurfaceFace(GraphicProperties*& new
 	this->mBrepFaces.push_back(newFace);
 }
 
-vector<GraphicProperties*> SolidEntityGraphicProperties::getSurfaceFacesVector()
+vector<GraphicProperties*> SolidEntityGraphicProperties::getSolidOrSurfaceVector()
 {
 	return this->mBrepFaces;
 }

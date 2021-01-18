@@ -2,6 +2,11 @@
 
 using namespace Ifc::GeometricRepresentation;
 
+#pragma warning( push )
+#pragma warning( disable : 4700)
+#pragma warning( disable : 4101)
+#pragma warning( disable : 4189)
+
 IfcBRepSolidsEnhancer::IfcBRepSolidsEnhancer()
 {
 }
@@ -410,10 +415,6 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #endif
 
 //WORKS
-#pragma warning( push )
-#pragma warning( disable : 4700)
-#pragma warning( disable : 4101)
-#pragma warning( disable : 4189)
 Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
@@ -425,13 +426,13 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 		IfcEntityList* entityList = new IfcEntityList();
 		IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
-		buildIfcFaceSurface(brepSolidsKernelEntity->getSurfaceFacesVector(), ifcGraphicPropertiesBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
+		buildIfcFaceSurface(brepSolidsKernelEntity->getSolidOrSurfaceVector(), ifcGraphicPropertiesBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
 
 		//buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
 
 #if false	
 
-		for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getSurfaceFacesVector())
+		for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getSolidOrSurfaceVector())
 		{
 			if (msBsplineGraphicProperties != nullptr)
 			{
