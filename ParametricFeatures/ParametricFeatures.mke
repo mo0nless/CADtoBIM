@@ -172,7 +172,6 @@ modelerObjects = \
 	$(o)SmartFeatureContainer$(oext) \
 	$(o)SmartFeatureTreeNode$(oext) \
 	$(o)ReaderPropertyDefinition$(oext) \
-	$(o)ReaderPropertiesBundle$(oext) \
 	$(o)ShapesGraphicProperties$(oext) \
 	$(o)TextGraphicProperties$(oext) \
 
@@ -335,15 +334,15 @@ $(o)CreateSolidFunctionsEnumUtils$(oext) : $(baseDir)common/utils/sources/Create
 #    ifc
 #-------------------------------------------------------------------------------------
 
-#--- general_information
-$(o)IfcGeneralInformation$(oext) : $(baseDir)ifc/main/sources/IfcGeneralInformation.cpp $(baseDir)ifc/main/headers/IfcGeneralInformation.h
-
 #--- main
 $(o)IfcBuilder$(oext) : $(baseDir)ifc/main/sources/IfcBuilder.cpp $(baseDir)ifc/main/headers/IfcBuilder.h
 
-$(o)IfcElementBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcElementBundle.cpp $(baseDir)ifc/bundle/headers/IfcElementBundle.h
-
 $(o)IfcElementBuilder$(oext) : $(baseDir)ifc/main/sources/IfcElementBuilder.cpp $(baseDir)ifc/main/headers/IfcElementBuilder.h
+
+$(o)IfcGeneralInformation$(oext) : $(baseDir)ifc/main/sources/IfcGeneralInformation.cpp $(baseDir)ifc/main/headers/IfcGeneralInformation.h
+
+#--- bundle
+$(o)IfcElementBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcElementBundle.cpp $(baseDir)ifc/bundle/headers/IfcElementBundle.h
 
 $(o)IfcGraphicPropertiesBundle$(oext) : $(baseDir)ifc/bundle/sources/IfcGraphicPropertiesBundle.cpp $(baseDir)ifc/bundle/headers/IfcGraphicPropertiesBundle.h
 
@@ -453,8 +452,6 @@ $(o)SmartFeatureContainer$(oext) : $(baseDir)modeler/properties/smart_feature/so
 $(o)SmartFeatureTreeNode$(oext) : $(baseDir)modeler/properties/smart_feature/sources/SmartFeatureTreeNode.cpp $(baseDir)modeler/properties/smart_feature/headers/SmartFeatureTreeNode.h
 
 $(o)ReaderPropertyDefinition$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertyDefinition.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertyDefinition.h
-
-$(o)ReaderPropertiesBundle$(oext) : $(baseDir)modeler/properties/reader/sources/ReaderPropertiesBundle.cpp $(baseDir)modeler/properties/reader/headers/ReaderPropertiesBundle.h
 
 
 #--- shapes

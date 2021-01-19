@@ -50,12 +50,12 @@ Ifc4::IfcGeometricRepresentationItem* IfcSolidsOperationBuilder::buildIfcCreateS
 		NumberUtils::convertCurrentUnitToMeters(centroid.y), NumberUtils::convertCurrentUnitToMeters(centroid.z)),
 		file.addTriplet<Ifc4::IfcDirection>(zAxis.x, zAxis.y,zAxis.z), file.addTriplet<Ifc4::IfcDirection>(xAxis.x, xAxis.y, xAxis.z));
 
-	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getClassName()))
+	switch (CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle.getClassName()))
 	{
 	case CreateSolidFunctionsEnum::REVOLVE:
 	{
 		double sweepRadians = 0;
-		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
+		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getProperties()) {
 			if (modelerProperty->getPropertyName() == "Angle") {
 				sweepRadians = modelerProperty->getPropertyValue().GetDouble();
 			}
@@ -84,7 +84,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcSolidsOperationBuilder::buildIfcCreateS
 		DPoint3d rangeLow, rangeHigh;
 
 		double length = 0;
-		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
+		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getProperties()) {
 			if (modelerProperty->getPropertyName() == "Distance") {
 				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
@@ -124,7 +124,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcSolidsOperationBuilder::buildIfcCreateS
 		double length = 0;
 		DPoint3d rangeLow,rangeHigh;
 
-		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
+		for (auto const& modelerProperty : ifcReaderPropertiesBundle.getProperties()) {
 			if (modelerProperty->getPropertyName() == "Thickness") {
 				length = NumberUtils::convertCurrentUnitToMeters(modelerProperty->getPropertyValue().GetDouble());
 			}
@@ -173,7 +173,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcSolidsOperationBuilder::solveBooleanOpe
 {
 
 	Enums::BooleanFunctionsEnum booleanFunctionsEnum;
-	for (auto const& modelerProperty : ifcReaderPropertiesBundle.getReaderPropertiesBundle()->getProperties()) {
+	for (auto const& modelerProperty : ifcReaderPropertiesBundle.getProperties()) {
 		if (modelerProperty->getPropertyName() == "BooleanFunction") {
 			booleanFunctionsEnum = Enums::getBooleanFunctionsEnumByIntValue(stoi(modelerProperty->getPropertyValueAsString()));
 		}

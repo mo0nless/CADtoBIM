@@ -2,7 +2,6 @@
 
 #include "../../../stdafx.h"
 #include "../../../modeler/properties/headers/GraphicProperties.h"
-#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include <fstream>
 #include "../../../common/models/headers/SessionManager.h"
 

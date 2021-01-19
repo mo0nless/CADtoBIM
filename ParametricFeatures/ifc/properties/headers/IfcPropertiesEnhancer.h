@@ -24,7 +24,7 @@ namespace Ifc
 
 			Ifc4::IfcOwnerHistory* _ownerHistory;
 
-			Ifc4::IfcPropertySet* createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
+			Ifc4::IfcPropertySet* createIfcPropertySet(IfcReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file);
 			Ifc4::IfcProperty* createIfcBasicProperty(ReaderPropertyDefinition& readerPropertyDefinition);
 			Ifc4::IfcProperty* createIfcComplexProperty(ReaderPropertyDefinition& readerPropertyDefinition);
 		};

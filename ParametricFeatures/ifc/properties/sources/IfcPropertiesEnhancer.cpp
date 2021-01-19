@@ -23,7 +23,7 @@ void IfcPropertiesEnhancer::enhance(vector<IfcElementBundle*>& ifcElementBundleV
 				Ifc4::IfcObjectDefinition::list::ptr ifcObjectDefinitionList(new Ifc4::IfcObjectDefinition::list());
 				ifcObjectDefinitionList->push(ifcElementBundle->getIfcElement());
 
-				for (auto const& readerPropertyBundle : ifcElementBundle->getElementReaderPropertiesBundleVector()) {
+				for (auto const& readerPropertyBundle : ifcElementBundle->getIfcElementReaderPropertiesBundleVector()) {
 					Ifc4::IfcPropertySet* ifcPropertySet = createIfcPropertySet(*readerPropertyBundle,file);
 
 					Ifc4::IfcRelDefinesByProperties* ifcRelDefinesByProperties = new Ifc4::IfcRelDefinesByProperties(
@@ -48,7 +48,7 @@ void IfcPropertiesEnhancer::enhance(vector<IfcElementBundle*>& ifcElementBundleV
 
 }
 
-Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(ReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(IfcReaderPropertiesBundle& readerPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 

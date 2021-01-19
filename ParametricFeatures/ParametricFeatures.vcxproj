@@ -43,7 +43,6 @@
     <ClCompile Include="ifc\bundle\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsBuilder.cpp" />
     <ClCompile Include="ifc\ports\sources\IfcPortsRelationshipList.cpp" />
-    <ClCompile Include="ifc\bundle\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\bundle\sources\IfcGraphicPropertiesBundle.cpp" />
     <ClCompile Include="ifc\geometric_representation\primitives\sources\IfcPrimitivesEnhancer.cpp" />
     <ClCompile Include="ifc\main\sources\IfcBuilder.cpp" />
@@ -68,7 +67,7 @@
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
     <ClCompile Include="modeler\shapes\sources\ShapesGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\reader\sources\ReaderPropertiesBundle.cpp" />
+    <ClCompile Include="ifc\bundle\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
@@ -132,7 +131,6 @@
     <ClInclude Include="ifc\bundle\headers\IfcGraphicPropertiesBundle.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsBuilder.h" />
     <ClInclude Include="ifc\ports\headers\IfcPortsRelationshipList.h" />
-    <ClInclude Include="ifc\bundle\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\properties\headers\IfcColorMaterialEnhancer.h" />
     <ClInclude Include="ifc\properties\headers\IfcPropertiesEnhancer.h" />
     <ClInclude Include="ifc\geometric_representation\smart_feature\headers\SmartFeatureHandler.h" />
@@ -178,7 +176,7 @@
     </ClInclude>
     <ClInclude Include="modeler\shapes\headers\ShapesGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
-    <ClInclude Include="modeler\properties\reader\headers\ReaderPropertiesBundle.h" />
+    <ClInclude Include="ifc\bundle\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="modeler\curves\headers\BsplineGraphicProperties.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />

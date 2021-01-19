@@ -16,6 +16,7 @@
 #include "../../../common/utils/headers/SmartFeatureTypeEnumUtils.h"
 
 #include "../../../ifc/bundle/headers/IfcGraphicPropertiesBundle.h"
+#include "../../../ifc/bundle/headers/IfcReaderPropertiesBundle.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 
 #include "../../../common/utils/headers/PropertyTypeEnumUtils.h"
@@ -40,9 +41,9 @@ namespace DataProcessing
 		/**
 		 * @brief Class for collecting the non-graphical properties of an element.
 		 * This class use the ECquery system for retreiving information from the Bentley manager
-		 * and store them in a vector of ReaderPropertiesBundle.
+		 * and store them in a vector of IfcReaderPropertiesBundle.
 		 * 
-		 * @see ReaderPropertiesBundle
+		 * @see IfcReaderPropertiesBundle
 		 */
 		class PropertiesReaderProcessor
 		{
@@ -52,9 +53,9 @@ namespace DataProcessing
 			 * 
 			 * @param currentElem the current element
 			 * @param ifcGraphicPropertiesBundle the pointer to the ifcGraphicPropertiesBundle
-			 * @return vector<ReaderPropertiesBundle*> 
+			 * @return vector<IfcReaderPropertiesBundle*> 
 			 */
-			vector<ReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
+			vector<IfcReaderPropertiesBundle*> processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = nullptr);
 
 			/**
 			 * @brief Get the Instance object
@@ -93,8 +94,8 @@ namespace DataProcessing
 				_PropertiesReaderProcessor = new PropertiesReaderProcessor();
 			}
 
-			//! Mapper of properties for each ECInstance inside the ReaderPropertiesBundle
-			void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle *&ReaderPropertiesBundle);
+			//! Mapper of properties for each ECInstance inside the IfcReaderPropertiesBundle
+			void mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, IfcReaderPropertiesBundle *&IfcReaderPropertiesBundle);
 		};
 	}
 }

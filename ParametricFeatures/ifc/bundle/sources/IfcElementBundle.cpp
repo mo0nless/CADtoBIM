@@ -8,7 +8,7 @@ IfcElementBundle::IfcElementBundle(long newModelerElementId, string newModelerEl
 	this->hasConnections = false;
 	this->smartFeatureContainer = new SmartFeatureContainer(newModelerElementId);
 	this->ifcGraphicPropertiesBundleVector = vector<IfcGraphicPropertiesBundle*>();
-	this->elementReaderPropertiesBundleVector = vector<ReaderPropertiesBundle*>();
+	this->ifcElementReaderPropertiesBundleVector = vector<IfcReaderPropertiesBundle*>();
 }
 
 string IfcElementBundle::getRepresentationType()
@@ -40,11 +40,6 @@ void IfcElementBundle::addIfcPortsPoints(Ifc4::IfcCartesianPoint * newIfcPoint)
 {
 	this->hasConnections = true;
 	this->ifcPointsPortsVector.push_back(newIfcPoint);
-}
-
-void IfcElementBundle::addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle * newIfcReaderPropertiesBundle)
-{
-	this->ifcElementReaderPropertiesBundleVector.push_back(newIfcReaderPropertiesBundle);
 }
 
 void IfcElementBundle::addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle * newIfcGraphicPropertiesBundle)
@@ -97,14 +92,9 @@ SmartFeatureContainer * IfcElementBundle::getSmartFeatureContainer()
 	return this->smartFeatureContainer;
 }
 
-vector<ReaderPropertiesBundle*> IfcElementBundle::getElementReaderPropertiesBundleVector()
+void IfcElementBundle::setIfcElementReaderPropertiesBundleVector(vector<IfcReaderPropertiesBundle*> newReaderPropertiesBundleVector)
 {
-	return this->elementReaderPropertiesBundleVector;
-}
-
-void IfcElementBundle::setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector)
-{
-	this->elementReaderPropertiesBundleVector = newReaderPropertiesBundleVector;
+	this->ifcElementReaderPropertiesBundleVector = newReaderPropertiesBundleVector;
 }
 
 vector<IfcReaderPropertiesBundle*> IfcElementBundle::getIfcElementReaderPropertiesBundleVector()

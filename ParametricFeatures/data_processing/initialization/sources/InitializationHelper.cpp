@@ -145,8 +145,8 @@ void InitializationHelper::processDgnGraphicsElements()
 
 			IfcElementBundle* ifcElementBundle = new IfcElementBundle(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
 
-			vector<ReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			ifcElementBundle->setElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
+			vector<IfcReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+			ifcElementBundle->setIfcElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
 			ifcElementBundle->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
 			
 			if (SmartFeatureElement::IsSmartFeature(currentElem))

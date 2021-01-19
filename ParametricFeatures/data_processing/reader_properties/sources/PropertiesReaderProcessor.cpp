@@ -9,9 +9,9 @@ PropertiesReaderProcessor::PropertiesReaderProcessor()
 {	
 }
 
-vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
+vector<IfcReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderProperties(ElementHandleCR currentElem, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
-	vector<ReaderPropertiesBundle*>	readerPropertiesBundleVector;
+	vector<IfcReaderPropertiesBundle*>	readerPropertiesBundleVector;
 
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 		
@@ -58,7 +58,7 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 			outfile.close();
 
 			_elemClassName = StringUtils::getNormalizedString(elemInst->GetClass().GetName());
-			ReaderPropertiesBundle* readerPropertiesBundle = new ReaderPropertiesBundle(_elemClassName, elemInst->GetLocalId());
+			IfcReaderPropertiesBundle* readerPropertiesBundle = new IfcReaderPropertiesBundle(_elemClassName, elemInst->GetLocalId());
 			mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
 			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
@@ -94,7 +94,7 @@ vector<ReaderPropertiesBundle*> PropertiesReaderProcessor::processElementReaderP
 	return readerPropertiesBundleVector;
 }
 
-void PropertiesReaderProcessor::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, ReaderPropertiesBundle*& readerPropertiesBundle)
+void PropertiesReaderProcessor::mapECPropertiesToReaderProperties(DgnElementECInstanceP dgnElementECInstanceP, IfcReaderPropertiesBundle*& readerPropertiesBundle)
 {
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();

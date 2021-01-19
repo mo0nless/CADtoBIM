@@ -1,8 +1,10 @@
 #pragma once
 
+#include<vector>
 #include "../../../stdafx.h"
-#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
+#include "../../../modeler/properties/reader/headers/ReaderPropertyDefinition.h"
 
+using namespace std;
 using namespace Modeler::Properties;
 
 namespace Ifc
@@ -12,15 +14,28 @@ namespace Ifc
 		class IfcReaderPropertiesBundle {
 
 		private:
-			ReaderPropertiesBundle* readerPropertiesBundle;
+			string className;
+			int localId;
+			string _name;
+			vector<ReaderPropertyDefinition*> properties;
 			Ifc4::IfcPropertySet* ifcPropertySet;
 
 		public:
-			IfcReaderPropertiesBundle(ReaderPropertiesBundle* newReaderPropertiesBundle);
+			IfcReaderPropertiesBundle(string newClassName, int newLocalId);
+
+			string getClassName();
+			int getLocalId();
+			void setLocalId(int newLocalId);
+
+			string getName();
+			void setName(string name);
+
+			vector<ReaderPropertyDefinition*> getProperties();
+			void addProperty(ReaderPropertyDefinition* readerPropertyDefinition);
 
 			void setIfcPropertySet(Ifc4::IfcPropertySet* ifcPropertySetValue);
-			ReaderPropertiesBundle* getReaderPropertiesBundle();
 			Ifc4::IfcPropertySet* getIfcPropertySet();
+
 		};
 	}
 }

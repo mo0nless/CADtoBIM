@@ -6,7 +6,6 @@
 #include "IfcGraphicPropertiesBundle.h"
 #include "IfcReaderPropertiesBundle.h"
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
-#include "../../../modeler/properties/reader/headers/ReaderPropertiesBundle.h"
 #include "../../../modeler/brep_solids/headers/TopologyStructures.h"
 #include "../../../ifc/operations_helper/headers/IfcOperationsHelper.h"
 #include "../../../common/models/headers/SessionManager.h"
@@ -27,8 +26,6 @@ namespace Ifc
 		private:
 			long modelerElementId;
 			string modelerElementDescriptor;
-
-			vector<ReaderPropertiesBundle*> elementReaderPropertiesBundleVector;
 
 			vector<IfcReaderPropertiesBundle*> ifcElementReaderPropertiesBundleVector;
 			vector<IfcGraphicPropertiesBundle*> ifcGraphicPropertiesBundleVector;
@@ -63,13 +60,15 @@ namespace Ifc
 			void addIfcDistributionPorts(Ifc4::IfcDistributionPort* newDistPort);
 			void addIfcPortsPoints(Ifc4::IfcCartesianPoint* newIfcPoint);
 
-			void addIfcElementReaderPropertiesBundle(IfcReaderPropertiesBundle* newIfcReaderPropertiesBundle);
+			void setIfcElementReaderPropertiesBundleVector(vector<IfcReaderPropertiesBundle*> newReaderPropertiesBundleVector);
 			void addIfcGraphicPropertiesBundle(IfcGraphicPropertiesBundle* newIfcGraphicPropertiesBundle);
+
+			void setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer);
+			SmartFeatureContainer* getSmartFeatureContainer();
 
 			void addSolidEdgesCollection(vector<SolidEdge*> solidEdges);
 
 			vector<IfcReaderPropertiesBundle*> getIfcElementReaderPropertiesBundleVector();
-
 			vector<IfcGraphicPropertiesBundle*> getIfcGraphicPropertiesBundleVector();
 
 			vector<Ifc4::IfcCartesianPoint*> getIfcPortsPointsVector();
@@ -86,12 +85,7 @@ namespace Ifc
 
 			bool getIsSmartFeature();
 
-			void setSmartFeatureContainer(SmartFeatureContainer*& newSmartFeatureContainer);
-			SmartFeatureContainer* getSmartFeatureContainer();
 
-
-			vector<ReaderPropertiesBundle*> getElementReaderPropertiesBundleVector();
-			void setElementReaderPropertiesBundleVector(vector<ReaderPropertiesBundle*> newReaderPropertiesBundleVector);
 		};
 	}
 }

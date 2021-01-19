@@ -39,7 +39,7 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 	}
 
 	IfcReaderPropertiesBundle* ifcReaderPropertiesBundle = getIfcReaderPropertiesBundleByLocalId(*smartFeature, root->getLocalNodeId());
-	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getClassName() == "BooleanFeature" && 
+	if (ifcReaderPropertiesBundle!=nullptr && ifcReaderPropertiesBundle->getClassName() == "BooleanFeature" && 
 		left != nullptr && right != nullptr) {
 		Ifc4::IfcGeometricRepresentationItem* result =  IfcSolidsOperationBuilder::solveBooleanOperation(
 			left->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem(),
@@ -51,7 +51,7 @@ IfcElementBundle* SmartFeatureHandler::eval(SmartFeatureTreeNode* root, vector<I
 		return temp;
 	}
 	else if (ifcReaderPropertiesBundle != nullptr && 
-		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getReaderPropertiesBundle()->getClassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
+		CreateSolidFunctionsEnumUtils::getCreateSolidFunctionsEnumByClassName(ifcReaderPropertiesBundle->getClassName()) != CreateSolidFunctionsEnum::UNDEFINED &&
 		(left != nullptr || right != nullptr)) {
 			Ifc4::IfcGeometricRepresentationItem* result = IfcSolidsOperationBuilder::buildIfcCreateSolidsOperation(left, right, *ifcReaderPropertiesBundle,file);
 			IfcElementBundle* temp = new IfcElementBundle(-1, "CreatedSolid");
@@ -83,7 +83,7 @@ IfcElementBundle* SmartFeatureHandler::getIfcBundleByGlobalId(vector<IfcElementB
 IfcReaderPropertiesBundle* SmartFeatureHandler::getIfcReaderPropertiesBundleByLocalId(IfcElementBundle& ifcBundle, int localId) {
 
 	for (auto const& readerProperty : ifcBundle.getIfcElementReaderPropertiesBundleVector()) {
-		if (readerProperty!=nullptr && readerProperty->getReaderPropertiesBundle()!=nullptr && readerProperty->getReaderPropertiesBundle()->getLocalId() == localId) {
+		if (readerProperty!=nullptr && readerProperty->getLocalId() == localId) {
 			return readerProperty;
 		}
 	}

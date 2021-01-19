@@ -32,7 +32,6 @@
     <ClCompile Include="ifc\main\sources\IfcGeneralInformation.cpp" />
     <ClCompile Include="ifc\bundle\sources\IfcElementBundle.cpp" />
     <ClCompile Include="ifc\bundle\sources\IfcGraphicPropertiesBundle.cpp" />
-    <ClCompile Include="ifc\bundle\sources\IfcReaderPropertiesBundle.cpp" />
     <ClCompile Include="ifc\geometric_representation\brep_solids\sources\IfcBRepRelationship.cpp" />
     <ClCompile Include="ifc\geometric_representation\brep_solids\sources\IfcBRepSolidsEnhancer.cpp" />
     <ClCompile Include="ifc\geometric_representation\primitives\sources\IfcPrimitivesEnhancer.cpp" />
@@ -60,7 +59,6 @@
     <ClCompile Include="modeler\primitives\sources\SolidPrimitiveProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\SphereGraphicProperties.cpp" />
     <ClCompile Include="modeler\primitives\sources\TorusGraphicProperties.cpp" />
-    <ClCompile Include="modeler\properties\reader\sources\ReaderPropertiesBundle.cpp" />
     <ClCompile Include="modeler\properties\reader\sources\ReaderPropertyDefinition.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureContainer.cpp" />
     <ClCompile Include="modeler\properties\smart_feature\sources\SmartFeatureTreeNode.cpp" />
@@ -69,6 +67,7 @@
     <ClCompile Include="modeler\surfaces\sources\MSBsplineSurfaceGraphicProperties.cpp" />
     <ClCompile Include="modeler\text\sources\TextGraphicProperties.cpp" />
     <ClCompile Include="ParametricFeatures.cpp" />
+    <ClCompile Include="ifc\bundle\sources\IfcReaderPropertiesBundle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ParametricFeatures.mke" />
@@ -130,7 +129,6 @@
     <ClInclude Include="ifc\main\headers\IfcGeneralInformation.h" />
     <ClInclude Include="ifc\bundle\headers\IfcElementBundle.h" />
     <ClInclude Include="ifc\bundle\headers\IfcGraphicPropertiesBundle.h" />
-    <ClInclude Include="ifc\bundle\headers\IfcReaderPropertiesBundle.h" />
     <ClInclude Include="ifc\geometric_representation\brep_solids\headers\IfcBRepRelationship.h" />
     <ClInclude Include="ifc\geometric_representation\brep_solids\headers\IfcBRepSolidsEnhancer.h" />
     <ClInclude Include="ifc\geometric_representation\primitives\headers\IfcPrimitivesEnhancer.h" />
@@ -161,7 +159,6 @@
     <ClInclude Include="modeler\primitives\headers\SphereGraphicProperties.h" />
     <ClInclude Include="modeler\primitives\headers\TorusGraphicProperties.h" />
     <ClInclude Include="modeler\properties\headers\GraphicProperties.h" />
-    <ClInclude Include="modeler\properties\reader\headers\ReaderPropertiesBundle.h" />
     <ClInclude Include="modeler\properties\reader\headers\ReaderPropertyDefinition.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureContainer.h" />
     <ClInclude Include="modeler\properties\smart_feature\headers\SmartFeatureTreeNode.h" />
@@ -169,6 +166,7 @@
     <ClInclude Include="modeler\surfaces\headers\MSBsplineSurfaceGraphicProperties.h" />
     <ClInclude Include="modeler\text\headers\TextGraphicProperties.h" />
     <ClInclude Include="ParametricFeaturesCmd.h" />
+    <ClInclude Include="ifc\bundle\headers\IfcReaderPropertiesBundle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interface_dialog\DialogIds.h" />
