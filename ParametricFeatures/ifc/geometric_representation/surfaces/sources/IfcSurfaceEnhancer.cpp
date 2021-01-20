@@ -10,7 +10,7 @@ void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfac
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcSurface(*msBsplineSurfaceGraphicProperties, file, ifcGraphicPropertiesBundle);
 		if (ifcRepresentationItem != nullptr)
 		{
-			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("AdvancedSurface", "Body");
+			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("AdvancedSurface", "Body");
 			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 		}
 		else {

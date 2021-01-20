@@ -56,7 +56,7 @@ Ifc4::IfcPropertySet* IfcPropertiesEnhancer::createIfcPropertySet(IfcReaderPrope
 
 	Ifc4::IfcProperty::list::ptr ifcPropertyList(new Ifc4::IfcProperty::list());
 
-	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getProperties()) 
+	for (auto const& readerPropertyDefinition : readerPropertiesBundle.getPropertiesDefinitions()) 
 	{
 		PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
 

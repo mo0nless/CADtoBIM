@@ -11,16 +11,6 @@ IfcElementBundle::IfcElementBundle(long newModelerElementId, string newModelerEl
 	this->ifcElementReaderPropertiesBundleVector = vector<IfcReaderPropertiesBundle*>();
 }
 
-string IfcElementBundle::getRepresentationType()
-{
-	return this->representationType;
-}
-
-void IfcElementBundle::setRepresentationType(string type)
-{
-	this->representationType = type;
-}
-
 void IfcElementBundle::setBadIfcClassBuild(bool value)
 {
 	badIfcElemetBuild = value;

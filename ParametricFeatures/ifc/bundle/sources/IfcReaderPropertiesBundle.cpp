@@ -33,12 +33,12 @@ void IfcReaderPropertiesBundle::setName(string name)
 	this->_name = name;
 }
 
-vector<ReaderPropertyDefinition*> IfcReaderPropertiesBundle::getProperties()
+vector<ReaderPropertyDefinition*> IfcReaderPropertiesBundle::getPropertiesDefinitions()
 {
 	return this->properties;
 }
 
-void IfcReaderPropertiesBundle::addProperty(ReaderPropertyDefinition* readerPropertyDefinition)
+void IfcReaderPropertiesBundle::addPropertyDefinition(ReaderPropertyDefinition* readerPropertyDefinition)
 {
 	this->properties.push_back(readerPropertyDefinition);
 }

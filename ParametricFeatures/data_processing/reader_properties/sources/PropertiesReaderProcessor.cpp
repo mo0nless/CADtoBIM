@@ -61,7 +61,7 @@ vector<IfcReaderPropertiesBundle*> PropertiesReaderProcessor::processElementRead
 			IfcReaderPropertiesBundle* readerPropertiesBundle = new IfcReaderPropertiesBundle(_elemClassName, elemInst->GetLocalId());
 			mapECPropertiesToReaderProperties(elemInst, readerPropertiesBundle);
 
-			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getProperties()) {
+			for (auto const& readerPropertyDefinition : readerPropertiesBundle->getPropertiesDefinitions()) {
 				if (readerPropertyDefinition->getPropertyName().find("Material") != string::npos) {
 					PropertyTypeEnum propertyTypeEnum = PropertyTypeEnumUtils::getEnumByStringValue(readerPropertyDefinition->getPropertyTypeName());
 					if (PropertyTypeEnum::STRING == propertyTypeEnum && ifcGraphicPropertiesBundle != nullptr) {
@@ -123,7 +123,7 @@ void PropertiesReaderProcessor::mapECPropertiesToReaderProperties(DgnElementECIn
 
 		if (!valueAsString.empty()) 
 		{
-			readerPropertiesBundle->addProperty(new ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal, valueAsString));
+			readerPropertiesBundle->addPropertyDefinition(new ReaderPropertyDefinition(propertyName, StringUtils::getString(ecProp->GetTypeName()), ecVal, valueAsString));
 
 			outfile << static_cast<Utf8String>(ecProp->GetDisplayLabel()) << "["
 				<< static_cast<Utf8String>(ecProp->GetTypeName()) << "] "

@@ -43,8 +43,8 @@ void IfcElementBuilder::processIfcElement(vector<IfcElementBundle*>& ifcBundleVe
 
 				//TODO: Needs to be set up correctly the 3rd input parameter following:
 				//https://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/HTML/schema/ifcrepresentationresource/lexical/ifcshaperepresentation.htm
-				string representationType = ifcGraphicPropertiesBundle->getRepresentationType();
-				string representationIdentifier = ifcGraphicPropertiesBundle->getRepresentationIdentifier();
+				string representationType = ifcGraphicPropertiesBundle->getIfcRepresentationType();
+				string representationIdentifier = ifcGraphicPropertiesBundle->getIfcRepresentationIdentifier();
 				
 				//NOTE  The provision of a model view (IfcGeometricRepresentationContext.ContextType = 'Model') is mandatory. Instances of IfcGeometricRepresentationSubContext relate to it as its ParentContext.
 				Ifc4::IfcGeometricRepresentationSubContext* geometricSubContext = new Ifc4::IfcGeometricRepresentationSubContext(

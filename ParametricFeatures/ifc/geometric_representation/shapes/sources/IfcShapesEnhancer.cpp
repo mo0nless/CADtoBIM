@@ -238,9 +238,9 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 		ifcGraphicPropertiesBundle->setIfcRepresentationItem(mSingleShapeRepresentation);
 
 		if(shapeGraphicProperties->getIsFilled())
-			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Surface", "Surface");
+			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("Surface", "Surface");
 		else
-			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Curve", "Axis");
+			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("Curve", "Axis");
 
 		this->mSingleShapeRepresentation = nullptr;
 	}

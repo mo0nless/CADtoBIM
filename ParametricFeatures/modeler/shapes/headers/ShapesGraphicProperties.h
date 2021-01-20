@@ -232,9 +232,8 @@ namespace Modeler
 
 			virtual ~ShapesGraphicProperties();
 
-			//TEMP
+			//TODO[SB] TEMP for MSBpline surface
 			string type = "";
-			bool isPartOfLoop = false;
 
 			string toString();
 

@@ -16,7 +16,7 @@ void IfcTextEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, TextGraphicPropert
 			if (ifcRepresentationItem != nullptr)
 			{
 				ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
-				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Text", "Annotation");
+				ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("Text", "Annotation");
 			}
 			else {
 				_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");

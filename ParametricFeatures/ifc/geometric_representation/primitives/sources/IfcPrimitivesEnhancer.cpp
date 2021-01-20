@@ -16,7 +16,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, ifcGraphicPropertiesBundle);
 		if (ifcRepresentationItem != nullptr)
 		{
-			ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("CSG", "Body");
+			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("CSG", "Body");
 			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 		}
 		else {

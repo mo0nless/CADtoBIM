@@ -57,18 +57,18 @@ void IfcGraphicPropertiesBundle::setShow(bool newShow)
 	this->show = newShow;
 }
 
-void IfcGraphicPropertiesBundle::setRepresentationTypeIdentifier(string rType, string rIdentifier)
+void IfcGraphicPropertiesBundle::setIfcRepresentationTypeIdentifier(string rType, string rIdentifier)
 {
 	representationType = rType;
 	representationIdentifier = rIdentifier;
 }
 
-string IfcGraphicPropertiesBundle::getRepresentationType()
+string IfcGraphicPropertiesBundle::getIfcRepresentationType()
 {
 	return representationType;
 }
 
-string IfcGraphicPropertiesBundle::getRepresentationIdentifier()
+string IfcGraphicPropertiesBundle::getIfcRepresentationIdentifier()
 {
 	return representationIdentifier;
 }

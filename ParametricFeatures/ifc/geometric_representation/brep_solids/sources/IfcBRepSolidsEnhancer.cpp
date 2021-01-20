@@ -25,9 +25,9 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 
 			if (solidEntityGraphicProperties->meshProcessing)
-				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("Brep", "Body");
+				ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("Brep", "Body");
 			else
-				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("AdvanceBrep", "Body");
+				ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("AdvanceBrep", "Body");
 		}
 		else {
 			_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem IS NULL");
@@ -40,7 +40,7 @@ void IfcBRepSolidsEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidEntityG
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4101)
 #pragma warning( disable : 4189)
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepresentationBsplineSurface(SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcElementBundle*& ifcElementBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -48,7 +48,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 	IfcEntityList* entityList = new IfcEntityList();
 	Ifc4::IfcPolyLoop* polySharedLoop = nullptr;
 	vector<Ifc4::IfcVertexLoop*> vertexLoopVec;
-	/*for (auto point : brepSolidsKernelEntity->mVertexLoop)
+	/*for (auto point : solidEntityGraphicProperties->mVertexLoop)
 	{
 		Ifc4::IfcCartesianPoint * cP = IfcOperationsHelper::buildIfcCartesianFromCoordsPoint3D(point);
 		Ifc4::IfcVertex* vertex(new Ifc4::IfcVertexPoint(cP));
@@ -56,7 +56,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 		vertexLoopVec.push_back(vLoop);
 	}*/
 	
-	for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getBSplineSurfaceFacesVector())
+	for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : solidEntityGraphicProperties->getBSplineSurfaceFacesVector())
 	{
 		if (msBsplineGraphicProperties != nullptr)
 		{
@@ -275,7 +275,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 //Edges of solid on poly loop representation
 #if false			
 			IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>* sharedCartesianPointList = new IfcTemplatedEntityList<Ifc4::IfcCartesianPoint>();
-			for (auto boundPoints : brepSolidsKernelEntity->getBoundsPoints())
+			for (auto boundPoints : solidEntityGraphicProperties->getBoundsPoints())
 			{
 				//Check if they belongs to the same entity
 				if (boundPoints->nodeID == msBsplineGraphicProperties->getNodeId())
@@ -415,24 +415,24 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildGeometricRepr
 #endif
 
 //WORKS
-Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* brepSolidsKernelEntity, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
+Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(SolidEntityGraphicProperties* solidEntityGraphicProperties, IfcHierarchyHelper<Ifc4>& file, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	Ifc4::IfcGeometricRepresentationItem * geomItem = nullptr;
 
-	if (!brepSolidsKernelEntity->meshProcessing)
+	if (!solidEntityGraphicProperties->meshProcessing)
 	{
 		IfcEntityList* entityList = new IfcEntityList();
 		IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcAdvancedFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
-		buildIfcFaceSurface(brepSolidsKernelEntity->getSolidOrSurfaceVector(), ifcGraphicPropertiesBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
+		buildIfcFaceSurface(solidEntityGraphicProperties->getSolidOrSurfaceVector(), ifcGraphicPropertiesBundle, file, *&entityList, *&tempIfcAdvancedFaceList);
 
-		//buildSolidEntityEdgeLoop(brepSolidsKernelEntity, file);
+		//buildSolidEntityEdgeLoop(solidEntityGraphicProperties, file);
 
 #if false	
 
-		for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : brepSolidsKernelEntity->getSolidOrSurfaceVector())
+		for (MSBsplineSurfaceGraphicProperties* msBsplineGraphicProperties : solidEntityGraphicProperties->getSolidOrSurfaceVector())
 		{
 			if (msBsplineGraphicProperties != nullptr)
 			{
@@ -712,11 +712,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 
 		geomItem = shellBasedSurfaceModel;
 	}
-	else if (brepSolidsKernelEntity->meshProcessing)
+	else if (solidEntityGraphicProperties->meshProcessing)
 	{
 		IfcEntityList* solidEntityList = new IfcEntityList();
 		//Parse all the solid inside the Faceted BRep
-		for (auto meshTriangles : brepSolidsKernelEntity->getMeshTriangulated())
+		for (auto meshTriangles : solidEntityGraphicProperties->getMeshTriangulated())
 		{
 			IfcTemplatedEntityList<Ifc4::IfcFace>* tempIfcFaceList = new IfcTemplatedEntityList<Ifc4::IfcFace>();
 
@@ -725,12 +725,12 @@ Ifc4::IfcGeometricRepresentationItem * IfcBRepSolidsEnhancer::buildBRepSolid(Sol
 			//Collect all the faces created
 			boost::shared_ptr<IfcTemplatedEntityList<Ifc4::IfcFace>> temFacesList(tempIfcFaceList);
 
-			if (brepSolidsKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SOLID)
+			if (solidEntityGraphicProperties->getBRepTypeEnum() == BRepTypeEnum::SOLID)
 			{
 				Ifc4::IfcClosedShell* closedShell = new Ifc4::IfcClosedShell(temFacesList);
 				solidEntityList->push(closedShell);
 			}
-			else if (brepSolidsKernelEntity->getBRepTypeEnum() == BRepTypeEnum::SHEET)
+			else if (solidEntityGraphicProperties->getBRepTypeEnum() == BRepTypeEnum::SHEET)
 			{
 				Ifc4::IfcOpenShell* openShell = new Ifc4::IfcOpenShell(temFacesList);
 				solidEntityList->push(openShell);
@@ -779,7 +779,7 @@ void IfcBRepSolidsEnhancer::processPolyfaceMesh(MeshTriangles* meshTriangles, If
 	}	
 }
 
-void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * brepSolidsKernelEntity, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
+void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicProperties * solidEntityGraphicProperties, IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, IfcHierarchyHelper<Ifc4>& file)
 {
 	ofstream outfile;
 	string filePath = SessionManager::getInstance()->getDataOutputFilePath();
@@ -792,7 +792,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 	outfile << "----Start Edge Processing-----" << endl;
 	outfile.close();
 
-	for (auto  bound: brepSolidsKernelEntity->getSurfaceBoundaryShapes())
+	for (auto  bound: solidEntityGraphicProperties->getSurfaceBoundaryShapes())
 	{
 		outfile.open(filePath, ios_base::app);
 		outfile << endl;
@@ -911,7 +911,7 @@ void IfcBRepSolidsEnhancer::buildSolidEntityEdgeLoop(SolidEntityGraphicPropertie
 		}				
 	}
 
-	for (auto boundVector : brepSolidsKernelEntity->loopShapesBounds)
+	for (auto boundVector : solidEntityGraphicProperties->loopShapesBounds)
 	{
 		outfile.open(filePath, ios_base::app);
 		outfile << endl;

@@ -13,7 +13,7 @@ void SmartFeatureHandler::handleSmartFeature(vector<IfcElementBundle*>& ifcBundl
 					new GraphicProperties(),
 					ifcResult->getIfcGraphicPropertiesBundleVector().at(0)->getIfcRepresentationItem()
 				);
-				ifcGraphicPropertiesBundle->setRepresentationTypeIdentifier("CSG", "Body");
+				ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("CSG", "Body");
 				ifcElementBundle->addIfcGraphicPropertiesBundle(ifcGraphicPropertiesBundle);
 			}
 			
