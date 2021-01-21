@@ -1,12 +1,21 @@
 #pragma once
 
+/**
+ * @file IfcBuilder.h
+ * @author Stefano Beccaletto (stefano.beccaletto@tractebel.engie.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-01-21
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <ctime>
 
 #include "IfcElementBuilder.h"
-
 #include "../../main/headers/IfcGeneralInformation.h"
 #include "../../ports/headers/IfcPortsBuilder.h"
-
 
 #include "../../../modeler/properties/smart_feature/headers/SmartFeatureContainer.h"
 #include "../../geometric_representation/shapes/headers/IfcShapesEnhancer.h"
@@ -35,6 +44,10 @@ namespace Ifc
 {
 	namespace Main
 	{
+		/**
+		 * @brief Main clas to handle the creation of an Ifc. Parsing the IfcElementBundle and calls to the different geometry builder
+		 * 
+		 */
 		class IfcBuilder {
 		private:
 			IfcPrimitivesEnhancer* _ifcPrimitivesEnhancer;
@@ -49,21 +62,51 @@ namespace Ifc
 			SmartFeatureHandler* _smartFeatureHandler;
 			map<LevelId, IfcEntityList*> _levelFileEntities;
 			vector<LevelHandle> _fileLevelHandle;
-			map<LevelId, IfcEntityList*> getLevelFileCache();
-
-			void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
 			Utilities::DialogCompletionBar* _progressBar;
 
 			mutable boost::shared_mutex _mutex;
 			Logging::Logger* _logger = Logging::Logger::getLogger();
+			
+			/**
+			 * @brief Get the Level File Cache related to the current Bentley DGN file object
+			 * 
+			 * @return map<LevelId, IfcEntityList*> 
+			 */
+			map<LevelId, IfcEntityList*> getLevelFileCache();	
 
+			/**
+			 * @brief Generate and write on the Ifc file the Levels File Cache
+			 * 
+			 * @param file 
+			 */
+			void generateIfcLevelsCache(IfcHierarchyHelper<Ifc4>& file);
+
+			/**
+			 * @brief Split a vector in N sub vectors
+			 * 
+			 * @tparam ValueType 
+			 * @param vec the vector to split
+			 * @param n number of split
+			 * @return vector<vector<ValueType>> 
+			 */
 			template<typename ValueType>
 			vector<vector<ValueType>> splitVector(const std::vector<ValueType>& vec, size_t n);
 
+			/**
+			 * @brief Process each IfcElementBundle and build the correct geometry associated to the element
+			 * 
+			 * @param ifcElementBundleVector 
+			 * @param file 
+			 */
 			void processElementVector(vector<IfcElementBundle*> ifcElementBundleVector, IfcHierarchyHelper<Ifc4>& file);
 		public:
 			IfcBuilder();
-
+			
+			/**
+			 * @brief Method to start building the Ifc File with the IfcElementBundle vector
+			 * 
+			 * @param ifcElementBundleVector 
+			 */
 			void buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector);
 
 		};

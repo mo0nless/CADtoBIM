@@ -103,8 +103,6 @@ namespace Ifc
 			T searchOnMap(map<int, T>, int key);
 
 			vector<EdgeIfcCurve*> solidEdges;
-
-			mutable boost::shared_mutex _mutex;
 		};
 
 		template<class T>

@@ -3,7 +3,6 @@
 void IfcSurfaceEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, MSBsplineSurfaceGraphicProperties* msBsplineSurfaceGraphicProperties, IfcElementBundle*& ifcElementBundle,
 	IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle, bool addToIfcElementBundle)
 {
-	boost::unique_lock<boost::shared_mutex> guard(_mutex);
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
 	if (msBsplineSurfaceGraphicProperties != nullptr) {
