@@ -17,6 +17,7 @@
 #include "../../../common/utils/headers/StringUtils.hpp"
 #include "../../../common/models/headers/SessionManager.h"
 #include "../../../modeler/data_writer/headers/ModelerDataWriterManager.h"
+#include <DgnView/SelectionSetManager.h>   
 
 /** @ingroup data_processing Data Processing
 *  @{
@@ -89,6 +90,8 @@ namespace DataProcessing
 			 * @return StatusInt 
 			 */
 			StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
+
+			void processSingleElementRef(ElementRefP elementRef);
 			
 			DgnModelP _dgnModel;
 

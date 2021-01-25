@@ -3,7 +3,7 @@
 #pragma warning( push )
 #pragma warning( disable : 4700)
 #pragma warning( disable : 4189)
-#pragma warning (disable:4311 4302 4312 4100 )
+#pragma warning (disable: 4311 4302 4312 4100 )
 
 using namespace DataProcessing::Initialization;
 
@@ -115,6 +115,55 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 	return SUCCESS;
 }
 
+void InitializationHelper::processSingleElementRef(ElementRefP elementRef)
+{
+	try
+	{
+		ElementHandle currentElem(elementRef);
+
+		WString elDescr, myString;
+
+		currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
+		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
+		IfcElementBundle* ifcElementBundle = new IfcElementBundle(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
+
+		vector<IfcReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
+		ifcElementBundle->setIfcElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
+		ifcElementBundle->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
+
+		if (SmartFeatureElement::IsSmartFeature(currentElem))
+		{
+			SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem);
+
+			if (smartFeatureContainer != nullptr) {
+				ifcElementBundle->setSmartFeatureContainer(*&smartFeatureContainer);
+			}
+		}
+		else
+		{
+			iterateSubElements(elementRef, ifcElementBundle);
+		}
+
+
+		_ifcElementBundleVector.push_back(ifcElementBundle);
+
+		this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
+
+		//ProgressBar
+		this->_progressBar->IncrementIndex();
+		myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
+		this->_progressBar->Update(myString);
+	}
+	catch (exception& ex) {
+		_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "An error occured while iterating and processing pGraElement");
+	}
+	catch (...) {
+		_logger->logError(__FILE__, __LINE__, __FUNCTION__, "An error occured while iterating and processing pGraElement");
+
+	}
+}
+
 void InitializationHelper::processDgnGraphicsElements()
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting elements processing -!");
@@ -126,60 +175,33 @@ void InitializationHelper::processDgnGraphicsElements()
 
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
 	int numElements = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
-		
-	//Open ProgressBar	
-	this->_progressBar->numGraphicElement = numElements; 
-	this->_progressBar->Open(L"Working...");
-
-	//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
-	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();*/
 	
-	for (PersistentElementRefP elemRef : _allGraphicElements)
-	{	
-		try
+	if (!_selectedElementsExport) //EXPORT ALL ELEMENT
+	{
+		//Open ProgressBar	
+		this->_progressBar->numGraphicElement = numElements;
+		this->_progressBar->Open(L"Working...");
+
+		//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
+		/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();*/
+
+		for (PersistentElementRefP elementRef : _allGraphicElements)
 		{
-			ElementHandle currentElem(elemRef);
-
-			WString elDescr, myString;
-
-			currentElem.GetHandler().GetDescription(currentElem, elDescr, 100);
-			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-			IfcElementBundle* ifcElementBundle = new IfcElementBundle(currentElem.GetElementId(), StringUtils::getNormalizedString(elDescr.GetWCharCP()));
-
-			vector<IfcReaderPropertiesBundle*> readerPropertiesBundleVector = this->_propertiesReaderProcessor->processElementReaderProperties(currentElem);
-			ifcElementBundle->setIfcElementReaderPropertiesBundleVector(readerPropertiesBundleVector);
-			ifcElementBundle->setElementClassName(this->_propertiesReaderProcessor->getElementClassName());
-			
-			if (SmartFeatureElement::IsSmartFeature(currentElem))
-			{
-				SmartFeatureContainer* smartFeatureContainer = createSmartFeatureContainer(currentElem);
-
-				if (smartFeatureContainer != nullptr) {
-					ifcElementBundle->setSmartFeatureContainer(*&smartFeatureContainer);
-				}
-			}
-			else
-			{
-				iterateSubElements(elemRef, ifcElementBundle);
-			}
-
-
-			_ifcElementBundleVector.push_back(ifcElementBundle);
-
-			this->_modelerDataWriterManager->writeElementInfoDataToFile(currentElem.GetElementId(), elDescr);
-
-			//ProgressBar
-			this->_progressBar->IncrementIndex();
-			myString.Sprintf(L"Processing Elements... [%d/%d]  (%s)", this->_progressBar->GetIndex(), this->_progressBar->numGraphicElement, elDescr);
-			this->_progressBar->Update(myString);
+			processSingleElementRef(elementRef);
 		}
-		catch (exception& ex) {
-			_logger->logError(__FILE__, __LINE__, __FUNCTION__, ex, "An error occured while iterating and processing pGraElement");
-		}
-		catch (...) {
-			_logger->logError(__FILE__, __LINE__, __FUNCTION__, "An error occured while iterating and processing pGraElement");
+	}
+	else //EXPORT ONLY SELECTED ELEMENT
+	{
+		//Open ProgressBar	
+		this->_progressBar->numGraphicElement = (int)SelectionSetManager::GetManager().NumSelected();
+		this->_progressBar->Open(L"Working...");
 
+		int numSelected = (int)SelectionSetManager::GetManager().NumSelected();
+		for (int i = 0; i < numSelected; i++)
+		{
+			ElementRefP elementRef = nullptr;
+			StatusInt status = SelectionSetManager::GetManager().GetElement(i, &elementRef, &dgnModelRef);
+			processSingleElementRef(elementRef);
 		}
 	}
 

@@ -49,7 +49,7 @@ the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
 static UserGeneralInfo userGeneralInfo = { L" " , L" ", L" ", 14, L" " };
-static IfcExportSettings ifcExportSettings = { 0 , false, false };
+static IfcExportSettings ifcExportSettings = { 1 , false, false };
 
 static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;

@@ -222,6 +222,7 @@ void IfcShapesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, ShapesGraphicPro
 
 	if (this->mSingleShapeRepresentation != nullptr && addToIfcElementBundle)
 	{
+		//TODO[SB] Could it be of type IfcAnnotationFillArea
 		if (shapeGraphicProperties->getIsFilled()) //If It's a Shape included in an Element, build an IfcCurveBoundedPlane
 		{
 			Ifc4::IfcCurve* curve = (Ifc4::IfcCurve*)mSingleShapeRepresentation;

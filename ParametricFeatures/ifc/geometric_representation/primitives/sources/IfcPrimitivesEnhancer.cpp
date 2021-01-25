@@ -16,7 +16,7 @@ void IfcPrimitivesEnhancer::enhance(IfcHierarchyHelper<Ifc4>& file, SolidPrimiti
 		Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = buildIfcPrimitive(*solidPrimitiveProperties, file, ifcGraphicPropertiesBundle);
 		if (ifcRepresentationItem != nullptr)
 		{
-			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("CSG", "Body");
+			ifcGraphicPropertiesBundle->setIfcRepresentationTypeIdentifier("SolidModel", "Body"); //CSG before
 			ifcGraphicPropertiesBundle->setIfcRepresentationItem(ifcRepresentationItem);
 		}
 		else {
@@ -53,11 +53,11 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	
 }
 
-Ifc4::IfcGeometricRepresentationItem* IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcCsgSolid* IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	Ifc4::IfcGeometricRepresentationItem* ifcRepresentationItem = nullptr;
+	Ifc4::IfcCsgPrimitive3D* ifcRepresentationItem = nullptr;
 
 		PrimitiveTypeEnum primitiveTypeEnum = primitiveGraphicProperties.getPrimitiveTypeEnum();
 		Ifc4::IfcAxis2Placement3D* placement = IfcOperationsHelper::buildIfcAxis2Placement3D(
@@ -143,7 +143,7 @@ Ifc4::IfcGeometricRepresentationItem* IfcPrimitivesEnhancer::buildBasicPrimitive
 		}
 	
 	if (ifcRepresentationItem != nullptr) {
-		return ifcRepresentationItem;
+		return new Ifc4::IfcCsgSolid(ifcRepresentationItem); //Needed for geometry visualization with the viewer
 
 	}
 	_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem is NULL");
