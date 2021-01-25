@@ -22,6 +22,12 @@ GraphicsProcessorHelper* GraphicsProcessor::getGraphicsProcessorHelper()
 	return &this->mGraphicsProcessorHelper;
 }
 
+void GraphicsProcessor::setIfcExportSettingsProcessor(int brepTypeExport, bool activateBRepExport)
+{
+	_meshProcessing = brepTypeExport;
+	_activateBRepExport = activateBRepExport;
+}
+
 
 //! Process surfaces and solids not handled directly or are clipped through _ProcessFaceta.
 //! @param[in] isPolyface facets are from a call to DrawPolyface, ex. mesh element.
@@ -117,9 +123,12 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 {	
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	//TODO[SB] return ERROR _ProcessSurface
-	_logger->logWarning(__FILE__, __LINE__, __func__, "!- Surface not processed through Graphic Processor -!");
-	return ERROR;
+	if (_activateBRepExport)
+	{
+		//TODO[SB] return ERROR _ProcessSurface
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Surface not processed through Graphic Processor -! _activateBRepExport = true" );
+		return ERROR;
+	}
 
 	if(!mGraphicsProcessorHelper.processMSBsplineSurface(surface))
 	{
@@ -137,7 +146,7 @@ BentleyStatus GraphicsProcessor::_ProcessSurface(MSBsplineSurfaceCR surface)
 		return ERROR;
 	}
 
-	//return SUCCESS;
+	return SUCCESS;
 }
 
 //! Collect output for surfaces and solids using a solid kernel entity.
@@ -155,12 +164,10 @@ BentleyStatus GraphicsProcessor::_ProcessBody(ISolidKernelEntityCR entity, IFace
 {	
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
-	//TODO[SB] MESH PROCESSIG ACTIVE
-	bool meshProcessing = true;
-	if(meshProcessing)
+	if(_meshProcessing)
 		_logger->logInfo(__FILE__, __LINE__, __func__, "!- Triangulated Mesh Graphic Processor -!");
 
-	mGraphicsProcessorHelper.processBodySolid(entity, meshProcessing);
+	mGraphicsProcessorHelper.processBodySolid(entity, _meshProcessing);
 
 	return SUCCESS;
 }
@@ -199,13 +206,19 @@ BentleyStatus GraphicsProcessor::_ProcessFacets(PolyfaceQueryCR meshData, bool i
 BentleyStatus GraphicsProcessor::_ProcessSolidPrimitive(ISolidPrimitiveCR primitive)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
+	
+	if (_activateBRepExport)
+	{
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Primitive not processed through Graphic Processor -! _activateBRepExport = true");
+		return ERROR;
+	}
 
 	if (!mGraphicsProcessorHelper.processSolidPrimitive(primitive))
 	{
 		WString myString;
 		myString.Sprintf(L"_ProcessSolidPrimitive");
 
-		_logger->logWarning(__FILE__, __LINE__, __func__, "!- primitive not processed through Graphic Processor -!");
+		_logger->logWarning(__FILE__, __LINE__, __func__, "!- Primitive not processed through Graphic Processor -!");
 		
 		NotificationMessage::send(
 			mGraphicsProcessorHelper.getCurrentElementHandle(),

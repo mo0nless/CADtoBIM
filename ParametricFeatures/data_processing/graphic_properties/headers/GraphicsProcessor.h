@@ -49,6 +49,8 @@ namespace DataProcessing
 			 * @return GraphicsProcessorHelper* 
 			 */
 			GraphicsProcessorHelper* getGraphicsProcessorHelper();
+
+			void setIfcExportSettingsProcessor(int brepTypeExport, bool activateBRepExport);
 		private:
 			GraphicsProcessor();
 
@@ -83,6 +85,7 @@ namespace DataProcessing
 
 			GraphicsProcessorHelper mGraphicsProcessorHelper;
 			Transform m_currentTransform;
+			bool _meshProcessing, _activateBRepExport;
 		};
 	}
 }

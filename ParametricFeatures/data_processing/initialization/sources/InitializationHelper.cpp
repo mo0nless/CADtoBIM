@@ -97,6 +97,8 @@ StatusInt InitializationHelper::iterateSubElements(ElementRefP elementRefP, IfcE
 		IfcGraphicPropertiesBundle* ifcGraphicPropertiesBundle = new IfcGraphicPropertiesBundle(elementHandle, level);
 
 		GraphicsProcessor* graphicsProcessor = GraphicsProcessor::getInstance();
+		graphicsProcessor->setIfcExportSettingsProcessor(_brepTypeExport, _activateBRepExport);
+
 		GraphicsProcessorHelper* graphicsProcessorHelper = graphicsProcessor->getGraphicsProcessorHelper();
 
 		graphicsProcessorHelper->setElementHandle(elementHandle);
@@ -117,7 +119,7 @@ void InitializationHelper::processDgnGraphicsElements()
 {
 	_logger->logInfo(__FILE__, __LINE__, __func__, "!- Starting elements processing -!");
 
-	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP();
+	DgnModelRefP dgnModelRef = ISessionMgr::GetActiveDgnModelRefP(); //ActiveModelReference
 	ModelInfoCP modelInfo = dgnModelRef->GetModelInfoCP();
 
 	this->_modelerDataWriterManager->writeInitializationDataToFile(modelInfo);
@@ -131,7 +133,7 @@ void InitializationHelper::processDgnGraphicsElements()
 
 	//TODO[SB] for nested dgn attached dgnModelRef->GetReachableElements();	
 	/*ReachableElementCollection rCollection = mDgnModel->GetReachableElements();*/
-
+	
 	for (PersistentElementRefP elemRef : _allGraphicElements)
 	{	
 		try
@@ -190,5 +192,12 @@ void InitializationHelper::processDgnGraphicsElements()
 vector<IfcElementBundle*>& InitializationHelper::getIfcElementBundleVector()
 {
 	return this->_ifcElementBundleVector;
+}
+
+void InitializationHelper::setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport)
+{
+	this->_brepTypeExport = brepTypeExport;
+	this->_activateBRepExport = activateBRepExport;
+	this->_selectedElementsExport = selectedElementsExport;
 }
 #pragma warning( pop ) 

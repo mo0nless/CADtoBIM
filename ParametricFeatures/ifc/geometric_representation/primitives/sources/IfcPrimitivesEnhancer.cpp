@@ -53,7 +53,7 @@ Ifc4::IfcGeometricRepresentationItem * IfcPrimitivesEnhancer::buildIfcPrimitive(
 	
 }
 
-Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
+Ifc4::IfcGeometricRepresentationItem* IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file)
 {
 	_logger->logDebug(__FILE__, __LINE__, __func__);
 
@@ -143,8 +143,7 @@ Ifc4::IfcCsgSolid * IfcPrimitivesEnhancer::buildBasicPrimitive(SolidPrimitivePro
 		}
 	
 	if (ifcRepresentationItem != nullptr) {
-		Ifc4::IfcCsgSolid* solid = new Ifc4::IfcCsgSolid(ifcRepresentationItem);
-		return solid;
+		return ifcRepresentationItem;
 
 	}
 	_logger->logWarning(__FILE__, __LINE__, __func__, "ifcRepresentationItem is NULL");

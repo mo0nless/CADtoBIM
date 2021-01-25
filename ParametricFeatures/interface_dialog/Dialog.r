@@ -112,29 +112,30 @@ DialogBoxRsc DIALOGID_Dialog =
 				{{AUTO_XY, 0, 0},    Text, ACTORSURNAMETEXTID_Dialog, ON, 0, "", ""},	
 				LAYOUT_LABEL_NEXT_LEFT(0,"")
 				{{AUTO_XY, 0, 0},    Text, ACTOREMAILTEXTID_Dialog, ON, 0, "", ""},	
-				//{AUTO_XYWH, OptionButton, OPTIONBUTTONID_Dialog2, ON, 0, "", ""},
 			END_ROW
 		END_LAYOUT	
 
 		SPACING (SECTION_GAP)
-
-		/* //DEBUG PURPOSE
-		//BEGIN_HSTACK_LAYOUT(0,"")
+        
+        BEGIN_HSTACK_LAYOUT(0,"")
 			//SPACING (SECTION_GAP)
 				BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
 					GRID_ROW(0, "")
-					{AUTO_XYWH,    ToggleButton, ELEMENT_S_TOGGLEID_Dialog, ON, 0, "", ""},
+					    {AUTO_XYWH,    ToggleButton, BREP_EXPORT_TOGGLEID_Dialog2, ON, 0, "", ""},
+				        LAYOUT_LABEL_NEXT_LEFT(0,"")
+				        {AUTO_XYWH, OptionButton, OPTIONBUTTONID_EXPORT_BREP_Dialog, ON, 0, "", ""},
 					END_ROW
 					GRID_ROW(0, "")
-					{AUTO_XYWH,   ToggleButton, TOGGLEID_Dialog2, ON, 0, "", ""},
+					    {AUTO_XYWH,   ToggleButton, SELECTED_ELEMENTS_TOGGLEID_Dialog, ON, 0, "", ""},
 					END_ROW
-					GRID_ROW(0, "")
-					{AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
-					END_ROW
-				END_LAYOUT	       
+					//GRID_ROW(0, "")
+					//    {AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
+					//END_ROW
+                END_LAYOUT       
 		//STRETCH(1)
-		//END_LAYOUT
-	
+		END_LAYOUT
+
+		/* //DEBUG PURPOSE	
 		SPACING (SECTION_GAP)
 
 		BEGIN_HSTACK_LAYOUT (0, "")
@@ -346,14 +347,14 @@ DItem_OptionButtonRsc  OPTIONROLEACTORID_Dialog =
     }
     };
 
-DItem_OptionButtonRsc  OPTIONBUTTONID_Dialog2 =
+DItem_OptionButtonRsc  OPTIONBUTTONID_EXPORT_BREP_Dialog =
     {
-    NOSYNONYM, NOHELP, LHELPCMD, NOHOOK, NOARG,
-    TXT_OptionButton2,
-    "dlog_optionbtnNumber2",
+    NOSYNONYM, NOHELP, LHELPCMD, HOOKITEMID_BrepTypeOption_Dialog, NOARG,
+    TXT_BREP_Type,
+    "ifcExportSettings.brepTypeExport",
     {
-    {NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Option21},
-    {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Option22},
+    {NOTYPE, NOICON, NOCMD, LCMD, 0, NOMASK, ON, TXT_Brep_Option_BSpline},
+    {NOTYPE, NOICON, NOCMD, LCMD, 1, NOMASK, ON, TXT_Brep_Option_MeshT},
     }
     };
 
@@ -462,22 +463,24 @@ DItem_TextRsc TEXTID_DialogScroll =
 |   Toggle Button Item Resources                                        |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_ToggleButtonRsc ELEMENT_S_TOGGLEID_Dialog =
+DItem_ToggleButtonRsc SELECTED_ELEMENTS_TOGGLEID_Dialog =
     {
     NOCMD, LCMD, 
-	SYNONYMID_ToggleSelection,//NOSYNONYM, 
+	SYNONYMID_ExportSelectionToggle,//NOSYNONYM, 
 	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
     TXT_ToggleSingleElementButton,
-    "dlog_ToggleSingleElementButton"
+    "ifcExportSettings.selectedElementsExport"
     };
 
-DItem_ToggleButtonRsc TOGGLEID_Dialog2 =
+DItem_ToggleButtonRsc BREP_EXPORT_TOGGLEID_Dialog2 =
     {
-    NOCMD, LCMD, NOSYNONYM, NOHELP, LHELPCMD, NOHOOK,
+    NOCMD, LCMD, 
+	SYNONYMID_ExportSelectionToggle, //NOSYNONYM, 
+	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
-    TXT_ToggleButton2,
-    ""
+    TXT_ToggleButton_Export_BREP,
+    "ifcExportSettings.activateBRepExport"
     };
 
 DItem_ToggleButtonRsc TOGGLEID_Dialog3 =
@@ -517,11 +520,12 @@ DItem_SynonymsRsc SYNONYMID_DialogBrowse=
 	}
 	};
 
-DItem_SynonymsRsc SYNONYMID_ToggleSelection=
+DItem_SynonymsRsc SYNONYMID_ExportSelectionToggle=
 	{
 	{
-		{ToggleButton, ELEMENT_S_TOGGLEID_Dialog},
-		{ListBox, LISTBOXID_Dialog},
+		{ToggleButton, SELECTED_ELEMENTS_TOGGLEID_Dialog},
+		{ToggleButton, BREP_EXPORT_TOGGLEID_Dialog2},
+		{OptionButton, OPTIONBUTTONID_EXPORT_BREP_Dialog},
 		{PushButton, STARTBUTTONID_Dialog}
 	}
 	};

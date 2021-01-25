@@ -61,6 +61,15 @@ namespace DataProcessing
 			 */
 			vector<IfcElementBundle*>& getIfcElementBundleVector();
 
+			/**
+			 * @brief Set the Ifc Export Settings object
+			 * 
+			 * @param brepTypeExport BSpline = 0, Meshes = 1
+			 * @param activateBRepExport 
+			 * @param selectedElementsExport 
+			 */
+			void setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport);
+
 		private:
 			Logging::Logger* _logger = Logging::Logger::getLogger();
 
@@ -80,11 +89,15 @@ namespace DataProcessing
 			 * @return StatusInt 
 			 */
 			StatusInt iterateSubElements(ElementRefP elementRefP, IfcElementBundle*& ifcElementBundle);
-
+			
 			DgnModelP _dgnModel;
 
 			ModelerDataWriterManager* _modelerDataWriterManager;
 			PropertiesReaderProcessor* _propertiesReaderProcessor;
+
+			int _brepTypeExport;
+			bool _activateBRepExport;
+			bool _selectedElementsExport;
 
 			Utilities::DialogCompletionBar* _progressBar;
 

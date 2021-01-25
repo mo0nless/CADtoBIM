@@ -56,15 +56,15 @@ enum CmdItemListId
 |                                                                       |
 +----------------------------------------------------------------------*/
 #define OPTIONROLEACTORID_Dialog  1
-#define OPTIONBUTTONID_Dialog2  2
+#define OPTIONBUTTONID_EXPORT_BREP_Dialog  2
 
 /*----------------------------------------------------------------------+
 |                                                                       |
 |   Toggle Button IDs                                                   |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define ELEMENT_S_TOGGLEID_Dialog        1
-#define TOGGLEID_Dialog2        2
+#define SELECTED_ELEMENTS_TOGGLEID_Dialog        1
+#define BREP_EXPORT_TOGGLEID_Dialog2        2
 #define TOGGLEID_Dialog3        3
 
 /*----------------------------------------------------------------------+
@@ -146,7 +146,9 @@ enum CmdItemListId
 #define HOOKITEMID_StartButton_Dialog		(BASEID_Dialog+4)
 #define HOOKITEMID_BrowseButton_Dialog		(BASEID_Dialog+5)
 #define HOOKITEMID_ExportSelection_Dialog   (BASEID_Dialog+7)
-#define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+8)
+#define HOOKITEMID_ExportBrep_Dialog		(BASEID_Dialog+8)
+#define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+9)
+#define HOOKITEMID_BrepTypeOption_Dialog	(BASEID_Dialog+10)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -156,7 +158,7 @@ enum CmdItemListId
 #define SYNONYMID_DialogColor		1
 #define SYNONYMID_DialogScroll		2
 #define SYNONYMID_DialogBrowse		3
-#define SYNONYMID_ToggleSelection	4
+#define SYNONYMID_ExportSelectionToggle	4
 #define SYNONYMID_ActorInfo			5
 #define SYNONYMID_RefreshList		6
 
@@ -226,6 +228,13 @@ typedef struct usergeneralinfo
 	int actorRole;
 	WChar browsedFolder[255];
 } UserGeneralInfo;
+
+typedef struct ifcexportsettings
+{
+	int brepTypeExport;
+	bool activateBRepExport;
+	bool selectedElementsExport;
+} IfcExportSettings;
 
 #endif
 

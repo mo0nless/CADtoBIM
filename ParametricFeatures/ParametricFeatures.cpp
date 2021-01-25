@@ -84,6 +84,8 @@ Public DialogHookInfo uHooks[] =
 	{ HOOKITEMID_StartButton_Dialog,	 (PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
 	{ HOOKITEMID_BrowseButton_Dialog,	 (PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve },
 	{ HOOKITEMID_ExportSelection_Dialog, (PFDialogHook)DialogHooks::ExportToggleHadler::HookResolve },
+	{ HOOKITEMID_BrepTypeOption_Dialog,	 (PFDialogHook)DialogHooks::BRepOptionHadler::HookResolve },
+	{ HOOKITEMID_ExportBrep_Dialog,		 (PFDialogHook)DialogHooks::BRepToggleHadler::HookResolve },
 	{ HOOKITEMID_ActorOption_Dialog,	 (PFDialogHook)DialogHooks::ActorOptionHadler::HookResolve }
 };
 
@@ -163,10 +165,8 @@ extern "C" DLLEXPORT  void MdlMain(int argc, WCharCP argv[])
 
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_colorNumber", &dlog_colorNumber);
 	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_scrollNumber", &dlog_scrollNumber);
-	//mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber1", &dlog_optionbtnNumber1);
-	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_LONG), "dlog_optionbtnNumber2", &dlog_optionbtnNumber2);
-	mdlDialog_publishBasicVariable(setP, mdlCExpression_getType(TYPECODE_BOOL), "dlog_ToggleSingleElementButton", &dlog_ToggleSingleElementButton);
 	mdlDialog_publishComplexVariable(setP, "usergeneralinfo", "userGeneralInfo", &userGeneralInfo);
+	mdlDialog_publishComplexVariable(setP, "ifcexportsettings", "ifcExportSettings", &ifcExportSettings);
 
 	/*-----------------------------------------------------------------+
 	| mdlDialog_hookPublish:

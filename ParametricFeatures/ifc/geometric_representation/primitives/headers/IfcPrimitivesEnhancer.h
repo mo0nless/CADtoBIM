@@ -76,9 +76,9 @@ namespace Ifc
 			 * 
 			 * @param primitiveGraphicProperties 
 			 * @param file 
-			 * @return Ifc4::IfcCsgSolid* 
+			 * @return Ifc4::IfcGeometricRepresentationItem* 
 			 */
-			Ifc4::IfcCsgSolid* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
+			Ifc4::IfcGeometricRepresentationItem* buildBasicPrimitive(SolidPrimitiveProperties& primitiveGraphicProperties, IfcHierarchyHelper<Ifc4>& file);
 
 			/**
 			 * @brief Build an advanced Primitive solid

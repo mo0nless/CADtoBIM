@@ -48,13 +48,11 @@ using namespace Ifc::Main;
 the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
-static UserGeneralInfo userGeneralInfo = { L" " , L" ", L" ", 14, L" "};
-static bool dlog_ToggleSingleElementButton = false;
+static UserGeneralInfo userGeneralInfo = { L" " , L" ", L" ", 14, L" " };
+static IfcExportSettings ifcExportSettings = { 0 , false, false };
 
 static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;
-//static int dlog_optionbtnNumber1 = 0;
-static int dlog_optionbtnNumber2 = 0;
 
 #pragma warning( push )
 #pragma warning( disable : 4700)
@@ -299,6 +297,8 @@ namespace DialogInterface
 				//Synch with all the TEXT elements through the SYNONYMID to notify the change
 				mdlDialog_synonymsSynch(NULL, SYNONYMID_ActorInfo, NULL);
 
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ExportSelectionToggle, NULL);
+
 				//Get the latest update before start conversion
 				ExplorerStructure::getInstance()->updateFileNameFilePath();
 
@@ -314,7 +314,11 @@ namespace DialogInterface
 				ifcGInfo->setActorEmail(StringUtils::getString(email));
 
 				//Start Ifc process conversion 
-				Initialization::startIfcConverter();
+				Initialization::startIfcConverter(
+					ifcExportSettings.brepTypeExport, 
+					ifcExportSettings.activateBRepExport, 
+					ifcExportSettings.selectedElementsExport
+				);
 
 				IfcGeneralInformation::resetInstance();
 
@@ -515,6 +519,188 @@ namespace DialogInterface
 			}
 		};
 
+		/**
+		* @brief Class Handler for the Export Toggle Button
+		*
+		* @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+		* @see DialogItemHookHandler
+		*/
+		class ExportToggleHadler : DialogItemHookHandler
+		{
+		public:
+			/**
+			* @brief Export Toggle Button Hook replacement function
+			*
+			* @param dimP
+			*/
+			static void HookResolve(DialogItemMessage *dimP)
+			{
+				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+				{
+					dimP->u.hookResolve.hookHandlerP = new ExportToggleHadler(dimP->db, dimP->dialogItemP);
+					dimP->msgUnderstood = true;
+				}
+			}
+			/**
+			* @brief Construct a new Export Toggle Hadler object
+			*
+			* @param dbP
+			* @param diP
+			*/
+			ExportToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+
+		private:
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param allCreated
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
+			{
+				/* set the enabled state of the toggle button */
+				//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), ifcExportSettings.selectedElementsExport, FALSE);
+				GetDialogItem()->SetEnabled(ifcExportSettings.selectedElementsExport);
+
+				return true;
+			}
+
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param stateChanged
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
+			{
+				ifcExportSettings.selectedElementsExport = !ifcExportSettings.selectedElementsExport;
+
+				GetDialogItem()->SetEnabled(ifcExportSettings.selectedElementsExport);
+
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ExportSelectionToggle, NULL);
+
+				return true;
+			}
+		};
+
+
+		/**
+		* @brief Class Handler for the BRep Export Toggle Button
+		*
+		* @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+		* @see DialogItemHookHandler
+		*/
+		class BRepToggleHadler : DialogItemHookHandler
+		{
+		public:
+			/**
+			* @brief BRep Export Toggle Button Hook replacement function
+			*
+			* @param dimP
+			*/
+			static void HookResolve(DialogItemMessage *dimP)
+			{
+				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+				{
+					dimP->u.hookResolve.hookHandlerP = new BRepToggleHadler(dimP->db, dimP->dialogItemP);
+					dimP->msgUnderstood = true;
+				}
+			}
+			/**
+			* @brief Construct a new BRep Export Toggle Hadler object
+			*
+			* @param dbP
+			* @param diP
+			*/
+			BRepToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+
+		private:
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param allCreated
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
+			{
+				/* set the enabled state of the toggle button */
+				//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), ifcExportSettings.activateBRepExport, FALSE);
+				GetDialogItem()->SetEnabled(ifcExportSettings.activateBRepExport);
+
+				return true;
+			}
+
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param stateChanged
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
+			{
+				ifcExportSettings.activateBRepExport = !ifcExportSettings.activateBRepExport;
+
+				GetDialogItem()->SetEnabled(ifcExportSettings.activateBRepExport);
+
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ExportSelectionToggle, NULL);
+
+				return true;
+			}
+		};
+
+		/**
+		* @brief Class Handler for the BRep Option Button
+		*
+		* @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+		* @see DialogItemHookHandler
+		*/
+		class BRepOptionHadler : DialogItemHookHandler
+		{
+		public:
+			/**
+			* @brief BRep Option Button Hook replacement function
+			*
+			* @param dmP
+			*/
+			static void HookResolve(DialogItemMessage *dimP)
+			{
+				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+				{
+					dimP->u.hookResolve.hookHandlerP = new BRepOptionHadler(dimP->db, dimP->dialogItemP);
+					dimP->msgUnderstood = true;
+				}
+			}
+			/**
+			* @brief Construct a new BRep Option Hadler object
+			*
+			* @param dbP
+			* @param diP
+			*/
+			BRepOptionHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+
+		private:
+			
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param stateChanged
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged) override
+			{
+
+				//Synch with all the TEXT elements through the SYNONYMID to notify the change
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ExportSelectionToggle, NULL);
+
+				return true;
+			}
+		};
+
 #pragma region UNUSED HOOKS FUNCTION
 
 		/**
@@ -610,71 +796,7 @@ namespace DialogInterface
 			}
 		};
 
-		/**
-		 * @brief Class Handler for the Export Toggle Button
-		 * 
-		 * @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
-	     * @see DialogItemHookHandler
-		 */
-		class ExportToggleHadler : DialogItemHookHandler
-		{
-		public:
-			/**
-			 * @brief Export Toggle Button Hook replacement function
-			 * 
-			 * @param dimP 
-			 */
-			static void HookResolve(DialogItemMessage *dimP)
-			{
-				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
-				{
-					dimP->u.hookResolve.hookHandlerP = new ExportToggleHadler(dimP->db, dimP->dialogItemP);
-					dimP->msgUnderstood = true;
-				}
-			}
-			/**
-			 * @brief Construct a new Export Toggle Hadler object
-			 * 
-			 * @param dbP 
-			 * @param diP 
-			 */
-			ExportToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
-			
-		private:
-			/**
-			 * @brief Item Hook Handler Method override
-			 * 
-			 * @param allCreated 
-			 * @return true 
-			 * @return false 
-			 */
-			virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
-			{
-				/* set the enabled state of the toggle button */
-				//mdlDialog_itemSetEnabledState(GetDialog(), GetDialogItem()->GetItemIndex(), dlog_ToggleSingleElementButton, FALSE);
-				GetDialogItem()->SetEnabled(dlog_ToggleSingleElementButton);
-
-				return true;
-			}
-
-			/**
-			 * @brief Item Hook Handler Method override
-			 * 
-			 * @param stateChanged 
-			 * @return true 
-			 * @return false 
-			 */
-			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
-			{
-				dlog_ToggleSingleElementButton = !dlog_ToggleSingleElementButton;
-
-				GetDialogItem()->SetEnabled(dlog_ToggleSingleElementButton);
-
-				mdlDialog_synonymsSynch(NULL, SYNONYMID_ToggleSelection, NULL);
-
-				return true;
-			}
-		};
+		
 #pragma endregion
 
 	}

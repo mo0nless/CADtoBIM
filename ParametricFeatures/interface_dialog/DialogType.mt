@@ -11,3 +11,4 @@
 #include "DialogIds.h"
 
 publishStructures (usergeneralinfo);
+publishStructures (ifcexportsettings);
