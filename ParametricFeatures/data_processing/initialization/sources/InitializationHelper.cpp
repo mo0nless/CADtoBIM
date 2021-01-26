@@ -176,7 +176,7 @@ void InitializationHelper::processDgnGraphicsElements()
 	auto dgnRefActive = ISessionMgr::GetActiveDgnModelP();
 	int numElements = dgnRefActive->GetElementCount(DgnModelSections::GraphicElements); //Count the element (this function gets also the deleted ones??)
 	
-	if (!_selectedElementsExport) //EXPORT ALL ELEMENT
+	if (!_selectedElementsExport && !_activeLevelElementsExport) //EXPORT ALL ELEMENT
 	{
 		//Open ProgressBar	
 		this->_progressBar->numGraphicElement = numElements;
@@ -190,16 +190,38 @@ void InitializationHelper::processDgnGraphicsElements()
 			processSingleElementRef(elementRef);
 		}
 	}
+	else if (_activeLevelElementsExport) //EXPORT ELEMENTS IN THE ACTIVE LEVEL
+	{
+		FileLevelCache* fileLevelCache = _dgnModel->GetFileLevelCacheP();
+		LevelId activeLevelID;
+		int numSelected;
+
+		mdlSelect_freeAll();
+		mdlLevel_getActive(&activeLevelID);
+		//mdlLevel_selectElement(&numSelected, dgnModelRef, activeLevelID);
+		//mdlLevel_getElementAccess();
+		mdlLevel_getElementCount(&numSelected, dgnModelRef, activeLevelID);
+
+		for (PersistentElementRefP elementRef : _allGraphicElements)
+		{
+			LevelHandle level = fileLevelCache->GetLevel(elementRef->GetLevel());
+
+			if(level.IsValid() && activeLevelID == level.GetLevelId())
+				processSingleElementRef(elementRef);
+		}
+	}
 	else //EXPORT ONLY SELECTED ELEMENT
 	{
+		int numSelected = (int)SelectionSetManager::GetManager().NumSelected();		
+
 		//Open ProgressBar	
-		this->_progressBar->numGraphicElement = (int)SelectionSetManager::GetManager().NumSelected();
+		this->_progressBar->numGraphicElement = numSelected;
 		this->_progressBar->Open(L"Working...");
 
-		int numSelected = (int)SelectionSetManager::GetManager().NumSelected();
 		for (int i = 0; i < numSelected; i++)
 		{
 			ElementRefP elementRef = nullptr;
+
 			StatusInt status = SelectionSetManager::GetManager().GetElement(i, &elementRef, &dgnModelRef);
 			processSingleElementRef(elementRef);
 		}
@@ -216,10 +238,11 @@ vector<IfcElementBundle*>& InitializationHelper::getIfcElementBundleVector()
 	return this->_ifcElementBundleVector;
 }
 
-void InitializationHelper::setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport)
+void InitializationHelper::setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport, bool activeLevelElementsExport)
 {
 	this->_brepTypeExport = brepTypeExport;
 	this->_activateBRepExport = activateBRepExport;
 	this->_selectedElementsExport = selectedElementsExport;
+	this->_activeLevelElementsExport = activeLevelElementsExport;
 }
 #pragma warning( pop ) 

@@ -67,9 +67,10 @@ namespace DataProcessing
 			 * 
 			 * @param brepTypeExport BSpline = 0, Meshes = 1
 			 * @param activateBRepExport 
-			 * @param selectedElementsExport 
+			 * @param selectedElementsExport
+			 * @param selectedElementsExport
 			 */
-			void setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport);
+			void setIfcExportSettings(int brepTypeExport, bool activateBRepExport, bool selectedElementsExport, bool activeLevelElementsExport);
 
 		private:
 			Logging::Logger* _logger = Logging::Logger::getLogger();
@@ -101,6 +102,7 @@ namespace DataProcessing
 			int _brepTypeExport;
 			bool _activateBRepExport;
 			bool _selectedElementsExport;
+			bool _activeLevelElementsExport;
 
 			Utilities::DialogCompletionBar* _progressBar;
 

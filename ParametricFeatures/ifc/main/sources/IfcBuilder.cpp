@@ -66,28 +66,6 @@ void IfcBuilder::buildIfc(vector<IfcElementBundle*>& ifcElementBundleVector)
 	Ifc4::IfcObjectPlacement* objectPlacement = IfcGeneralInformation::getInstance()->getObjectPlacement();
 	IfcHierarchyHelper<Ifc4>& file = IfcGeneralInformation::getInstance()->getIfcHierarchyHelper();
 
-	
-	//try 
-	//{
-	//	if (!ifcElementBundleVector.empty())
-	//	{
-	//		for (auto const& ifcElementBundle : ifcElementBundleVector)
-	//		{
-	//			for (auto const& readerProperty : ifcElementBundle->getElementReaderPropertiesBundleVector()) {
-	//				ifcElementBundle->addIfcElementReaderPropertiesBundle(new IfcReaderPropertiesBundle(readerProperty));
-	//			}
-	//		}
-	//	}
-	//}
-	//catch (exception& ex) {
-	//	_logger->logFatal(__FILE__, __LINE__, __func__, ex, "Error at initializing the ifcElementBundleVector");
-	//	throw ex;
-	//}
-	//catch (...) {
-	//	_logger->logFatal(__FILE__, __LINE__, __func__, "Error at initializing the ifcElementBundleVector. Unhandled exception type");
-	//	throw;
-	//}
-
 	_ifcPortsBuilder = new IfcPortsBuilder(geometricContext, ownerHistory);
 	_ifcElementBuilder = new IfcElementBuilder(geometricContext, ownerHistory, objectPlacement);
 

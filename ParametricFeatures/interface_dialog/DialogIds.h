@@ -63,9 +63,9 @@ enum CmdItemListId
 |   Toggle Button IDs                                                   |
 |                                                                       |
 +----------------------------------------------------------------------*/
-#define SELECTED_ELEMENTS_TOGGLEID_Dialog        1
-#define BREP_EXPORT_TOGGLEID_Dialog2        2
-#define TOGGLEID_Dialog3        3
+#define TOGGLEID_SELECTED_ELEMENTS_Dialog        1
+#define TOGGLEID_BREP_EXPORT_Dialog        2
+#define TOGGLEID_ACTIVELEVELS_Dialog        3
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -149,6 +149,7 @@ enum CmdItemListId
 #define HOOKITEMID_ExportBrep_Dialog		(BASEID_Dialog+8)
 #define HOOKITEMID_ActorOption_Dialog		(BASEID_Dialog+9)
 #define HOOKITEMID_BrepTypeOption_Dialog	(BASEID_Dialog+10)
+#define HOOKITEMID_ActiveLevelExport_Dialog	(BASEID_Dialog+11)
 
 /*----------------------------------------------------------------------+
 |                                                                       |
@@ -234,6 +235,7 @@ typedef struct ifcexportsettings
 	int brepTypeExport;
 	bool activateBRepExport;
 	bool selectedElementsExport;
+	bool activeLevelElementsExport;
 } IfcExportSettings;
 
 #endif

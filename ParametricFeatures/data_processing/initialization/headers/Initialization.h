@@ -43,9 +43,10 @@ namespace DataProcessing
 			 * @param brepTypeExport
 			 * @param activateBRepExport
 			 * @param selectedElementsExport
+			 * @param activeLevelElementsExport
 			 * @return StatusInt 
 			 */
-			static StatusInt startIfcConverter(int brepTypeExport, bool activateBRepExport,	bool selectedElementsExport)
+			static StatusInt startIfcConverter(int brepTypeExport, bool activateBRepExport,	bool selectedElementsExport, bool activeLevelElementsExport)
 			{
 				NotificationManager::SetDispatchEvents(true);
 
@@ -60,7 +61,7 @@ namespace DataProcessing
 				InitializationHelper* initializationHelper = new InitializationHelper(allGraphicElements);
 
 				try {
-					initializationHelper->setIfcExportSettings(brepTypeExport, activateBRepExport, selectedElementsExport);
+					initializationHelper->setIfcExportSettings(brepTypeExport, activateBRepExport, selectedElementsExport, activeLevelElementsExport);
 					initializationHelper->processDgnGraphicsElements();
 				}
 				catch (exception& ex) {

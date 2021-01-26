@@ -13,6 +13,7 @@ CexprName 6 = {"ifcexportsettings"};
 CexprName 7 = {"brepTypeExport"};
 CexprName 8 = {"activateBRepExport"};
 CexprName 9 = {"selectedElementsExport"};
+CexprName 10 = {"activeLevelElementsExport"};
 
 
 CexprNamedStructures 1 =
@@ -42,4 +43,5 @@ CexprMemberList 1 =
     {0x1, 	0,	7, 	0x1919d0f4}, 	/*  brepTypeExport  */
     {0x3, 	4,	8, 	0x39947f34}, 	/*  activateBRepExport  */
     {0x3, 	5,	9, 	0x1b3f6174}, 	/*  selectedElementsExport  */
+    {0x3, 	6,	10, 	0x9afb6174}, 	/*  activeLevelElementsExport  */
     }};

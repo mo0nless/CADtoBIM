@@ -49,7 +49,7 @@ the text, option button, and toggle button items defined in Dialog.r.
 The initial external state of the Text item and the Browse button
 (they are both looking at the same application variable).*/
 static UserGeneralInfo userGeneralInfo = { L" " , L" ", L" ", 14, L" " };
-static IfcExportSettings ifcExportSettings = { 1 , false, false };
+static IfcExportSettings ifcExportSettings = { 1 , false, false, false };
 
 static int dlog_colorNumber = 5;
 static int dlog_scrollNumber = 500;
@@ -317,7 +317,8 @@ namespace DialogInterface
 				Initialization::startIfcConverter(
 					ifcExportSettings.brepTypeExport, 
 					ifcExportSettings.activateBRepExport, 
-					ifcExportSettings.selectedElementsExport
+					ifcExportSettings.selectedElementsExport,
+					ifcExportSettings.activeLevelElementsExport
 				);
 
 				IfcGeneralInformation::resetInstance();
@@ -585,6 +586,70 @@ namespace DialogInterface
 			}
 		};
 
+		/**
+		* @brief Class Handler for the Active Level Export Toggle Button
+		*
+		* @remark This class inherits and implement the Bentley DialogItemHookHandler Interface
+		* @see DialogItemHookHandler
+		*/
+		class ActiveLevelToggleHadler : DialogItemHookHandler
+		{
+		public:
+			/**
+			* @brief Active Level Export Toggle Button Hook replacement function
+			*
+			* @param dimP
+			*/
+			static void HookResolve(DialogItemMessage *dimP)
+			{
+				if (DITEM_MESSAGE_HOOKRESOLVE == dimP->messageType)
+				{
+					dimP->u.hookResolve.hookHandlerP = new ActiveLevelToggleHadler(dimP->db, dimP->dialogItemP);
+					dimP->msgUnderstood = true;
+				}
+			}
+			/**
+			* @brief Construct a new Active Level Export Toggle Hadler object
+			*
+			* @param dbP
+			* @param diP
+			*/
+			ActiveLevelToggleHadler(MSDialogP dbP, DialogItemP diP) : DialogItemHookHandler(dbP, diP) {}
+
+		private:
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param allCreated
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnAllCreated(DialogItemAllCreatedArgsR allCreated)
+			{
+				/* set the enabled state of the toggle button */
+				GetDialogItem()->SetEnabled(ifcExportSettings.activeLevelElementsExport);
+
+				return true;
+			}
+
+			/**
+			* @brief Item Hook Handler Method override
+			*
+			* @param stateChanged
+			* @return true
+			* @return false
+			*/
+			virtual bool _OnStateChanged(DialogItemStateChangedArgsR stateChanged)
+			{
+				ifcExportSettings.activeLevelElementsExport = !ifcExportSettings.activeLevelElementsExport;
+
+				GetDialogItem()->SetEnabled(ifcExportSettings.activeLevelElementsExport);
+
+				mdlDialog_synonymsSynch(NULL, SYNONYMID_ExportSelectionToggle, NULL);
+
+				return true;
+			}
+		};
 
 		/**
 		* @brief Class Handler for the BRep Export Toggle Button

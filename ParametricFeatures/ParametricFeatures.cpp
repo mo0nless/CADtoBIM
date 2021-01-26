@@ -77,16 +77,17 @@ void unLoadDialogBox(WCharCP unparsedP)
  */
 Public DialogHookInfo uHooks[] =
 {
-	{ HOOKID_Dialog,                     (PFDialogHook)DialogHooks::Handler::HookResolve },
-	{ HOOKITEMID_ListBox_Dialog,         (PFDialogHook)DialogHooks::ItemBoxHadler::HookResolve },
-	{ HOOKITEMID_PullDownMenu_Dialog,    (PFDialogHook)DialogHooks::PullDownMenuHadler::HookResolve },
-	{ HOOKITEMID_ScrollBar_Dialog,       (PFDialogHook)DialogHooks::ScrollBarHadler::HookResolve },
-	{ HOOKITEMID_StartButton_Dialog,	 (PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
-	{ HOOKITEMID_BrowseButton_Dialog,	 (PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve },
-	{ HOOKITEMID_ExportSelection_Dialog, (PFDialogHook)DialogHooks::ExportToggleHadler::HookResolve },
-	{ HOOKITEMID_BrepTypeOption_Dialog,	 (PFDialogHook)DialogHooks::BRepOptionHadler::HookResolve },
-	{ HOOKITEMID_ExportBrep_Dialog,		 (PFDialogHook)DialogHooks::BRepToggleHadler::HookResolve },
-	{ HOOKITEMID_ActorOption_Dialog,	 (PFDialogHook)DialogHooks::ActorOptionHadler::HookResolve }
+	{ HOOKID_Dialog,							(PFDialogHook)DialogHooks::Handler::HookResolve },
+	{ HOOKITEMID_ListBox_Dialog,				(PFDialogHook)DialogHooks::ItemBoxHadler::HookResolve },
+	{ HOOKITEMID_PullDownMenu_Dialog,			(PFDialogHook)DialogHooks::PullDownMenuHadler::HookResolve },
+	{ HOOKITEMID_ScrollBar_Dialog,				(PFDialogHook)DialogHooks::ScrollBarHadler::HookResolve },
+	{ HOOKITEMID_StartButton_Dialog,			(PFDialogHook)DialogHooks::StartButtonHadler::HookResolve },
+	{ HOOKITEMID_BrowseButton_Dialog,			(PFDialogHook)DialogHooks::BrowseButtonHadler::HookResolve },
+	{ HOOKITEMID_ExportSelection_Dialog,		(PFDialogHook)DialogHooks::ExportToggleHadler::HookResolve },
+	{ HOOKITEMID_BrepTypeOption_Dialog,			(PFDialogHook)DialogHooks::BRepOptionHadler::HookResolve },
+	{ HOOKITEMID_ExportBrep_Dialog,				(PFDialogHook)DialogHooks::BRepToggleHadler::HookResolve },
+	{ HOOKITEMID_ActiveLevelExport_Dialog,		(PFDialogHook)DialogHooks::ActiveLevelToggleHadler::HookResolve },
+	{ HOOKITEMID_ActorOption_Dialog,			(PFDialogHook)DialogHooks::ActorOptionHadler::HookResolve }
 };
 
 /**

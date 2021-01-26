@@ -121,16 +121,16 @@ DialogBoxRsc DIALOGID_Dialog =
 			//SPACING (SECTION_GAP)
 				BEGIN_GRID_LAYOUT(GRIDLAYOUTID_2ColumnsOuter, "")
 					GRID_ROW(0, "")
-					    {AUTO_XYWH,    ToggleButton, BREP_EXPORT_TOGGLEID_Dialog2, ON, 0, "", ""},
+					    {AUTO_XYWH,    ToggleButton, TOGGLEID_BREP_EXPORT_Dialog, ON, 0, "", ""},
 				        LAYOUT_LABEL_NEXT_LEFT(0,"")
 				        {AUTO_XYWH, OptionButton, OPTIONBUTTONID_EXPORT_BREP_Dialog, ON, 0, "", ""},
 					END_ROW
 					GRID_ROW(0, "")
-					    {AUTO_XYWH,   ToggleButton, SELECTED_ELEMENTS_TOGGLEID_Dialog, ON, 0, "", ""},
+					    {AUTO_XYWH,   ToggleButton, TOGGLEID_SELECTED_ELEMENTS_Dialog, ON, 0, "", ""},
 					END_ROW
-					//GRID_ROW(0, "")
-					//    {AUTO_XYWH,    ToggleButton, TOGGLEID_Dialog3, ON, 0, "", ""},
-					//END_ROW
+					GRID_ROW(0, "")
+					    {AUTO_XYWH,    ToggleButton, TOGGLEID_ACTIVELEVELS_Dialog, ON, 0, "", ""},
+					END_ROW
                 END_LAYOUT       
 		//STRETCH(1)
 		END_LAYOUT
@@ -463,17 +463,17 @@ DItem_TextRsc TEXTID_DialogScroll =
 |   Toggle Button Item Resources                                        |
 |                                                                       |
 +----------------------------------------------------------------------*/
-DItem_ToggleButtonRsc SELECTED_ELEMENTS_TOGGLEID_Dialog =
+DItem_ToggleButtonRsc TOGGLEID_SELECTED_ELEMENTS_Dialog =
     {
     NOCMD, LCMD, 
 	SYNONYMID_ExportSelectionToggle,//NOSYNONYM, 
 	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
-    TXT_ToggleSingleElementButton,
+    TXT_Toggle_Export_Selected_Elements,
     "ifcExportSettings.selectedElementsExport"
     };
 
-DItem_ToggleButtonRsc BREP_EXPORT_TOGGLEID_Dialog2 =
+DItem_ToggleButtonRsc TOGGLEID_BREP_EXPORT_Dialog =
     {
     NOCMD, LCMD, 
 	SYNONYMID_ExportSelectionToggle, //NOSYNONYM, 
@@ -483,12 +483,14 @@ DItem_ToggleButtonRsc BREP_EXPORT_TOGGLEID_Dialog2 =
     "ifcExportSettings.activateBRepExport"
     };
 
-DItem_ToggleButtonRsc TOGGLEID_Dialog3 =
+DItem_ToggleButtonRsc TOGGLEID_ACTIVELEVELS_Dialog =
     {
-    NOCMD, LCMD, NOSYNONYM, NOHELP, LHELPCMD, NOHOOK,
+    NOCMD, LCMD, 
+	SYNONYMID_ExportSelectionToggle, //NOSYNONYM, 
+	NOHELP, LHELPCMD, NOHOOK,
     NOARG, NOMASK, NOINVERT,
-    TXT_ToggleButton3,
-    ""
+    TXT_Toggle_Export_Active_Level,
+    "ifcExportSettings.activeLevelElementsExport"
     };
 
 /*----------------------------------------------------------------------+
@@ -523,8 +525,9 @@ DItem_SynonymsRsc SYNONYMID_DialogBrowse=
 DItem_SynonymsRsc SYNONYMID_ExportSelectionToggle=
 	{
 	{
-		{ToggleButton, SELECTED_ELEMENTS_TOGGLEID_Dialog},
-		{ToggleButton, BREP_EXPORT_TOGGLEID_Dialog2},
+		{ToggleButton, TOGGLEID_SELECTED_ELEMENTS_Dialog},
+		{ToggleButton, TOGGLEID_BREP_EXPORT_Dialog},
+		{ToggleButton, TOGGLEID_ACTIVELEVELS_Dialog},
 		{OptionButton, OPTIONBUTTONID_EXPORT_BREP_Dialog},
 		{PushButton, STARTBUTTONID_Dialog}
 	}
